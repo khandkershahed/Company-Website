@@ -18,6 +18,6 @@ use App\Http\Controllers\Api\RfqApiController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::group(['prefix' => 'api/resource'], function () {
-    // Route::apiResource('rfqs', RfqApiController::class);
+Route::group(['prefix' => 'api/resource/'], function () {
+    // Route::apiResource('rfqAPI', RfqApiController::class);
 });
