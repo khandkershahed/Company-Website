@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Jobs;
 
 use App\Models\User;
@@ -25,7 +26,7 @@ class SyncZKAttendance implements ShouldQueue
         $this->deviceIp = env('ZK_DEVICE_IP', '203.17.65.230');
     }
 
-    public function handle() 
+    public function handle()
     {
         try {
             $zk = new ZKTeco($this->deviceIp, 4370);
@@ -37,17 +38,17 @@ class SyncZKAttendance implements ShouldQueue
                 if (!empty($user->employee_id)) {
                     $attendanceLogs = ZKAttendance::getCustom($zk, $this->month, $user->employee_id);
 
-                foreach ($attendanceLogs as $log) {
-                    Attendance::updateOrCreate(
-                        [
-                            'user_id' => $user->id,
-                            'timestamp' => $log['timestamp'],
-                        ],
-                        [
-                            'status' => $log['state'], // Use state for status
-                        ]
-                    );
-                }
+                    foreach ($attendanceLogs as $log) {
+                        Attendance::updateOrCreate(
+                            [
+                                'user_id' => $user->id,
+                                'timestamp' => $log['timestamp'],
+                            ],
+                            [
+                                'status' => $log['state'], // Use state for status
+                            ]
+                        );
+                    }
                 }
             }
 
