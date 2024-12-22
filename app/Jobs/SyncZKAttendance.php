@@ -25,7 +25,7 @@ class SyncZKAttendance implements ShouldQueue
         $this->deviceIp = env('ZK_DEVICE_IP', '203.17.65.230');
     }
 
-    public function handle()
+    public function handle() 
     {
         try {
             $zk = new ZKTeco($this->deviceIp, 4370);
