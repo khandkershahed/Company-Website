@@ -49,9 +49,14 @@ class SyncZKAttendance implements ShouldQueue
                     Log::info('Fetched Attendance Logs:', ['attendanceLogs' => $attendanceLogs]);
 
                     // Ensure $attendanceLogs is an array, even if empty
-                    if (empty($attendanceLogs) || !is_array($attendanceLogs)) {
-                        Log::warning("No attendance logs found or invalid data for user ID: {$user->id} (Employee ID: {$user->employee_id})");
-                        continue; // Skip to the next user if no logs are found or the data is invalid
+                    if (is_null($attendanceLogs)) {
+                        Log::warning("No attendance logs found for user ID: {$user->id} (Employee ID: {$user->employee_id}) - Received null");
+                        continue;
+                    }
+
+                    if (!is_array($attendanceLogs)) {
+                        Log::warning("Invalid data format for user ID: {$user->id} (Employee ID: {$user->employee_id}) - Expected array, got " . gettype($attendanceLogs));
+                        continue;
                     }
 
                     // Process each attendance log
