@@ -48,7 +48,7 @@ class SyncZKAttendance implements ShouldQueue
 
                 // Get attendance logs from ZKTeco device
                 $attendanceLogs = ZKAttendance::getCustom($zk, $this->month, $user->employee_id);
-
+                Log::info('Test Attendance Logs:', ['attendanceLogs' => $attendanceLogs]);
                 if (empty($attendanceLogs)) {
                     Log::warning("No attendance logs found for user ID: {$user->id} (Employee ID: {$user->employee_id})");
                     continue; // Skip to the next user if no logs are found
