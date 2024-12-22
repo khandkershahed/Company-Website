@@ -37,39 +37,50 @@ class SyncZKAttendance implements ShouldQueue
             $users = User::all();
 
             foreach ($users as $user) {
-                if (empty($user->employee_id)) {
+                if (!empty($user->employee_id)) {
+                    Log::info('Syncing attendance for user: ' . $user->id);
+                    Log::info('Month: ' . $this->month);
+                    Log::info('Employee ID: ' . $user->employee_id);
+
+                    // Fetch attendance logs
+                    $attendanceLogs = ZKAttendance::getCustom($zk, $this->month, $user->employee_id);
+
+                    // Log the fetched data for debugging
+                    Log::info('Fetched Attendance Logs:', ['attendanceLogs' => $attendanceLogs]);
+
+                    // Ensure $attendanceLogs is an array, even if empty
+                    if (empty($attendanceLogs) || !is_array($attendanceLogs)) {
+                        Log::warning("No attendance logs found or invalid data for user ID: {$user->id} (Employee ID: {$user->employee_id})");
+                        continue; // Skip to the next user if no logs are found or the data is invalid
+                    }
+
+                    // Process each attendance log
+                    foreach ($attendanceLogs as $log) {
+                        // Check if log data is valid
+                        if (!isset($log['timestamp']) || !isset($log['state'])) {
+                            Log::warning("Invalid attendance log data for user ID: {$user->id} (Employee ID: {$user->employee_id})");
+                            continue;
+                        }
+
+                        // Update or create attendance record in the database
+                        Attendance::updateOrCreate(
+                            [
+                                'user_id' => $user->id,
+                                'timestamp' => $log['timestamp'],
+                            ],
+                            [
+                                'status' => $log['state'], // Use state for status
+                            ]
+                        );
+                    }
+                } else {
                     Log::warning("Employee ID is missing for user ID: {$user->id}");
-                    continue; // Skip this user
-                }
-
-                Log::info('Syncing attendance for user: ' . $user->id);
-                Log::info('Month: ' . $this->month);
-                Log::info('Employee ID: ' . $user->employee_id);
-
-                // Get attendance logs from ZKTeco device
-                $attendanceLogs = ZKAttendance::getCustom($zk, $this->month, $user->employee_id);
-                Log::info('Test Attendance Logs:', ['attendanceLogs' => $attendanceLogs]);
-                if (empty($attendanceLogs)) {
-                    Log::warning("No attendance logs found for user ID: {$user->id} (Employee ID: {$user->employee_id})");
-                    continue; // Skip to the next user if no logs are found
-                }
-
-                foreach ($attendanceLogs as $log) {
-                    Attendance::updateOrCreate(
-                        [
-                            'user_id' => $user->id,
-                            'timestamp' => $log['timestamp'],
-                        ],
-                        [
-                            'status' => $log['state'], // Use state for status
-                        ]
-                    );
                 }
             }
 
             $zk->disconnect();
         } catch (\Exception $e) {
-            Log::error('ZKTeco Sync Error: ' . $e->getMessage(), ['exception' => $e]);
+            Log::error('ZKTeco Sync Error: ' . $e->getMessage());
         }
     }
 }
