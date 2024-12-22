@@ -30,8 +30,10 @@ class SyncZKAttendance implements ShouldQueue
     public function handle()
     {
         try {
-            $zk = new ZKTeco($this->deviceIp, 4370);
+            $deviceip = $this->deviceIp;
+            $zk = new ZKTeco($deviceip, 4370);
             $zk->connect();
+            $zk->enableDevice();
 
             // Iterate through all users to sync attendance
             $users = User::all();
@@ -43,7 +45,7 @@ class SyncZKAttendance implements ShouldQueue
                     Log::info('Employee ID: ' . $user->employee_id);
 
                     // Fetch attendance logs
-                    $attendanceLogs = ZKAttendance::getCustom($zk, $this->month, $user->employee_id);
+                    $attendanceLogs = $zk->getEmployeeAttendance($this->month, $user->employee_id);
 
                     // Log the fetched data for debugging
                     Log::info('Fetched Attendance Logs:', ['attendanceLogs' => $attendanceLogs]);
