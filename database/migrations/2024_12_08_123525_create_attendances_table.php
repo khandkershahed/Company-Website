@@ -16,8 +16,11 @@ return new class extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnUpdate()->cascadeOnDelete(); // Foreign key referencing the users table
-            $table->timestamp('timestamp'); // Timestamp for the attendance event
-            $table->string('status');
+            // $table->timestamp('timestamp')->nullable(); // Timestamp for the attendance event
+            $table->time('check_in')->nullable();
+            $table->time('check_out')->nullable();
+            $table->string('status')->nullable();
+            $table->text('absent_note')->nullable();
             $table->timestamps();
         });
     }

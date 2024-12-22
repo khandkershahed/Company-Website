@@ -44,7 +44,7 @@ class SyncZKAttendance implements ShouldQueue
                     Log::info('Month: ' . $this->month);
                     Log::info('Employee ID: ' . $user->employee_id);
 
-                    // Fetch attendance logs
+                    // Fetch attendance logs for the current user and month
                     $attendanceLogs = $zk->getEmployeeAttendance($this->month, $user->employee_id);
 
                     // Log the fetched data for debugging
@@ -69,14 +69,36 @@ class SyncZKAttendance implements ShouldQueue
                             continue;
                         }
 
-                        // Update or create attendance record in the database
+                        // Extract date from timestamp
+                        $logDate = (new \DateTime($log['timestamp']))->format('Y-m-d');
+
+                        // Fetch existing attendance records for the current date
+                        $attendanceForDate = Attendance::where('user_id', $user->id)
+                            ->whereDate('timestamp', $logDate)
+                            ->get();
+
+                        // Initialize check_in, check_out, and absent_note
+                        $earliestCheckIn = 'N/A';
+                        $latestCheckOut = 'N/A';
+                        $absentNote = null;
+
+                        if ($attendanceForDate->count() > 0) {
+                            // Get the earliest check-in and latest check-out from existing records
+                            $earliestCheckIn = $attendanceForDate->min('timestamp');
+                            $latestCheckOut = $attendanceForDate->max('timestamp');
+                        } else {
+                            // Set absent note if no records exist for the day
+                            $absentNote = 'Absent';
+                        }
+
+                        // Create or update attendance record for the current day
                         Attendance::updateOrCreate(
                             [
                                 'user_id' => $user->id,
-                                'timestamp' => $log['timestamp'],
-                            ],
-                            [
+                                'check_in' => $earliestCheckIn === 'N/A' ? null : (new \DateTime($earliestCheckIn))->format('H:i:s'),
+                                'check_out' => $latestCheckOut === 'N/A' ? null : (new \DateTime($latestCheckOut))->format('H:i:s'),
                                 'status' => $log['state'], // Use state for status
+                                'absent_note' => $absentNote,
                             ]
                         );
                     }
