@@ -11,6 +11,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Rats\Zkteco\Lib\Helper\Attendance as ZKAttendance;
 
 class SyncZKAttendance implements ShouldQueue
@@ -19,13 +20,11 @@ class SyncZKAttendance implements ShouldQueue
 
     protected $month; // Number of months to fetch data
     protected $deviceIp;
-    protected $isFirstRun;
 
     public function __construct($month = 2)
     {
         $this->month = $month;
         $this->deviceIp = env('ZK_DEVICE_IP', '203.17.65.230');
-        $this->isFirstRun = $this->checkIfFirstRun(); // Check if it's the first run
     }
 
     public function handle()
@@ -36,9 +35,16 @@ class SyncZKAttendance implements ShouldQueue
             $zk->connect();
             $zk->enableDevice();
 
-            // Iterate through all users to sync attendance
+            // Retrieve all employees
             $users = User::all();
 
+            // Ensure the users collection is not empty
+            if ($users->isEmpty()) {
+                Log::warning('No users found to sync.');
+                return;
+            }
+
+            // Iterate through all users to sync attendance
             foreach ($users as $user) {
                 if (!empty($user->employee_id)) {
                     Log::info('Syncing attendance for user: ' . $user->id);
@@ -46,9 +52,7 @@ class SyncZKAttendance implements ShouldQueue
                     Log::info('Employee ID: ' . $user->employee_id);
 
                     // Fetch attendance logs
-                    $attendanceLogs = $this->isFirstRun
-                        ? $zk->getEmployeeAttendance($this->month, $user->employee_id) // Get all data for first run
-                        : $zk->getEmployeeAttendanceForToday($user->employee_id); // Get only today's data for subsequent runs
+                    $attendanceLogs = $zk->getEmployeeAttendance($this->month, $user->employee_id);
 
                     // Log the fetched data for debugging
                     Log::info('Fetched Attendance Logs:', ['attendanceLogs' => $attendanceLogs]);
@@ -72,44 +76,18 @@ class SyncZKAttendance implements ShouldQueue
                             continue;
                         }
 
-                        // Extract date from timestamp
-                        $logDate = (new \DateTime($log['timestamp']))->format('Y-m-d');
-
-                        // Check if attendance record already exists for the current date
-                        $attendanceForDate = Attendance::where('user_id', $user->id)
-                            ->whereDate('date', $logDate)
-                            ->first();
-
-                        // If data for this date already exists, skip inserting duplicate data
-                        if ($attendanceForDate) {
-                            Log::info("Attendance for user {$user->id} on {$logDate} already exists. Skipping insert.");
-                            continue;
-                        }
-
-                        // Initialize check_in, check_out, and absent_note
-                        $earliestCheckIn = 'N/A';
-                        $latestCheckOut = 'N/A';
-                        $absentNote = null;
-
-                        // If attendance data exists, get earliest check-in and latest check-out
-                        if (isset($log['timestamp'])) {
-                            $earliestCheckIn = $log['timestamp'];
-                            $latestCheckOut = $log['timestamp'];  // As we only have one entry for this example, we'll assume check-in == check-out initially
-                        }
-
-                        if ($attendanceForDate->count() === 0) {
-                            $absentNote = 'Absent';
-                        }
-
-                        // Save attendance record for the current day
-                        Attendance::create([
-                            'user_id' => $user->id,
-                            'date' => $logDate,
-                            'check_in' => $earliestCheckIn === 'N/A' ? null : (new \DateTime($earliestCheckIn))->format('H:i:s'),
-                            'check_out' => $latestCheckOut === 'N/A' ? null : (new \DateTime($latestCheckOut))->format('H:i:s'),
-                            'status' => $log['state'],
-                            'absent_note' => $absentNote,
-                        ]);
+                        // Update or create attendance record in the database
+                        Attendance::updateOrCreate(
+                            [
+                                'user_id' => $user->id,
+                                'date' => date('Y-m-d', strtotime($log['timestamp'])),
+                            ],
+                            [
+                                'check_in' => $this->getEarliestCheckIn($attendanceLogs),
+                                'check_out' => $this->getLatestCheckOut($attendanceLogs),
+                                'status' => $log['state'], // Use state for status
+                            ]
+                        );
                     }
                 } else {
                     Log::warning("Employee ID is missing for user ID: {$user->id}");
@@ -122,11 +100,45 @@ class SyncZKAttendance implements ShouldQueue
         }
     }
 
-    // Function to check if it's the first run based on the database or some other method
-    protected function checkIfFirstRun()
+    /**
+     * Get the earliest check-in time from the attendance logs.
+     *
+     * @param array $attendanceLogs
+     * @return string|null
+     */
+    private function getEarliestCheckIn(array $attendanceLogs)
     {
-        // Example: Check if attendance data exists for the first day of the month for any user
-        $firstDayOfMonth = now()->startOfMonth()->format('Y-m-d');
-        return Attendance::whereDate('date', $firstDayOfMonth)->doesntExist();
+        $earliestCheckIn = null;
+
+        foreach ($attendanceLogs as $log) {
+            $checkInTime = date('H:i:s', strtotime($log['timestamp']));
+
+            if ($earliestCheckIn === null || strtotime($checkInTime) < strtotime($earliestCheckIn)) {
+                $earliestCheckIn = $checkInTime;
+            }
+        }
+
+        return $earliestCheckIn;
+    }
+
+    /**
+     * Get the latest check-out time from the attendance logs.
+     *
+     * @param array $attendanceLogs
+     * @return string|null
+     */
+    private function getLatestCheckOut(array $attendanceLogs)
+    {
+        $latestCheckOut = null;
+
+        foreach ($attendanceLogs as $log) {
+            $checkOutTime = date('H:i:s', strtotime($log['timestamp']));
+
+            if ($latestCheckOut === null || strtotime($checkOutTime) > strtotime($latestCheckOut)) {
+                $latestCheckOut = $checkOutTime;
+            }
+        }
+
+        return $latestCheckOut;
     }
 }
