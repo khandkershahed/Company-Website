@@ -185,9 +185,9 @@
                         <img src="https://www.ngenitltd.com/frontend/images/white_logo.png" alt="Ngen IT" title="Ngen IT"
                             style="padding-left: 20px; width: 95px;" />
                     </th>
-                    <th style="border: 0; padding: 0; display: flex; justify-content: center; align-items: center; vertical-align: middle;">
+                    <th style="border: 0; padding: 0; vertical-align: middle;">
                         <div style="text-align: left;">
-                            <p style="font-size: 25px; min-height: 60px; padding: 0px; font-weight: 600; margin: 0px; margin-bottom: 0px; margin-top: 3px; color: #fff; text-align: left;">
+                            <p style="font-size: 25px; padding: 0px; font-weight: 600; margin: 0px; margin-bottom: 0px; margin-top: 3px; color: #fff; text-align: left;">
                                 {{ $quotation->quotation_title }}
                             </p>
                         </div>
@@ -226,6 +226,14 @@
                     <tr>
                         <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
                             {{ $quotation->phone }}
+                        </th>
+                        <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
+                            {{$quotation->ngen_company_registration_number}}
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
+                            {{ $quotation->address }}
                         </th>
                         <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
                             Customer Type: {{ $rfq->client_type }}

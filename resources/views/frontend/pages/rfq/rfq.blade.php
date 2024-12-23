@@ -539,7 +539,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-3">
-                                                        <input name="budget" type="text"
+                                                        <input name="budget" type="number"
                                                             class="form-control form-control-sm border-0 rounded-1 py-3"
                                                             placeholder="Tentative Budget..">
                                                     </div>
@@ -559,9 +559,9 @@
                                 </div>
                                 <div class="pt-3 d-flex justify-content-between align-items-center">
                                     <p class="fw-normal m-0 p-0">Please complete your details for further communication needed!</p>
-                                    <button type="button" id="nextButtonmain" class="btn-secondary btn w-25" onclick="nextStep()" disabled>
+                                    <button type="button" id="nextButtonmain" class="btn-secondary btn w-25 rounded-0" onclick="nextStep()" disabled>
                                         <span>Next</span>
-                                        <i class="ps-2 fa-solid fa-arrow-right-long"></i> 
+                                        <i class="ps-2 fa-solid fa-arrow-right-long"></i>
                                     </button>
                                 </div>
                             </div>
@@ -575,7 +575,7 @@
                                             <div class="mb-4">
                                                 <input name="name" type="text"
                                                     class="form-control form-control-sm border-0 rounded-1 py-3"
-                                                    placeholder="Full Name *">
+                                                    placeholder="Full Name *" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -589,21 +589,21 @@
                                             <div class="mb-4">
                                                 <input name="email" type="text"
                                                     class="form-control form-control-sm border-0 rounded-1 py-3"
-                                                    placeholder="Email Id *">
+                                                    placeholder="Email Id *" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-4">
                                                 <input name="phone" type="text"
                                                     class="form-control form-control-sm border-0 rounded-1 py-3"
-                                                    placeholder="Contact  Number..">
+                                                    placeholder="Contact  Number.." >
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-4">
                                                 <input name="company_name" type="text"
                                                     class="form-control form-control-sm border-0 rounded-1 py-3"
-                                                    placeholder="Company name..">
+                                                    placeholder="Company name.." required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
