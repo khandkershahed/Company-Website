@@ -1,5 +1,6 @@
 <div class="navbar navbar-dark navbar-expand-lg navbar-static border-bottom-white border-opacity-10 pt-0 pb-0"
-style="background: url('https://i.ibb.co/qgHN3jC/Background.jpg') no-repeat center center; background-size: cover;">
+{{-- style="background: url('https://i.ibb.co/qgHN3jC/Background.jpg') no-repeat center center; background-size: cover;"> --}}
+style="background: #157199 no-repeat center center; background-size: cover;">
     <div class="container-fluid">
         <div class="d-flex d-lg-none me-5">
             <button type="button" class="navbar-toggler sidebar-mobile-main-toggle rounded-pill">
@@ -14,7 +15,7 @@ style="background: url('https://i.ibb.co/qgHN3jC/Background.jpg') no-repeat cent
             <a href="{{ route('admin.dashboard') }}" class="d-inline-flex align-items-center">
                 {{-- <img src="{{ !empty($setting->logo) && file_exists(public_path('storage/' . $setting->logo)) ? asset('storage/' . $setting->logo) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}"
                     alt="NGen IT" style="height: 51px;"> --}}
-                <img src="https://i.ibb.co/GkjPXN7/Logo-NGen-IT-White.png"
+                <img src="{{ asset('frontend/images/ngen_logo_white.png') }}"
                     alt="NGen IT" style="height: 51px;">
             </a>
         </div>
@@ -193,4 +194,4 @@ style="background: url('https://i.ibb.co/qgHN3jC/Background.jpg') no-repeat cent
             </li>
         </ul>
     </div>
-</div> 
+</div>

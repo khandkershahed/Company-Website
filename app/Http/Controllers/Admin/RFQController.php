@@ -1111,7 +1111,7 @@ class RFQController extends Controller
 
         Notification::send($user, new WorkOrder($name, $rfq_code));
         Session::flash('success','Workorder uploaded Succssfully');
-        return redirect()->back();
+        return redirect()->back()->with('success','Workorder uploaded Succssfully');
     }
 
     public function proofPaymentUpload(Request $request, $id)
@@ -1148,6 +1148,6 @@ class RFQController extends Controller
             'rfq_type'           => 'order',
         ]);
         Session::flash('success','Proof of Payment uploaded Succssfully');
-        return redirect()->back();
+        return redirect()->back()->with('success','Proof of Payment uploaded Succssfully');
     }
 }
