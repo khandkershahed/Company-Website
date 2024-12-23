@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <div class="preloader">
+    <div class="preloader" style="background: black;">
         {{-- <img src="{{ asset('frontend/images/backend_loader.gif') }}" alt="Loading..." class="preloader-spinner"> --}}
         <img src="{{ asset('frontend/images/backend_loader.gif') }}" alt="Loading..." class="preloader-spinner">
     </div>
