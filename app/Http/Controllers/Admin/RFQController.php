@@ -1110,8 +1110,8 @@ class RFQController extends Controller
         $rfq_code = $rfq->rfq_code;
 
         Notification::send($user, new WorkOrder($name, $rfq_code));
-        Session::flash('success','Workorder uploaded Succssfully');
-        return redirect()->back()->with('success','Workorder uploaded Succssfully');
+        Toastr::success('Workorder uploaded Succssfully.');
+        return redirect()->back();
     }
 
     public function proofPaymentUpload(Request $request, $id)
@@ -1147,7 +1147,7 @@ class RFQController extends Controller
             'sale_date'          => Carbon::now()->format('dmy'),
             'rfq_type'           => 'order',
         ]);
-        Session::flash('success','Proof of Payment uploaded Succssfully');
-        return redirect()->back()->with('success','Proof of Payment uploaded Succssfully');
+        Toastr::success('Proof of Payment uploaded Succssfully.');
+        return redirect()->back();
     }
 }
