@@ -180,7 +180,7 @@
                     <div class="modal-body">
                         <div class="loader" style="display: none;">
                             <img class="preloader-spinner"
-                                src="https://i.ibb.co/3RFMwtd/image-processing20210829-18627-1j5lvo.gif" alt="Loading..."
+                                src="{{ asset('frontend/images/backend_loader.gif') }}" alt="Loading..."
                                 style="width: 600px;">
                         </div>
                         <div class="container p-2 mx-2 submit_modal_container">
