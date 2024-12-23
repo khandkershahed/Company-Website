@@ -235,7 +235,7 @@
                                     <tr
                                         style="text-align: end;padding: 0.5rem;color: #3d3d3d;font-size: 13px;border: 1px solid #eee;">
                                         <td style="width: 83.8%;text-align: end;padding: 10px;color: #3d3d3d;">
-                                            VAT (<span
+                                            VAT/GST (<span
                                                 class="vat_tax_value">{{ optional($quotation)->vat_percentage }}</span>
                                             %)
                                         </td>
