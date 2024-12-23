@@ -218,9 +218,6 @@ class RFQManageController extends Controller
             $product->save();
         }
 
-
-
-
         $data['rfq_details'] = Rfq::with('quotationProducts')->where('rfq_code', $rfq_code)->first();
         $data['countires'] = Country::all();
         $data['rfq_country'] = Country::where('country_name', 'LIKE', '%' . $data['rfq_details']->country . '%')->first();

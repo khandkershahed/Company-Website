@@ -10,10 +10,19 @@
                                     <select class="form-select" id="country_select" name="country" data-allow-clear="true"
                                         data-placeholder="Select Country" onchange="countryFunction()">
                                         <option value="">Select Country</option>
-                                        @foreach ($countires as $country)
-                                            <option value="{{ $country->country_code }}" @selected(optional($quotation)->country == $country->country_code)>
-                                                {{ $country->country_name }}</option>
-                                        @endforeach
+                                        @if (!empty(optional($quotation)->country))
+                                            @foreach ($countires as $country)
+                                                <option value="{{ $country->country_code }}"
+                                                    @selected(optional($quotation)->country == $country->country_code)>
+                                                    {{ $country->country_name }}</option>
+                                            @endforeach
+                                        @else
+                                            @foreach ($countires as $country)
+                                                <option value="{{ $country->country_code }}"
+                                                    @selected(optional($rfq_details)->country == $country->country_name)>
+                                                    {{ $country->country_name }}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </td>
                                 <td width="18%">
