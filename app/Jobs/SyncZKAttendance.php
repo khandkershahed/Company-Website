@@ -48,16 +48,12 @@ class SyncZKAttendance implements ShouldQueue
             foreach ($users as $user) {
                 if (!empty($user->employee_id)) {
                     $employee_id = $user->employee_id;
-                    Log::info('Syncing attendance for user: ' . $user->id);
-                    Log::info('Month: ' . $this->month);
-                    Log::info('Employee ID: ' . $employee_id);
                     // Fetch attendance logs
                     $attendanceLogall = $zk->getEmployeeAttendance($this->month, $employee_id);
                     $attendanceLogs = array_filter($attendanceLogall, function ($attendance) use ($employee_id) {
                         return ($attendance['id'] === $employee_id);
                     });
                     // Log the fetched data for debugging
-                    Log::info('Fetched Attendance Logs:', ['attendanceLogs' => $attendanceLogs]);
 
                     // Ensure $attendanceLogs is an array, even if empty
                     if (is_null($attendanceLogs)) {
