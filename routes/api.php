@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\RfqApiController;
+use App\Http\Controllers\Attendance\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::group(['prefix' => 'api/resource/'], function () {
     // Route::apiResource('rfqAPI', RfqApiController::class);
+    Route::get('attendance', [AttendanceController::class, 'attendanceApi'])->name('attendance.api');
 });

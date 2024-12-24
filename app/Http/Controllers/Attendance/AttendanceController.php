@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Attendance;
 
 use App\Http\Controllers\Controller;
+use App\Models\KPI\Attendance;
 use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
@@ -15,6 +16,10 @@ class AttendanceController extends Controller
     public function index()
     {
         //
+    }
+    public function attendanceApi()
+    {
+        return response()->json(["success" => true, 'attendances'=>Attendance::all()], 200) ; // Get all Attendances
     }
 
     /**
