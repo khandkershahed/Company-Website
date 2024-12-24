@@ -82,8 +82,8 @@ class SyncZKAttendance implements ShouldQueue
                             [
                                 'user_id' => $employee_id,
                                 'date' => date('Y-m-d', strtotime($log['timestamp'])),
-                            ],
-                            [
+                            // ],
+                            // [
                                 'check_in' => $this->getEarliestCheckIn($attendanceLogs),
                                 'check_out' => $this->getLatestCheckOut($attendanceLogs),
                                 'status' => $log['state'], // Use state for status
