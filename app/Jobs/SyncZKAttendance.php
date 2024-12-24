@@ -47,39 +47,40 @@ class SyncZKAttendance implements ShouldQueue
             // Iterate through all users to sync attendance
             foreach ($users as $user) {
                 if (!empty($user->employee_id)) {
+                    $employee_id = $user->employee_id;
                     Log::info('Syncing attendance for user: ' . $user->id);
                     Log::info('Month: ' . $this->month);
-                    Log::info('Employee ID: ' . $user->employee_id);
-
+                    Log::info('Employee ID: ' . $employee_id);
                     // Fetch attendance logs
-                    $attendanceLogs = $zk->getEmployeeAttendance($this->month, $user->employee_id);
-
+                    $attendanceLogall = $zk->getEmployeeAttendance($this->month, $employee_id);
+                    $attendanceLogs = array_filter($attendanceLogall, function ($attendance) use ($employee_id) {
+                        return ($attendance['id'] === $employee_id);
+                    });
                     // Log the fetched data for debugging
                     Log::info('Fetched Attendance Logs:', ['attendanceLogs' => $attendanceLogs]);
 
                     // Ensure $attendanceLogs is an array, even if empty
                     if (is_null($attendanceLogs)) {
-                        Log::warning("No attendance logs found for user ID: {$user->id} (Employee ID: {$user->employee_id}) - Received null");
+                        Log::warning("No attendance logs found for user ID: {$user->id} (Employee ID: {$employee_id}) - Received null");
                         continue;
                     }
 
                     if (!is_array($attendanceLogs)) {
-                        Log::warning("Invalid data format for user ID: {$user->id} (Employee ID: {$user->employee_id}) - Expected array, got " . gettype($attendanceLogs));
+                        Log::warning("Invalid data format for user ID: {$user->id} (Employee ID: {$employee_id}) - Expected array, got " . gettype($attendanceLogs));
                         continue;
                     }
 
                     // Process each attendance log
                     foreach ($attendanceLogs as $log) {
-                        // Check if log data is valid
                         if (!isset($log['timestamp']) || !isset($log['state'])) {
-                            Log::warning("Invalid attendance log data for user ID: {$user->id} (Employee ID: {$user->employee_id})");
+                            Log::warning("Invalid attendance log data for user ID: {$user->id} (Employee ID: {$employee_id})");
                             continue;
                         }
 
                         // Update or create attendance record in the database
                         Attendance::updateOrCreate(
                             [
-                                'user_id' => $user->id,
+                                'user_id' => $employee_id,
                                 'date' => date('Y-m-d', strtotime($log['timestamp'])),
                             ],
                             [

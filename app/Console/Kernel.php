@@ -16,8 +16,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->job(new SyncZKAttendance())->dailyAt('11:20'); // Run daily at 11 PM
-        $schedule->job(new SyncZKAttendance())->dailyAt('11:00');
+        // $schedule->job(new SyncZKAttendance())->dailyAt('23:00');
+        $schedule->job(new SyncZKAttendance())->everyMinute();
 
     }
 
