@@ -22,7 +22,7 @@
                             style="background-color: #ae0a46;">
                             <div>
                                 <a href="https://ngenitltd.com" target="_blank">
-                                    <img src="https://i.ibb.co/qMMpQMj/Logo-White.png" alt="Ngen IT" title="Ngen IT"
+                                    <img src="{{ asset('images/NGen-Logo-white.png') }}" alt="Ngen IT" title="Ngen IT"
                                         style="text-decoration: none;" width="60" />
                                 </a>
                             </div>

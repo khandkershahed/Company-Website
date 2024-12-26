@@ -1,7 +1,7 @@
 @extends('frontend.master')
 
 @section('styles')
-  
+
     <style>
         .sign-in-form {
             background-color: #ffff;

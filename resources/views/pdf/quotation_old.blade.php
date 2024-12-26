@@ -163,7 +163,7 @@
             <thead>
                 <tr>
                     <th style="border: 0;padding: 3px;width: 64%;font-weight: 500;text-align:left;margin: 0px;">
-                        <img src="https://i.ibb.co/qMMpQMj/Logo-White.png" alt="Ngen IT" title="Ngen IT"
+                        <img src="{{ asset('images/NGen-Logo-white.png') }}" alt="Ngen IT" title="Ngen IT"
                             style="padding-left: 20px;" {{-- style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; display: inline-block !important; border: none; height: auto; float: none; width: 5rem; padding-left: 20px;" --}} width="60" />
                     </th>
                     <th style="border: 0; padding: 0; align-content: center;">

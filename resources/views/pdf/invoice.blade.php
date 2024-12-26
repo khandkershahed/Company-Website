@@ -187,7 +187,7 @@
                 <td class="logo-column">
                     <div class="brand-logo">
                         <!-- NGen IT Logo -->
-                        <img src="https://i.ibb.co/GkjPXN7/Logo-NGen-IT-White.png" alt="NGen IT"
+                        <img src="{{ asset('images/NGen-Logo-white.png') }}" alt="NGen IT"
                             style="height: 51px" />
                     </div>
                 </td>

@@ -4,7 +4,7 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <style>
         .global_call_section::after {
-            background: url('https://www.insight.com/content/dam/insight-web/sitesections/home/images/homepage-eye-video-frame.jpg');
+            background: url('{{ asset('images/homepage-eye-video-frame.jpg') }}');
             content: "";
             position: absolute;
             height: 250px;
@@ -18,11 +18,9 @@
             z-index: -1;
         }
     </style>
-
-
     <!--======// Header Title //======-->
     <section class="common_product_header"
-        style="background-image:url(https://i.ibb.co/FWFKjVL/Learn-More-Banner-NGen-IT.jpg);">
+        style="background-image:url('{{ asset('images/Learn-More-Banner-NGen-IT.jpg') }}');">
         {{-- style="background-image: url('{{ asset('storage/' . $learnmore->image_banner) }}');"> --}}
         <div>
             <div class="">

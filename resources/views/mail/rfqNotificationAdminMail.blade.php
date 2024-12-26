@@ -75,7 +75,7 @@
                                     <tr style="vertical-align: top">
                                         <td style="padding: 25px 30px 10px; text-align: left">
                                             <a href="https://ngenitltd.com" target="_blank">
-                                                <img src="https://i.ibb.co/qMMpQMj/Logo-White.png" alt="Ngen IT"
+                                                <img src="{{ asset('images/NGen-Logo-white.png') }}" alt="Ngen IT"
                                                     title="Ngen IT"
                                                     style="
                               outline: none;

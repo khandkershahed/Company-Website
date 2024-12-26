@@ -4,10 +4,9 @@
         body {
             margin: 0;
         }
-
         .error-area {
             position: relative;
-            background: url('https://i.ibb.co/Qr8HnQc/0x0.webp') no-repeat center center fixed;
+            background: url('{{ asset('images/e5c665761fdc37bea043eb8dc22ef76f.jpg') }}') no-repeat center center fixed;
             background-size: cover;
             height: 70vh;
             display: flex;

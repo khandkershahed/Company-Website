@@ -218,7 +218,7 @@
                                                     role="tabpanel">
                                                     <div class="card mt-4 w-50 mx-auto">
                                                         <div class="card-header border-0 rounded-0 bg-transparent p-0">
-                                                            {{-- <img class="img-fluid" width="300px" src="https://i.ibb.co/GTfWfMB/quotation-marks-11721-removebg-preview.png" alt=""> --}}
+
                                                         </div>
                                                         <div class="card-body">
                                                             <div>
@@ -608,7 +608,7 @@
                                                     role="tabpanel">
                                                     <div class="card mt-4 w-50 mx-auto">
                                                         <div class="card-header border-0 rounded-0 bg-transparent p-0">
-                                                            {{-- <img class="img-fluid" width="300px" src="https://i.ibb.co/GTfWfMB/quotation-marks-11721-removebg-preview.png" alt=""> --}}
+
                                                         </div>
                                                         <div class="card-body">
                                                             <div>

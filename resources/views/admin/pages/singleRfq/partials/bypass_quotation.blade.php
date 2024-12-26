@@ -15,7 +15,7 @@
                                     style="vertical-align: top;display: flex;justify-content: space-between;align-items: center;padding: 15px;">
                                     <td style="border: 0">
                                         <a href="https://ngenitltd.com" target="_blank">
-                                            <img src="https://i.ibb.co/qMMpQMj/Logo-White.png" alt="Ngen IT"
+                                            <img src="{{ asset('images/NGen-Logo-white.png') }}" alt="Ngen IT"
                                                 title="Ngen IT"
                                                 style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 7.5rem; padding-left: 18px;"
                                                 width="60" />

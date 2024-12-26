@@ -186,7 +186,7 @@
                         <div class="col-lg-2 mt-3">
                             <div>
                                 <img class="img-fluid cusrve-arrow"
-                                    src="https://i.ibb.co/DVh5ZTs/red-arrow-1338626-1280.png" alt="">
+                                    src="{{ asset('images/red-arrow-1338626_1280.webp') }}" alt="">
                             </div>
                         </div>
                         <div class="col-lg-5 mt-3">
