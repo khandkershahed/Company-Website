@@ -116,7 +116,7 @@
                                         support team.
                                     </li>
                                     <li class="pb-3">
-                                        <strong class="main_color">Partner Register Here ?</strong>
+                                        <strong class="main_color">Partner Register ?</strong>
                                         <a href="{{ route('partner.login') }}" class="text-primary">Click Here.</a>
                                     </li>
                                 </ul>
@@ -215,9 +215,8 @@
                                     </button>
                                 </div>
                                 <div class="text-center pt-4">
-                                    <p class="subtitle m-0 show-login">Already Have and Account? <br> Then<a
-                                            href="javascript:void()" class="main_color"> Login
-                                            Now!</a>
+                                    <p class="subtitle m-0 show-login">Already Have and Account? <br><a
+                                            href="javascript:void()" class="main_color"> Login Now!</a>
                                     </p>
                                 </div>
 
@@ -225,7 +224,7 @@
                         </div>
                         <div class="col-lg-6 sign-in-area shadow-sm py-5">
                             <div class="text-start ps-3 pe-2">
-                                <h1 class="main-title text-center">User Board</h1>
+                                <h1 class="main-title text-center">User Access Guide!</h1>
                                 <ul>
                                     <li class="pb-3 pt-3">
                                         <strong class="main_color">New User:</strong>
@@ -244,13 +243,14 @@
                                         team.
                                     </li>
                                     <li class="pb-3">
-                                        <strong class="main_color">Are Your Partner ?:</strong>
-                                        <a href="" class="text-primary">Click Here !</a> To Partner Login
+                                        <strong class="main_color">Are You Partner ?</strong>
+                                        <a href="{{ route('partner.login') }}" class="text-primary">Click Here To
+                                            Login.</a>
                                     </li>
                                 </ul>
 
-                                <div>
-                                    <img class="img-fluid" src="https://i.ibb.co/Tgd1zfd/Client-Login.png"
+                                <div class="d-flex justify-content-center">
+                                    <img height="350px" class="" src="{{ asset('images/userguide.png') }}"
                                         alt="">
                                 </div>
                             </div>
