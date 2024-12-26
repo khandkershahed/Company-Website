@@ -8,12 +8,12 @@
                 <div class="w-lg-50 w-100 mx-auto my-5 card rounded-2 shadow-sm" style="border: 1px solid #eee;">
                     <div class="card-header rfq-header border-0">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="text-black py-2">Get Query</h5>
+                            <h3 class="text-white py-2">Get Query</h3>
                             <div class="d-flex align-items-center justify-content-end align-items-center">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                    <label class="form-check-label fw-normal text-muted" for="flexCheckChecked">
-                                        RFQ by Case
+                                    <label class="form-check-label fw-normal text-white" for="flexCheckChecked">
+                                        <small>RFQ by Case</small>
                                     </label>
                                     <i class="fa-solid fa-question"
                                         style="

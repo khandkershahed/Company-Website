@@ -8,7 +8,7 @@
 
 <div class="offcanvas-body p-0">
     <div class="container-fluid px-0">
-        <div class="row">
+        <div class="row ps-4">
             <div class="col-lg-10">
                 <div class="row mt-4">
                     @if ($cart_items)
@@ -51,9 +51,9 @@
                 </div>
             </div>
             <div class="col-lg-2 ">
-                <div class="text-center fixed-column">
+                <div class="text-center fixed-column" style="padding: 30px !important;">
                     <p>Check all added RFQ in one place, hit the button to show all added RFQ.</p>
-                    <a href="{{ route('rfq') }}" class="btn-color">Show All RFQ</a>
+                    <a href="{{ route('rfq') }}" class="btn-color">Submit RFQ</a>
                 </div>
             </div>
         </div>

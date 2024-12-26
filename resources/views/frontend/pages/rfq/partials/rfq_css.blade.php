@@ -252,8 +252,9 @@
     }
 
     .rfq-header {
-        background-image: url('https://apersibli.com/assets/img/shapes/page-header-shape.png');
+        background-image: url('{{ asset('images/rfq-bg-banner.jpg') }}');
         background-position: center;
         background-repeat: no-repeat;
+        width: 100%;
     }
 </style>

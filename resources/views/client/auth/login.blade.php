@@ -1,7 +1,6 @@
 @extends('frontend.master')
 
 @section('styles')
-
     <style>
         .sign-in-form {
             background-color: #ffff;
@@ -87,12 +86,11 @@
                                 </div>
                                 <div class="text-center pt-5">
                                     <p class="subtitle m-0">Forgot Your Password?
-                                        <a href="{{route('forget.password.get')}}" class="main_color">
-                                            Recover It!</a>
-                                        </p>
-                                    <p class="subtitle m-0 show-register">New Here? Then<a href="javascript:void()"
-                                            class="main_color"> Register
-                                            Now!</a>
+                                        <a href="{{ route('forget.password.get') }}" class="main_color">
+                                            Click Here!</a>
+                                    </p>
+                                    <p class="subtitle m-0 show-register">New Here? <a href="javascript:void()"
+                                            class="main_color"> Register Now!</a>
                                     </p>
                                 </div>
 
@@ -100,7 +98,7 @@
                         </div>
                         <div class="col-lg-6 sign-in-area shadow-sm py-5">
                             <div class="text-start ps-3 pe-2">
-                                <h1 class="main-title text-center">User Board</h1>
+                                <h1 class="main-title text-center">User Access Guide!</h1>
                                 <ul>
                                     <li class="pb-3 pt-3">
                                         <strong class="main_color">New User:</strong>
@@ -115,17 +113,17 @@
                                     <li class="pb-3">
                                         <strong class="main_color">Already Registered:</strong>
                                         Registered user. If you are facing issues or have questions, please contact our
-                                        support
-                                        team.
+                                        support team.
                                     </li>
                                     <li class="pb-3">
-                                        <strong class="main_color">Are Your Partner ?:</strong>
-                                        <a href="" class="text-primary">Click</a> To Partner Login
+                                        <strong class="main_color">Partner Register Here ?</strong>
+                                        <a href="{{ route('partner.login') }}" class="text-primary">Click Here.</a>
                                     </li>
                                 </ul>
 
-                                <div>
-                                    <img class="img-fluid" src="https://i.ibb.co/Tgd1zfd/Client-Login.png" alt="">
+                                <div class="d-flex justify-content-center">
+                                    <img height="350px" class="" src="{{ asset('images/userguide.png') }}"
+                                        alt="">
                                 </div>
                             </div>
                         </div>
@@ -342,5 +340,4 @@
         });
     </script>
     {{-- Validation --}}
-
 @endsection
