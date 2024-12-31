@@ -101,7 +101,7 @@
                 <div class="col-lg-5 col-sm-12 p-0" style="border-right: 1px solid #eee">
                     <div class="back_img">
                         <img class="img-fluid"
-                            src="https://i.ibb.co/S5gB7Jh/Backend-side-image-NGen-IT.jpg"
+                            src="{{ asset('images/bg-login.jpg') }}"
                             alt="">
                     </div>
                 </div>

@@ -201,13 +201,13 @@
                                             <div class="col-lg-6">
                                                 <p class="text-muted text-center">Monthly Report</p>
                                                 <div class="text-center">
-                                                    <img width="140px" src="https://i.ibb.co/xMmvsYq/Screenshot-1.png" alt="">
+                                                    <img width="140px" src="{{ asset('images/monthly-report.jpg') }}" alt="">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <p class="text-muted text-center">Yearly Report</p>
                                                 <div class="text-center">
-                                                    <img width="140px" src="https://i.ibb.co/xMmvsYq/Screenshot-1.png" alt="">
+                                                    <img width="140px" src="{{ asset('images/monthly-report.jpg') }}" alt="">
                                                 </div>
                                             </div>
                                         </div>

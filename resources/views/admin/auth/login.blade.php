@@ -91,7 +91,7 @@
                 <div class="row">
                     <div class="col-lg-6 px-0 mobile-none">
                         <div class="back_img">
-                            <img class="img-fluid" src="{{ asset('images/login.avif') }}"
+                            <img class="img-fluid" src="{{ asset('images/bg-login.jpg') }}"
                                 alt="">
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                                     <div class="text-center mb-5">
                                         <div class="d-inline-flex align-items-center justify-content-center mb-4">
                                             <img class="img-fluid" width="130px"
-                                                src="{{ asset('images/login.avif') }}"
+                                                src="{{ !empty($setting->logo) && file_exists(public_path('storage/' . $setting->logo)) ? asset('storage/' . $setting->logo) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}"
                                                 alt="">
                                         </div>
                                         <h1 class="m-0" style="color: #6B7280;">Welcome Back!</h1>
