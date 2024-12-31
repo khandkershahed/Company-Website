@@ -1,5 +1,5 @@
 <div class="sidebar sidebar-dark sidebar-main sidebar-expand-lg sidebar-main-resized"
-    style="background:#000000">
+style="background: url('{{ asset('images/mandala-bg.jpg') }}') no-repeat center center; background-size: cover;">
     <!-- Sidebar content -->
     <div class="sidebar-content">
         <!-- Sidebar header -->

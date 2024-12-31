@@ -91,7 +91,7 @@
                 <div class="row">
                     <div class="col-lg-6 px-0 mobile-none">
                         <div class="back_img">
-                            <img class="img-fluid" src="https://i.ibb.co/S5gB7Jh/Backend-side-image-NGen-IT.jpg"
+                            <img class="img-fluid" src="{{ asset('images/login.avif') }}"
                                 alt="">
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                                     <div class="text-center mb-5">
                                         <div class="d-inline-flex align-items-center justify-content-center mb-4">
                                             <img class="img-fluid" width="130px"
-                                                src="https://www.ngenitltd.com/storage/RZlRwzfUA8get0PcCzQphbeIJu6OhSL7ltNc4xiZ.png"
+                                                src="{{ asset('images/login.avif') }}"
                                                 alt="">
                                         </div>
                                         <h1 class="m-0" style="color: #6B7280;">Welcome Back!</h1>

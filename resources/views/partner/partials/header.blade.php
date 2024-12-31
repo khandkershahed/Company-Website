@@ -1,5 +1,6 @@
 <!-- Main navbar -->
-<div class="navbar navbar-dark navbar-expand-lg navbar-static border-bottom border-bottom-white border-opacity-10" style="background: #ae0a46;">
+<div class="navbar navbar-dark navbar-expand-lg navbar-static border-bottom border-bottom-white border-opacity-10"
+style="background: #ae0a46;">
     <div class="container-fluid">
         <div class="d-flex d-lg-none me-2">
             <button type="button" class="navbar-toggler sidebar-mobile-main-toggle rounded-pill">
@@ -17,7 +18,7 @@
             </a>
         </div>
 
-        
+
 
 
 
