@@ -1,222 +1,279 @@
 @extends('frontend.master')
 @section('content')
-    <!--======// Header Title //======-->
+    {{-- For Only This Template Start --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/solutions.css') }}">
+    {{-- For Only This Template End --}}
+    <section style="background-color: #eee">
+        <div class="container-fluid st-two-hero" style="background-image: url({{ asset('images/hero-bg1.png') }});">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="st-two-hero-content">
+                            <h3 class="sub-title aos-init"><span>HOT !</span> We can managed all digital services
+                            </h3>
+                            <h2 class="title">Your partner for digital solutions</h2>
+                            <p class="">We provide the most responsive and functional IT design for companies and
+                                businesses worldwide.</p>
+                            <div class="st-two-hero">
+                                <a class="btn" href="javascript:void(0)">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="st-two-hero-img">
+                            <img src="{{ asset('images/hero-img1.png') }}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{-- Featire --}}
+    <section style="background-color: #eee">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center py-5">
+                        <p class="text-primary">What we provide</p>
+                        <h1>We provide truly prominent digital solutions.</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="border-0">
+                        <div class="card st-two-f-card">
+                            <div class="card-body">
+                                <div>
+                                    <img src="{{ asset('images/ser-icon1.png') }}" alt="">
+                                </div>
+                                <div>
+                                    <h2 class="title">Custom Software Solution</h2>
+                                    <p class="para text-muted">Accelerate innovation with world-class tech teams We’ll match
+                                        you to
+                                        an entire remote team .</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card st-two-f-card">
+                        <div class="card-body">
+                            <div>
+                                <img src="{{ asset('images/ser-icon2.png') }}" alt="">
+                            </div>
+                            <div>
+                                <h2 class="title">Business technology solution</h2>
+                                <p class="para text-muted">Accelerate innovation with world-class tech teams We’ll match you
+                                    to an entire remote team.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="border-0">
+                        <div class="card st-two-f-card">
+                            <div class="card-body">
+                                <div>
+                                    <img src="{{ asset('images/ser-icon3.png') }}" alt="">
+                                </div>
+                                <div>
+                                    <h2 class="title">Recovery & IT security</h2>
+                                    <p class="para text-muted">Accelerate innovation with world-class tech teams We’ll match
+                                        you to an entire remote team .</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="border-0">
+                        <div class="card st-two-f-card">
+                            <div class="card-body">
+                                <div>
+                                    <img src="{{ asset('images/ser-icon4.png') }}" alt="">
+                                </div>
+                                <div>
+                                    <h2 class="title">Idea generate & solution</h2>
+                                    <p class="para text-muted">Accelerate innovation with world-class tech teams We’ll match
+                                        you to an entire remote team .</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{-- Featire End --}}
+    {{-- Call To Action Start --}}
     <section>
-        <div>
-            <img class="page_top_banner" src="{{asset('storage/'.$solution->banner_image)}}" alt="{{ $solution->name }}">
-        </div>
-    </section>
-    <!----------End--------->
-    <section class="mt-5 d-lg-block d-sm-none">
-        <div class="container my-3">
-            <ul class="breadcrumb text-left">
-                <a href="{{ route('homepage') }}">
-                    <li class="breadcrumb__item breadcrumb__item-firstChild">
-                        <span class="breadcrumb__inner">
-                            <span class="breadcrumb__title">Home</span>
-                        </span>
-                    </li>
-                </a>
-                <li class="breadcrumb_divider">
-                    <span>></span>
-                </li>
-                <a href="{{ route('whatwedo') }}">
-                    <li class="breadcrumb__item">
-                        <span class="breadcrumb__inner">
-                            <span class="breadcrumb__title">What We Do</span>
-                        </span>
-                    </li>
-                </a>
-                <li class="breadcrumb_divider">
-                    <span>></span>
-                </li>
-                <a href="{{ route('all.solution') }}">
-                    <li class="breadcrumb__item ">
-                        <span class="breadcrumb__inner">
-                            <span class="breadcrumb__title">Solutions We Offer</span>
-                        </span>
-                    </li>
-                </a>
-                <li class="breadcrumb_divider">
-                    <span>></span>
-                </li>
-                <a href="#">
-                    <li class="breadcrumb__item active">
-                        <span class="breadcrumb__inner">
-                            <span class="breadcrumb__title">{{ $solution->name }}</span>
-                        </span>
-                    </li>
-                </a>
-            </ul>
-        </div>
-    </section>
-    <!--======// Header Title //======-->
-    @if (!empty($solution->rowOne))
-        <section class="container section_padding">
-            <div class="row py-lg-5 py-2">
-                <div class="col-lg-7 col-sm-12">
-                    <div class="section_text_wrapper">
-                        <h4 class="m-0">{{ $solution->rowOne->title }}</h4>
-                        <p style="text-align: justify;font-size: var(--paragraph-font-size);" class="pt-3">
-                            {!! $solution->rowOne->short_des !!}</p>
+        <div class="section st-two-cta-section section-padding">
+            <div class="shape-1"></div>
+            <div class="container">
+                <div class="cta-wrap">
+                    <div class="cta-icon">
+                        <img src="{{ asset('images/cta-icon1.png') }}" alt="">
                     </div>
-                </div>
-                <div class="col-lg-5 col-sm-12">
-                    <div class="industry_single_help_list">
-                        <h5 class="p-0">{{ $solution->rowOne->list_title }}</h5>
-                        <ul class="ms-1 solution-list-area">
-                            <li class="d-flex">
-                                <div>
-                                    <span><i class="fa-regular fa-bookmark main_color pe-2"></i> {{ $solution->rowOne->list_one }}</span>
-                                </div>
-                            </li>
-                            <li class="d-flex">
-                                <div>
-                                    <span><i class="fa-regular fa-bookmark main_color pe-2"></i> {{ $solution->rowOne->list_two }}</span>
-                                </div>
-                            </li>
-                            <li class="d-flex">
-                                <div>
-                                    <span><i class="fa-regular fa-bookmark main_color pe-2"></i> {{ $solution->rowOne->list_three }}</span>
-                                </div>
-                            </li>
-                            <li class="d-flex">
-                                <div>
-                                    <span><i class="fa-regular fa-bookmark main_color pe-2"></i> {{ $solution->rowOne->list_four }}</span>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="cta-content text-center">
+                        <p>Stop wasting time and money on digital solution. <a href="#">Let’s talk with us</a></p>
                     </div>
                 </div>
             </div>
-        </section>
-    @endif
-    <!----------End--------->
-    <!--======// Solution feature //======-->
-    <section style="background-color: #eee;">
-        <div class="container py-lg-5 py-2"> @php
-            $cards = [$solution->card1, $solution->card2, $solution->card3, $solution->card4];
-            $cardsections2 = [$solution->card6, $solution->card7, $solution->card8];
-        @endphp <div class="row d-flex justify-content-center pt-3 gx-0">
-                @foreach ($cards as $card)
-                    <div class="col-lg-3 col-sm-12">
-                        <div class="card border-0 shadow-none rounded-2 solution-feature-container mx-auto">
-                            <img class="card-img-top"
-                                src="{{ !empty($card->image) && file_exists(public_path('storage/' . $card->image)) ? asset('storage/' . $card->image) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}"
-                                alt="Card image cap" width="150px" height="150px">
-                            <div class="card-body rounded-2 w-sm-100 solution-feature-cards">
-                                <h5 class="card-title text-center main_color">{{ $card->title }}</h5>
-                                <p class="text-muted p-2" style="font-size: 15px; font-weight: 300; text-align: center;">
-                                    {{ Str::words($card->short_des, 22, '...') }}
-                                </p>
+        </div>
+    </section>
+    {{-- Call To Action End --}}
+    <section class="st-two-about-section section-padding"
+        style="background-image: url({{ asset('images/about-bg.png') }});">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <!-- About Image Wrap Start -->
+                        <div class="about-img-wrap">
+                            <div class="about-img about-img-big">
+                                <img src="{{ asset('images/about-1.jpg') }}" class="rounded-3" alt="">
+                            </div>
+                            <div class="about-img about-img-sm">
+                                <img src="{{ asset('images/about-2.jpg') }}" class="rounded-3 shadow-sm" alt="">
+                                <div class="shape-01"></div>
                             </div>
                         </div>
+                        <!-- About Image Wrap End -->
                     </div>
-                @endforeach
+                    <div class="col-lg-6">
+                        <!-- About Content Wrap Start -->
+                        <div class="about-content-wrap">
+                            <div class="section-title">
+                                <h3 class="sub-title">Who we are</h3>
+                                <h2 class="title">Highly Tailored IT Design, Management &amp; Support Services.</h2>
+                            </div>
+                            <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote team of
+                                incredible freelance talent for all your software development needs.</p>
+                            <div class="play-btn">
+                                <a class="popup-video"
+                                    href="https://www.youtube.com/watch?time_continue=3&amp;v=_X0eYtY8T_U"><i
+                                        class="fas fa-play"></i> <span>How we work</span></a>
+                            </div>
+                        </div>
+                        <!-- About Content Wrap End -->
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <!----------End--------->
-    <!--======// Gradian Background //======-->
-    <section class="gradient_bg" style="">
+    {{-- Content info --}}
+    <div class="st-two-about-section-02 section-padding">
         <div class="container">
-            <div class="call_to_action_text py-lg-5 py-2">
-                <h4 class="section_title">{{ $solution->row_three_title }}</h4>
-                <p class="w-100 mx-auto solution_para">{{ $solution->row_three_header }}</p>
-            </div>
-        </div>
-    </section>
-    <!----------End--------->
-    <!--=======// Building resilient IT //=====-->
-    @if (!empty($solution->rowFour))
-        <section class="section_padding">
-            <div class="container my-5">
-                <div class="row">
-                    <div class="col-lg-6 col-sm-12 account_benefits_section" style="text-align: justify;">
-                        <h3>{{ $solution->rowFour->title }}</h3>
-                        <p>{!! $solution->rowFour->description !!} </p>
-                        @if (!empty($solution->rowFour->btn_name))
-                            <a href="{{ $solution->rowFour->link }}"
-                                class="common_button effect01 mt-4">{{ $solution->rowFour->btn_name }}</a>
-                        @endif
-                    </div>
-                    <div class="col-lg-6 col-sm-12">
-                        {{-- <img class="img-fluid rounded" src="{{ asset('storage/' . $solution->rowFour->image) }}" alt="" width="540px" height="338px"> --}} <img class="img-fluid"
-                            src="{{ !empty($solution->rowFour->image) && file_exists(public_path('storage/' . $solution->rowFour->image)) ? asset('storage/' . $solution->rowFour->image) : asset('frontend/images/no-row-img(580-326).png') }}"
-                            alt="" width="540px" height="338px"
-                            style="    border-top-right-radius: 60px !important;
-                              border-bottom-left-radius: 60px !important;">
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endif
-    <!-------------End--------->
-    <!--======// Solution feature //======-->
-    <section style="background-color: #eee;">
-        <div class="container py-lg-5 py-2">
-            <!--title-->
-            <div class="section_text_wrapper">
-                <h3 class="section_title solution_title">{{ $solution->row_five_title }}</h3>
-                <p class="text-center w-75 mx-auto solution_para">{{ $solution->row_five_header }}</p>
-            </div>
-            <div class="row py-lg-5 py-2">
-                <!-- item -->
-                @foreach ($cardsections2 as $cardsection2)
-                    <div class="col-lg-4 col-sm-12 product_veiw_details_item">
-                        <!-- image -->
-                        <img class="rounded-circle img-fluid"
-                            src="{{ !empty($cardsection2->image) && file_exists(public_path('storage/' . $cardsection2->image)) ? asset('storage/' . $cardsection2->image) : asset('frontend/images/no-brand-img.png') }}"
-                            alt="" style="width: 150px;
-                          height: 150px;">
-                        <!-- content -->
-                        <div class="product_veiw_details_item_content">
-                            <h5 class="m-0 py-3 main_color">{{ $cardsection2->title }}</h5>
-                            <p class="p-0 m-0" style="font-size: 16px;">{!! $cardsection2->short_des !!}</p>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-    <!----------End--------->
-    <!--======// Featured content //======-->
-    @if (count($solutions) > 0)
-        <section>
-            <div class="container py-lg-5 py-2">
-                <div class="">
-                    <h2 class="text-center">
-                        <span class="main_color">More Solutions You May Check</span>
-                    </h2>
-                </div>
-                <div class="row">
-                    <div class="SlickCarousel">
-                        <!--------item------->
-                        @foreach ($solutions as $item)
-                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                <div class="related-item">
-                                    <a href="{{ route('solution.details', $item->slug) }}">
-                                        <div>
-                                            <img class="img-fluid"
-                                                src="{{ !empty($item->banner_image) && file_exists(public_path('storage/' . $item->banner_image)) ? asset('storage/' . $item->banner_image) : asset('frontend/images/no-row-img(580-326).png') }}"
-                                                alt="" style="height: 200px; width:100%">
-                                        </div>
-                                        <div class="p-3" style="height:6.5rem;">
-                                            <h4 class="mb-1 text-center">
-                                                {{ App\Models\Admin\Industry::where('id', $item->industry_id)->value('title') }}
-                                            </h4>
-                                            <h3 class="mb-0 fw-bold text-center">{{ $item->name }}</h3>
-                                        </div>
-                                    </a>
-                                </div>
+            <!-- About Wrapper Start -->
+            <div class="about-wrap">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <!-- About Left Start -->
+                        <div class="about-02-left text-center">
+                            <div class="section-title">
+                                <h2 class="title">You know you did right when all your effort started to pay off in an unexpected and impressive way.</h2>
                             </div>
-                        @endforeach
+                            <div class="about-author">
+                                <img src="{{ asset('images/sign.png') }}" alt="">
+                                <h3 class="name fw-bold">Alen Morno sin</h3>
+                                <span class="designation">CEO, Techmax</span>
+                            </div>
+                        </div>
+                        <!-- About Left End -->
+                    </div>
+                    <div class="col-lg-6">
+                        <!-- About Right Start -->
+                        <div class="about-02-right">
+                            <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote team of incredible freelance talent for all your software development needs.</p>
+                            <div class="about-list">
+                                <ul>
+                                    <li>
+                                        <span class="about-icon"><i class="fa-solid fa-check"></i></span>
+                                        <span class="about-text">We always focus on technical excellence </span>
+                                    </li>
+                                    <li>
+                                        <span class="about-icon"><i class="fa-solid fa-check"></i></span>
+                                        <span class="about-text"> Wherever you’re going, we bring ideas and excitement </span>
+                                    </li>
+                                    <li>
+                                        <span class="about-icon"><i class="fa-solid fa-check"></i></span>
+                                        <span class="about-text">We’re consultants, guides, and partners for brands </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- About Right End -->
                     </div>
                 </div>
             </div>
-        </section>
-    @endif
-    <!-------------End--------->
+            <!-- About Wrapper End -->
+        </div>
+    </div>
+    {{-- Content info End --}}
+    {{-- Count info start --}}
+    <div class="section st-two-counter-section">
+        <div class="container">
+            <div class="counter-wrap">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <!-- Single Counter Start -->
+                        <div class="single-counter">
+                            <div class="counter-img">
+                                <img src="{{ asset('images/counter-1.png') }}" alt="">
+                            </div>
+                            <div class="counter-content">
+                                <span class="counter">1790</span>
+                                <p class="mb-0">Happy clients</p>
+                            </div>
+                        </div>
+                        <!-- Single Counter End -->
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <!-- Single Counter Start -->
+                        <div class="single-counter">
+                            <div class="counter-img">
+                                <img src="{{ asset('images/counter-2.png') }}" alt="">
+                            </div>
+                            <div class="counter-content">
+                                <span class="counter">491</span>
+                                <p class="mb-0">Finished projects</p>
+                            </div>
+                        </div>
+                        <!-- Single Counter End -->
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <!-- Single Counter Start -->
+                        <div class="single-counter">
+                            <div class="counter-img">
+                                <img src="{{ asset('images/counter-3.png') }}" alt="">
+                            </div>
+                            <div class="counter-content">
+                                <span class="counter">245</span>
+                                <p class="mb-0">Skilled Experts</p>
+                            </div>
+                        </div>
+                        <!-- Single Counter End -->
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <!-- Single Counter Start -->
+                        <div class="single-counter">
+                            <div class="counter-img">
+                                <img src="{{ asset('images/counter-1.png') }}" alt="">
+                            </div>
+                            <div class="counter-content">
+                                <span class="counter">109</span>
+                                <p class="mb-0">Media Posts</p>
+                            </div>
+                        </div>
+                        <!-- Single Counter End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Count info End --}}
     <!--=====// Pageform section //=====-->
     @include('frontend.partials.footer_contact')
     <!---------End -------->

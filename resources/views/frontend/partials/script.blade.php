@@ -23,6 +23,7 @@
 <!-- Custom JS -->
 {{-- <script src="{{ asset('backend/assets/js/custom.js') }}"></script> --}}
 <script src="{{ asset('frontend/js/custom.js') }}"></script>
+<script src="{{ asset('frontend/js/solutions-custom.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/filter.js') }}"></script>
 {!! Toastr::message() !!}
 <!-- Google Recaptcha  -->

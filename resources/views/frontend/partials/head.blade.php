@@ -46,6 +46,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/select-2/select2.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/toastr/toastr.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/custom_global.css') }}">
+
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/custom_responsive.css') }}">
 
 
