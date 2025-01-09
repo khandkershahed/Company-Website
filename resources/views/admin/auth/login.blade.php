@@ -73,10 +73,11 @@
         }
 
         @media only screen and (max-width: 600px) {
-            .mobile-none{
+            .mobile-none {
                 display: none;
             }
-            .login-card{
+
+            .login-card {
                 width: 100%;
                 box-shadow: none;
             }
@@ -91,8 +92,7 @@
                 <div class="row">
                     <div class="col-lg-6 px-0 mobile-none">
                         <div class="back_img">
-                            <img class="img-fluid" src="{{ asset('images/bg-login.jpg') }}"
-                                alt="">
+                            <img class="img-fluid" src="{{ asset('images/bg-login.jpg') }}" alt="">
                         </div>
                     </div>
                     <div class="col-lg-6 px-0 login-form-container">
@@ -104,7 +104,7 @@
                                     <div class="text-center mb-5">
                                         <div class="d-inline-flex align-items-center justify-content-center mb-4">
                                             <img class="img-fluid" width="130px"
-                                                src="{{ !empty($setting->logo) && file_exists(public_path('storage/' . $setting->logo)) ? asset('storage/' . $setting->logo) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}"
+                                                src="{{ !empty($setting->logo) && file_exists(public_path('storage/' . $setting->logo)) ? asset('storage/' . $setting->logo) : asset('images/default_logo.png') }}"
                                                 alt="">
                                         </div>
                                         <h1 class="m-0" style="color: #6B7280;">Welcome Back!</h1>
@@ -115,10 +115,10 @@
                                             <div class="input-group">
                                                 <span class="input-group-text rounded-0 custom-input-btn"
                                                     id="basic-addon1"><i class="fa-solid fa-envelope"></i></span>
-                                                <input type="text" name="email"
-                                                    class="form-control rounded-0" placeholder="Username"
-                                                    aria-label="Username" value="{{ old('email') }}"
-                                                    aria-describedby="basic-addon1" required>
+                                                <input type="text" name="email" class="form-control rounded-0"
+                                                    placeholder="Username" aria-label="Username"
+                                                    value="{{ old('email') }}" aria-describedby="basic-addon1"
+                                                    required>
                                                 @error('email')
                                                     <div class="text-danger col-lg-12 col-12">
                                                         {{ $message }}
@@ -132,10 +132,10 @@
                                                 <span
                                                     class="input-group-text rounded-0 custom-input-btn toggle-password"
                                                     id="togglePassword"><i class="fa-solid fa-lock"></i></span>
-                                                <input type="password" name="password"
-                                                    class="form-control rounded-0" placeholder="Password"
-                                                    aria-label="Password" value="{{ old('password') }}"
-                                                    aria-describedby="togglePassword" required>
+                                                <input type="password" name="password" class="form-control rounded-0"
+                                                    placeholder="Password" aria-label="Password"
+                                                    value="{{ old('password') }}" aria-describedby="togglePassword"
+                                                    required>
                                                 @error('password')
                                                     <div class="text-danger col-lg-12 col-12">
                                                         {{ $message }}

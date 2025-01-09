@@ -277,7 +277,7 @@
                                 <p class="m-0 p-0">{{ Auth::user()->designation }}</p>
                             </div>
                             <div>
-                                <img class="rounded-1" width="250px" src="https://i.ibb.co/N1SpwX5/Woman-with-laptop.png"
+                                <img class="rounded-1" width="250px" src="{{ asset('images/woman-man-with-laptop.png') }}"
                                     alt="">
                             </div>
                         </div>
@@ -346,7 +346,7 @@
                                         })
                                         ->count();
                                     // Filter late counts for 'Late (L)'
-                                    $lateCountL = collect($lateCounts) 
+                                    $lateCountL = collect($lateCounts)
                                         ->where(function ($item) {
                                             return Carbon\Carbon::parse($item['check_in']) >
                                                 Carbon\Carbon::parse('09:06:00') &&
@@ -387,7 +387,7 @@
                                             <div class="ps-1">
                                                 <h4 class="user-counter mb-0 text-muted" style="line-height: 1">Monthly
                                                     Attendance</h4>
-                                                <img width="50px"src="https://i.ibb.co/F0vQD5f/png-clipart-drawing-long-arrow-angle-arrow-thumbnail-removebg-preview.png"
+                                                <img width="50px"src="{{ asset('images/attendance-arrow.png') }}"
                                                     alt="">
                                             </div>
                                         </a>
@@ -554,8 +554,8 @@
                                     assigned.</p>
                             </div>
                             <div>
-                                <img class="rounded-1" width="150px" src="https://i.ibb.co/ZSsTVgP/Rating.png"
-                                    alt="">
+                                <img class="rounded-1" width="150px" src="{{ asset('images/rating-dashboard.png') }}"
+                                    alt="rating-dashboard">
                             </div>
                         </div>
                     </div>
