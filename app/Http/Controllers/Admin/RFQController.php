@@ -200,6 +200,7 @@ class RFQController extends Controller
             $request->all(),
             [
                 'name'                 => 'required',
+                'country'              => 'required',
                 'email'                => 'required',
                 'phone'                => 'required',
                 'rfq_code'             => 'unique:rfqs',
@@ -349,8 +350,8 @@ class RFQController extends Controller
                 'rfq_code'               => 'unique:rfqs',
                 'image'                  => 'file|mimes:jpeg,png,jpg|max:2048',
                 'country'                => 'required',
-                'product_name'          => 'required|array|min:1',
-                'product_name.*'        => 'required|string',
+                'product_name'           => 'required|array|min:1',
+                'product_name.*'         => 'required|string',
                 'qty'                    => 'required|array|min:1',
                 'qty.*'                  => 'required|integer|min:1',
             ],
