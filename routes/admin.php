@@ -400,7 +400,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
     Route::get('send/mail', [PartnerController::class, 'sendBulkMail'])->name('sendBulkMail');
-
     Route::get('bulksms', [BulkSmsController::class, 'bulksms']);
     Route::post('bulksms', [BulkSmsController::class, 'sendSms'])->name('sendSms');
 
