@@ -37,9 +37,9 @@
                         href="{{ route('admin.dashboard') }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
-                                <span class="symbol-label bg-light">
+                                <span class="symbol-label">
                                     <span class="svg-icon svg-icon-2 svg-icon-primary">
-                                        <i class="fa-regular fa-house-day fs-3 me-3"></i>
+                                        <i class="fa-regular fa-house-day fs-3 me-3 text-active-gray-400"></i>
                                     </span>
                                 </span>
                             </span>
@@ -55,9 +55,9 @@
                             'title' => 'Supply Chain',
                             'icon' => 'fa-light fa-truck-field fs-3',
                             'routes' => [
-                                'brand.index',
-                                'brand.create',
-                                'brand.edit',
+                                'admin.brand.index',
+                                'admin.brand.create',
+                                'admin.brand.edit',
                                 'admin.categories.index',
                                 'admin.categories.create',
                                 'admin.categories.edit',
@@ -69,14 +69,14 @@
                             'subMenu' => [
                                 [
                                     'title' => 'Brand Management',
-                                    'routes' => ['brand.index','brand.create', 'brand.edit'],
-                                    'route' => 'brand.index',
+                                    'routes' => ['admin.brand.index','admin.brand.create', 'admin.brand.edit'],
+                                    'route' => 'admin.brand.index',
                                 ],
-                                [
-                                    'title' => 'Category Management',
-                                    'routes' => ['brand.index','brand.create', 'brand.edit'],
-                                    'route' => 'product-sourcing.index',
-                                ],
+                                // [
+                                //     'title' => 'Category Management',
+                                //     'routes' => ['admin.brand.index','brand.create', 'brand.edit'],
+                                //     'route' => 'product-sourcing.index',
+                                // ],
                                 [
                                     'title' => 'Sourcing',
                                     'routes' => ['product-sourcing.index', 'product.saved', 'product.sourced', 'product.approved', 'product-sourcing.create', 'product-sourcing.edit'],

@@ -2,14 +2,16 @@
 
 namespace App\Models\Admin;
 
+use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Brand extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
+    protected $slugSourceColumn = 'title';
     protected $guarded = [];
-    
+
     public function scopeTop($query)
     {
         return $query->where('category', 'Top');

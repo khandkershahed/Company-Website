@@ -8,7 +8,7 @@
             <!--begin::Card toolbar-->
             <div class="card-toolbar">
                 <!--begin::Button-->
-                <a href="{{ route('admin.brands.index') }}" class="btn btn-light-info">
+                <a href="{{ route('admin.brand.index') }}" class="btn btn-light-info">
                     <!--begin::Svg Icon | path: brands/duotune/general/gen035.svg-->
                     <span class="svg-icon svg-icon-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -27,37 +27,37 @@
         </div>
         <div class="card-body pt-0">
             <!--begin::Form-->
-            <form class="form" action="{{ route('admin.brands.update', $brand->id) }}" method="POST"
+            <form class="form" action="{{ route('admin.brand.update', $brand->id) }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <!--begin::Input group-->
                 <div class="row">
                     <div class="col-lg-6 mb-7">
-                        <x-metronic.label for="name"
+                        <x-metronic.label for="title"
                             class="col-form-label fw-bold fs-6 required">{{ __('Name') }}
                         </x-metronic.label>
 
-                        <x-metronic.input id="name" type="text" name="name" :value="old('name', $brand->name)"
-                            placeholder="Enter the Name" required></x-metronic.input>
+                        <x-metronic.input id="title" type="text" name="title" :value="old('title', $brand->title)"
+                            placeholder="Enter the title" required></x-metronic.input>
                     </div>
 
-                    <div class="col-lg-6 mb-7">
+                    {{-- <div class="col-lg-6 mb-7">
                         <x-metronic.label for="url"
                             class="col-form-label fw-bold fs-6 required">{{ __('Url') }}
                         </x-metronic.label>
 
                         <x-metronic.input id="url" type="url" name="url" :value="old('url', $brand->url)"
                             placeholder="Enter the Url"></x-metronic.input>
-                    </div>
+                    </div> --}}
 
-                    <div class="col-lg-4 mb-7">
+                    <div class="col-lg-6 mb-7">
                         <x-metronic.label for="logo" class="col-form-label fw-bold fs-6 ">{{ __('Logo') }}
                         </x-metronic.label>
 
-                        <x-metronic.file-input id="logo" name="logo" :source="asset('storage/'.$brand->logo)" :value="old('logo', $brand->logo)"></x-metronic.file-input>
+                        <x-metronic.file-input id="logo" name="logo" :source="asset('storage/requestImg/' . $brand->image)" :value="old('logo', $brand->logo)"></x-metronic.file-input>
                     </div>
-                    <div class="col-lg-4 mb-7">
+                    {{-- <div class="col-lg-4 mb-7">
                         <x-metronic.label for="image"
                             class="col-form-label fw-bold fs-6 required">{{ __('Thumbnail Image') }}
                         </x-metronic.label>
@@ -77,8 +77,22 @@
                         </x-metronic.label>
 
                         <x-metronic.textarea id="description" name="description">{{ old('description', $brand->description) }}</x-metronic.textarea>
+                    </div> --}}
+                    <div class="col-lg-6 mb-7">
+                        <x-metronic.label for="category" class="col-form-label required fw-bold fs-6">
+                            {{ __('Select a Category ') }}</x-metronic.label>
+                        <x-metronic.select-option id="category" name="category" data-hide-search="true" data-allow-clear="true"
+                            data-placeholder="Select an option">
+                            <option></option>
+                            <option value="Top" {{ old('category',$brand->category) == 'Top' ? 'selected' : '' }}>Top
+                            </option>
+                            <option value="Featured" {{ old('category',$brand->category) == 'Featured' ? 'selected' : '' }}>
+                                Featured</option>
+                            <option value="Others" {{ old('category',$brand->category) == 'Others' ? 'selected' : '' }}>
+                                Others</option>
+                        </x-metronic.select-option>
                     </div>
-                    <div class="col-lg-4 mb-7">
+                    <div class="col-lg-6 mb-7">
                         <x-metronic.label for="status" class="col-form-label required fw-bold fs-6">
                             {{ __('Select a Status ') }}</x-metronic.label>
                         <x-metronic.select-option id="status" name="status" data-hide-search="true"

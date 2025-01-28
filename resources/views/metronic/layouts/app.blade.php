@@ -49,6 +49,7 @@
     <link href="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend/metronic/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+    <link href="{{ asset('backend/metronic/assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
 </head>
 
 <body id="kt_body"
@@ -127,6 +128,7 @@
     <script src="{{ asset('backend/metronic/js/custom.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     {{-- @include('toastr') --}}
+    <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
     @stack('scripts')
     <script>
         document.querySelectorAll('.ckeditor').forEach(element => {
@@ -306,6 +308,7 @@
             }
         }
     </script>
+    {!! Toastr::message() !!}
     <script>
         @if (Session::has('message'))
             var type = "{{ Session::get('alert-type', 'info') }}"

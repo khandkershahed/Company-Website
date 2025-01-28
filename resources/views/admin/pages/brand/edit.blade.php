@@ -2,9 +2,6 @@
 @section('content')
     <div class="content-wrapper">
 
-        <!-- Inner content -->
-
-
         <!-- Page header -->
         <div class="page-header page-header-light shadow">
             <div class="page-header-content d-lg-flex border-top">
@@ -17,7 +14,6 @@
                 </div>
             </div>
         </div>
-        <!-- /page header -->
 
 
         <!-- Content area -->
@@ -29,7 +25,7 @@
                         <div class="card-header">
 
                             <h5 class="mb-0 float-start">Brand Edit Form</h5>
-                            <a href="{{ route('brand.index') }}" type="button"
+                            <a href="{{ route('admin.brand.index') }}" type="button"
                                 class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
                                 <span class="btn-labeled-icon bg-black bg-opacity-20">
                                     <i class="icon-eye"></i>
@@ -39,18 +35,17 @@
                         </div>
 
                         <div class="card-body">
-                            <form method="post" action="{{ route('brand.update', $brand->id) }}"
+                            <form method="post" action="{{ route('admin.brand.update', $brand->id) }}"
                                 enctype="multipart/form-data" id="myform">
                                 @csrf
                                 @method('PUT')
-
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">Brand Name</h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
                                         <input type="text" name="title" class="form-control maxlength" maxlength="100"
-                                            value="{{ $brand->title }}" />
+                                            value="{{ old('title',$brand->title) }}" />
                                     </div>
                                 </div>
 
@@ -85,11 +80,11 @@
                                     <div class="form-group text-secondary col-sm-3">
                                         <select name="category" class="form-control select"
                                             data-minimum-results-for-search="Infinity" required>
-                                            <option value="Top" {{ $brand->category == 'Top' ? 'selected' : '' }}>Top
+                                            <option value="Top" {{ old('category',$brand->category) == 'Top' ? 'selected' : '' }}>Top
                                             </option>
-                                            <option value="Featured" {{ $brand->category == 'Featured' ? 'selected' : '' }}>
+                                            <option value="Featured" {{ old('category',$brand->category) == 'Featured' ? 'selected' : '' }}>
                                                 Featured</option>
-                                            <option value="Others" {{ $brand->category == 'Others' ? 'selected' : '' }}>
+                                            <option value="Others" {{ old('category',$brand->category) == 'Others' ? 'selected' : '' }}>
                                                 Others</option>
                                         </select>
                                     </div>

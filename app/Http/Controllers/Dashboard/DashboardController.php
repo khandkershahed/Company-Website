@@ -54,6 +54,7 @@ class DashboardController extends Controller
 
     public function hrAdmin()
     {
+        set_time_limit(120);
         $deviceip = $this->device_ip();
         $zk = new ZKTeco($deviceip, 4370);
         $zk->connect();
@@ -94,8 +95,8 @@ class DashboardController extends Controller
         }
         $currentMonth = Carbon::now()->startOfMonth();
         $endOfMonth = Carbon::now()->endOfMonth();
-        $data['events'] = Event::whereBetween('start_date', [$currentMonth, $endOfMonth])->get();
-        $data['event_categorys'] = EventCategory::latest()->get();
+        $data['events'] = null;
+        $data['event_categorys'] = null;
         $data['users'] = User::latest('id', 'DESC')->get();
         $notices = Notice::latest('id')->get();
         $data['leave_applications'] = LeaveApplication::get(['name','id', 'status']);

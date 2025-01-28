@@ -226,156 +226,160 @@ class AdminController extends Controller
     //     }
     // }
 
+    // public function AdminDashboard()
+    // {
+    //     $data['notices'] = Notice::latest()->get();
+    //     $data['employee_leave_due'] = EmployeeLeave::where('employee_id', Auth::user()->id)->first();
+    //     $resulNotify = [];
+    //     $presentDate = date('Y-m-d');
+    //     $notification_days = Product::whereNotNull('notification_days')->whereNotNull('create_date')->get(['id', 'notification_days', 'create_date']);
+    //     foreach ($notification_days as $createDateNotificationDay) {
+    //         $value = date('Y-m-d', strtotime($createDateNotificationDay->create_date . ' + ' . $createDateNotificationDay->notification_days . ' days'));
+    //         if ($value <= $presentDate) {
+    //             $notification = 1;
+    //         } else {
+    //             $notification = 0;
+    //         }
+    //         $resulNotify[] = $notification;
+    //     }
+    //     $filteredNotify = array_filter($resulNotify, function ($value) {
+    //         return $value == 1;
+    //     });
+
+    //     $data['notification_count'] = count($filteredNotify);
+    //     $data['notifications'] = auth()->user()->unreadNotifications;
+
+    //     if (auth()->check() && in_array('support', json_decode(auth()->user()->department, true))) {
+    //         $data['projects'] = Project::with('client')->orderBy('id', 'DESC')->get();
+    //         $data['supports'] = ClientSupport::with('client', 'project')->where('status', '!=', 'closed')->orderBy('id', 'DESC')->get();
+    //         $data['cases'] = SupportCase::latest('id')->get();
+    //         $data['latest_case'] = SupportCase::where('status', '!=', 'closed')->latest('id')->first();
+
+    //         return view('admin.pages.project.dashboard', $data);
+    //     } else {
+    //         $id = Auth::user()->employee_id;
+    //         // Connect to the ZKtecho device
+    //         $deviceip = $this->device_ip();
+    //         $zk = new ZKTeco($deviceip, 4370);
+    //         $zk->connect();
+    //         $zk->enableDevice();
+
+    //         // Retrieve attendances and user data from the device
+    //         $attendances_all = $zk->getEmployeeAttendance(2, $id);
+    //         $users = $zk->getUser();
+    //         $user = null;
+
+    //         foreach ($users as $userData) {
+    //             if ($userData['userid'] === $id) {
+    //                 $user = $userData;
+    //                 break;
+    //             }
+    //         }
+
+    //         // Initialize arrays to store user's attendance data
+    //         $attendanceToday = [];
+    //         // $attendanceThisMonth = [];
+    //         // $attendanceLastMonth = [];
+
+    //         if ($user) {
+    //             $user_name = $user['name'];
+    //             $todayDate = date('Y-m-d');
+
+    //             // Filter attendance for Today
+    //             $todayAttendances = array_filter($attendances_all, function ($attendance) use ($id, $todayDate) {
+    //                 $attendanceDate = date('Y-m-d', strtotime($attendance['timestamp']));
+    //                 return ($attendanceDate === $todayDate) && ($attendance['id'] === $id);
+    //             });
+
+    //             // Initialize variables for today's check-in and check-out
+    //             $earliestCheckIn = null;
+    //             $latestCheckOut = null;
+
+    //             // Loop through today's attendance data
+    //             foreach ($todayAttendances as $attendance) {
+    //                 $checkTime = date('H:i:s', strtotime($attendance['timestamp']));
+    //                 if ($earliestCheckIn === null || strtotime($checkTime) < strtotime($earliestCheckIn)) {
+    //                     $earliestCheckIn = $checkTime;
+    //                 }
+    //                 if ($latestCheckOut === null || strtotime($checkTime) > strtotime($latestCheckOut)) {
+    //                     $latestCheckOut = $checkTime;
+    //                 }
+    //             }
+
+    //             // Add attendance data for today
+    //             if ($earliestCheckIn !== null && $latestCheckOut !== null) {
+    //                 $attendanceToday[] = [
+    //                     'user_id' => $id,
+    //                     'user_name' => $user_name,
+    //                     'date' => $todayDate,
+    //                     'check_in' => $earliestCheckIn,
+    //                     'check_out' => $latestCheckOut,
+    //                 ];
+    //             }
+    //             $attendanceToday = count($attendanceToday) > 0 ? $attendanceToday[0] : null;
+
+    //             //     // Filter attendance for this month (current month)
+    //             //     $startDate = new DateTime('first day of this month');
+    //             //     $endDate = new DateTime('today +1 day');
+    //             //     $attendanceThisMonth = [];
+
+    //             //     // Iterate through dates from the first day of the month to today
+    //             //     foreach (new DatePeriod($startDate, new DateInterval('P1D'), $endDate) as $date) {
+    //             //         $currentDate = $date->format('Y-m-d');
+    //             //         $attendanceForDate = array_filter($attendances_all, function ($attendance) use ($id, $currentDate) {
+    //             //             return (new DateTime($attendance['timestamp']))->format('Y-m-d') === $currentDate && $attendance['id'] === $id;
+    //             //         });
+
+    //             //         if (count($attendanceForDate) > 0) {
+    //             //             $earliestCheckIn = min(array_column($attendanceForDate, 'timestamp'));
+    //             //             $latestCheckOut = max(array_column($attendanceForDate, 'timestamp'));
+    //             //         } else {
+    //             //             $earliestCheckIn = 'N/A';
+    //             //             $latestCheckOut = 'N/A';
+    //             //         }
+
+    //             //         $attendanceThisMonth[] = [
+    //             //             'user_id' => $id,
+    //             //             'user_name' => $user_name,
+    //             //             'date' => $currentDate,
+    //             //             'check_in' => $earliestCheckIn === 'N/A' ? 'N/A' : (new DateTime($earliestCheckIn))->format('H:i:s'),
+    //             //             'check_out' => $latestCheckOut === 'N/A' ? 'N/A' : (new DateTime($latestCheckOut))->format('H:i:s'),
+    //             //             'absent_note' => $earliestCheckIn === 'N/A' ? ($date->format('N') == 5 ? 'Friday' : 'Absent') : null,
+    //             //         ];
+    //             //     }
+
+    //             //     // Filter attendance for last month
+    //             //     $firstDayLastMonth = date('Y-m-01', strtotime('last month'));
+    //             //     $lastDayLastMonth = date('Y-m-t', strtotime('last month'));
+    //             //     $lastMonthAttendances = array_filter($attendances_all, function ($attendance) use ($id, $firstDayLastMonth, $lastDayLastMonth) {
+    //             //         $attendanceDate = date('Y-m-d', strtotime($attendance['timestamp']));
+    //             //         return ($attendanceDate >= $firstDayLastMonth) && ($attendanceDate <= $lastDayLastMonth) && ($attendance['id'] === $id);
+    //             //     });
+    //             // }
+
+    //             // // Filter late attendance counts for this month
+    //             // $lateCounts = array_filter($attendanceThisMonth, function ($attendance) {
+    //             //     if ($attendance['check_in'] === 'N/A' || !isset($attendance['check_in'])) {
+    //             //         return false;
+    //             //     }
+
+    //             //     return Carbon::parse($attendance['check_in']) > Carbon::parse('09:06:00');
+    //             // });
+
+    //             $data['attendanceToday'] = $attendanceToday ?? null;
+    //             $data['attendanceThisMonths'] = $attendanceThisMonth ?? null;
+    //             $data['lateCounts'] = $lateCounts ?? null;
+    //             $data['attendanceLastMonths'] = $attendanceLastMonth ?? null;
+    //             $data['deviceip'] = $deviceip ?? null;
+
+    //             return view('admin.pages.dashboard.index', $data);
+    //         }
+    //     }
+    // }
     public function AdminDashboard()
     {
-        $data['notices'] = Notice::latest()->get();
-        $data['employee_leave_due'] = EmployeeLeave::where('employee_id', Auth::user()->id)->first();
-        $resulNotify = [];
-        $presentDate = date('Y-m-d');
-        $notification_days = Product::whereNotNull('notification_days')->whereNotNull('create_date')->get(['id', 'notification_days', 'create_date']);
-        foreach ($notification_days as $createDateNotificationDay) {
-            $value = date('Y-m-d', strtotime($createDateNotificationDay->create_date . ' + ' . $createDateNotificationDay->notification_days . ' days'));
-            if ($value <= $presentDate) {
-                $notification = 1;
-            } else {
-                $notification = 0;
-            }
-            $resulNotify[] = $notification;
-        }
-        $filteredNotify = array_filter($resulNotify, function ($value) {
-            return $value == 1;
-        });
-
-        $data['notification_count'] = count($filteredNotify);
-        $data['notifications'] = auth()->user()->unreadNotifications;
-
-        if (auth()->check() && in_array('support', json_decode(auth()->user()->department, true))) {
-            $data['projects'] = Project::with('client')->orderBy('id', 'DESC')->get();
-            $data['supports'] = ClientSupport::with('client', 'project')->where('status', '!=', 'closed')->orderBy('id', 'DESC')->get();
-            $data['cases'] = SupportCase::latest('id')->get();
-            $data['latest_case'] = SupportCase::where('status', '!=', 'closed')->latest('id')->first();
-
-            return view('admin.pages.project.dashboard', $data);
-        } else {
-            $id = Auth::user()->employee_id;
-            // Connect to the ZKtecho device
-            $deviceip = $this->device_ip();
-            $zk = new ZKTeco($deviceip, 4370);
-            $zk->connect();
-            $zk->enableDevice();
-
-            // Retrieve attendances and user data from the device
-            $attendances_all = $zk->getEmployeeAttendance(2, $id);
-            $users = $zk->getUser();
-            $user = null;
-
-            foreach ($users as $userData) {
-                if ($userData['userid'] === $id) {
-                    $user = $userData;
-                    break; // Exit the loop once a match is found
-                }
-            }
-
-            // Initialize arrays to store user's attendance data
-            $attendanceToday = [];
-            $attendanceThisMonth = [];
-            $attendanceLastMonth = [];
-
-            if ($user) {
-                $user_name = $user['name'];
-                $todayDate = date('Y-m-d');
-
-                // Filter attendance for Today
-                $todayAttendances = array_filter($attendances_all, function ($attendance) use ($id, $todayDate) {
-                    $attendanceDate = date('Y-m-d', strtotime($attendance['timestamp']));
-                    return ($attendanceDate === $todayDate) && ($attendance['id'] === $id);
-                });
-
-                // Initialize variables for today's check-in and check-out
-                $earliestCheckIn = null;
-                $latestCheckOut = null;
-
-                // Loop through today's attendance data
-                foreach ($todayAttendances as $attendance) {
-                    $checkTime = date('H:i:s', strtotime($attendance['timestamp']));
-                    if ($earliestCheckIn === null || strtotime($checkTime) < strtotime($earliestCheckIn)) {
-                        $earliestCheckIn = $checkTime;
-                    }
-                    if ($latestCheckOut === null || strtotime($checkTime) > strtotime($latestCheckOut)) {
-                        $latestCheckOut = $checkTime;
-                    }
-                }
-
-                // Add attendance data for today
-                if ($earliestCheckIn !== null && $latestCheckOut !== null) {
-                    $attendanceToday[] = [
-                        'user_id' => $id,
-                        'user_name' => $user_name,
-                        'date' => $todayDate,
-                        'check_in' => $earliestCheckIn,
-                        'check_out' => $latestCheckOut,
-                    ];
-                }
-                $attendanceToday = count($attendanceToday) > 0 ? $attendanceToday[0] : null;
-
-                // Filter attendance for this month (current month)
-                $startDate = new DateTime('first day of this month');
-                $endDate = new DateTime('today +1 day');
-                $attendanceThisMonth = [];
-
-                // Iterate through dates from the first day of the month to today
-                foreach (new DatePeriod($startDate, new DateInterval('P1D'), $endDate) as $date) {
-                    $currentDate = $date->format('Y-m-d');
-                    $attendanceForDate = array_filter($attendances_all, function ($attendance) use ($id, $currentDate) {
-                        return (new DateTime($attendance['timestamp']))->format('Y-m-d') === $currentDate && $attendance['id'] === $id;
-                    });
-
-                    if (count($attendanceForDate) > 0) {
-                        $earliestCheckIn = min(array_column($attendanceForDate, 'timestamp'));
-                        $latestCheckOut = max(array_column($attendanceForDate, 'timestamp'));
-                    } else {
-                        $earliestCheckIn = 'N/A';
-                        $latestCheckOut = 'N/A';
-                    }
-
-                    $attendanceThisMonth[] = [
-                        'user_id' => $id,
-                        'user_name' => $user_name,
-                        'date' => $currentDate,
-                        'check_in' => $earliestCheckIn === 'N/A' ? 'N/A' : (new DateTime($earliestCheckIn))->format('H:i:s'),
-                        'check_out' => $latestCheckOut === 'N/A' ? 'N/A' : (new DateTime($latestCheckOut))->format('H:i:s'),
-                        'absent_note' => $earliestCheckIn === 'N/A' ? ($date->format('N') == 5 ? 'Friday' : 'Absent') : null,
-                    ];
-                }
-
-                // Filter attendance for last month
-                $firstDayLastMonth = date('Y-m-01', strtotime('last month'));
-                $lastDayLastMonth = date('Y-m-t', strtotime('last month'));
-                $lastMonthAttendances = array_filter($attendances_all, function ($attendance) use ($id, $firstDayLastMonth, $lastDayLastMonth) {
-                    $attendanceDate = date('Y-m-d', strtotime($attendance['timestamp']));
-                    return ($attendanceDate >= $firstDayLastMonth) && ($attendanceDate <= $lastDayLastMonth) && ($attendance['id'] === $id);
-                });
-            }
-
-            // Filter late attendance counts for this month
-            $lateCounts = array_filter($attendanceThisMonth, function ($attendance) {
-                if ($attendance['check_in'] === 'N/A' || !isset($attendance['check_in'])) {
-                    return false;
-                }
-
-                return Carbon::parse($attendance['check_in']) > Carbon::parse('09:06:00');
-            });
-
-            $data['attendanceToday'] = $attendanceToday ?? null;
-            $data['attendanceThisMonths'] = $attendanceThisMonth ?? null;
-            $data['lateCounts'] = $lateCounts ?? null;
-            $data['attendanceLastMonths'] = $attendanceLastMonth ?? null;
-            $data['deviceip'] = $deviceip ?? null;
-
-            return view('admin.pages.dashboard.index', $data);
-        }
+        return view('metronic.pages.dashboard');
     }
-
 
 
 

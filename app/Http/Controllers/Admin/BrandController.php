@@ -33,71 +33,39 @@ class BrandController extends Controller
 
     public function create()
     {
-        return view('admin.pages.brand.add');
+        return view('metronic.pages.brands.create');
     } // End Method
 
 
     public function store(Request $request)
     {
-        Helper::imageDirectory();
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'title' => 'required|unique:brands',
-                'image'   => 'required|image|mimes:png,jpg,jpeg|max:10000',
-            ],
-            [
-                'mimes' => 'The :attribute must be a file of type: PNG - JPEG - JPG',
-                'unique' => 'This Brand has already been taken.',
-            ],
+        $brandData = [
+            'title'    => $request->title,
+            'category' => $request->category,
+            'status'   => $request->status ?? null,
+        ];
 
-        );
+        if ($request->hasFile('image')) {
+            $globalFunImg = Helper::singleImageUpload($request->file('image'), storage_path('app/public/'), 380, 210);
 
-        if ($validator->passes()) {
-            $mainFile = $request->file('image');
-            $imgPath = storage_path('app/public/');
-            $slug = Str::slug($request->title);
-            $count = Brand::where('slug', $slug)->count();
-            if ($count > 0) {
-                $slug = $slug . '-' . date('ymdis') . '-' . rand(0, 999);
-            }
-            $data['slug'] = $slug;
-            if (empty($mainFile)) {
-                Brand::create([
-                    'title'    => $request->title,
-                    'slug' => $data['slug'],
-                    'category' => $request->category,
-                ]);
+            if ($globalFunImg['status'] == 1) {
+                $brandData['image'] = $globalFunImg['file_name'];
             } else {
-                $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 380, 210);
-                if ($globalFunImg['status'] == 1) {
-                    Brand::create([
-                        'title'    => $request->title,
-                        'slug'     => $data['slug'],
-                        'image'    => $globalFunImg['file_name'],
-                        'category' => $request->category,
-                        'status'   => $request->status,
-                    ]);
-                } else {
-                    Toastr::warning('Image upload failed! plz try again.');
-                }
-            }
-            Toastr::success('Data Inserted Successfully');
-        } else {
-
-            $messages = $validator->messages();
-            foreach ($messages->all() as $message) {
-                Toastr::error($message, 'Failed', ['timeOut' => 30000]);
+                Toastr::warning('Image upload failed! Please try again.');
+                return redirect()->back()->withInput();
             }
         }
-        return redirect()->back();
+
+        Brand::create($brandData);
+        Toastr::success('Data Inserted Successfully');
+        return redirect()->route('admin.brand.index');
     } // End Method
 
 
     public function edit($id)
     {
         $data['brand'] = Brand::findOrFail($id);
-        return view('admin.pages.brand.edit', $data);
+        return view('metronic.pages.brands.edit', $data);
     } // End Method
 
 
@@ -156,7 +124,7 @@ class BrandController extends Controller
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
         }
-        return redirect()->route('brand.index');
+        return redirect()->route('admin.brand.index');
     } // End Method
 
 

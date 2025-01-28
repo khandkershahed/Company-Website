@@ -1,0 +1,55 @@
+
+/* Clock Start */
+#clock {
+    background: linear-gradient(to right, #a80b6e 22%, #582873 100%);
+    color: white;
+    display: inline-block;
+    width: auto;
+    border-radius: 0px;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+}
+
+#clock p {
+    margin: 5px;
+}
+
+#clock .time-unit,
+#clock .separator {
+    display: inline-block;
+    text-align: center;
+    margin: 0 0.25em;
+}
+
+.separator {
+    display: block;
+    height: 0;
+    border-bottom: 0px solid #eff2f5;
+}
+
+#clock .time-unit .large {
+    display: block;
+    font-size: 1.2rem;
+}
+
+#clock .time-unit .small {
+    display: block;
+    font-size: 0.6em;
+}
+
+#clock .separator {
+    font-size: 1.2em;
+    vertical-align: top;
+    margin-top: -0.2em;
+}
+
+/* Clock End */
+
+
+
+
+@media (max-width: 991.98px) {
+    #clock {
+        font-size: 1rem;
+    }
+}

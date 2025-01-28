@@ -13,8 +13,8 @@
     </div>
     <div class="col-2 mt-n7">
         <img id="{{ $id ?? 'file-input' }}-preview" src="{{ !empty($source) ? $source : asset('images/no_image.png') }}"
-            alt="Image Preview" class="img-thumbnail" style="display: {{ !empty($source) ? 'block' : 'none' }};" width="55px"
-            height="68px">
+            alt="Image Preview" class="" style="display: {{ !empty($source) ? 'block' : 'none' }};" width="100%"
+            height="100%">
     </div>
 </div>
 

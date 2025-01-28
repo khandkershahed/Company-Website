@@ -6,7 +6,7 @@
                     {{ $brands->count() }}</strong></h3>
             <h2 class="card-title text-white">Brands List</h2>
             <div>
-                <a class="btn btn-sm btn-light-primary rounded-0" href="{{ route('brand.create') }}">
+                <a class="btn btn-sm btn-light-primary rounded-0" href="{{ route('admin.brand.create') }}">
                     Add New
                 </a>
             </div>
@@ -44,11 +44,11 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="{{ route('brand.edit', $brand->id) }}"
+                                <a href="{{ route('admin.brand.edit', $brand->id) }}"
                                     class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <a href="{{ route('brand.destroy', $brand->id) }}"
+                                <a href="{{ route('admin.brand.destroy', $brand->id) }}"
                                     class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 delete"
                                     data-kt-docs-table-filter="delete_row">
                                     <i class="fa-solid fa-trash-can-arrow-up"></i>

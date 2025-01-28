@@ -70,7 +70,7 @@ style="background: url('{{ asset('images/mandala-bg.jpg') }}') no-repeat center 
                             <li class="nav-item"><a href="{{ route('category.index') }}" class="nav-link"><i
                                         class="ph-layout"></i>
                                     <span>Category</span></a></li>
-                            <li class="nav-item"><a href="{{ route('brand.index') }}" class="nav-link"><i
+                            <li class="nav-item"><a href="{{ route('admin.brand.index') }}" class="nav-link"><i
                                         class="ph-layout"></i>
                                     <span>Brand</span></a></li>
                             <li class="nav-item"><a href="{{ route('all.product') }}" class="nav-link"><i

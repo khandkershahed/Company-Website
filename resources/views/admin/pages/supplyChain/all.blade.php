@@ -373,7 +373,7 @@
                                     border-style: dashed;
                                     border-color: #247297;">
                                     <div>
-                                        <a href="{{ route('brand.index') }}" class="btn navigation_btn" style="width: 120px;">
+                                        <a href="{{ route('admin.brand.index') }}" class="btn navigation_btn" style="width: 120px;">
                                             <div class="d-flex align-items-center">
                                                 <i class="fa fa-plus me-1" style="font-size: 10px;"></i>
                                                 <span>Brand</span>

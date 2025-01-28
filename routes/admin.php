@@ -140,8 +140,10 @@ use App\Http\Controllers\Solution\SolutionCMSController;
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resources(
         [
-            'rfq'           => RFQController::class,
-            'solution-cms'  => SolutionCMSController::class,
+            'rfq'          => RFQController::class,
+            'solution-cms' => SolutionCMSController::class,
+            'brand'        => BrandController::class,
+
         ]
     );
 
@@ -455,7 +457,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'admin-menu-builder'         => AdminMenuBuilderController::class,
             'client-database'            => ClientDatabaseController::class,
             'category'                   => CategoryController::class,
-            'brand'                      => BrandController::class,
+            // 'brand'                      => BrandController::class,
             'success'                    => SuccessController::class,
             // 'setting'                 => SettingController::class,
             'solution'                   => SolutionController::class,
