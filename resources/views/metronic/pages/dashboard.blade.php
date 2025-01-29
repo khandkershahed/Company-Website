@@ -37,7 +37,7 @@
                                 </div>
                                 <div>
                                     <h1 class="user-counter mb-0">
-                                        {{ !empty($attendanceToday['check_in']) ? $attendanceToday['check_in'] : 'Absent' }}
+                                        {{ !empty($check_in) ? $check_in : 'Absent' }}
                                     </h1>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                                 </div>
                                 <div>
                                     <h1 class="user-counter mb-0">
-                                        {{ !empty($attendanceToday['check_out']) ? $attendanceToday['check_out'] : 'Absent' }}
+                                        {{ !empty($check_out) ? $check_out : 'Absent' }}
                                     </h1>
                                 </div>
                             </div>
