@@ -334,7 +334,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <div class="col-lg-4">
                             <h6 class="m-0 p-1 text-center card-main-title mb-2 text-black"
@@ -363,57 +363,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <h6 class="m-0 p-1 text-center card-main-title mb-2 text-black"
-                                style="background-color: #f3f3f3 !important;">All Events Of This Month</h6>
-                            <div class="card rounded-0" style="height: 17.6rem; overflow: auto;">
-                                <div class="card-body p-0">
-                                    <div class="row align-items-center text-center">
-                                        <div class="col-lg-6">
-                                            <div class="form-group d-flex align-items-center ps-2 pt-2">
-                                                <label for="category_filter">Category:</label>
-                                                <select class="form-control select category_filter" id="category_filter">
-                                                    <option value="">All</option>
-                                                    @foreach ($event_categorys as $category)
-                                                        <option value="{{ $category->id }}">{{ $category->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 text-end">
-                                            <a href="javascript:void(0);" data-bs-toggle="modal"
-                                                data-bs-target="#eventAdd" class="btn btn-info text-white px-2 py-1 mt-2">
-                                                <i class="fa-solid fa-plus pe-2"></i>Add</a>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="table-responsive col-lg-12">
-                                                <table
-                                                    class="table datatable-scroll-y data_event mt-2 mb-4 border pt-2 events_table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Name</th>
-                                                            <th>Date</th>
-                                                            <th>Time</th>
-                                                            <th>Category</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach ($events as $event)
-                                                            <tr>
-                                                                <td>{{ $event->title }}</td>
-                                                                <td>{{ $event->start_date }}</td>
-                                                                <td>{{ $event->start_time }}</td>
-                                                                <td>{{ $event->eventCategory->name ?? 'No Category' }}
-                                                                </td>
-                                                            </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="card" style="height: 22.2rem; overflow: auto;">
                                 <div class="card-header p-1" style="background-color: #f2f3ff">
                                     <h4 class="m-0 text-center">Notice</h4>
@@ -457,7 +407,7 @@
                 </div>
             </div>
             <!-- Sales Chain Page -->
-            @include('admin.pages.event.partial.modals')
+            {{-- @include('admin.pages.event.partial.modals') --}}
         </div>
     @endsection
     @push('scripts')

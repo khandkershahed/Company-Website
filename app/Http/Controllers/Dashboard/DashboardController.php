@@ -95,8 +95,8 @@ class DashboardController extends Controller
         }
         $currentMonth = Carbon::now()->startOfMonth();
         $endOfMonth = Carbon::now()->endOfMonth();
-        $data['events'] = null;
-        $data['event_categorys'] = null;
+        $data['events'] = [];
+        $data['event_categorys'] = [];
         $data['users'] = User::latest('id', 'DESC')->get();
         $notices = Notice::latest('id')->get();
         $data['leave_applications'] = LeaveApplication::get(['name','id', 'status']);

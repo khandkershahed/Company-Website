@@ -387,7 +387,7 @@ class AdminController extends Controller
         $zk->connect();
         $zk->enableDevice();
         $attendance = $zk->getTodayAttendance($id);
-        dd($zk->getThisMonthAttendance($id));
+        // dd($zk->getThisMonthAttendance($id));
         // dd(Carbon::parse($attendance['check_in']['timestamp'])->format('H:i:s'));
 
         $attendanceToday = [];
