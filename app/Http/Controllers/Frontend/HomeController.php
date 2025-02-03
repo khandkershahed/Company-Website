@@ -819,10 +819,9 @@ class HomeController extends Controller
 
         $data = [];
 
-        // Use Eloquent for LearnMore
         $data['learnmore'] = LearnMore::latest()->first(['industry_header', 'consult_title', 'consult_short_des', 'background_image']);
 
-        // Use Eloquent for Industries
+        
         $data['industrys'] = Industry::orderBy('id')->limit(8)->get(['id', 'slug', 'logo', 'title']);
         $data['random_industries'] = Industry::latest()->limit(4)->get(['id', 'slug', 'title']);
 
