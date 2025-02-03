@@ -131,8 +131,6 @@ class BioMetricController extends Controller
                 }
             }
         }
-
-        $events = Event::orderBy('id', 'DESC')->get();
         // $users = User::get();
         // dd(($attendanceData));
 
@@ -142,7 +140,6 @@ class BioMetricController extends Controller
             'attendanceData' => $attendanceData,
             'users' => $users,
             'deviceip' => $deviceip,
-            'events' => $events,
         ]);
     }
 

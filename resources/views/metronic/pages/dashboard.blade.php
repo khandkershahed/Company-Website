@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                        @php
+                        {{-- @php
                             $absentCountA = collect($attendanceThisMonths)
                                 ->where(function ($item) {
                                     return $item['check_in'] === 'N/A' &&
@@ -95,21 +95,18 @@
                         @endphp
                         <div class="card me-2" style="width: 30%; height: 7rem;">
                             <div class="card-body pt-2">
-                                {{-- Icons Info --}}
                                 <div class="d-flex justify-content-between align-items-center pt-1 px-2">
-                                    {{-- <h5 class="user-counter mb-0">EL</h5> --}}
                                     <h5 class="user-counter mb-0">A</h5>
                                     <h5 class="user-counter mb-0">L</h5>
                                     <h5 class="user-counter mb-0">LL</h5>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center pt-2">
-                                    {{-- <h5 class="user-counter amout-count mb-0">{{ $absentCountA }}</h5> --}}
                                     <h5 class="user-counter amout-count mb-0">{{ $absentCountA }}</h5>
                                     <h5 class="user-counter amout-count mb-0">{{ $lateCountL }}</h5>
                                     <h5 class="user-counter amout-count mb-0">{{ $lateCountLL }}</h5>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="card" style="width: 20%; height: 7rem;" id="myTab" role="tablist">
                             <div class="card-body d-flex justify-content-between align-items-center ps-1">
                                 {{-- Icons Info --}}

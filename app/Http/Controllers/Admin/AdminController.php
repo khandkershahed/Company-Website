@@ -389,13 +389,10 @@ class AdminController extends Controller
         $attendance = $zk->getTodayAttendance($id);
         // dd($zk->getThisMonthAttendance($id));
         // dd(Carbon::parse($attendance['check_in']['timestamp'])->format('H:i:s'));
-
-        $attendanceToday = [];
-
-        $data['attendanceToday'] = $attendanceToday ?? null;
+        $lateCounts = [];
+        $attendanceThisMonth = $zk->getThisMonthAttendance($id);
         $data['attendanceThisMonths'] = $attendanceThisMonth ?? null;
         $data['lateCounts'] = $lateCounts ?? null;
-        $data['attendanceLastMonths'] = $attendanceLastMonth ?? null;
         $data['deviceip'] = $deviceip ?? null;
         $data['check_in'] = Carbon::parse($attendance['check_in']['timestamp'])->format('H:i:s');
         $data['check_out'] = Carbon::parse($attendance['check_out']['timestamp'])->format('H:i:s');
