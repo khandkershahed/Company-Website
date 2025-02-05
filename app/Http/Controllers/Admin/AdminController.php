@@ -9,8 +9,8 @@ use DateTime;
 use DatePeriod;
 use DateInterval;
 use Carbon\Carbon;
-use Rats\Zkteco\Lib\ZKTeco;
 use App\Models\User;
+use Rats\Zkteco\Lib\ZKTeco;
 use App\Models\Admin\Notice;
 use Illuminate\Http\Request;
 use App\Models\Admin\Country;
@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\EmployeeAdd as MailEmployeeAdd;
@@ -379,24 +380,114 @@ class AdminController extends Controller
     // }
     public function AdminDashboard()
     {
-        ini_set('max_execution_time',3600);
-        $id = Auth::user()->employee_id;
-        // Connect to the ZKtecho device
-        $deviceip = $this->device_ip();
-        $zk = new ZKTeco($deviceip, 4370);
-        $zk->connect();
-        $zk->enableDevice();
-        $attendance = $zk->getTodayAttendance($id);
-        // dd($zk->getThisMonthAttendance($id));
-        // dd(Carbon::parse($attendance['check_in']['timestamp'])->format('H:i:s'));
+        ini_set('max_execution_time', 3600);
+        $id = 108;
+        // $id = Auth::user()->employee_id;
+
+        // Cache key based on employee ID, so the cache is specific to each user
+        $cacheKey = "attendance_this_month_{$id}";
+
+        // Check if the attendance data is already cached
+        $attendanceThisMonth = Cache::remember($cacheKey, now()->addMinutes(60), function () use ($id) {
+            // Connect to the ZKtecho device
+            $deviceip = $this->device_ip();
+            $zk = new ZKTeco($deviceip, 4370);
+            $zk->connect();
+            $zk->enableDevice();
+            return $zk->getThisMonthAttendance($id);
+        });
+
+        $attendances = $attendanceThisMonth;
+
+        // Filter current day's attendance records
+        $currentMonthAttendances = array_filter($attendances, function ($attendance) {
+            // Loop through each date's attendance records and check if the timestamp exists in check_in or check_out
+            foreach (['check_in', 'check_out'] as $type) {
+                if (isset($attendance[$type]['timestamp']) && date('Y-m-d', strtotime($attendance[$type]['timestamp'])) === date('Y-m-d')) {
+                    return true;
+                }
+            }
+            return false;
+        });
+
+        // Group attendance records by employee id
+        $groupedAttendances = [];
+        foreach ($currentMonthAttendances as $date => $attendance) {
+            foreach (['check_in', 'check_out'] as $type) {
+                if (isset($attendance[$type]['timestamp'])) {
+                    $groupedAttendances[$attendance[$type]['id']][] = $attendance[$type];
+                }
+            }
+        }
+
+        // Loop through each group of records and select the earliest and latest timestamps
+        $filteredAttendances = [];
+        foreach ($groupedAttendances as $employeeId => $records) {
+            usort($records, function ($a, $b) {
+                return strtotime($a['timestamp']) - strtotime($b['timestamp']);
+            });
+
+            $firstRecord = reset($records); // Earliest record
+            $lastRecord = end($records);    // Latest record
+
+            // Add the first and last records to the filtered attendances
+            $filteredAttendances[] = $firstRecord;
+            $filteredAttendances[] = $lastRecord;
+        }
+
+
         $lateCounts = [];
-        $attendanceThisMonth = $zk->getThisMonthAttendance($id);
+
+        foreach ($attendanceThisMonth as $date => $attendance) {
+            // Ensure 'check_in' exists for each date and check if 'timestamp' exists
+            if (isset($attendance['check_in']) && isset($attendance['check_in']['timestamp'])) {
+                $lateCounts[] = $attendance['check_in']; // Collect the check-in data
+            }
+        }
+
+        // Count Late (L) based on check_in time
+        $lateCountL = collect($lateCounts)
+            ->filter(function ($item) {
+                // Ensure check_in exists and timestamp is valid
+                return isset($item['timestamp']) && Carbon::parse($item['timestamp'])->gt(Carbon::parse('09:06:00')) &&
+                    Carbon::parse($item['timestamp'])->lt(Carbon::parse('10:01:00'));
+            })
+            ->count();
+
+        // Count Half Day (LL) based on check_in time
+        $lateCountLL = collect($lateCounts)
+            ->filter(function ($item) {
+                // Ensure check_in exists and timestamp is valid
+                return isset($item['timestamp']) && Carbon::parse($item['timestamp'])->gt(Carbon::parse('10:01:00'));
+            })
+            ->count();
+
+        // Debug the counts
+        // dd($lateCountL);
+        // dd($lateCountLL);
+
         $data['attendanceThisMonths'] = $attendanceThisMonth ?? null;
         $data['lateCounts'] = $lateCounts ?? null;
-        $data['deviceip'] = $deviceip ?? null;
-        $data['check_in'] = Carbon::parse($attendance['check_in']['timestamp'])->format('H:i:s');
-        $data['check_out'] = Carbon::parse($attendance['check_out']['timestamp'])->format('H:i:s');
-        return view('metronic.pages.dashboard');
+        $data['lateCounts'] = $lateCounts ?? null;
+        $data['lateCounts'] = $lateCounts ?? null;
+        $data['lateCountL'] = $lateCountL ?? null;
+        $data['lateCountLL'] = $lateCountLL ?? null;
+
+        // Ensure that check_in and check_out timestamps exist before formatting them
+        $today = date('Y-m-d');
+        $todaysattendances = array_filter($attendances, function ($attendance, $date) use ($today) {
+            return $date === $today;
+        }, ARRAY_FILTER_USE_BOTH);
+        dd($todaysattendances);
+        if (isset($firstAttendance['check_in']['timestamp'])) {
+            $data['check_in'] = Carbon::parse($firstAttendance['check_in']['timestamp'])->format('H:i:s');
+        }
+
+        if (isset($lastAttendance['check_out']['timestamp'])) {
+            $data['check_out'] = Carbon::parse($lastAttendance['check_out']['timestamp'])->format('H:i:s');
+        }
+        dd($data);
+        return view('metronic.pages.dashboard', compact('data'));
     }
 
 
