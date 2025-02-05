@@ -437,11 +437,16 @@ class AdminController extends Controller
 
 
         $lateCounts = [];
-
+        $data['check_in'] = null;
+        $data['check_out'] = null;
+        $today = date('Y-m-d');
         foreach ($attendanceThisMonth as $date => $attendance) {
-            // Ensure 'check_in' exists for each date and check if 'timestamp' exists
             if (isset($attendance['check_in']) && isset($attendance['check_in']['timestamp'])) {
-                $lateCounts[] = $attendance['check_in']; // Collect the check-in data
+                $lateCounts[] = $attendance['check_in'];
+            }
+            if ($date === $today) {
+                $data['check_in'] = $attendance['check_in']['timestamp'];
+                $data['check_out'] = $attendance['check_out']['timestamp'];
             }
         }
 
@@ -462,30 +467,18 @@ class AdminController extends Controller
             })
             ->count();
 
-        // Debug the counts
-        // dd($lateCountL);
-        // dd($lateCountLL);
-
         $data['attendanceThisMonths'] = $attendanceThisMonth ?? null;
-        $data['lateCounts'] = $lateCounts ?? null;
-        $data['lateCounts'] = $lateCounts ?? null;
         $data['lateCounts'] = $lateCounts ?? null;
         $data['lateCountL'] = $lateCountL ?? null;
         $data['lateCountLL'] = $lateCountLL ?? null;
 
         // Ensure that check_in and check_out timestamps exist before formatting them
-        $today = date('Y-m-d');
-        $todaysattendances = array_filter($attendances, function ($attendance, $date) use ($today) {
-            return $date === $today;
-        }, ARRAY_FILTER_USE_BOTH);
-        dd($todaysattendances);
-        if (isset($firstAttendance['check_in']['timestamp'])) {
-            $data['check_in'] = Carbon::parse($firstAttendance['check_in']['timestamp'])->format('H:i:s');
-        }
+        // $today = date('Y-m-d');
+        // $todaysattendances = array_filter($attendances, function ($attendance, $date) use ($today) {
+        //     return $date === $today;
+        // }, ARRAY_FILTER_USE_BOTH);
+        // dd($todaysattendances);
 
-        if (isset($lastAttendance['check_out']['timestamp'])) {
-            $data['check_out'] = Carbon::parse($lastAttendance['check_out']['timestamp'])->format('H:i:s');
-        }
         dd($data);
         return view('metronic.pages.dashboard', compact('data'));
     }
