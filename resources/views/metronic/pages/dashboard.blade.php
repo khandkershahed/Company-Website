@@ -19,12 +19,13 @@
         <div class="col-lg-4">
             {{-- Attendance Info --}}
             <div class="card user-dash-bg">
-                <div class="card-header py-0 px-2">
-                    <p class="text-end pt-2">
-                        <a href="">
-                            <i class="fa-solid fa-arrow-up-right-from-square main_color go-icon"></i>
-                        </a>
-                    </p>
+                <div class="card-header p-2">
+                    <h5 class="text-start">
+                        Attendance
+                    </h5>
+                    <a href=""class="text-end">
+                        <i class="fa-solid fa-arrow-up-right-from-square main_color go-icon"></i>
+                    </a>
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
@@ -32,11 +33,12 @@
                             <div class="card-body d-flex justify-content-between align-items-center">
                                 {{-- Icons Info --}}
                                 <div>
-                                    <i class="fa-solid fa-building-circle-check user-dash-icons"></i>
+                                    <i class="fa-solid fa-clock user-dash-icons text-center"></i>
                                     <p class="para-text m-0 ps-0">Check In</p>
                                 </div>
                                 <div>
                                     <h1 class="user-counter mb-0">
+                                        {{-- @dd($check_in) --}}
                                         {{ !empty($check_in) ? $check_in : 'Absent' }}
                                     </h1>
                                 </div>
@@ -46,7 +48,7 @@
                             <div class="card-body d-flex justify-content-between align-items-center">
                                 {{-- Icons Info --}}
                                 <div>
-                                    <i class="fa-solid fa-building-circle-xmark user-dash-icons"></i>
+                                    <i class="fa-solid fa-clock user-dash-icons"></i>
                                     <p class="para-text m-0 ps-0">Check Out</p>
                                 </div>
                                 <div>
@@ -107,7 +109,7 @@
                                 </div>
                             </div>
                         </div> --}}
-                        <div class="card" style="width: 20%; height: 7rem;" id="myTab" role="tablist">
+                        <div class="card" style="" id="myTab" role="tablist">
                             <div class="card-body d-flex justify-content-between align-items-center ps-1">
                                 {{-- Icons Info --}}
                                 <a href="javascript:void();" id="show-attendance">

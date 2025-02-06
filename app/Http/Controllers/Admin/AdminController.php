@@ -445,8 +445,8 @@ class AdminController extends Controller
                 $lateCounts[] = $attendance['check_in'];
             }
             if ($date === $today) {
-                $data['check_in'] = $attendance['check_in']['timestamp'];
-                $data['check_out'] = $attendance['check_out']['timestamp'];
+                $data['check_in'] = Carbon::parse($attendance['check_in']['timestamp'])->format('H:i:s');
+                $data['check_out'] = Carbon::parse($attendance['check_out']['timestamp'])->format('H:i:s');
             }
         }
 
@@ -479,8 +479,8 @@ class AdminController extends Controller
         // }, ARRAY_FILTER_USE_BOTH);
         // dd($todaysattendances);
 
-        dd($data);
-        return view('metronic.pages.dashboard', compact('data'));
+        // dd($data);
+        return view('metronic.pages.dashboard', $data);
     }
 
 
