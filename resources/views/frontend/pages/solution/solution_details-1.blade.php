@@ -9,7 +9,7 @@
             <div class="hero-slider__wrapper">
                 <div>
                     <div class="hero-slider__slide"
-                        style="background-image: url('{{ !empty($item->banner_image) && file_exists(public_path('storage/' . $item->banner_image)) ? asset('storage/' . $item->banner_image) : asset('frontend/images/no-row-img(580-326).png') }}');">
+                        style="background-image: url('{{ !empty($solution->banner_image) && file_exists(public_path('storage/' . $solution->banner_image)) ? asset('storage/' . $solution->banner_image) : asset('frontend/images/no-row-img(580-326).png') }}');">
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-lg-12">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </section>
         <section class="">
             <div class="container-fluid" style="background-color: #385572">
