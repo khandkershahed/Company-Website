@@ -84,7 +84,7 @@
                                 <div class="d-flex justify-content-start">
                                     <img class="card-img-top"
                                         src="{{ !empty($card->image) && file_exists(public_path('storage/' . $card->image)) ? asset('storage/' . $card->image) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}"
-                                        alt="Card image cap" width="150px" height="150px">
+                                        alt="Card image cap" width="150px" height="250px">
                                     {{-- <img class="text-start img-fluid service_images"
                                         src="https://media.istockphoto.com/id/1433310548/vector/banner-safety-health-environment.jpg?s=612x612&w=0&k=20&c=JIUImxjAEgbsz6nDTfib-063Z5MPvWVZrbO4VEI7610="
                                         alt="" /> --}}
@@ -723,7 +723,7 @@
                                 <div class="d-flex justify-content-start">
                                     <img class="card-img-top"
                                         src="{{ !empty($cardsection->image) && file_exists(public_path('storage/' . $cardsection->image)) ? asset('storage/' . $cardsection->image) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}"
-                                        alt="Card image cap" width="150px" height="150px">
+                                        alt="Card image cap" width="150px" height="250px">
                                     {{-- <img class="text-start img-fluid service_images"
                                             src="https://media.istockphoto.com/id/1433310548/vector/banner-safety-health-environment.jpg?s=612x612&w=0&k=20&c=JIUImxjAEgbsz6nDTfib-063Z5MPvWVZrbO4VEI7610="
                                             alt="" /> --}}
