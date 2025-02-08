@@ -5,7 +5,7 @@
     <div class="st-template-3">
         {{-- Solution Tree Hero Section --}}
         <section>
-            <div class="section st-four-hero-section-02" style="background-image: url({{ asset('images/hero4-bg.jpg') }});">
+            <div class="section st-four-hero-section-02" style="background-image: url({{ !empty($item->banner_image) && file_exists(public_path('storage/' . $item->banner_image)) ? asset('storage/' . $item->banner_image) : asset('frontend/images/no-row-img(580-326).png') }});">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-7">
@@ -13,8 +13,9 @@
                             <div class="hero-content">
                                 <h3 class="sub-title aos-init aos-animate" data-aos-delay="600" data-aos="fade-up"> We
                                     provide the most advance digital solution</h3>
-                                <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="800">Leading
-                                    Software Development Studio &amp; Agency</h2>
+                                <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="800">
+                                    {{ $solution->name }}
+                                </h2>
                                 <div class="hero-play-btn aos-init aos-animate" data-aos="fade-up" data-aos-delay="900">
                                     <a class="popup-video play-btn"
                                         href="https://www.youtube.com/watch?time_continue=3&amp;v=_X0eYtY8T_U">

@@ -34,8 +34,9 @@ class SolutionController extends Controller
     //Show Edit Form
     public function edit($id)
     {
-        $solution = Solution::find($id);
-        return view('admin.pages.solutions.edit', ['solution' => $solution]);
+        dd($id);
+        $solution = SolutionDetail::find($id);
+        return view('metronic.pages.solution.edit', ['solution' => $solution]);
     }
 
 

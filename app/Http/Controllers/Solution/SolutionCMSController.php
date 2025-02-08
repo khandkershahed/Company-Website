@@ -61,7 +61,8 @@ class SolutionCMSController extends Controller
      */
     public function edit($id)
     {
-        //
+        $solution = SolutionDetail::find($id);
+        return view('metronic.pages.solution.edit', ['solution' => $solution]);
     }
 
     /**

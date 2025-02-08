@@ -105,9 +105,9 @@
                                         </div>
                                     </div>
                                     <!-- Template Show Eend -->
-                                    <a href="#" class="btn btn-sm btn-icon btn-primary btn-active-color-primary">
+                                    <a href="{{ route('admin.solution-cms.edit',$solution->id) }}" class="btn btn-sm btn-icon btn-primary btn-active-color-primary">
                                         <i class="fa-solid fa-pen fs-6 text-white" title="Edit Application"
-                                            aria-hidden="true"></i><span class="sr-only">Edit Application</span>
+                                            aria-hidden="true"></i>
                                     </a>
                                     <a href="#" class="btn btn-sm btn-icon btn-primary btn-active-color-primary">
                                         <i class="fa-solid fa-trash fs-6 text-white" title="Delete Application"

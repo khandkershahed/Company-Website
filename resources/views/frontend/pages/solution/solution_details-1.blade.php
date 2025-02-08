@@ -9,88 +9,17 @@
             <div class="hero-slider__wrapper">
                 <div>
                     <div class="hero-slider__slide"
-                        style="
-                background-image: url('https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/Banner_kv-2.png');
-              ">
+                        style="background-image: url('{{ !empty($item->banner_image) && file_exists(public_path('storage/' . $item->banner_image)) ? asset('storage/' . $item->banner_image) : asset('frontend/images/no-row-img(580-326).png') }}');">
                         <div class="container">
                             <div class="row align-items-center">
                                 <div class="col-lg-12">
-                                    <h2 class="pb-3">iFactory</h2>
+                                    <h2 class="pb-3">{{ $solution->name }}</h2>
                                     <h5 class="fw-normal pb-3 hero-para">
-                                        Experience WISE-PaaS AloT easy-to-use platforms for data
-                                        visualization, intelligent management and data-driven
-                                        business in manufacturing.
+                                        {{ $solution->header }}
                                     </h5>
                                     <div class="banner-btn">
                                         <a href="#" class="btn-primary Content-watch me-2"
-                                            style="
-                          text-decoration: none;
-                          color: #000000;
-                          background: rgb(255, 255, 255);
-                          padding: 10px 25px 8px;
-                        ">View
-                                            More</a>
-                                        <a href="#" class="btn-outline-secondary Content-watch px-4"
-                                            style="text-decoration: none">Become A Partner</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="hero-slider__slide"
-                        style="
-                background-image: url('https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/Banner_kv-3.jpg');
-              ">
-                        <div class="container">
-                            <div class="row align-items-center">
-                                <div class="col-lg-12">
-                                    <h2 class="pb-3">iFactory</h2>
-                                    <h5 class="fw-normal pb-3 hero-para">
-                                        Experience WISE-PaaS AloT easy-to-use platforms for data
-                                        visualization, intelligent management and data-driven
-                                        business in manufacturing.
-                                    </h5>
-                                    <div class="banner-btn">
-                                        <a href="#" class="btn-primary Content-watch me-2"
-                                            style="
-                          text-decoration: none;
-                          color: #000000;
-                          background: rgb(255, 255, 255);
-                          padding: 10px 25px 8px;
-                        ">View
-                                            More</a>
-                                        <a href="#" class="btn-outline-secondary Content-watch px-4"
-                                            style="text-decoration: none">Become A Partner</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="hero-slider__slide"
-                        style="
-                background-image: url('https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/Banner_kv-2.png');
-              ">
-                        <div class="container">
-                            <div class="row align-items-center">
-                                <div class="col-lg-12">
-                                    <h2 class="pb-3">iFactory</h2>
-                                    <h5 class="fw-normal pb-3 hero-para">
-                                        Experience WISE-PaaS AloT easy-to-use platforms for data
-                                        visualization, intelligent management and data-driven
-                                        business in manufacturing.
-                                    </h5>
-                                    <div class="banner-btn">
-                                        <a href="#" class="btn-primary Content-watch me-2"
-                                            style="
-                          text-decoration: none;
-                          color: #000000;
-                          background: rgb(255, 255, 255);
-                          padding: 10px 25px 8px;
-                        ">View
+                                            style="text-decoration: none;color: #000000;background: rgb(255, 255, 255);padding: 10px 25px 8px;">View
                                             More</a>
                                         <a href="#" class="btn-outline-secondary Content-watch px-4"
                                             style="text-decoration: none">Become A Partner</a>
@@ -101,10 +30,7 @@
                     </div>
                 </div>
             </div>
-            <span class="hero-slider__button hero-slider__button--prev"><i class="fa fa-2x fa-chevron-left"
-                    aria-hidden="true"></i></span>
-            <span class="hero-slider__button hero-slider__button--next"><i class="fa fa-2x fa-chevron-right"
-                    aria-hidden="true"></i></span>
+            
         </section>
         <section class="">
             <div class="container-fluid" style="background-color: #385572">

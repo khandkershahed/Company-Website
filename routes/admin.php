@@ -460,7 +460,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             // 'brand'                      => BrandController::class,
             'success'                    => SuccessController::class,
             // 'setting'                 => SettingController::class,
-            'solution'                   => SolutionController::class,
+            // 'solution'                   => SolutionController::class,
             'contact'                    => ContactController::class,
             'newsLetter'                 => NewsLetterController::class,
             'partnerPermission'          => PartnerPermission::class,

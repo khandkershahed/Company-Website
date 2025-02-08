@@ -452,6 +452,8 @@ class HomeController extends Controller
         $data['solution'] = SolutionDetail::with('rowOne','solutionProducts', 'card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'card7', 'card8', 'rowFour')->where('slug', $id)->firstOrFail();
         $data['solutions'] = SolutionDetail::where('id', '!=', $id)->get();
         $data['products'] = $data['solution']->solutionProducts;
+        $data['industry'] = SolutionDetail::where('id', '!=', $id)->get();
+        // dd($data['solution']);
         if ($data['solution']->solution_template == 'template_one') {
             return view('frontend.pages.solution.solution_details-1', $data);
         }elseif ($data['solution']->solution_template == 'template_two') {
