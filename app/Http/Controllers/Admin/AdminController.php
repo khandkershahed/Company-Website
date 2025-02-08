@@ -381,13 +381,11 @@ class AdminController extends Controller
     public function AdminDashboard()
     {
         ini_set('max_execution_time', 3600);
-        $id = 108;
-        // $id = Auth::user()->employee_id;
+        // $id = 108;
+        $id = Auth::user()->employee_id;
 
-        // Cache key based on employee ID, so the cache is specific to each user
         $cacheKey = "attendance_this_month_{$id}";
 
-        // Check if the attendance data is already cached
         $attendanceThisMonth = Cache::remember($cacheKey, now()->addMinutes(60), function () use ($id) {
             // Connect to the ZKtecho device
             $deviceip = $this->device_ip();

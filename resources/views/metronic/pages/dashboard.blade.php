@@ -19,10 +19,10 @@
         <div class="col-lg-4">
             {{-- Attendance Info --}}
             <div class="card user-dash-bg">
-                <div class="card-header p-2">
-                    <h5 class="text-start">
+                <div class="card-header align-items-center py-2">
+                    <h3 class="text-start mb-0">
                         Attendance
-                    </h5>
+                    </h3>
                     <a href=""class="text-end">
                         <i class="fa-solid fa-arrow-up-right-from-square main_color go-icon"></i>
                     </a>
@@ -129,65 +129,24 @@
         <div class="col-lg-4">
             {{-- Achivement Info --}}
             <div class="card user-dash-bg">
-                <div class="card-header py-0 px-2">
-                    <p class="text-end pt-2 mb-0">
-                        <a href="">
-                            <i class="fa-solid fa-arrow-up-right-from-square main_color go-icon"></i>
-                        </a>
-                    </p>
+                <div class="card-header align-items-center py-2">
+                    <h3 class="text-left mb-0">
+                        Quick Access Links
+                    </h3>
                 </div>
-                <div class="card-body pt-0">
-                    <h3>Access</h3>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="card me-2 user-inner-card" style="height: 12rem; width: 40%">
-                            <div class="card-body align-items-center">
-                                <p class="para-text m-0">Achieve</p>
-                                <div class="d-flex justify-content-between align-items-center pt-3">
-                                    <div>
-                                        <i class="fa-solid fa-star text-yellow"></i>
-                                        <i class="fa-solid fa-star text-yellow"></i>
-                                        <i class="fa-solid fa-star text-yellow"></i>
-                                        <i class="fa-regular fa-star-half-stroke text-yellow"></i>
-                                        <i class="fa-regular fa-star"></i>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center pt-3">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <p><i class="fa-solid fa-face-tired text-yellow" title="Unusual"
-                                                style="font-size: 30px;"></i></p>
-                                        <p>--</p>
-                                        <p><i class="fa-regular fa-face-smile text-yellow" title="Unusual"
-                                                style="font-size: 30px;"></i></p>
-                                        <p>--</p>
-                                        <p><i class="fa-regular fa-face-smile-beam text-yellow" title="Proud"
-                                                style="font-size: 30px;"></i></p>
-                                        <p>--</p>
-                                        <p><i class="fa-regular fa-face-laugh-squint text-yellow" title="excellent"
-                                                style="font-size: 30px;"></i></p>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <p class="mb-0" style="font-size: 10px">Worst</p>
-                                    <p class="mb-0" style="font-size: 10px">-</p>
-                                    <p class="mb-0" style="font-size: 10px">Unusual</p>
-                                    <p class="mb-0" style="font-size: 10px">-</p>
-                                    <p class="mb-0" style="font-size: 10px">Proude</p>
-                                    <p class="mb-0" style="font-size: 10px">-</p>
-                                    <p class="mb-0" style="font-size: 10px">Excellent</p>
-                                </div>
-                            </div>
+                <div class="card-body">
+                    <div class="row gx-3">
+                        <div class="col-6">
+                            <a class="w-100 px-5 py-2 border rounded-1 mb-2"
+                                href="{{ route('admin.rfq.index') }}">RFQ</a>
                         </div>
-                        <div class="card me-2" style="height: 12rem; width: 60%">
-                            <div class="card-body user-inner-card pt-1">
-                                <p class="para-text m-0">Your Access</p>
-                                <div class="">
-                                    <button class="btn navigation_btn w-100 mb-1">HR & ADMIN</button>
-                                    <button class="btn navigation_btn w-100 mb-1">SITE SETTING</button>
-                                    <button class="btn navigation_btn w-100 mb-1">SUPPLY CHAIN</button>
-                                    <button class="btn navigation_btn w-100 mb-1">CRM</button>
-                                </div>
-                            </div>
+                        <div class="col-6">
+                            <a class="w-100 px-3 py-2 border rounded-1 mb-2"
+                                href="{{ route('admin.solution-cms.index') }}">Solution</a>
                         </div>
+                        {{-- <div class="col-6">
+                            <a href="">RFQ</a>
+                        </div> --}}
                     </div>
                 </div>
             </div>

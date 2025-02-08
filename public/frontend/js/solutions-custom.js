@@ -7,7 +7,7 @@ $(document).ready(function () {
     arrows: false,
     autoplay: true,
     autoplaySpeed: 10000,
-    dots: true,
+    dots: false,
     prevArrow: ".hero-slider__button--prev",
     nextArrow: ".hero-slider__button--next",
     responsive: [

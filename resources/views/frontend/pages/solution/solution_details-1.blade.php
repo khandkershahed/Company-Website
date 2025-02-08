@@ -1005,132 +1005,31 @@
               <div class="row">
                 <div class="col-lg-12">
                   <div class="slider-product">
-                    <div class="product-items">
-                      <div class="product-card">
-                        <img
-                          src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/products/SRP-5-820x460.png"
-                          alt="Product Image"
-                          class="product-img"
-                        />
-                        <h1 class="product-title">
-                          WebAccess Software & Solution Ready Packages
-                        </h1>
-                        <div class="overlay-st-one">
-                          <div class="overlay-st-one-text">
-                            <p class="overlay-st-one-para">
-                              An easy-to-use tool to speed up the visualization of
-                              all machine status and health conditions
-                            </p>
-                            <a href="#" class="overlay-st-one-button">View More</a>
+                    @foreach ($products as $product)
+                        <div class="product-items">
+                          <div class="product-card">
+                            <img
+                              src="{{ !empty($product->thumbnail) && file_exists(public_path($product->thumbnail)) ? asset($product->thumbnail) : asset('frontend/images/random-no-img.png') }}"
+                              alt="Product Image"
+                              class="product-img"
+                            />
+                            <a href="{{ route('product.details', $product->slug) }}">
+                                <h1 class="product-title">
+                                    {{ Str::words($product->name, 15) }}
+                                </h1>
+                            </a>
+                            <div class="overlay-st-one">
+                              <div class="overlay-st-one-text">
+                                <p class="overlay-st-one-para">
+                                  An easy-to-use tool to speed up the visualization of
+                                  all machine status and health conditions
+                                </p>
+                                <a href="{{ route('product.details', $product->slug) }}" class="overlay-st-one-button">Details</a>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                    <div class="product-items">
-                      <div class="product-card">
-                        <img
-                          src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/products/SRP-5-820x460.png"
-                          alt="Product Image"
-                          class="product-img"
-                        />
-                        <h1 class="product-title">
-                          WebAccess Software & Solution Ready Packages
-                        </h1>
-                        <div class="overlay-st-one">
-                          <div class="overlay-st-one-text">
-                            <p class="overlay-st-one-para">
-                              An easy-to-use tool to speed up the visualization of
-                              all machine status and health conditions
-                            </p>
-                            <a href="#" class="overlay-st-one-button">View More</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="product-items">
-                      <div class="product-card">
-                        <img
-                          src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/products/SRP-5-820x460.png"
-                          alt="Product Image"
-                          class="product-img"
-                        />
-                        <h1 class="product-title">
-                          WebAccess Software & Solution Ready Packages
-                        </h1>
-                        <div class="overlay-st-one">
-                          <div class="overlay-st-one-text">
-                            <p class="overlay-st-one-para">
-                              An easy-to-use tool to speed up the visualization of
-                              all machine status and health conditions
-                            </p>
-                            <a href="#" class="overlay-st-one-button">View More</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="product-items">
-                      <div class="product-card">
-                        <img
-                          src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/products/SRP-5-820x460.png"
-                          alt="Product Image"
-                          class="product-img"
-                        />
-                        <h1 class="product-title">
-                          WebAccess Software & Solution Ready Packages
-                        </h1>
-                        <div class="overlay-st-one">
-                          <div class="overlay-st-one-text">
-                            <p class="overlay-st-one-para">
-                              An easy-to-use tool to speed up the visualization of
-                              all machine status and health conditions
-                            </p>
-                            <a href="#" class="overlay-st-one-button">View More</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="product-items">
-                      <div class="product-card">
-                        <img
-                          src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/products/SRP-5-820x460.png"
-                          alt="Product Image"
-                          class="product-img"
-                        />
-                        <h1 class="product-title">
-                          WebAccess Software & Solution Ready Packages
-                        </h1>
-                        <div class="overlay-st-one">
-                          <div class="overlay-st-one-text">
-                            <p class="overlay-st-one-para">
-                              An easy-to-use tool to speed up the visualization of
-                              all machine status and health conditions
-                            </p>
-                            <a href="#" class="overlay-st-one-button">View More</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="product-items">
-                      <div class="product-card">
-                        <img
-                          src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/products/SRP-5-820x460.png"
-                          alt="Product Image"
-                          class="product-img"
-                        />
-                        <h1 class="product-title">
-                          WebAccess Software & Solution Ready Packages
-                        </h1>
-                        <div class="overlay-st-one">
-                          <div class="overlay-st-one-text">
-                            <p class="overlay-st-one-para">
-                              An easy-to-use tool to speed up the visualization of
-                              all machine status and health conditions
-                            </p>
-                            <a href="#" class="overlay-st-one-button">View More</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    @endforeach
                   </div>
                 </div>
               </div>

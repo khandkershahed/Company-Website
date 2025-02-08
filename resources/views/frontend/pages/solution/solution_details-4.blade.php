@@ -11,10 +11,13 @@
                         <div class="col-lg-7">
                             <!-- Hero Content Start -->
                             <div class="hero-content">
-                                <h3 class="sub-title aos-init aos-animate" data-aos-delay="600" data-aos="fade-up"> We provide the most advance digital solution</h3>
-                                <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="800">Leading Software Development Studio &amp; Agency</h2>
+                                <h3 class="sub-title aos-init aos-animate" data-aos-delay="600" data-aos="fade-up"> We
+                                    provide the most advance digital solution</h3>
+                                <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="800">Leading
+                                    Software Development Studio &amp; Agency</h2>
                                 <div class="hero-play-btn aos-init aos-animate" data-aos="fade-up" data-aos-delay="900">
-                                    <a class="popup-video play-btn" href="https://www.youtube.com/watch?time_continue=3&amp;v=_X0eYtY8T_U">
+                                    <a class="popup-video play-btn"
+                                        href="https://www.youtube.com/watch?time_continue=3&amp;v=_X0eYtY8T_U">
                                         <i class="fas fa-play"></i>
                                         <span>Watch Video</span>
                                     </a>
@@ -26,7 +29,9 @@
                 </div>
                 <div class="svg-shape">
                     <svg xmlns="http://www.w3.org/2000/svg" width="2695px" height="349px">
-                        <path fill-rule="evenodd" fill="rgb(255, 255, 255)" d="M400.0,36.999 C479.999,88.625 899.487,302.793 1925.999,42.999 C2230.335,-34.22 2564.914,16.158 2564.914,16.158 C2564.914,16.158 2649.752,197.299 2691.999,240.999 C2795.999,348.575 0.0,348.999 0.0,348.999 C0.0,348.999 320.0,-14.625 400.0,36.999 Z"></path>
+                        <path fill-rule="evenodd" fill="rgb(255, 255, 255)"
+                            d="M400.0,36.999 C479.999,88.625 899.487,302.793 1925.999,42.999 C2230.335,-34.22 2564.914,16.158 2564.914,16.158 C2564.914,16.158 2649.752,197.299 2691.999,240.999 C2795.999,348.575 0.0,348.999 0.0,348.999 C0.0,348.999 320.0,-14.625 400.0,36.999 Z">
+                        </path>
                     </svg>
                 </div>
             </div>
@@ -41,10 +46,12 @@
                                 <h3 class="sub-title color-2">Who we are</h3>
                                 <h2 class="title">We run all kinds of software services that vow your success</h2>
                             </div>
-                            <p class="text">Accelerate innovation with world-class tech teams We’ll match you to an entire remote team of incredible freelance talent for all your software development needs.</p>
+                            <p class="text">Accelerate innovation with world-class tech teams We’ll match you to an entire
+                                remote team of incredible freelance talent for all your software development needs.</p>
                             <div class="about-quote">
                                 <blockquote class="blockquote">
-                                    <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote.</p>
+                                    <p>Accelerate innovation with world-class tech teams We’ll match you to an entire
+                                        remote.</p>
                                 </blockquote>
                             </div>
                             <!-- About List Start -->
@@ -84,7 +91,8 @@
                 </div>
             </div>
         </div>
-        <div class="st-four-section st-four-service-section-02 section-padding" style="background-image: url({{ asset('images/service-bg-4.jpg') }});">
+        <div class="st-four-section st-four-service-section-02 section-padding"
+            style="background-image: url({{ asset('images/service-bg-4.jpg') }});">
             <div class="container">
                 <!-- Service Wrap Start -->
                 <div class="service-wrap">
@@ -106,7 +114,8 @@
                                     </div>
                                     <div class="service-content">
                                         <h3 class="title"><a href="service.html">Web <br> Development</a></h3>
-                                        <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote team .</p>
+                                        <p>Accelerate innovation with world-class tech teams We’ll match you to an entire
+                                            remote team .</p>
                                     </div>
                                 </div>
                                 <!-- Service Item End -->
@@ -122,7 +131,8 @@
                                     </div>
                                     <div class="service-content">
                                         <h3 class="title"><a href="service.html">Mobile <br> App Development</a></h3>
-                                        <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote team .</p>
+                                        <p>Accelerate innovation with world-class tech teams We’ll match you to an entire
+                                            remote team .</p>
                                     </div>
                                 </div>
                                 <!-- Service Item End -->
@@ -138,7 +148,8 @@
                                     </div>
                                     <div class="service-content">
                                         <h3 class="title"><a href="service.html">Software <br> Innovation</a></h3>
-                                        <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote team .</p>
+                                        <p>Accelerate innovation with world-class tech teams We’ll match you to an entire
+                                            remote team .</p>
                                     </div>
                                 </div>
                                 <!-- Service Item End -->
@@ -154,7 +165,8 @@
                                     </div>
                                     <div class="service-content">
                                         <h3 class="title"><a href="service.html">App Management <br> System</a></h3>
-                                        <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote team .</p>
+                                        <p>Accelerate innovation with world-class tech teams We’ll match you to an entire
+                                            remote team .</p>
                                     </div>
                                 </div>
                                 <!-- Service Item End -->
@@ -163,7 +175,8 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="more-service-content text-center">
-                                    <p>Learn more about <a href="service.html">More Services <i class="fas fa-long-arrow-alt-right"></i></a></p>
+                                    <p>Learn more about <a href="service.html">More Services <i
+                                                class="fas fa-long-arrow-alt-right"></i></a></p>
                                 </div>
                             </div>
                         </div>
@@ -183,7 +196,8 @@
                                 <div class="st-four-section-title">
                                     <h2 class="title">We have an experienced team of production and inspection </h2>
                                 </div>
-                                <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote team of incredible freelance talent for all your software development needs.</p>
+                                <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote
+                                    team of incredible freelance talent for all your software development needs.</p>
                                 <div class="skill-author">
                                     <img src="{{ asset('images/sign-4.png') }}" alt="">
                                     <h3 class="name">Alen Morno sin</h3>
@@ -199,7 +213,8 @@
                                     <span>Years of <br> experience <br> on IT Services</span>
                                 </div>
                                 <div class="pt-4">
-                                    <img class="img-fluid" src="{{ asset('images/slider-overview-4.png') }}" alt="">
+                                    <img class="img-fluid" src="{{ asset('images/slider-overview-4.png') }}"
+                                        alt="">
                                 </div>
                             </div>
                         </div>
@@ -224,8 +239,11 @@
                         <div class="col-lg-7">
                             <!-- Subscribe Form Start -->
                             <div class="subscribe-form">
-                                <form action="#">
-                                    <input type="email" class="w-100" placeholder="Your Email">
+                                <form action="{{ route('newsletter.store') }}" method="post"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <input type="email" class="w-100" placeholder="  Your Email"
+                                        style="border-radius: 5px;">
                                     <button type="submit">Subscribe</button>
                                 </form>
                             </div>
@@ -254,8 +272,13 @@
                                                 <i class="fa-solid fa-phone"></i>
                                             </div>
                                             <div class="contact-info-text">
-                                                <h4 class="title">Contact Number</h4>
-                                                <p>+00(1) 123 456 7890</p>
+                                                <h4 class="title my-1 mt-0">Contact Number</h4>
+                                                @if (!empty($setting->phone_one))
+                                                    <p class="mb-1">{{ $setting->phone_one }}</p>
+                                                @endif
+                                                @if (!empty($setting->whatsapp_number))
+                                                    <p class="mb-1">{{ $setting->whatsapp_number }}</p>
+                                                @endif
                                             </div>
                                         </div>
                                         <!-- Contact Info Item End -->
@@ -267,88 +290,83 @@
                                                 <i class="fa-solid fa-envelope"></i>
                                             </div>
                                             <div class="contact-info-text">
-                                                <h4 class="title">Our Mail</h4>
-                                                <p>infotechmax@ourmail.com</p>
+                                                <h4 class="title my-1">Our Mail</h4>
+                                                @if (!empty($setting->support_email))
+                                                    <p>{{ $setting->support_email }}</p>
+                                                @endif
+                                                @if (!empty($setting->sales_email))
+                                                    <p>{{ $setting->sales_email }}</p>
+                                                @endif
                                             </div>
                                         </div>
                                         <!-- Contact Info Item End -->
                                     </li>
-                                    <li>
-                                        <!-- Contact Info Item Start -->
-                                        <div class="contact-info-item d-flex align-items-center">
-                                            <div class="contact-info-icon">
-                                                <i class="fa-solid fa-location-dot"></i>
+                                    @if (!empty($setting->address))
+                                        <li>
+                                            <div class="contact-info-item d-flex align-items-center">
+                                                <div class="contact-info-icon">
+                                                    <i class="fa-solid fa-location-dot"></i>
+                                                </div>
+                                                <div class="contact-info-text">
+                                                    <h4 class="title">Our Location</h4>
+                                                    <p>{{ $setting->address }}</p>
+                                                </div>
                                             </div>
-                                            <div class="contact-info-text">
-                                                <h4 class="title">Our Location</h4>
-                                                <p>New ipsum dolor amet, eiusmod adipisicing 147 New Yors, NY Adipisicing 123</p>
-                                            </div>
-                                        </div>
-                                        <!-- Contact Info Item End -->
-                                    </li>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
-                            <!-- Contact Info End -->
                         </div>
                         <div class="col-xxl-7 col-lg-6">
-                            <!-- Contact Form Start -->
                             <div class="contact-form">
                                 <div class="contact-form-wrap">
                                     <div class="heading-wrap text-center">
                                         <span class="sub-title">Leave us massage</span>
                                         <h3 class="title">How May We Help You!</h3>
                                     </div>
-                                    <form action="#">
+                                    <form action="{{ route('contactus.store') }}" method="post"
+                                        enctype="multipart/form-data">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <!-- Single Form Start -->
                                                 <div class="single-form">
-                                                    <input type="text" placeholder="Name *">
+                                                    <input name="name" placeholder="Name *"
+                                                        value="{{ old('name') }}" required>
                                                 </div>
-                                                <!-- Single Form End -->
                                             </div>
                                             <div class="col-sm-6">
-                                                <!-- Single Form Start -->
                                                 <div class="single-form">
-                                                    <input type="email" placeholder="Email *">
+                                                    <input name="email" placeholder="Email *"
+                                                        value="{{ old('email') }}" required>
                                                 </div>
-                                                <!-- Single Form End -->
                                             </div>
                                             <div class="col-sm-12">
-                                                <!-- Single Form Start -->
                                                 <div class="single-form">
                                                     <input type="text" placeholder="Subject *">
                                                 </div>
-                                                <!-- Single Form End -->
                                             </div>
                                             <div class="col-sm-12">
-                                                <!-- Single Form Start -->
                                                 <div class="single-form">
-                                                    <textarea placeholder="Write A Message"></textarea>
+                                                    <textarea name="message" rows="3" placeholder="Write Your Message"></textarea>
                                                 </div>
-                                                <!-- Single Form End -->
                                             </div>
                                             <div class="col-sm-12">
-                                                <!--  Single Form Start -->
+                                                <div class="text-center mt-2 g-recaptcha d-flex justify-content-center"
+                                                    data-sitekey="{{ config('app.recaptcha_site_key') }}"></div>
+                                            </div>
+                                            <div class="col-sm-12">
                                                 <div class="form-btn">
                                                     <button class="btn btn-3" type="submit">Send Message</button>
                                                 </div>
-                                                <!--  Single Form End -->
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                             </div>
-                            <!-- Contact Form End -->
                         </div>
                     </div>
                 </div>
-                <!-- Contact Wrap End -->
             </div>
         </div>
-        {{-- Solution Tree Hero Section End --}}
     </div>
-    <!--=====// Pageform section //=====-->
-    @include('frontend.partials.footer_contact')
-    <!---------End -------->
 @endsection

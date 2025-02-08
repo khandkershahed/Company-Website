@@ -449,9 +449,18 @@ class HomeController extends Controller
     //Feature Details
     public function SolutionDetails($id)
     {
-        $data['solution'] = SolutionDetail::with('rowOne', 'card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'card7', 'card8', 'rowFour')->where('slug', $id)->firstOrFail();
+        $data['solution'] = SolutionDetail::with('rowOne','solutionProducts', 'card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'card7', 'card8', 'rowFour')->where('slug', $id)->firstOrFail();
         $data['solutions'] = SolutionDetail::where('id', '!=', $id)->get();
-        return view('frontend.pages.solution.solution_details', $data);
+        $data['products'] = $data['solution']->solutionProducts;
+        if ($data['solution']->solution_template == 'template_one') {
+            return view('frontend.pages.solution.solution_details-1', $data);
+        }elseif ($data['solution']->solution_template == 'template_two') {
+            return view('frontend.pages.solution.solution_details-2', $data);
+        }elseif ($data['solution']->solution_template == 'template_three') {
+            return view('frontend.pages.solution.solution_details-3', $data);
+        }elseif ($data['solution']->solution_template == 'template_four') {
+            return view('frontend.pages.solution.solution_details-4', $data);
+        }
     }
 
 
@@ -821,7 +830,7 @@ class HomeController extends Controller
 
         $data['learnmore'] = LearnMore::latest()->first(['industry_header', 'consult_title', 'consult_short_des', 'background_image']);
 
-        
+
         $data['industrys'] = Industry::orderBy('id')->limit(8)->get(['id', 'slug', 'logo', 'title']);
         $data['random_industries'] = Industry::latest()->limit(4)->get(['id', 'slug', 'title']);
 

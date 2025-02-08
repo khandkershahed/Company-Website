@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('solution_details', function (Blueprint $table) {
             $table->id();
+            $table->string('solution_template')->nullable();
             $table->unsignedBigInteger('row_one_id')->nullable();
             $table->unsignedBigInteger('row_four_id')->nullable();
             $table->unsignedBigInteger('solution_card_one_id')->nullable();
@@ -38,6 +39,7 @@ return new class extends Migration
             $table->string('row_five_title')->nullable();
             $table->text('row_five_header')->nullable();
             $table->string('added_by')->nullable();
+            $table->string('status')->nullable();
 
             $table->foreign('row_one_id')->references('id')->on('rows')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('solution_card_one_id')->references('id')->on('solution_cards')->onUpdate('cascade')->onDelete('cascade');

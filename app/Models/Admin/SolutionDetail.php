@@ -15,6 +15,11 @@ class SolutionDetail extends Model
      * @var array
      */
     protected $guarded = [];
+    public function solutionProducts()
+    {
+        return $this->belongsToMany(Product::class, 'multi_solutions', 'solution_id', 'product_id')
+            ->where('product_status', 'product');
+    }
     public function solutionsoftwareProducts()
     {
         return $this->belongsToMany(Product::class, 'multi_solutions', 'solution_id', 'product_id')
