@@ -29,7 +29,7 @@
             <label
                 class="btn btn-outline btn-outline-dashed btn-outline-default p-7 d-flex align-items-center mb-5 template-nfc"
                 for="{{ $template['value'] }}">
-                <img class="nfc-type-mobile" height="300px" width="100%"
+                <img class="nfc-type-mobile" height="350px" width="100%"
                     style="width: 100% !important; object-fit: scale-down !important;"
                     src="{{ asset($template['image']) }}" alt="{{ $template['value'] }}">
             </label>
@@ -42,7 +42,7 @@
         document.querySelectorAll('.solution_template_radio').forEach(radio => {
             radio.addEventListener('change', event => {
                 if (radio.checked) {
-                    
+
                     const stepper = document.querySelector('[data-kt-stepper]');
                     if (stepper) {
                         const stepperInstance = KTStepper.getInstance(stepper);

@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Solution;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Industry;
 use App\Models\Admin\SolutionDetail;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class SolutionCMSController extends Controller
 {
@@ -28,7 +31,10 @@ class SolutionCMSController extends Controller
      */
     public function create()
     {
-        return view('metronic.pages.solution.create');
+
+        return view('metronic.pages.solution.create', [
+            'industries' => Industry::select('industries.id', 'industries.title')->get(),
+        ]);
     }
 
     /**
@@ -39,7 +45,30 @@ class SolutionCMSController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name'        => 'required|string|unique:solution_details,name',
+            'industry_id' => 'required',
+        ], [
+            'unique'    => 'This Solution Name has already been taken.',
+            'required'  => 'The :attribute field is required.',
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors()->all();
+            foreach ($errors as $error) {
+                Session::flash('error', $error, 'Failed', ['timeOut' => 30000]);
+            }
+            return redirect()->back()->withInput();
+        }
+
+        SolutionDetail::create([
+            'name'        => $request->name,
+            'industry_id' => $request->industry_id,
+            'status'      => 'draft',
+            'created_at'  => now(),
+        ]);
+
+        return redirect()->back()->with('success', 'You have subscribed successfully in our website!');
     }
 
     /**

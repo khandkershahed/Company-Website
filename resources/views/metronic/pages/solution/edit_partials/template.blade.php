@@ -4,20 +4,20 @@
     <input type="hidden" name="solution_id" value="{{ $solution->id }}">
     <x-solution.template :templates="[
         [
-            'value' => 'template-one',
+            'value' => 'template_one',
             'image' => 'frontend/images/solution_template/template_one.png',
         ],
         [
-            'value' => 'template-two',
+            'value' => 'template_two',
             'image' => 'frontend/images/solution_template/template_two.png',
         ],
         [
-            'value' => 'template-three',
-            'image' => 'frontend/images/solution_template/template_three.jpg',
+            'value' => 'template_three',
+            'image' => 'frontend/images/solution_template/template_three.png',
         ],
         [
-            'value' => 'template-four',
-            'image' => 'frontend/images/solution_template/template_four.jpg',
+            'value' => 'template_four',
+            'image' => 'frontend/images/solution_template/template_four.png',
         ],
     ]" :selectedTemplate="$solution->solution_template" />
 
