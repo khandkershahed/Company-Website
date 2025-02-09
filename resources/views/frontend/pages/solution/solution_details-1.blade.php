@@ -40,7 +40,7 @@
                             <div class="d-flex gap-3 py-3">
                                 <a href="#overview" class="menu-links">Overview</a>
                                 <a href="#industries" class="menu-links">Industries</a>
-                                <a href="#solutions" class="menu-links">Solutions</a>
+                                <a href="#solutions" class="menu-links">Contents</a>
                                 <a href="#feature" class="menu-links">Feature</a>
                             </div>
                         </div>
@@ -49,27 +49,14 @@
             </div>
         </section>
         <section id="overview">
-            <div class="container py-5 my-5">
+            <div class="container py-5 pt-0 my-5">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="text-center">
-                            <h1 class="fw-bold">Start Your Digital Transformation</h1>
+                        <div class="text-center mb-3">
+                            <h1 class="fw-bold">{{ $solution->row_two_title }}</h1>
                             <p class="pt-4 w-75 mx-auto" style="text-align: justify">
-                                Manufacturing in the past has focused on lean and just-in-time
-                                production processes, emphasizing cost reduction, waste
-                                elimination, and increased efficiency of the entire
-                                organization through customer demand-pulling processes.
-                                Nowadays, digital technology provides fundamental value that
-                                presents commercial value through the immediacy and accuracy
-                                of information — driving rapid responses and decision-making.
-                                Many manufacturers who have progressed through Industry 2.0
-                                (automation) and Industry 3.0 (informatization) are now
-                                preparing to move toward Industry 4.0 (intelligentization).
+                                {{ $solution->row_two_header }}
                             </p>
-                            <h4 class="pt-4">
-                                Driving Perfect Strategies for Three Core Trends of
-                                Transformation
-                            </h4>
                         </div>
                     </div>
                 </div>
@@ -77,9 +64,15 @@
                     $cards = [$solution->card1, $solution->card2, $solution->card3, $solution->card4];
                     $cardsections2 = [$solution->card6, $solution->card7, $solution->card8];
                 @endphp
-                <div class="row">
+                <div class="row justify-content-center">
+                    <div class="col-12 text-center mb-4">
+                        <h2 class="pt-4 fw-bold">
+                            Driving Perfect Strategies for Three Core Trends of
+                            Transformation
+                        </h2>
+                    </div>
                     @foreach ($cards as $card)
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 col-md-6 mb-3">
                             <div>
                                 <div class="d-flex justify-content-start">
                                     <img class="card-img-top"

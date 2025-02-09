@@ -5,7 +5,7 @@
     <div class="st-template-3">
         {{-- Solution Tree Hero Section --}}
         <section class="st-three-hero p-5 pb-0">
-            <div class="st-three-hero-wrap" style="background-image: url({{ asset('images/hero-bg3.jpg') }})">
+            <div class="st-three-hero-wrap" style="background-image: url({{ !empty($solution->banner_image) && file_exists(public_path('storage/' . $solution->banner_image)) ? asset('storage/' . $solution->banner_image) : asset('frontend/images/no-row-img(580-326).png') }})">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6">

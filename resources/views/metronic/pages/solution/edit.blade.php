@@ -30,7 +30,7 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link btn btn-flex btn-active-danger w-100" data-bs-toggle="tab"
+                            <a class="nav-link btn btn-flex btn-active-secondary w-100" data-bs-toggle="tab"
                                 href="#footer">
                                 <span class="d-flex flex-column align-items-start">
                                     <span class="fs-4 fw-bolder">Footer Section</span>
@@ -49,7 +49,7 @@
                                         <h3 class="card-title">Choose Template</h3>
                                     </div>
                                     <div class="card-body">
-                                        
+                                        @include('metronic.pages.solution.edit_partials.template')
                                     </div>
                                 </div>
 
@@ -71,12 +71,6 @@
         </div>
     </section>
 
-    {{-- @push('scripts')
-        <!-- Gsap With Animation -->
-        <script src="http://clou.agency/wp-content/themes/clou-digital-agency/js/frontpage/Scrollsmoother.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
-        <script src="{{ asset('backend/metronic/solution/solution.js') }}"></script>
-    @endpush --}}
+
     @include('metronic.pages.solution.partials.script')
 </x-admin-app-layout>

@@ -146,7 +146,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
         ]
     );
-
+    Route::post('template/store', [SolutionCMSController::class, 'templateStore'])->name('solution.template.add');
     Route::get('/rfqFilter', [RfqController::class, 'filterRFQ'])->name('rfq.filter');
 
     // Toggle Status

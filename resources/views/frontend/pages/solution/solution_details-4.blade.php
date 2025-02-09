@@ -5,7 +5,7 @@
     <div class="st-template-3">
         {{-- Solution Tree Hero Section --}}
         <section>
-            <div class="section st-four-hero-section-02" style="background-image: url({{ !empty($item->banner_image) && file_exists(public_path('storage/' . $item->banner_image)) ? asset('storage/' . $item->banner_image) : asset('frontend/images/no-row-img(580-326).png') }});">
+            <div class="section st-four-hero-section-02" style="background-image: url({{ !empty($solution->banner_image) && file_exists(public_path('storage/' . $solution->banner_image)) ? asset('storage/' . $solution->banner_image) : asset('frontend/images/no-row-img(580-326).png') }});">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-7">
