@@ -42,8 +42,10 @@
                     </div>
                 </div>
                 <div class="col-lg-10 col-md-9">
-                    <form action="{{ route('admin.solution-cms.edit', $solution->id) }}" method="post"
+                    <form action="{{ route('admin.solution-cms.update', $solution->id) }}" method="post"
                         enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
                         <div class="card">
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="template" role="tabpanel">
@@ -66,7 +68,7 @@
 
                                 <div class="tab-pane fade" id="content" role="tabpanel">
                                     <div class="card-header py-2">
-                                        <h3 class="card-title">Choose Template</h3>
+                                        <h3 class="card-title">Write Content</h3>
                                     </div>
                                     <div class="card-body">
                                         @include('metronic.pages.solution.edit_partials.content')

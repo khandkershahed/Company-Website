@@ -1,5 +1,5 @@
 {{-- <style>
-    .custom-nfc-template {
+    .custom-solution-template {
         padding: 0px !important;
         display: flex;
         justify-content: center;
@@ -8,15 +8,15 @@
     }
 
     @media (max-width: 1366px) {
-        .custom-nfc-template {
+        .custom-solution-template {
           height: 100px;
         }
 
-        .nfc-type-mobile {}
+        .solution-type-mobile {}
     }
 
     @media (max-width: 768px) {
-        .custom-nfc-template {
+        .custom-solution-template {
             height: auto;
         }
     }
@@ -27,9 +27,9 @@
             <input type="radio" class="btn-check solution_template_radio" name="solution_template" value="{{ $template['value'] }}"
                 {{ $loop->first ? 'checked' : '' }} id="{{ $template['value'] }}">
             <label
-                class="btn btn-outline btn-outline-dashed btn-outline-default p-7 d-flex align-items-center mb-5 template-nfc"
+                class="btn btn-outline btn-outline-dashed btn-outline-default p-7 d-flex align-items-center mb-5 template-solution"
                 for="{{ $template['value'] }}">
-                <img class="nfc-type-mobile" height="350px" width="100%"
+                <img class="solution-type-mobile" height="350px" width="100%"
                     style="width: 100% !important; object-fit: scale-down !important;"
                     src="{{ asset($template['image']) }}" alt="{{ $template['value'] }}">
             </label>
@@ -107,7 +107,7 @@
         @foreach ($templates as $template)
             <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
                 <div>
-                    <input type="radio" class="btn-check template-btn-check" name="nfc_template"
+                    <input type="radio" class="btn-check template-btn-check" name="solution_template"
                         value="{{ $template['value'] }}" id="{{ $template['value'] }}"
                         @if ($counter === 0) checked @endif @checked($template['value'] == $selectedTemplate) />
                     <label

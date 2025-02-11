@@ -1,7 +1,4 @@
-<form class="template_form form" method="POST" action="{{ route('admin.solution.template.add') }}" autocomplete="off"
-    enctype="multipart/form-data">
-    @csrf
-    <input type="hidden" name="solution_id" value="{{ $solution->id }}">
+
     <x-solution.template :templates="[
         [
             'value' => 'template_one',
@@ -39,7 +36,6 @@
             </a>
         </div>
     </div>
-</form>
 
 @push('scripts')
     <script>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Industry;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\SolutionDetail;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -74,7 +75,7 @@ class SolutionCMSController extends Controller
             'created_at'        => now(),
         ]);
         // Session::flash('success', 'You have subscribed successfully in our website!');
-        return redirect()->route('admin.solution-cms.edit',$solution->id);
+        return redirect()->route('admin.solution-cms.edit', $solution->id);
     }
 
     /**
@@ -96,8 +97,11 @@ class SolutionCMSController extends Controller
      */
     public function edit($id)
     {
-        $solution = SolutionDetail::find($id);
-        return view('metronic.pages.solution.edit', ['solution' => $solution]);
+        // $solution = SolutionDetail::find($id);
+        return view('metronic.pages.solution.edit', [
+            'industries' => Industry::select('industries.id', 'industries.title')->get(),
+            'solution'   => SolutionDetail::find($id),
+        ]);
     }
 
     /**
@@ -109,8 +113,51 @@ class SolutionCMSController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            // Find the solution
+            $solution = SolutionDetail::find($id);
+
+            // Validate the input data
+            $validator = Validator::make($request->all(), [
+                'row_two_title'        => 'nullable|string',
+                'row_two_header'       => 'nullable',
+            ], [
+                'row_two_title.required'  => 'The Row Two Title is required.',
+                'row_two_header.required' => 'The Row Two Header is required.',
+            ]);
+
+            if ($validator->fails()) {
+                $messages = $validator->messages();
+                foreach ($messages->all() as $message) {
+                    Toastr::error($message, 'Failed', ['timeOut' => 30000]);
+                }
+                return redirect()->back()->withInput();
+            }
+
+            // Update the solution record
+            $solution->update([
+                'name'              => $request->name,
+                'industry_id'       => json_encode($request->industry_id),
+                'solution_template' => $request->solution_template,
+                'row_two_title'     => $request->row_two_title,
+                'row_two_header'    => $request->row_two_header,
+                'added_by'          => Auth::user()->name,
+                'status'            => $request->status,
+                'created_at'        => now(),
+            ]);
+
+            // Flash success message using Toastr
+            Toastr::success('Data updated successfully.', 'Success', ['timeOut' => 30000]);
+
+            return redirect()->back();
+        } catch (\Exception $e) {
+            // Catch the exception and flash error using Toastr
+            Toastr::error('An error occurred: ' . $e->getMessage(), 'Error', ['timeOut' => 30000]);
+            return redirect()->back()->withInput();
+        }
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -158,7 +205,4 @@ class SolutionCMSController extends Controller
             'template_view' => $template_view,
         ]);
     }
-
-
-
 }
