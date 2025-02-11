@@ -42,162 +42,162 @@ $(".data_table").DataTable({
     const emptyMessage = document.getElementById("emptyMessage");
 
     // Handle image checkbox changes
-    document.querySelectorAll(".image-checkbox").forEach((checkbox) => {
-      checkbox.addEventListener("change", function () {
-        const previewContainer = document.getElementById("previewContainer");
-        const imgSrc = this.getAttribute("data-img-src");
+    // document.querySelectorAll(".image-checkbox").forEach((checkbox) => {
+    //   checkbox.addEventListener("change", function () {
+    //     const previewContainer = document.getElementById("previewContainer");
+    //     const imgSrc = this.getAttribute("data-img-src");
 
-        if (checkbox.checked) {
-          // Create the image wrapper
-          const imageWrapper = document.createElement("div");
-          imageWrapper.classList.add("image-wrapper");
-          imageWrapper.style.position = "relative";
+    //     if (checkbox.checked) {
+    //       // Create the image wrapper
+    //       const imageWrapper = document.createElement("div");
+    //       imageWrapper.classList.add("image-wrapper");
+    //       imageWrapper.style.position = "relative";
 
-          // Create the image element
-          const imgElement = document.createElement("img");
-          imgElement.src = imgSrc;
-          imgElement.alt = "Preview Image";
-          imgElement.classList.add("preview-image");
-          imgElement.dataset.imgSrc = imgSrc;
+    //       // Create the image element
+    //       const imgElement = document.createElement("img");
+    //       imgElement.src = imgSrc;
+    //       imgElement.alt = "Preview Image";
+    //       imgElement.classList.add("preview-image");
+    //       imgElement.dataset.imgSrc = imgSrc;
 
-          // Create the icon container, initially hidden
-          const iconContainer = document.createElement("div");
-          iconContainer.classList.add("image-icons");
-          iconContainer.style.display = "none";
+    //       // Create the icon container, initially hidden
+    //       const iconContainer = document.createElement("div");
+    //       iconContainer.classList.add("image-icons");
+    //       iconContainer.style.display = "none";
 
-          // Add the "add" icon
-          const addIcon = document.createElement("i");
-          addIcon.classList.add("fa", "fa-plus", "add-icon");
+    //       // Add the "add" icon
+    //       const addIcon = document.createElement("i");
+    //       addIcon.classList.add("fa", "fa-plus", "add-icon");
 
-          // Create the edit icon
-          const editIcon = document.createElement("i");
-          editIcon.classList.add("fa", "fa-pencil", "edit-icon"); // Initial icon set to pencil
+    //       // Create the edit icon
+    //       const editIcon = document.createElement("i");
+    //       editIcon.classList.add("fa", "fa-pencil", "edit-icon"); // Initial icon set to pencil
 
-          // Append the icons (add icon and edit icon) to the container
-          iconContainer.appendChild(addIcon);
-          iconContainer.appendChild(editIcon);
+    //       // Append the icons (add icon and edit icon) to the container
+    //       iconContainer.appendChild(addIcon);
+    //       iconContainer.appendChild(editIcon);
 
-          // Append the image and icon container to the wrapper
-          imageWrapper.appendChild(imgElement);
-          imageWrapper.appendChild(iconContainer);
+    //       // Append the image and icon container to the wrapper
+    //       imageWrapper.appendChild(imgElement);
+    //       imageWrapper.appendChild(iconContainer);
 
-          // Append the image wrapper to the preview container
-          previewContainer.appendChild(imageWrapper);
+    //       // Append the image wrapper to the preview container
+    //       previewContainer.appendChild(imageWrapper);
 
-          // Show the preview message if the container is not empty
-          emptyMessage.style.display = "none";
+    //       // Show the preview message if the container is not empty
+    //       emptyMessage.style.display = "none";
 
-          // Add click event to the image to toggle the icons
-          imgElement.addEventListener("click", function () {
-            // Remove icons from previously selected images
-            const selectedImg = previewContainer.querySelector(
-              ".preview-image.selected"
-            );
-            if (selectedImg && selectedImg !== imgElement) {
-              selectedImg.classList.remove("selected");
-              const existingIcons =
-                selectedImg.parentNode.querySelector(".image-icons");
-              if (existingIcons) {
-                existingIcons.style.display = "none";
-              }
-            }
+    //       // Add click event to the image to toggle the icons
+    //       imgElement.addEventListener("click", function () {
+    //         // Remove icons from previously selected images
+    //         const selectedImg = previewContainer.querySelector(
+    //           ".preview-image.selected"
+    //         );
+    //         if (selectedImg && selectedImg !== imgElement) {
+    //           selectedImg.classList.remove("selected");
+    //           const existingIcons =
+    //             selectedImg.parentNode.querySelector(".image-icons");
+    //           if (existingIcons) {
+    //             existingIcons.style.display = "none";
+    //           }
+    //         }
 
-            // Toggle selected class and show/hide icons for the clicked image
-            imgElement.classList.toggle("selected");
-            iconContainer.style.display = imgElement.classList.contains(
-              "selected"
-            )
-              ? "flex"
-              : "none";
+    //         // Toggle selected class and show/hide icons for the clicked image
+    //         imgElement.classList.toggle("selected");
+    //         iconContainer.style.display = imgElement.classList.contains(
+    //           "selected"
+    //         )
+    //           ? "flex"
+    //           : "none";
 
-            // Show the remove area/column if an image is selected
-            toggleRemoveArea();
+    //         // Show the remove area/column if an image is selected
+    //         toggleRemoveArea();
 
-            // Add event listener to the add icon
-            addIcon.onclick = function (event) {
-              event.stopPropagation(); // Prevent triggering the image's click event
-              alert("Add functionality for " + imgElement.dataset.imgSrc);
-            };
+    //         // Add event listener to the add icon
+    //         addIcon.onclick = function (event) {
+    //           event.stopPropagation(); // Prevent triggering the image's click event
+    //           alert("Add functionality for " + imgElement.dataset.imgSrc);
+    //         };
 
-            // Add click event for the edit icon
-            editIcon.onclick = function (event) {
-              event.stopPropagation(); // Prevent triggering the image's click event
+    //         // Add click event for the edit icon
+    //         editIcon.onclick = function (event) {
+    //           event.stopPropagation(); // Prevent triggering the image's click event
 
-              // Toggle the edit/close icon
-              if (editIcon.classList.contains("")) {
-                editIcon.classList.remove(""); // Remove the pencil icon
-                editIcon.classList.add(""); // Add the close icon
-              } else {
-                editIcon.classList.remove(""); // Remove the close icon
-                editIcon.classList.add(""); // Add the pencil icon back
-              }
+    //           // Toggle the edit/close icon
+    //           if (editIcon.classList.contains("")) {
+    //             editIcon.classList.remove(""); // Remove the pencil icon
+    //             editIcon.classList.add(""); // Add the close icon
+    //           } else {
+    //             editIcon.classList.remove(""); // Remove the close icon
+    //             editIcon.classList.add(""); // Add the pencil icon back
+    //           }
 
-              // Reference to the columns
-              const mainColumn = document.getElementById("mainColumn");
-              const secondColumn = document.getElementById("secondColumn");
-              const removeIconsHeader = document.querySelector(".remove_icons");
+    //           // Reference to the columns
+    //           const mainColumn = document.getElementById("mainColumn");
+    //           const secondColumn = document.getElementById("secondColumn");
+    //           const removeIconsHeader = document.querySelector(".remove_icons");
 
-              // Toggle visibility and classes
-              if (removeIconsHeader) {
-                if (
-                  removeIconsHeader.style.display === "none" ||
-                  removeIconsHeader.style.display === ""
-                ) {
-                  // Show the remove icons header
-                  removeIconsHeader.style.display = "block";
+    //           // Toggle visibility and classes
+    //           if (removeIconsHeader) {
+    //             if (
+    //               removeIconsHeader.style.display === "none" ||
+    //               removeIconsHeader.style.display === ""
+    //             ) {
+    //               // Show the remove icons header
+    //               removeIconsHeader.style.display = "block";
 
-                  // Change classes accordingly
-                  mainColumn.classList.remove("col-lg-9"); // Remove col-lg-9
-                  mainColumn.classList.add("col-lg-7"); // Add col-lg-7
-                  secondColumn.classList.remove("col-3"); // Remove col-3
-                  secondColumn.classList.add("col-2"); // Add col-2
-                } else {
-                  // Hide the remove icons header
-                  removeIconsHeader.style.display = "none";
+    //               // Change classes accordingly
+    //               mainColumn.classList.remove("col-lg-9"); // Remove col-lg-9
+    //               mainColumn.classList.add("col-lg-7"); // Add col-lg-7
+    //               secondColumn.classList.remove("col-3"); // Remove col-3
+    //               secondColumn.classList.add("col-2"); // Add col-2
+    //             } else {
+    //               // Hide the remove icons header
+    //               removeIconsHeader.style.display = "none";
 
-                  // Revert classes back to default
-                  mainColumn.classList.remove("col-lg-7"); // Remove col-lg-7
-                  mainColumn.classList.add("col-lg-9"); // Add col-lg-9
-                  secondColumn.classList.remove("col-2"); // Remove col-2
-                  secondColumn.classList.add("col-3"); // Add col-3 back
-                }
-              }
+    //               // Revert classes back to default
+    //               mainColumn.classList.remove("col-lg-7"); // Remove col-lg-7
+    //               mainColumn.classList.add("col-lg-9"); // Add col-lg-9
+    //               secondColumn.classList.remove("col-2"); // Remove col-2
+    //               secondColumn.classList.add("col-3"); // Add col-3 back
+    //             }
+    //           }
 
-              // Show the offcanvas
-              const editOffcanvas = new bootstrap.Offcanvas(
-                document.getElementById("editOffcanvas")
-              );
-              editOffcanvas.show();
+    //           // Show the offcanvas
+    //           const editOffcanvas = new bootstrap.Offcanvas(
+    //             document.getElementById("editOffcanvas")
+    //           );
+    //           editOffcanvas.show();
 
-              // Optionally set existing data in the form fields
-              const descriptionField =
-                document.getElementById("imageDescription");
-              descriptionField.value =
-                "Your logic to get the existing description"; // Replace with actual data
-            };
-          });
-        } else {
-          // If unchecked, remove the corresponding image
-          const imgToRemove = Array.from(
-            previewContainer.querySelectorAll(".preview-image")
-          ).find((img) => img.dataset.imgSrc === imgSrc);
+    //           // Optionally set existing data in the form fields
+    //           const descriptionField =
+    //             document.getElementById("imageDescription");
+    //           descriptionField.value =
+    //             "Your logic to get the existing description"; // Replace with actual data
+    //         };
+    //       });
+    //     } else {
+    //       // If unchecked, remove the corresponding image
+    //       const imgToRemove = Array.from(
+    //         previewContainer.querySelectorAll(".preview-image")
+    //       ).find((img) => img.dataset.imgSrc === imgSrc);
 
-          if (imgToRemove) {
-            previewContainer.removeChild(imgToRemove.parentNode); // Remove the wrapper with the image
-          }
+    //       if (imgToRemove) {
+    //         previewContainer.removeChild(imgToRemove.parentNode); // Remove the wrapper with the image
+    //       }
 
-          // Hide the remove area if no images are selected
-          toggleRemoveArea();
-        }
+    //       // Hide the remove area if no images are selected
+    //       toggleRemoveArea();
+    //     }
 
-        // Check if the preview container is empty and show the message if it is
-        if (previewContainer.children.length === 0) {
-          emptyMessage.style.display = "block";
-        } else {
-          emptyMessage.style.display = "none";
-        }
-      });
-    });
+    //     // Check if the preview container is empty and show the message if it is
+    //     if (previewContainer.children.length === 0) {
+    //       emptyMessage.style.display = "block";
+    //     } else {
+    //       emptyMessage.style.display = "none";
+    //     }
+    //   });
+    // });
 
     // Function to toggle the remove area based on selected images
     function toggleRemoveArea() {

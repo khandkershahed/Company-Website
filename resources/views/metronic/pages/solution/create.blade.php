@@ -15,9 +15,8 @@
 
                     </div>
                     <div class="card-body">
-                        <form class="template_form form" method="POST"
-                            action="{{ route('admin.solution.template.add') }}" autocomplete="off"
-                            enctype="multipart/form-data">
+                        <form class="template_form form" method="POST" action="{{ route('admin.solution-cms.store') }}"
+                            autocomplete="off" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-5 mb-7">
@@ -49,19 +48,19 @@
                                     <x-metronic.label class="form-label required">Choose Template</x-metronic.label>
                                     <x-solution.template :templates="[
                                         [
-                                            'value' => 'template-one',
+                                            'value' => 'template_one',
                                             'image' => 'frontend/images/solution_template/template_one.png',
                                         ],
                                         [
-                                            'value' => 'template-two',
+                                            'value' => 'template_two',
                                             'image' => 'frontend/images/solution_template/template_two.png',
                                         ],
                                         [
-                                            'value' => 'template-three',
+                                            'value' => 'template_three',
                                             'image' => 'frontend/images/solution_template/template_three.png',
                                         ],
                                         [
-                                            'value' => 'template-four',
+                                            'value' => 'template_four',
                                             'image' => 'frontend/images/solution_template/template_four.png',
                                         ],
                                     ]" />

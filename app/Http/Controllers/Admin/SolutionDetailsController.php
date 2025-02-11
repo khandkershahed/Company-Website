@@ -67,7 +67,7 @@ class SolutionDetailsController extends Controller
                 'row_three_header' => 'required',
                 'row_five_title'   => 'required',
                 'row_five_header'  => 'required',
-                'banner_image'   => 'required|image|mimes:png,jpg,jpeg|max:10000',
+                'banner_image'     => 'required|image|mimes:png,jpg,jpeg|max:10000',
             ],
             [
                 'required' => 'The :attribute is required',

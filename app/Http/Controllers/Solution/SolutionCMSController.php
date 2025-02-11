@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Solution;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Admin\Industry;
+use App\Http\Controllers\Controller;
 use App\Models\Admin\SolutionDetail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -45,9 +46,12 @@ class SolutionCMSController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+        // dd(json_encode($request->industry_id));
         $validator = Validator::make($request->all(), [
-            'name'        => 'required|string|unique:solution_details,name',
-            'industry_id' => 'required',
+            'name'              => 'required|string|unique:solution_details,name',
+            'industry_id'       => 'required',
+            'solution_template' => 'required',
         ], [
             'unique'    => 'This Solution Name has already been taken.',
             'required'  => 'The :attribute field is required.',
@@ -61,14 +65,16 @@ class SolutionCMSController extends Controller
             return redirect()->back()->withInput();
         }
 
-        SolutionDetail::create([
-            'name'        => $request->name,
-            'industry_id' => $request->industry_id,
-            'status'      => 'draft',
-            'created_at'  => now(),
+        $solution = SolutionDetail::create([
+            'name'              => $request->name,
+            'industry_id'       => json_encode($request->industry_id),
+            'solution_template' => $request->solution_template,
+            'added_by'          => Auth::user()->name,
+            'status'            => 'draft',
+            'created_at'        => now(),
         ]);
-
-        return redirect()->back()->with('success', 'You have subscribed successfully in our website!');
+        // Session::flash('success', 'You have subscribed successfully in our website!');
+        return redirect()->route('admin.solution-cms.edit',$solution->id);
     }
 
     /**

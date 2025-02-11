@@ -32,12 +32,15 @@ return new class extends Migration
             $table->string('slug')->unique()->nullable();
             $table->text('header')->nullable();
             $table->string('banner_image')->nullable()->comment('1800*625');
+            $table->string('thumbnail_image')->nullable();
+            $table->string('icon')->nullable();
             $table->string('row_two_title')->nullable();
             $table->text('row_two_header')->nullable();
             $table->string('row_three_title')->nullable();
             $table->text('row_three_header')->nullable();
             $table->string('row_five_title')->nullable();
             $table->text('row_five_header')->nullable();
+            $table->text('video_link')->nullable();
             $table->string('added_by')->nullable();
             $table->string('status')->nullable();
 
