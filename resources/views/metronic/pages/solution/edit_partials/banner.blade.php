@@ -12,7 +12,7 @@
                 placeholder="Solution name recommended" :value="old('name', $solution->name)">
             </x-metronic.input>
             <div class="text-muted fs-7">
-                A Solution name is and recommended to be unique.
+                A Solution name is required and recommended to be unique.
             </div>
         </div>
 
@@ -30,18 +30,29 @@
         </div>
         <div class="col-lg-4 col-md-6 col-12 mb-5">
             <x-metronic.label for="banner_image"
-                class="col-form-label fw-bold fs-6 mb-3">{{ __('Banner Image') }}</x-metronic.label>
+                class="form-label required">{{ __('Banner Image') }}</x-metronic.label>
             <x-metronic.file-input id="banner_image" name="banner_image" :value="old('banner_image')"></x-metronic.file-input>
         </div>
         <div class="col-lg-4 col-md-6 col-12 mb-5">
             <x-metronic.label for="thumbnail_image"
-                class="col-form-label fw-bold fs-6 mb-3">{{ __('Thumbnail Image') }}</x-metronic.label>
+                class="form-label required">{{ __('Thumbnail Image') }}</x-metronic.label>
             <x-metronic.file-input id="thumbnail_image" name="thumbnail_image"
                 :value="old('thumbnail_image')"></x-metronic.file-input>
         </div>
+        <div class="col-lg-4 col-md-6 mb-5">
+            <x-metronic.label for="status" class="form-label required">
+                {{ __('Select a Status ') }}</x-metronic.label>
+            <x-metronic.select-option id="status" name="status" data-hide-search="true"
+                data-placeholder="Select an option">
+                <option></option>
+                <option value="active">Publish</option>
+                <option value="inactive">Unpublished</option>
+                <option value="draft">Draft</option>
+            </x-metronic.select-option>
+        </div>
         {{-- <div class="col-lg-4 col-md-6 col-12 mb-5">
             <x-metronic.label for="icon"
-                class="col-form-label fw-bold fs-6 mb-3">{{ __('Icon') }}</x-metronic.label>
+                class="form-label required mb-3">{{ __('Icon') }}</x-metronic.label>
             <x-metronic.file-input id="icon" name="icon"
                 :value="old('icon')"></x-metronic.file-input>
         </div> --}}

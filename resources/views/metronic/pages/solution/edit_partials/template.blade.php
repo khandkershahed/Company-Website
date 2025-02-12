@@ -18,24 +18,7 @@
         ],
     ]" :selectedTemplate="$solution->solution_template" />
 
-    <div class="d-flex justify-content-end">
-        <button type="submit" class="kt_docs_formvalidation_text_submit btn btn-primary mt-6 me-2">
-            <span class="indicator-label">
-                Save Template
-            </span>
-            <span class="indicator-progress" style="display: none;">
-                Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-            </span>
-        </button>
-        <!-- Next Button -->
-        <div class="d-flex justify-content-end">
-            <a href="javascript:void(0)" onclick="goToTab(event, '#banner')"
-                class="btn btn-primary mt-6 d-flex align-items-center">
-                <span>Next</span>
-                <span><i class="fa-solid fa-arrow-right-long ps-2"></i></span>
-            </a>
-        </div>
-    </div>
+    
 
 @push('scripts')
     <script>

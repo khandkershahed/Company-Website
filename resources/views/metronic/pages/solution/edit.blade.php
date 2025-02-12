@@ -18,7 +18,7 @@
                                 <a class="nav-link btn btn-flex btn-active-info w-100" data-bs-toggle="tab"
                                     href="#banner">
                                     <span class="d-flex flex-column align-items-start">
-                                        <span class="fs-4 fw-bolder">Banner Section</span>
+                                        <span class="fs-4 fw-bolder">Important Section</span>
                                     </span>
                                 </a>
                             </li>
@@ -82,6 +82,24 @@
                                         {{-- @include('metronic.pages.solution.edit_partials.banner') --}}
                                     </div>
                                 </div>
+                            </div>
+                            <div class="card-footer d-flex justify-content-end">
+                                <button type="submit"
+                                    class="kt_docs_formvalidation_text_submit btn btn-primary me-2">
+                                    <span class="indicator-label">
+                                        Save Template
+                                    </span>
+                                    <span class="indicator-progress" style="display: none;">
+                                        Please wait... <span
+                                            class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                    </span>
+                                </button>
+                                <!-- Next Button -->
+                                <a href="javascript:void(0)" onclick="goToTab(event, '#banner')"
+                                    class="btn btn-primary d-flex align-items-center">
+                                    <span>Next</span>
+                                    <span><i class="fa-solid fa-arrow-right-long ps-2"></i></span>
+                                </a>
                             </div>
                         </div>
                     </form>
