@@ -15,7 +15,6 @@
                     <thead>
                         <tr class="fw-bold fs-6 text-gray-800 px-7">
                             <th width="5%">Sl</th>
-                            <th width="12%">Template</th>
                             <th width="12%">Template No</th>
                             <th width="31%">Name</th>
                             <th width="10%">Status</th>
@@ -29,13 +28,7 @@
                         @foreach ($solutions as $solution)
                             <tr class="">
                                 <td>{{ $loop->iteration }}</td>
-                                <td>
-                                    <div>
-                                        <img class="img-fluid" width="50px"
-                                            src="{{ asset('images/template1Preview.png') }}" class="img-fluid"
-                                            alt="" />
-                                    </div>
-                                </td>
+
                                 <td>
                                     @if ($solution->solution_template == 'template_one')
                                         Template One
@@ -105,7 +98,8 @@
                                         </div>
                                     </div>
                                     <!-- Template Show Eend -->
-                                    <a href="{{ route('admin.solution-cms.edit',$solution->id) }}" class="btn btn-sm btn-icon btn-primary btn-active-color-primary">
+                                    <a href="{{ route('admin.solution-cms.edit', $solution->id) }}"
+                                        class="btn btn-sm btn-icon btn-primary btn-active-color-primary">
                                         <i class="fa-solid fa-pen fs-6 text-white" title="Edit Application"
                                             aria-hidden="true"></i>
                                     </a>

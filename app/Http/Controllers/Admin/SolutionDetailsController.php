@@ -80,13 +80,6 @@ class SolutionDetailsController extends Controller
             $mainFile = $request->file('banner_image');
             $imgPath = storage_path('app/public/');
             $globalFunImg =  Helper::singleImageUpload($mainFile, $imgPath, 1800, 625);
-            $slug = Str::slug($request->name);
-            $count = SolutionDetail::where('slug', $slug)->count();
-            if ($count > 0) {
-                $slug = $slug . '-' . date('ymdis') . '-' . rand(0, 999);
-            }
-            $data['slug'] = $slug;
-
                     SolutionDetail::create([
                         'row_one_id'             => $request->row_one_id,
                         'row_four_id'            => $request->row_four_id,
@@ -100,7 +93,7 @@ class SolutionDetailsController extends Controller
                         'solution_card_eight_id' => $request->solution_card_eight_id,
                         'industry_id'            => $request->industry_id,
                         'name'                   => $request->name,
-                        'slug'                   => $data['slug'],
+                        // 'slug'                   => $data['slug'],
                         'added_by'               => Auth::user()->name,
                         'header'                 => $request->header,
                         'row_two_title'          => $request->row_two_title,

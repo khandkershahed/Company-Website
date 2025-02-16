@@ -73,22 +73,323 @@
                     @foreach ($cards as $card)
                         <div class="col-lg-4 col-md-6 mb-3">
                             <div>
-                                <div class="d-flex justify-content-center mb-4">
+                                <div class="d-flex justify-content-start">
                                     <img class="card-img-top"
                                         src="{{ !empty($card->image) && file_exists(public_path('storage/' . $card->image)) ? asset('storage/' . $card->image) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}"
-                                        alt="Card image cap" style="width: 300px;">
-
+                                        alt="Card image cap" width="150px" height="250px">
+                                    {{-- <img class="text-start img-fluid service_images"
+                                        src="https://media.istockphoto.com/id/1433310548/vector/banner-safety-health-environment.jpg?s=612x612&w=0&k=20&c=JIUImxjAEgbsz6nDTfib-063Z5MPvWVZrbO4VEI7610="
+                                        alt="" /> --}}
                                 </div>
                                 <div>
                                     <h5 class="text-center">{{ $card->title }}</h5>
                                     <ul class="">
-                                        <li>{{ $card->short_des }}</li>
-                                        {{-- <li>{{ Str::words($card->short_des) }}</li> --}}
+                                        <li>{{ Str::words($card->short_des, 22, '...') }}</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     @endforeach
+                </div>
+            </div>
+        </section>
+        <section id="industries">
+            <div class="container-fluid py-5 pb-0" style="background-color: #eee">
+                <div class="container">
+                    <div class="row gx-0">
+                        <div class="col-lg-12">
+                            <h3 class="category-titles pb-4">Focused Industry Segments</h3>
+                        </div>
+                    </div>
+                    <div class="row gx-0">
+                        <div class="col-lg-10">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel"
+                                    aria-labelledby="home-tab">
+                                    <div>
+                                        <div>
+                                            <img class="img-fluid catory-banner-img"
+                                                src="https://advcloudfiles.advantech.com/cms/97db910f-c942-4864-be43-96ec19cf9e95/Resources%20Case%20Study%20Featured%20Image%20for%20Detail%20Page/200552361-001cms.jpg"
+                                                alt="" />
+                                        </div>
+                                        <div class="category-imgs-content">
+                                            <h1 class="text-white">Food & Beverage</h1>
+                                        </div>
+                                        <div class="category-content">
+                                            <div class="row bg-white p-4 m-0" style="border-bottom: 4px solid #0080c3">
+                                                <div class="col-lg-6">
+                                                    <h3 class="pb-3">Challenges</h3>
+                                                    <ul>
+                                                        <li>Complex process</li>
+                                                        <li>
+                                                            The failure and time wastes in the manufacturing
+                                                            process
+                                                        </li>
+                                                        <li>Food safety and quality control</li>
+                                                        <li>
+                                                            Energy-intensive process and environmental
+                                                            challenges
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <h3 class="pb-3">How We Solve</h3>
+                                                    <ul>
+                                                        <li>
+                                                            Optimized production flexibility and efficiency
+                                                        </li>
+                                                        <li>
+                                                            IoT connection for easier data collection and
+                                                            equipment monitoring
+                                                        </li>
+                                                        <li>
+                                                            Improved quality control with AI technology and
+                                                            food traceability
+                                                        </li>
+                                                        <li>
+                                                            Protects the environment and maximizes energy
+                                                            efficiency
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <a href="#"
+                                                        class="btn btn-outline-primary rounded-0 Content-watch px-4"
+                                                        style="text-decoration: none" tabindex="0">Become A Partner</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div>
+                                        <div>
+                                            <img class="img-fluid catory-banner-img" src="./img/category-img.png"
+                                                alt="" />
+                                        </div>
+                                        <div class="category-imgs-content">
+                                            <h1>Food & Beverage</h1>
+                                        </div>
+                                        <div class="category-content">
+                                            <div class="row bg-white p-4 m-0" style="border-bottom: 4px solid #0080c3">
+                                                <div class="col-lg-6">
+                                                    <h3 class="pb-3">Challenges</h3>
+                                                    <ul>
+                                                        <li>Complex process</li>
+                                                        <li>
+                                                            The failure and time wastes in the manufacturing
+                                                            process
+                                                        </li>
+                                                        <li>Food safety and quality control</li>
+                                                        <li>
+                                                            Energy-intensive process and environmental
+                                                            challenges
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <h3 class="pb-3">How We Solve</h3>
+                                                    <ul>
+                                                        <li>
+                                                            Optimized production flexibility and efficiency
+                                                        </li>
+                                                        <li>
+                                                            IoT connection for easier data collection and
+                                                            equipment monitoring
+                                                        </li>
+                                                        <li>
+                                                            Improved quality control with AI technology and
+                                                            food traceability
+                                                        </li>
+                                                        <li>
+                                                            Protects the environment and maximizes energy
+                                                            efficiency
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <a href="#"
+                                                        class="btn btn-outline-primary rounded-0 Content-watch px-4"
+                                                        style="text-decoration: none" tabindex="0">Become A Partner</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                    <div>
+                                        <div>
+                                            <img class="img-fluid catory-banner-img" src="./img/category-img.png"
+                                                alt="" />
+                                        </div>
+                                        <div class="category-imgs-content">
+                                            <h1>Food & Beverage</h1>
+                                        </div>
+                                        <div class="category-content">
+                                            <div class="row bg-white p-4 m-0" style="border-bottom: 4px solid #0080c3">
+                                                <div class="col-lg-6">
+                                                    <h3 class="pb-3">Challenges</h3>
+                                                    <ul>
+                                                        <li>Complex process</li>
+                                                        <li>
+                                                            The failure and time wastes in the manufacturing
+                                                            process
+                                                        </li>
+                                                        <li>Food safety and quality control</li>
+                                                        <li>
+                                                            Energy-intensive process and environmental
+                                                            challenges
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <h3 class="pb-3">How We Solve</h3>
+                                                    <ul>
+                                                        <li>
+                                                            Optimized production flexibility and efficiency
+                                                        </li>
+                                                        <li>
+                                                            IoT connection for easier data collection and
+                                                            equipment monitoring
+                                                        </li>
+                                                        <li>
+                                                            Improved quality control with AI technology and
+                                                            food traceability
+                                                        </li>
+                                                        <li>
+                                                            Protects the environment and maximizes energy
+                                                            efficiency
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <a href="#"
+                                                        class="btn btn-outline-primary rounded-0 Content-watch px-4"
+                                                        style="text-decoration: none" tabindex="0">Become A Partner</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-12">
+                            <ul class="nav nav-tabs flex-column border-0" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link w-100 rounded-0 border-0 category-tabs-menu active"
+                                        id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+                                        role="tab" aria-controls="home" aria-selected="true">
+                                        <div class="d-flex align-items-center">
+                                            <div class="pe-3">
+                                                <img class="img-fluid" width="65px" height="65px"
+                                                    src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/industries/Focused-icon-1-460x460.png"
+                                                    alt="Food &amp; Beverage" loading="lazy" />
+                                            </div>
+                                            <div class="text-start">Food & Beverage</div>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link w-100 rounded-0 border-0 category-tabs-menu" id="profile-tab"
+                                        data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
+                                        aria-controls="profile" aria-selected="false">
+                                        <div class="d-flex align-items-center">
+                                            <div class="pe-3">
+                                                <img class="img-fluid" width="65px" height="65px"
+                                                    src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/industries/Focused-icon-4-460x460.png"
+                                                    alt="Food &amp; Beverage" loading="lazy" />
+                                            </div>
+                                            <div class="text-start">Metal Processing</div>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link w-100 rounded-0 border-0 category-tabs-menu" id="contact-tab"
+                                        data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"
+                                        aria-controls="contact" aria-selected="false">
+                                        <div class="d-flex align-items-center">
+                                            <div class="pe-3">
+                                                <img class="img-fluid" width="65px" height="65px"
+                                                    src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/industries/Focused-icon-6-460x460.png"
+                                                    alt="Food &amp; Beverage" loading="lazy" />
+                                            </div>
+                                            <div class="text-start">Footwear & Textile</div>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link w-100 rounded-0 border-0 category-tabs-menu" id="contact-tab"
+                                        data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"
+                                        aria-controls="contact" aria-selected="false">
+                                        <div class="d-flex align-items-center">
+                                            <div class="pe-3">
+                                                <img class="img-fluid" width="65px" height="65px"
+                                                    src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/industries/Focused-icon-8-460x460.png"
+                                                    alt="Food &amp; Beverage" loading="lazy" />
+                                            </div>
+                                            <div class="text-start">Semiconductor</div>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link w-100 rounded-0 border-0 category-tabs-menu" id="contact-tab"
+                                        data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"
+                                        aria-controls="contact" aria-selected="false">
+                                        <div class="d-flex align-items-center">
+                                            <div class="pe-3">
+                                                <img class="img-fluid" width="65px" height="65px"
+                                                    src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/industries/Focused-icon-1-460x460.png"
+                                                    alt="Food &amp; Beverage" loading="lazy" />
+                                            </div>
+                                            <div class="text-start">Automotive & EV</div>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link w-100 rounded-0 border-0 category-tabs-menu" id="contact-tab"
+                                        data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"
+                                        aria-controls="contact" aria-selected="false">
+                                        <div class="d-flex align-items-center">
+                                            <div class="pe-3">
+                                                <img class="img-fluid" width="65px" height="65px"
+                                                    src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/industries/Focused-icon-1-460x460.png"
+                                                    alt="Food &amp; Beverage" loading="lazy" />
+                                            </div>
+                                            <div class="text-start">PCB</div>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link w-100 rounded-0 border-0 category-tabs-menu" id="contact-tab"
+                                        data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"
+                                        aria-controls="contact" aria-selected="false">
+                                        <div class="d-flex align-items-center">
+                                            <div class="pe-3">
+                                                <img class="img-fluid" width="65px" height="65px"
+                                                    src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/industries/Focused-icon-1-460x460.png"
+                                                    alt="Food &amp; Beverage" loading="lazy" />
+                                            </div>
+                                            <div class="text-start">Pulp & Paper</div>
+                                        </div>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link w-100 rounded-0 border-0 category-tabs-menu" id="contact-tab"
+                                        data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"
+                                        aria-controls="contact" aria-selected="false">
+                                        <div class="d-flex align-items-center">
+                                            <div class="pe-3">
+                                                <img class="img-fluid" width="65px" height="65px"
+                                                    src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/industries/Focused-icon-1-460x460.png"
+                                                    alt="Food &amp; Beverage" loading="lazy" />
+                                            </div>
+                                            <div class="text-start">Electrical Machinery</div>
+                                        </div>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -411,18 +712,18 @@
                     @foreach ($cardsections2 as $cardsection)
                         <div class="col-lg-4">
                             <div>
-                                <div class="d-flex justify-content-center mb-4">
+                                <div class="d-flex justify-content-start">
                                     <img class="card-img-top"
                                         src="{{ !empty($cardsection->image) && file_exists(public_path('storage/' . $cardsection->image)) ? asset('storage/' . $cardsection->image) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}"
-                                        alt="Card image cap" style="width: 300px; ">
-
+                                        alt="Card image cap" width="150px" height="250px">
+                                    {{-- <img class="text-start img-fluid service_images"
+                                            src="https://media.istockphoto.com/id/1433310548/vector/banner-safety-health-environment.jpg?s=612x612&w=0&k=20&c=JIUImxjAEgbsz6nDTfib-063Z5MPvWVZrbO4VEI7610="
+                                            alt="" /> --}}
                                 </div>
                                 <div>
-                                    <h5 class="text-center">
-                                        {{ $cardsection->title }}
-                                    </h5>
+                                    <h5 class="text-center">{{ $cardsection->title }}</h5>
                                     <ul class="">
-                                        <li>{{ $cardsection->short_des }}</li>
+                                        <li>{{ Str::words($cardsection->short_des, 22, '...') }}</li>
                                     </ul>
                                 </div>
                             </div>
@@ -514,7 +815,8 @@
                                         <div class="overlay-st-one">
                                             <div class="overlay-st-one-text">
                                                 <p class="overlay-st-one-para">
-                                                    {{ Str::words($product->short_desc,30) }}
+                                                    An easy-to-use tool to speed up the visualization of
+                                                    all machine status and health conditions
                                                 </p>
                                                 <a href="{{ route('product.details', $product->slug) }}"
                                                     class="overlay-st-one-button">Details</a>

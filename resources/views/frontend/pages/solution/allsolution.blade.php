@@ -48,7 +48,6 @@
 <section class="">
     <div>
         <img src="{{ asset('frontend/images/solutions-banner.jpg') }}" alt="" class="img-fluid page-top-banner">
-        {{-- <img src="{{ asset('frontend/assets/images/solutions-banner.jpg') }}" alt="" class="img-fluid"> --}}
     </div>
 </section>
 <!----------End--------->
@@ -102,8 +101,7 @@
                         @if ($key >= 4) style="display: none;" @endif>
                         <div class="container-area-brand">
                             <div class="content-brand">
-                                <a href="{{ isset($item->slug) ? route('solution.details', ['id' => $item->slug]) : '' }}"
-                                    target="_blank">
+                                <a href="{{ isset($item->slug) ? route('solution.details', ['id' => $item->slug]) : '' }}">
                                     <div class="content-overlay-brand"></div>
                                     <div>
                                         <img class="content-image"
@@ -325,8 +323,8 @@
                                     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
                                         href="#nav-contact" role="tab" aria-controls="nav-contact"
                                         aria-selected="false">{{ Str::words($story3->badge, 2, $end = '') }}</a>
-                                    <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab"
-                                        href="#nav-about" role="tab" aria-controls="nav-about"
+                                    <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about"
+                                        role="tab" aria-controls="nav-about"
                                         aria-selected="false">{{ Str::words($story4->badge, 2, $end = '') }}</a>
                                 </div>
                             </nav>
