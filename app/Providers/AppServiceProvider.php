@@ -70,7 +70,7 @@ class AppServiceProvider extends ServiceProvider
                 View::share('header_industrys', Industry::with('industryPage')->latest('id')->get(['id', 'title', 'slug']));
             }
             if (Schema::hasTable('solution_details')) {
-                View::share('header_solutions', SolutionDetail::take(4)->inRandomOrder()->get(['id', 'name', 'slug']));
+                View::share('header_solutions', SolutionDetail::inRandomOrder()->where('status', 'active')->take(4)->get(['id', 'name', 'slug']));
             }
             if (Schema::hasTable('categories')) {
                 View::share('header_categories', Category::with('subCategorys.subsubCategorys.subsubsubCategorys')
@@ -95,7 +95,7 @@ class AppServiceProvider extends ServiceProvider
                     ->inRandomOrder()
                     ->first(['id', 'badge', 'title', 'image', 'created_at', 'created_by']));
             }
-            
+
 
 
 

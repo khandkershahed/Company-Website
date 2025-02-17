@@ -305,7 +305,7 @@ class HomeController extends Controller
         $data['tech_glossy2'] = $data['tech_glossies']->get(1);
         $data['tech_glossy3'] = $data['tech_glossies']->get(2);
         $data['tech_datas'] = TechnologyData::where('category', 'software')->orderBy('id', 'ASC')->get();
-        $data['solutions'] = SolutionDetail::orderBy('id', 'DESC')->limit(10)->get(['id', 'name']);
+        $data['solutions'] = SolutionDetail::orderBy('id', 'DESC')->where('status', 'active')->limit(10)->get(['id', 'name']);
         $data['tech_datas'] = TechnologyData::where('category', 'software')->orderBy('id', 'ASC')->get();
         $data['industrys'] = Industry::orderBy('id', 'ASC')->limit(8)->get(['id', 'logo', 'title', 'slug']);
         $data['random_industries'] = Industry::orderBy('id', 'DESC')->limit(4)->get(['id', 'title', 'slug']);
@@ -343,7 +343,7 @@ class HomeController extends Controller
         $data['brands'] = Brand::whereIn('id', $brandIds)->where('status', 'active')->limit(12)->get();
 
         // Query 5 - SolutionDetail
-        $data['solutions'] = SolutionDetail::orderBy('id', 'DESC')->limit(10)->get(['id', 'name']);
+        $data['solutions'] = SolutionDetail::orderBy('id', 'DESC')->where('status', 'active')->limit(10)->get(['id', 'name']);
 
         $data['tech_glossies'] = TechGlossy::inRandomOrder()->limit(3)->get();
         // dd($data['tech_glossies']);
@@ -432,7 +432,7 @@ class HomeController extends Controller
     public function allSolution()
     {
         $data['learnmore'] = LearnMore::orderBy('id', 'DESC')->select('learn_mores.industry_header', 'learn_mores.consult_title', 'learn_mores.consult_short_des', 'learn_mores.background_image')->first();
-        $data['solutions'] = SolutionDetail::orderBy('id', 'DESC')->select('solution_details.id', 'solution_details.name', 'solution_details.header', 'solution_details.banner_image', 'solution_details.slug')->get();
+        $data['solutions'] = SolutionDetail::orderBy('id', 'DESC')->where('status', 'active')->select('solution_details.id', 'solution_details.name', 'solution_details.header', 'solution_details.banner_image', 'solution_details.slug')->get();
         $data['story3'] = ClientStory::inRandomOrder()->first();
         $data['story4'] = ClientStory::inRandomOrder()->where('id', '!=', $data['story3']->id)->first();
         $data['story1'] = Blog::inRandomOrder()->first();
@@ -450,14 +450,14 @@ class HomeController extends Controller
     public function SolutionDetails($id)
     {
         $data['solution'] = SolutionDetail::with('rowOne','solutionProducts', 'card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'card7', 'card8', 'rowFour')->where('slug', $id)->firstOrFail();
-        $data['solutions'] = SolutionDetail::where('id', '!=', $id)->get();
+        $data['solutions'] = SolutionDetail::where('id', '!=', $id)->where('status', 'active')->get();
         $solution_id = json_encode($data['solution']->id);
         $data['products'] = $data['solution']->solutionProducts;
         $data['features'] = Feature::whereJsonContains('solution_id' , $solution_id)->get();
         $data['blogs'] = Blog::whereJsonContains('solution_id', $solution_id)->get();
         // dd(json_encode($data['solution']->id));
         // dd($data['blogs'] );
-        $data['industry'] = SolutionDetail::where('id', '!=', $id)->get();
+        $data['industry'] = SolutionDetail::where('id', '!=', $id)->where('status', 'active')->get();
         // dd($data['solution']);
         if ($data['solution']->solution_template == 'template_one') {
             return view('frontend.pages.solution.solution_details-1', $data);
@@ -871,7 +871,7 @@ class HomeController extends Controller
 
                 $data['techglossy'] = Techglossy::whereJsonContains('industry_id', $data['industry']->id)->first();
 
-                $data['solutions'] = SolutionDetail::where('industry_id', $data['industry']->id)->get();
+                $data['solutions'] = SolutionDetail::where('industry_id', $data['industry']->id)->where('status', 'active')->get();
 
                 $data['product_ids'] = MultiIndustry::where('industry_id', $data['industry']->id)->pluck('product_id');
 
@@ -935,7 +935,7 @@ class HomeController extends Controller
             $data['related_search'] = [
                 'categories' =>  Category::where('id', '!=', $data['sproduct']->cat_id)->inRandomOrder()->limit(2)->get(),
                 'brands' =>  Brand::where('id', '!=', $data['sproduct']->brand_id)->inRandomOrder()->where('status', 'active')->limit(20)->get(),
-                'solutions' =>  SolutionDetail::inRandomOrder()->limit(4)->get('id', 'slug', 'name'),
+                'solutions' =>  SolutionDetail::inRandomOrder()->where('status', 'active')->limit(4)->get('id', 'slug', 'name'),
                 'industries' =>  Industry::inRandomOrder()->limit(4)->get('id', 'slug', 'title'),
             ];
             $data['brand_products'] = Product::where('brand_id', $data['sproduct']->brand_id)->where('id', '!=', $data['sproduct']->id)->inRandomOrder()->where('product_status', 'product')->limit(20)->get();
@@ -964,7 +964,7 @@ class HomeController extends Controller
             ->limit(10)
             ->get(['products.id', 'products.name', 'products.slug', 'products.thumbnail', 'products.price', 'products.discount', 'products.rfq', 'products.qty', 'products.stock']);
 
-        $data['solutions'] = SolutionDetail::where('name', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'name', 'slug']);
+        $data['solutions'] = SolutionDetail::where('name', 'LIKE', '%' . $query . '%')->where('status', 'active')->limit(5)->get(['id', 'name', 'slug']);
         $data['industries'] = Industry::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title', 'slug']);
         $data['blogs'] = Blog::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title']);
         $data['categorys'] = Category::where('title', 'LIKE', '%' . $query . '%')->limit(2)->get(['id', 'title', 'slug']);
