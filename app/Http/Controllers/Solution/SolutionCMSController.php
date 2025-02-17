@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Solution;
 
+use Helper;
 use Illuminate\Http\Request;
 use App\Models\Admin\Industry;
 use App\Http\Controllers\Controller;
@@ -133,14 +134,35 @@ class SolutionCMSController extends Controller
                 }
                 return redirect()->back()->withInput();
             }
-
+            $files = [
+                'banner_image' => $request->file('banner_image'),
+                'thumbnail_image' => $request->file('thumbnail_image'),
+            ];
+            $uploadedFiles = [];
+            foreach ($files as $key => $file) {
+                if (!empty($file)) {
+                    $filePath = 'solution/' . $key;
+                    $uploadedFiles[$key] = Helper::imageUpload($file, $filePath);
+                    if ($uploadedFiles[$key]['status'] === 0) {
+                        return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
+                    }
+                } else {
+                    $uploadedFiles[$key] = ['status' => 0];
+                }
+            }
             // Update the solution record
             $solution->update([
                 'name'              => $request->name,
                 'industry_id'       => json_encode($request->industry_id),
+                'banner_image'      => $uploadedFiles['banner_image']['status'] == 1 ? $uploadedFiles['banner_image']['file_path'] : null,
+                'thumbnail_image'   => $uploadedFiles['thumbnail_image']['status'] == 1 ? $uploadedFiles['thumbnail_image']['file_path'] : null,
                 'solution_template' => $request->solution_template,
                 'row_two_title'     => $request->row_two_title,
                 'row_two_header'    => $request->row_two_header,
+                'row_three_title'   => $request->row_three_title,
+                'row_three_header'  => $request->row_three_header,
+                'row_five_title'    => $request->row_five_title,
+                'row_five_header'   => $request->row_five_header,
                 'added_by'          => Auth::user()->name,
                 'status'            => $request->status,
                 'created_at'        => now(),
@@ -170,39 +192,5 @@ class SolutionCMSController extends Controller
         //
     }
 
-    public function templateStore(Request $request)
-    {
 
-        $card_id = $request->card_id;
-        $nfc_card = NfcCard::findOrFail($card_id);
-
-        $nfc_card->update([
-            'nfc_template'   => $request->nfc_template,
-        ]);
-
-        $data = [
-            'nfc_card' => NfcCard::with(
-                'nfcData',
-                'nfcCompany',
-                'nfcGallery',
-                'nfcProduct',
-                'nfcService',
-                'nfcTestimonial',
-                'nfcMessages',
-                'nfcScan',
-                'virtualCard',
-                'nfcBanner',
-                'nfcSeo',
-                'shippingDetails'
-            )->where('id', $card_id)->first(),
-        ];
-
-        $template_view = view('nfc.form_partials.vcard_template', $data)->render();
-
-        // return response()->json(['template_view' => $template_view]);
-        return response()->json([
-            'status' => true,
-            'template_view' => $template_view,
-        ]);
-    }
 }

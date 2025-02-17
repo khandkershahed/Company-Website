@@ -31,23 +31,23 @@
         <div class="col-lg-4 col-md-6 col-12 mb-5">
             <x-metronic.label for="banner_image"
                 class="form-label required">{{ __('Banner Image') }}</x-metronic.label>
-            <x-metronic.file-input id="banner_image" name="banner_image" :value="old('banner_image')"></x-metronic.file-input>
+            <x-metronic.file-input id="banner_image" name="banner_image" :source="asset('storage/'.$solution->banner_image)"  :value="old('banner_image')"></x-metronic.file-input>
         </div>
         <div class="col-lg-4 col-md-6 col-12 mb-5">
             <x-metronic.label for="thumbnail_image"
                 class="form-label required">{{ __('Thumbnail Image') }}</x-metronic.label>
-            <x-metronic.file-input id="thumbnail_image" name="thumbnail_image"
+            <x-metronic.file-input id="thumbnail_image" name="thumbnail_image" :source="asset('storage/'.$solution->thumbnail_image)"
                 :value="old('thumbnail_image')"></x-metronic.file-input>
         </div>
         <div class="col-lg-4 col-md-6 mb-5">
             <x-metronic.label for="status" class="form-label required">
                 {{ __('Select a Status ') }}</x-metronic.label>
             <x-metronic.select-option id="status" name="status" data-hide-search="true"
-                data-placeholder="Select an option">
+                data-placeholder="Select an option" required>
                 <option></option>
-                <option value="active">Publish</option>
-                <option value="inactive">Unpublished</option>
-                <option value="draft">Draft</option>
+                <option value="active" @selected($solution->status == "active" )>Publish</option>
+                <option value="inactive" @selected($solution->status == "inactive" )>Unpublished</option>
+                <option value="draft" @selected($solution->status == "draft" )>Draft</option>
             </x-metronic.select-option>
         </div>
         {{-- <div class="col-lg-4 col-md-6 col-12 mb-5">
