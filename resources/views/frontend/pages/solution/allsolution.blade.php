@@ -105,7 +105,7 @@
                                     <div class="content-overlay-brand"></div>
                                     <div>
                                         <img class="content-image"
-                                            src="{{ isset($item->banner_image) && file_exists(public_path('storage/' . $item->banner_image)) ? asset('storage/' . $item->banner_image) : asset('frontend/images/no-row-img(580-326).png') }}"
+                                            src="{{ isset($item->thumbnail_image) && file_exists(public_path('storage/' . $item->thumbnail_image)) ? asset('storage/' . $item->thumbnail_image) : asset('frontend/images/no-row-img(580-326).png') }}"
                                             alt="{{ $item->name }}">
                                     </div>
                                     <div style="height: 4.4rem;">
