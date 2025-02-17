@@ -10,6 +10,7 @@ use App\Models\Admin\SolutionDetail;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class SolutionCMSController extends Controller
@@ -189,7 +190,20 @@ class SolutionCMSController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $banner = SolutionDetail::findOrFail($id);
+        $files = [
+            'banner_image'    => $banner->banner_image,
+            'thumbnail_image' => $banner->thumbnail_image,
+        ];
+        foreach ($files as $key => $file) {
+            if (!empty($file)) {
+                $oldFile = $banner->$key ?? null;
+                if ($oldFile) {
+                    Storage::delete("public/" . $oldFile);
+                }
+            }
+        }
+        $banner->delete();
     }
 
 
