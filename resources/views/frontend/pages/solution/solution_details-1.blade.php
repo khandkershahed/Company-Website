@@ -66,8 +66,7 @@
                 <div class="row justify-content-center">
                     <div class="col-12 text-center mb-4">
                         <h2 class="pt-4 fw-bold">
-                            Driving Perfect Strategies for Three Core Trends of
-                            Transformation
+                            {{ $solution->row_five_title }}
                         </h2>
                     </div>
                     @foreach ($cards as $card)
@@ -98,20 +97,10 @@
                     <div class="row gx-0">
                         <div class="col-lg-12">
                             <h3 class="category-titles py-4 pt-5">
-                                Accelerate Growth with WISE-iFactory
+                                {{ $solution->row_three_title }}
                             </h3>
                             <p class="w-75 mx-auto" style="text-align: justify">
-                                To confront future challenges, Advantech developed iFactory
-                                solutions which combine leading edge computing hardware and
-                                easy-to-use software to offer Low-code platforms that
-                                accelerate digital transformation and Industry 4.0. To develop
-                                complete industrial solutions that enable manufactures to
-                                easily move forward, Advantech provides the WISE-IoT platform:
-                                iFactory EHS, iFactory EAM, and iFactory TPM that allow DFSP
-                                (Domain-Focused Solution Partners) easy access to all featured
-                                modules. This helps them easily collaborate with Advantech to
-                                offer rich services and tools to their focused vertical
-                                industry customers.
+                                {{ $solution->row_three_header }}
                             </p>
                         </div>
                     </div>
