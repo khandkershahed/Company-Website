@@ -95,11 +95,17 @@
                                     </span>
                                 </button>
                                 <!-- Next Button -->
-                                <a href="javascript:void(0)" onclick="goToTab(event, '#banner')"
+                                <button type="submit" class="btn btn-primary d-flex align-items-center">Submit</button>
+                                {{-- <a href="javascript:void(0)"
                                     class="btn btn-primary d-flex align-items-center">
-                                    <span>Next</span>
+                                    <span>Submit</span>
                                     <span><i class="fa-solid fa-arrow-right-long ps-2"></i></span>
-                                </a>
+                                </a> --}}
+                                {{-- <a href="javascript:void(0)" onclick="goToTab(event, '#banner')"
+                                    class="btn btn-primary d-flex align-items-center">
+                                    <span>Submit</span>
+                                    <span><i class="fa-solid fa-arrow-right-long ps-2"></i></span>
+                                </a> --}}
                             </div>
                         </div>
                     </form>
