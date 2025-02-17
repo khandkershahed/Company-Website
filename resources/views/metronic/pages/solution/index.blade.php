@@ -103,7 +103,7 @@
                                         <i class="fa-solid fa-pen fs-6 text-white" title="Edit Application"
                                             aria-hidden="true"></i>
                                     </a>
-                                    <a href="{{ route('admin.solution-cms.edit', $solution->id) }}"
+                                    <a href="{{ route('admin.solution-cms.destroy', $solution->id) }}"
                                         class="btn btn-sm btn-icon btn-danger btn-active-color-danger">
                                         <i class="fa-solid fa-trash fs-6 text-white delete" title="Delete Application"
                                             aria-hidden="true"></i>
