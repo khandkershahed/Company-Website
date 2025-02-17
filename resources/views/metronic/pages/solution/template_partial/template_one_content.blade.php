@@ -53,15 +53,14 @@
             <div class="tab-pane fade show active" id="template_one_section_one" role="tabpanel">
                 <div class="col-lg-12 mb-7">
                     <x-metronic.label class="form-label required">Row Two Title</x-metronic.label>
-                    <x-metronic.input type="text" name="row_two_title" class="mb-2 form-control" placeholder="Row Two Title"
+                    <x-metronic.input type="text" name="row_two_title" row="8" class="mb-2 form-control" placeholder="Row Two Title"
                         :value="old('row_two_title', $solution->row_two_title)">
                     </x-metronic.input>
 
                 </div>
                 <div class="col-lg-12 mb-7">
                     <x-metronic.label class="form-label required">Row Two Header</x-metronic.label>
-                    <textarea name="row_two_header" class="mb-2 form-control" placeholder="Row Two Header">
-                        {{ old('row_two_header', $solution->row_two_header) }}
+                    <textarea name="row_two_header" class="mb-2 form-control" placeholder="Row Two Header">{{ old('row_two_header', $solution->row_two_header) }}
                     </textarea>
                 </div>
             </div>
@@ -71,16 +70,15 @@
 
             <div class="tab-pane fade" id="template_one_section_three" role="tabpanel">
                 <div class="col-lg-12 mb-7">
-                    <x-metronic.label class="form-label required">Row Two Title</x-metronic.label>
-                    <x-metronic.input type="text" name="row_three_title" class="mb-2 form-control" placeholder="Row Two Title"
+                    <x-metronic.label class="form-label required">Title</x-metronic.label>
+                    <x-metronic.input type="text" name="row_three_title" class="mb-2 form-control" placeholder="Title"
                         :value="old('row_three_title', $solution->row_three_title)">
                     </x-metronic.input>
 
                 </div>
                 <div class="col-lg-12 mb-7">
-                    <x-metronic.label class="form-label required">Row Two Header</x-metronic.label>
-                    <textarea name="row_three_header" class="mb-2 form-control" placeholder="Row Two Header">
-                        {{ old('row_three_header', $solution->row_three_header) }}
+                    <x-metronic.label class="form-label required">Header</x-metronic.label>
+                    <textarea name="row_three_header" row="8" class="mb-2 form-control" placeholder="Header">{{ old('row_three_header', $solution->row_three_header) }}
                     </textarea>
                 </div>
             </div>
