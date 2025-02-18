@@ -28,6 +28,7 @@ return new class extends Migration
 
             $table->string('row_two_title')->nullable();
             $table->text('row_two_header')->nullable();
+
             $table->string('row_two_column_one_image')->nullable(); //image
             $table->string('row_two_column_one_title')->nullable();
             $table->text('row_two_column_one_description')->nullable();
@@ -63,8 +64,13 @@ return new class extends Migration
             $table->string('row_four_big_image', 180)->nullable();
             $table->string('row_four_small_image', 180)->nullable();
 
+            $table->string('row_five_badge')->nullable();
             $table->string('row_five_title')->nullable();
             $table->text('row_five_header')->nullable();
+            $table->string('row_five_image')->nullable(); //image
+            $table->string('row_five_btn_name')->nullable();
+            $table->string('row_five_link')->nullable();
+            $table->mediumText('row_five_description')->nullable();
 
             $table->string('row_six_title');
             $table->string('row_six_badge')->nullable();
@@ -83,18 +89,18 @@ return new class extends Migration
             $table->text('video_link')->nullable();
             $table->string('added_by')->nullable();
             $table->string('status')->nullable();
-            $table->string('count_one',100)->nullable();
-            $table->string('count_one',100)->nullable();
-            $table->string('count_one',100)->nullable();
-            $table->string('count_two',100)->nullable();
-            $table->string('count_two',100)->nullable();
-            $table->string('count_two',100)->nullable();
-            $table->string('count_three',100)->nullable();
-            $table->string('count_three',100)->nullable();
-            $table->string('count_three',100)->nullable();
-            $table->string('count_four',100)->nullable();
-            $table->string('count_four',100)->nullable();
-            $table->string('count_four',100)->nullable();
+            $table->string('count_one_icon',191)->nullable();
+            $table->string('count_one_number',100)->nullable();
+            $table->string('count_one_text',100)->nullable();
+            $table->string('count_two_icon',191)->nullable();
+            $table->string('count_two_number',100)->nullable();
+            $table->string('count_two_text',100)->nullable();
+            $table->string('count_three_icon',191)->nullable();
+            $table->string('count_three_number',100)->nullable();
+            $table->string('count_three_text',100)->nullable();
+            $table->string('count_four_icon',191)->nullable();
+            $table->string('count_four_number',100)->nullable();
+            $table->string('count_four_text',100)->nullable();
 
             $table->unsignedBigInteger('row_one_id')->nullable();
             $table->unsignedBigInteger('row_four_id')->nullable();

@@ -136,8 +136,12 @@ class SolutionCMSController extends Controller
                 return redirect()->back()->withInput();
             }
             $files = [
-                'banner_image' => $request->file('banner_image'),
-                'thumbnail_image' => $request->file('thumbnail_image'),
+                'banner_image'               => $request->file('banner_image'),
+                'thumbnail_image'            => $request->file('thumbnail_image'),
+                'row_two_column_one_image'   => $request->file('row_two_column_one_image'),
+                'row_two_column_two_image'   => $request->file('row_two_column_two_image'),
+                'row_two_column_three_image' => $request->file('row_two_column_three_image'),
+                'row_two_column_four_image'  => $request->file('row_two_column_four_image'),
             ];
             $uploadedFiles = [];
             foreach ($files as $key => $file) {
@@ -153,20 +157,35 @@ class SolutionCMSController extends Controller
             }
             // Update the solution record
             $solution->update([
-                'name'              => $request->name,
-                'industry_id'       => json_encode($request->industry_id),
-                'banner_image'      => $uploadedFiles['banner_image']['status'] == 1 ? $uploadedFiles['banner_image']['file_path'] : null,
-                'thumbnail_image'   => $uploadedFiles['thumbnail_image']['status'] == 1 ? $uploadedFiles['thumbnail_image']['file_path'] : null,
-                'solution_template' => $request->solution_template,
-                'row_two_title'     => $request->row_two_title,
-                'row_two_header'    => $request->row_two_header,
-                'row_three_title'   => $request->row_three_title,
-                'row_three_header'  => $request->row_three_header,
-                'row_five_title'    => $request->row_five_title,
-                'row_five_header'   => $request->row_five_header,
-                'added_by'          => Auth::user()->name,
-                'status'            => $request->status,
-                'created_at'        => now(),
+                'name'                             => $request->name,
+                'header'                           => $request->header,
+                'industry_id'                      => json_encode($request->industry_id),
+                'banner_image'                     => $uploadedFiles['banner_image']['status']               == 1 ? $uploadedFiles['banner_image']['file_path']              : $solution->banner_image,
+                'thumbnail_image'                  => $uploadedFiles['thumbnail_image']['status']            == 1 ? $uploadedFiles['thumbnail_image']['file_path']           : $solution->thumbnail_image,
+                'row_two_column_one_image'         => $uploadedFiles['row_two_column_one_image']['status']   == 1 ? $uploadedFiles['row_two_column_one_image']['file_path']  : $solution->row_two_column_one_image,
+                'row_two_column_two_image'         => $uploadedFiles['row_two_column_two_image']['status']   == 1 ? $uploadedFiles['row_two_column_two_image']['file_path']  : $solution->row_two_column_two_image,
+                'row_two_column_three_image'       => $uploadedFiles['row_two_column_three_image']['status'] == 1 ? $uploadedFiles['row_two_column_three_image']['file_path'] : $solution->row_two_column_three_image,
+                'row_two_column_four_image'        => $uploadedFiles['row_two_column_four_image']['status']  == 1 ? $uploadedFiles['row_two_column_four_image']['file_path'] : $solution->row_two_column_four_image,
+                'row_two_column_one_title'         => $request->row_two_column_one_title,
+                'row_two_column_one_description'   => $request->row_two_column_one_description,
+                'row_two_column_one_link'          => $request->row_two_column_one_link,
+                'row_two_column_two_title'         => $request->row_two_column_two_title,
+                'row_two_column_two_description'   => $request->row_two_column_two_description,
+                'row_two_column_two_link'          => $request->row_two_column_two_link,
+                'row_two_column_three_title'       => $request->row_two_column_three_title,
+                'row_two_column_three_description' => $request->row_two_column_three_description,
+                'row_two_column_three_link'        => $request->row_two_column_three_link,
+                'row_two_column_four_title'        => $request->row_two_column_four_title,
+                'row_two_column_four_description'  => $request->row_two_column_four_description,
+                'row_two_column_four_link'         => $request->row_two_column_four_link,
+                'solution_template'                => $request->solution_template,
+                'row_two_title'                    => $request->row_two_title,
+                'row_two_header'                   => $request->row_two_header,
+                'row_three_title'                  => $request->row_three_title,
+                'row_three_header'                 => $request->row_three_header,
+                'row_five_title'                   => $request->row_five_title,
+                'row_five_header'                  => $request->row_five_header,
+                'status'                           => $request->status,
             ]);
 
             // Flash success message using Toastr
@@ -205,6 +224,4 @@ class SolutionCMSController extends Controller
         }
         $banner->delete();
     }
-
-
 }

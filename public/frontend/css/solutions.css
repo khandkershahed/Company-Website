@@ -496,7 +496,7 @@
     background-color: rgb(0 0 0 / 80%); /* Dark overlay-st-one */
     opacity: 0;
     transition: opacity 0.3s ease;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     align-items: center;

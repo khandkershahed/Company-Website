@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/solutions.css') }}">
     {{-- For Only This Template End --}}
     <section style="background-color: #eee">
-        <div class="container-fluid st-two-hero" style="background-image: url({{ !empty($solution->banner_image) && file_exists(public_path('storage/' . $solution->banner_image)) ? asset('storage/' . $solution->banner_image) : asset('frontend/images/no-row-img(580-326).png') }});">
+        <div class="container-fluid st-two-hero" style="background-image: url({{ !empty($solution->banner_image) && file_exists(public_path('storage/' . $solution->banner_image)) ? asset('storage/' . $solution->banner_image) : asset('images/hero-bg1.png') }});">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">

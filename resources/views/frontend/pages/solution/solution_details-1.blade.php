@@ -5,32 +5,23 @@
     {{-- For Only This Template End --}}
     <div class="solution-pages">
         <!-- HERO SECTION -->
-        <section id="hero-slider">
+        {{-- <section id="hero-slider">
             <div class="hero-slider__wrapper">
                 <div>
                     <div class="hero-slider__slide"
                         style="background-image: url('{{ !empty($solution->banner_image) && file_exists(public_path('storage/' . $solution->banner_image)) ? asset('storage/' . $solution->banner_image) : asset('frontend/images/no-row-img(580-326).png') }}');">
-                        <div class="container">
-                            <div class="row align-items-center">
-                                <div class="col-lg-12">
-                                    <h2 class="pb-3">{{ $solution->name }}</h2>
-                                    <h5 class="fw-normal pb-3 hero-para">
-                                        {{ $solution->header }}
-                                    </h5>
-                                    <div class="banner-btn">
-                                        <a href="#" class="btn-primary Content-watch me-2"
-                                            style="text-decoration: none;color: #000000;background: rgb(255, 255, 255);padding: 10px 25px 8px;">View
-                                            More</a>
-                                        <a href="#" class="btn-outline-secondary Content-watch px-4"
-                                            style="text-decoration: none">Become A Partner</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
 
+        </section> --}}
+        <section>
+            <div>
+                <img class="page_top_banner"
+                    src="{{ !empty($solution->banner_image) && file_exists(public_path('storage/' . $solution->banner_image)) ? asset('storage/' . $solution->banner_image) : asset('frontend/images/no-banner(1920-330).png') }}"
+                    alt="{{ $solution->name }}">
+            </div>
         </section>
         <section class="">
             <div class="container-fluid" style="background-color: #385572">
@@ -47,48 +38,21 @@
                 </div>
             </div>
         </section>
-        <section id="overview">
-            <div class="container py-5 pt-0 my-5">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center mb-3">
-                            <h1 class="fw-bold">{{ $solution->row_two_title }}</h1>
-                            <p class="pt-4 w-75 mx-auto" style="text-align: justify">
-                                {{ $solution->row_two_header }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                @php
-                    $cards = [$solution->card1, $solution->card2, $solution->card3, $solution->card4];
-                    $cardsections2 = [$solution->card6, $solution->card7, $solution->card8];
-                @endphp
-                <div class="row justify-content-center">
-                    <div class="col-12 text-center mb-4">
-                        <h2 class="pt-4 fw-bold">
-                            {{ $solution->row_five_title }}
-                        </h2>
-                    </div>
-                    @foreach ($cards as $card)
-                        <div class="col-lg-4 col-md-6 mb-3">
-                            <div>
-                                <div class="d-flex justify-content-center mb-4">
-                                    <img class="card-img-top"
-                                        src="{{ !empty($card->image) && file_exists(public_path('storage/' . $card->image)) ? asset('storage/' . $card->image) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}"
-                                        alt="Card image cap" style="width: 300px;">
 
-                                </div>
-                                <div>
-                                    <h5 class="text-center">{{ $card->title }}</h5>
-                                    <ul class="">
-                                        <li>{{ $card->short_des }}</li>
-                                        {{-- <li>{{ Str::words($card->short_des) }}</li> --}}
-                                    </ul>
-                                </div>
+        <section id="overview">
+            <div class="container py-5">
+                @if (!empty($solution->row_two_title) || !empty($solution->row_two_header))
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="text-center mb-3">
+                                <h1 class="fw-bold">{{ $solution->row_two_title }}</h1>
+                                <p class="pt-4 w-75 mx-auto" style="text-align: justify">
+                                    {{ $solution->row_two_header }}
+                                </p>
                             </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endif
             </div>
         </section>
         <section>
@@ -107,6 +71,7 @@
                 </div>
             </div>
         </section>
+
         <section>
             <div class="container py-5 pt-0">
                 <div class="row">
@@ -122,16 +87,16 @@
                                         </button>
                                     </li>
                                     <li class="nav-item border-0 rounded-0" role="presentation">
-                                        <button class="nav-link growth-tabs-triger" id="automation-tab"
-                                            data-bs-toggle="tab" data-bs-target="#automation" type="button"
-                                            role="tab" aria-controls="automation" aria-selected="false">
+                                        <button class="nav-link growth-tabs-triger" id="automation-tab" data-bs-toggle="tab"
+                                            data-bs-target="#automation" type="button" role="tab"
+                                            aria-controls="automation" aria-selected="false">
                                             Equipment Automation Management
                                         </button>
                                     </li>
                                     <li class="nav-item border-0 rounded-0" role="presentation">
                                         <button class="nav-link growth-tabs-triger" id="maintenance-tab"
-                                            data-bs-toggle="tab" data-bs-target="#maintenance" type="button"
-                                            role="tab" aria-controls="maintenance" aria-selected="false">
+                                            data-bs-toggle="tab" data-bs-target="#maintenance" type="button" role="tab"
+                                            aria-controls="maintenance" aria-selected="false">
                                             Total Productive Maintenance
                                         </button>
                                     </li>
@@ -254,6 +219,60 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+        <section style="background-color: #eee">
+            <div class="container py-5 pt-0 my-5">
+                <div class="row justify-content-center">
+                    @if (!empty($solution->header))
+                        <div class="col-12 text-center mb-4">
+                            <h2 class="pt-4 fw-bold">
+                                {{ $solution->header }}
+                            </h2>
+                        </div>
+                    @endif
+
+                    @if (
+                        !empty($solution->row_two_column_one_image) ||
+                            !empty($solution->row_two_column_one_title) ||
+                            !empty($solution->row_two_column_one_description) ||
+                            !empty($solution->row_two_column_one_link) ||
+                            !empty($solution->row_two_column_two_image) ||
+                            !empty($solution->row_two_column_two_title) ||
+                            !empty($solution->row_two_column_two_description) ||
+                            !empty($solution->row_two_column_two_link) ||
+                            !empty($solution->row_two_column_three_image) ||
+                            !empty($solution->row_two_column_three_title) ||
+                            !empty($solution->row_two_column_three_description) ||
+                            !empty($solution->row_two_column_three_link) ||
+                            !empty($solution->row_two_column_four_image) ||
+                            !empty($solution->row_two_column_four_title) ||
+                            !empty($solution->row_two_column_four_description) ||
+                            !empty($solution->row_two_column_four_link))
+                        <div class="col-lg-4 col-md-6 mb-3">
+                            <div>
+                                <div class="d-flex justify-content-center mb-4">
+                                    <a href="">
+                                        <img class="card-img-top"
+                                            src="{{ !empty($card->image) && file_exists(public_path('storage/' . $card->image)) ? asset('storage/' . $card->image) : asset('frontend/images/no-img-png.png') }}"
+                                            alt="Card image cap" style="width: 200px;">
+                                    </a>
+
+                                </div>
+                                <div>
+                                    <a href="">
+                                        <h5 class="text-center">{{ $card->title }}</h5>
+                                        <ul class="">
+                                            <p>{{ $card->short_des }}</p>
+                                            {{-- <li>{{ Str::words($card->short_des) }}</li> --}}
+                                        </ul>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </section>
@@ -394,96 +413,7 @@
                 </div>
             </div>
         </section>
-        <section style="background-color: #eee">
-            <div class="container py-5">
-                <div class="row">
-                    @foreach ($cardsections2 as $cardsection)
-                        <div class="col-lg-4">
-                            <div>
-                                <div class="d-flex justify-content-center mb-4">
-                                    <img class="card-img-top"
-                                        src="{{ !empty($cardsection->image) && file_exists(public_path('storage/' . $cardsection->image)) ? asset('storage/' . $cardsection->image) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}"
-                                        alt="Card image cap" style="width: 300px; ">
 
-                                </div>
-                                <div>
-                                    <h5 class="text-center">
-                                        {{ $cardsection->title }}
-                                    </h5>
-                                    <ul class="">
-                                        <li>{{ $cardsection->short_des }}</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </section>
-        {{-- <section style="background-color: #eee">
-            <div class="container py-5">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="fw-bold text-center pb-5">Related Insights</h1>
-                        <div>
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="text-center">
-                                        <div>
-                                            <img class="img-fluid"
-                                                src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/brochure/Brochure-3-820x460.png"
-                                                alt="" />
-                                        </div>
-                                        <div>
-                                            <h5 class="py-4 releted-title">
-                                                Smart Manufacturing Ecosystem
-                                            </h5>
-                                            <button class="btn btn-primary rounded-0">
-                                                View Online
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="text-center">
-                                        <div>
-                                            <img class="img-fluid"
-                                                src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/brochure/Brochure-3-820x460.png"
-                                                alt="" />
-                                        </div>
-                                        <div>
-                                            <h5 class="py-4 releted-title">
-                                                Smart Manufacturing Ecosystem
-                                            </h5>
-                                            <button class="btn btn-primary rounded-0">
-                                                View Online
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="text-center">
-                                        <div>
-                                            <img class="img-fluid"
-                                                src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/brochure/Brochure-3-820x460.png"
-                                                alt="" />
-                                        </div>
-                                        <div>
-                                            <h5 class="py-4 releted-title">
-                                                Smart Manufacturing Ecosystem
-                                            </h5>
-                                            <button class="btn btn-primary rounded-0">
-                                                View Online
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> --}}
         <section class="py-5" id="feature">
             <h1 class="fw-bold text-center pb-5">Featured Products</h1>
             <div class="container">
@@ -502,8 +432,8 @@
                                         </a>
                                         <div class="overlay-st-one">
                                             <div class="overlay-st-one-text">
-                                                <p class="overlay-st-one-para">
-                                                    {{ Str::words($product->short_desc,30) }}
+                                                <p class="overlay-st-one-para pt-2">
+                                                    {!! Str::words($product->short_desc, 30) !!}
                                                 </p>
                                                 <a href="{{ route('product.details', $product->slug) }}"
                                                     class="overlay-st-one-button">Details</a>
