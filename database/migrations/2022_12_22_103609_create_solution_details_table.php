@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('solution_details', function (Blueprint $table) {
             $table->id();
             $table->string('solution_template')->nullable();
-
-
             $table->string('industry_id')->nullable()->comment('multi_id');
             $table->string('name')->nullable();
             $table->string('slug')->unique()->nullable();

@@ -432,7 +432,7 @@ class HomeController extends Controller
     public function allSolution()
     {
         $data['learnmore'] = LearnMore::orderBy('id', 'DESC')->select('learn_mores.industry_header', 'learn_mores.consult_title', 'learn_mores.consult_short_des', 'learn_mores.background_image')->first();
-        $data['solutions'] = SolutionDetail::orderBy('id', 'DESC')->where('status', 'active')->select('solution_details.id', 'solution_details.name', 'solution_details.header', 'solution_details.banner_image', 'solution_details.slug')->get();
+        $data['solutions'] = SolutionDetail::orderBy('id', 'DESC')->where('status', 'active')->select('id', 'name', 'header', 'thumbnail_image', 'slug')->get();
         $data['story3'] = ClientStory::inRandomOrder()->first();
         $data['story4'] = ClientStory::inRandomOrder()->where('id', '!=', $data['story3']->id)->first();
         $data['story1'] = Blog::inRandomOrder()->first();

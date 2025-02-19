@@ -108,7 +108,7 @@
                                             src="{{ isset($item->thumbnail_image) && file_exists(public_path('storage/' . $item->thumbnail_image)) ? asset('storage/' . $item->thumbnail_image) : asset('frontend/images/no-row-img(580-326).png') }}"
                                             alt="{{ $item->name }}">
                                     </div>
-                                    <div style="height: 4.4rem;">
+                                    <div style="height: 4.4rem;"> 
                                         <h5 class="p-1" style="text-align:center;">{{ Str::words($item->name, 12) }}
                                         </h5>
                                         {{-- <hr class="p-1 pt-1 m-0 text-white"> --}}
