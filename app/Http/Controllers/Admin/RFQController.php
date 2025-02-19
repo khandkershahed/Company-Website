@@ -213,6 +213,13 @@ class RFQController extends Controller
                 'mimes'     => 'The :attribute must be a file of type:PNG-JPEG-JPG'
             ],
         );
+
+        if ($validator->fails()) {
+            foreach ($validator->messages()->all() as $message) {
+                Toastr::error($message, 'Failed', ['timeOut' => 30000]);
+            }
+            return redirect()->back()->withInput();
+        }
         // Check if the user has already made a request within the last 5 minutes
         $userIp = $request->ip();
 
@@ -336,15 +343,7 @@ class RFQController extends Controller
             }
 
 
-
-
             Toastr::success('Your RFQ has been submitted successfully.');
-        } else {
-
-            $messages = $validator->messages();
-            foreach ($messages->all() as $message) {
-                Toastr::error($message, 'Failed', ['timeOut' => 30000]);
-            }
         }
 
         return redirect()->back();
@@ -494,6 +493,7 @@ class RFQController extends Controller
             Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
             Toastr::error('There was an error sending the email.', 'Error');
         }
+
         Cart::destroy();
         Toastr::success('Your RFQ has been submitted successfully.');
         return redirect()->route('rfq.success', $rfq_code);
