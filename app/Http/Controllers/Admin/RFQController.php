@@ -22,6 +22,7 @@ use App\Notifications\RfqCreate;
 use App\Notifications\WorkOrder;
 use App\Mail\RFQNotificationMail;
 use App\Notifications\DealConvert;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\SolutionDetail;
 use Brian2694\Toastr\Facades\Toastr;
@@ -201,7 +202,7 @@ class RFQController extends Controller
             [
                 'name'                 => 'required',
                 'country'              => 'required',
-                'email'                => 'required',
+                'email'                => 'required|email:rfc,dns', // Validate email format
                 'phone'                => 'required',
                 'rfq_code'             => 'unique:rfqs',
                 'image'                => 'file|mimes:jpeg,png,jpg|max:2048',
@@ -212,6 +213,18 @@ class RFQController extends Controller
                 'mimes'     => 'The :attribute must be a file of type:PNG-JPEG-JPG'
             ],
         );
+        // Check if the user has already made a request within the last 5 minutes
+        $userIp = $request->ip();
+
+        // Check if the session has stored the last request time for this IP
+        $lastRequestTime = session("last_email_request_{$userIp}");
+
+        // If the last request was made less than 5 minutes ago, block the request
+        if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 5) {
+            Toastr::error('You can only send one request every 5 minutes.', 'Failed');
+            return redirect()->back(); // Block further submissions within the 5-minute window
+        }
+
         if ($validator->passes()) {
             $data['deal_type'] = 'new';
             $today = now()->format('dmy');
@@ -294,7 +307,6 @@ class RFQController extends Controller
                 })
                 ->pluck('email')
                 ->toArray();
-            // $user_emails = ['dev2.ngenit@gmail.com'];
 
             Notification::send($users, new RfqCreate($name, $rfq_code));
 
@@ -313,19 +325,18 @@ class RFQController extends Controller
                 'link'         => route('single-rfq.show', $rfq_code),
             ];
 
-            Mail::to($request->input('email'))->send(new RFQNotificationClientMail($data));
-            if (!empty($user_emails)) {
+            try {
+                Mail::to($request->email)->send(new RFQNotificationClientMail($data));
                 foreach ($user_emails as $email) {
                     Mail::to($email)->send(new RFQNotificationAdminMail($data));
                 }
-
-                // Extract the emails except the ones already sent to and use them as BCC
-                $bcc_emails = array_diff($user_emails, [$email]);
-
-                if (!empty($bcc_emails)) {
-                    Mail::bcc($bcc_emails)->send(new RFQNotificationAdminMail($data));
-                }
+            } catch (\Exception $e) {
+                Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
+                Toastr::error('There was an error sending the email.', 'Error');
             }
+
+
+
 
             Toastr::success('Your RFQ has been submitted successfully.');
         } else {
@@ -346,7 +357,7 @@ class RFQController extends Controller
             $request->all(),
             [
                 'name'                   => 'required',
-                'email'                  => 'required|email',
+                'email'                  => 'required|email:rfc,dns',
                 'rfq_code'               => 'unique:rfqs',
                 'image'                  => 'file|mimes:jpeg,png,jpg|max:2048',
                 'country'                => 'required',
@@ -372,7 +383,14 @@ class RFQController extends Controller
             }
             return redirect()->back()->withInput();
         }
+        $userIp = $request->ip();
 
+        $lastRequestTime = session("last_email_request_{$userIp}");
+
+        if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 5) {
+            Toastr::error('You can only send one request every 5 minutes.', 'Failed');
+            return redirect()->back(); // Block further submissions within the 5-minute window
+        }
         // Generate RFQ Code
         $today = now()->format('dmY');
         $lastCode = RFQ::where('rfq_code', 'like', "RFQ-$today-%")->latest('id')->first();
@@ -382,11 +400,6 @@ class RFQController extends Controller
         // Check for existing client
         $client = Client::where('email', $request->email)->first();
         $client_type = $client ? (in_array($client->user_type, ['client', 'partner']) ? $client->user_type : 'anonymous') : 'anonymous';
-
-        // Handle file upload
-        // $imagePath = $request->hasFile('image') ?
-        //     Helper::singleImageUpload($request->file('image'), storage_path('app/public/'), 450, 350) :
-        //     ['status' => 0];
 
         // Save RFQ
         $rfq_id = RFQ::insertGetId([
@@ -472,9 +485,14 @@ class RFQController extends Controller
             'link'         => route('single-rfq.show', $rfq_code),
         ];
 
-        Mail::to($request->email)->send(new RFQNotificationClientMail($data));
-        foreach ($user_emails as $email) {
-            Mail::to($email)->send(new RFQNotificationAdminMail($data));
+        try {
+            Mail::to($request->email)->send(new RFQNotificationClientMail($data));
+            foreach ($user_emails as $email) {
+                Mail::to($email)->send(new RFQNotificationAdminMail($data));
+            }
+        } catch (\Exception $e) {
+            Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
+            Toastr::error('There was an error sending the email.', 'Error');
         }
         Cart::destroy();
         Toastr::success('Your RFQ has been submitted successfully.');
