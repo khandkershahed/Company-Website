@@ -216,7 +216,8 @@ class RFQController extends Controller
 
         if ($validator->fails()) {
             foreach ($validator->messages()->all() as $message) {
-                Toastr::error($message, 'Failed', ['timeOut' => 30000]);
+                Session::flash('error', $message);
+                // Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
             return redirect()->back()->withInput();
         }
@@ -228,7 +229,7 @@ class RFQController extends Controller
 
         // If the last request was made less than 5 minutes ago, block the request
         if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 5) {
-            Toastr::error('You can only send one request every 5 minutes.', 'Failed');
+            Toastr::error('You can only send one request every 5 minutes.');
             return redirect()->back(); // Block further submissions within the 5-minute window
         }
 
