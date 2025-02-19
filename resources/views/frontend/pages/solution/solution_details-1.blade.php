@@ -228,7 +228,7 @@
                 !empty($solution->row_two_column_four_description) ||
                 !empty($solution->row_two_column_four_link))
             <section style="background-color: #eee">
-                <div class="container py-5 pt-0 my-5">
+                <div class="container py-5">
                     <div class="row justify-content-center">
                         @if (!empty($solution->header))
                             <div class="col-12 text-center mb-4">

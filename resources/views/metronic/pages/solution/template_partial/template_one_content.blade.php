@@ -12,15 +12,6 @@
             </li>
 
             <li class="nav-item mb-7">
-                <a class="nav-link btn btn-flex btn-active-danger p-1" data-bs-toggle="tab"
-                    href="#template_one_section_three">
-                    <div class="d-flex flex-column align-items-start">
-                        <img src="{{ asset('images/solution/template_one/section_three.png') }}" alt=""
-                            width="180px">
-                    </div>
-                </a>
-            </li>
-            <li class="nav-item mb-7">
                 <a class="nav-link btn btn-flex btn-active-info p-1" data-bs-toggle="tab"
                     href="#template_one_section_two">
                     <div class="d-flex flex-column align-items-start">
@@ -29,6 +20,17 @@
                     </div>
                 </a>
             </li>
+
+            <li class="nav-item mb-7">
+                <a class="nav-link btn btn-flex btn-active-danger p-1" data-bs-toggle="tab"
+                    href="#template_one_section_three">
+                    <div class="d-flex flex-column align-items-start">
+                        <img src="{{ asset('images/solution/template_one/section_three.png') }}" alt=""
+                            width="180px">
+                    </div>
+                </a>
+            </li>
+
             <li class="nav-item mb-7">
                 <a class="nav-link btn btn-flex btn-active-danger p-1" data-bs-toggle="tab"
                     href="#template_one_section_four">
@@ -38,7 +40,7 @@
                     </div>
                 </a>
             </li>
-            <li class="nav-item mb-7">
+            {{-- <li class="nav-item mb-7">
                 <a class="nav-link btn btn-flex btn-active-danger p-1" data-bs-toggle="tab"
                     href="#template_one_section_five">
                     <div class="d-flex flex-column align-items-start">
@@ -46,7 +48,7 @@
                             width="180px">
                     </div>
                 </a>
-            </li>
+            </li> --}}
 
     </div>
     <div class="col-lg-10">
@@ -188,6 +190,119 @@
                 </div>
             </div>
             <div class="tab-pane fade" id="template_one_section_four" role="tabpanel">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 border mb-7">
+                        <h5 class="my-5 text-center">Tab One</h5>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label required">Badge</x-metronic.label>
+                            <x-metronic.input type="text" name="row_five_badge" class="mb-2 form-control"
+                                placeholder="Badge" :value="old('row_five_badge', $solution->row_five_badge)">
+                            </x-metronic.input>
+                        </div>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label">Image</x-metronic.label>
+                            <x-metronic.file-input id="row_five_image" name="row_five_image" :source="asset('storage/' . $solution->row_five_image)"
+                                :value="old('row_five_image')"></x-metronic.file-input>
+                        </div>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label required">Title</x-metronic.label>
+                            <x-metronic.input type="text" name="row_five_title" class="mb-2 form-control"
+                                placeholder="Title" :value="old('row_five_title', $solution->row_five_title)">
+                            </x-metronic.input>
+                        </div>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label required">Description</x-metronic.label>
+                            <textarea name="row_five_description" rows="8" class="mb-2 form-control" placeholder="Description">{{ old('row_five_description', $solution->row_five_description) }}
+                            </textarea>
+                        </div>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label">Link</x-metronic.label>
+                            <x-metronic.input type="text" name="row_five_link" class="mb-2 form-control"
+                                placeholder="Link" :value="old('row_five_link', $solution->row_five_link)">
+                            </x-metronic.input>
+                        </div>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label">Button Name</x-metronic.label>
+                            <x-metronic.input type="text" name="row_five_btn_name" class="mb-2 form-control"
+                                placeholder="Button Name" :value="old('row_five_btn_name', $solution->row_five_btn_name)">
+                            </x-metronic.input>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 border mb-7">
+                        <h5 class="my-5 text-center">Tab Two</h5>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label required">Badge</x-metronic.label>
+                            <x-metronic.input type="text" name="row_six_badge" class="mb-2 form-control"
+                                placeholder="Badge" :value="old('row_six_badge', $solution->row_six_badge)">
+                            </x-metronic.input>
+                        </div>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label">Image</x-metronic.label>
+                            <x-metronic.file-input id="row_six_image" name="row_six_image" :source="asset('storage/' . $solution->row_six_image)"
+                                :value="old('row_six_image')"></x-metronic.file-input>
+                        </div>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label required">Title</x-metronic.label>
+                            <x-metronic.input type="text" name="row_six_title" class="mb-2 form-control"
+                                placeholder="Title" :value="old('row_six_title', $solution->row_six_title)">
+                            </x-metronic.input>
+                        </div>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label required">Description</x-metronic.label>
+                            <textarea name="row_six_description" rows="8" class="mb-2 form-control" placeholder="Description">{{ old('row_six_description', $solution->row_six_description) }}
+                            </textarea>
+                        </div>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label">Link</x-metronic.label>
+                            <x-metronic.input type="text" name="row_six_link" class="mb-2 form-control"
+                                placeholder="Link" :value="old('row_six_link', $solution->row_six_link)">
+                            </x-metronic.input>
+                        </div>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label">Button Name</x-metronic.label>
+                            <x-metronic.input type="text" name="row_six_btn_name" class="mb-2 form-control"
+                                placeholder="Button Name" :value="old('row_six_btn_name', $solution->row_six_btn_name)">
+                            </x-metronic.input>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 border mb-7">
+                        <h5 class="my-5 text-center">Tab Three</h5>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label required">Badge</x-metronic.label>
+                            <x-metronic.input type="text" name="row_seven_badge" class="mb-2 form-control"
+                                placeholder="Badge" :value="old('row_seven_badge', $solution->row_seven_badge)">
+                            </x-metronic.input>
+                        </div>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label">Image</x-metronic.label>
+                            <x-metronic.file-input id="row_seven_image" name="row_seven_image" :source="asset('storage/' . $solution->row_seven_image)"
+                                :value="old('row_seven_image')"></x-metronic.file-input>
+                        </div>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label required">Title</x-metronic.label>
+                            <x-metronic.input type="text" name="row_seven_title" class="mb-2 form-control"
+                                placeholder="Title" :value="old('row_seven_title', $solution->row_seven_title)">
+                            </x-metronic.input>
+                        </div>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label required">Description</x-metronic.label>
+                            <textarea name="row_seven_description" rows="8" class="mb-2 form-control" placeholder="Description">{{ old('row_seven_description', $solution->row_seven_description) }}
+                            </textarea>
+                        </div>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label">Link</x-metronic.label>
+                            <x-metronic.input type="text" name="row_seven_link" class="mb-2 form-control"
+                                placeholder="Link" :value="old('row_seven_link', $solution->row_seven_link)">
+                            </x-metronic.input>
+                        </div>
+                        <div class="mb-7">
+                            <x-metronic.label class="form-label">Button Name</x-metronic.label>
+                            <x-metronic.input type="text" name="row_seven_btn_name" class="mb-2 form-control"
+                                placeholder="Button Name" :value="old('row_seven_btn_name', $solution->row_seven_btn_name)">
+                            </x-metronic.input>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="tab-pane fade" id="template_one_section_five" role="tabpanel">
             </div>

@@ -64,25 +64,25 @@ return new class extends Migration
 
             $table->string('row_five_badge')->nullable();
             $table->string('row_five_title')->nullable();
-            $table->text('row_five_header')->nullable();
             $table->string('row_five_image')->nullable(); //image
             $table->string('row_five_btn_name')->nullable();
-            $table->string('row_five_link')->nullable();
+            $table->text('row_five_link')->nullable();
             $table->mediumText('row_five_description')->nullable();
+            $table->text('row_five_header')->nullable();
 
-            $table->string('row_six_title');
             $table->string('row_six_badge')->nullable();
+            $table->string('row_six_title')->nullable();
             $table->string('row_six_image')->nullable(); //image
-            $table->string('row_six_btn_name')->nullable();
-            $table->string('row_six_link')->nullable();
             $table->mediumText('row_six_description')->nullable();
+            $table->string('row_six_btn_name')->nullable();
+            $table->text('row_six_link')->nullable();
 
-            $table->string('row_seven_title');
             $table->string('row_seven_badge')->nullable();
+            $table->string('row_seven_title')->nullable();
             $table->string('row_seven_image')->nullable(); //image
-            $table->string('row_seven_btn_name')->nullable();
-            $table->string('row_seven_link')->nullable();
             $table->mediumText('row_seven_description')->nullable();
+            $table->string('row_seven_btn_name')->nullable();
+            $table->text('row_seven_link')->nullable();
 
             $table->text('video_link')->nullable();
             $table->string('added_by')->nullable();

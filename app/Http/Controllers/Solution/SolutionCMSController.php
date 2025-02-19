@@ -148,6 +148,9 @@ class SolutionCMSController extends Controller
                 'count_four_icon'            => $request->file('count_four_icon'),
                 'row_four_big_image'         => $request->file('row_four_big_image'),
                 'row_four_small_image'       => $request->file('row_four_small_image'),
+                'row_five_image'             => $request->file('row_five_image'),
+                'row_six_image'              => $request->file('row_six_image'),
+                'row_seven_image'            => $request->file('row_seven_image'),
             ];
             $uploadedFiles = [];
 
@@ -195,8 +198,7 @@ class SolutionCMSController extends Controller
                 'row_two_header'                   => $request->row_two_header,
                 'row_three_title'                  => $request->row_three_title,
                 'row_three_header'                 => $request->row_three_header,
-                'row_five_title'                   => $request->row_five_title,
-                'row_five_header'                  => $request->row_five_header,
+
                 'count_one_icon'                   => $uploadedFiles['count_one_icon']['status']   == 1 ? $uploadedFiles['count_one_icon']['file_path']  : $solution->count_one_icon,
                 'count_two_icon'                   => $uploadedFiles['count_two_icon']['status']   == 1 ? $uploadedFiles['count_two_icon']['file_path']  : $solution->count_two_icon,
                 'count_three_icon'                 => $uploadedFiles['count_three_icon']['status'] == 1 ? $uploadedFiles['count_three_icon']['file_path'] : $solution->count_three_icon,
@@ -223,8 +225,25 @@ class SolutionCMSController extends Controller
                 'row_four_col_two_link'                  => $request->row_four_col_two_link,
                 'row_four_button_name'                  => $request->row_four_button_name,
                 'row_four_link'                  => $request->row_four_link,
-
-
+                'row_five_image'              => $uploadedFiles['row_five_image']['status']  == 1 ? $uploadedFiles['row_five_image']['file_path'] : $solution->row_five_image,
+                'row_six_image'              => $uploadedFiles['row_six_image']['status']  == 1 ? $uploadedFiles['row_six_image']['file_path'] : $solution->row_six_image,
+                'row_seven_image'              => $uploadedFiles['row_seven_image']['status']  == 1 ? $uploadedFiles['row_seven_image']['file_path'] : $solution->row_seven_image,
+                'row_five_badge'                  => $request->row_five_badge,
+                'row_five_title'                   => $request->row_five_title,
+                'row_five_header'                  => $request->row_five_header,
+                'row_five_btn_name'                  => $request->row_five_btn_name,
+                'row_five_link'                  => $request->row_five_link,
+                'row_five_description'                  => $request->row_five_description,
+                'row_six_badge'                  => $request->row_six_badge,
+                'row_six_title'                  => $request->row_six_title,
+                'row_six_description'                  => $request->row_six_description,
+                'row_six_btn_name'                  => $request->row_six_btn_name,
+                'row_six_link'                  => $request->row_six_link,
+                'row_seven_badge'                  => $request->row_seven_badge,
+                'row_seven_title'                  => $request->row_seven_title,
+                'row_seven_description'                  => $request->row_seven_description,
+                'row_seven_btn_name'                  => $request->row_seven_btn_name,
+                'row_seven_link'                  => $request->row_seven_link,
                 'status'                           => $request->status,
             ]);
 
