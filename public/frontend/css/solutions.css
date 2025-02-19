@@ -1082,7 +1082,7 @@
 .st-two-counter-section {
     background: #e5effa;
     padding-top: 60px;
-    padding-bottom: 80px;
+    padding-bottom: 60px;
 }
 
 .st-two-counter-section .counter-wrap {
@@ -1112,7 +1112,7 @@
 
 .single-counter .counter-content span {
     font-size: 40px;
-    line-height: 26px;
+    line-height: 1.2;
     font-family: "Heebo", Arial, sans-serif;
     font-weight: 700;
     color: #086ad8;

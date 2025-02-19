@@ -39,9 +39,9 @@
             </div>
         </section>
 
-        <section id="overview">
-            <div class="container py-5">
-                @if (!empty($solution->row_two_title) || !empty($solution->row_two_header))
+        @if (!empty($solution->row_two_title) || !empty($solution->row_two_header))
+            <section id="overview">
+                <div class="container py-5">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="text-center mb-3">
@@ -52,25 +52,11 @@
                             </div>
                         </div>
                     </div>
-                @endif
-            </div>
-        </section>
-        <section>
-            <div class="container-fluid py-5 pt-0" id="section1">
-                <div class="container">
-                    <div class="row gx-0">
-                        <div class="col-lg-12">
-                            <h3 class="category-titles py-4 pt-5">
-                                {{ $solution->row_three_title }}
-                            </h3>
-                            <p class="w-75 mx-auto" style="text-align: justify">
-                                {{ $solution->row_three_header }}
-                            </p>
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
+
+
 
         {{-- <section>
             <div class="container py-5 pt-0">
@@ -222,119 +208,157 @@
                 </div>
             </div>
         </section> --}}
-        <section style="background-color: #eee">
-            <div class="container py-5 pt-0 my-5">
-                <div class="row justify-content-center">
-                    @if (!empty($solution->header))
-                        <div class="col-12 text-center mb-4">
-                            <h2 class="pt-4 fw-bold">
-                                {{ $solution->header }}
-                            </h2>
-                        </div>
-                    @endif
 
-                    @if (
-                        !empty($solution->row_two_column_one_image) ||
-                            !empty($solution->row_two_column_one_title) ||
-                            !empty($solution->row_two_column_one_description) ||
-                            !empty($solution->row_two_column_one_link) ||
-                            !empty($solution->row_two_column_two_image) ||
-                            !empty($solution->row_two_column_two_title) ||
-                            !empty($solution->row_two_column_two_description) ||
-                            !empty($solution->row_two_column_two_link) ||
-                            !empty($solution->row_two_column_three_image) ||
-                            !empty($solution->row_two_column_three_title) ||
-                            !empty($solution->row_two_column_three_description) ||
-                            !empty($solution->row_two_column_three_link) ||
-                            !empty($solution->row_two_column_four_image) ||
-                            !empty($solution->row_two_column_four_title) ||
-                            !empty($solution->row_two_column_four_description) ||
-                            !empty($solution->row_two_column_four_link))
-                        <div class="col-lg-4 col-md-6 mb-3">
-                            <div>
-                                <div class="d-flex justify-content-center mb-4">
-                                    <a href="{{ $solution->row_two_column_one_link }}">
-                                        <img class="card-img-top"
-                                            src="{{ !empty($solution->row_two_column_one_image) && file_exists(public_path('storage/' . $solution->row_two_column_one_image)) ? asset('storage/' . $solution->row_two_column_one_image) : asset('frontend/images/no-img-png.png') }}"
-                                            alt="Card image cap" style="width: 200px;">
-                                    </a>
+        @if (
+            !empty($solution->header) ||
+                !empty($solution->row_two_column_one_image) ||
+                !empty($solution->row_two_column_one_title) ||
+                !empty($solution->row_two_column_one_description) ||
+                !empty($solution->row_two_column_one_link) ||
+                !empty($solution->row_two_column_two_image) ||
+                !empty($solution->row_two_column_two_title) ||
+                !empty($solution->row_two_column_two_description) ||
+                !empty($solution->row_two_column_two_link) ||
+                !empty($solution->row_two_column_three_image) ||
+                !empty($solution->row_two_column_three_title) ||
+                !empty($solution->row_two_column_three_description) ||
+                !empty($solution->row_two_column_three_link) ||
+                !empty($solution->row_two_column_four_image) ||
+                !empty($solution->row_two_column_four_title) ||
+                !empty($solution->row_two_column_four_description) ||
+                !empty($solution->row_two_column_four_link))
+            <section style="background-color: #eee">
+                <div class="container py-5 pt-0 my-5">
+                    <div class="row justify-content-center">
+                        @if (!empty($solution->header))
+                            <div class="col-12 text-center mb-4">
+                                <h2 class="pt-4 fw-bold">
+                                    {{ $solution->header }}
+                                </h2>
+                            </div>
+                        @endif
 
-                                </div>
+                        @if (
+                            !empty($solution->row_two_column_one_image) ||
+                                !empty($solution->row_two_column_one_title) ||
+                                !empty($solution->row_two_column_one_description) ||
+                                !empty($solution->row_two_column_one_link) ||
+                                !empty($solution->row_two_column_two_image) ||
+                                !empty($solution->row_two_column_two_title) ||
+                                !empty($solution->row_two_column_two_description) ||
+                                !empty($solution->row_two_column_two_link) ||
+                                !empty($solution->row_two_column_three_image) ||
+                                !empty($solution->row_two_column_three_title) ||
+                                !empty($solution->row_two_column_three_description) ||
+                                !empty($solution->row_two_column_three_link) ||
+                                !empty($solution->row_two_column_four_image) ||
+                                !empty($solution->row_two_column_four_title) ||
+                                !empty($solution->row_two_column_four_description) ||
+                                !empty($solution->row_two_column_four_link))
+                            <div class="col-lg-4 col-md-6 mb-3">
                                 <div>
-                                    <a href="{{ $solution->row_two_column_one_link }}">
-                                        <h5 class="text-center">{{ $solution->row_two_column_one_title }}</h5>
-                                        <ul class="">
-                                            <p>{{ $solution->row_two_column_one_description }}</p>
-                                        </ul>
-                                    </a>
+                                    <div class="d-flex justify-content-center mb-4">
+                                        <a href="{{ $solution->row_two_column_one_link ?? 'javascript:void(0)' }}">
+                                            <img class="card-img-top"
+                                                src="{{ !empty($solution->row_two_column_one_image) && file_exists(public_path('storage/' . $solution->row_two_column_one_image)) ? asset('storage/' . $solution->row_two_column_one_image) : asset('frontend/images/no-img-png.png') }}"
+                                                alt="Card image cap" style="width: 200px;">
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a href="{{ $solution->row_two_column_one_link ?? 'javascript:void(0)' }}">
+                                            <h5 class="text-center">{{ $solution->row_two_column_one_title }}</h5>
+                                            <ul class="">
+                                                <p>{{ $solution->row_two_column_one_description }}</p>
+                                            </ul>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 mb-3">
-                            <div>
-                                <div class="d-flex justify-content-center mb-4">
-                                    <a href="{{ $solution->row_two_column_two_link }}">
-                                        <img class="card-img-top"
-                                            src="{{ !empty($solution->row_two_column_two_image) && file_exists(public_path('storage/' . $solution->row_two_column_two_image)) ? asset('storage/' . $solution->row_two_column_two_image) : asset('frontend/images/no-img-png.png') }}"
-                                            alt="Card image cap" style="width: 200px;">
-                                    </a>
-
-                                </div>
+                            <div class="col-lg-4 col-md-6 mb-3">
                                 <div>
-                                    <a href="{{ $solution->row_two_column_two_link }}">
-                                        <h5 class="text-center">{{ $solution->row_two_column_two_title }}</h5>
-                                        <ul class="">
-                                            <p>{{ $solution->row_two_column_two_description }}</p>
-                                        </ul>
-                                    </a>
+                                    <div class="d-flex justify-content-center mb-4">
+                                        <a href="{{ $solution->row_two_column_two_link ?? 'javascript:void(0)' }}">
+                                            <img class="card-img-top"
+                                                src="{{ !empty($solution->row_two_column_two_image) && file_exists(public_path('storage/' . $solution->row_two_column_two_image)) ? asset('storage/' . $solution->row_two_column_two_image) : asset('frontend/images/no-img-png.png') }}"
+                                                alt="Card image cap" style="width: 200px;">
+                                        </a>
+
+                                    </div>
+                                    <div>
+                                        <a href="{{ $solution->row_two_column_two_link ?? 'javascript:void(0)' }}">
+                                            <h5 class="text-center">{{ $solution->row_two_column_two_title }}</h5>
+                                            <ul class="">
+                                                <p>{{ $solution->row_two_column_two_description }}</p>
+                                            </ul>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 mb-3">
-                            <div>
-                                <div class="d-flex justify-content-center mb-4">
-                                    <a href="{{ $solution->row_two_column_three_link }}">
-                                        <img class="card-img-top"
-                                            src="{{ !empty($solution->row_two_column_three_image) && file_exists(public_path('storage/' . $solution->row_two_column_three_image)) ? asset('storage/' . $solution->row_two_column_three_image) : asset('frontend/images/no-img-png.png') }}"
-                                            alt="Card image cap" style="width: 200px;">
-                                    </a>
-
-                                </div>
+                            <div class="col-lg-4 col-md-6 mb-3">
                                 <div>
-                                    <a href="{{ $solution->row_two_column_three_link }}">
-                                        <h5 class="text-center">{{ $solution->row_two_column_three_title }}</h5>
-                                        <ul class="">
-                                            <p>{{ $solution->row_two_column_three_description }}</p>
-                                        </ul>
-                                    </a>
+                                    <div class="d-flex justify-content-center mb-4">
+                                        <a href="{{ $solution->row_two_column_three_link ?? 'javascript:void(0)' }}">
+                                            <img class="card-img-top"
+                                                src="{{ !empty($solution->row_two_column_three_image) && file_exists(public_path('storage/' . $solution->row_two_column_three_image)) ? asset('storage/' . $solution->row_two_column_three_image) : asset('frontend/images/no-img-png.png') }}"
+                                                alt="Card image cap" style="width: 200px;">
+                                        </a>
+
+                                    </div>
+                                    <div>
+                                        <a href="{{ $solution->row_two_column_three_link ?? 'javascript:void(0)' }}">
+                                            <h5 class="text-center">{{ $solution->row_two_column_three_title }}</h5>
+                                            <ul class="">
+                                                <p>{{ $solution->row_two_column_three_description }}</p>
+                                            </ul>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 mb-3">
-                            <div>
-                                <div class="d-flex justify-content-center mb-4">
-                                    <a href="{{ $solution->row_two_column_four_link }}">
-                                        <img class="card-img-top"
-                                            src="{{ !empty($solution->row_two_column_four_image) && file_exists(public_path('storage/' . $solution->row_two_column_four_image)) ? asset('storage/' . $solution->row_two_column_four_image) : asset('frontend/images/no-img-png.png') }}"
-                                            alt="Card image cap" style="width: 200px;">
-                                    </a>
-
-                                </div>
+                            <div class="col-lg-4 col-md-6 mb-3">
                                 <div>
-                                    <a href="{{ $solution->row_two_column_four_link }}">
-                                        <h5 class="text-center">{{ $solution->row_two_column_four_title }}</h5>
-                                        <ul class="">
-                                            <p>{{ $solution->row_two_column_four_description }}</p>
-                                        </ul>
-                                    </a>
+                                    <div class="d-flex justify-content-center mb-4">
+                                        <a href="{{ $solution->row_two_column_four_link ?? 'javascript:void(0)' }}">
+                                            <img class="card-img-top"
+                                                src="{{ !empty($solution->row_two_column_four_image) && file_exists(public_path('storage/' . $solution->row_two_column_four_image)) ? asset('storage/' . $solution->row_two_column_four_image) : asset('frontend/images/no-img-png.png') }}"
+                                                alt="Card image cap" style="width: 200px;">
+                                        </a>
+
+                                    </div>
+                                    <div>
+                                        <a href="{{ $solution->row_two_column_four_link ?? 'javascript:void(0)' }}">
+                                            <h5 class="text-center">{{ $solution->row_two_column_four_title }}</h5>
+                                            <ul class="">
+                                                <p>{{ $solution->row_two_column_four_description }}</p>
+                                            </ul>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endif
-
+                        @endif
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
+
+        @if (!empty($solution->row_three_title) || !empty($solution->row_three_header))
+            <section>
+                <div class="container-fluid py-5 pt-0" id="section1">
+                    <div class="container">
+                        <div class="row gx-0">
+                            <div class="col-lg-12">
+                                <h3 class="category-titles py-4 pt-5">
+                                    {{ $solution->row_three_title }}
+                                </h3>
+                                <p class="w-75 mx-auto" style="text-align: justify">
+                                    {{ $solution->row_three_header }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        @endif
+
         <section class="bg-colors-ind py-5" id="solutions">
             <div class="container py-5 pt-0 pb-0 pb-lg-5">
                 <h1 class="fw-bold text-center pb-5 text-white">Related Insights</h1>
@@ -473,39 +497,42 @@
             </div>
         </section>
 
-        <section class="py-5" id="feature">
-            <h1 class="fw-bold text-center pb-5">Featured Products</h1>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="slider-product">
-                            @foreach ($products as $product)
-                                <div class="product-items">
-                                    <div class="product-card">
-                                        <img src="{{ !empty($product->thumbnail) && file_exists(public_path($product->thumbnail)) ? asset($product->thumbnail) : asset('frontend/images/random-no-img.png') }}"
-                                            alt="Product Image" class="product-img" />
-                                        <a href="{{ route('product.details', $product->slug) }}">
-                                            <h1 class="product-title">
-                                                {{ Str::words($product->name, 15) }}
-                                            </h1>
-                                        </a>
-                                        <div class="overlay-st-one">
-                                            <div class="overlay-st-one-text">
-                                                <p class="overlay-st-one-para pt-2">
-                                                    {!! Str::words($product->short_desc, 30) !!}
-                                                </p>
-                                                <a href="{{ route('product.details', $product->slug) }}"
-                                                    class="overlay-st-one-button">Details</a>
+        @if ($products->count() > 0)
+            <section class="py-5" id="feature">
+                <h1 class="fw-bold text-center pb-5">Featured Products</h1>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="slider-product">
+                                @foreach ($products as $product)
+                                    <div class="product-items">
+                                        <div class="product-card">
+                                            <img src="{{ !empty($product->thumbnail) && file_exists(public_path($product->thumbnail)) ? asset($product->thumbnail) : asset('frontend/images/random-no-img.png') }}"
+                                                alt="Product Image" class="product-img" />
+                                            <a href="{{ route('product.details', $product->slug) }}">
+                                                <h1 class="product-title">
+                                                    {{ Str::words($product->name, 15) }}
+                                                </h1>
+                                            </a>
+                                            <div class="overlay-st-one">
+                                                <div class="overlay-st-one-text">
+                                                    <p class="overlay-st-one-para pt-2">
+                                                        {!! Str::words($product->short_desc, 30) !!}
+                                                    </p>
+                                                    <a href="{{ route('product.details', $product->slug) }}"
+                                                        class="overlay-st-one-button">Details</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
+
         @if ($features->count() > 0)
             <section class="bg-colors-ind py-5">
                 <div class="container">

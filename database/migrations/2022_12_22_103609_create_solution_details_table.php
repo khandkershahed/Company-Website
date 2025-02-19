@@ -102,23 +102,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('row_one_id')->nullable();
             $table->unsignedBigInteger('row_four_id')->nullable();
-            $table->unsignedBigInteger('solution_card_one_id')->nullable();
-            $table->unsignedBigInteger('solution_card_two_id')->nullable();
-            $table->unsignedBigInteger('solution_card_three_id')->nullable();
-            $table->unsignedBigInteger('solution_card_four_id')->nullable();
-            $table->unsignedBigInteger('solution_card_five_id')->nullable();
-            $table->unsignedBigInteger('solution_card_six_id')->nullable();
-            $table->unsignedBigInteger('solution_card_seven_id')->nullable();
-            $table->unsignedBigInteger('solution_card_eight_id')->nullable();
             $table->foreign('row_one_id')->references('id')->on('rows')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('solution_card_one_id')->references('id')->on('solution_cards')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('solution_card_two_id')->references('id')->on('solution_cards')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('solution_card_three_id')->references('id')->on('solution_cards')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('solution_card_four_id')->references('id')->on('solution_cards')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('solution_card_five_id')->references('id')->on('solution_cards')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('solution_card_six_id')->references('id')->on('solution_cards')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('solution_card_seven_id')->references('id')->on('solution_cards')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('solution_card_eight_id')->references('id')->on('solution_cards')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

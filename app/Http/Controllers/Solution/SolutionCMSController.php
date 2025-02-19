@@ -142,11 +142,23 @@ class SolutionCMSController extends Controller
                 'row_two_column_two_image'   => $request->file('row_two_column_two_image'),
                 'row_two_column_three_image' => $request->file('row_two_column_three_image'),
                 'row_two_column_four_image'  => $request->file('row_two_column_four_image'),
+                'count_one_icon'             => $request->file('count_one_icon'),
+                'count_two_icon'             => $request->file('count_two_icon'),
+                'count_three_icon'           => $request->file('count_three_icon'),
+                'count_four_icon'            => $request->file('count_four_icon'),
+                'row_four_big_image'         => $request->file('row_four_big_image'),
+                'row_four_small_image'       => $request->file('row_four_small_image'),
             ];
             $uploadedFiles = [];
+
             foreach ($files as $key => $file) {
                 if (!empty($file)) {
                     $filePath = 'solution/' . $key;
+                    $oldFile = $solution->$key ?? null;
+
+                    if ($oldFile) {
+                        Storage::delete("public/" . $oldFile);
+                    }
                     $uploadedFiles[$key] = Helper::imageUpload($file, $filePath);
                     if ($uploadedFiles[$key]['status'] === 0) {
                         return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
@@ -185,6 +197,34 @@ class SolutionCMSController extends Controller
                 'row_three_header'                 => $request->row_three_header,
                 'row_five_title'                   => $request->row_five_title,
                 'row_five_header'                  => $request->row_five_header,
+                'count_one_icon'                   => $uploadedFiles['count_one_icon']['status']   == 1 ? $uploadedFiles['count_one_icon']['file_path']  : $solution->count_one_icon,
+                'count_two_icon'                   => $uploadedFiles['count_two_icon']['status']   == 1 ? $uploadedFiles['count_two_icon']['file_path']  : $solution->count_two_icon,
+                'count_three_icon'                 => $uploadedFiles['count_three_icon']['status'] == 1 ? $uploadedFiles['count_three_icon']['file_path'] : $solution->count_three_icon,
+                'count_four_icon'                  => $uploadedFiles['count_four_icon']['status']  == 1 ? $uploadedFiles['count_four_icon']['file_path'] : $solution->count_four_icon,
+                'count_one_number'                  => $request->count_one_number,
+                'count_one_text'                  => $request->count_one_text,
+                'count_two_number'                  => $request->count_two_number,
+                'count_two_text'                  => $request->count_two_text,
+                'count_three_number'                  => $request->count_three_number,
+                'count_three_text'                  => $request->count_three_text,
+                'count_four_number'                  => $request->count_four_number,
+                'count_four_text'                  => $request->count_four_text,
+                'row_four_big_image'                => $uploadedFiles['row_four_big_image']['status'] == 1 ? $uploadedFiles['row_four_big_image']['file_path'] : $solution->row_four_big_image,
+                'row_four_small_image'              => $uploadedFiles['row_four_small_image']['status']  == 1 ? $uploadedFiles['row_four_small_image']['file_path'] : $solution->row_four_small_image,
+                'row_four_badge'                  => $request->row_four_badge,
+                'row_four_title'                  => $request->row_four_title,
+                'row_four_header'                  => $request->row_four_header,
+                'row_four_quote'                  => $request->row_four_quote,
+                'row_four_col_one_title'                  => $request->row_four_col_one_title,
+                'row_four_col_one_description'                  => $request->row_four_col_one_description,
+                'row_four_col_one_link'                  => $request->row_four_col_one_link,
+                'row_four_col_two_title'                  => $request->row_four_col_two_title,
+                'row_four_col_two_description'                  => $request->row_four_col_two_description,
+                'row_four_col_two_link'                  => $request->row_four_col_two_link,
+                'row_four_button_name'                  => $request->row_four_button_name,
+                'row_four_link'                  => $request->row_four_link,
+
+
                 'status'                           => $request->status,
             ]);
 
