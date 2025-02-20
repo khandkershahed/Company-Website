@@ -207,7 +207,7 @@
                             </div>
                         </div>
                         <div class="card-header p-lg-5 p-4 card-header-area border-bottom-left-r border-0">
-                            <a href="">
+                            {{-- <a href="javascript:void(0)"> --}}
                                 <div class="row gx-2">
                                     <div class="col-lg-3 mb-2">
                                         <div class="d-flex justify-content-between align-items-center p-3 bg-white" style="height: 130px">
@@ -282,7 +282,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </a>
+                            {{-- </a> --}}
                         </div>
                     </div>
                 </div>
