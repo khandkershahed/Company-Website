@@ -48,6 +48,7 @@ return new class extends Migration
 
             $table->text('footer')->nullable();
             $table->string('added_by')->nullable();
+            $table->string('status')->nullable();
 
             $table->timestamps();
         });

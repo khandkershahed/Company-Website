@@ -32,6 +32,7 @@ return new class extends Migration
             $table->longText('short_des')->comment('summernote')->nullable();
             $table->longText('long_des')->comment('summernote')->nullable();
             $table->text('footer')->nullable()->comment('summernote')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

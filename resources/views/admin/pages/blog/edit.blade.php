@@ -101,7 +101,7 @@
                                                         {{ $title }}
                                                     </option>
                                                 @endforeach
-                                            </select>
+                                            </select> 
                                         </div>
                                     </div>
                                     {{--  --}}

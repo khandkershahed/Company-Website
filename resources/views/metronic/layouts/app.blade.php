@@ -28,8 +28,8 @@
     <meta property="twitter:description" content="{{ optional($setting)->meta_description ?: config('app.name') }}" />
     <meta property="twitter:image"
         content="{{ optional($setting)->site_logo && file_exists(public_path('storage/' . optional($setting)->site_logo)) ? asset('storage/' . optional($setting)->site_logo) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}" /> --}}
-
-    <title>{{ optional($setting)->site_title ?:  'NGen IT' }}</title>
+    @props(['title'])
+    <title>{{ $title ?? 'NGEN IT | Admin Panel' }}</title>
 
 
     <link rel="stylesheet" href="{{ asset('backend/metronic/assets/css/bootstrap_icons.css') }}">
@@ -42,18 +42,15 @@
     <link href="{{ asset('backend/metronic/assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
         type="text/css" />
 
-
     <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-
     <link href="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend/metronic/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
     <link href="{{ asset('backend/metronic/assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
-</head> 
+</head>
 
 <body id="kt_body"
     class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed">
-
 
     <div class="d-flex flex-column flex-root">
 

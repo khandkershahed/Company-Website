@@ -154,6 +154,16 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     // Route::controller(RFQController::class)->group(function () {
     //     Route::get('/rfq', 'index')->name('admin.rfq.index'); // Corrected route name
     // });
+
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('site-dashboard', 'siteDashboard')->name('site-content.index');
+        Route::get('site-setting', 'siteSetting')->name('site-setting.index');
+        Route::get('hr-and-admin', 'hrAdmin')->name('hr-and-admin.index');
+        Route::get('accounts-finance', 'accountsFinance')->name('accounts-finance.index');
+        Route::get('business', 'business')->name('business.index');
+        Route::get('sales-dashboard', 'salesDashboard')->name('sales-dashboard.index');
+        Route::get('marketing-dashboard', 'marketingDashboard')->name('marketing-dashboard.index');
+    });
 });
 
 

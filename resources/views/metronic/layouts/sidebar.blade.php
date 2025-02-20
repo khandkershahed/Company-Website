@@ -113,8 +113,14 @@
                                 'admin.solution-cms.index',
                                 'admin.solution-cms.create',
                                 'admin.solution-cms.edit',
+                                'admin.site-content.index',
                             ],
                             'subMenu' => [
+                                [
+                                    'title' => 'Pages',
+                                    'routes' => ['admin.site-content.index'],
+                                    'route' => 'admin.site-content.index',
+                                ],
                                 [
                                     'title' => 'Solution CMS',
                                     'routes' => ['admin.solution-cms.index',

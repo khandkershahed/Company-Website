@@ -12,39 +12,44 @@ use App\Models\Admin\Category;
 use App\Models\Admin\SubCategory;
 use App\Models\Admin\EventCategory;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Brand;
+use App\Models\Admin\Feature;
 use App\Models\Admin\SubSubCategory;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Admin\LeaveApplication;
+use App\Models\Admin\Product;
+use App\Models\Admin\SolutionDetail;
 
 class DashboardController extends Controller
 {
-    public function device_ip()
-    {
-        // if (session()->exists('dip')) {
-        //     $deviceip = session('dip');
-        // } else {
-            session()->put('dip', '203.17.65.230');
-            $deviceip = '203.17.65.230';
-        // }
-        return $deviceip;
-    }
 
-    public function device_setip(Request $request)
-    {
-
-        session()->put('dip', $request->deviceip);
-        Toastr::success('IP has been set.');
-        return redirect()->back();
-    }
     public function siteContent()
     {
         $data = [
-            'categories' => Category::where('status','active')->count(),
-            'sub_categories' => SubCategory::where('status','active')->count(),
-            'sub_sub_categories' => SubCategory::where('status','active')->count(),
-            'sub_sub_sub_categories' => SubSubCategory::where('status','active')->count(),
+            'categories'             => Category::where('status', 'active')->count(),
+            'sub_categories'         => SubCategory::where('status', 'active')->count(),
+            'sub_sub_categories'     => SubCategory::where('status', 'active')->count(),
+            'sub_sub_sub_categories' => SubSubCategory::where('status', 'active')->count(),
         ];
-        return view('admin.pages.site-content.all',$data);
+        return view('admin.pages.site-content.all', $data);
+    }
+    public function siteDashboard()
+    {
+        $data = [
+            'brands'                 => Brand::where('status', 'active')->count(),
+            'brands'                 => Brand::where('status', 'active')->count(),
+            'brands'                 => Brand::where('status', 'active')->count(),
+            'brands'                 => Brand::where('status', 'active')->count(),
+            'solutions'              => SolutionDetail::where('status', 'active')->count(),
+            'features'               => Feature::where('status', 'active')->count(),
+            'categories'             => Category::where('status', 'active')->count(),
+            'sub_categories'         => SubCategory::where('status', 'active')->count(),
+            'sub_sub_categories'     => SubCategory::where('status', 'active')->count(),
+            'total_products'         => Product::where('status', 'active')->count(),
+            'approved_products'      => Product::where('status', 'active')->where('product_status', 'product')->count(),
+            'sourced_products'       => Product::where('status', 'active')->where('product_status', 'sourcing')->count(),
+        ];
+        return view('metronic.pages.dashboard.siteDashboard', $data);
     }
 
     public function siteSetting()
@@ -99,7 +104,7 @@ class DashboardController extends Controller
         $data['event_categorys'] = [];
         $data['users'] = User::latest('id', 'DESC')->get();
         $notices = Notice::latest('id')->get();
-        $data['leave_applications'] = LeaveApplication::get(['name','id', 'status']);
+        $data['leave_applications'] = LeaveApplication::get(['name', 'id', 'status']);
         // return view('admin.pages.HrandAdmin.all', $data);
         return view('admin.pages.HrandAdmin.all', [
             'attendanceData'     => $attendanceData,
