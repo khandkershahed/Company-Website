@@ -175,6 +175,7 @@ class SolutionCMSController extends Controller
                 'name'                             => $request->name,
                 'header'                           => $request->header,
                 'industry_id'                      => json_encode($request->industry_id),
+                'solution_template'                => $request->solution_template,
                 'banner_image'                     => $uploadedFiles['banner_image']['status']               == 1 ? $uploadedFiles['banner_image']['file_path']              : $solution->banner_image,
                 'thumbnail_image'                  => $uploadedFiles['thumbnail_image']['status']            == 1 ? $uploadedFiles['thumbnail_image']['file_path']           : $solution->thumbnail_image,
                 'row_two_column_one_image'         => $uploadedFiles['row_two_column_one_image']['status']   == 1 ? $uploadedFiles['row_two_column_one_image']['file_path']  : $solution->row_two_column_one_image,
