@@ -23,7 +23,7 @@
             .box_details {
                 padding:5px 1rem !important;
             }
-            
+
 
             .border-right {
                 border-top-right-radius: 50px !important;
@@ -354,8 +354,7 @@
                                                             <div
                                                                 class="box_details d-flex justify-content-between align-items-center bg-light p-1 rounded-0 border-right">
                                                                 <div>
-                                                                    <span class="link_title_admin">Learnmore
-                                                                        Page</span>
+                                                                    <span class="link_title_admin">Learnmore Page</span>
                                                                 </div>
                                                                 <a href="{{ route('learnMore.create') }}">
                                                                     <i class="fas fa-plus-circle text-active-primary"></i>

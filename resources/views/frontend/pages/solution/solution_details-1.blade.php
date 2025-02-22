@@ -255,85 +255,93 @@
                                 !empty($solution->row_two_column_four_title) ||
                                 !empty($solution->row_two_column_four_description) ||
                                 !empty($solution->row_two_column_four_link))
-                            <div class="col-lg-4 col-md-6 mb-3">
-                                <div>
-                                    <div class="d-flex justify-content-center mb-4">
-                                        <a href="{{ $solution->row_two_column_one_link ?? 'javascript:void(0)' }}">
-                                            <img class="card-img-top"
-                                                src="{{ !empty($solution->row_two_column_one_image) && file_exists(public_path('storage/' . $solution->row_two_column_one_image)) ? asset('storage/' . $solution->row_two_column_one_image) : asset('frontend/images/no-img-png.png') }}"
-                                                alt="Card image cap" style="width: 200px;">
-                                        </a>
-                                    </div>
+                           @if (!empty($solution->row_two_column_one_image))
+                             <div class="col-lg-4 col-md-6 mb-3">
+                                 <div>
+                                     <div class="d-flex justify-content-center mb-4">
+                                         <a href="{{ $solution->row_two_column_one_link ?? 'javascript:void(0)' }}">
+                                             <img class="card-img-top"
+                                                 src="{{ !empty($solution->row_two_column_one_image) && file_exists(public_path('storage/' . $solution->row_two_column_one_image)) ? asset('storage/' . $solution->row_two_column_one_image) : asset('frontend/images/no-img-png.png') }}"
+                                                 alt="Card image cap" style="width: 200px;">
+                                         </a>
+                                     </div>
+                                     <div>
+                                         <a href="{{ $solution->row_two_column_one_link ?? 'javascript:void(0)' }}">
+                                             <h5 class="text-center">{{ $solution->row_two_column_one_title }}</h5>
+                                             <ul class="">
+                                                 <p>{{ $solution->row_two_column_one_description }}</p>
+                                             </ul>
+                                         </a>
+                                     </div>
+                                 </div>
+                             </div>
+                           @endif
+                            @if (!empty($solution->row_two_column_two_image))
+                                <div class="col-lg-4 col-md-6 mb-3">
                                     <div>
-                                        <a href="{{ $solution->row_two_column_one_link ?? 'javascript:void(0)' }}">
-                                            <h5 class="text-center">{{ $solution->row_two_column_one_title }}</h5>
-                                            <ul class="">
-                                                <p>{{ $solution->row_two_column_one_description }}</p>
-                                            </ul>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 mb-3">
-                                <div>
-                                    <div class="d-flex justify-content-center mb-4">
-                                        <a href="{{ $solution->row_two_column_two_link ?? 'javascript:void(0)' }}">
-                                            <img class="card-img-top"
-                                                src="{{ !empty($solution->row_two_column_two_image) && file_exists(public_path('storage/' . $solution->row_two_column_two_image)) ? asset('storage/' . $solution->row_two_column_two_image) : asset('frontend/images/no-img-png.png') }}"
-                                                alt="Card image cap" style="width: 200px;">
-                                        </a>
+                                        <div class="d-flex justify-content-center mb-4">
+                                            <a href="{{ $solution->row_two_column_two_link ?? 'javascript:void(0)' }}">
+                                                <img class="card-img-top"
+                                                    src="{{ !empty($solution->row_two_column_two_image) && file_exists(public_path('storage/' . $solution->row_two_column_two_image)) ? asset('storage/' . $solution->row_two_column_two_image) : asset('frontend/images/no-img-png.png') }}"
+                                                    alt="Card image cap" style="width: 200px;">
+                                            </a>
 
-                                    </div>
-                                    <div>
-                                        <a href="{{ $solution->row_two_column_two_link ?? 'javascript:void(0)' }}">
-                                            <h5 class="text-center">{{ $solution->row_two_column_two_title }}</h5>
-                                            <ul class="">
-                                                <p>{{ $solution->row_two_column_two_description }}</p>
-                                            </ul>
-                                        </a>
+                                        </div>
+                                        <div>
+                                            <a href="{{ $solution->row_two_column_two_link ?? 'javascript:void(0)' }}">
+                                                <h5 class="text-center">{{ $solution->row_two_column_two_title }}</h5>
+                                                <ul class="">
+                                                    <p>{{ $solution->row_two_column_two_description }}</p>
+                                                </ul>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 mb-3">
-                                <div>
-                                    <div class="d-flex justify-content-center mb-4">
-                                        <a href="{{ $solution->row_two_column_three_link ?? 'javascript:void(0)' }}">
-                                            <img class="card-img-top"
-                                                src="{{ !empty($solution->row_two_column_three_image) && file_exists(public_path('storage/' . $solution->row_two_column_three_image)) ? asset('storage/' . $solution->row_two_column_three_image) : asset('frontend/images/no-img-png.png') }}"
-                                                alt="Card image cap" style="width: 200px;">
-                                        </a>
+                            @endif
+                            @if (!empty($solution->row_two_column_three_image))
+                                <div class="col-lg-4 col-md-6 mb-3">
+                                    <div>
+                                        <div class="d-flex justify-content-center mb-4">
+                                            <a href="{{ $solution->row_two_column_three_link ?? 'javascript:void(0)' }}">
+                                                <img class="card-img-top"
+                                                    src="{{ !empty($solution->row_two_column_three_image) && file_exists(public_path('storage/' . $solution->row_two_column_three_image)) ? asset('storage/' . $solution->row_two_column_three_image) : asset('frontend/images/no-img-png.png') }}"
+                                                    alt="Card image cap" style="width: 200px;">
+                                            </a>
 
-                                    </div>
-                                    <div>
-                                        <a href="{{ $solution->row_two_column_three_link ?? 'javascript:void(0)' }}">
-                                            <h5 class="text-center">{{ $solution->row_two_column_three_title }}</h5>
-                                            <ul class="">
-                                                <p>{{ $solution->row_two_column_three_description }}</p>
-                                            </ul>
-                                        </a>
+                                        </div>
+                                        <div>
+                                            <a href="{{ $solution->row_two_column_three_link ?? 'javascript:void(0)' }}">
+                                                <h5 class="text-center">{{ $solution->row_two_column_three_title }}</h5>
+                                                <ul class="">
+                                                    <p>{{ $solution->row_two_column_three_description }}</p>
+                                                </ul>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 mb-3">
-                                <div>
-                                    <div class="d-flex justify-content-center mb-4">
-                                        <a href="{{ $solution->row_two_column_four_link ?? 'javascript:void(0)' }}">
-                                            <img class="card-img-top"
-                                                src="{{ !empty($solution->row_two_column_four_image) && file_exists(public_path('storage/' . $solution->row_two_column_four_image)) ? asset('storage/' . $solution->row_two_column_four_image) : asset('frontend/images/no-img-png.png') }}"
-                                                alt="Card image cap" style="width: 200px;">
-                                        </a>
+                            @endif
+                            @if (!empty($solution->row_two_column_four_image))
+                                <div class="col-lg-4 col-md-6 mb-3">
+                                    <div>
+                                        <div class="d-flex justify-content-center mb-4">
+                                            <a href="{{ $solution->row_two_column_four_link ?? 'javascript:void(0)' }}">
+                                                <img class="card-img-top"
+                                                    src="{{ !empty($solution->row_two_column_four_image) && file_exists(public_path('storage/' . $solution->row_two_column_four_image)) ? asset('storage/' . $solution->row_two_column_four_image) : asset('frontend/images/no-img-png.png') }}"
+                                                    alt="Card image cap" style="width: 200px;">
+                                            </a>
 
-                                    </div>
-                                    <div>
-                                        <a href="{{ $solution->row_two_column_four_link ?? 'javascript:void(0)' }}">
-                                            <h5 class="text-center">{{ $solution->row_two_column_four_title }}</h5>
-                                            <ul class="">
-                                                <p>{{ $solution->row_two_column_four_description }}</p>
-                                            </ul>
-                                        </a>
+                                        </div>
+                                        <div>
+                                            <a href="{{ $solution->row_two_column_four_link ?? 'javascript:void(0)' }}">
+                                                <h5 class="text-center">{{ $solution->row_two_column_four_title }}</h5>
+                                                <ul class="">
+                                                    <p>{{ $solution->row_two_column_four_description }}</p>
+                                                </ul>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                         @endif
                     </div>
                 </div>

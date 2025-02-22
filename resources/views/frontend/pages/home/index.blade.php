@@ -313,7 +313,7 @@
 @if (!empty($storys))
     <section>
         <div class="container my-4 mb-5 d-lg-block d-sm-none">
-            <h2 class="text-center"><span class="main_color">Storys</span></h2>
+            <h2 class="text-center"><span class="main_color">Stories</span></h2>
             <div class="row">
                 @foreach ($storys as $story)
                     @if (!empty($story))
