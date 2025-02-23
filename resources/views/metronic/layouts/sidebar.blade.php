@@ -64,12 +64,14 @@
                                 'product-sourcing.index',
                                 'product.saved',
                                 'product.sourced',
-                                'product.approved', 'product-sourcing.create', 'product-sourcing.edit'
+                                'product.approved',
+                                'product-sourcing.create',
+                                'product-sourcing.edit',
                             ],
                             'subMenu' => [
                                 [
                                     'title' => 'Brand Management',
-                                    'routes' => ['admin.brand.index','admin.brand.create', 'admin.brand.edit'],
+                                    'routes' => ['admin.brand.index', 'admin.brand.create', 'admin.brand.edit'],
                                     'route' => 'admin.brand.index',
                                 ],
                                 // [
@@ -79,7 +81,14 @@
                                 // ],
                                 [
                                     'title' => 'Sourcing',
-                                    'routes' => ['product-sourcing.index', 'product.saved', 'product.sourced', 'product.approved', 'product-sourcing.create', 'product-sourcing.edit'],
+                                    'routes' => [
+                                        'product-sourcing.index',
+                                        'product.saved',
+                                        'product.sourced',
+                                        'product.approved',
+                                        'product-sourcing.create',
+                                        'product-sourcing.edit',
+                                    ],
                                     'route' => 'product-sourcing.index',
                                 ],
                             ],
@@ -123,14 +132,30 @@
                                 ],
                                 [
                                     'title' => 'Solution CMS',
-                                    'routes' => ['admin.solution-cms.index',
-                                            'admin.solution-cms.create',
-                                            'admin.solution-cms.edit'],
+                                    'routes' => [
+                                        'admin.solution-cms.index',
+                                        'admin.solution-cms.create',
+                                        'admin.solution-cms.edit',
+                                    ],
                                     'route' => 'admin.solution-cms.index',
                                 ],
                             ],
                         ],
 
+                        [
+                            'title' => 'CRM',
+                            'icon' => 'fa-duotone fa-headphones-simple fs-3',
+                            'routes' => [
+                                'admin.contact.index',
+                            ],
+                            'subMenu' => [
+                                [
+                                    'title' => 'Contact Messages',
+                                    'routes' => ['admin.contact.index'],
+                                    'route' => 'admin.contact.index',
+                                ],
+                            ],
+                        ],
                     ];
                 @endphp
 

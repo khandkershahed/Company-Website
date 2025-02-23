@@ -125,17 +125,14 @@
                             <i class="fa-light fa-people-roof side_baricon"></i>
                             <span class="text-start ">CRM</span></a>
                         <ul class="nav-group-sub collapse ms-4" style="">
-                            <li class="nav-item"><a href="{{ route('crm.index') }}" class="nav-link">Dashboard</a>
-                            </li>
+
                             <li class="nav-item"><a href="{{ route('contact.index') }}" class="nav-link">Contact</a>
                             </li>
-                            <li class="nav-item"><a href="{{ route('client-support.index') }}"
+                            {{-- <li class="nav-item"><a href="{{ route('client-support.index') }}"
                                     class="nav-link">Client Support</a></li>
-                            <li class="nav-item"><a href="{{ route('feedback.index') }}" class="nav-link">Feed
-                                    Back</a>
-                            </li>
+
                             <li class="nav-item"><a href="{{ route('client-database.index') }}"
-                                    class="nav-link">Client Database</a></li>
+                                    class="nav-link">Client Database</a></li> --}}
                             {{-- <li class="nav-item"><a href="" class="nav-link">Live Chat</a></li> --}}
                         </ul>
 

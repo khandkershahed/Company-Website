@@ -146,6 +146,11 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
         ]
     );
+    Route::resources(
+        [
+            'contact'      => ContactController::class,
+        ]
+    );
     Route::post('template/store', [SolutionCMSController::class, 'templateStore'])->name('solution.template.add');
     Route::get('/rfqFilter', [RfqController::class, 'filterRFQ'])->name('rfq.filter');
 
@@ -464,14 +469,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'knowledge'                  => KnowledgeController::class,
             'presentation'               => PresentationController::class,
             'show-case-video'            => ShowCaseVideoController::class,
-            'admin-menu-builder'         => AdminMenuBuilderController::class,
             'client-database'            => ClientDatabaseController::class,
             'category'                   => CategoryController::class,
             // 'brand'                      => BrandController::class,
             'success'                    => SuccessController::class,
             // 'setting'                 => SettingController::class,
             // 'solution'                   => SolutionController::class,
-            'contact'                    => ContactController::class,
+
             'newsLetter'                 => NewsLetterController::class,
             'partnerPermission'          => PartnerPermission::class,
             'homepage'                   => HomepageController::class,
@@ -500,7 +504,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'expense-category'           => ExpenseCategoryController::class,
             'expense-type'               => ExpenseTypeController::class,
             'tax-vat'                    => TaxVatController::class,
-            'crm'                        => CRMController::class,
             'delivery'                   => DeliveryController::class,
             'offer-price'                => OfferPriceController::class,
 
@@ -514,7 +517,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'training-page'             => TrainingPageController::class, // done
             'tax-vat'                   => TaxVatController::class, // done
             'expense-category'          => ExpenseCategoryController::class, // done
-            'frontend-menu-builder'     => FrontendMenuBuilderController::class, //pending
             'about-us'                  => AboutUsController::class, //pending
             'expense-type'              => ExpenseTypeController::class, //done
             'tier-calculation'          => TierCalculationController::class, //done

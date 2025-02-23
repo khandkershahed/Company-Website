@@ -21,7 +21,7 @@
                         <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
                     </a>
                 </div>
-            </div>
+            </div> 
         </div>
         <!-- /page header -->
 

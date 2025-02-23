@@ -57386,7 +57386,8 @@ body {
 .aside-dark .menu .menu-item.show > .menu-link .menu-icon,
 .aside-dark .menu .menu-item.show > .menu-link .menu-icon .svg-icon,
 .aside-dark .menu .menu-item.show > .menu-link .menu-icon i {
-    color: #500066;
+    color: #fff;
+    /* color: #500066; */
 }
 
 .aside-dark .menu .menu-item.show > .menu-link .menu-bullet .bullet {

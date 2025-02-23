@@ -19,25 +19,11 @@ class ContactController extends Controller
     public function index()
     {
         $data['contacts'] = Contact::where('type', '=', 'contact')->orderBy('id', 'DESC')->get();
-        return view('admin.pages.contact.all', $data);
+        return view('metronic.pages.contact.index', $data);
+        // return view('admin.pages.contact.all', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.pages.contact.add');
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -107,16 +93,6 @@ class ContactController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -127,7 +103,7 @@ class ContactController extends Controller
     public function edit($id)
     {
         $data['contact'] = Contact::find($id);
-        return view('admin.pages.contact.edit', $data);
+        return view('metronic.pages.contact.edit', $data);
     }
 
     /**

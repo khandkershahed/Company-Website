@@ -191,6 +191,12 @@
             </div>
             <div class="tab-pane fade" id="template_one_section_four" role="tabpanel">
                 <div class="row justify-content-center">
+                    <x-metronic.label class="form-label required">Section title</x-metronic.label>
+                    <x-metronic.input type="text" name="row_four_title" class="mb-2 form-control"
+                        placeholder="Section row_four_title" :value="old('row_four_title', $solution->row_four_title)">
+                    </x-metronic.input>
+                </div>
+                <div class="row justify-content-center">
                     <div class="col-lg-6 border mb-7">
                         <h5 class="my-5 text-center">Tab One</h5>
                         <div class="mb-7">
