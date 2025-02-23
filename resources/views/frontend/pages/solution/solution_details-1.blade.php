@@ -367,140 +367,148 @@
             </section>
         @endif
 
-        <section class="bg-colors-ind py-5" id="solutions">
-            <div class="container py-5 pt-0 pb-0 pb-lg-5">
-                <h1 class="fw-bold text-center pb-5 text-white">Related Insights</h1>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="row">
-                            <div class="col-lg-12 col-12" style="border-bottom: 1px solid white">
-                                <ul class="nav nav-tabs justify-content-between" id="myTab" role="tablist"
-                                    style="margin-bottom: -4.1px;">
-                                    <!-- First Set of Tabs -->
-                                    @if (!empty($solution->row_five_badge))
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link active growth-tabs-triger text-white" id="first-tab-1"
-                                                data-bs-toggle="tab" data-bs-target="#first-content-1" type="button"
-                                                role="tab" aria-controls="first-content-1" aria-selected="true">
-                                                {{ $solution->row_five_badge }}
-                                            </button>
-                                        </li>
-                                    @endif
-                                    @if (!empty($solution->row_six_badge))
-                                        <li class="nav-item border-0 rounded-0" role="presentation">
-                                            <button class="nav-link growth-tabs-triger text-white" id="first-tab-2"
-                                                data-bs-toggle="tab" data-bs-target="#first-content-2" type="button"
-                                                role="tab" aria-controls="first-content-2" aria-selected="false">
-                                                {{ $solution->row_six_badge }}
-                                            </button>
-                                        </li>
-                                    @endif
-                                    @if (!empty($solution->row_seven_badge))
-                                        <li class="nav-item border-0 rounded-0" role="presentation">
-                                            <button class="nav-link growth-tabs-triger text-white" id="first-tab-3"
-                                                data-bs-toggle="tab" data-bs-target="#first-content-3" type="button"
-                                                role="tab" aria-controls="first-content-3" aria-selected="false">
-                                                {{ $solution->row_seven_badge }}
-                                            </button>
-                                        </li>
-                                    @endif
-                                </ul>
+        @if (!empty($solution->row_five_badge) || !empty($solution->row_six_badge) || !empty($solution->row_seven_badge) || !empty($solution->row_four_title))
+            <section class="bg-colors-ind py-5" id="solutions">
+                <div class="container py-5 pt-0 pb-0 pb-lg-5">
+                    <h1 class="fw-bold text-center pb-5 text-white">{{ $solution->row_four_title }}</h1>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-12 col-12" style="border-bottom: 1px solid white">
+                                    <ul class="nav nav-tabs justify-content-between" id="myTab" role="tablist"
+                                        style="margin-bottom: -4.1px;">
+                                        <!-- First Set of Tabs -->
+                                        @if (!empty($solution->row_five_badge))
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active growth-tabs-triger text-white" id="first-tab-1"
+                                                    data-bs-toggle="tab" data-bs-target="#first-content-1" type="button"
+                                                    role="tab" aria-controls="first-content-1" aria-selected="true">
+                                                    {{ $solution->row_five_badge }}
+                                                </button>
+                                            </li>
+                                        @endif
+                                        @if (!empty($solution->row_six_badge))
+                                            <li class="nav-item border-0 rounded-0" role="presentation">
+                                                <button class="nav-link growth-tabs-triger text-white" id="first-tab-2"
+                                                    data-bs-toggle="tab" data-bs-target="#first-content-2" type="button"
+                                                    role="tab" aria-controls="first-content-2" aria-selected="false">
+                                                    {{ $solution->row_six_badge }}
+                                                </button>
+                                            </li>
+                                        @endif
+                                        @if (!empty($solution->row_seven_badge))
+                                            <li class="nav-item border-0 rounded-0" role="presentation">
+                                                <button class="nav-link growth-tabs-triger text-white" id="first-tab-3"
+                                                    data-bs-toggle="tab" data-bs-target="#first-content-3" type="button"
+                                                    role="tab" aria-controls="first-content-3" aria-selected="false">
+                                                    {{ $solution->row_seven_badge }}
+                                                </button>
+                                            </li>
+                                        @endif
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tab-content pt-5" id="myTabContent">
-                            <!-- First Set of Tab Contents -->
-                            @if (!empty($solution->row_five_badge))
-                                <div class="tab-pane fade show active" id="first-content-1" role="tabpanel"
-                                    aria-labelledby="first-tab-1">
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-6">
-                                            <div>
-                                                <img class="img-fluid"
-                                                    src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/solutions/Solutions-2-820x460.jpg"
-                                                    alt="" />
+                            <div class="tab-content pt-5" id="myTabContent">
+                                <!-- First Set of Tab Contents -->
+                                @if (!empty($solution->row_five_badge))
+                                    <div class="tab-pane fade show active" id="first-content-1" role="tabpanel"
+                                        aria-labelledby="first-tab-1">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-6">
+                                                <div>
+                                                    <img class="img-fluid"
+                                                        src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/solutions/Solutions-2-820x460.jpg"
+                                                        alt="" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <h3 class="text-white pb-3 pt-4 pt-lg-0">
-                                                {{ $solution->row_five_badge }}
-                                            </h3>
-                                            <p class="text-white">
-                                                {{ $solution->row_five_title }}
-                                            </p>
-                                            <p class="text-white">
-                                                {{ $solution->row_five_description }}
-                                            </p>
-                                            <div class="mt-4">
-                                                <a href="{{ $solution->row_five_link }}" class="btn btn-outline-light rounded-0 Content-watch px-4"
-                                                    style="text-decoration: none" tabindex="0">{{ $solution->row_five_btn_name }}</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                            @if (!empty($solution->row_six_badge))
-                                <div class="tab-pane fade" id="first-content-2" role="tabpanel"
-                                    aria-labelledby="first-tab-2">
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-6">
-                                            <div>
-                                                <img class="img-fluid"
-                                                    src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/solutions/Solutions-2-820x460.jpg"
-                                                    alt="" />
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <h3 class="text-white pb-3 pt-4 pt-lg-0">
-                                                {{ $solution->row_six_badge }}
-                                            </h3>
-                                            <p class="text-white">
-                                                {{ $solution->row_six_title }}
-                                            </p>
-                                            <p class="text-white">
-                                                {{ $solution->row_six_description }}
-                                            </p>
-                                            <div class="mt-4">
-                                                <a href="{{ $solution->row_six_link }}" class="btn btn-outline-light rounded-0 Content-watch px-4"
-                                                    style="text-decoration: none" tabindex="0">{{ $solution->row_six_btn_name }}</a>
+                                            <div class="col-lg-6">
+                                                <h3 class="text-white pb-3 pt-4 pt-lg-0">
+                                                    {{ $solution->row_five_badge }}
+                                                </h3>
+                                                <p class="text-white">
+                                                    {{ $solution->row_five_title }}
+                                                </p>
+                                                <p class="text-white">
+                                                    {{ $solution->row_five_description }}
+                                                </p>
+                                                @if (!empty($solution->row_five_link) || !empty($solution->row_five_btn_name))
+                                                    <div class="mt-4">
+                                                        <a href="{{ $solution->row_five_link }}" class="btn btn-outline-light rounded-0 Content-watch px-4"
+                                                            style="text-decoration: none" tabindex="0">{{ $solution->row_five_btn_name }}</a>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endif
-                            @if (!empty($solution->row_seven_badge))
-                                <div class="tab-pane fade" id="first-content-3" role="tabpanel"
-                                    aria-labelledby="first-tab-3">
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-6">
-                                            <div>
-                                                <img class="img-fluid"
-                                                    src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/solutions/Solutions-2-820x460.jpg"
-                                                    alt="" />
+                                @endif
+                                @if (!empty($solution->row_six_badge))
+                                    <div class="tab-pane fade" id="first-content-2" role="tabpanel"
+                                        aria-labelledby="first-tab-2">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-6">
+                                                <div>
+                                                    <img class="img-fluid"
+                                                        src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/solutions/Solutions-2-820x460.jpg"
+                                                        alt="" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <h3 class="text-white pb-3 pt-4 pt-lg-0">
-                                                {{ $solution->row_seven_badge }}
-                                            </h3>
-                                            <p class="text-white">
-                                                {{ $solution->row_seven_title }}
-                                            </p>
-                                            <p class="text-white">
-                                                {{ $solution->row_seven_description }}
-                                            </p>
-                                            <div class="mt-4">
-                                                <a href="{{ $solution->row_seven_link }}" class="btn btn-outline-light rounded-0 Content-watch px-4"
-                                                    style="text-decoration: none" tabindex="0">{{ $solution->row_seven_btn_name }}</a>
+                                            <div class="col-lg-6">
+                                                <h3 class="text-white pb-3 pt-4 pt-lg-0">
+                                                    {{ $solution->row_six_badge }}
+                                                </h3>
+                                                <p class="text-white">
+                                                    {{ $solution->row_six_title }}
+                                                </p>
+                                                <p class="text-white">
+                                                    {{ $solution->row_six_description }}
+                                                </p>
+                                                @if (!empty($solution->row_six_link) || !empty($solution->row_six_btn_name))
+                                                    <div class="mt-4">
+                                                        <a href="{{ $solution->row_six_link }}" class="btn btn-outline-light rounded-0 Content-watch px-4"
+                                                            style="text-decoration: none" tabindex="0">{{ $solution->row_six_btn_name }}</a>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endif
+                                @endif
+                                @if (!empty($solution->row_seven_badge))
+                                    <div class="tab-pane fade" id="first-content-3" role="tabpanel"
+                                        aria-labelledby="first-tab-3">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-6">
+                                                <div>
+                                                    <img class="img-fluid"
+                                                        src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/solutions/Solutions-2-820x460.jpg"
+                                                        alt="" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <h3 class="text-white pb-3 pt-4 pt-lg-0">
+                                                    {{ $solution->row_seven_badge }}
+                                                </h3>
+                                                <p class="text-white">
+                                                    {{ $solution->row_seven_title }}
+                                                </p>
+                                                <p class="text-white">
+                                                    {{ $solution->row_seven_description }}
+                                                </p>
+                                                @if (!empty($solution->row_seven_link) || !empty($solution->row_seven_btn_name))
+                                                    <div class="mt-4">
+                                                        <a href="{{ $solution->row_seven_link }}" class="btn btn-outline-light rounded-0 Content-watch px-4"
+                                                            style="text-decoration: none" tabindex="0">{{ $solution->row_seven_btn_name }}</a>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
 
         @if ($products->count() > 0)
             <section class="py-5" id="feature">

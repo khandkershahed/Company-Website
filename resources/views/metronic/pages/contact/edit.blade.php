@@ -10,7 +10,7 @@
             </div> --}}
         </div>
         <div class="card-body table-responsive">
-            <form method="post" action="{{ route('contact.update', $contact->id) }}">
+            <form method="post" action="{{ route('admin.contact.update', $contact->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <!--Banner Section-->
@@ -19,28 +19,18 @@
                         <div class="col">
                             <div class="px-2 py-2 rounded bg-light mt-2">
                                 {{--  --}}
-                                <div class="row mb-1">
-                                    <div class="col-lg-4 col-sm-12">
-                                        <span>First Name</span>
+                                <div class="row mb-5">
+                                    <div class="col-lg-2 col-sm-12">
+                                        <span> Name</span>
                                     </div>
                                     <div class="col-lg-8 col-sm-12">
-                                        <input type="text" name="fname" value="{{ $contact->fname }}"
+                                        <input type="text" name="name" value="{{ $contact->name }}"
                                             class="form-control form-control-sm" maxlength="100" required />
                                     </div>
                                 </div>
                                 {{--  --}}
-                                <div class="row mb-1">
-                                    <div class="col-lg-4 col-sm-12">
-                                        <span>Last Name </span>
-                                    </div>
-                                    <div class="col-lg-8 col-sm-12">
-                                        <input type="text" name="lname" value="{{ $contact->lname }}"
-                                            class="form-control form-control-sm" maxlength="100" required />
-                                    </div>
-                                </div>
-                                {{--  --}}
-                                <div class="row mb-1">
-                                    <div class="col-lg-4 col-sm-12">
+                                <div class="row mb-5">
+                                    <div class="col-lg-2 col-sm-12">
                                         <span>Phone</span>
                                     </div>
                                     <div class="col-lg-8 col-sm-12">
@@ -49,28 +39,8 @@
                                     </div>
                                 </div>
                                 {{--  --}}
-                                <div class="row mb-1">
-                                    <div class="col-lg-4 col-sm-12">
-                                        <span>State</span>
-                                    </div>
-                                    <div class="col-lg-8 col-sm-12">
-                                        <input type="text" name="state" value="{{ $contact->state }}"
-                                            class="form-control form-control-sm" maxlength="100" required />
-                                    </div>
-                                </div>
-                                {{--  --}}
-                                <div class="row mb-1">
-                                    <div class="col-lg-4 col-sm-12">
-                                        <span>Country</span>
-                                    </div>
-                                    <div class="col-lg-8 col-sm-12">
-                                        <input type="text" name="country" value="{{ $contact->country }}"
-                                            class="form-control form-control-sm" maxlength="100" required />
-                                    </div>
-                                </div>
-                                {{--  --}}
-                                <div class="row mb-1">
-                                    <div class="col-lg-4 col-sm-12">
+                                <div class="row mb-5">
+                                    <div class="col-lg-2 col-sm-12">
                                         <span>Email</span>
                                     </div>
                                     <div class="col-lg-8 col-sm-12">
@@ -78,9 +48,8 @@
                                             class="form-control form-control-sm" maxlength="100" required />
                                     </div>
                                 </div>
-                                {{--  --}}
-                                <div class="row mb-1">
-                                    <div class="col-lg-4 col-sm-12">
+                                <div class="row mb-5">
+                                    <div class="col-lg-2 col-sm-12">
                                         <span>Message Type</span>
                                     </div>
                                     <div class="col-lg-8 col-sm-12">
@@ -101,13 +70,13 @@
                                     </div>
                                 </div>
                                 {{--  --}}
-                                <div class="row mb-1">
-                                    <div class="col-lg-4 col-sm-12">
+                                <div class="row mb-5">
+                                    <div class="col-lg-2 col-sm-12">
                                         <span>Message</span>
                                     </div>
                                     <div class="col-lg-8 col-sm-12">
-                                        <textarea name="message" value="{{ $contact->message }}" id="" class="form-control" cols="30"
-                                            rows="2"></textarea>
+                                        <textarea name="message" id="" class="form-control" cols="30"
+                                            rows="5">{{ $contact->message }}</textarea>
                                     </div>
                                 </div>
                                 {{--  --}}
@@ -115,10 +84,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-5">
                     <div class="col d-flex justify-content-end mb-2 mx-2">
-                        <button type="submit" class="submit_btn from-prevent-multiple-submits"
-                            style="padding: 4px 9px;">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-active-secondary">Submit</button>
                     </div>
                 </div>
             </form>

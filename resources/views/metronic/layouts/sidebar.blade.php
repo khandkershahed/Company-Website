@@ -145,13 +145,11 @@
                         [
                             'title' => 'CRM',
                             'icon' => 'fa-duotone fa-headphones-simple fs-3',
-                            'routes' => [
-                                'admin.contact.index',
-                            ],
+                            'routes' => ['admin.contact.index', 'admin.contact.create', 'admin.contact.edit'],
                             'subMenu' => [
                                 [
                                     'title' => 'Contact Messages',
-                                    'routes' => ['admin.contact.index'],
+                                    'routes' => ['admin.contact.index', 'admin.contact.create', 'admin.contact.edit'],
                                     'route' => 'admin.contact.index',
                                 ],
                             ],
