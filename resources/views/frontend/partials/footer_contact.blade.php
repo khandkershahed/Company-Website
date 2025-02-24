@@ -2,19 +2,38 @@
 @php
     $setting = App\Models\Site::first();
 @endphp
-<section class=" solution_contact_wrapper">
-    <div class="container" id="Contact"> 
+<style>
+    .contact_wrapper {
+        background: url("{{ asset('images/contact_pattern.jpg') }}") no-repeat center center;
+        /* background-color: #252525; */
+        padding: 40px !important;
+    }
+    .screen{
+        background:  rgb(0, 20, 48);
+    }
+    .app-form-control{
+        border-bottom: 2px solid #fff;
+        color: #fff;
+    }
+    .app-form-control::placeholder{
+        color: #fff;
+        font-size: 14px;
+        padding-left: 10px;
+    }
+</style>
+<section class="contact_wrapper d-sm-none d-md-block">
+    <div class="container" id="Contact">
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-lg-5 col-sm-12">
                 <div class="thing_together_wrapper">
-                    <h4>
+                    <h4 class="main_color">
                         <span class="why_Choose_lineTop">L</span>et’s do big things together.
                     </h4>
-                    <p>Get assistance with tracking an order, requesting a quote, contacting your account representative
+                    <p class="text-black">Get assistance with tracking an order, requesting a quote, contacting your account representative
                         and more by phone or over chat.</p>
-                    <h5>NGen IT Global Headquarters</h5>
-                    <p>{{ !empty($setting->address) ? $setting->address : '' }}</p>
-                    <p>Billing & invoice: <span
+                    <h5 style="color:rgb(0, 20, 48);">NGen IT Global Headquarters</h5>
+                    <p class="text-black">{{ !empty($setting->address) ? $setting->address : '' }}</p>
+                    <p class="text-black">Billing & invoice: <span
                             class="font-number">{{ !empty($setting->support_email) ? $setting->support_email : '' }}</span>
                         <br> Information and sales: <span
                             class="">{{ !empty($setting->sales_email) ? $setting->sales_email : '' }}</span>
@@ -45,7 +64,7 @@
                             </div>
                             <div class="screen-body">
                                 <div class="screen-body-item left">
-                                    <div class="app-title">
+                                    <div class="app-title text-white">
                                         <span>CONTACT</span>
                                         <span>US</span>
                                     </div>
@@ -57,26 +76,29 @@
                                         <div class="app-form row">
                                             <div class="app-form-group">
                                                 <input type="hidden" name="type" value="contact">
-                                                <input name="name" class="app-form-control" placeholder="Full NAME"
+                                                <input name="name" class="app-form-control" placeholder="Full Name *"
                                                     value="{{ old('name') }}" required>
                                             </div>
                                             <div class="app-form-group">
-                                                <input name="email" class="app-form-control" placeholder="EMAIL Id"
+                                                <input name="email" class="app-form-control" placeholder="Email Id *"
                                                     value="{{ old('email') }}" required>
                                             </div>
                                             <div class="app-form-group">
-                                                <input name="phone" class="app-form-control" placeholder="CONTACT NO"
+                                                <input name="phone" class="app-form-control" placeholder="Contact No "
                                                     value="{{ old('phone') }}">
                                             </div>
                                             <div class="app-form-group message">
                                                 <textarea name="message" class="app-form-control" rows="3" placeholder="Your Message"></textarea>
 
                                             </div>
-                                            <div class="app-form-group message g-recaptcha" data-sitekey="{{ config('app.recaptcha_site_key') }}"></div>
-                                            <div class="app-form-group buttons">
-                                                <button class="app-form-button"
-                                                    type="submit"><strong>SEND</strong></button>
+                                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <div class="g-recaptcha" data-sitekey="{{ config('app.recaptcha_site_key') }}"></div>
+                                                <div class="app-form-group buttons">
+                                                    <button class="btn-white"
+                                                        type="submit"><strong>SEND</strong></button>
+                                                </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </form>
