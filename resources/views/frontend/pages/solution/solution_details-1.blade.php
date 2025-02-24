@@ -431,7 +431,7 @@
                                                 <p class="text-white">
                                                     {{ $solution->row_five_description }}
                                                 </p>
-                                                @if (!empty($solution->row_five_link) || !empty($solution->row_five_btn_name))
+                                                @if (!empty($solution->row_five_link) && !empty($solution->row_five_btn_name))
                                                     <div class="mt-4">
                                                         <a href="{{ $solution->row_five_link }}" class="btn btn-outline-light rounded-0 Content-watch px-4"
                                                             style="text-decoration: none" tabindex="0">{{ $solution->row_five_btn_name }}</a>
@@ -462,7 +462,7 @@
                                                 <p class="text-white">
                                                     {{ $solution->row_six_description }}
                                                 </p>
-                                                @if (!empty($solution->row_six_link) || !empty($solution->row_six_btn_name))
+                                                @if (!empty($solution->row_six_link) && !empty($solution->row_six_btn_name))
                                                     <div class="mt-4">
                                                         <a href="{{ $solution->row_six_link }}" class="btn btn-outline-light rounded-0 Content-watch px-4"
                                                             style="text-decoration: none" tabindex="0">{{ $solution->row_six_btn_name }}</a>
@@ -493,7 +493,7 @@
                                                 <p class="text-white">
                                                     {{ $solution->row_seven_description }}
                                                 </p>
-                                                @if (!empty($solution->row_seven_link) || !empty($solution->row_seven_btn_name))
+                                                @if (!empty($solution->row_seven_link) && !empty($solution->row_seven_btn_name))
                                                     <div class="mt-4">
                                                         <a href="{{ $solution->row_seven_link }}" class="btn btn-outline-light rounded-0 Content-watch px-4"
                                                             style="text-decoration: none" tabindex="0">{{ $solution->row_seven_btn_name }}</a>
