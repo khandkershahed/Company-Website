@@ -552,7 +552,15 @@
     .category-titles{
         font-size: 24px;
     }
-
+    .nav-tabs{
+        margin-bottom: 5px !important;
+    }
+    .nav-tabs .nav-item .growth-tabs-triger {
+        border: 1px solid #dbdbdb;
+    }
+    .nav-tabs .nav-item .growth-tabs-triger .active{
+        border: 1px solid #ae0a46 !important;
+    }
 }
 
 @media (min-width: 576px) {
