@@ -558,12 +558,10 @@
     .nav-tabs .nav-item .growth-tabs-triger {
         border: 1px solid #dbdbdb;
     }
-    .nav-tabs .nav-item .growth-tabs-triger .active{
-
-        border: 1px solid #ae0a46 !important;
-    }
+    
     .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
         border-bottom: 0px !important;
+        border: 2px solid #ae0a46 !important;
     }
 }
 
