@@ -565,6 +565,9 @@
         border-radius: 60px !important;
         border: 5px solid #87e173 !important;
     }
+    .tab_title{
+        text-align: center;
+    }
 }
 
 @media (min-width: 576px) {

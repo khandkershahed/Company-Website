@@ -430,7 +430,7 @@
                                                 <h3 class="text-white pb-3 pt-4 pt-lg-0">
                                                     {{ $solution->row_five_badge }}
                                                 </h3>
-                                                <p class="text-white">
+                                                <p class="text-white tab_title">
                                                     {{ $solution->row_five_title }}
                                                 </p>
                                                 <p class="text-white">
@@ -461,7 +461,7 @@
                                                 <h3 class="text-white pb-3 pt-4 pt-lg-0">
                                                     {{ $solution->row_six_badge }}
                                                 </h3>
-                                                <p class="text-white">
+                                                <p class="text-white tab_title">
                                                     {{ $solution->row_six_title }}
                                                 </p>
                                                 <p class="text-white">
@@ -492,7 +492,7 @@
                                                 <h3 class="text-white pb-3 pt-4 pt-lg-0">
                                                     {{ $solution->row_seven_badge }}
                                                 </h3>
-                                                <p class="text-white">
+                                                <p class="text-white tab_title">
                                                     {{ $solution->row_seven_title }}
                                                 </p>
                                                 <p class="text-white">
