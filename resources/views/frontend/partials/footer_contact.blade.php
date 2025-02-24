@@ -51,7 +51,7 @@
                 <div class="background">
                     <div class="containers">
                         <div class="screen">
-                            <div class="screen-header" style="background: rgb(0 20 48 / 86%);">
+                            <div class="screen-header" style="background: rgb(0 20 48 / 90%);">
                                 <div class="screen-header-left">
                                     <div class="screen-header-button maximize"></div>
                                     <div class="screen-header-button minimize"></div>
