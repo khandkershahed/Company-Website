@@ -59063,9 +59063,11 @@ th {
 }
 
 .nav-line-tabs .nav-item .nav-link.active, .nav-line-tabs .nav-item .nav-link:hover:not(.disabled), .nav-line-tabs .nav-item.show .nav-link {
-    background-color: #1f212a;
+    background-color: #9d9b9c;
+    /* background-color: #1f212a; */
     border: 0;
-    border-bottom: 1px solid #1f212a;
+    border-bottom: 1px solid #9d9b9c;
+    /* border-bottom: 1px solid #1f212a; */
     transition: color 0.2s ease, background-color 0.2s ease;
     padding: 13px;
     color: white !important;

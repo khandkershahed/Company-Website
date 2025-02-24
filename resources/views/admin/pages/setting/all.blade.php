@@ -1,5 +1,5 @@
 @extends('admin.master')
-@section('content')
+@section('content') 
     <div class="content-wrapper">
         <!-- Inner content -->
         <!-- Page header -->

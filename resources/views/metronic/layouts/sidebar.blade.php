@@ -154,6 +154,19 @@
                                 ],
                             ],
                         ],
+
+                        [
+                            'title' => 'Settings',
+                            'icon' => 'fa-duotone fa-cog fs-3',
+                            'routes' => ['admin.contact.index', 'admin.contact.create', 'admin.contact.edit'],
+                            'subMenu' => [
+                                [
+                                    'title' => 'Contact Messages',
+                                    'routes' => ['admin.contact.index', 'admin.contact.create', 'admin.contact.edit'],
+                                    'route' => 'admin.contact.index',
+                                ],
+                            ],
+                        ],
                     ];
                 @endphp
 

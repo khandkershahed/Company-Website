@@ -26,7 +26,8 @@ class WebSettingController extends Controller
             'site'      => Site::first(),
             'countries' => Country::get(),
         ];
-        return view('admin.pages.setting.all', $data);
+        return view('metronic.pages.setting.index', $data);
+        // return view('admin.pages.setting.all', $data);
     }
 
     function seo(SeoRequest $request)

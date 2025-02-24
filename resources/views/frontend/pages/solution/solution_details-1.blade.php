@@ -417,7 +417,7 @@
                                             <div class="col-lg-6">
                                                 <div>
                                                     <img class="img-fluid"
-                                                        src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/solutions/Solutions-2-820x460.jpg"
+                                                        src="{{ !empty($solution->row_five_image) && file_exists(public_path('storage/' . $solution->row_five_image)) ? asset('storage/' . $solution->row_five_image) : asset('frontend/images/no-row-img(580-326).png') }}"
                                                         alt="" />
                                                 </div>
                                             </div>
@@ -448,7 +448,7 @@
                                             <div class="col-lg-6">
                                                 <div>
                                                     <img class="img-fluid"
-                                                        src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/solutions/Solutions-2-820x460.jpg"
+                                                        src="{{ !empty($solution->row_six_image) && file_exists(public_path('storage/' . $solution->row_six_image)) ? asset('storage/' . $solution->row_six_image) : asset('frontend/images/no-row-img(580-326).png') }}"
                                                         alt="" />
                                                 </div>
                                             </div>
@@ -479,7 +479,7 @@
                                             <div class="col-lg-6">
                                                 <div>
                                                     <img class="img-fluid"
-                                                        src="https://advcloudfiles.advantech.com/web/Images/Solutions/iFactory/202212version/solutions/Solutions-2-820x460.jpg"
+                                                        src="{{ !empty($solution->row_seven_image) && file_exists(public_path('storage/' . $solution->row_seven_image)) ? asset('storage/' . $solution->row_seven_image) : asset('frontend/images/no-row-img(580-326).png') }}"
                                                         alt="" />
                                                 </div>
                                             </div>

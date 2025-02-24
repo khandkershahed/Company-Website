@@ -153,6 +153,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     );
     Route::post('template/store', [SolutionCMSController::class, 'templateStore'])->name('solution.template.add');
     Route::get('/rfqFilter', [RfqController::class, 'filterRFQ'])->name('rfq.filter');
+    Route::get('web-setting', [WebSettingController::class, 'index'])->name('setting.index');
 
     // Toggle Status
     Route::post('brands/toggle-status/{id}', [BrandController::class, 'toggleStatus'])->name('brands.toggle-status');
@@ -170,6 +171,12 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('marketing-dashboard', 'marketingDashboard')->name('marketing-dashboard.index');
     });
 });
+
+
+// Route::get('web-setting', [WebSettingController::class, 'index'])->name('setting.index');
+    Route::put('seo/setting', [WebSettingController::class, 'seo'])->name('seo.setting');
+    Route::put('smtp/setting', [WebSettingController::class, 'smtp'])->name('smtp.setting');
+    Route::put('site/setting', [WebSettingController::class, 'site'])->name('site.setting');
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
@@ -437,10 +444,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('sales-dashboard', 'salesDashboard')->name('sales-dashboard.index');
         Route::get('marketing-dashboard', 'marketingDashboard')->name('marketing-dashboard.index');
     });
-    Route::get('web-setting', [WebSettingController::class, 'index'])->name('setting.index');
-    Route::put('seo/setting', [WebSettingController::class, 'seo'])->name('seo.setting');
-    Route::put('smtp/setting', [WebSettingController::class, 'smtp'])->name('smtp.setting');
-    Route::put('site/setting', [WebSettingController::class, 'site'])->name('site.setting');
+
 
     Route::resources(
         [
