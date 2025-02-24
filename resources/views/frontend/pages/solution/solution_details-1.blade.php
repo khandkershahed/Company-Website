@@ -362,7 +362,7 @@
                                 <h3 class="category-titles py-4 pt-5">
                                     {{ $solution->row_three_title }}
                                 </h3>
-                                <p class="mx-auto" style="text-align: justify">
+                                <p class="mx-auto px-0">
                                     {{ $solution->row_three_header }}
                                 </p>
                             </div>
