@@ -50,7 +50,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="text-center mb-3">
-                                <h1 class="fw-bold">{{ $solution->row_two_title }}</h1>
+                                <h2 class="fw-bold">{{ $solution->row_two_title }}</h2>
                                 <p class="pt-4 mx-auto" style="text-align: justify">
                                     {{ $solution->row_two_header }}
                                 </p>
@@ -375,7 +375,7 @@
         @if (!empty($solution->row_five_badge) || !empty($solution->row_six_badge) || !empty($solution->row_seven_badge) || !empty($solution->row_four_title))
             <section class="bg-colors-ind py-5" id="solutions">
                 <div class="container py-5 pt-0 pb-0 pb-lg-5">
-                    <h1 class="fw-bold text-center pb-5 text-white">{{ $solution->row_four_title }}</h1>
+                    <h2 class="fw-bold text-center pb-5 text-white">{{ $solution->row_four_title }}</h2>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="row">
@@ -517,7 +517,7 @@
 
         @if ($products->count() > 0)
             <section class="py-5" id="feature">
-                <h1 class="fw-bold text-center pb-5">Featured Products</h1>
+                <h2 class="fw-bold text-center pb-5">Featured Products</h2>
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
@@ -528,9 +528,9 @@
                                             <img src="{{ !empty($product->thumbnail) && file_exists(public_path($product->thumbnail)) ? asset($product->thumbnail) : asset('frontend/images/random-no-img.png') }}"
                                                 alt="Product Image" class="product-img" />
                                             <a href="{{ route('product.details', $product->slug) }}">
-                                                <h1 class="product-title">
+                                                <h2 class="product-title">
                                                     {{ Str::words($product->name, 15) }}
-                                                </h1>
+                                                </h2>
                                             </a>
                                             <div class="overlay-st-one">
                                                 <div class="overlay-st-one-text">
@@ -556,9 +556,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="py-5 pt-0">
-                            <h1 class="fw-bold text-center text-white">
+                            <h2 class="fw-bold text-center text-white">
                                 Bring {{ $solution->name }} features to You
-                            </h1>
+                            </h2>
                         </div>
                         @foreach ($features as $feature)
                             <div class="col-lg-3 col-12">
