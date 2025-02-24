@@ -119,7 +119,7 @@
 
                     </li>
                 @endif
-                @if (auth()->check() && in_array('site', json_decode(auth()->user()->department, true)))
+                {{-- @if (auth()->check() && in_array('site', json_decode(auth()->user()->department, true)))
                     <li class="nav-item nav-item-submenu {{ Route::current()->getName() == '' ? 'active' : '' }}">
                         <a href="{{ route('crm.index') }}" class="nav-link">
                             <i class="fa-light fa-people-roof side_baricon"></i>
@@ -128,17 +128,17 @@
 
                             <li class="nav-item"><a href="{{ route('contact.index') }}" class="nav-link">Contact</a>
                             </li>
-                            {{-- <li class="nav-item"><a href="{{ route('client-support.index') }}"
+                            <li class="nav-item"><a href="{{ route('client-support.index') }}"
                                     class="nav-link">Client Support</a></li>
 
                             <li class="nav-item"><a href="{{ route('client-database.index') }}"
-                                    class="nav-link">Client Database</a></li> --}}
-                            {{-- <li class="nav-item"><a href="" class="nav-link">Live Chat</a></li> --}}
+                                    class="nav-link">Client Database</a></li>
+                            <li class="nav-item"><a href="" class="nav-link">Live Chat</a></li>
                         </ul>
 
 
                     </li>
-                @endif
+                @endif --}}
                 @if (auth()->check() && in_array('admin', json_decode(auth()->user()->department, true)))
                     <li class="nav-item nav-item-submenu {{ Route::current()->getName() == '' ? 'active' : '' }}">
                         <a href="" class="nav-link">
