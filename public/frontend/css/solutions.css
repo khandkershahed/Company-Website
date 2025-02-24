@@ -546,6 +546,14 @@
     .hero-para {
         width: 100%;
     }
+    p{
+        padding: 5px 10px;
+    }
+    .category-titles{
+        font-size: 25px;
+        text-align: left;
+    }
+
 }
 
 @media (min-width: 576px) {
