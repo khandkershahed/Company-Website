@@ -3,6 +3,11 @@
     {{-- For Only This Template Start --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/solutions.css') }}">
     {{-- For Only This Template End --}}
+    <style>
+        p {
+            text-align: justify;
+        }
+    </style>
     <div class="solution-pages">
         <!-- HERO SECTION -->
         {{-- <section id="hero-slider">
@@ -46,7 +51,7 @@
                         <div class="col-lg-12">
                             <div class="text-center mb-3">
                                 <h1 class="fw-bold">{{ $solution->row_two_title }}</h1>
-                                <p class="pt-4 w-75 mx-auto" style="text-align: justify">
+                                <p class="pt-4 mx-auto" style="text-align: justify">
                                     {{ $solution->row_two_header }}
                                 </p>
                             </div>
@@ -357,7 +362,7 @@
                                 <h3 class="category-titles py-4 pt-5">
                                     {{ $solution->row_three_title }}
                                 </h3>
-                                <p class="w-75 mx-auto" style="text-align: justify">
+                                <p class="mx-auto" style="text-align: justify">
                                     {{ $solution->row_three_header }}
                                 </p>
                             </div>
