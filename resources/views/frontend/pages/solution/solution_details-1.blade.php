@@ -430,9 +430,9 @@
                                                 <h3 class="text-white pb-3 pt-4 pt-lg-0 tab_title">
                                                     {{ $solution->row_five_badge }}
                                                 </h3>
-                                                <h4 class="text-left text-white">
+                                                <h5 class="px-2 text-left text-white">
                                                     {{ $solution->row_five_title }}
-                                                </h4>
+                                                </h5>
                                                 <p class="text-white">
                                                     {{ $solution->row_five_description }}
                                                 </p>
@@ -461,9 +461,9 @@
                                                 <h3 class="text-white pb-3 pt-4 pt-lg-0 tab_title">
                                                     {{ $solution->row_six_badge }}
                                                 </h3>
-                                                <h4 class="text-left text-white">
+                                                <h5 class="px-2 text-left text-white">
                                                     {{ $solution->row_six_title }}
-                                                </h4>
+                                                </h5>
                                                 <p class="text-white">
                                                     {{ $solution->row_six_description }}
                                                 </p>
@@ -492,9 +492,9 @@
                                                 <h3 class="text-white pb-3 pt-4 pt-lg-0 tab_title">
                                                     {{ $solution->row_seven_badge }}
                                                 </h3>
-                                                <h4 class="text-left text-white">
+                                                <h5 class="px-2 text-left text-white">
                                                     {{ $solution->row_seven_title }}
-                                                </h4>
+                                                </h5>
                                                 <p class="text-white">
                                                     {{ $solution->row_seven_description }}
                                                 </p>
