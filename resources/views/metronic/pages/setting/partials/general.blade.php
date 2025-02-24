@@ -1,121 +1,176 @@
-<form id="kt_ecommerce_settings_general_form" class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
+<form method="post" action="{{ route('admin.site.setting') }}" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
     <div class="row">
         <h2 class="text-center mb-7">General Setting</h2>
     </div>
-    <div class="row fv-row mb-7 fv-plugins-icon-container">
-        <div class="col-md-3 text-md-end">
 
-            <label class="fs-6 fw-bold form-label mt-3">
-                <span class="required">Meta Title</span>
-                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title=""
-                    data-bs-original-title="Set the title of the store for SEO."
-                    aria-label="Set the title of the store for SEO."></i>
-            </label>
-
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="mb-5">
+                <label class="form-label">Site Name</label>
+                <input type="text" id="site_name" name="site_name" value="{{ optional($site)->site_name }}"
+                    class="form-control form-control-solid maxlength-options" maxlength="200" placeholder="Enter Site Name"
+                    required>
+            </div>
         </div>
-        <div class="col-md-9">
-
-            <input type="text" class="form-control form-control-solid" name="meta_title" value="">
-
-            <div class="fv-plugins-message-container invalid-feedback"></div>
+        <div class="col-lg-3">
+            <div class="mb-5">
+                <label class="form-label">Company Name </label>
+                <input type="text" id="company_name" name="company_name" value="{{ optional($site)->company_name }}"
+                    class="form-control form-control-solid maxlength-options" maxlength="100"
+                    placeholder="Enter Company Name">
+            </div>
         </div>
-    </div>
-
-
-    <div class="row fv-row mb-7">
-        <div class="col-md-3 text-md-end">
-
-            <label class="fs-6 fw-bold form-label mt-3">
-                <span>Meta Tag Description</span>
-                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title=""
-                    data-bs-original-title="Set the description of the store for SEO."
-                    aria-label="Set the description of the store for SEO."></i>
-            </label>
-
+        <div class="col-lg-3">
+            <div class="mb-5">
+                <label class="form-label">Site Slogan</label>
+                <input type="text" id="site_slogan" name="site_slogan" value="{{ optional($site)->site_slogan }}"
+                    class="form-control form-control-solid maxlength-options" maxlength="100"
+                    placeholder="Enter Product Site Slogan">
+            </div>
         </div>
-        <div class="col-md-9">
-
-            <textarea class="form-control form-control-solid" name="meta_description"></textarea>
-
-        </div>
-    </div>
-
-
-    <div class="row fv-row mb-7">
-        <div class="col-md-3 text-md-end">
-
-            <label class="fs-6 fw-bold form-label mt-3">
-                <span>Meta Keywords</span>
-                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title=""
-                    data-bs-original-title="Set keywords for the store separated by a comma."
-                    aria-label="Set keywords for the store separated by a comma."></i>
-            </label>
-
-        </div>
-        <div class="col-md-9">
-
-            <tags class="tagify form-control form-control-solid tagify--noTags tagify--empty" tabindex="-1">
-                <span contenteditable="" tabindex="0" data-placeholder="​" aria-placeholder="" class="tagify__input"
-                    role="textbox" aria-autocomplete="both" aria-multiline="false"></span>
-
-            </tags><input type="text" class="form-control form-control-solid" name="meta_keywords" value=""
-                data-kt-ecommerce-settings-type="tagify">
-
-        </div>
-    </div>
-
-
-    <div class="row fv-row mb-7">
-        <div class="col-md-3 text-md-end">
-
-            <label class="fs-6 fw-bold form-label mt-3">
-                <span>Theme</span>
-                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title=""
-                    data-bs-original-title="Set theme style for the store."
-                    aria-label="Set theme style for the store."></i>
-            </label>
-
-        </div>
-        <div class="col-md-9">
-            <div class="w-100">
-                <select class="form-select form-select-solid select2-hidden-accessible" name="theme"
-                    data-control="select2" data-hide-search="true" data-placeholder="Select a layout"
-                    data-select2-id="select2-data-10-r7rp" tabindex="-1" aria-hidden="true">
-                    <option></option>
-                    <option value="Default" selected="selected" data-select2-id="select2-data-12-z1bf">Default</option>
-                    <option value="Minimalist">Minimalist</option>
-                    <option value="Dark">Dark</option>
-                    <option value="High_Contrast">High Contrast</option>
-                </select>
+        <div class="col-lg-3">
+            <div class="mb-5">
+                <label class="form-label">Favicon </label>
+                <x-metronic.file-input class="form-control-solid" id="favicon" name="favicon" :source="asset('storage/' . optional($site)->favicon)"
+                    :value="old('favicon', $site->favicon)"></x-metronic.file-input>
             </div>
         </div>
     </div>
-
-
-    <div class="row fv-row mb-7">
-        <div class="col-md-3 text-md-end">
-
-            <label class="fs-6 fw-bold form-label mt-3">
-                <span>Default Layout</span>
-                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title=""
-                    data-bs-original-title="Set default layout style for the store."
-                    aria-label="Set default layout style for the store."></i>
-            </label>
-
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="mb-5">
+                <label class="form-label">Phone One</label>
+                <input type="text" class="form-control form-control-solid" placeholder="Enter your Phone"
+                    name="phone_one" value="{{ optional($site)->phone_one }}">
+            </div>
         </div>
-        <div class="col-md-9">
-            <div class="w-100">
-                <select class="form-select form-select-solid select2-hidden-accessible" name="layout"
-                    data-control="select2" data-hide-search="true" data-placeholder="Select a layout"
-                    data-select2-id="select2-data-13-7qh2" tabindex="-1" aria-hidden="true">
+        <div class="col-lg-3">
+            <div class="mb-5">
+                <label class="form-label">Phone Two</label>
+                <input type="text" class="form-control form-control-solid" placeholder="Enter your Phone"
+                    name="phone_two" value="{{ optional($site)->phone_two }}">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="mb-5">
+                <label class="form-label">Whatsapp Number</label>
+                <input type="text" class="form-control form-control-solid" placeholder="Enter Your Whatsapp Number"
+                    name="whatsapp_number" value="{{ optional($site)->whatsapp_number }}">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="mb-5">
+                <label class="form-label">Logo </label>
+                <x-metronic.file-input class="form-control-solid" id="logo" name="logo" :source="asset('storage/' . optional($site)->logo)"
+                    :value="old('logo', $site->logo)"></x-metronic.file-input>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="mb-5">
+                <label class="form-label">Currency</label>
+                <input type="text" class="form-control form-control-solid" placeholder="Enter currency"
+                    id="mask_currency" name="currency" value="{{ optional($site)->currency }}">
+                <span class="form-text"></span>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="mb-5">
+                <label class="form-label">Country Name</label>
+                <select name="country_id" data-placeholder="Select a country..."
+                    class="form-control form-control-solid select select-country-add"
+                    data-container-css-class="select-sm">
                     <option></option>
-                    <option value="Default" selected="selected" data-select2-id="select2-data-15-npzz">Default</option>
-                    <option value="Electronics">Electronics</option>
-                    <option value="Fashion">Fashion</option>
-                    <option value="Home">Home</option>
-                    <option value="Dining">Dining</option>
-                    <option value="Interior">Interior</option>
+                    @foreach ($countries as $countrie)
+                        <option value="{{ $countrie->id }}">
+                            {{ $countrie->country_name }}</option>
+                    @endforeach
                 </select>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="mb-5">
+                <label class="form-label">Service Time</label>
+                <input type="time" id="service_time" name="service_time"
+                    value="{{ optional($site)->service_time }}"
+                    class="form-control form-control-solid maxlength-options" maxlength="100"
+                    placeholder="Enter Service Time">
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <div class="mb-5">
+                <label class="form-label">Service Days</label>
+                <input type="text" id="service_days" name="service_days"
+                    value="{{ optional($site)->service_days }}"
+                    class="form-control form-control-solid maxlength-options" maxlength="100"
+                    placeholder="Enter Service Days">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="mb-5">
+                <label class="form-label">Default Language</label>
+                <input type="text" id="default_language" name="default_language"
+                    value="{{ optional($site)->default_language }}"
+                    class="form-control form-control-solid maxlength-options" maxlength="100"
+                    placeholder="Enter Default Language">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="mb-5">
+                <label class="form-label">Contact Email</label>
+                <input type="email" id="contact_email" name="contact_email"
+                    value="{{ optional($site)->contact_email }}"
+                    class="form-control form-control-solid maxlength-options" maxlength="100"
+                    placeholder="Enter Contact Email">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="mb-5">
+                <label class="form-label">Support Email</label>
+                <input type="email" id="support_email" name="support_email"
+                    value="{{ optional($site)->support_email }}"
+                    class="form-control form-control-solid maxlength-options" maxlength="100"
+                    placeholder="Enter Support Email">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="mb-5">
+                <label class="form-label">Info Email</label>
+                <input type="email" id="info_email" name="info_email" value="{{ optional($site)->info_email }}"
+                    class="form-control form-control-solid maxlength-options" maxlength="100"
+                    placeholder="Enter Info Email">
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="mb-5">
+                <label class="form-label">Sales Email</label>
+                <input type="email" id="sales_email" name="sales_email"
+                    value="{{ optional($site)->sales_email }}" class="form-control form-control-solid maxlength-options"
+                    maxlength="100" placeholder="Enter Sales Email">
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="mb-5">
+                <label class="form-label">Service </label>
+                <input type="text" id="service_days" name="service_days"
+                    value="{{ optional($site)->service_days }}"
+                    class="form-control form-control-solid maxlength-options" maxlength="100"
+                    placeholder="Enter Service URL">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="mb-5">
+                <label class="form-label">Address</label>
+                <textarea rows="1" cols="1" class="form-control form-control-solid" name="address"
+                    value="{{ optional($site)->address }}" placeholder="Enter Address"></textarea>
             </div>
         </div>
     </div>

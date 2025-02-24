@@ -158,12 +158,12 @@
                         [
                             'title' => 'Settings',
                             'icon' => 'fa-duotone fa-cog fs-3',
-                            'routes' => ['admin.contact.index', 'admin.contact.create', 'admin.contact.edit'],
+                            'routes' => ['admin.setting.index'],
                             'subMenu' => [
                                 [
-                                    'title' => 'Contact Messages',
-                                    'routes' => ['admin.contact.index', 'admin.contact.create', 'admin.contact.edit'],
-                                    'route' => 'admin.contact.index',
+                                    'title' => 'Website Setting',
+                                    'routes' => ['admin.setting.index'],
+                                    'route' => 'admin.setting.index',
                                 ],
                             ],
                         ],

@@ -57344,7 +57344,8 @@ body {
 
 .aside-dark .menu .menu-item.here > .menu-link {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: #1b1b28;
+    background-color: #500066;
+    /* background-color: #1b1b28; */
     color: #fff;
 }
 

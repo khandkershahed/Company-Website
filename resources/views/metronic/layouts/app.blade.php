@@ -37,16 +37,24 @@
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 
-    <link href="{{ asset('backend/metronic/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet"
-        type="text/css" />
-    <link href="{{ asset('backend/metronic/assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
-        type="text/css" />
+    <link href="{{ asset('backend/metronic/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}"
+        rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/metronic/assets/plugins/custom/datatables/datatables.bundle.css') }}"
+        rel="stylesheet" type="text/css" />
 
     <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    <link href="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
+        type="text/css" />
     <link href="{{ asset('backend/metronic/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
     <link href="{{ asset('backend/metronic/assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
+    <style>
+        .aside-dark .menu .menu-item.here>.menu-link .menu-icon,
+        .aside-dark .menu .menu-item.here>.menu-link .menu-icon .svg-icon,
+        .aside-dark .menu .menu-item.here>.menu-link .menu-icon i {
+            color: #ffffff;
+        }
+    </style>
 </head>
 
 <body id="kt_body"
