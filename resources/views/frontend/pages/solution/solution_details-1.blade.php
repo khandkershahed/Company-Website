@@ -427,12 +427,12 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
-                                                <h3 class="text-white pb-3 pt-4 pt-lg-0">
+                                                <h3 class="text-white pb-3 pt-4 pt-lg-0 tab_title">
                                                     {{ $solution->row_five_badge }}
                                                 </h3>
-                                                <p class="text-white tab_title">
+                                                <h4 class="text-left text-white">
                                                     {{ $solution->row_five_title }}
-                                                </p>
+                                                </h4>
                                                 <p class="text-white">
                                                     {{ $solution->row_five_description }}
                                                 </p>
@@ -458,12 +458,12 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
-                                                <h3 class="text-white pb-3 pt-4 pt-lg-0">
+                                                <h3 class="text-white pb-3 pt-4 pt-lg-0 tab_title">
                                                     {{ $solution->row_six_badge }}
                                                 </h3>
-                                                <p class="text-white tab_title">
+                                                <h4 class="text-left text-white">
                                                     {{ $solution->row_six_title }}
-                                                </p>
+                                                </h4>
                                                 <p class="text-white">
                                                     {{ $solution->row_six_description }}
                                                 </p>
@@ -489,12 +489,12 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
-                                                <h3 class="text-white pb-3 pt-4 pt-lg-0">
+                                                <h3 class="text-white pb-3 pt-4 pt-lg-0 tab_title">
                                                     {{ $solution->row_seven_badge }}
                                                 </h3>
-                                                <p class="text-white tab_title">
+                                                <h4 class="text-left text-white">
                                                     {{ $solution->row_seven_title }}
-                                                </p>
+                                                </h4>
                                                 <p class="text-white">
                                                     {{ $solution->row_seven_description }}
                                                 </p>
