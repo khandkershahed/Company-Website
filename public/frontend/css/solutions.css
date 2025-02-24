@@ -557,11 +557,13 @@
     }
     .nav-tabs .nav-item .growth-tabs-triger {
         border: 1px solid #dbdbdb;
+        margin-bottom: 5px;
     }
-    
+
     .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
         border-bottom: 0px !important;
-        border: 2px solid #ae0a46 !important;
+        border-radius: 60px;
+        border: 5px solid #87e173 !important;
     }
 }
 
