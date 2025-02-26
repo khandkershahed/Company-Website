@@ -215,18 +215,16 @@ class RFQController extends Controller
         );
 
         if ($validator->fails()) {
-            foreach ($validator->messages()->all() as $message) {
+            $messages = $validator->messages();
+            foreach ($messages->all() as $message) {
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
-                Session::flash('error', $message);
             }
-            return redirect()->back()->withInput();
+            return redirect()->back()->withErrors($validator)->withInput();
         }
         // Check if the user has already made a request within the last 5 minutes
         $userIp = $request->ip();
-
         // Check if the session has stored the last request time for this IP
         $lastRequestTime = session("last_email_request_{$userIp}");
-
         // If the last request was made less than 5 minutes ago, block the request
         if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 5) {
             Toastr::error('You can only send one request every 5 minutes.');
