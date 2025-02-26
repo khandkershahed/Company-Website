@@ -157,6 +157,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::put('seo/setting', [WebSettingController::class, 'seo'])->name('seo.setting');
     Route::put('smtp/setting', [WebSettingController::class, 'smtp'])->name('smtp.setting');
     Route::put('site/setting', [WebSettingController::class, 'site'])->name('site.setting');
+    // Route::get('hr/dashboard', [DashboardController::class, 'hrAdmin'])->name('hrDashboard.index');
     // Toggle Status
     Route::post('brands/toggle-status/{id}', [BrandController::class, 'toggleStatus'])->name('brands.toggle-status');
     // Route::controller(RFQController::class)->group(function () {
@@ -166,7 +167,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('site-dashboard', 'siteDashboard')->name('site-content.index');
         Route::get('site-setting', 'siteSetting')->name('site-setting.index');
-        Route::get('hr-and-admin', 'hrAdmin')->name('hr-and-admin.index');
         Route::get('accounts-finance', 'accountsFinance')->name('accounts-finance.index');
         Route::get('business', 'business')->name('business.index');
         Route::get('sales-dashboard', 'salesDashboard')->name('sales-dashboard.index');

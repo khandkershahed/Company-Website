@@ -22,7 +22,16 @@ use App\Models\Admin\SolutionDetail;
 
 class DashboardController extends Controller
 {
-
+    public function device_ip()
+    {
+        if (session()->exists('dip')) {
+            $deviceip = session('dip');
+        } else {
+            session()->put('dip', '203.17.65.230');
+            $deviceip = '203.17.65.230';
+        }
+        return $deviceip;
+    }
     public function siteContent()
     {
         $data = [

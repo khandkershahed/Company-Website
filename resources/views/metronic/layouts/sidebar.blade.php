@@ -154,6 +154,18 @@
                                 ],
                             ],
                         ],
+                        [
+                            'title' => 'HR & Admin',
+                            'icon' => 'fa-duotone fa-user-tie fs-3',
+                            'routes' => ['admin.hrDashboard.index',],
+                            'subMenu' => [
+                                [
+                                    'title' => 'Dashboard',
+                                    'routes' => ['admin.hrDashboard.index',],
+                                    'route' => 'admin.hrDashboard.index',
+                                ],
+                            ],
+                        ],
 
                         [
                             'title' => 'Settings',

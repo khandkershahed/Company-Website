@@ -76,9 +76,9 @@
                 <div class="col-lg-4">
                     <div class="mb-5">
                         <label class="form-label ">Status</label>
-                        <select name="status" placeholder="Select a Status..." class="form-control select"
-                            data-minimum-results-for-search="Infinity" required>
-                            <option></option>
+                        <select name="status" id="select2" placeholder="Select a Status..." class="form-select"
+                            data-minimum-results-for-search="Infinity" data-allow-clear="true" required>
+                            <option disabled selected>--Select Status--</option>
                             <option value="active">Active</option>
                             <option value="inactive">In Active</option>
                         </select>
