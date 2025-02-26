@@ -224,13 +224,13 @@ class RFQController extends Controller
             }
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        // Check if the user has already made a request within the last 5 minutes
-        // $userIp = $request->ip();
-        // $lastRequestTime = session("last_email_request_{$userIp}");
-        // if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 5) {
-        //     Toastr::error('You can only send one request every 5 minutes.');
-        //     return redirect()->back()->withErrors('You can only send one request every 5 minutes.'); // Block further submissions within the 5-minute window
-        // }
+        
+        $userIp = $request->ip();
+        $lastRequestTime = session("last_email_request_{$userIp}");
+        if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 5) {
+            Toastr::error('You can only send one request every 5 minutes.');
+            return redirect()->back()->withErrors('You can only send one request every 5 minutes.'); // Block further submissions within the 5-minute window
+        }
 
         if ($validator->passes()) {
             $data['deal_type'] = 'new';
@@ -341,8 +341,6 @@ class RFQController extends Controller
                 Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
                 Toastr::error('There was an error sending the email.', 'Error');
             }
-
-
             Toastr::success('Your RFQ has been submitted successfully.');
         }
 
