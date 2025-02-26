@@ -217,7 +217,7 @@ class RFQController extends Controller
         if ($validator->fails()) {
             foreach ($validator->messages()->all() as $message) {
                 Session::flash('error', $message);
-                // Toastr::error($message, 'Failed', ['timeOut' => 30000]);
+                Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
             return redirect()->back()->withInput();
         }
