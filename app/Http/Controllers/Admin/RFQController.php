@@ -203,7 +203,7 @@ class RFQController extends Controller
                 'name'                 => 'required',
                 'country'              => 'required',
                 // 'email'                => 'required|email', // Validate email format
-                'email'                => 'required|email', // Validate email format
+                'email'                => 'required|email:rfc,dns', // Validate email format
                 'phone'                => 'required',
                 'rfq_code'             => 'unique:rfqs',
                 'image'                => 'file|mimes:jpeg,png,jpg|max:2048',
@@ -225,14 +225,12 @@ class RFQController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
         // Check if the user has already made a request within the last 5 minutes
-        $userIp = $request->ip();
-        // Check if the session has stored the last request time for this IP
-        $lastRequestTime = session("last_email_request_{$userIp}");
-        // If the last request was made less than 5 minutes ago, block the request
-        if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 5) {
-            Toastr::error('You can only send one request every 5 minutes.');
-            return redirect()->back(); // Block further submissions within the 5-minute window
-        }
+        // $userIp = $request->ip();
+        // $lastRequestTime = session("last_email_request_{$userIp}");
+        // if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 5) {
+        //     Toastr::error('You can only send one request every 5 minutes.');
+        //     return redirect()->back()->withErrors('You can only send one request every 5 minutes.'); // Block further submissions within the 5-minute window
+        // }
 
         if ($validator->passes()) {
             $data['deal_type'] = 'new';
