@@ -157,7 +157,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::put('seo/setting', [WebSettingController::class, 'seo'])->name('seo.setting');
     Route::put('smtp/setting', [WebSettingController::class, 'smtp'])->name('smtp.setting');
     Route::put('site/setting', [WebSettingController::class, 'site'])->name('site.setting');
-    // Route::get('hr/dashboard', [DashboardController::class, 'hrAdmin'])->name('hrDashboard.index');
+    Route::get('hr/dashboard', [DashboardController::class, 'hrAdmin'])->name('hrDashboard.index');
     // Toggle Status
     Route::post('brands/toggle-status/{id}', [BrandController::class, 'toggleStatus'])->name('brands.toggle-status');
     // Route::controller(RFQController::class)->group(function () {

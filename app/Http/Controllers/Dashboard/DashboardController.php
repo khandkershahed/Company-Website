@@ -73,9 +73,7 @@ class DashboardController extends Controller
         $zk = new ZKTeco($deviceip, 4370);
         $zk->connect();
         $zk->enableDevice();
-
         $attendances = $zk->getAttendance(1);
-        // dd($attendances);
         $users = $zk->getUser(); // Retrieve user data from the device
         $currentMonthAttendances = array_filter($attendances, function ($attendance) {
             return date('Y-m-d', strtotime($attendance['timestamp'])) === date('Y-m-d');
@@ -107,21 +105,15 @@ class DashboardController extends Controller
                 }
             }
         }
-        $currentMonth = Carbon::now()->startOfMonth();
-        $endOfMonth = Carbon::now()->endOfMonth();
-        $data['events'] = [];
-        $data['event_categorys'] = [];
+
         $data['users'] = User::latest('id', 'DESC')->get();
         $notices = Notice::latest('id')->get();
         $data['leave_applications'] = LeaveApplication::get(['name', 'id', 'status']);
         // return view('admin.pages.HrandAdmin.all', $data);
-        return view('admin.pages.HrandAdmin.all', [
+        return view('metronic.pages.dashboard.hrDashboard', [
             'attendanceData'     => $attendanceData,
             'users'              => $users,
             'deviceip'           => $deviceip,
-            'events'             => $data['events'],
-            'users'              => $data['users'],
-            'event_categorys'    => $data['event_categorys'],
             'leave_applications' => $data['leave_applications'],
             'notices'           => $notices,
         ]);
