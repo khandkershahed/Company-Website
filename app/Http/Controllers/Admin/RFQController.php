@@ -202,7 +202,8 @@ class RFQController extends Controller
             [
                 'name'                 => 'required',
                 'country'              => 'required',
-                'email'                => 'required|email:rfc,dns', // Validate email format
+                'email'                => 'required|email', // Validate email format
+                // 'email'                => 'required|email:rfc,dns', // Validate email format
                 'phone'                => 'required',
                 'rfq_code'             => 'unique:rfqs',
                 'image'                => 'file|mimes:jpeg,png,jpg|max:2048',
