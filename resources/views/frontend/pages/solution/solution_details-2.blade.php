@@ -27,8 +27,10 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="st-two-hero-img">
-                            <img src="{{ !empty($solution->icon) && file_exists(public_path('storage/' . $solution->icon)) ? asset('storage/' . $solution->icon) : asset('images/hero-img1.png') }}"
-                                alt="{{ !empty($solution->icon) ? 'Solution Icon' : 'Default Hero Image' }}">
+                            @if (!empty($solution->icon))
+                                <img src="{{ !empty($solution->icon) && file_exists(public_path('storage/' . $solution->icon)) ? asset('storage/' . $solution->icon) : asset('images/hero-img1.png') }}"
+                                    alt="{{ !empty($solution->icon) ? 'Solution Icon' : 'Default Hero Image' }}">
+                            @endif
                         </div>
                     </div>
                 </div>
