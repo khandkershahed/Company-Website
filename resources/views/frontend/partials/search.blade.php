@@ -218,9 +218,9 @@
                                         </div>
                                     </div>
                                     {{--  --}}
-                                    <div class="col-lg-12">
-                                        <div class="d-flex justify-content-center align-items-center mt-4">
-                                            <div class="d-flex align-items-center me-3">
+                                    <div class="col-lg-10">
+                                        <div class="d-flex justify-content-between align-items-center mt-4">
+                                            <div class="d-flex align-items-center">
                                                 <div class="pe-2">
                                                     <a class="search-btn-price"
                                                         href="{{ route('product.details', ['id' => $product->slug]) }}">Ask
@@ -229,7 +229,7 @@
                                             </div>
                                             <div class="d-flex border" style="height: 2.6rem;">
                                                 <input data-min="1" data-max="0" type="text" name="quantity"
-                                                    value="2" readonly="true" style="width: 2rem;"
+                                                    value="2" readonly="true" style="width: 3rem; padding: 5px 10px;"
                                                     class="quantity-box border-0">
                                                 <div class="quantity-selectors-container">
                                                     <div class="quantity-selectors" style="display: inline-grid;">
