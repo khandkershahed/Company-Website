@@ -88,24 +88,6 @@
                     </div>
                     <div class="col-lg-4 mb-7">
                         <x-metronic.label class="form-label required">Title</x-metronic.label>
-                        <x-metronic.input type="text" name="row_four_col_two_title" class="mb-2 form-control"
-                            placeholder="Title" :value="old('row_four_col_two_title', $solution->row_four_col_two_title)">
-                        </x-metronic.input>
-
-                    </div>
-                    <div class="col-lg-5 mb-7">
-                        <x-metronic.label class="form-label required">Text</x-metronic.label>
-                        <x-metronic.input type="text" name="row_four_col_two_description" class="mb-2 form-control"
-                            placeholder="Text" :value="old('row_four_col_two_description', $solution->row_four_col_two_description)">
-                        </x-metronic.input>
-                    </div>
-                    <div class="col-lg-3 mb-7">
-                        <x-metronic.label class="form-label">Icon</x-metronic.label>
-                        <x-metronic.file-input id="count_two_icon" name="count_two_icon" :source="asset('storage/' . $solution->count_two_icon)"
-                            :value="old('count_two_icon')"></x-metronic.file-input>
-                    </div>
-                    <div class="col-lg-4 mb-7">
-                        <x-metronic.label class="form-label required">Title</x-metronic.label>
                         <x-metronic.input type="text" name="row_four_col_one_title" class="mb-2 form-control"
                             placeholder="Title" :value="old('row_four_col_one_title', $solution->row_four_col_one_title)">
                         </x-metronic.input>
@@ -117,6 +99,25 @@
                             class="mb-2 form-control" placeholder="Text" :value="old('row_four_col_one_description', $solution->row_four_col_one_description)">
                         </x-metronic.input>
                     </div>
+                    <div class="col-lg-3 mb-7">
+                        <x-metronic.label class="form-label">Icon</x-metronic.label>
+                        <x-metronic.file-input id="count_two_icon" name="count_two_icon" :source="asset('storage/' . $solution->count_two_icon)"
+                            :value="old('count_two_icon')"></x-metronic.file-input>
+                    </div>
+                    <div class="col-lg-4 mb-7">
+                        <x-metronic.label class="form-label required">Title</x-metronic.label>
+                        <x-metronic.input type="text" name="row_four_col_two_title" class="mb-2 form-control"
+                            placeholder="Title" :value="old('row_four_col_two_title', $solution->row_four_col_two_title)">
+                        </x-metronic.input>
+
+                    </div>
+                    <div class="col-lg-5 mb-7">
+                        <x-metronic.label class="form-label required">Text</x-metronic.label>
+                        <x-metronic.input type="text" name="row_four_col_two_description" class="mb-2 form-control"
+                            placeholder="Text" :value="old('row_four_col_two_description', $solution->row_four_col_two_description)">
+                        </x-metronic.input>
+                    </div>
+
                 </div>
             </div>
 

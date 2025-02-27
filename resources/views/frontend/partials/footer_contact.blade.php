@@ -8,17 +8,31 @@
         /* background-color: #252525; */
         padding: 40px !important;
     }
-    .screen{
-        background:  rgb(0, 20, 48);
+
+    .screen {
+        background: rgb(0, 20, 48);
     }
-    .app-form-control{
+
+    .app-form-control {
         border-bottom: 2px solid #fff;
         color: #fff;
     }
-    .app-form-control::placeholder{
+
+    .app-form-control::placeholder {
         color: #fff;
         font-size: 14px;
         padding-left: 10px;
+    }
+
+    .rc-anchor-light {
+        background: #001430 !important;
+        color: #fdfdfd;
+    }
+
+    .rc-anchor-light .rc-anchor-logo-text,
+    .rc-anchor-light div a:link,
+    .rc-anchor-light div a:visited {
+        color: #ffffff !important;
     }
 </style>
 <section class="contact_wrapper d-sm-none d-md-block">
@@ -29,7 +43,8 @@
                     <h4 class="main_color">
                         <span class="why_Choose_lineTop">L</span>et’s do big things together.
                     </h4>
-                    <p class="text-black">Get assistance with tracking an order, requesting a quote, contacting your account representative
+                    <p class="text-black">Get assistance with tracking an order, requesting a quote, contacting your
+                        account representative
                         and more by phone or over chat.</p>
                     <h5 style="color:rgb(0, 20, 48);">NGen IT Global Headquarters</h5>
                     <p class="text-black">{{ !empty($setting->address) ? $setting->address : '' }}</p>
@@ -92,7 +107,8 @@
 
                                             </div>
                                             <div class="d-flex justify-content-between align-items-center mt-3">
-                                                <div class="g-recaptcha" data-sitekey="{{ config('app.recaptcha_site_key') }}"></div>
+                                                <div class="g-recaptcha"
+                                                    data-sitekey="{{ config('app.recaptcha_site_key') }}"></div>
                                                 <div class="app-form-group buttons">
                                                     <button class="btn-white"
                                                         type="submit"><strong>SEND</strong></button>

@@ -226,12 +226,12 @@
                                                         href="{{ route('product.details', ['id' => $product->slug]) }}">Ask
                                                         For Price</a>
                                                 </div>
-                                                <div class="d-flex border">
+                                                <div class="d-flex border" style="height: 2.6rem;">
                                                     <input data-min="1" data-max="0" type="text" name="quantity"
-                                                        value="2" readonly="true"
-                                                        class="quantity-box border-0 bg-light">
+                                                        value="2" readonly="true" style="width: 2rem;"
+                                                        class="quantity-box border-0">
                                                     <div class="quantity-selectors-container">
-                                                        <div class="quantity-selectors">
+                                                        <div class="quantity-selectors" style="display: inline-grid;">
                                                             <button type="button" class="increment-quantity border-0"
                                                                 aria-label="Add one" data-direction="1">
                                                                 <i class="fa-solid fa-plus" style="color: #7a7577"></i>

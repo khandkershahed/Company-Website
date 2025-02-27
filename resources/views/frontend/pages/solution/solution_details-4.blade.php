@@ -200,20 +200,27 @@
                                 </div>
                                 <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote
                                     team of incredible freelance talent for all your software development needs.</p>
+                                <div style="background-color: #f7e8e5;padding: 10px;border-radius: 5px 30px;">
+                                    <h4>
+                                        <img style="margin-top: -2rem;" src="{{ asset('images/solution/template_four/Quote_02.png') }}" alt=""> Accelerate innovation with world-class tech teams We’ll match you to an entire
+                                        remote team of incredible freelance talent for all your software development needs.
+                                        <img src="{{ asset('images/solution/template_four/Quote_01.png') }}" alt="">
+                                    </h4>
+                                </div>
                                 <div class="skill-author">
-                                    <img src="{{ asset('images/sign-4.png') }}" alt="">
-                                    <h3 class="name">Alen Morno sin</h3>
-                                    <span class="designation">CEO, Techmax</span>
+                                    <div class="st-three-hero">
+                                        <a class="btn" href="javascript:void(0)">Read More</a>
+                                    </div>
                                 </div>
                             </div>
                             <!-- Skill Left End -->
                         </div>
                         <div class="col-lg-6">
                             <div class="skill-right">
-                                <div class="experience">
+                                {{-- <div class="experience">
                                     <h2 class="number">25</h2>
                                     <span>Years of <br> experience <br> on IT Services</span>
-                                </div>
+                                </div> --}}
                                 <div class="pt-4">
                                     <img class="img-fluid" src="{{ asset('images/slider-overview-4.png') }}"
                                         alt="">
@@ -250,6 +257,66 @@
                                 </form>
                             </div>
                             <!-- Subscribe Form End -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section st-two-counter-section" style="background: #f7e8e5;">
+            <div class="container">
+                <div class="counter-wrap">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <!-- Single Counter Start -->
+                            <div class="single-counter">
+                                <div class="counter-img">
+                                    <img src="http://127.0.0.1:8000/images/counter-1.png" alt="">
+                                </div>
+                                <div class="counter-content">
+                                    <span class="counter" style="color:#d33217;">1790</span>
+                                    <p class="mb-0">Happy clients</p>
+                                </div>
+                            </div>
+                            <!-- Single Counter End -->
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <!-- Single Counter Start -->
+                            <div class="single-counter">
+                                <div class="counter-img">
+                                    <img src="http://127.0.0.1:8000/images/counter-2.png" alt="">
+                                </div>
+                                <div class="counter-content">
+                                    <span class="counter" style="color:#d33217;">491</span>
+                                    <p class="mb-0">Finished projects</p>
+                                </div>
+                            </div>
+                            <!-- Single Counter End -->
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <!-- Single Counter Start -->
+                            <div class="single-counter">
+                                <div class="counter-img">
+                                    <img src="http://127.0.0.1:8000/images/counter-3.png" alt="">
+                                </div>
+                                <div class="counter-content">
+                                    <span class="counter" style="color:#d33217;">245</span>
+                                    <p class="mb-0">Skilled Experts</p>
+                                </div>
+                            </div>
+                            <!-- Single Counter End -->
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <!-- Single Counter Start -->
+                            <div class="single-counter">
+                                <div class="counter-img">
+                                    <img src="http://127.0.0.1:8000/images/counter-1.png" alt="">
+                                </div>
+                                <div class="counter-content">
+                                    <span class="counter" style="color:#d33217;">109</span>
+                                    <p class="mb-0">Media Posts</p>
+                                </div>
+                            </div>
+                            <!-- Single Counter End -->
                         </div>
                     </div>
                 </div>

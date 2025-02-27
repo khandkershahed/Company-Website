@@ -712,6 +712,77 @@
     left: 0;
     right: auto;
 }
+
+.st-three-hero .btn {
+    display: inline-block;
+    overflow: hidden;
+    transform: perspective(0) translateZ(0);
+    background: linear-gradient(190deg, #ff5538 0%, #f5573bbf 90%);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    border-color: transparent;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: "Heebo", Arial, sans-serif;
+    font-weight: 700;
+    height: 60px;
+    line-height: 56px;
+    padding: 0px 70px;
+    border: 0;
+    border-style: solid;
+    box-shadow: none;
+    transition: all 0.5s ease 0s;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+}
+.st-three-hero .btn::before {
+    content: "";
+    background: #0e0e0e;
+    height: 50%;
+    width: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: auto;
+    transition: 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    z-index: -1;
+}
+
+.st-three-hero .btn::after {
+    content: "";
+    background: #0e0e0e;
+    height: 50%;
+    width: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: auto;
+    transition: 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    z-index: -1;
+}
+
+.st-three-hero .btn:focus,
+.st-three-hero .btn:focus:active {
+    box-shadow: none;
+}
+
+.st-three-hero .btn:hover {
+    color: #ffffff;
+}
+
+.st-three-hero .btn:hover::before {
+    width: 100%;
+    right: 0;
+    left: auto;
+}
+
+.st-three-hero .btn:hover::after {
+    width: 100%;
+    left: 0;
+    right: auto;
+}
+
 .st-two-hero-img img {
     text-align: center;
     position: relative;

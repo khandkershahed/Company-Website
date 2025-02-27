@@ -6,8 +6,11 @@
         $industryIds = isset($solution->industry_id) ? json_decode($solution->industry_id, true) : [];
     @endphp
     <div class="row">
-        @if ($solution->solution_template == "template_two" || $solution->solution_template == "template_three")
-            <div class="col-lg-12 mb-7">
+        @if (
+            $solution->solution_template == 'template_two' ||
+                $solution->solution_template == 'template_three' ||
+                $solution->solution_template == 'template_four')
+            <div class="col-lg-7 mb-7">
                 <x-metronic.label class="form-label required">Title</x-metronic.label>
                 <x-metronic.input type="text" name="row_two_title" class="mb-2 form-control" placeholder="Title"
                     :value="old('row_two_title', $solution->row_two_title)">
@@ -24,14 +27,21 @@
                 A Solution name is required and recommended to be unique.
             </div>
         </div>
-        @if ($solution->solution_template == "template_two" || $solution->solution_template == "template_three")
-            <div class="col-lg-12 mb-7">
+        @if ($solution->solution_template == 'template_two' || $solution->solution_template == 'template_three')
+            <div class="col-lg-6 mb-7">
                 <x-metronic.label class="form-label required">Header</x-metronic.label>
                 <textarea name="row_two_header" class="mb-2 form-control" rows="3" placeholder="Header">{{ old('row_two_header', $solution->row_two_header) }}
                 </textarea>
             </div>
         @endif
-        <div class="col-lg-7 mb-7">
+        @if ($solution->solution_template == 'template_four')
+            <div class="col-lg-6 mb-7">
+                <x-metronic.label class="form-label">Video Link</x-metronic.label>
+                <textarea name="video_link" class="mb-2 form-control" rows="3" placeholder="Video Link">{{ old('video_link', $solution->video_link) }}
+            </textarea>
+            </div>
+        @endif
+        <div class="col-lg-6 mb-7">
             <x-metronic.label for="industry_id" class="form-label required">
                 {{ __('Select industry') }}</x-metronic.label>
             <x-metronic.select-option id="industry_id" class="mb-2 form-control select" name="industry_id[]" multiple
@@ -46,19 +56,18 @@
         <div class="col-lg-4 col-md-6 col-12 mb-5">
             <x-metronic.label for="thumbnail_image"
                 class="form-label required">{{ __('Thumbnail Image') }}</x-metronic.label>
-            <x-metronic.file-input id="thumbnail_image" name="thumbnail_image" :source="asset('storage/'.$solution->thumbnail_image)"
+            <x-metronic.file-input id="thumbnail_image" name="thumbnail_image" :source="asset('storage/' . $solution->thumbnail_image)"
                 :value="old('thumbnail_image')"></x-metronic.file-input>
         </div>
         <div class="col-lg-4 col-md-6 col-12 mb-5">
-            <x-metronic.label for="banner_image"
-                class="form-label required">{{ __('Banner Image') }}</x-metronic.label>
-            <x-metronic.file-input id="banner_image" name="banner_image" :source="asset('storage/'.$solution->banner_image)"  :value="old('banner_image')"></x-metronic.file-input>
+            <x-metronic.label for="banner_image" class="form-label required">{{ __('Banner Image') }}</x-metronic.label>
+            <x-metronic.file-input id="banner_image" name="banner_image" :source="asset('storage/' . $solution->banner_image)"
+                :value="old('banner_image')"></x-metronic.file-input>
         </div>
-        @if ($solution->solution_template == "template_two" || $solution->solution_template == "template_three")
+        @if ($solution->solution_template == 'template_two' || $solution->solution_template == 'template_three')
             <div class="col-lg-4 col-md-6 col-12 mb-5">
-                <x-metronic.label for="icon"
-                    class="form-label required mb-3">{{ __('Icon') }}</x-metronic.label>
-                <x-metronic.file-input id="icon" name="icon" :source="asset('storage/'.$solution->icon)"
+                <x-metronic.label for="icon" class="form-label required mb-3">{{ __('Icon') }}</x-metronic.label>
+                <x-metronic.file-input id="icon" name="icon" :source="asset('storage/' . $solution->icon)"
                     :value="old('icon')"></x-metronic.file-input>
             </div>
         @endif
@@ -69,9 +78,9 @@
             <x-metronic.select-option id="status" name="status" data-hide-search="true"
                 data-placeholder="Select an option" required>
                 <option></option>
-                <option value="active" @selected($solution->status == "active" )>Publish</option>
-                <option value="inactive" @selected($solution->status == "inactive" )>Unpublished</option>
-                <option value="draft" @selected($solution->status == "draft" )>Draft</option>
+                <option value="active" @selected($solution->status == 'active')>Publish</option>
+                <option value="inactive" @selected($solution->status == 'inactive')>Unpublished</option>
+                <option value="draft" @selected($solution->status == 'draft')>Draft</option>
             </x-metronic.select-option>
         </div>
 
