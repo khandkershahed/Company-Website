@@ -342,23 +342,42 @@
 @endif
 
 <script>
+    // var buttonPlus = $(".qty-btn-plus");
+    // var buttonMinus = $(".qty-btn-minus");
+
+    // var incrementPlus = buttonPlus.click(function() {
+    //     var $n = $(this)
+    //         .parent(".qty-container")
+    //         .find(".input-qty");
+    //     $n.val(Number($n.val()) + 1);
+    // });
+
+    // var incrementMinus = buttonMinus.click(function() {
+    //     var $n = $(this)
+    //         .parent(".qty-container")
+    //         .find(".input-qty");
+    //     var amount = Number($n.val());
+    //     if (amount > 0) {
+    //         $n.val(amount - 1);
+    //     }
+    // });
     var buttonPlus = $(".qty-btn-plus");
     var buttonMinus = $(".qty-btn-minus");
 
     var incrementPlus = buttonPlus.click(function() {
-        var $n = $(this)
-            .parent(".qty-container")
-            .find(".input-qty");
-        $n.val(Number($n.val()) + 1);
+        var $n = $(this) // This refers to the button that was clicked
+            .closest(".qty-container") // Find the closest parent .qty-container
+            .find(".input-qty"); // Find the specific .input-qty inside this container
+        $n.val(Number($n.val()) + 1); // Increase the value of the input
     });
 
     var incrementMinus = buttonMinus.click(function() {
-        var $n = $(this)
-            .parent(".qty-container")
-            .find(".input-qty");
+        var $n = $(this) // This refers to the button that was clicked
+            .closest(".qty-container") // Find the closest parent .qty-container
+            .find(".input-qty"); // Find the specific .input-qty inside this container
         var amount = Number($n.val());
         if (amount > 0) {
-            $n.val(amount - 1);
+            $n.val(amount - 1); // Decrease the value of the input if it's greater than 0
         }
     });
 </script>
