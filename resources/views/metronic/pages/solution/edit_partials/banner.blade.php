@@ -6,7 +6,7 @@
         $industryIds = isset($solution->industry_id) ? json_decode($solution->industry_id, true) : [];
     @endphp
     <div class="row">
-        @if ($solution->solution_template == "template_two")
+        @if ($solution->solution_template == "template_two" || $solution->solution_template == "template_three")
             <div class="col-lg-12 mb-7">
                 <x-metronic.label class="form-label required">Title</x-metronic.label>
                 <x-metronic.input type="text" name="row_two_title" class="mb-2 form-control" placeholder="Title"
@@ -24,7 +24,7 @@
                 A Solution name is required and recommended to be unique.
             </div>
         </div>
-        @if ($solution->solution_template == "template_two")
+        @if ($solution->solution_template == "template_two" || $solution->solution_template == "template_three")
             <div class="col-lg-12 mb-7">
                 <x-metronic.label class="form-label required">Header</x-metronic.label>
                 <textarea name="row_two_header" class="mb-2 form-control" rows="3" placeholder="Header">{{ old('row_two_header', $solution->row_two_header) }}
@@ -54,11 +54,11 @@
                 class="form-label required">{{ __('Banner Image') }}</x-metronic.label>
             <x-metronic.file-input id="banner_image" name="banner_image" :source="asset('storage/'.$solution->banner_image)"  :value="old('banner_image')"></x-metronic.file-input>
         </div>
-        @if ($solution->solution_template == "template_two")
+        @if ($solution->solution_template == "template_two" || $solution->solution_template == "template_three")
             <div class="col-lg-4 col-md-6 col-12 mb-5">
                 <x-metronic.label for="icon"
                     class="form-label required mb-3">{{ __('Icon') }}</x-metronic.label>
-                <x-metronic.file-input id="icon" name="icon"
+                <x-metronic.file-input id="icon" name="icon" :source="asset('storage/'.$solution->icon)"
                     :value="old('icon')"></x-metronic.file-input>
             </div>
         @endif

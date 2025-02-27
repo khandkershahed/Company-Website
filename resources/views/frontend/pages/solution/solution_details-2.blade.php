@@ -4,24 +4,30 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/solutions.css') }}">
     {{-- For Only This Template End --}}
     <section style="background-color: #eee">
-        <div class="container-fluid st-two-hero" style="background-image: url({{ !empty($solution->banner_image) && file_exists(public_path('storage/' . $solution->banner_image)) ? asset('storage/' . $solution->banner_image) : asset('images/hero-bg1.png') }});">
+        <div class="container-fluid st-two-hero"
+            style="background-image: url({{ !empty($solution->banner_image) && file_exists(public_path('storage/' . $solution->banner_image)) ? asset('storage/' . $solution->banner_image) : asset('images/hero-bg1.png') }});">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="st-two-hero-content">
-                            <h3 class="sub-title aos-init"><span>HOT !</span> We can managed all digital services
+                            @php
+                                $title = $solution->row_two_header;
+                                $words = explode(' ', $title);
+                                $firstWord = $words[0];
+                                $restOfTheTitle = implode(' ', array_slice($words, 1));
+                            @endphp
+                            <h3 class="sub-title aos-init"><span>{{ $firstWord }} </span> {{ $restOfTheTitle }}
                             </h3>
-                            <h2 class="title">Your partner for digital solutions</h2>
-                            <p class="">We provide the most responsive and functional IT design for companies and
-                                businesses worldwide.</p>
-                            <div class="st-two-hero">
+                            <h2 class="title">{{ $solution->name }}</h2>
+                            <p class="">{{$solution->row_two_title}}</p>
+                            {{-- <div class="st-two-hero">
                                 <a class="btn" href="javascript:void(0)">Read More</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="st-two-hero-img">
-                            <img src="{{ asset('images/hero-img1.png') }}" alt="">
+                            <img src="{{ !empty($solution->icon) && file_exists(public_path('storage/' . $solution->icon)) ? asset('storage/' . $solution->icon) : asset('images/hero-img1.png') }}" alt="">
                         </div>
                     </div>
                 </div>
@@ -34,8 +40,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center py-5">
-                        <p class="text-primary">What we provide</p>
-                        <h1>We provide truly prominent digital solutions.</h1>
+                        <p class="text-primary">{{ $solution->row_three_title }}</p>
+                        <h1>{{ $solution->row_three_header }}</h1>
                     </div>
                 </div>
             </div>
@@ -45,7 +51,7 @@
                         <div class="card st-two-f-card">
                             <div class="card-body">
                                 <div>
-                                    <img src="{{ asset('images/ser-icon1.png') }}" alt="">
+                                    <img src="{{ !empty($solution->row_two_column_one_image) && file_exists(public_path('storage/' . $solution->row_two_column_one_image)) ? asset('storage/' . $solution->row_two_column_one_image) : asset('images/ser-icon1.png') }}" alt="">
                                 </div>
                                 <div>
                                     <h2 class="title">Custom Software Solution</h2>
@@ -61,7 +67,7 @@
                     <div class="card st-two-f-card">
                         <div class="card-body">
                             <div>
-                                <img src="{{ asset('images/ser-icon2.png') }}" alt="">
+                                <img src="{{ !empty($solution->row_two_column_two_image) && file_exists(public_path('storage/' . $solution->row_two_column_two_image)) ? asset('storage/' . $solution->row_two_column_two_image) : asset('images/ser-icon2.png') }}" alt="">
                             </div>
                             <div>
                                 <h2 class="title">Business technology solution</h2>
@@ -76,7 +82,7 @@
                         <div class="card st-two-f-card">
                             <div class="card-body">
                                 <div>
-                                    <img src="{{ asset('images/ser-icon3.png') }}" alt="">
+                                    <img src="{{ !empty($solution->row_two_column_three_image) && file_exists(public_path('storage/' . $solution->row_two_column_three_image)) ? asset('storage/' . $solution->row_two_column_three_image) : asset('images/ser-icon3.png') }}" alt="">
                                 </div>
                                 <div>
                                     <h2 class="title">Recovery & IT security</h2>
@@ -92,7 +98,7 @@
                         <div class="card st-two-f-card">
                             <div class="card-body">
                                 <div>
-                                    <img src="{{ asset('images/ser-icon4.png') }}" alt="">
+                                    <img src="{{ !empty($solution->row_two_column_four_image) && file_exists(public_path('storage/' . $solution->row_two_column_four_image)) ? asset('storage/' . $solution->row_two_column_four_image) : asset('images/ser-icon4.png') }}" alt="">
                                 </div>
                                 <div>
                                     <h2 class="title">Idea generate & solution</h2>
@@ -173,7 +179,8 @@
                         <!-- About Left Start -->
                         <div class="about-02-left text-center">
                             <div class="section-title">
-                                <h2 class="title">You know you did right when all your effort started to pay off in an unexpected and impressive way.</h2>
+                                <h2 class="title">You know you did right when all your effort started to pay off in an
+                                    unexpected and impressive way.</h2>
                             </div>
                             <div class="about-author">
                                 <img src="{{ asset('images/sign.png') }}" alt="">
@@ -186,7 +193,8 @@
                     <div class="col-lg-6">
                         <!-- About Right Start -->
                         <div class="about-02-right">
-                            <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote team of incredible freelance talent for all your software development needs.</p>
+                            <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote team of
+                                incredible freelance talent for all your software development needs.</p>
                             <div class="about-list">
                                 <ul>
                                     <li>
@@ -195,7 +203,8 @@
                                     </li>
                                     <li>
                                         <span class="about-icon"><i class="fa-solid fa-check"></i></span>
-                                        <span class="about-text"> Wherever you’re going, we bring ideas and excitement </span>
+                                        <span class="about-text"> Wherever you’re going, we bring ideas and excitement
+                                        </span>
                                     </li>
                                     <li>
                                         <span class="about-icon"><i class="fa-solid fa-check"></i></span>

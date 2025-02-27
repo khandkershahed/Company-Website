@@ -6,7 +6,7 @@
                     href="#template_two_section_two">
                     <div class="d-flex flex-column align-items-start">
                         <img src="{{ asset('images/solution/template_two/section_two.png') }}" alt=""
-                            width="210px">
+                            width="180px">
                     </div>
                 </a>
             </li>
@@ -15,7 +15,7 @@
                     href="#template_two_section_three">
                     <div class="d-flex flex-column align-items-start">
                         <img src="{{ asset('images/solution/template_two/section_three.png') }}" alt=""
-                            width="210px">
+                            width="180px">
                     </div>
                 </a>
             </li>
@@ -25,7 +25,7 @@
                     href="#template_two_section_four">
                     <div class="d-flex flex-column align-items-start">
                         <img src="{{ asset('images/solution/template_two/section_four.png') }}" alt=""
-                            width="210px">
+                            width="180px">
                     </div>
                 </a>
             </li>
@@ -34,7 +34,7 @@
                     href="#template_two_section_five">
                     <div class="d-flex flex-column align-items-start">
                         <img src="{{ asset('images/solution/template_two/section_five.png') }}" alt=""
-                            width="210px">
+                            width="180px">
                     </div>
                 </a>
             </li>
@@ -42,7 +42,7 @@
                 <a class="nav-link btn btn-flex btn-active-secondary w-100" data-bs-toggle="tab" href="#counter">
                     <div class="d-flex flex-column align-items-start">
                         <img src="{{ asset('images/solution/template_two/counter.png') }}" alt=""
-                            width="210px">
+                            width="180px">
                     </div>
                 </a>
             </li>
@@ -261,7 +261,7 @@
                             </x-metronic.input>
                         </div>
                         <div class="mb-7">
-                            <x-metronic.label class="form-label">Counter One Link</x-metronic.label>
+                            <x-metronic.label class="form-label">Counter One text</x-metronic.label>
                             <x-metronic.input type="text" name="count_one_text" class="mb-2 form-control"
                                 placeholder="Counter One Text" :value="old('count_one_text', $solution->count_one_text)">
                             </x-metronic.input>
@@ -280,7 +280,7 @@
                             </x-metronic.input>
                         </div>
                         <div class="mb-7">
-                            <x-metronic.label class="form-label">Counter two Link</x-metronic.label>
+                            <x-metronic.label class="form-label">Counter two text</x-metronic.label>
                             <x-metronic.input type="text" name="count_two_text" class="mb-2 form-control"
                                 placeholder="Counter two Text" :value="old('count_two_text', $solution->count_two_text)">
                             </x-metronic.input>
@@ -299,7 +299,7 @@
                             </x-metronic.input>
                         </div>
                         <div class="mb-7">
-                            <x-metronic.label class="form-label">Counter three Link</x-metronic.label>
+                            <x-metronic.label class="form-label">Counter three text</x-metronic.label>
                             <x-metronic.input type="text" name="count_three_text" class="mb-2 form-control"
                                 placeholder="Counter three Text" :value="old('count_three_text', $solution->count_three_text)">
                             </x-metronic.input>
@@ -318,7 +318,7 @@
                             </x-metronic.input>
                         </div>
                         <div class="mb-7">
-                            <x-metronic.label class="form-label">Counter four Link</x-metronic.label>
+                            <x-metronic.label class="form-label">Counter four text</x-metronic.label>
                             <x-metronic.input type="text" name="count_four_text" class="mb-2 form-control"
                                 placeholder="Counter four Text" :value="old('count_four_text', $solution->count_four_text)">
                             </x-metronic.input>

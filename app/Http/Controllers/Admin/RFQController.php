@@ -202,7 +202,6 @@ class RFQController extends Controller
             [
                 'name'                 => 'required',
                 'country'              => 'required',
-                // 'email'                => 'required|email', // Validate email format
                 'email'                => 'required|email:rfc,dns', // Validate email format
                 'phone'                => 'required',
                 'rfq_code'             => 'unique:rfqs',
@@ -224,7 +223,7 @@ class RFQController extends Controller
             }
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        
+
         $userIp = $request->ip();
         $lastRequestTime = session("last_email_request_{$userIp}");
         if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 5) {
