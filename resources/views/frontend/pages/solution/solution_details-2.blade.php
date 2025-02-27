@@ -56,10 +56,8 @@
                                         alt="">
                                 </div>
                                 <div>
-                                    <h2 class="title">Custom Software Solution</h2>
-                                    <p class="para text-muted">Accelerate innovation with world-class tech teams We’ll match
-                                        you to
-                                        an entire remote team .</p>
+                                    <h2 class="title">{{ $solution->row_two_column_one_title }}</h2>
+                                    <p class="para text-muted">{{ $solution->row_two_column_one_description }}</p>
                                 </div>
                             </div>
                         </div>
@@ -73,9 +71,8 @@
                                     alt="">
                             </div>
                             <div>
-                                <h2 class="title">Business technology solution</h2>
-                                <p class="para text-muted">Accelerate innovation with world-class tech teams We’ll match you
-                                    to an entire remote team.</p>
+                                <h2 class="title">{{ $solution->row_two_column_two_title }}</h2>
+                                <p class="para text-muted">{{ $solution->row_two_column_two_description }}</p>
                             </div>
                         </div>
                     </div>
@@ -89,9 +86,8 @@
                                         alt="">
                                 </div>
                                 <div>
-                                    <h2 class="title">Recovery & IT security</h2>
-                                    <p class="para text-muted">Accelerate innovation with world-class tech teams We’ll match
-                                        you to an entire remote team .</p>
+                                    <h2 class="title">{{ $solution->row_two_column_three_title }}</h2>
+                                    <p class="para text-muted">{{ $solution->row_two_column_three_description }}</p>
                                 </div>
                             </div>
                         </div>
@@ -106,9 +102,8 @@
                                         alt="">
                                 </div>
                                 <div>
-                                    <h2 class="title">Idea generate & solution</h2>
-                                    <p class="para text-muted">Accelerate innovation with world-class tech teams We’ll match
-                                        you to an entire remote team .</p>
+                                    <h2 class="title">{{ $solution->row_two_column_four_title }}</h2>
+                                    <p class="para text-muted">{{ $solution->row_two_column_four_description }}</p>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +123,7 @@
                         <img src="{{ asset('images/cta-icon1.png') }}" alt="">
                     </div>
                     <div class="cta-content text-center">
-                        <p>Stop wasting time and money on digital solution. <a href="#">Let’s talk with us</a></p>
+                        <p>{{ $solution->row_five_title }} <a href="{{ route('contact') }}">Let’s talk with us</a></p>
                     </div>
                 </div>
             </div>
@@ -144,10 +139,12 @@
                         <!-- About Image Wrap Start -->
                         <div class="about-img-wrap">
                             <div class="about-img about-img-big">
-                                <img src="{{ asset('images/about-1.jpg') }}" class="rounded-3" alt="">
+                                <img src="{{ !empty($solution->row_four_big_image) && file_exists(public_path('storage/' . $solution->row_four_big_image)) ? asset('storage/' . $solution->row_four_big_image) : asset('images/about-1.jpg') }}"
+                                    class="rounded-3" alt="">
                             </div>
                             <div class="about-img about-img-sm">
-                                <img src="{{ asset('images/about-2.jpg') }}" class="rounded-3 shadow-sm" alt="">
+                                <img src="{{ !empty($solution->row_four_small_image) && file_exists(public_path('storage/' . $solution->row_four_small_image)) ? asset('storage/' . $solution->row_four_small_image) : asset('images/about-2.jpg') }}"
+                                    class="rounded-3 shadow-sm" alt="">
                                 <div class="shape-01"></div>
                             </div>
                         </div>
@@ -157,15 +154,13 @@
                         <!-- About Content Wrap Start -->
                         <div class="about-content-wrap">
                             <div class="section-title">
-                                <h3 class="sub-title">Who we are</h3>
-                                <h2 class="title">Highly Tailored IT Design, Management &amp; Support Services.</h2>
+                                <h3 class="sub-title">{{ $solution->row_four_badge }}</h3>
+                                <h2 class="title">{{ $solution->row_four_title }}</h2>
                             </div>
-                            <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote team of
-                                incredible freelance talent for all your software development needs.</p>
+                            <p>{{ $solution->row_four_header }}</p>
                             <div class="play-btn">
-                                <a class="popup-video"
-                                    href="https://www.youtube.com/watch?time_continue=3&amp;v=_X0eYtY8T_U"><i
-                                        class="fas fa-play"></i> <span>How we work</span></a>
+                                <a class="popup-video" href="{{ $solution->row_four_link }}"><i class="fas fa-play"></i>
+                                    <span>{{ $solution->row_four_button_name }}</span></a>
                             </div>
                         </div>
                         <!-- About Content Wrap End -->
@@ -184,13 +179,10 @@
                         <!-- About Left Start -->
                         <div class="about-02-left text-center">
                             <div class="section-title">
-                                <h2 class="title">You know you did right when all your effort started to pay off in an
-                                    unexpected and impressive way.</h2>
+                                <h2 class="title">{{ $solution->row_four_col_one_title}}</h2>
                             </div>
                             <div class="about-author">
-                                <img src="{{ asset('images/sign.png') }}" alt="">
-                                <h3 class="name fw-bold">Alen Morno sin</h3>
-                                <span class="designation">CEO, Techmax</span>
+                                <p class="name fw-bold">{!! $solution->row_four_col_one_description !!}</p>
                             </div>
                         </div>
                         <!-- About Left End -->
@@ -198,9 +190,8 @@
                     <div class="col-lg-6">
                         <!-- About Right Start -->
                         <div class="about-02-right">
-                            <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote team of
-                                incredible freelance talent for all your software development needs.</p>
-                            <div class="about-list">
+                            <p>{!! $solution->row_four_col_two_description !!}</p>
+                            {{-- <div class="about-list">
                                 <ul>
                                     <li>
                                         <span class="about-icon"><i class="fa-solid fa-check"></i></span>
@@ -216,7 +207,7 @@
                                         <span class="about-text">We’re consultants, guides, and partners for brands </span>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </div>
                         <!-- About Right End -->
                     </div>

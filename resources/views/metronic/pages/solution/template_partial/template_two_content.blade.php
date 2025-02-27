@@ -205,7 +205,7 @@
                         </textarea>
                     </div>
                     <div class="col-lg-12 mb-7">
-                        <x-metronic.label class="form-label">Link</x-metronic.label>
+                        <x-metronic.label class="form-label">Video Link</x-metronic.label>
                         <x-metronic.input type="text" name="row_four_link" class="mb-2 form-control"
                             placeholder="Link" :value="old('row_four_link', $solution->row_four_link)">
                         </x-metronic.input>
