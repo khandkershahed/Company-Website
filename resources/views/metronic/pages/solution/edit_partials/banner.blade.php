@@ -6,19 +6,14 @@
         $industryIds = isset($solution->industry_id) ? json_decode($solution->industry_id, true) : [];
     @endphp
     <div class="row">
-        @if (
-            $solution->solution_template == 'template_two' ||
-                $solution->solution_template == 'template_three' ||
-                $solution->solution_template == 'template_four')
-            <div class="col-lg-7 mb-7">
-                <x-metronic.label class="form-label required">Title</x-metronic.label>
-                <x-metronic.input type="text" name="row_two_title" class="mb-2 form-control" placeholder="Title"
-                    :value="old('row_two_title', $solution->row_two_title)">
-                </x-metronic.input>
-
+        @if ($solution->solution_template == 'template_two' || $solution->solution_template == 'template_three')
+            <div class="col-lg-6 mb-7">
+                <x-metronic.label class="form-label required">Header</x-metronic.label>
+                <textarea name="row_two_header" class="mb-2 form-control" rows="3" placeholder="Header">{{ old('row_two_header', $solution->row_two_header) }}
+                </textarea>
             </div>
         @endif
-        <div class="col-lg-5 mb-7">
+        <div class="col-lg-6 mb-7">
             <x-metronic.label class="form-label required">Solution Name</x-metronic.label>
             <x-metronic.input type="text" name="name" class="mb-2 form-control"
                 placeholder="Solution name recommended" :value="old('name', $solution->name)">
@@ -27,13 +22,20 @@
                 A Solution name is required and recommended to be unique.
             </div>
         </div>
-        @if ($solution->solution_template == 'template_two' || $solution->solution_template == 'template_three')
+        @if (
+            $solution->solution_template == 'template_two' ||
+                $solution->solution_template == 'template_three' ||
+                $solution->solution_template == 'template_four')
             <div class="col-lg-6 mb-7">
-                <x-metronic.label class="form-label required">Header</x-metronic.label>
-                <textarea name="row_two_header" class="mb-2 form-control" rows="3" placeholder="Header">{{ old('row_two_header', $solution->row_two_header) }}
-                </textarea>
+                <x-metronic.label class="form-label required">Title</x-metronic.label>
+                <x-metronic.input type="text" name="row_two_title" class="mb-2 form-control" placeholder="Title"
+                    :value="old('row_two_title', $solution->row_two_title)">
+                </x-metronic.input>
+
             </div>
         @endif
+
+
         @if ($solution->solution_template == 'template_four')
             <div class="col-lg-6 mb-7">
                 <x-metronic.label class="form-label">Video Link</x-metronic.label>

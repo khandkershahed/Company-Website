@@ -19,7 +19,7 @@
                             <h3 class="sub-title aos-init"><span>{{ $firstWord }} </span> {{ $restOfTheTitle }}
                             </h3>
                             <h2 class="title">{{ $solution->name }}</h2>
-                            <p class="">{{$solution->row_two_title}}</p>
+                            <p class="">{{ $solution->row_two_title }}</p>
                             {{-- <div class="st-two-hero">
                                 <a class="btn" href="javascript:void(0)">Read More</a>
                             </div> --}}
@@ -27,7 +27,8 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="st-two-hero-img">
-                            <img src="{{ !empty($solution->icon) && file_exists(public_path('storage/' . $solution->icon)) ? asset('storage/' . $solution->icon) : asset('images/hero-img1.png') }}" alt="">
+                            <img src="{{ !empty($solution->icon) && file_exists(public_path('storage/' . $solution->icon)) ? asset('storage/' . $solution->icon) : asset('images/hero-img1.png') }}"
+                                alt="{{ !empty($solution->icon) ? 'Solution Icon' : 'Default Hero Image' }}">
                         </div>
                     </div>
                 </div>
@@ -51,7 +52,8 @@
                         <div class="card st-two-f-card">
                             <div class="card-body">
                                 <div>
-                                    <img src="{{ !empty($solution->row_two_column_one_image) && file_exists(public_path('storage/' . $solution->row_two_column_one_image)) ? asset('storage/' . $solution->row_two_column_one_image) : asset('images/ser-icon1.png') }}" alt="">
+                                    <img src="{{ !empty($solution->row_two_column_one_image) && file_exists(public_path('storage/' . $solution->row_two_column_one_image)) ? asset('storage/' . $solution->row_two_column_one_image) : asset('images/ser-icon1.png') }}"
+                                        alt="">
                                 </div>
                                 <div>
                                     <h2 class="title">Custom Software Solution</h2>
@@ -67,7 +69,8 @@
                     <div class="card st-two-f-card">
                         <div class="card-body">
                             <div>
-                                <img src="{{ !empty($solution->row_two_column_two_image) && file_exists(public_path('storage/' . $solution->row_two_column_two_image)) ? asset('storage/' . $solution->row_two_column_two_image) : asset('images/ser-icon2.png') }}" alt="">
+                                <img src="{{ !empty($solution->row_two_column_two_image) && file_exists(public_path('storage/' . $solution->row_two_column_two_image)) ? asset('storage/' . $solution->row_two_column_two_image) : asset('images/ser-icon2.png') }}"
+                                    alt="">
                             </div>
                             <div>
                                 <h2 class="title">Business technology solution</h2>
@@ -82,7 +85,8 @@
                         <div class="card st-two-f-card">
                             <div class="card-body">
                                 <div>
-                                    <img src="{{ !empty($solution->row_two_column_three_image) && file_exists(public_path('storage/' . $solution->row_two_column_three_image)) ? asset('storage/' . $solution->row_two_column_three_image) : asset('images/ser-icon3.png') }}" alt="">
+                                    <img src="{{ !empty($solution->row_two_column_three_image) && file_exists(public_path('storage/' . $solution->row_two_column_three_image)) ? asset('storage/' . $solution->row_two_column_three_image) : asset('images/ser-icon3.png') }}"
+                                        alt="">
                                 </div>
                                 <div>
                                     <h2 class="title">Recovery & IT security</h2>
@@ -98,7 +102,8 @@
                         <div class="card st-two-f-card">
                             <div class="card-body">
                                 <div>
-                                    <img src="{{ !empty($solution->row_two_column_four_image) && file_exists(public_path('storage/' . $solution->row_two_column_four_image)) ? asset('storage/' . $solution->row_two_column_four_image) : asset('images/ser-icon4.png') }}" alt="">
+                                    <img src="{{ !empty($solution->row_two_column_four_image) && file_exists(public_path('storage/' . $solution->row_two_column_four_image)) ? asset('storage/' . $solution->row_two_column_four_image) : asset('images/ser-icon4.png') }}"
+                                        alt="">
                                 </div>
                                 <div>
                                     <h2 class="title">Idea generate & solution</h2>
