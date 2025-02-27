@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li class="nav-item mb-3">
-                <a class="nav-link btn btn-flex btn-active-danger w-100" data-bs-toggle="tab"
+                <a class="nav-link btn btn-flex btn-active-secondary w-100" data-bs-toggle="tab"
                     href="#template_one_section_four">
                     <div class="d-flex flex-column align-items-start">
                         <img src="{{ asset('images/solution/template_four/count.png') }}" alt="" width="200px">
@@ -232,22 +232,43 @@
             </div>
 
             <div class="tab-pane fade" id="template_one_section_three" role="tabpanel">
-                <div class="col-lg-12 mb-7">
-                    <x-metronic.label class="form-label required">Title</x-metronic.label>
-                    <x-metronic.input type="text" name="row_five_title" class="mb-2 form-control"
-                        placeholder="Title" :value="old('row_five_title', $solution->row_five_title)">
-                    </x-metronic.input>
-                </div>
-                <div class="col-lg-12 mb-7">
-                    <x-metronic.label class="form-label required">Description</x-metronic.label>
-                    <textarea name="row_five_description" rows="8" class="mb-2 form-control" placeholder="Description">{{ old('row_five_description', $solution->row_five_description) }}
-                    </textarea>
-                </div>
-                <div class="col-lg-12 mb-7">
-                    <x-metronic.label class="form-label required">Quote</x-metronic.label>
-                    <x-metronic.input type="text" name="row_five_header" class="mb-2 form-control"
-                        placeholder="Title" :value="old('row_five_header', $solution->row_five_header)">
-                    </x-metronic.input>
+                <div class="row">
+                    <div class="col-lg-12 mb-7">
+                        <x-metronic.label class="form-label required">Title</x-metronic.label>
+                        <x-metronic.input type="text" name="row_five_title" class="mb-2 form-control"
+                            placeholder="Title" :value="old('row_five_title', $solution->row_five_title)">
+                        </x-metronic.input>
+                    </div>
+                    <div class="col-lg-12 mb-7">
+                        <x-metronic.label class="form-label required">Description</x-metronic.label>
+                        <textarea name="row_five_description" rows="3" class="mb-2 form-control" placeholder="Description">{{ old('row_five_description', $solution->row_five_description) }}
+                        </textarea>
+                    </div>
+                    <div class="col-lg-12 mb-7">
+                        <x-metronic.label class="form-label required">Quote</x-metronic.label>
+                        <textarea name="row_five_header" rows="3" class="mb-2 form-control" placeholder="Quote">{{ old('row_five_header', $solution->row_five_header) }}
+                        </textarea>
+                    </div>
+                    <div class="col-lg-4 mb-7">
+                        <x-metronic.label class="form-label">Image</x-metronic.label>
+                        <x-metronic.file-input id="row_five_image" name="row_five_image"
+                            :source="asset('storage/' . $solution->row_five_image)" :value="old('row_five_image')"></x-metronic.file-input>
+                    </div>
+
+                    <div class="col-lg-4 mb-7">
+                        <x-metronic.label class="form-label">Link</x-metronic.label>
+                        <x-metronic.input type="text" name="row_five_link" class="mb-2 form-control"
+                            placeholder="Link" :value="old('row_five_link', $solution->row_five_link)">
+                        </x-metronic.input>
+
+                    </div>
+                    <div class="col-lg-4 mb-7">
+                        <x-metronic.label class="form-label">Button Name</x-metronic.label>
+                        <x-metronic.input type="text" name="row_five_btn_name" class="mb-2 form-control"
+                            placeholder="Button Name" :value="old('row_five_btn_name', $solution->row_five_btn_name)">
+                        </x-metronic.input>
+
+                    </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="template_one_section_four" role="tabpanel">

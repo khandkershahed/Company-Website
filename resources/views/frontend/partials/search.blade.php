@@ -223,8 +223,7 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="pe-2">
                                                     <a class="search-btn-price"
-                                                        href="{{ route('product.details', ['id' => $product->slug]) }}">Ask
-                                                        For Price</a>
+                                                        href="{{ route('product.details', ['id' => $product->slug]) }}">Ask For Price</a>
                                                 </div>
                                             </div>
                                             <div class="d-flex border" style="height: 2.6rem;">

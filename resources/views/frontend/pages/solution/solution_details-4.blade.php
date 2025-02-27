@@ -200,7 +200,7 @@
                                 </div>
                                 <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote
                                     team of incredible freelance talent for all your software development needs.</p>
-                                <div style="background-color: #f7e8e5;padding: 10px;border-radius: 5px 30px;">
+                                <div style="padding: 10px;border-radius: 5px 30px;">
                                     <h4>
                                         <img style="margin-top: -2rem;" src="{{ asset('images/solution/template_four/Quote_02.png') }}" alt=""> Accelerate innovation with world-class tech teams We’ll match you to an entire
                                         remote team of incredible freelance talent for all your software development needs.
