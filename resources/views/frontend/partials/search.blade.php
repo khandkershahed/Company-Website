@@ -219,30 +219,30 @@
                                     </div>
                                     {{--  --}}
                                     <div class="col-lg-12">
-                                        <div class="d-flex justify-content-between align-items-center mt-4">
-                                            <div class="d-flex align-items-center">
+                                        <div class="d-flex justify-content-center align-items-center mt-4">
+                                            <div class="d-flex align-items-center me-3">
                                                 <div class="pe-2">
                                                     <a class="search-btn-price"
                                                         href="{{ route('product.details', ['id' => $product->slug]) }}">Ask
                                                         For Price</a>
                                                 </div>
-                                                <div class="d-flex border" style="height: 2.6rem;">
-                                                    <input data-min="1" data-max="0" type="text" name="quantity"
-                                                        value="2" readonly="true" style="width: 2rem;"
-                                                        class="quantity-box border-0">
-                                                    <div class="quantity-selectors-container">
-                                                        <div class="quantity-selectors" style="display: inline-grid;">
-                                                            <button type="button" class="increment-quantity border-0"
-                                                                aria-label="Add one" data-direction="1">
-                                                                <i class="fa-solid fa-plus" style="color: #7a7577"></i>
-                                                            </button>
-                                                            <button type="button" class="decrement-quantity border-0"
-                                                                aria-label="Subtract one" data-direction="-1"
-                                                                disabled="disabled">
-                                                                <i class="fa-solid fa-minus"
-                                                                    style="color: #7a7577"></i>
-                                                            </button>
-                                                        </div>
+                                            </div>
+                                            <div class="d-flex border" style="height: 2.6rem;">
+                                                <input data-min="1" data-max="0" type="text" name="quantity"
+                                                    value="2" readonly="true" style="width: 2rem;"
+                                                    class="quantity-box border-0">
+                                                <div class="quantity-selectors-container">
+                                                    <div class="quantity-selectors" style="display: inline-grid;">
+                                                        <button type="button" class="increment-quantity border-0"
+                                                            aria-label="Add one" data-direction="1">
+                                                            <i class="fa-solid fa-plus" style="color: #7a7577"></i>
+                                                        </button>
+                                                        <button type="button" class="decrement-quantity border-0"
+                                                            aria-label="Subtract one" data-direction="-1"
+                                                            disabled="disabled">
+                                                            <i class="fa-solid fa-minus"
+                                                                style="color: #7a7577"></i>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
