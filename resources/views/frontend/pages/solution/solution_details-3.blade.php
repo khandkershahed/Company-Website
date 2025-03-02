@@ -108,7 +108,7 @@
             </section>
         @endif
         <section>
-            <div class="st-three-cta-section-03">
+            <div class="st-three-cta-section-03 pt-4">
                 <div class="container">
                     <!-- Cta Wrap Start -->
                     <div class="cta-wrap" style="background-image: url({{ asset('images/cta-bg3-2.jpg') }});">
@@ -168,9 +168,11 @@
                                         <div class="row">
                                             <div class="col-lg-3">
                                                 <div class="p-3">
-                                                    <div class="pb-4">
-                                                        <img src="{{ !empty($solution->row_two_column_one_image) && file_exists(public_path('storage/' . $solution->row_two_column_one_image)) ? asset('storage/' . $solution->row_two_column_one_image) : asset('images/ser-icon-3-1.png') }}" alt="">
-                                                    </div>
+                                                    @if (!empty($solution->row_two_column_one_image) )
+                                                        <div class="pb-4">
+                                                            <img src="{{ !empty($solution->row_two_column_one_image) && file_exists(public_path('storage/' . $solution->row_two_column_one_image)) ? asset('storage/' . $solution->row_two_column_one_image) : asset('images/ser-icon-3-1.png') }}" alt="">
+                                                        </div>
+                                                    @endif
                                                     <div>
                                                         <h5 class="fw-bold">{{$solution->row_two_column_one_title}}</h5>
                                                         <p>{{$solution->row_two_column_one_description}}</p>
@@ -179,9 +181,11 @@
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="p-3">
-                                                    <div class="pb-4">
-                                                        <img src="{{ !empty($solution->row_two_column_two_image) && file_exists(public_path('storage/' . $solution->row_two_column_two_image)) ? asset('storage/' . $solution->row_two_column_two_image) : asset('images/ser-icon-3-2.png') }}" alt="">
-                                                    </div>
+                                                    @if (!empty($solution->row_two_column_two_image) )
+                                                        <div class="pb-4">
+                                                            <img src="{{ !empty($solution->row_two_column_two_image) && file_exists(public_path('storage/' . $solution->row_two_column_two_image)) ? asset('storage/' . $solution->row_two_column_two_image) : asset('images/ser-icon-3-2.png') }}" alt="">
+                                                        </div>
+                                                    @endif
                                                     <div>
                                                         <h5 class="fw-bold">{{ $solution->row_two_column_two_title }}</h5>
                                                         <p>{{ $solution->row_two_column_two_description }}</p>
@@ -190,9 +194,11 @@
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="p-3">
-                                                    <div class="pb-4">
-                                                        <img src="{{ !empty($solution->row_two_column_three_image) && file_exists(public_path('storage/' . $solution->row_two_column_three_image)) ? asset('storage/' . $solution->row_two_column_three_image) : asset('images/ser-icon-3-3.png') }}" alt="">
-                                                    </div>
+                                                    @if (!empty($solution->row_two_column_three_image))
+                                                        <div class="pb-4">
+                                                            <img src="{{ !empty($solution->row_two_column_three_image) && file_exists(public_path('storage/' . $solution->row_two_column_three_image)) ? asset('storage/' . $solution->row_two_column_three_image) : asset('images/ser-icon-3-3.png') }}" alt="">
+                                                        </div>
+                                                    @endif
                                                     <div>
                                                         <h5 class="fw-bold">{{ $solution->row_two_column_three_title }}</h5>
                                                         <p>{{ $solution->row_two_column_three_description }}</p>
@@ -201,9 +207,11 @@
                                             </div>
                                             <div class="col-lg-3">
                                                 <div class="p-3">
-                                                    <div class="pb-4">
-                                                        <img src="{{ !empty($solution->row_two_column_four_image) && file_exists(public_path('storage/' . $solution->row_two_column_four_image)) ? asset('storage/' . $solution->row_two_column_four_image) : asset('images/ser-icon-3-4.png') }}" alt="">
-                                                    </div>
+                                                    @if (!empty($solution->row_two_column_four_image))
+                                                        <div class="pb-4">
+                                                            <img src="{{ !empty($solution->row_two_column_four_image) && file_exists(public_path('storage/' . $solution->row_two_column_four_image)) ? asset('storage/' . $solution->row_two_column_four_image) : asset('images/ser-icon-3-4.png') }}" alt="">
+                                                        </div>
+                                                    @endif
                                                     <div>
                                                         <h5 class="fw-bold">{{ $solution->row_two_column_four_title }}</h5>
                                                         <p>{{ $solution->row_two_column_four_description }}</p>
