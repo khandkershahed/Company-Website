@@ -5,14 +5,14 @@
     <div class="st-template-3">
         {{-- Solution Tree Hero Section --}}
         <section class="st-three-hero p-5 pb-0">
-            <div class="st-three-hero-wrap" style="background-image: url({{ !empty($solution->banner_image) && file_exists(public_path('storage/' . $solution->banner_image)) ? asset('storage/' . $solution->banner_image) : asset('frontend/images/no-row-img(580-326).png') }})">
+            <div class="st-three-hero-wrap" style="background-image: url({{ !empty($solution->banner_image) && file_exists(public_path('storage/' . $solution->banner_image)) ? asset('storage/' . $solution->banner_image) : asset('images/hero-bg3.jpg') }})">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6">
                             <div>
-                                <p class="text-uppercase">your network becomes easier to operate by ai</p>
-                                <h1 class="title">Take the next steps for an <span>AI-driven</span> enterprise.</h1>
-                                <p>We provide the most responsive and functional IT</p>
+                                <p class="text-uppercase">{{ $solution->row_two_header }}</p>
+                                <h1 class="title">{{ $solution->name }}</h1>
+                                <p>{{ $solution->row_two_title }}</p>
                                 <div class="st-two-hero">
                                     <a class="btn" href="javascript:void(0)">Read More</a>
                                 </div>

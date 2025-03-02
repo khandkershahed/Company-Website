@@ -261,11 +261,11 @@
                         <!-- Single Counter Start -->
                         <div class="single-counter">
                             <div class="counter-img">
-                                <img src="{{ asset('images/counter-1.png') }}" alt="">
+                                <img src="{{ asset('storage/' . $solution->count_one_icon) }}" alt="">
                             </div>
                             <div class="counter-content">
-                                <span class="counter">1790</span>
-                                <p class="mb-0">Happy clients</p>
+                                <span class="counter">{{ $solution->count_one_number }}</span>
+                                <p class="mb-0">{{ $solution->count_one_text }}</p>
                             </div>
                         </div>
                         <!-- Single Counter End -->
@@ -274,11 +274,11 @@
                         <!-- Single Counter Start -->
                         <div class="single-counter">
                             <div class="counter-img">
-                                <img src="{{ asset('images/counter-2.png') }}" alt="">
+                                <img src="{{ asset('storage/' . $solution->count_two_icon) }}" alt="">
                             </div>
                             <div class="counter-content">
-                                <span class="counter">491</span>
-                                <p class="mb-0">Finished projects</p>
+                                <span class="counter">{{ $solution->count_two_number }}</span>
+                                <p class="mb-0">{{ $solution->count_two_text }}</p>
                             </div>
                         </div>
                         <!-- Single Counter End -->
@@ -287,11 +287,11 @@
                         <!-- Single Counter Start -->
                         <div class="single-counter">
                             <div class="counter-img">
-                                <img src="{{ asset('images/counter-3.png') }}" alt="">
+                                <img src="{{ asset('storage/' . $solution->count_three_icon) }}" alt="">
                             </div>
                             <div class="counter-content">
-                                <span class="counter">245</span>
-                                <p class="mb-0">Skilled Experts</p>
+                                <span class="counter">{{ $solution->count_three_number }}</span>
+                                <p class="mb-0">{{ $solution->count_three_text }}</p>
                             </div>
                         </div>
                         <!-- Single Counter End -->
@@ -300,11 +300,11 @@
                         <!-- Single Counter Start -->
                         <div class="single-counter">
                             <div class="counter-img">
-                                <img src="{{ asset('images/counter-1.png') }}" alt="">
+                                <img src="{{ asset('storage/' . $solution->count_four_icon) }}" alt="">
                             </div>
                             <div class="counter-content">
-                                <span class="counter">109</span>
-                                <p class="mb-0">Media Posts</p>
+                                <span class="counter">{{ $solution->count_four_number }}</span>
+                                <p class="mb-0">{{ $solution->count_four_text }}</p>
                             </div>
                         </div>
                         <!-- Single Counter End -->
