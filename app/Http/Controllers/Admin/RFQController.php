@@ -240,7 +240,6 @@ class RFQController extends Controller
         // Store the current timestamp in the session to track the last submission time
         session()->put("last_form_submission_{$userIp}", now());
 
-        dd($request->all());
 
         if ($validator->passes()) {
             $data['deal_type'] = 'new';
