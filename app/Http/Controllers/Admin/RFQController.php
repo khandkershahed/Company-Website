@@ -337,15 +337,15 @@ class RFQController extends Controller
         ];
         dd($rfq_code);
         dd($request->all());
-        // try {
+        try {
         Mail::to($request->email)->send(new RFQNotificationClientMail($data));
         foreach ($user_emails as $email) {
             Mail::to($email)->send(new RFQNotificationAdminMail($data));
         }
-        // } catch (\Exception $e) {
-        //     Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
-        //     Toastr::error('There was an error sending the email.', 'Error');
-        // }
+        } catch (\Exception $e) {
+            Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
+            Toastr::error('There was an error sending the email.', 'Error');
+        }
         Session::flash('success', 'Your RFQ has been submitted successfully.');
         // Toastr::success('Your RFQ has been submitted successfully.');
 
