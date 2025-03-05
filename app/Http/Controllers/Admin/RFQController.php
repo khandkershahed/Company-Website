@@ -341,15 +341,15 @@ class RFQController extends Controller
                 'link'         => route('single-rfq.show', $rfq_code),
             ];
 
-            try {
+            // try {
                 Mail::to($request->email)->send(new RFQNotificationClientMail($data));
                 foreach ($user_emails as $email) {
                     Mail::to($email)->send(new RFQNotificationAdminMail($data));
                 }
-            } catch (\Exception $e) {
-                Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
-                Toastr::error('There was an error sending the email.', 'Error');
-            }
+            // } catch (\Exception $e) {
+            //     Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
+            //     Toastr::error('There was an error sending the email.', 'Error');
+            // }
 
             Toastr::success('Your RFQ has been submitted successfully.');
         }
