@@ -233,11 +233,11 @@ class RFQController extends Controller
 
         if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 5) {
             Session::flash('error', 'You can only submit the form once every 5 minutes.');
-            Toastr::error('You can only submit the form once every 5 minutes.');
+            // Toastr::error('You can only submit the form once every 5 minutes.');
             return redirect()->back()->withErrors('You can only submit the form once every 5 minutes.');
         }
 
-        session()->put("last_form_submission_{$userIp}", now());
+
 
 
         $data['deal_type'] = 'new';
@@ -338,14 +338,15 @@ class RFQController extends Controller
         dd($rfq_code);
         dd($request->all());
         try {
-        Mail::to($request->email)->send(new RFQNotificationClientMail($data));
-        foreach ($user_emails as $email) {
-            Mail::to($email)->send(new RFQNotificationAdminMail($data));
-        }
+            Mail::to($request->email)->send(new RFQNotificationClientMail($data));
+            foreach ($user_emails as $email) {
+                Mail::to($email)->send(new RFQNotificationAdminMail($data));
+            }
         } catch (\Exception $e) {
             Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
             Toastr::error('There was an error sending the email.', 'Error');
         }
+        session()->put("last_form_submission_{$userIp}", now());
         Session::flash('success', 'Your RFQ has been submitted successfully.');
         // Toastr::success('Your RFQ has been submitted successfully.');
 
