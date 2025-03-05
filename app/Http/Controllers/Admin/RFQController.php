@@ -226,7 +226,6 @@ class RFQController extends Controller
             }
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        dd($request->all());
 
         $userIp = $request->ip();
         $lastRequestTime = session("last_email_request_{$userIp}");
@@ -238,6 +237,7 @@ class RFQController extends Controller
 
         // Update session with the current time after a valid request
 
+        dd($request->all());
 
         if ($validator->passes()) {
             $data['deal_type'] = 'new';
