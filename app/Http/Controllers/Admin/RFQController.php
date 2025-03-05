@@ -231,7 +231,7 @@ class RFQController extends Controller
         $userIp = $request->ip();
         $lastRequestTime = session("last_form_submission_{$userIp}");
 
-        if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 5) {
+        if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 1) {
             Session::flash('error', 'You can only submit the form once every 5 minutes.');
             // Toastr::error('You can only submit the form once every 5 minutes.');
             return redirect()->back()->withErrors('You can only submit the form once every 5 minutes.');
@@ -344,7 +344,7 @@ class RFQController extends Controller
             }
         } catch (\Exception $e) {
             Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
-            Toastr::error('There was an error sending the email.', 'Error');
+            Session::flash('error', 'Email sending failed: ' . $e->getMessage());
         }
         session()->put("last_form_submission_{$userIp}", now());
         Session::flash('success', 'Your RFQ has been submitted successfully.');
