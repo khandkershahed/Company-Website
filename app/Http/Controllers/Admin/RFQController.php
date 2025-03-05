@@ -228,19 +228,17 @@ class RFQController extends Controller
         }
 
 
-        $userIp = $request->ip(); // Get the user's IP address
+        $userIp = $request->ip();
         $lastRequestTime = session("last_form_submission_{$userIp}");
 
-        // Check if the user submitted the form in the last 5 minutes
         if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 5) {
+            Session::flash('error', 'You can only submit the form once every 5 minutes.');
             Toastr::error('You can only submit the form once every 5 minutes.');
             return redirect()->back()->withErrors('You can only submit the form once every 5 minutes.');
         }
 
-        // Store the current timestamp in the session to track the last submission time
         session()->put("last_form_submission_{$userIp}", now());
-
-
+        dd($request->all());
         if ($validator->passes()) {
             $data['deal_type'] = 'new';
             $today = now()->format('dmy');
@@ -299,9 +297,7 @@ class RFQController extends Controller
                     'created_at'   => Carbon::now(),
 
                 ]);
-            }
 
-            if ($product_name) {
                 QuotationProduct::insert([
                     'rfq_id'       => $rfq_id,
                     'product_name' => $product_name,
@@ -310,7 +306,6 @@ class RFQController extends Controller
 
                 ]);
             }
-
 
             $name = $request->input('name');
             $rfq_code = $data['rfq_code'];
