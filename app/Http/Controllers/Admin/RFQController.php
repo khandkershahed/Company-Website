@@ -202,34 +202,42 @@ class RFQController extends Controller
             [
                 'name'                 => 'required',
                 'country'              => 'required',
-                'email'                => 'required|email:rfc,dns', // Validate email format
+                'email'                => 'required|string|email', // Validate email format
+                // 'email'                => 'required|email:rfc,dns', // Validate email format
                 'phone'                => 'required',
-                'rfq_code'             => 'unique:rfqs',
-                'image'                => 'file|mimes:jpeg,png,jpg|max:2048',
+                // 'rfq_code'             => 'unique:rfqs',
+                'image'                => 'nullable|file|mimes:webp,jpeg,png,jpg|max:2048',
                 'g-recaptcha-response' => ['required', new Recaptcha],
             ],
             [
-                'required'  => 'This :attribute field is required',
-                'email.rfc'  => 'Proper Email is required',
-                'email.dns'  => 'Proper Email is required',
-                'mimes'     => 'The :attribute must be a file of type:PNG-JPEG-JPG'
+                'required'     => 'This :attribute field is required',
+                'email.email'  => 'Proper Email is required',
+                'email.rfc'    => 'Proper Email is required',
+                'email.dns'    => 'Proper Email is required',
+                'mimes'        => 'The :attribute must be a file of type:PNG-JPEG-JPG-WEBP',
             ],
         );
 
         if ($validator->fails()) {
+            Log::error('Validation failed:', $validator->errors()->toArray());
             $messages = $validator->messages();
             foreach ($messages->all() as $message) {
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
+                Session::flash('error', $message);
             }
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
         $userIp = $request->ip();
         $lastRequestTime = session("last_email_request_{$userIp}");
+
         if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 5) {
             Toastr::error('You can only send one request every 5 minutes.');
-            return redirect()->back()->withErrors('You can only send one request every 5 minutes.'); // Block further submissions within the 5-minute window
+            return redirect()->back()->withErrors('You can only send one request every 5 minutes.');
         }
+
+        // Update session with the current time after a valid request
+
 
         if ($validator->passes()) {
             $data['deal_type'] = 'new';
@@ -340,6 +348,7 @@ class RFQController extends Controller
                 Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
                 Toastr::error('There was an error sending the email.', 'Error');
             }
+            session()->put("last_email_request_{$userIp}", now());
             Toastr::success('Your RFQ has been submitted successfully.');
         }
 
@@ -354,7 +363,7 @@ class RFQController extends Controller
             [
                 'name'                   => 'required',
                 'email'                  => 'required|email:rfc,dns',
-                'rfq_code'               => 'unique:rfqs',
+                // 'rfq_code'               => 'unique:rfqs',
                 'image'                  => 'file|mimes:jpeg,png,jpg|max:2048',
                 'country'                => 'required',
                 'product_name'           => 'required|array|min:1',
@@ -367,7 +376,7 @@ class RFQController extends Controller
                 'mimes'                  => 'The :attribute must be a file of type:jpeg,png,jpg.',
                 'email'                  => 'The :attribute must be a valid email address.',
                 'unique'                 => 'The :attribute must be unique.',
-                'product_name.required' => 'At least one product name must be provided.',
+                'product_name.required'  => 'At least one product name must be provided.',
                 'qty.required'           => 'At least one quantity must be provided.',
                 'qty.*.min'              => 'Each quantity must be greater than 0.',
             ]

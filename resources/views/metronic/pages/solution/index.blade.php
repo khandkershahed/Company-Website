@@ -1,4 +1,4 @@
-<x-admin-app-layout :title="'Solution'">
+<x-admin-app-layout :title="'Admin Panel || Solution'">
     <!-- Main Content Start -->
     <div class="card shadow-sm">
         <div class="card-header">
