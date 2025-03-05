@@ -228,18 +228,18 @@ class RFQController extends Controller
         }
 
 
-        try {
-            $userIp = $request->ip();
-            $lastRequestTime = session("last_email_request_{$userIp}");
+        // try {
+        //     $userIp = $request->ip();
+        //     $lastRequestTime = session("last_email_request_{$userIp}");
 
-            if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 5) {
-                Toastr::error('You can only send one request every 5 minutes.');
-                return redirect()->back()->withErrors('You can only send one request every 5 minutes.');
-            }
-        } catch (\Exception $e) {
-            Log::error($e->getMessage()); // Log the error for debugging
-            Toastr::error($e->getMessage(),'Failed');
-        }
+        //     if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 5) {
+        //         Toastr::error('You can only send one request every 5 minutes.');
+        //         return redirect()->back()->withErrors('You can only send one request every 5 minutes.');
+        //     }
+        // } catch (\Exception $e) {
+        //     Log::error($e->getMessage()); // Log the error for debugging
+        //     Toastr::error($e->getMessage(),'Failed');
+        // }
 
         dd($request->all());
 
