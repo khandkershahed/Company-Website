@@ -238,7 +238,7 @@ class RFQController extends Controller
         }
 
         session()->put("last_form_submission_{$userIp}", now());
-        dd($request->all());
+
         if ($validator->passes()) {
             $data['deal_type'] = 'new';
             $today = now()->format('dmy');
@@ -335,7 +335,8 @@ class RFQController extends Controller
                 'country'      => $request->input('country'),
                 'link'         => route('single-rfq.show', $rfq_code),
             ];
-
+            dd($rfq_code);
+            dd($request->all());
             // try {
                 Mail::to($request->email)->send(new RFQNotificationClientMail($data));
                 foreach ($user_emails as $email) {
@@ -345,8 +346,8 @@ class RFQController extends Controller
             //     Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
             //     Toastr::error('There was an error sending the email.', 'Error');
             // }
-
-            Toastr::success('Your RFQ has been submitted successfully.');
+            Session::flash('success', 'Your RFQ has been submitted successfully.');
+            // Toastr::success('Your RFQ has been submitted successfully.');
         }
 
         return redirect()->back();
