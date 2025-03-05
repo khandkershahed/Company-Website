@@ -217,7 +217,6 @@ class RFQController extends Controller
                 'mimes'        => 'The :attribute must be a file of type:PNG-JPEG-JPG-WEBP',
             ],
         );
-
         if ($validator->fails()) {
             Log::error('Validation failed:', $validator->errors()->toArray());
             $messages = $validator->messages();
@@ -227,6 +226,7 @@ class RFQController extends Controller
             }
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        dd($request->all());
 
         $userIp = $request->ip();
         $lastRequestTime = session("last_email_request_{$userIp}");
