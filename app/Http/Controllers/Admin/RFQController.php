@@ -239,116 +239,116 @@ class RFQController extends Controller
 
         session()->put("last_form_submission_{$userIp}", now());
 
-        if ($validator->passes()) {
-            $data['deal_type'] = 'new';
-            $today = now()->format('dmy');
 
-            $lastCode = RFQ::where('rfq_code', 'like', "RFQ-$today-%")->latest('id')->first();
+        $data['deal_type'] = 'new';
+        $today = now()->format('dmy');
 
-            if ($lastCode) {
-                $lastNumber = (int)explode('-', $lastCode->rfq_code)[2];
-                $newNumber = $lastNumber + 1;
-            } else {
-                $newNumber = 1;
-            }
+        $lastCode = RFQ::where('rfq_code', 'like', "RFQ-$today-%")->latest('id')->first();
 
-            $client = Client::where('email', $request->input('email'))->first();
-            $client_type = $client ? (in_array($client->user_type, ['client', 'partner']) ? $client->user_type : 'anonymous') : 'anonymous';
+        if ($lastCode) {
+            $lastNumber = (int)explode('-', $lastCode->rfq_code)[2];
+            $newNumber = $lastNumber + 1;
+        } else {
+            $newNumber = 1;
+        }
 
-            $data['rfq_code'] = "RFQ-$today-$newNumber";
+        $client = Client::where('email', $request->input('email'))->first();
+        $client_type = $client ? (in_array($client->user_type, ['client', 'partner']) ? $client->user_type : 'anonymous') : 'anonymous';
 
-            $product = Product::find($request->input('product_id'));
-            $product_name = $request->input('product_name') ?? $product->name;
+        $data['rfq_code'] = "RFQ-$today-$newNumber";
 
-            $mainFile = $request->file('image');
-            $imgPath = storage_path('app/public/');
-            $globalFunImage = $mainFile ? Helper::singleImageUpload($mainFile, $imgPath, 450, 350) : ['status' => 0];
+        $product = Product::find($request->input('product_id'));
+        $product_name = $request->input('product_name') ?? $product->name;
 
-            $rfq_id = Rfq::insertGetId([
-                'client_id' => !empty($request->client_id) ? $request->client_id : (!empty($client->id) ? $client->id : null),
-                'partner_id'   => $request->input('partner_id'),
-                'product_id'   => $request->input('product_id'),
-                'solution_id'  => $request->input('solution_id'),
-                'rfq_code'     => $data['rfq_code'],
-                'rfq_type'     => 'rfq',
-                'deal_type'    => $data['deal_type'],
-                'client_type'  => $client_type,
-                'name'         => $request->input('name'),
-                'email'        => $request->input('email'),
-                'phone'        => $request->input('phone'),
-                'qty'          => $request->input('qty'),
-                'company_name' => $request->input('company_name'),
-                'country'      => $request->input('country'),
-                'designation'  => $request->input('designation'),
-                'message'      => $request->input('message'),
-                'address'      => $request->input('address'),
-                'create_date'  => now(),
-                'close_date'   => $request->input('close_date'),
-                'image'        => $globalFunImage['status'] == 1 ? $globalFunImage['file_name'] : '',
-                'status'       => 'rfq_created',
+        $mainFile = $request->file('image');
+        $imgPath = storage_path('app/public/');
+        $globalFunImage = $mainFile ? Helper::singleImageUpload($mainFile, $imgPath, 450, 350) : ['status' => 0];
+
+        $rfq_id = Rfq::insertGetId([
+            'client_id' => !empty($request->client_id) ? $request->client_id : (!empty($client->id) ? $client->id : null),
+            'partner_id'   => $request->input('partner_id'),
+            'product_id'   => $request->input('product_id'),
+            'solution_id'  => $request->input('solution_id'),
+            'rfq_code'     => $data['rfq_code'],
+            'rfq_type'     => 'rfq',
+            'deal_type'    => $data['deal_type'],
+            'client_type'  => $client_type,
+            'name'         => $request->input('name'),
+            'email'        => $request->input('email'),
+            'phone'        => $request->input('phone'),
+            'qty'          => $request->input('qty'),
+            'company_name' => $request->input('company_name'),
+            'country'      => $request->input('country'),
+            'designation'  => $request->input('designation'),
+            'message'      => $request->input('message'),
+            'address'      => $request->input('address'),
+            'create_date'  => now(),
+            'close_date'   => $request->input('close_date'),
+            'image'        => $globalFunImage['status'] == 1 ? $globalFunImage['file_name'] : '',
+            'status'       => 'rfq_created',
+            'created_at'   => Carbon::now(),
+        ]);
+
+        if ($product_name) {
+            RfqProduct::insert([
+                'rfq_id'       => $rfq_id,
+                'product_name' => $product_name,
+                'qty'          => $request->qty,
                 'created_at'   => Carbon::now(),
+
             ]);
 
-            if ($product_name) {
-                RfqProduct::insert([
-                    'rfq_id'       => $rfq_id,
-                    'product_name' => $product_name,
-                    'qty'          => $request->qty,
-                    'created_at'   => Carbon::now(),
-
-                ]);
-
-                QuotationProduct::insert([
-                    'rfq_id'       => $rfq_id,
-                    'product_name' => $product_name,
-                    'qty'          => $request->qty,
-                    'created_at'   => Carbon::now(),
-
-                ]);
-            }
-
-            $name = $request->input('name');
-            $rfq_code = $data['rfq_code'];
-
-            $users = User::whereJsonContains('department', ['business', 'logistics'])->get();
-            $user_emails = User::whereJsonContains('department', ['business'])
-                ->where(function ($query) {
-                    $query->where('role', 'manager')
-                        ->orWhere('role', 'admin');
-                })
-                ->pluck('email')
-                ->toArray();
-
-            Notification::send($users, new RfqCreate($name, $rfq_code));
-
-            $data = [
-                'name'         => $name,
-                'sku_code'     => !empty($product->sku_code) ?? $product->sku_code,
+            QuotationProduct::insert([
+                'rfq_id'       => $rfq_id,
                 'product_name' => $product_name,
-                'phone'        => $request->input('phone'),
-                'qty'          => $request->input('qty'),
-                'company_name' => $request->input('company_name'),
-                'address'      => $request->input('address'),
-                'message'      => $request->input('message'),
-                'rfq_code'     => $rfq_code,
-                'email'        => $request->input('email'),
-                'country'      => $request->input('country'),
-                'link'         => route('single-rfq.show', $rfq_code),
-            ];
-            dd($rfq_code);
-            dd($request->all());
-            // try {
-                Mail::to($request->email)->send(new RFQNotificationClientMail($data));
-                foreach ($user_emails as $email) {
-                    Mail::to($email)->send(new RFQNotificationAdminMail($data));
-                }
-            // } catch (\Exception $e) {
-            //     Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
-            //     Toastr::error('There was an error sending the email.', 'Error');
-            // }
-            Session::flash('success', 'Your RFQ has been submitted successfully.');
-            // Toastr::success('Your RFQ has been submitted successfully.');
+                'qty'          => $request->qty,
+                'created_at'   => Carbon::now(),
+
+            ]);
         }
+
+        $name = $request->input('name');
+        $rfq_code = $data['rfq_code'];
+
+        $users = User::whereJsonContains('department', ['business', 'logistics'])->get();
+        $user_emails = User::whereJsonContains('department', ['business'])
+            ->where(function ($query) {
+                $query->where('role', 'manager')
+                    ->orWhere('role', 'admin');
+            })
+            ->pluck('email')
+            ->toArray();
+
+        Notification::send($users, new RfqCreate($name, $rfq_code));
+
+        $data = [
+            'name'         => $name,
+            'sku_code'     => !empty($product->sku_code) ?? $product->sku_code,
+            'product_name' => $product_name,
+            'phone'        => $request->input('phone'),
+            'qty'          => $request->input('qty'),
+            'company_name' => $request->input('company_name'),
+            'address'      => $request->input('address'),
+            'message'      => $request->input('message'),
+            'rfq_code'     => $rfq_code,
+            'email'        => $request->input('email'),
+            'country'      => $request->input('country'),
+            'link'         => route('single-rfq.show', $rfq_code),
+        ];
+        dd($rfq_code);
+        dd($request->all());
+        // try {
+        Mail::to($request->email)->send(new RFQNotificationClientMail($data));
+        foreach ($user_emails as $email) {
+            Mail::to($email)->send(new RFQNotificationAdminMail($data));
+        }
+        // } catch (\Exception $e) {
+        //     Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
+        //     Toastr::error('There was an error sending the email.', 'Error');
+        // }
+        Session::flash('success', 'Your RFQ has been submitted successfully.');
+        // Toastr::success('Your RFQ has been submitted successfully.');
+
 
         return redirect()->back();
     }
