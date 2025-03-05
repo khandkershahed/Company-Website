@@ -335,8 +335,8 @@ class RFQController extends Controller
             'country'      => $request->input('country'),
             'link'         => route('single-rfq.show', $rfq_code),
         ];
-        dd($rfq_code);
-        dd($request->all());
+        // dd($rfq_code);
+        // dd($request->all());
         try {
             Mail::to($request->email)->send(new RFQNotificationClientMail($data));
             foreach ($user_emails as $email) {
