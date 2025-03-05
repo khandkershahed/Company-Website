@@ -339,8 +339,10 @@ class RFQController extends Controller
         // dd($request->all());
         try {
             Mail::to($request->email)->send(new RFQNotificationClientMail($data));
+            sleep(1); // Delay in seconds
             foreach ($user_emails as $email) {
                 Mail::to($email)->send(new RFQNotificationAdminMail($data));
+                sleep(1);
             }
         } catch (\Exception $e) {
             Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
