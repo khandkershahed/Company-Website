@@ -1844,19 +1844,19 @@
 .st-four-service-section-02 .service-item-02 .service-img img {
     height: 55px;
     position: relative;
-    left: 15px;
+    left: 13px;
 }
 
 .st-four-service-section-02 .service-item-02 .service-img::before {
     content: "";
     position: absolute;
     left: 0;
-    top: -18%;
+    top: -22%;
     background: #ff5538;
-    width: 70px;
-    height: 70px;
+    width: 5.1rem;
+    height: 5.1rem;
     border-radius: 50%;
-    transition: all 0.3s linear;
+    transition: all 0.3slinear;
     z-index: -1;
 }
 

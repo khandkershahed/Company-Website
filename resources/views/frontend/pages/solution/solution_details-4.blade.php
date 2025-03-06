@@ -145,10 +145,10 @@
                                                     <img src="{{ !empty($solution->row_two_column_one_image) && file_exists(public_path('storage/' . $solution->row_two_column_one_image)) ? asset('storage/' . $solution->row_two_column_one_image) : asset('images/ser-icon-4-5.png') }}"
                                                         alt="">
                                                 </div>
-                                                <div class="next-icon">
+                                                {{-- <div class="next-icon">
                                                     <img src="{{ !empty($solution->row_two_column_one_image) && file_exists(public_path('storage/' . $solution->row_two_column_one_image)) ? asset('storage/' . $solution->row_two_column_one_image) : asset('images/ser-icon-4-5.png') }}"
                                                         alt="">
-                                                </div>
+                                                </div> --}}
                                             @endif
                                             <div class="service-content">
                                                 <h3 class="title"><a
@@ -171,10 +171,10 @@
                                                     <img src="{{ !empty($solution->row_two_column_two_image) && file_exists(public_path('storage/' . $solution->row_two_column_two_image)) ? asset('storage/' . $solution->row_two_column_two_image) : asset('images/ser-icon-4-5.png') }}"
                                                         alt="">
                                                 </div>
-                                                <div class="next-icon">
+                                                {{-- <div class="next-icon">
                                                     <img src="{{ !empty($solution->row_two_column_two_image) && file_exists(public_path('storage/' . $solution->row_two_column_two_image)) ? asset('storage/' . $solution->row_two_column_two_image) : asset('images/ser-icon-4-5.png') }}"
                                                         alt="">
-                                                </div>
+                                                </div> --}}
                                             @endif
                                             <div class="service-content">
                                                 <h3 class="title"><a
@@ -197,10 +197,10 @@
                                                     <img src="{{ !empty($solution->row_two_column_three_image) && file_exists(public_path('storage/' . $solution->row_two_column_three_image)) ? asset('storage/' . $solution->row_two_column_three_image) : asset('images/ser-icon-4-5.png') }}"
                                                         alt="">
                                                 </div>
-                                                <div class="next-icon">
+                                                {{-- <div class="next-icon">
                                                     <img src="{{ !empty($solution->row_two_column_three_image) && file_exists(public_path('storage/' . $solution->row_two_column_three_image)) ? asset('storage/' . $solution->row_two_column_three_image) : asset('images/ser-icon4-6.png') }}"
                                                         alt="">
-                                                </div>
+                                                </div> --}}
                                             @endif
                                             <div class="service-content">
                                                 <h3 class="title"><a
@@ -223,10 +223,10 @@
                                                     <img src="{{ !empty($solution->row_two_column_four_image) && file_exists(public_path('storage/' . $solution->row_two_column_four_image)) ? asset('storage/' . $solution->row_two_column_four_image) : asset('images/ser-icon-4-8.png') }}"
                                                         alt="">
                                                 </div>
-                                                <div class="next-icon">
+                                                {{-- <div class="next-icon">
                                                     <img src="{{ !empty($solution->row_two_column_four_image) && file_exists(public_path('storage/' . $solution->row_two_column_four_image)) ? asset('storage/' . $solution->row_two_column_four_image) : asset('images/ser-icon-4-8.png') }}"
                                                         alt="">
-                                                </div>
+                                                </div> --}}
                                             @endif
                                             <div class="service-content">
                                                 <h3 class="title"><a
