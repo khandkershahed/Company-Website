@@ -12,18 +12,21 @@
                         <div class="col-lg-7">
                             <!-- Hero Content Start -->
                             <div class="hero-content">
-                                <h3 class="sub-title aos-init aos-animate" data-aos-delay="600" data-aos="fade-up"> We
-                                    provide the most advance digital solution</h3>
+                                <h3 class="sub-title aos-init aos-animate" data-aos-delay="600" data-aos="fade-up">
+                                    {{ $solution->row_two_title }}
+                                </h3>
                                 <h2 class="title aos-init aos-animate" data-aos="fade-up" data-aos-delay="800">
                                     {{ $solution->name }}
                                 </h2>
-                                <div class="hero-play-btn aos-init aos-animate" data-aos="fade-up" data-aos-delay="900">
-                                    <a class="popup-video play-btn"
-                                        href="https://www.youtube.com/watch?time_continue=3&amp;v=_X0eYtY8T_U">
-                                        <i class="fas fa-play"></i>
-                                        <span>Watch Video</span>
-                                    </a>
-                                </div>
+                                @if (!empty($solution->video_link))
+                                    <div class="hero-play-btn aos-init aos-animate" data-aos="fade-up" data-aos-delay="900">
+                                        <a class="popup-video play-btn" href="{{ $solution->video_link }}">
+                                            {{-- href="https://www.youtube.com/watch?time_continue=3&amp;v=_X0eYtY8T_U"> --}}
+                                            <i class="fas fa-play"></i>
+                                            <span>Watch Video</span>
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
                             <!-- Hero Content End -->
                         </div>
@@ -38,199 +41,277 @@
                 </div>
             </div>
         </section>
-        <div class="st-four-about-section-03 section-padding-02 pt-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <!-- About Content Start -->
-                        <div class="about-content-03">
-                            <div class="st-four-section-title">
-                                <h3 class="sub-title color-2">Who we are</h3>
-                                <h2 class="title">We run all kinds of software services that vow your success</h2>
-                            </div>
-                            <p class="text">Accelerate innovation with world-class tech teams We’ll match you to an entire
-                                remote team of incredible freelance talent for all your software development needs.</p>
-                            <div class="about-quote">
-                                <blockquote class="blockquote">
-                                    <p>Accelerate innovation with world-class tech teams We’ll match you to an entire
-                                        remote.</p>
-                                </blockquote>
-                            </div>
-                            <!-- About List Start -->
-                            <div class="about-list-02">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="about-list-item-02">
-                                            <h3 class="title"><i class="fas fa-arrow-circle-right"></i> Expert Team</h3>
-                                            <p>Accelerate innovation with world-class tech teams</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="about-list-item-02">
-                                            <h3 class="title"><i class="fas fa-arrow-circle-right"></i>Custom Code</h3>
-                                            <p>Accelerate innovation with world-class tech teams</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- About List End -->
-                        </div>
-                        <!-- About Content End -->
-                    </div>
-                    <div class="col-lg-6">
-                        <!-- About Image Warp Start -->
-                        <div class="about-img-warp-3">
-                            <div class="shape-1"></div>
-                            <div class="about-img about-img-big">
-                                <img src="{{ asset('images/about-big-4.jpg') }}" alt="">
-                            </div>
-                            <div class="about-img about-img-sm">
-                                <img src="{{ asset('images/about-sm-4.jpg') }}" alt="">
-                            </div>
-                        </div>
-                        <!-- About Image Warp End -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="st-four-section st-four-service-section-02 section-padding"
-            style="background-image: url({{ asset('images/service-bg-4.jpg') }});">
-            <div class="container">
-                <!-- Service Wrap Start -->
-                <div class="service-wrap">
-                    <div class="st-four-section-title text-center">
-                        <h3 class="sub-title color-2">What we provide</h3>
-                        <h2 class="title">We provide truly prominent Software solutions.</h2>
-                    </div>
-                    <!-- Service Content Wrap Start -->
-                    <div class="service-content-wrap">
-                        <div class="row">
-                            <div class="col-xl-3 col-sm-6">
-                                <!-- Service Item Start -->
-                                <div class="service-item-02">
-                                    <div class="service-img">
-                                        <img src="{{ asset('images/ser-icon-4-5.png') }}" alt="">
-                                    </div>
-                                    <div class="next-icon">
-                                        <img src="{{ asset('images/ser-icon-4-5.png') }}" alt="">
-                                    </div>
-                                    <div class="service-content">
-                                        <h3 class="title"><a href="service.html">Web <br> Development</a></h3>
-                                        <p>Accelerate innovation with world-class tech teams We’ll match you to an entire
-                                            remote team .</p>
-                                    </div>
-                                </div>
-                                <!-- Service Item End -->
-                            </div>
-                            <div class="col-xl-3 col-sm-6">
-                                <!-- Service Item Start -->
-                                <div class="service-item-02 service-2">
-                                    <div class="service-img">
-                                        <img src="{{ asset('images/ser-icon-4-5.png') }}" alt="">
-                                    </div>
-                                    <div class="next-icon">
-                                        <img src="{{ asset('images/ser-icon-4-5.png') }}" alt="">
-                                    </div>
-                                    <div class="service-content">
-                                        <h3 class="title"><a href="service.html">Mobile <br> App Development</a></h3>
-                                        <p>Accelerate innovation with world-class tech teams We’ll match you to an entire
-                                            remote team .</p>
-                                    </div>
-                                </div>
-                                <!-- Service Item End -->
-                            </div>
-                            <div class="col-xl-3 col-sm-6">
-                                <!-- Service Item Start -->
-                                <div class="service-item-02">
-                                    <div class="service-img">
-                                        <img src="{{ asset('images/ser-icon-4-5.png') }}" alt="">
-                                    </div>
-                                    <div class="next-icon">
-                                        <img src="{{ asset('images/ser-icon4-6.png') }}" alt="">
-                                    </div>
-                                    <div class="service-content">
-                                        <h3 class="title"><a href="service.html">Software <br> Innovation</a></h3>
-                                        <p>Accelerate innovation with world-class tech teams We’ll match you to an entire
-                                            remote team .</p>
-                                    </div>
-                                </div>
-                                <!-- Service Item End -->
-                            </div>
-                            <div class="col-xl-3 col-sm-6">
-                                <!-- Service Item Start -->
-                                <div class="service-item-02 service-4">
-                                    <div class="service-img">
-                                        <img src="{{ asset('images/ser-icon-4-8.png') }}" alt="">
-                                    </div>
-                                    <div class="next-icon">
-                                        <img src="{{ asset('images/ser-icon-4-8.png') }}" alt="">
-                                    </div>
-                                    <div class="service-content">
-                                        <h3 class="title"><a href="service.html">App Management <br> System</a></h3>
-                                        <p>Accelerate innovation with world-class tech teams We’ll match you to an entire
-                                            remote team .</p>
-                                    </div>
-                                </div>
-                                <!-- Service Item End -->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="more-service-content text-center">
-                                    <p>Learn more about <a href="service.html">More Services <i
-                                                class="fas fa-long-arrow-alt-right"></i></a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Service Content Wrap End -->
-                </div>
-                <!-- Service Wrap End -->
-            </div>
-        </div>
-        <div class="st-four-section st-four-skill-section section-padding">
-            <div class="container">
-                <div class="skill-wrap">
+        @if (
+            !empty($solution->row_four_badge) ||
+                !empty($solution->row_four_title) ||
+                !empty($solution->row_four_header) ||
+                !empty($solution->row_four_quote) ||
+                !empty($solution->row_four_col_one_title) ||
+                !empty($solution->row_four_col_one_description) ||
+                !empty($solution->row_four_col_two_title) ||
+                !empty($solution->row_four_col_two_description) ||
+                !empty($solution->row_four_big_image) ||
+                !empty($solution->row_four_small_image))
+            <div class="st-four-about-section-03 section-padding-02 pt-5">
+                <div class="container">
                     <div class="row">
                         <div class="col-lg-6">
-                            <!-- Skill Left Start -->
-                            <div class="skill-left">
+                            <!-- About Content Start -->
+                            <div class="about-content-03">
                                 <div class="st-four-section-title">
-                                    <h2 class="title">We have an experienced team of production and inspection </h2>
+                                    <h3 class="sub-title color-2">{{ $solution->row_four_badge }}</h3>
+                                    <h2 class="title mt-2">{{ $solution->row_four_title }}</h2>
                                 </div>
-                                <p>Accelerate innovation with world-class tech teams We’ll match you to an entire remote
-                                    team of incredible freelance talent for all your software development needs.</p>
-                                <div style="padding: 10px;border-radius: 5px 30px;">
-                                    <h4>
-                                        <img style="margin-top: -2rem;" src="{{ asset('images/solution/template_four/Quote_02.png') }}" alt=""> Accelerate innovation with world-class tech teams We’ll match you to an entire
-                                        remote team of incredible freelance talent for all your software development needs.
-                                        <img src="{{ asset('images/solution/template_four/Quote_01.png') }}" alt="">
-                                    </h4>
+                                <p class="text">{{ $solution->row_four_header }}</p>
+                                <div class="about-quote">
+                                    <blockquote class="blockquote">
+                                        <p>{{ $solution->row_four_quote }}</p>
+                                    </blockquote>
                                 </div>
-                                <div class="skill-author">
-                                    <div class="st-three-hero">
-                                        <a class="btn" href="javascript:void(0)">Read More</a>
+                                <!-- About List Start -->
+                                <div class="about-list-02">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="about-list-item-02">
+                                                <h3 class="title"><i class="fas fa-arrow-circle-right"></i>
+                                                    {{ $solution->row_four_col_one_title }}</h3>
+                                                <p>{{ $solution->row_four_col_one_description }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="about-list-item-02">
+                                                <h3 class="title"><i
+                                                        class="fas fa-arrow-circle-right"></i>{{ $solution->row_four_col_two_title }}
+                                                </h3>
+                                                <p>{{ $solution->row_four_col_two_description }}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Skill Left End -->
                         </div>
-                        <div class="col-lg-6">
-                            <div class="skill-right">
-                                {{-- <div class="experience">
-                                    <h2 class="number">25</h2>
-                                    <span>Years of <br> experience <br> on IT Services</span>
-                                </div> --}}
-                                <div class="pt-4">
-                                    <img class="img-fluid" src="{{ asset('images/slider-overview-4.png') }}"
-                                        alt="">
+                        @if (!empty($solution->row_four_big_image) || !empty($solution->row_four_small_image))
+                            <div class="col-lg-6">
+                                <!-- About Image Warp Start -->
+                                <div class="about-img-warp-3">
+                                    <div class="shape-1"></div>
+                                    <div class="about-img about-img-big">
+                                        <img src="{{ !empty($solution->row_four_big_image) && file_exists(public_path('storage/' . $solution->row_four_big_image)) ? asset('storage/' . $solution->row_four_big_image) : asset('images/about-big-4.jpg') }}"
+                                            alt="">
+                                    </div>
+                                    <div class="about-img about-img-sm">
+                                        <img src="{{ !empty($solution->row_four_small_image) && file_exists(public_path('storage/' . $solution->row_four_small_image)) ? asset('storage/' . $solution->row_four_small_image) : asset('images/about-sm-4.jpg') }}"
+                                            alt="">
+                                    </div>
+                                </div>
+                                <!-- About Image Warp End -->
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        @endif
+        @if (
+            !empty($solution->row_three_title) ||
+                !empty($solution->row_three_header) ||
+                !empty($solution->row_two_column_one_title) ||
+                !empty($solution->row_two_column_one_description) ||
+                !empty($solution->row_two_column_two_title) ||
+                !empty($solution->row_two_column_two_description) ||
+                !empty($solution->row_two_column_three_title) ||
+                !empty($solution->row_two_column_three_description) ||
+                !empty($solution->row_two_column_four_title) ||
+                !empty($solution->row_two_column_four_description))
+            <div class="st-four-section st-four-service-section-02 section-padding"
+                style="background-image: url({{ asset('images/service-bg-4.jpg') }});">
+                <div class="container">
+                    <!-- Service Wrap Start -->
+                    <div class="service-wrap">
+                        <div class="st-four-section-title text-center">
+                            <h3 class="sub-title color-2">{{ $solution->row_three_title }}</h3>
+                            <h2 class="title mt-2">{{ $solution->row_three_header }}</h2>
+                        </div>
+                        <!-- Service Content Wrap Start -->
+                        <div class="service-content-wrap">
+                            <div class="row">
+                                @if (!empty($solution->row_two_column_one_title) || !empty($solution->row_two_column_one_description))
+                                    <div class="col-xl-3 col-sm-6">
+                                        <!-- Service Item Start -->
+                                        <div class="service-item-02">
+                                            @if (
+                                                !empty($solution->row_two_column_one_image) &&
+                                                    file_exists(public_path('storage/' . $solution->row_two_column_one_image)))
+                                                <div class="service-img">
+                                                    <img src="{{ !empty($solution->row_two_column_one_image) && file_exists(public_path('storage/' . $solution->row_two_column_one_image)) ? asset('storage/' . $solution->row_two_column_one_image) : asset('images/ser-icon-4-5.png') }}"
+                                                        alt="">
+                                                </div>
+                                                <div class="next-icon">
+                                                    <img src="{{ !empty($solution->row_two_column_one_image) && file_exists(public_path('storage/' . $solution->row_two_column_one_image)) ? asset('storage/' . $solution->row_two_column_one_image) : asset('images/ser-icon-4-5.png') }}"
+                                                        alt="">
+                                                </div>
+                                            @endif
+                                            <div class="service-content">
+                                                <h3 class="title"><a
+                                                        href="{{ $solution->row_two_column_one_link ?? 'javascript:void(0)' }}">{{ $solution->row_two_column_one_title }}</a>
+                                                </h3>
+                                                <p>{{ $solution->row_two_column_one_description }}</p>
+                                            </div>
+                                        </div>
+                                        <!-- Service Item End -->
+                                    </div>
+                                @endif
+                                @if (!empty($solution->row_two_column_two_title) || !empty($solution->row_two_column_two_description))
+                                    <div class="col-xl-3 col-sm-6">
+                                        <!-- Service Item Start -->
+                                        <div class="service-item-02 service-2">
+                                            @if (
+                                                !empty($solution->row_two_column_two_image) &&
+                                                    file_exists(public_path('storage/' . $solution->row_two_column_two_image)))
+                                                <div class="service-img">
+                                                    <img src="{{ !empty($solution->row_two_column_two_image) && file_exists(public_path('storage/' . $solution->row_two_column_two_image)) ? asset('storage/' . $solution->row_two_column_two_image) : asset('images/ser-icon-4-5.png') }}"
+                                                        alt="">
+                                                </div>
+                                                <div class="next-icon">
+                                                    <img src="{{ !empty($solution->row_two_column_two_image) && file_exists(public_path('storage/' . $solution->row_two_column_two_image)) ? asset('storage/' . $solution->row_two_column_two_image) : asset('images/ser-icon-4-5.png') }}"
+                                                        alt="">
+                                                </div>
+                                            @endif
+                                            <div class="service-content">
+                                                <h3 class="title"><a
+                                                        href="{{ $solution->row_two_column_one_link ?? 'javascript:void(0)' }}">{{ $solution->row_two_column_two_title }}</a>
+                                                </h3>
+                                                <p>{{ $solution->row_two_column_two_description }}</p>
+                                            </div>
+                                        </div>
+                                        <!-- Service Item End -->
+                                    </div>
+                                @endif
+                                @if (!empty($solution->row_two_column_three_title) || !empty($solution->row_two_column_three_description))
+                                    <div class="col-xl-3 col-sm-6">
+                                        <!-- Service Item Start -->
+                                        <div class="service-item-02">
+                                            @if (
+                                                !empty($solution->row_two_column_three_image) &&
+                                                    file_exists(public_path('storage/' . $solution->row_two_column_three_image)))
+                                                <div class="service-img">
+                                                    <img src="{{ !empty($solution->row_two_column_three_image) && file_exists(public_path('storage/' . $solution->row_two_column_three_image)) ? asset('storage/' . $solution->row_two_column_three_image) : asset('images/ser-icon-4-5.png') }}"
+                                                        alt="">
+                                                </div>
+                                                <div class="next-icon">
+                                                    <img src="{{ !empty($solution->row_two_column_three_image) && file_exists(public_path('storage/' . $solution->row_two_column_three_image)) ? asset('storage/' . $solution->row_two_column_three_image) : asset('images/ser-icon4-6.png') }}"
+                                                        alt="">
+                                                </div>
+                                            @endif
+                                            <div class="service-content">
+                                                <h3 class="title"><a
+                                                        href="{{ $solution->row_two_column_one_link ?? 'javascript:void(0)' }}">{{ $solution->row_two_column_three_title }}</a>
+                                                </h3>
+                                                <p>{{ $solution->row_two_column_three_description }}</p>
+                                            </div>
+                                        </div>
+                                        <!-- Service Item End -->
+                                    </div>
+                                @endif
+                                @if (!empty($solution->row_two_column_four_title) || !empty($solution->row_two_column_four_description))
+                                    <div class="col-xl-3 col-sm-6">
+                                        <!-- Service Item Start -->
+                                        <div class="service-item-02 service-4">
+                                            @if (
+                                                !empty($solution->row_two_column_four_image) &&
+                                                    file_exists(public_path('storage/' . $solution->row_two_column_four_image)))
+                                                <div class="service-img">
+                                                    <img src="{{ !empty($solution->row_two_column_four_image) && file_exists(public_path('storage/' . $solution->row_two_column_four_image)) ? asset('storage/' . $solution->row_two_column_four_image) : asset('images/ser-icon-4-8.png') }}"
+                                                        alt="">
+                                                </div>
+                                                <div class="next-icon">
+                                                    <img src="{{ !empty($solution->row_two_column_four_image) && file_exists(public_path('storage/' . $solution->row_two_column_four_image)) ? asset('storage/' . $solution->row_two_column_four_image) : asset('images/ser-icon-4-8.png') }}"
+                                                        alt="">
+                                                </div>
+                                            @endif
+                                            <div class="service-content">
+                                                <h3 class="title"><a
+                                                        href="{{ $solution->row_two_column_one_link ?? 'javascript:void(0)' }}">{{ $solution->row_two_column_four_title }}</a>
+                                                </h3>
+                                                <p>{{ $solution->row_two_column_four_description }}</p>
+                                            </div>
+                                        </div>
+                                        <!-- Service Item End -->
+                                    </div>
+                                @endif
+                            </div>
+                            {{-- <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="more-service-content text-center">
+                                        <p>Learn more about <a href="service.html">More Services <i
+                                                    class="fas fa-long-arrow-alt-right"></i></a></p>
+                                    </div>
+                                </div>
+                            </div> --}}
+                        </div>
+                        <!-- Service Content Wrap End -->
+                    </div>
+                    <!-- Service Wrap End -->
+                </div>
+            </div>
+        @endif
+        @if (
+            !empty($solution->row_five_title) ||
+                !empty($solution->row_five_description) ||
+                !empty($solution->row_five_header) ||
+                !empty($solution->row_five_btn_name) ||
+                !empty($solution->row_five_link) ||
+                !empty($solution->row_five_image))
+            <div class="st-four-section st-four-skill-section section-padding">
+                <div class="container">
+                    <div class="skill-wrap">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <!-- Skill Left Start -->
+                                <div class="skill-left">
+                                    <div class="st-four-section-title">
+                                        <h2 class="title">{{ $solution->row_five_title }} </h2>
+                                    </div>
+                                    <p>{{ $solution->row_five_description }}</p>
+                                    @if (!empty($solution->row_five_header))
+                                        <div style="padding: 10px;border-radius: 5px 30px;">
+                                            <h4>
+                                                <img style="margin-top: -2rem;"
+                                                    src="{{ asset('images/solution/template_four/Quote_02.png') }}"
+                                                    alt=""> {{ $solution->row_five_header }}
+                                                <img src="{{ asset('images/solution/template_four/Quote_01.png') }}"
+                                                    alt="">
+                                            </h4>
+                                        </div>
+                                    @endif
+                                    @if (!empty($solution->row_five_btn_name) && !empty($solution->row_five_link))
+                                        <div class="skill-author">
+                                            <div class="st-three-hero">
+                                                <a class="btn"
+                                                    href="{{ $solution->row_five_link ?? 'javascript:void(0)' }}">{{ $solution->row_five_btn_name }}</a>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                                <!-- Skill Left End -->
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="skill-right">
+                                    {{-- <div class="experience">
+                                        <h2 class="number">25</h2>
+                                        <span>Years of <br> experience <br> on IT Services</span>
+                                    </div> --}}
+                                    <div class="pt-4">
+                                        <img class="img-fluid"
+                                            src="{{ !empty($solution->row_five_image) && file_exists(public_path('storage/' . $solution->row_five_image)) ? asset('storage/' . $solution->row_five_image) : asset('images/slider-overview-4.png') }}"
+                                            alt="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
         <div class="section st-four-subscribe-section">
             <div class="container">
                 <div class="subscribe-wrap">
@@ -262,66 +343,96 @@
                 </div>
             </div>
         </div>
-        <div class="section st-two-counter-section" style="background: #f7e8e5;">
-            <div class="container">
-                <div class="counter-wrap">
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <!-- Single Counter Start -->
-                            <div class="single-counter">
-                                <div class="counter-img">
-                                    <img src="http://127.0.0.1:8000/images/counter-1.png" alt="">
+        @if (
+            !empty($solution->count_one_icon) ||
+                !empty($solution->count_one_number) ||
+                !empty($solution->count_one_text) ||
+                !empty($solution->count_two_icon) ||
+                !empty($solution->count_two_number) ||
+                !empty($solution->count_two_text) ||
+                !empty($solution->count_three_icon) ||
+                !empty($solution->count_three_number) ||
+                !empty($solution->count_three_text) ||
+                !empty($solution->count_four_icon) ||
+                !empty($solution->count_four_number) ||
+                !empty($solution->count_four_text))
+            <div class="section st-two-counter-section" style="background: #f7e8e5;">
+                <div class="container">
+                    <div class="counter-wrap">
+                        <div class="row">
+                            @if (!empty($solution->count_one_icon) || !empty($solution->count_one_number) || !empty($solution->count_one_text))
+                                <div class="col-lg-3 col-sm-6">
+                                    <!-- Single Counter Start -->
+                                    <div class="single-counter">
+                                        <div class="counter-img">
+                                            <img src="{{ asset('storage/' . $solution->count_one_icon) }}"
+                                                alt="">
+                                        </div>
+                                        <div class="counter-content">
+                                            <span class="counter"
+                                                style="color:#d33217;">{{ $solution->count_one_number }}</span>
+                                            <p class="mb-0">{{ $solution->count_one_text }}</p>
+                                        </div>
+                                    </div>
+                                    <!-- Single Counter End -->
                                 </div>
-                                <div class="counter-content">
-                                    <span class="counter" style="color:#d33217;">1790</span>
-                                    <p class="mb-0">Happy clients</p>
+                            @endif
+                            @if (!empty($solution->count_two_icon) || !empty($solution->count_two_number) || !empty($solution->count_two_text))
+                                <div class="col-lg-3 col-sm-6">
+                                    <!-- Single Counter Start -->
+                                    <div class="single-counter">
+                                        <div class="counter-img">
+                                            <img src="{{ asset('storage/' . $solution->count_two_icon) }}"
+                                                alt="">
+                                        </div>
+                                        <div class="counter-content">
+                                            <span class="counter"
+                                                style="color:#d33217;">{{ $solution->count_two_number }}</span>
+                                            <p class="mb-0">{{ $solution->count_two_text }}</p>
+                                        </div>
+                                    </div>
+                                    <!-- Single Counter End -->
                                 </div>
-                            </div>
-                            <!-- Single Counter End -->
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <!-- Single Counter Start -->
-                            <div class="single-counter">
-                                <div class="counter-img">
-                                    <img src="http://127.0.0.1:8000/images/counter-2.png" alt="">
+                            @endif
+                            @if (!empty($solution->count_three_icon) || !empty($solution->count_three_number) || !empty($solution->count_three_text))
+                                <div class="col-lg-3 col-sm-6">
+                                    <!-- Single Counter Start -->
+                                    <div class="single-counter">
+                                        <div class="counter-img">
+                                            <img src="{{ asset('storage/' . $solution->count_three_icon) }}"
+                                                alt="">
+                                        </div>
+                                        <div class="counter-content">
+                                            <span class="counter"
+                                                style="color:#d33217;">{{ $solution->count_three_number }}</span>
+                                            <p class="mb-0">{{ $solution->count_three_text }}</p>
+                                        </div>
+                                    </div>
+                                    <!-- Single Counter End -->
                                 </div>
-                                <div class="counter-content">
-                                    <span class="counter" style="color:#d33217;">491</span>
-                                    <p class="mb-0">Finished projects</p>
+                            @endif
+                            @if (!empty($solution->count_four_icon) || !empty($solution->count_four_number) || !empty($solution->count_four_text))
+                                <div class="col-lg-3 col-sm-6">
+                                    <!-- Single Counter Start -->
+                                    <div class="single-counter">
+                                        <div class="counter-img">
+                                            <img src="{{ asset('storage/' . $solution->count_four_icon) }}"
+                                                alt="">
+                                        </div>
+                                        <div class="counter-content">
+                                            <span class="counter"
+                                                style="color:#d33217;">{{ $solution->count_four_number }}</span>
+                                            <p class="mb-0">{{ $solution->count_four_text }}</p>
+                                        </div>
+                                    </div>
+                                    <!-- Single Counter End -->
                                 </div>
-                            </div>
-                            <!-- Single Counter End -->
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <!-- Single Counter Start -->
-                            <div class="single-counter">
-                                <div class="counter-img">
-                                    <img src="http://127.0.0.1:8000/images/counter-3.png" alt="">
-                                </div>
-                                <div class="counter-content">
-                                    <span class="counter" style="color:#d33217;">245</span>
-                                    <p class="mb-0">Skilled Experts</p>
-                                </div>
-                            </div>
-                            <!-- Single Counter End -->
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <!-- Single Counter Start -->
-                            <div class="single-counter">
-                                <div class="counter-img">
-                                    <img src="http://127.0.0.1:8000/images/counter-1.png" alt="">
-                                </div>
-                                <div class="counter-content">
-                                    <span class="counter" style="color:#d33217;">109</span>
-                                    <p class="mb-0">Media Posts</p>
-                                </div>
-                            </div>
-                            <!-- Single Counter End -->
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
         <div class="section st-four-contact-section section-padding pt-5">
             <div class="container">
                 <!-- Contact Wrap Start -->
