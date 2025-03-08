@@ -1560,8 +1560,10 @@
 }
 .st-four-hero-section-02 .hero-content .title {
     font-family: "Heebo", Arial, sans-serif !important;
-    font-size: 80px;
-    line-height: 90px;
+    /* font-size: 80px;
+    line-height: 90px; */
+    font-size: 3.9rem;
+    line-height: 1.2;
     padding-left: 45px;
     margin-top: 30px;
     color: #ffffff;
