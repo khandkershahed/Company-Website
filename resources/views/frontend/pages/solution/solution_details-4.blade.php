@@ -332,7 +332,7 @@
                                 <form action="{{ route('newsletter.store') }}" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
-                                    <input type="email" class="w-100" placeholder="  Your Email"
+                                    <input type="email" name="email" class="w-100" placeholder="Your Email"
                                         style="border-radius: 5px;">
                                     <button type="submit">Subscribe</button>
                                 </form>
