@@ -39,8 +39,7 @@
         @if ($solution->solution_template == 'template_four')
             <div class="col-lg-6 mb-7">
                 <x-metronic.label class="form-label">Video Link</x-metronic.label>
-                <textarea name="video_link" class="mb-2 form-control" rows="3" placeholder="Video Link">{{ old('video_link', $solution->video_link) }}
-            </textarea>
+                <textarea name="video_link" class="mb-2 form-control" rows="3" placeholder="Video Link">{{ old('video_link', $solution->video_link) }}</textarea>
             </div>
         @endif
         <div class="col-lg-6 mb-7">
