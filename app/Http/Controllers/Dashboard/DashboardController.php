@@ -108,7 +108,7 @@ class DashboardController extends Controller
 
         $usercount = User::count();
         $notices = Notice::latest('id')->get();
-        $data['leave_applications'] = LeaveApplication::get(['name', 'id', 'status']);
+        $data['leave_applications'] = LeaveApplication::latest('id')->get(['name', 'id', 'status']);
         // return view('admin.pages.HrandAdmin.all', $data);
         return view('metronic.pages.dashboard.hrDashboard', [
             'attendanceData'     => $attendanceData,
