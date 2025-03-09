@@ -15,7 +15,7 @@
             'November',
             'December',
         ];
-    @endphp
+    @endphp 
     <div class="row gx-8 gx-xl-10">
         <div class="row mb-5">
             <!-- Attendance -->

@@ -106,16 +106,16 @@ class DashboardController extends Controller
             }
         }
 
-        $data['users'] = User::latest('id', 'DESC')->get();
+        $usercount = User::count();
         $notices = Notice::latest('id')->get();
         $data['leave_applications'] = LeaveApplication::get(['name', 'id', 'status']);
         // return view('admin.pages.HrandAdmin.all', $data);
         return view('metronic.pages.dashboard.hrDashboard', [
             'attendanceData'     => $attendanceData,
-            'users'              => $users,
+            'usercount'          => $usercount,
             'deviceip'           => $deviceip,
             'leave_applications' => $data['leave_applications'],
-            'notices'           => $notices,
+            'notices'            => $notices,
         ]);
     }
 

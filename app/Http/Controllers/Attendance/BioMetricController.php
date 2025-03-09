@@ -321,43 +321,63 @@ class BioMetricController extends Controller
         $zk->enableDevice();
 
         $attendances = $zk->getAttendance(1);
-        $users = $zk->getUser(); // Retrieve user data from the device
+        $currentDate = date('Y-m-d');
 
-        // Filter attendances for the current month
-        $currentMonthAttendances = array_filter($attendances, function ($attendance) {
-            return date('Y-m', strtotime($attendance['timestamp'])) === date('Y-m');
+        // Filter attendance data for today
+        $todaysAttendance = array_filter($attendances, function ($record) use ($currentDate) {
+            // Assuming the date format in the attendance data is 'Y-m-d H:i:s'
+            return substr($record['timestamp'], 0, 10) === $currentDate && $record['id'] == 106;
         });
 
-        // Organize attendance data by date and user
-        $attendanceData = [];
-        foreach ($currentMonthAttendances as $attendance) {
-            $date = date('Y-m-d', strtotime($attendance['timestamp']));
-            $userId = $attendance['id'];
-            $checkTime = date('H:i:s', strtotime($attendance['timestamp']));
+        // Sort the filtered data by timestamp
+        usort($todaysAttendance, function ($a, $b) {
+            return strtotime($a['timestamp']) - strtotime($b['timestamp']);
+        });
 
-            // Find the user's name from the $users array
-            $userName = '';
-            foreach ($users as $user) {
-                if ($user['userid'] == $userId) {
-                    $userName = $user['name'];
-                    break;
-                }
-            }
+        // Get the earliest (check-in) and latest (check-out) attendance
+        $checkIn = isset($todaysAttendance[0]) ? $todaysAttendance[0] : null;  // First record (earliest timestamp)
+        $checkOut = isset($todaysAttendance[count($todaysAttendance) - 1]) ? $todaysAttendance[count($todaysAttendance) - 1] : null; // Last record (latest timestamp)
 
-            if (!isset($attendanceData[$date][$userId])) {
-                $attendanceData[$date][$userId] = [
-                    'user_id' => $userId,
-                    'user_name' => $userName,
-                    'check_in' => $checkTime,
-                    'check_out' => $checkTime,
-                ];
-            } else {
-                // Update check-out time if a later time is encountered
-                if (strtotime($checkTime) > strtotime($attendanceData[$date][$userId]['check_out'])) {
-                    $attendanceData[$date][$userId]['check_out'] = $checkTime;
-                }
-            }
-        }
+        // $attendances = $attendances->where();
+        dd($checkIn, $checkOut);
+        dd($todaysAttendance);
+        // $users = $zk->getUser(); // Retrieve user data from the device
+
+        // // Filter attendances for the current month
+        // $currentMonthAttendances = array_filter($attendances, function ($attendance) {
+        //     return date('Y-m', strtotime($attendance['timestamp'])) === date('Y-m');
+        // });
+
+        // // Organize attendance data by date and user
+        // $attendanceData = [];
+        // foreach ($currentMonthAttendances as $attendance) {
+        //     $date = date('Y-m-d', strtotime($attendance['timestamp']));
+        //     $userId = $attendance['id'];
+        //     $checkTime = date('H:i:s', strtotime($attendance['timestamp']));
+
+        //     // Find the user's name from the $users array
+        //     $userName = '';
+        //     foreach ($users as $user) {
+        //         if ($user['userid'] == $userId) {
+        //             $userName = $user['name'];
+        //             break;
+        //         }
+        //     }
+
+        //     if (!isset($attendanceData[$date][$userId])) {
+        //         $attendanceData[$date][$userId] = [
+        //             'user_id' => $userId,
+        //             'user_name' => $userName,
+        //             'check_in' => $checkTime,
+        //             'check_out' => $checkTime,
+        //         ];
+        //     } else {
+        //         // Update check-out time if a later time is encountered
+        //         if (strtotime($checkTime) > strtotime($attendanceData[$date][$userId]['check_out'])) {
+        //             $attendanceData[$date][$userId]['check_out'] = $checkTime;
+        //         }
+        //     }
+        // }
 
         // Save attendance data to the 'Attendance' table
         // foreach ($attendanceData as $date => $userData) {
@@ -370,10 +390,10 @@ class BioMetricController extends Controller
         //         ]);
         //     }
         // }
-        // dd($attendanceData);
+        dd($attendances);
 
         // Return the organized attendance data to the view
-        return view('admin.pages.attendance.device-attendance-data', ['attendanceData' => $attendanceData]);
+        return view('admin.pages.attendance.device-attendance-data', ['attendances' => $attendances]);
     }
 
 

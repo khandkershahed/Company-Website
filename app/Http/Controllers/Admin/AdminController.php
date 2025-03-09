@@ -455,7 +455,7 @@ class AdminController extends Controller
                 return isset($item['timestamp']) && Carbon::parse($item['timestamp'])->gt(Carbon::parse('09:06:00')) &&
                     Carbon::parse($item['timestamp'])->lt(Carbon::parse('10:01:00'));
             })
-            ->count();
+            ->count(); 
 
         // Count Half Day (LL) based on check_in time
         $lateCountLL = collect($lateCounts)

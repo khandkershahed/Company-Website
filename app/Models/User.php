@@ -92,6 +92,10 @@ class User extends Authenticatable
     {
         return User::where('id', $this->supervisor_id)->value('name');
     }
+    static public function getName($id)
+    {
+        return User::where('employee_id', $id)->value('name');
+    }
 
     public function employeeStatus()
     {

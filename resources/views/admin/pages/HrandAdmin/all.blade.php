@@ -125,7 +125,7 @@
                                                         <h1 class="title-text mb-0 main_color amount-ft-size">{{ App\Models\User::count() }}</h1>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> 
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="card rounded-0 mb-1" style="background-color: #e7fff2;">
