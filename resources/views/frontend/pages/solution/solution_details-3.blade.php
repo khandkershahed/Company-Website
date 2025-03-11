@@ -240,7 +240,7 @@
                     style="background-image: url({{ asset('images/counter-bg-3.jpg') }});">
                     <div class="container">
                         <div class="counter-wrap">
-                            <div class="row">
+                            <div class="row justify-content-center">
                                 @if (!empty($solution->count_one_number) || !empty($solution->count_one_text))
                                     <div class="col-lg-3 col-sm-6">
                                         <!-- Single Counter Start -->

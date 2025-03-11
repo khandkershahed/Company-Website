@@ -359,7 +359,7 @@
             <div class="section st-two-counter-section" style="background: #f7e8e5;">
                 <div class="container">
                     <div class="counter-wrap">
-                        <div class="row">
+                        <div class="row justify-content-center">
                             @if (!empty($solution->count_one_icon) || !empty($solution->count_one_number) || !empty($solution->count_one_text))
                                 <div class="col-lg-3 col-sm-6">
                                     <!-- Single Counter Start -->
