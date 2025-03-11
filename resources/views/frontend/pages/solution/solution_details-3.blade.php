@@ -241,38 +241,46 @@
                     <div class="container">
                         <div class="counter-wrap">
                             <div class="row">
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Counter Start -->
-                                    <div class="st-three-single-counter-02 text-center">
-                                        <span class="counter">{{ $solution->count_one_number }}</span>
-                                        <p>{{ $solution->count_one_text }}</p>
+                                @if (!empty($solution->count_one_number) || !empty($solution->count_one_text))
+                                    <div class="col-lg-3 col-sm-6">
+                                        <!-- Single Counter Start -->
+                                        <div class="st-three-single-counter-02 text-center">
+                                            <span class="counter">{{ $solution->count_one_number }}</span>
+                                            <p>{{ $solution->count_one_text }}</p>
+                                        </div>
+                                        <!-- Single Counter End -->
                                     </div>
-                                    <!-- Single Counter End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Counter Start -->
-                                    <div class="st-three-single-counter-02 text-center">
-                                        <span class="counter">{{ $solution->count_two_number }}</span>
-                                        <p>{{ $solution->count_two_text }}</p>
+                                @endif
+                                @if (!empty($solution->count_two_number) || !empty($solution->count_two_text))
+                                    <div class="col-lg-3 col-sm-6">
+                                        <!-- Single Counter Start -->
+                                        <div class="st-three-single-counter-02 text-center">
+                                            <span class="counter">{{ $solution->count_two_number }}</span>
+                                            <p>{{ $solution->count_two_text }}</p>
+                                        </div>
+                                        <!-- Single Counter End -->
                                     </div>
-                                    <!-- Single Counter End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Counter Start -->
-                                    <div class="st-three-single-counter-02 text-center">
-                                        <span class="counter">{{ $solution->count_three_number }}</span>
-                                        <p>{{ $solution->count_three_text }}</p>
+                                @endif
+                                @if (!empty($solution->count_three_number) || !empty($solution->count_three_text))
+                                    <div class="col-lg-3 col-sm-6">
+                                        <!-- Single Counter Start -->
+                                        <div class="st-three-single-counter-02 text-center">
+                                            <span class="counter">{{ $solution->count_three_number }}</span>
+                                            <p>{{ $solution->count_three_text }}</p>
+                                        </div>
+                                        <!-- Single Counter End -->
                                     </div>
-                                    <!-- Single Counter End -->
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <!-- Single Counter Start -->
-                                    <div class="st-three-single-counter-02 text-center">
-                                        <span class="counter">{{ $solution->count_four_number }}</span>
-                                        <p>{{ $solution->count_four_text }}</p>
+                                @endif
+                                @if (!empty($solution->count_four_number) || !empty($solution->count_four_text))
+                                    <div class="col-lg-3 col-sm-6">
+                                        <!-- Single Counter Start -->
+                                        <div class="st-three-single-counter-02 text-center">
+                                            <span class="counter">{{ $solution->count_four_number }}</span>
+                                            <p>{{ $solution->count_four_text }}</p>
+                                        </div>
+                                        <!-- Single Counter End -->
                                     </div>
-                                    <!-- Single Counter End -->
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>

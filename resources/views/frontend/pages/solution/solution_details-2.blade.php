@@ -257,58 +257,66 @@
         <div class="container">
             <div class="counter-wrap">
                 <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <!-- Single Counter Start -->
-                        <div class="single-counter">
-                            <div class="counter-img">
-                                <img src="{{ asset('storage/' . $solution->count_one_icon) }}" alt="">
+                    @if (!empty($solution->count_one_icon) || !empty($solution->count_one_number) || !empty($solution->count_one_text))
+                        <div class="col-lg-3 col-sm-6">
+                            <!-- Single Counter Start -->
+                            <div class="single-counter">
+                                <div class="counter-img">
+                                    <img src="{{ asset('storage/' . $solution->count_one_icon) }}" alt="">
+                                </div>
+                                <div class="counter-content">
+                                    <span class="counter">{{ $solution->count_one_number }}</span>
+                                    <p class="mb-0">{{ $solution->count_one_text }}</p>
+                                </div>
                             </div>
-                            <div class="counter-content">
-                                <span class="counter">{{ $solution->count_one_number }}</span>
-                                <p class="mb-0">{{ $solution->count_one_text }}</p>
-                            </div>
+                            <!-- Single Counter End -->
                         </div>
-                        <!-- Single Counter End -->
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <!-- Single Counter Start -->
-                        <div class="single-counter">
-                            <div class="counter-img">
-                                <img src="{{ asset('storage/' . $solution->count_two_icon) }}" alt="">
+                    @endif
+                    @if (!empty($solution->count_two_icon) || !empty($solution->count_two_number) || !empty($solution->count_two_text))
+                        <div class="col-lg-3 col-sm-6">
+                            <!-- Single Counter Start -->
+                            <div class="single-counter">
+                                <div class="counter-img">
+                                    <img src="{{ asset('storage/' . $solution->count_two_icon) }}" alt="">
+                                </div>
+                                <div class="counter-content">
+                                    <span class="counter">{{ $solution->count_two_number }}</span>
+                                    <p class="mb-0">{{ $solution->count_two_text }}</p>
+                                </div>
                             </div>
-                            <div class="counter-content">
-                                <span class="counter">{{ $solution->count_two_number }}</span>
-                                <p class="mb-0">{{ $solution->count_two_text }}</p>
-                            </div>
+                            <!-- Single Counter End -->
                         </div>
-                        <!-- Single Counter End -->
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <!-- Single Counter Start -->
-                        <div class="single-counter">
-                            <div class="counter-img">
-                                <img src="{{ asset('storage/' . $solution->count_three_icon) }}" alt="">
+                    @endif
+                    @if (!empty($solution->count_three_icon) || !empty($solution->count_three_number) || !empty($solution->count_three_text))
+                        <div class="col-lg-3 col-sm-6">
+                            <!-- Single Counter Start -->
+                            <div class="single-counter">
+                                <div class="counter-img">
+                                    <img src="{{ asset('storage/' . $solution->count_three_icon) }}" alt="">
+                                </div>
+                                <div class="counter-content">
+                                    <span class="counter">{{ $solution->count_three_number }}</span>
+                                    <p class="mb-0">{{ $solution->count_three_text }}</p>
+                                </div>
                             </div>
-                            <div class="counter-content">
-                                <span class="counter">{{ $solution->count_three_number }}</span>
-                                <p class="mb-0">{{ $solution->count_three_text }}</p>
-                            </div>
+                            <!-- Single Counter End -->
                         </div>
-                        <!-- Single Counter End -->
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <!-- Single Counter Start -->
-                        <div class="single-counter">
-                            <div class="counter-img">
-                                <img src="{{ asset('storage/' . $solution->count_four_icon) }}" alt="">
+                    @endif
+                    @if (!empty($solution->count_four_icon) || !empty($solution->count_four_number) || !empty($solution->count_four_text))
+                        <div class="col-lg-3 col-sm-6">
+                            <!-- Single Counter Start -->
+                            <div class="single-counter">
+                                <div class="counter-img">
+                                    <img src="{{ asset('storage/' . $solution->count_four_icon) }}" alt="">
+                                </div>
+                                <div class="counter-content">
+                                    <span class="counter">{{ $solution->count_four_number }}</span>
+                                    <p class="mb-0">{{ $solution->count_four_text }}</p>
+                                </div>
                             </div>
-                            <div class="counter-content">
-                                <span class="counter">{{ $solution->count_four_number }}</span>
-                                <p class="mb-0">{{ $solution->count_four_text }}</p>
-                            </div>
+                            <!-- Single Counter End -->
                         </div>
-                        <!-- Single Counter End -->
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
