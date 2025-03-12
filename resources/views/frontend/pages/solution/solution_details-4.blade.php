@@ -343,8 +343,7 @@
                 </div>
             </div>
         </div>
-        @if (
-            !empty($solution->count_one_icon) ||
+        @if (!empty($solution->count_one_icon) ||
                 !empty($solution->count_one_number) ||
                 !empty($solution->count_one_text) ||
                 !empty($solution->count_two_icon) ||
