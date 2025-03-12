@@ -222,7 +222,7 @@ function addToCart(event) {
         });
     });
 </script>
-
+ 
 <script>
     $(document).ready(function() {
         $('#short_desc').summernote({

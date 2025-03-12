@@ -45,6 +45,7 @@
     <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
         type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <link href="{{ asset('backend/metronic/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
     <link href="{{ asset('backend/metronic/assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
@@ -118,7 +119,7 @@
     <script src="{{ asset('backend/metronic/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
     {{-- <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script> --}}
     <script src="{{ asset('backend/metronic/assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
-
+    <script src="{{ asset('backend/assets/js/summernote.lite.js') }}"></script>
 
 
 
@@ -135,17 +136,31 @@
     <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
     @stack('scripts')
     <script>
-        document.querySelectorAll('.ckeditor').forEach(element => {
-            if (!element.classList.contains('ck-editor__editable_inline')) {
-                ClassicEditor
-                    .create(element)
-                    .then(editor => {
-                        console.log('CKEditor initialized:', editor);
-                    })
-                    .catch(error => {
-                        console.error('CKEditor initialization error:', error);
-                    });
-            }
+        // document.querySelectorAll('.ckeditor').forEach(element => {
+        //     if (!element.classList.contains('ck-editor__editable_inline')) {
+        //         ClassicEditor
+        //             .create(element)
+        //             .then(editor => {
+        //                 console.log('CKEditor initialized:', editor);
+        //             })
+        //             .catch(error => {
+        //                 console.error('CKEditor initialization error:', error);
+        //             });
+        //     }
+        // });
+        $(document).ready(function() {
+            $('.ckeditor').summernote({
+                placeholder: "Short Description",
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ]
+            });
         });
     </script>
     <script>
