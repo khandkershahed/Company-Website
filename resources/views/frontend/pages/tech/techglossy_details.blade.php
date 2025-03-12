@@ -19,7 +19,7 @@
 
     <!--=======// Content //=======-->
     <section class="container section_padding">
-        <div class="row mb-3">
+        <div class="px-3 mb-3 row px-lg-0 align-items-center">
             <div class="byTopics col-9">
                 <p>By <a href="javascript:void(0);">{{ $techglossy->created_by }}</a> <span> /
                     </span><span>{{ date('d-m-Y', strtotime($techglossy->created_at)) }}</span>
@@ -36,7 +36,7 @@
             <div class="col-lg-12 col-sm-12 tech_glossary_area_left">
 
                 <h5 style="font-size: var(--content-title-font-size);">{{ $techglossy->title }}</h5>
-                <div class="d-flex align-items-center py-3 pt-1">
+                <div class="py-3 pt-1 d-flex align-items-center">
                     @php
                         $tag = $techglossy->tags;
                         $tags = explode(',', $tag);
@@ -73,7 +73,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="area-text my-5">
+                        <div class="my-5 area-text">
                             <h5 class="callout">{!! $techglossy->footer !!}</h5>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
     <!--=======// Single blog related Postes //=======-->
 
     <section>
-        <div class="container py-lg-5 py-2">
+        <div class="container py-2 py-lg-5">
             <div class="">
                 <h2 class="text-center">
                     <span class="main_color">Featured Techglossies By NGen IT</span>
@@ -107,7 +107,7 @@
                                         <h5 class="mb-1 text-center">
                                             {{ $item->badge }}
                                         </h5>
-                                        <h4 class="mb-0 fw-bold text-center">{{ Str::limit($item->title, 55) }}</h4>
+                                        <h4 class="mb-0 text-center fw-bold">{{ Str::limit($item->title, 55) }}</h4>
                                     </div>
                                 </a>
                             </div>

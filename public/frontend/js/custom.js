@@ -191,8 +191,8 @@ $(document).ready(function () {
         slidesToScroll: 3, // Slide To Move
         pauseOnHover: false,
         appendArrows: $(".Container .Head .Arrows"), // Class For Arrows Buttons
-        prevArrow: '<span class="Slick-Prev"></span>',
-        nextArrow: '<span class="Slick-Next"></span>',
+        // prevArrow: '<span class="Slick-Prev"></span>',
+        // nextArrow: '<span class="Slick-Next"></span>',
         easing: "linear",
         responsive: [{
             breakpoint: 801,

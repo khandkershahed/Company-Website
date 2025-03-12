@@ -21,7 +21,7 @@
     <!--======// Guidance and support {1} //======-->
     <section class="mt-3">
         <div class="container mt-4 mb-2">
-            <ul class="breadcrumb text-left">
+            <ul class="text-left breadcrumb">
 
                 <a href="{{ route('homepage') }}">
                     <li class="breadcrumb__item breadcrumb__item-firstChild">
@@ -62,12 +62,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 service_common_content">
-                    <span class="radius_text_button">{{ $feature->badge }}</span>
+                    {{-- <span class="radius_text_button">{{ $feature->badge }}</span> --}}
                     <h3>{{ $feature->title }}</h3>
                     <p>{!! $feature->header !!}</p>
-                    <a href="#Contact" class="btn-color mt-3">Hear from our team</a>
+                    <a href="#Contact" class="mt-3 btn-color">Hear from our team</a>
                 </div>
-                <div class="col-lg-6 col-sm-12 p-4">
+                <div class="p-4 col-lg-6 col-sm-12">
                     <img class="img-fluid" style="border-radius: 8px;"
                         src="{{ !empty($feature->image) && file_exists(public_path('storage/' . $feature->image)) ? asset('storage/' . $feature->image) : asset('frontend/images/no-row-img(580-326).png') }}"
                         alt="NGEN IT">
@@ -148,7 +148,7 @@
     <!----------End--------->
 
     <!--=====// Global call section //=====-->
-    <section class="global_call_section section_padding mt-2 mb-3">
+    <section class="mt-2 mb-3 global_call_section section_padding">
         <div class="container">
             <!-- content -->
             @php
@@ -159,7 +159,7 @@
                     <h5 class="home_title_heading" style="text-align: left; color: #fff;">
                         <span>{{ \Illuminate\Support\Str::substr($sentence, 0, 1) }}</span>{{ \Illuminate\Support\Str::substr($sentence, 1) }}
                     </h5>
-                    <p class="home_title_text text-white pt-2 text-lg-start text-center">
+                    <p class="pt-2 text-center text-white home_title_text text-lg-start">
                         {{ Illuminate\Support\Str::limit($feature->row_four_header, 150, '...') }}
                     </p>
                     <div class="business_seftion_button">
@@ -181,13 +181,13 @@
                             src="{{ !empty($row_two->image) && file_exists(public_path('storage/' . $row_two->image)) ? asset('storage/' . $row_two->image) : asset('frontend/images/no-row-img(580-326).png') }}"
                             alt="NGEN IT">
                     </div>
-                    <div class="col-lg-6 col-sm-12 pr-4 service_common_content">
+                    <div class="pr-4 col-lg-6 col-sm-12 service_common_content">
                         <h4>{{ $row_two->badge }}</h4>
                         <h5>{{ $row_two->title }}</h5>
                         <p class="pt-3">{!! $row_two->description !!}</p>
 
                         @if (!empty($row_two->btn_name))
-                            <a href="{{ $row_two->link }}" class="btn-color mt-4">{{ $row_two->btn_name }}</a>
+                            <a href="{{ $row_two->link }}" class="mt-4 btn-color">{{ $row_two->btn_name }}</a>
                         @endif
 
                     </div>
@@ -198,14 +198,14 @@
 
     <!-------------End--------->
     <!--======// Call to action //======-->
-    <div class="call_to_action my-5"
+    <div class="my-5 call_to_action"
         style="background-image: linear-gradient(to right top, #ae0a46, #bf0248, #9a083e, #ad0441, #b31a52, #870736, #b70647, #b30243, #db0050, #b91c56, #a40942, #ae0a46)">
         <div class="container">
-            <div class="call_to_action_text mx-auto">
+            <div class="mx-auto call_to_action_text">
                 <h4 class="">{{ $feature->row_three_title }}</h4>
                 <p>{{ $feature->row_three_header }}</p>
                 <div class="d-flex justify-content-center">
-                    <a href="{{ route('contact') }}" class="btn-color text-center">Contact us to buy</a>
+                    <a href="{{ route('contact') }}" class="text-center btn-color">Contact us to buy</a>
                 </div>
             </div>
 
@@ -218,8 +218,8 @@
         <div class="container">
             <!-- home title -->
             <div class="home_title">
-                <h5 class="home_title_heading mb-4 pb-4 callout" style="font-size: 27px;"> {!! $feature->footer !!}</h5>
-                <h4 class="section_title py-3 mt-4"><span
+                <h5 class="pb-4 mb-4 home_title_heading callout" style="font-size: 27px;"> {!! $feature->footer !!}</h5>
+                <h4 class="py-3 mt-4 section_title"><span
                         class="topLine">{{ \Illuminate\Support\Str::substr($feature->row_five_title, 0, 1) }}</span>{{ \Illuminate\Support\Str::substr($feature->row_five_title, 1) }}
                 </h4>
                 <h5 class="py-3 text-center">{!! $feature->row_five_header !!}</h5>
@@ -232,7 +232,7 @@
                     <!-- item -->
                     @if ($features)
                         @foreach ($features as $item)
-                            <div class="col-lg-3 col-sm-6 mb-4 col-12">
+                            <div class="mb-4 col-lg-3 col-sm-6 col-12">
                                 <!-- image -->
                                 <div class="business_item_icon">
                                     <img src="{{ asset('storage/' . $item->logo) }}" alt="">
@@ -241,8 +241,8 @@
                                 <!-- content -->
                                 <div class="business_item_content">
                                     <p class="business_item_title">{{ $item->badge }}</p>
-                                    <p class="business_item_text text-center">{{ Str::limit($item->header, 55) }}</p>
-                                    <a href="{{ route('feature.details', $item->id) }}" class="d-flex main_color align-items-center text-center justify-content-center">
+                                    <p class="text-center business_item_text">{{ Str::limit($item->header, 55) }}</p>
+                                    <a href="{{ route('feature.details', $item->id) }}" class="text-center d-flex main_color align-items-center justify-content-center">
                                         <span>Learn More</span>
                                         <span class="business_item_button_icon">
                                             <i class="fa-solid fa-arrow-right-long"></i>

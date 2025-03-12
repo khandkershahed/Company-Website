@@ -924,10 +924,12 @@
         color: white;
         text-align: center;
         margin-top: 1px;
-        margin: -2px;
-        left: 0;
+        left: 8px;
+        border-bottom-left-radius: 50px;
     }
-
+    #social-links ul{
+        display: flex;
+    }
     .fab-info-icon {
         position: fixed;
         bottom: 20px;
