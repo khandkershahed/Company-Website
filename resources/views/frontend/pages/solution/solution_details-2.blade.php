@@ -48,11 +48,7 @@
             !empty($solution->row_two_column_three_title) ||
             !empty($solution->row_two_column_three_description) ||
             !empty($solution->row_two_column_four_title) ||
-            !empty($solution->row_two_column_four_description) ||
-            !empty($solution->row_two_column_one_image) ||
-            !empty($solution->row_two_column_two_image) ||
-            !empty($solution->row_two_column_three_image) ||
-            !empty($solution->row_two_column_four_image))
+            !empty($solution->row_two_column_four_description))
         <section style="background-color: #eee">
             <div class="container py-5">
                 <div class="row">
@@ -257,7 +253,7 @@
         <div class="container">
             <div class="counter-wrap">
                 <div class="row justify-content-center">
-                    @if (!empty($solution->count_one_icon) || !empty($solution->count_one_number) || !empty($solution->count_one_text))
+                    @if ( !empty($solution->count_one_number) || !empty($solution->count_one_text))
                         <div class="col-lg-3 col-sm-6">
                             <!-- Single Counter Start -->
                             <div class="single-counter">
@@ -272,7 +268,7 @@
                             <!-- Single Counter End -->
                         </div>
                     @endif
-                    @if (!empty($solution->count_two_icon) || !empty($solution->count_two_number) || !empty($solution->count_two_text))
+                    @if (!empty($solution->count_two_number) || !empty($solution->count_two_text))
                         <div class="col-lg-3 col-sm-6">
                             <!-- Single Counter Start -->
                             <div class="single-counter">
@@ -287,7 +283,7 @@
                             <!-- Single Counter End -->
                         </div>
                     @endif
-                    @if (!empty($solution->count_three_icon) || !empty($solution->count_three_number) || !empty($solution->count_three_text))
+                    @if ( !empty($solution->count_three_number) || !empty($solution->count_three_text))
                         <div class="col-lg-3 col-sm-6">
                             <!-- Single Counter Start -->
                             <div class="single-counter">
@@ -302,7 +298,7 @@
                             <!-- Single Counter End -->
                         </div>
                     @endif
-                    @if (!empty($solution->count_four_icon) || !empty($solution->count_four_number) || !empty($solution->count_four_text))
+                    @if ( !empty($solution->count_four_number) || !empty($solution->count_four_text))
                         <div class="col-lg-3 col-sm-6">
                             <!-- Single Counter Start -->
                             <div class="single-counter">
