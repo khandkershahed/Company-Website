@@ -108,15 +108,15 @@
                                             src="{{ isset($item->thumbnail_image) && file_exists(public_path('storage/' . $item->thumbnail_image)) ? asset('storage/' . $item->thumbnail_image) : asset('frontend/images/no-row-img(580-326).png') }}"
                                             alt="{{ $item->name }}">
                                     </div>
-                                    <div style="height: 4.4rem;"> 
-                                        <h5 class="p-1" style="text-align:center;">{{ Str::words($item->name, 12) }}
+                                    <div class="d-flex align-items-center" style="height: 4.4rem;">
+                                        <h5 class="p-1 mb-0" style="text-align:center;font-size: 1.1rem">{{ Str::words($item->name, 6, '...') }}
                                         </h5>
                                         {{-- <hr class="p-1 pt-1 m-0 text-white"> --}}
                                     </div>
                                     <div class="content-details fadeIn-bottom fadeIn-left-brand">
                                         <div class="solution_info_area">
-                                            <h4 class="p-1 text-white" style="text-align:center;">{{ $item->name }}
-                                            </h4>
+                                            <h5 class="p-1 text-white" style="text-align:center;">{{ $item->name }}
+                                            </h5>
                                             <hr class="p-1 pt-1 m-0 text-white">
                                             <p class="brand-news-trends-title-solution">{!! Str::words($item->header, 27) !!}</p>
                                             {{-- <p class="brand-news-trends-title-solution">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> --}}
