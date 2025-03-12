@@ -136,7 +136,7 @@ class ContactController extends Controller
                 'msg_type'   => $request->msg_type,
                 'country'    => $request->country,
                 'status'     => 'pending',
-                'type'       => $request->type,
+                'type'       => $request->type, 
             ]);
             Toastr::success('Data Update Successfully');
         } else {

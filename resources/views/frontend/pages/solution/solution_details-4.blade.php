@@ -507,6 +507,7 @@
                                     <form action="{{ route('contactus.store') }}" method="post"
                                         enctype="multipart/form-data">
                                         @csrf
+                                        <input type="hidden" name="type" value="contact">
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="single-form">
