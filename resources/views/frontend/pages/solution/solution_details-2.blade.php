@@ -60,68 +60,77 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3">
-                        <div class="border-0">
+                    @if (!empty($solution->row_two_column_one_title) || !empty($solution->row_two_column_one_description))
+                        <div class="col-lg-3">
+                            <div class="border-0">
+                                <div class="card st-two-f-card">
+                                    <div class="card-body">
+                                        <div>
+                                            <img src="{{ !empty($solution->row_two_column_one_image) && file_exists(public_path('storage/' . $solution->row_two_column_one_image)) ? asset('storage/' . $solution->row_two_column_one_image) : asset('images/ser-icon1.png') }}"
+                                                alt="">
+                                        </div>
+                                        <div>
+                                            <h2 class="title">{{ $solution->row_two_column_one_title }}</h2>
+                                            <p class="para text-muted">{{ $solution->row_two_column_one_description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                    @if (!empty($solution->row_two_column_two_title) || !empty($solution->row_two_column_two_description))
+                        <div class="col-lg-3">
                             <div class="card st-two-f-card">
                                 <div class="card-body">
                                     <div>
-                                        <img src="{{ !empty($solution->row_two_column_one_image) && file_exists(public_path('storage/' . $solution->row_two_column_one_image)) ? asset('storage/' . $solution->row_two_column_one_image) : asset('images/ser-icon1.png') }}"
+                                        <img src="{{ !empty($solution->row_two_column_two_image) && file_exists(public_path('storage/' . $solution->row_two_column_two_image)) ? asset('storage/' . $solution->row_two_column_two_image) : asset('images/ser-icon2.png') }}"
                                             alt="">
                                     </div>
                                     <div>
-                                        <h2 class="title">{{ $solution->row_two_column_one_title }}</h2>
-                                        <p class="para text-muted">{{ $solution->row_two_column_one_description }}</p>
+                                        <h2 class="title">{{ $solution->row_two_column_two_title }}</h2>
+                                        <p class="para text-muted">{{ $solution->row_two_column_two_description }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="card st-two-f-card">
-                            <div class="card-body">
-                                <div>
-                                    <img src="{{ !empty($solution->row_two_column_two_image) && file_exists(public_path('storage/' . $solution->row_two_column_two_image)) ? asset('storage/' . $solution->row_two_column_two_image) : asset('images/ser-icon2.png') }}"
-                                        alt="">
-                                </div>
-                                <div>
-                                    <h2 class="title">{{ $solution->row_two_column_two_title }}</h2>
-                                    <p class="para text-muted">{{ $solution->row_two_column_two_description }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="border-0">
-                            <div class="card st-two-f-card">
-                                <div class="card-body">
-                                    <div>
-                                        <img src="{{ !empty($solution->row_two_column_three_image) && file_exists(public_path('storage/' . $solution->row_two_column_three_image)) ? asset('storage/' . $solution->row_two_column_three_image) : asset('images/ser-icon3.png') }}"
-                                            alt="">
-                                    </div>
-                                    <div>
-                                        <h2 class="title">{{ $solution->row_two_column_three_title }}</h2>
-                                        <p class="para text-muted">{{ $solution->row_two_column_three_description }}</p>
+                    @endif
+                    @if (!empty($solution->row_two_column_three_title) || !empty($solution->row_two_column_three_description))
+                        <div class="col-lg-3">
+                            <div class="border-0">
+                                <div class="card st-two-f-card">
+                                    <div class="card-body">
+                                        <div>
+                                            <img src="{{ !empty($solution->row_two_column_three_image) && file_exists(public_path('storage/' . $solution->row_two_column_three_image)) ? asset('storage/' . $solution->row_two_column_three_image) : asset('images/ser-icon3.png') }}"
+                                                alt="">
+                                        </div>
+                                        <div>
+                                            <h2 class="title">{{ $solution->row_two_column_three_title }}</h2>
+                                            <p class="para text-muted">{{ $solution->row_two_column_three_description }}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="border-0">
-                            <div class="card st-two-f-card">
-                                <div class="card-body">
-                                    <div>
-                                        <img src="{{ !empty($solution->row_two_column_four_image) && file_exists(public_path('storage/' . $solution->row_two_column_four_image)) ? asset('storage/' . $solution->row_two_column_four_image) : asset('images/ser-icon4.png') }}"
-                                            alt="">
-                                    </div>
-                                    <div>
-                                        <h2 class="title">{{ $solution->row_two_column_four_title }}</h2>
-                                        <p class="para text-muted">{{ $solution->row_two_column_four_description }}</p>
+                    @endif
+                    @if (!empty($solution->row_two_column_four_title) || !empty($solution->row_two_column_four_description))
+                        <div class="col-lg-3">
+                            <div class="border-0">
+                                <div class="card st-two-f-card">
+                                    <div class="card-body">
+                                        <div>
+                                            <img src="{{ !empty($solution->row_two_column_four_image) && file_exists(public_path('storage/' . $solution->row_two_column_four_image)) ? asset('storage/' . $solution->row_two_column_four_image) : asset('images/ser-icon4.png') }}"
+                                                alt="">
+                                        </div>
+                                        <div>
+                                            <h2 class="title">{{ $solution->row_two_column_four_title }}</h2>
+                                            <p class="para text-muted">{{ $solution->row_two_column_four_description }}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </section>
@@ -253,7 +262,7 @@
         <div class="container">
             <div class="counter-wrap">
                 <div class="row justify-content-center">
-                    @if ( !empty($solution->count_one_number) || !empty($solution->count_one_text))
+                    @if (!empty($solution->count_one_number) || !empty($solution->count_one_text))
                         <div class="col-lg-3 col-sm-6">
                             <!-- Single Counter Start -->
                             <div class="single-counter">
@@ -283,7 +292,7 @@
                             <!-- Single Counter End -->
                         </div>
                     @endif
-                    @if ( !empty($solution->count_three_number) || !empty($solution->count_three_text))
+                    @if (!empty($solution->count_three_number) || !empty($solution->count_three_text))
                         <div class="col-lg-3 col-sm-6">
                             <!-- Single Counter Start -->
                             <div class="single-counter">
@@ -298,7 +307,7 @@
                             <!-- Single Counter End -->
                         </div>
                     @endif
-                    @if ( !empty($solution->count_four_number) || !empty($solution->count_four_text))
+                    @if (!empty($solution->count_four_number) || !empty($solution->count_four_text))
                         <div class="col-lg-3 col-sm-6">
                             <!-- Single Counter Start -->
                             <div class="single-counter">
