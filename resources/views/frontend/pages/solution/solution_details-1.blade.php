@@ -260,7 +260,7 @@
                                 !empty($solution->row_two_column_four_title) ||
                                 !empty($solution->row_two_column_four_description) ||
                                 !empty($solution->row_two_column_four_link))
-                           @if (!empty($solution->row_two_column_one_image))
+                           @if (!empty($solution->row_two_column_one_title) || !empty($solution->row_two_column_one_description))
                              <div class="col-lg-4 col-md-6 mb-3">
                                  <div>
                                      <div class="d-flex justify-content-center mb-4">
@@ -281,7 +281,7 @@
                                  </div>
                              </div>
                            @endif
-                            @if (!empty($solution->row_two_column_two_image))
+                            @if (!empty($solution->row_two_column_two_title) || !empty($solution->row_two_column_two_description))
                                 <div class="col-lg-4 col-md-6 mb-3">
                                     <div>
                                         <div class="d-flex justify-content-center mb-4">
@@ -303,7 +303,7 @@
                                     </div>
                                 </div>
                             @endif
-                            @if (!empty($solution->row_two_column_three_image))
+                            @if (!empty($solution->row_two_column_three_title) || !empty($solution->row_two_column_three_description))
                                 <div class="col-lg-4 col-md-6 mb-3">
                                     <div>
                                         <div class="d-flex justify-content-center mb-4">
@@ -325,7 +325,7 @@
                                     </div>
                                 </div>
                             @endif
-                            @if (!empty($solution->row_two_column_four_image))
+                            @if (!empty($solution->row_two_column_four_title) || !empty($solution->row_two_column_four_description))
                                 <div class="col-lg-4 col-md-6 mb-3">
                                     <div>
                                         <div class="d-flex justify-content-center mb-4">
