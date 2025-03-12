@@ -109,7 +109,7 @@
                                             alt="{{ $item->name }}">
                                     </div>
                                     <div class="d-flex align-items-center" style="height: 4.4rem;">
-                                        <h5 class="p-1" style="text-align:center;" style="font-size: 1.1rem">{{ Str::words($item->name, 6, '...') }}
+                                        <h5 class="p-1 mb-0" style="text-align:center;font-size: 1.1rem">{{ Str::words($item->name, 6, '...') }}
                                         </h5>
                                         {{-- <hr class="p-1 pt-1 m-0 text-white"> --}}
                                     </div>
