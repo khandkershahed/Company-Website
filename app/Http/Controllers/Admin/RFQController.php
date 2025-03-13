@@ -197,6 +197,23 @@ class RFQController extends Controller
      */
     public function store(Request $request)
     {
+        $blacklistedEmails = ['ericjonesmyemail@gmail.com'];
+        $blacklistedNames = ['Eric Jones'];
+        $blacklistedProduct = ['Eric Jones'];
+        $blacklistedPhone = ['555-555-1212'];
+        $blacklistedWords = ['Web Visitor', 'trustedleadgeneration.com', 'SMS Text With Lead', 'Eric',];
+
+        if (in_array($request->product_name, $blacklistedProduct) || in_array($request->email, $blacklistedEmails) || in_array($request->name, $blacklistedNames) || in_array($request->phone, $blacklistedPhone)) {
+            // Session::flash('error', 'Your request cannot be processed.');
+            return redirect()->back();
+        }
+
+        foreach ($blacklistedWords as $word) {
+            if (stripos($request->input('message'), $word) !== false) {
+                // Session::flash('error', 'Your request contains spam and was blocked.');
+                return redirect()->back();
+            }
+        }
         $validator = Validator::make(
             $request->all(),
             [
