@@ -72,7 +72,7 @@
                 <li><a href="{{route('client.rfq')}}"><i class="fa fa-calendar"></i><span>My RFQs</span></a></li>
                 {{-- <li><a href="{{route('client.orders')}}"><i class="fa fa-shopping-cart"></i><span>My Orders</span></a></li> --}}
                 <li><a href="javascript:void(0);"><i class="fa-solid fa-wallet"></i><span>My Assets</span></a></li>
-                <li class="sidebar-dropdown">
+                {{-- <li class="sidebar-dropdown">
                     <a href="javascript:void(0);"><i class="fa-solid fa-diagram-project"></i><span>Project &
                             Support</span></a>
                     <div class="sidebar-submenu">
@@ -82,7 +82,7 @@
                             <li><a href="{{ route('client.case') }}">Support Cases</a></li>
                         </ul>
                     </div>
-                </li>
+                </li> --}}
             </ul>
         </div>
         <!-- sidebar-menu  -->
