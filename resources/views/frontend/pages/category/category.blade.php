@@ -194,7 +194,7 @@
         <section>
             <div class="ag-offer-block container">
                 <div class="common_product_item_title">
-                    <h3>No Data Found</h3>
+                    <h3 class="text-danger">No Data Found</h3>
                 </div>
 
             </div>

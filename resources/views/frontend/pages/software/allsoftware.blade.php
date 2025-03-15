@@ -601,7 +601,7 @@
                 <div class="px-0" style="box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px">
                     <div id="sync2" class="owl-carousel owl-theme">
                         <div class="item">
-                            <h1># All Category</h1>
+                            <h1>All Category</h1>
                         </div>
                         @foreach ($categories as $index => $category)
                             <div class="item">
