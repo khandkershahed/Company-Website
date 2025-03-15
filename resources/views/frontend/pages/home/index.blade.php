@@ -22,11 +22,11 @@
                                         src="{{ isset($home->branner1) && file_exists(public_path('storage/' . $home->branner1)) ? asset('storage/' . $home->branner1) : asset('frontend/images/banner-demo.png') }}"
                                         alt="">
                                 </div>
-                                <div class="info w-50 mb-3">
+                                <div class="mb-3 info w-50">
                                     @if ($home->banner1_title)
                                         <div>
                                             <h3><strong>{{ $home->banner1_title }}</strong></h3>
-                                            <h5 class="text-white my-4 w-75 mx-auto">
+                                            <h5 class="mx-auto my-4 text-white w-75">
                                                 {{ $home->banner1_short_description }}
                                             </h5>
                                         </div>
@@ -56,11 +56,11 @@
                                         src="{{ isset($home->branner2) && file_exists(public_path('storage/' . $home->branner2)) ? asset('storage/' . $home->branner1) : asset('frontend/images/banner-demo.png') }}"
                                         alt="">
                                 </div>
-                                <div class="info w-50 mb-3">
+                                <div class="mb-3 info w-50">
                                     @if ($home->banner2_title)
                                         <div>
                                             <h3><strong>{{ $home->banner2_title }}</strong></h3>
-                                            <h5 class="text-white my-4 w-75 mx-auto">
+                                            <h5 class="mx-auto my-4 text-white w-75">
                                                 {{ $home->banner2_short_description }}
                                             </h5>
                                         </div>
@@ -90,11 +90,11 @@
                                         src="{{ isset($home->branner3) && file_exists(public_path('storage/' . $home->branner3)) ? asset('storage/' . $home->branner1) : asset('frontend/images/banner-demo.png') }}"
                                         alt="">
                                 </div>
-                                <div class="info w-lg-50 mb-3">
+                                <div class="mb-3 info w-lg-50">
                                     @if ($home->banner3_title)
                                         <div>
                                             <h3><strong>{{ $home->banner3_title }}</strong></h3>
-                                            <h5 class="text-white my-4 w-lg-75 mx-auto">
+                                            <h5 class="mx-auto my-4 text-white w-lg-75">
                                                 {{ $home->banner3_short_description }}
                                             </h5>
                                         </div>
@@ -116,22 +116,22 @@
     @endif
     {{-- Banner Bottom Card --}}
     @if (!empty($home->btn1_title) && !empty($home->btn2_title))
-        <div class="container px-lg-4 px-2">
-            <div class="row gx-5 mx-auto banner_bottom_box">
-                <div class="col px-2">
+        <div class="container px-2 px-lg-4">
+            <div class="mx-auto row gx-5 banner_bottom_box">
+                <div class="px-2 col">
                     @if (!empty($home->btn1_title))
                         <div class="border bg-light custom_shadow px-lg-3 px-sm-1 home_banner_card">
                             <h2 class="text-center home_banner_card_title">{{ $home->btn1_title }}</h2>
-                            <div class="home_card_button d-flex justify-content-center pt-2">
+                            <div class="pt-2 home_card_button d-flex justify-content-center">
                                 <a class="home-btn" href="{{ $home->btn1_link }}">{{ $home->btn1_name }}</a>
                             </div>
                         </div>
                     @endif
                 </div>
-                <div class="col px-2">
+                <div class="px-2 col">
                     <div class="border bg-light custom_shadow px-lg-3 px-sm-1 home_banner_card">
                         <h2 class="text-center home_banner_card_title">{{ $home->btn2_title }}</h2>
-                        <div class="home_card_button d-flex justify-content-center pt-2">
+                        <div class="pt-2 home_card_button d-flex justify-content-center">
                             <a class="home-btn" href="{{ $home->btn2_link }}">{{ $home->btn2_name }}</a>
                         </div>
                     </div>
@@ -147,8 +147,8 @@
         <!-- home title -->
         <div class="row">
             @if (!empty($home->header1))
-                <div class="home_banner_bottom_title mx-auto py-3 px-lg-4">
-                    <h6 class="home_title_heading home_banner_bt-title pb-2"> {{ $home->header1 }}
+                <div class="py-3 mx-auto home_banner_bottom_title px-lg-4">
+                    <h6 class="pb-2 home_title_heading home_banner_bt-title"> {{ $home->header1 }}
                     </h6>
                     <p class="home_title_text">{{ $home->header2 }}</p>
                 </div>
@@ -164,13 +164,13 @@
                                 <img class="img-fluid" height="85px"
                                     src="{{ !empty($feature->logo) && file_exists(public_path('storage/' . $feature->logo)) ? asset('storage/' . $feature->logo) : asset('frontend/images/service-no-img.png') }}"
                                     alt="NGEN IT">
-                                <h5 class="business_services pt-2">{{ Str::words($feature->badge, 10, $end = '') }}
+                                <h5 class="pt-2 business_services">{{ Str::words($feature->badge, 10, $end = '') }}
                                 </h5>
                             </div>
                             <div class="feature_description">
                                 <p class="feature_descrip">{{ Str::words($feature->header, 12, $end = '') }}</p>
                             </div>
-                            <a href="{{ route('feature.details', $feature->id) }}" class="business_item_button pt-3">
+                            <a href="{{ route('feature.details', $feature->id) }}" class="pt-3 business_item_button">
                                 <span>Learn More</span>
                                 <span class="business_item_button_icon">
                                     <i class="fa-solid fa-arrow-right-long"></i>
@@ -181,7 +181,7 @@
                 </div>
             </div>
             <div class="row d-lg-none d-sm-block">
-                <div class="d-flex justify-content-center align-items-center px-3 mb-3 border-bottom">
+                <div class="px-3 mb-3 d-flex justify-content-center align-items-center border-bottom">
                     <div class="text-start w-75">
                         <h3 class="main_color">Feature Contents</h3>
                     </div>
@@ -202,7 +202,7 @@
                                         <img src="{{ !empty($feature->logo) && file_exists(public_path('storage/' . $feature->logo)) ? asset('storage/' . $feature->logo) : asset('frontend/images/service-no-img.png') }}"
                                             alt="NGEN IT" style="width: 80px;">
                                     </div>
-                                    <h5 class="business_services pt-2">
+                                    <h5 class="pt-2 business_services">
                                         {{ Str::words($feature->badge, 10, $end = '') }}</h5>
                                 </div>
                                 <div class="feature_description">
@@ -210,7 +210,7 @@
                                     </p>
                                 </div>
                                 <a href="{{ route('feature.details', $feature->id) }}"
-                                    class="business_item_button pt-3">
+                                    class="pt-3 business_item_button">
                                     <span>Learn More</span>
                                     <span class="business_item_button_icon">
                                         <i class="fa-solid fa-arrow-right-long"></i>
@@ -223,7 +223,7 @@
             </div>
         @endif
         <!-- button -->
-        <div class="d-flex justify-content-center my-5">
+        <div class="my-5 d-flex justify-content-center">
             <a class="btn-color" href="{{ route('learn.more') }}">Learn More</a>
         </div>
     </div>
@@ -232,7 +232,7 @@
 <!---------End -------->
 <!--=======// Shop product //======-->
 <section class="spacer learn_more py-lg-3">
-    <div class="container py-lg-5 py-4">
+    <div class="container py-4 py-lg-5">
         <div class="row align-items-center">
             <!-- content -->
             <div class="col-lg-8 col-sm-12">
@@ -253,7 +253,7 @@
                         you need to succeed. Additionally, you may easily ask your exact requirements or contact us at
                         anytime.
                     </p>
-                    <div class="mt-lg-5 mt-4 btn-area">
+                    <div class="mt-4 mt-lg-5 btn-area">
                         <a href="{{ route('shop.html') }}" class="btn-color">Explore Shop</a>
                     </div>
                 </div>
@@ -283,7 +283,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class=" pt-2">
+                    <div class="pt-2 ">
                         <a href="{{ route('software.common') }}">
                             <div id="fed-bg">
                                 <div class="p-2">
@@ -292,7 +292,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class=" pt-2">
+                    <div class="pt-2 ">
                         <a href="{{ route('hardware.common') }}">
                             <div id="fed-bg">
                                 <div class="p-2">
@@ -319,7 +319,7 @@
                     @if (!empty($story))
                         <div class="col-lg-3">
                             <div class="client_story_box">
-                                <div class="details-titles pt-4 ps-4 pb-3">
+                                <div class="pt-4 pb-3 details-titles ps-4">
                                     <p class="pb-5">{{ $story->badge }}</p>
                                 </div>
                                 <div class="grid-river">
@@ -345,7 +345,7 @@
             </div>
         </div>
         <div class="container my-4 mb-5 d-lg-none d-sm-block">
-            <div class="d-flex justify-content-center align-items-center mx-3 border-bottom">
+            <div class="mx-3 d-flex justify-content-center align-items-center border-bottom">
                 <div class="text-start w-75">
                     <h3 class="main_color">Storys</h3>
                 </div>
@@ -359,10 +359,10 @@
 
             <div class="owl-carousel custom-responsive-slider" style="z-index: 0 !important;">
                 @foreach ($storys as $key => $story)
-                    <div class="item border-0">
+                    <div class="border-0 item">
                         @if (!empty($story))
                             <div class="client_story_box">
-                                <div class="details-titles pt-3 ps-4 pb-3">
+                                <div class="pt-3 pb-3 details-titles ps-4">
                                     <p class="pb-5">{{ $story->badge }}</p>
                                 </div>
                                 <div class="grid-river">
@@ -393,7 +393,7 @@
 <section>
     <div class="container spacer">
         @if (!empty($techglossy))
-            <div class="row bg-white magazine_content">
+            <div class="bg-white row magazine_content">
                 <div class="col-lg-12">
                     <div class="row align-items-center">
                         <div class="col-lg-6">
@@ -416,7 +416,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-lg-6 p-0 d-lg-block d-sm-none">
+                        <div class="p-0 col-lg-6">
                             <div class="showcase-industry-bottom" style="position: relative; overflow: hidden;">
                                 <!-- Add a pseudo-element for the overlay -->
                                 <div class="gradient-overlay"></div>
@@ -441,7 +441,7 @@
             <div class="SlickCarousel">
                 @if ($products)
                     @foreach ($products as $product)
-                        <div class="ProductBlock mb-3 mt-3">
+                        <div class="mt-3 mb-3 ProductBlock">
                             <div class="Content">
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12">
@@ -455,11 +455,11 @@
                                                         alt="NGEN IT">
                                                 </a>
                                                 <ul class="custom-product-links">
-                                                    <li><a href="#"><i class="fa fa-random text-white"></i></a>
+                                                    <li><a href="#"><i class="text-white fa fa-random"></i></a>
                                                     </li>
                                                     <li><a href="#" data-bs-toggle="modal"
                                                             data-bs-target="#productDetails{{ $product->id }}"><i
-                                                                class="fa fa-search text-white"></i></a></li>
+                                                                class="text-white fa fa-search"></i></a></li>
                                                 </ul>
                                             </div>
                                             <div class="custom-product-content">
@@ -470,28 +470,28 @@
 
                                                 @if ($product->rfq == 1)
                                                     <div
-                                                        class="mt-5 d-flex align-items-center justify-content-between align-items-center">
+                                                        class="mt-5 d-flex align-items-center justify-content-between">
                                                         <a href=""
                                                             class="d-flex justify-content-center align-items-center"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#rfq{{ $product->id }}">
-                                                            <button class="btn-color popular_product-button px-3 py-2">
+                                                            <button class="px-3 py-2 btn-color popular_product-button">
                                                                 Ask For Price
                                                             </button>
                                                         </a>
                                                         {{-- <a href=""
                                                             class="d-flex justify-content-center align-items-center"> --}}
-                                                            <button
-                                                                class="btn-color popular_product-button border bg-transparent text-black px-3 py-2 add_to_cart"
-                                                                data-id="{{ $product->id }}"
-                                                                data-name="{{ $product->name }}" data-quantity="1">
-                                                                + Add RFQ
-                                                            </button>
+                                                        <button
+                                                            class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button add_to_cart"
+                                                            data-id="{{ $product->id }}"
+                                                            data-name="{{ $product->name }}" data-quantity="1">
+                                                            + Add RFQ
+                                                        </button>
                                                         {{-- </a> --}}
                                                     </div>
                                                 @elseif ($product->price_status && $product->price_status == 'rfq')
                                                     <div>
-                                                        <div class="price py-3">
+                                                        <div class="py-3 price">
                                                             {{-- <small class="price-usd">USD</small>
                                                         --.-- $ --}}
                                                         </div>
@@ -506,7 +506,7 @@
                                                     </div>
                                                 @elseif ($product->price_status && $product->price_status == 'offer_price')
                                                     <div>
-                                                        <div class="price py-3">
+                                                        <div class="py-3 price">
                                                             <small class="price-usd">USD</small>
                                                             $ {{ number_format($product->price, 2) }}
                                                         </div>
@@ -522,7 +522,7 @@
                                                     </div>
                                                 @else
                                                     <div>
-                                                        <div class="price py-3">
+                                                        <div class="py-3 price">
                                                             <small class="price-usd">USD</small>
                                                             $ {{ number_format($product->price, 2) }}
                                                         </div>
@@ -557,8 +557,8 @@
 <!---------Our Success Section-------->
 
 <section class="success_section">
-    <div class="container my-4 pb-4 d-lg-block d-sm-none">
-        <h2 class="text-center pb-5">Our Success <span class="main_color">Starts With</span> Our Culture.</h2>
+    <div class="container pb-4 my-4 d-lg-block d-sm-none">
+        <h2 class="pb-5 text-center">Our Success <span class="main_color">Starts With</span> Our Culture.</h2>
         <div class="row success-area">
             @foreach ($successItems as $key => $successItem)
                 @if (!empty($successItem->title))
@@ -581,7 +581,7 @@
     <div class="container d-lg-none d-sm-block">
         <h3 class="text-center">Our Success <span class="main_color">Starts With</span> Our Culture.</h3>
         <div class="row">
-            <div class="d-flex justify-content-between px-4">
+            <div class="px-4 d-flex justify-content-between">
                 <a class="Arrows custom-responsive-slider-prev"><i class="fas fa-2x fa-arrow-alt-circle-left"></i></a>
                 <a class="Arrows custom-responsive-slider-next"><i
                         class="fas fa-2x fa-arrow-alt-circle-right"></i></a>
@@ -589,7 +589,7 @@
             <div class="owl-carousel custom-responsive-slider" style="z-index: 0 !important;">
                 @foreach ($successItems as $key => $successItem)
                     @if (!empty($successItem->title))
-                        <div class="item border-0">
+                        <div class="border-0 item">
                             <div class="success-area-content success-area-content-mobile">
                                 <div class="pb-2">
                                     <img src="{{ asset('storage/' . $successItem->image) }}" alt=""
