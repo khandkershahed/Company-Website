@@ -156,7 +156,7 @@
                 <!-- Client Tab Start -->
                 <div class="row">
                     <div class="col-xs-12 ">
-                        <nav>
+                        {{-- <nav>
                             <div class="nav nav-tabs nav-fill p-0" id="nav-tab" role="tablist" style="background: none;">
                                 <a class="nav-item nav-link active" id="nav-healthcare" data-toggle="tab" href="#all"
                                     role="tab" aria-controls="nav-home" aria-selected="true">All</a>
@@ -167,10 +167,21 @@
                                 <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#training"
                                     role="tab" aria-controls="nav-contact" aria-selected="false">Training & Books</a>
                             </div>
+                        </nav> --}}
+                        <nav>
+                            <div class="nav nav-tabs nav-fill p-0" id="nav-tab" role="tablist" style="background: none;">
+                                <a class="nav-item nav-link active" id="nav-all-tab" data-bs-toggle="tab" href="#all"
+                                    role="tab" aria-controls="all" aria-selected="true">All</a>
+                                <a class="nav-item nav-link" id="nav-software-tab" data-bs-toggle="tab" href="#software"
+                                    role="tab" aria-controls="software" aria-selected="false">Software</a>
+                                <a class="nav-item nav-link" id="nav-hardware-tab" data-bs-toggle="tab" href="#hardware"
+                                    role="tab" aria-controls="hardware" aria-selected="false">Hardware</a>
+                                <a class="nav-item nav-link" id="nav-training-tab" data-bs-toggle="tab" href="#training"
+                                    role="tab" aria-controls="training" aria-selected="false">Training & Books</a>
+                            </div>
                         </nav>
                         <div class="tab-content px-3 px-sm-0 shadow-sm" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="all" role="tabpanel"
-                                aria-labelledby="nav-healthcare">
+                            <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="nav-all-tab">
                                 <div class="row">
 
                                     @if ($all_categories)
@@ -193,8 +204,7 @@
 
                                 </div>
                             </div>
-                            <div class="tab-pane fade show" id="software" role="tabpanel"
-                                aria-labelledby="nav-healthcare">
+                            <div class="tab-pane fade" id="software" role="tabpanel" aria-labelledby="nav-software-tab">
                                 <div class="row">
 
                                     @if ($software_categories)
@@ -217,7 +227,7 @@
 
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="hardware" role="tabpanel" aria-labelledby="nav-profile-tab">
+                            <div class="tab-pane fade" id="hardware" role="tabpanel" aria-labelledby="nav-hardware-tab">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="container">
@@ -246,7 +256,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="training" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <div class="tab-pane fade" id="training" role="tabpanel" aria-labelledby="nav-training-tab">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 my-4">
                                         <div class="container">

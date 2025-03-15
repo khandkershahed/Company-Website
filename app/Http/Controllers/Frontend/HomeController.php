@@ -580,7 +580,7 @@ class HomeController extends Controller
 
     public function TechGlossyDetails($id)
     {
-        $data['techglossy'] = TechGlossy::where('id', $id)->firstOrFail();
+        $data['techglossy'] = TechGlossy::where('id', $id)->first();
         //$data['industry'] = Industry::where('id',$id)->first();
         //$data['industry_page'] = IndustryPage::where('industry_id', $data['industry']->id)->get();
         $data['storys'] = TechGlossy::inRandomOrder()->limit(7)->get();
