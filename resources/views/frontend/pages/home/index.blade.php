@@ -481,12 +481,12 @@
                                                         </a>
                                                         {{-- <a href=""
                                                             class="d-flex justify-content-center align-items-center"> --}}
-                                                            <button
-                                                                class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button add_to_cart"
-                                                                data-id="{{ $product->id }}"
-                                                                data-name="{{ $product->name }}" data-quantity="1">
-                                                                + Add RFQ
-                                                            </button>
+                                                        <button
+                                                            class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button add_to_cart"
+                                                            data-id="{{ $product->id }}"
+                                                            data-name="{{ $product->name }}" data-quantity="1">
+                                                            + Add RFQ
+                                                        </button>
                                                         {{-- </a> --}}
                                                     </div>
                                                 @elseif ($product->price_status && $product->price_status == 'rfq')

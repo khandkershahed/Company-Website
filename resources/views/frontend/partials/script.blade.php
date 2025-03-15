@@ -3,7 +3,6 @@
 <script src="{{ asset('frontend/js/jquery/jquery@3-6-0.min.js') }}"></script>
 <script src="{{ asset('frontend/js/jquery/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('frontend/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
-{{-- <script src="{{ asset('frontend/js/bootstrap/bootstrap.min.js') }}"></script> --}}
 <script src="{{ asset('frontend/js/plugin/popper.min.js') }}"></script>
 <script src="{{ asset('frontend/js/plugin/sweetalert@2011.js') }}"></script>
 <script src="{{ asset('frontend/js/plugin/slick.min.js') }}"></script>
@@ -21,7 +20,6 @@
     referrerpolicy="origin"></script>
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <!-- Custom JS -->
-{{-- <script src="{{ asset('backend/assets/js/custom.js') }}"></script> --}}
 <script src="{{ asset('frontend/js/custom.js') }}"></script>
 <script src="{{ asset('frontend/js/solutions-custom.js') }}"></script>
 <script src="{{ asset('frontend/assets/js/filter.js') }}"></script>
@@ -339,8 +337,8 @@
             success: function(data) {
                 cart_header.empty();
                 cart_header.append(
-                    '<span class="bg-black text-white text-center p-1 rounded-2 miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
-                        data.cartHeader + '</span>'
+                    '<span class="p-1 text-center text-white bg-black rounded-2 miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
+                    data.cartHeader + '</span>'
                 );
                 // button.empty();
                 // button.append(); // Update button, if needed
@@ -353,7 +351,7 @@
                 offcanvasRFQ.html(data.html);
                 // cart_header.empty();
                 // cart_header.append(
-                //     '<span class="bg-black text-white text-center p-1 rounded-2 miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
+                //     '<span class="p-1 text-center text-white bg-black rounded-2 miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
                 //     data.cartCount + '</span>');
                 // button.empty();
                 // button.append();
@@ -697,6 +695,43 @@
         $(".custom-responsive-slider-prev").click(function() {
             owl.trigger('prev.owl.carousel');
         })
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('.SlickCarousel').slick({
+            rtl: false, // If RTL Make it true & .slick-slide{float:right;}
+            autoplay: true,
+            autoplaySpeed: 10000, //  Slide Delay
+            speed: 1600, // Transition Speed
+            slidesToShow: 4, // Number Of Carousel
+            slidesToScroll: 3, // Slide To Move
+            pauseOnHover: false,
+            appendArrows: $(".Container .Head .Arrows"), // Class For Arrows Buttons
+            prevArrow: '<span class="Slick-Prev"></span>',
+            nextArrow: '<span class="Slick-Next"></span>',
+            easing: "linear",
+            responsive: [{
+                    breakpoint: 801,
+                    settings: {
+                        slidesToShow: 3,
+                    },
+                },
+                {
+                    breakpoint: 641,
+                    settings: {
+                        slidesToShow: 3,
+                    },
+                },
+                {
+                    breakpoint: 481,
+                    settings: {
+                        slidesToShow: 1,
+                    },
+                },
+            ],
+        });
     });
 </script>
 
