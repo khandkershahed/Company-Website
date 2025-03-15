@@ -158,13 +158,13 @@
                     <div class="col-xs-12 ">
                         {{-- <nav>
                             <div class="nav nav-tabs nav-fill p-0" id="nav-tab" role="tablist" style="background: none;">
-                                <a class="nav-item nav-link active" id="nav-healthcare" data-toggle="tab" href="#all"
+                                <a class="nav-item nav-link active" id="nav-healthcare" data-bs-toggle="tab" href="#all"
                                     role="tab" aria-controls="nav-home" aria-selected="true">All</a>
-                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#software"
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#software"
                                     role="tab" aria-controls="nav-profile" aria-selected="false">Software</a>
-                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#hardware"
+                                <a class="nav-item nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#hardware"
                                     role="tab" aria-controls="nav-profile" aria-selected="false">Hardware</a>
-                                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#training"
+                                <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab" href="#training"
                                     role="tab" aria-controls="nav-contact" aria-selected="false">Training & Books</a>
                             </div>
                         </nav> --}}

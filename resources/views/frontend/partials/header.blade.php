@@ -179,7 +179,7 @@
                                                     @foreach ($header_categories as $key => $header_category)
                                                         <a class="nav-link catregory-side-key {{ $key === 0 ? 'show active' : '' }}"
                                                             id="v-pills-home-tab{{ $header_category->id }}"
-                                                            data-toggle="pill"
+                                                            data-bs-toggle="pill"
                                                             href="#v-pills-home{{ $header_category->id }}"
                                                             role="tab"
                                                             aria-controls="v-pills-home{{ $header_category->id }}"

@@ -648,7 +648,7 @@
                                                                 <div class="panel-heading" role="tab"
                                                                     id="headingTwo">
                                                                     <p class="panel-title">
-                                                                        <a class="collapsed" data-toggle="collapse"
+                                                                        <a class="collapsed" data-bs-toggle="collapse"
                                                                             data-parent="#accordion" href="#collapseTwo"
                                                                             aria-expanded="false"
                                                                             aria-controls="collapseTwo">
@@ -672,7 +672,7 @@
                                                                 <div class="panel-heading" role="tab"
                                                                     id="headingTwo">
                                                                     <p class="panel-title">
-                                                                        <a class="collapsed" data-toggle="collapse"
+                                                                        <a class="collapsed" data-bs-toggle="collapse"
                                                                             data-parent="#accordion" href="#collapsethree"
                                                                             aria-expanded="false"
                                                                             aria-controls="collapsethree">

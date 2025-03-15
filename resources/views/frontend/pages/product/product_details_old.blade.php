@@ -275,25 +275,25 @@
                     <!-- Tabs nav -->
                     <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist"
                         aria-orientation="vertical">
-                        <a class="nav-link p-3 shadow-sm rounded-0 active" id="v-pills-overview-tab" data-toggle="pill"
+                        <a class="nav-link p-3 shadow-sm rounded-0 active" id="v-pills-overview-tab" data-bs-toggle="pill"
                             href="#v-pills-overview" role="tab" aria-controls="v-pills-overview"
                             aria-selected="true" style="margin-bottom: 1px;">
                             <i class="fa-solid fa-circle-info mr-2" style="font-size: 15px !important;"></i>
                             <span class="fw-bold fs-3">Overview</span></a>
 
-                        <a class="nav-link p-3 shadow-sm rounded-0" id="v-pills-specification-tab" data-toggle="pill"
+                        <a class="nav-link p-3 shadow-sm rounded-0" id="v-pills-specification-tab" data-bs-toggle="pill"
                             href="#v-pills-specification" role="tab" aria-controls="v-pills-specification"
                             aria-selected="false" style="margin-bottom: 1px;">
                             <i class="fa-solid fa-file mr-2" style="font-size: 15px !important;"></i>
                             <span class="fw-bold fs-3">Specification</span></a>
 
-                        <a class="nav-link p-3 shadow-sm rounded-0" id="v-pills-accessories-tab" data-toggle="pill"
+                        <a class="nav-link p-3 shadow-sm rounded-0" id="v-pills-accessories-tab" data-bs-toggle="pill"
                             href="#v-pills-accessories" role="tab" aria-controls="v-pills-accessories"
                             aria-selected="false" style="margin-bottom: 1px;">
                             <i class="fa-solid fa-boxes-stacked mr-2" style="font-size: 15px !important;"></i>
                             <span class="fw-bold fs-3">Accessories</span></a>
 
-                        <a class="nav-link p-3 shadow-sm rounded-0" id="v-pills-warranties-tab" data-toggle="pill"
+                        <a class="nav-link p-3 shadow-sm rounded-0" id="v-pills-warranties-tab" data-bs-toggle="pill"
                             href="#v-pills-warranties" role="tab" aria-controls="v-pills-warranties"
                             aria-selected="false" style="margin-bottom: 1px;">
                             <i class="fa-solid fa-shield-halved mr-2" style="font-size: 15px !important;"></i>

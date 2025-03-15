@@ -241,7 +241,7 @@
 
                                 @foreach ($categories as $category)
                                     <li class="nav-item">
-                                        <a class="nav-link {{ $loop->first ? 'active' : '' }}" data-toggle="tab"
+                                        <a class="nav-link {{ $loop->first ? 'active' : '' }}" data-bs-toggle="tab"
                                             href="#cat-Tab{{ $category->id }}" role="tab">{{ $category->title }}</a>
                                     </li>
                                 @endforeach

@@ -20,17 +20,17 @@
                     <div class="nav flex-column nav-pills nav-pills-custom_faq" id="v-pills-tab" role="tablist"
                         aria-orientation="vertical">
                         @foreach ($terms as $key => $term)
-                            <a class="nav-link faq {{ $key === 0 ? 'active' : '' }}" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home{{$term->id}}"
+                            <a class="nav-link faq {{ $key === 0 ? 'active' : '' }}" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home{{$term->id}}"
                                 role="tab" aria-controls="v-pills-home" aria-selected="true">
                                 <span class="font-weight-bold small text-uppercase">{{$term->name}}</span></a>
                         @endforeach
                         @foreach ($sale_terms as $key => $sale_term)
-                            <a class="nav-link faq" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home{{$sale_term->id}}"
+                            <a class="nav-link faq" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home{{$sale_term->id}}"
                                 role="tab" aria-controls="v-pills-home" aria-selected="true">
                                 <span class="font-weight-bold small text-uppercase">{{$sale_term->name}}</span></a>
                         @endforeach
                         @foreach ($service_terms as $key => $service_term)
-                            <a class="nav-link faq" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home{{$service_term->id}}"
+                            <a class="nav-link faq" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home{{$service_term->id}}"
                                 role="tab" aria-controls="v-pills-home" aria-selected="true">
                                 <span class="font-weight-bold small text-uppercase">{{$service_term->name}}</span></a>
                         @endforeach
