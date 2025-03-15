@@ -192,17 +192,17 @@
                             <div class="nav-tabs-wrapper">
                                 <ul class="nav nav-tabs row gx-0" data-tabs="tabs">
                                     <li class="nav-item col">
-                                        <a class="py-3 nav-link active" href="#categories" data-toggle="tab"> Categories
+                                        <a class="py-3 nav-link active" href="#categories" data-bs-toggle="tab"> Categories
                                         </a>
                                     </li>
                                     <li class="col nav-item">
-                                        <a class="py-3 nav-link" href="#brand" data-toggle="tab"> Brand </a>
+                                        <a class="py-3 nav-link" href="#brand" data-bs-toggle="tab"> Brand </a>
                                     </li>
                                     <li class="col nav-item">
-                                        <a class="py-3 nav-link" href="#industry" data-toggle="tab"> Industry </a>
+                                        <a class="py-3 nav-link" href="#industry" data-bs-toggle="tab"> Industry </a>
                                     </li>
                                     <li class="col nav-item">
-                                        <a class="py-3 nav-link" href="#solution" data-toggle="tab"> Solution </a>
+                                        <a class="py-3 nav-link" href="#solution" data-bs-toggle="tab"> Solution </a>
                                     </li>
                                 </ul>
                             </div>
@@ -253,7 +253,7 @@
                                         @foreach ($categories as $key => $item)
                                             @if (count($item->subCatsoftwareProducts) > 0)
                                                 <a class="nav-link discover_tab_sub rounded-0 {{ $key == 0 ? 'active' : '' }}"
-                                                    id="v-pills-home-tab" data-toggle="pill"
+                                                    id="v-pills-home-tab" data-bs-toggle="pill"
                                                     href="#category-{{ $item->id }}" role="tab"
                                                     aria-controls="v-pills-home" aria-selected="true">
                                                     <span
@@ -316,7 +316,7 @@
                                         @foreach ($brands as $key => $item)
                                             @if (count($item->brandsoftwareProducts) > 0)
                                                 <a class="nav-link discover_tab_sub rounded-0 {{ $key == 0 ? 'active' : '' }}"
-                                                    id="v-pills-home-tab" data-toggle="pill"
+                                                    id="v-pills-home-tab" data-bs-toggle="pill"
                                                     href="#category-{{ $item->id }}" role="tab"
                                                     aria-controls="v-pills-home" aria-selected="true">
                                                     <span
@@ -378,7 +378,7 @@
                                         role="tablist" aria-orientation="vertical">
                                         @foreach ($industrys as $indkey => $item)
                                             <a class="nav-link discover_tab_sub rounded-0 {{ $indkey === 0 ? 'active' : '' }}"
-                                                id="v-pills-home-tab" data-toggle="pill"
+                                                id="v-pills-home-tab" data-bs-toggle="pill"
                                                 href="#industry-{{ $item->id }}" role="tab"
                                                 aria-controls="v-pills-home" aria-selected="true">
                                                 <span class="font-weight-bold small text-uppercase">{{ $item->title }}
@@ -470,7 +470,7 @@
                                             @endphp
                                             @if ($solution_product_count > 0)
                                                 <a class="nav-link discover_tab_sub rounded-0 {{ $solkey === 0 ? 'active' : '' }}"
-                                                    id="v-pills-home-tab" data-toggle="pill"
+                                                    id="v-pills-home-tab" data-bs-toggle="pill"
                                                     href="#solution-{{ $solution->id }}" role="tab"
                                                     aria-controls="v-pills-home" aria-selected="true">
                                                     <span
