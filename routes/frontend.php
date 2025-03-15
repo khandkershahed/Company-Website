@@ -20,7 +20,7 @@ Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::get('/learn/more', [HomeController::class, 'LearnMore'])->name('learn.more');
 
 //What We Do
-Route::get('/Whatwe/do', [HomeController::class, 'whatWeDo'])->name('whatwedo');
+Route::get('/what-we-do', [HomeController::class, 'whatWeDo'])->name('whatwedo');
 
 //Software All route
 Route::get('/software/common', [HomeController::class, 'softwareCommon'])->name('software.common');

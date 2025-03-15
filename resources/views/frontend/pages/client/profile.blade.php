@@ -119,7 +119,7 @@
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <a class="" href="javascript:void(0);" title="Edit Your Profie"
-                                                data-toggle="modal" data-target="#profileModal">
+                                                data-bs-toggle="modal" data-bs-target="#profileModal">
                                                 <i class="fa fa-xl fa-pencil-square mt-1 text-white"></i>
                                             </a>
                                         </div>
@@ -246,7 +246,7 @@
                                         </div>
                                         {{-- <div class="d-flex align-items-center">
                                             <a class="" href="javascript:void(0);" title="Edit Your Profie"
-                                                data-toggle="modal" data-target="#profileModal">
+                                                data-bs-toggle="modal" data-bs-target="#profileModal">
                                                 <i class="fa fa-xl fa-pencil-square mt-1 text-white"></i>
                                             </a>
                                         </div> --}}
@@ -319,7 +319,7 @@
                                         </div>
                                         <div class="d-flex align-items-center">
                                             <a class="" href="javascript:void(0);" title="Add Your Team Members"
-                                                data-toggle="modal" data-target="#teamAddModal">
+                                                data-bs-toggle="modal" data-bs-target="#teamAddModal">
                                                 <i class="fa fa-xl fa-plus-square mt-1 text-white"></i>
                                             </a>
                                         </div>
@@ -354,8 +354,8 @@
                                                             </td>
                                                             <td>
                                                                 <a class="" href="javascript:void(0);"
-                                                                    title="Edit Your Profie" data-toggle="modal"
-                                                                    data-target="#teamEditModal{{ $team->id }}">
+                                                                    title="Edit Your Profie" data-bs-toggle="modal"
+                                                                    data-bs-target="#teamEditModal{{ $team->id }}">
                                                                     <i class="fa fa-xl fa-pen-square mt-1"></i>
                                                                 </a>
                                                             </td>

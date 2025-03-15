@@ -35,7 +35,7 @@
                 <ul class="d-flex profile-menu mb-0">
                     <li class="mx-3 pb-2 text-end text-black">
                         <a href="javascript:void(0);" title="Create Support Case"
-                            data-toggle="modal" data-target="#casecommonmodal"><strong>+ Create Cases</strong>
+                            data-bs-toggle="modal" data-bs-target="#casecommonmodal"><strong>+ Create Cases</strong>
                         </a>
                     </li>
                 </ul>

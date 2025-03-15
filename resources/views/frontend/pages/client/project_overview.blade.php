@@ -157,7 +157,7 @@
                                                 <p class="m-0 text-center text-white px-3 py-1 upper_title">
                                                     <i class="fa-solid fa-plus text-white"></i>
                                                     <a href="javascript:void(0);" title="Create Support Case"
-                                                        data-toggle="modal" data-target="#casecommonmodal"><strong class="text-white"> Create
+                                                        data-bs-toggle="modal" data-bs-target="#casecommonmodal"><strong class="text-white"> Create
                                                             Cases</strong>
                                                     </a>
                                                 </p>

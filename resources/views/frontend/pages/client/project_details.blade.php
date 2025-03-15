@@ -130,7 +130,7 @@
                                             <ul class="d-flex profile-menu mb-0">
                                                 <li class="mx-3 pb-2 text-end text-black">
                                                     <a href="javascript:void(0);" title="Create Support Case"
-                                                        data-toggle="modal" data-target="#casecommonmodal"><strong>+ Create
+                                                        data-bs-toggle="modal" data-bs-target="#casecommonmodal"><strong>+ Create
                                                             Cases</strong>
                                                     </a>
                                                 </li>
@@ -510,8 +510,8 @@
                                                                                                 </p>
                                                                                                 <p class="mb-0 mt-3">
                                                                                                     <a href="javascript:void(0);"
-                                                                                                        data-toggle="modal"
-                                                                                                        data-target="#supportModal{{ $support->id }}"
+                                                                                                        data-bs-toggle="modal"
+                                                                                                        data-bs-target="#supportModal{{ $support->id }}"
                                                                                                         class="ms-1 border-bottom-link text-primary text-primary">
                                                                                                         <i class="fa-solid fa-plus"></i>
                                                                                                         Create Case

@@ -253,7 +253,7 @@
                                                 {{-- <a class="btn-color" href="{{route('contact')}}">Call Ngen It for price</a> --}}
                                                 <div class="need_help col-6">
                                                     <button class="btn-color brand-product-btn" id="modal_view_left"
-                                                        data-toggle="modal" data-target="#rfq_product{{ $sproduct->id }}"
+                                                        data-bs-toggle="modal" data-bs-target="#rfq_product{{ $sproduct->id }}"
                                                         style="width: 100%;">Ask For Price</button>
                                                 </div>
                                                 <div class="need_help col-6 p-0">
@@ -304,8 +304,8 @@
                                     <div class="row justify-content-between align-items-center">
                                         {{-- <a class="btn-color" href="{{route('contact')}}">Call Ngen It for price</a> --}}
                                         <div class="need_help col-lg-5 col-sm-12 p-0">
-                                            <button class="search-btn-price" id="modal_view_left" data-toggle="modal"
-                                                data-target="#rfq_product{{ $sproduct->id }}" style="width: 100%;">Ask
+                                            <button class="search-btn-price" id="modal_view_left" data-bs-toggle="modal"
+                                                data-bs-target="#rfq_product{{ $sproduct->id }}" style="width: 100%;">Ask
                                                 For Price</button>
                                         </div>
                                         <div class="need_help col-lg-7 col-sm-12 p-0">
@@ -359,7 +359,7 @@
                                         </div>
                                     @else
                                         <button class="btn-color brand-product-btn" id="modal_view_left"
-                                            data-toggle="modal" data-target="#rfq_product{{ $sproduct->id }}"
+                                            data-bs-toggle="modal" data-bs-target="#rfq_product{{ $sproduct->id }}"
                                             style="width: 100%;">Get Quote</button>
                                         {{-- <form action="{{ route('add.cart') }}" method="post">
                                         @csrf
@@ -429,8 +429,8 @@
                                                     <div class="row js-add-to-cart-container">
                                                         <div class="columns small-12 ds-v1 text-center">
                                                             <a type="button" style="font-weight: 600"
-                                                                class="text-danger" data-toggle="modal"
-                                                                data-target="#exampleModalCenter">
+                                                                class="text-danger" data-bs-toggle="modal"
+                                                                data-bs-target="#exampleModalCenter">
                                                                 <h5>This product has sell requirements</h5>
                                                             </a>
                                                         </div>
@@ -771,5 +771,5 @@
 
 
 
-    
+
 @endsection

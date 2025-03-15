@@ -192,8 +192,8 @@
                                 </p>
                             </div>
                             <div>
-                                <button class="btn-color brand-product-btn" id="modal_view_left" data-toggle="modal"
-                                    data-target="#rfq{{ $sproduct->id }}" style="width: ;">Get Quote</button>
+                                <button class="btn-color brand-product-btn" id="modal_view_left" data-bs-toggle="modal"
+                                    data-bs-target="#rfq{{ $sproduct->id }}" style="width: ;">Get Quote</button>
                             </div>
                             {{-- <button class="common_button2 ms-3" type="submit">Add to Basket</button> --}}
                         </div>
@@ -229,7 +229,7 @@
                                         <div class="row js-add-to-cart-container">
                                             <div class="columns small-12 ds-v1 text-center">
                                                 <a type="button" style="font-weight: 600" class="text-danger"
-                                                    data-toggle="modal" data-target="#exampleModalCenter">
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                                                     <h5>This product has sell requirements</h5>
                                                 </a>
                                             </div>
@@ -253,9 +253,9 @@
                             <div>
                                 <p class="list_price mb-0">Custom Pricing</p>
                                 {{-- <button class="btn-color brand-product-btn" id="modal_view_left"
-                                                        data-toggle="modal" data-target="#rfq{{ $sproduct->id }}"
+                                                        data-bs-toggle="modal" data-bs-target="#rfq{{ $sproduct->id }}"
                                                         style="width: 100%;">Get Quote</button> --}}
-                                <a href="" data-toggle="modal" data-target="#rfq{{ $sproduct->id }}">
+                                <a href="" data-bs-toggle="modal" data-bs-target="#rfq{{ $sproduct->id }}">
                                     <span class="fw-bold" style="color: #ae0a46;">Get A Quote</span>
                                 </a>
                             </div>

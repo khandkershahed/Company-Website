@@ -374,8 +374,8 @@
     <div id="bankPayment" class="d-none">
         <div class="card mt-2 border border-secondary">
             {{-- <div class="card-title pt-1 pl-2 border border-bottom border-secondary">
-                Payment Information (Bank Account ( <span class="text-warning" data-toggle="modal"
-                    data-target="#bankModal"><i class="fa fa-info-circle"></i></span> ))
+                Payment Information (Bank Account ( <span class="text-warning" data-bs-toggle="modal"
+                    data-bs-target="#bankModal"><i class="fa fa-info-circle"></i></span> ))
             </div> --}}
             <div class=" col-12">
                 <div class="row">
