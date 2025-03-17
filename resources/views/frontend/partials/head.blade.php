@@ -7,11 +7,11 @@
 @yield('styles')
 @if (Route::currentRouteName() === 'product.details')
     @php
-        $metaTitle = $product->meta_title ?? $product->name;
+        $metaTitle = $sproduct->meta_title ?? $sproduct->name;
         $metaDescription = strip_tags(
-            $product->meta_description ?? substr(htmlspecialchars($product->description), 0, 150),
+            $sproduct->meta_description ?? substr(htmlspecialchars($sproduct->description), 0, 150),
         );
-        $metaImage = $product->thumbnail ?? ''; // Default image
+        $metaImage = $sproduct->thumbnail ?? ''; // Default image
     @endphp
 
     <meta name="title" content="{{ $metaTitle }}" />
