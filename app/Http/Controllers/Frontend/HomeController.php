@@ -971,8 +971,9 @@ class HomeController extends Controller
         $data['subcategorys'] = SubCategory::where('title', 'LIKE', '%' . $query . '%')->limit(2)->get(['id', 'title', 'slug']);
         $data['subsubcategorys'] = SubSubCategory::where('title', 'LIKE', '%' . $query . '%')->limit(1)->get(['id', 'title', 'slug']);
         $data['brands'] = Brand::where('title', 'LIKE', '%' . $query . '%')->where('status', 'active')->limit(5)->get(['id', 'title', 'slug']);
-        $data['storys'] = ClientStory::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title', 'slug']);
-        $data['tech_glossys'] = TechGlossy::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title', 'slug']);
+        $data['storys'] = ClientStory::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title']);
+        $data['tech_glossys'] = TechGlossy::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title']);
+        // dd($query);
 
         return response()->json(view('frontend.partials.search', $data)->render());
     } // end method
