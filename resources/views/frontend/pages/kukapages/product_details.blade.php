@@ -5,7 +5,10 @@
     @php
         $isProductPage = true; // Flag to indicate this is a product details page
         $metaTitle = $sproduct->name;
-        $metaDescription = substr($sproduct->short_desc, 0, 150);
+        $metaDescription = strip_tags(
+            $sproduct->meta_description ?? substr(html_entity_decode($sproduct->short_desc), 0, 150),
+        );
+
         $metaImage = $sproduct->thumbnail ?? ''; // Default image
     @endphp
 @endsection

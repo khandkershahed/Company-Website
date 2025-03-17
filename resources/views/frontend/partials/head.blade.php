@@ -9,7 +9,7 @@
     @php
         $metaTitle = $sproduct->meta_title ?? $sproduct->name;
         $metaDescription = strip_tags(
-            $sproduct->meta_description ?? substr(htmlspecialchars($sproduct->short_desc), 0, 150),
+            $sproduct->meta_description ?? substr(html_entity_decode($sproduct->short_desc), 0, 150)
         );
         $metaImage = $sproduct->thumbnail ?? ''; // Default image
     @endphp
@@ -19,6 +19,8 @@
     <meta property="og:title" content="{{ $metaTitle }}" />
     <meta property="og:description" content="{!! $metaDescription !!}" />
     <meta property="og:image" content="{{ $metaImage ? asset('storage/' . $metaImage) : '' }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:type" content="product" />
     <meta property="og:url" content="{{ request()->fullUrl() }}" />
     <meta property="og:site_name" content="{{ !empty($setting->site_name) ? $setting->site_name : 'NGen IT Ltd.' }}" />
@@ -45,12 +47,11 @@
     <meta name="twitter:image"
         content="{{ !empty($brandpage->banner_image) && file_exists(public_path('storage/' . $brandpage->banner_image)) ? url('social-image/' . $brandpage->banner_image) : asset('frontend/images/no-banner(1920-330).png') }}">
     <meta name="twitter:site" content="@YourTwitterHandle"> <!-- Replace with your Twitter handle if available -->
-    {{-- <meta name="description"
-        content="NGEN IT Ltd. is a System Integration, Software & Hardware based License Provider & Software development based company established in 2008. Our technical expertise, broad solutions portfolio, and supply chain capabilities give us the right resources and scale to achieve more for you. Cloud Services."> --}}
     <meta name="keywords"
         content="software, hardware, training, books, license, Microsoft, Adobe, Software License, Acronis, Veeam, Industry, Solution, Health Industry, Financial Industry">
     <meta name="robots" content="index, follow">
 @endif
+
 
 
 
