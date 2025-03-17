@@ -9,7 +9,7 @@
     @php
         $metaTitle = $sproduct->meta_title ?? $sproduct->name;
         $metaDescription = strip_tags(
-            $sproduct->meta_description ?? substr(htmlspecialchars($sproduct->description), 0, 150),
+            $sproduct->meta_description ?? substr(htmlspecialchars($sproduct->short_desc), 0, 150),
         );
         $metaImage = $sproduct->thumbnail ?? ''; // Default image
     @endphp
