@@ -43,7 +43,7 @@ class CategoryController extends Controller
     //     $data['sub_sub_cats']   = SubSubCategory::where('status', 'active')->orderBy('id', 'DESC')->get();
     //     return view('admin.pages.category.add', $data);
     // }
-
+ 
     /**
      * Store a newly created resource in storage.
      *
