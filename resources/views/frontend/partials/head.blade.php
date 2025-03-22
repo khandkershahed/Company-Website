@@ -78,9 +78,10 @@
 <link href="{{ asset('frontend/css/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/select-2/select2.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/toastr/toastr.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/custom_global.css') }}">
-
-<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/custom_responsive.css') }}">
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/custom_global.css') }}"> --}}
+<link rel="stylesheet" href="{{ asset('frontend/css/custom_global.css?v=' . time()) }}" />
+<link rel="stylesheet" href="{{ asset('frontend/css/custom_responsive.css?v=' . time()) }}" />
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/custom_responsive.css') }}"> --}}
 
 
 <!-- Scripts -->

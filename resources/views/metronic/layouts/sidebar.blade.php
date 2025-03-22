@@ -74,6 +74,11 @@
                                     'routes' => ['admin.brand.index', 'admin.brand.create', 'admin.brand.edit'],
                                     'route' => 'admin.brand.index',
                                 ],
+                                [
+                                    'title' => 'Category Management',
+                                    'routes' => ['admin.category.index', 'admin.category.create', 'admin.category.edit'],
+                                    'route' => 'admin.category.index',
+                                ],
                                 // [
                                 //     'title' => 'Category Management',
                                 //     'routes' => ['admin.brand.index','brand.create', 'brand.edit'],
