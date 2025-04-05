@@ -197,11 +197,11 @@ class RFQController extends Controller
      */
     public function store(Request $request)
     {
-        $blacklistedEmails = ['ericjonesmyemail@gmail.com'];
+        $blacklistedEmails = ['ericjonesmyemail@gmail.com','cristine.chatham@gmail.com'];
         $blacklistedNames = ['Eric Jones'];
         $blacklistedProduct = ['Eric Jones'];
         $blacklistedPhone = ['555-555-1212'];
-        $blacklistedWords = ['Web Visitor', 'trustedleadgeneration.com', 'SMS Text With Lead', 'Eric',];
+        $blacklistedWords = ['Web Visitor', 'trustedleadgeneration.com', 'SMS Text With Lead', 'Eric','marketersmentor','Cristine Unsubscribe','Cristine'];
 
         if (in_array($request->product_name, $blacklistedProduct) || in_array($request->email, $blacklistedEmails) || in_array($request->name, $blacklistedNames) || in_array($request->phone, $blacklistedPhone)) {
             // Session::flash('error', 'Your request cannot be processed.');
