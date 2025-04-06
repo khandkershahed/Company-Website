@@ -8,14 +8,15 @@
                 <div class="w-lg-50 w-100 mx-auto my-5 card rounded-2 shadow-sm" style="border: 1px solid #eee;">
                     <div class="card-header rfq-header border-0">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h3 class="text-white py-2">Get Query</h3>
+                            <h3 class="text-white py-2">Request for Quotation</h3>
                             <div class="d-flex align-items-center justify-content-end align-items-center">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
                                     <label class="form-check-label fw-normal text-white" for="flexCheckChecked">
                                         <small>RFQ by Case</small>
                                     </label>
-                                    <i class="fa-solid fa-question"
+                                    <i class="fa-solid fa-question" data-toggle="tooltip"
+                                        title="Coming Soon: Create RFQ Describing by Project Case."
                                         style="
                                     border: 1px solid #afafaf;
                                     color: #afafaf;
@@ -38,14 +39,9 @@
                             <div id="projectStep" class="p-3">
                                 <div class="row gx-2">
                                     <div class="col-lg-12" id="inputRepeater">
-                                        <div class="row align-items-center mb-5 input-row mt-5">
+                                        <div class="row align-items-center mb-5 input-row mt-3">
                                             <div class="col-lg-12 mx-0">
                                                 <div class="rfq-repeater parent-container">
-                                                    <div class="rfq-add-btns">
-                                                        <button type="button" class="rounded-1" onclick="addRow()">
-                                                            <i class="fa-solid fa-plus"></i>
-                                                        </button>
-                                                    </div>
                                                     <div class="rfq-title-btns" id="productRowsContainer">
                                                         @if ($cart_products)
                                                             @foreach ($cart_products as $key => $cart_product)
@@ -58,20 +54,20 @@
                                                                                 placeholder="Product Title" required>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-lg-1">
-                                                                        <div>
-                                                                            <input name="qty[]" type="number"
-                                                                                value="1"
-                                                                                class="form-control form-control-sm border-0 rounded-1 py-3"
-                                                                                placeholder="QTY..">
+                                                                    <div class="col-lg-2">
+                                                                        <div class="d-flex align-items-center">
+                                                                            <div class="pe-3">
+                                                                                <input name="qty[]" type="number"
+                                                                                    value="1"
+                                                                                    class="form-control text-center form-control-sm border-0 rounded-1 py-3"
+                                                                                    placeholder="QTY..">
+                                                                            </div>
+                                                                            <a href="javascript:void(0)" class="delete-btn"
+                                                                                onclick="deleteRow(this)">
+                                                                                <i
+                                                                                    class="fa-regular fa-trash-can text-danger"></i>
+                                                                            </a>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col-lg-1">
-                                                                        <a href="javascript:void(0)" class="delete-btn"
-                                                                            onclick="deleteRow(this)">
-                                                                            <i
-                                                                                class="fa-regular fa-trash-can text-danger"></i>
-                                                                        </a>
                                                                     </div>
                                                                 </div>
                                                             @endforeach
@@ -83,19 +79,31 @@
                                                                         placeholder="Product Title" required>
                                                                 </div>
                                                                 <div class="col-lg-1 col-2">
-                                                                    <input name="qty[]" type="number"
-                                                                        class="form-control form-control-sm border-0 rounded-1 py-3"
-                                                                        placeholder="QTY..">
-                                                                </div>
-                                                                <div class="col-1">
-                                                                    <a href="javascript:void(0)" class="delete-btn"
-                                                                        onclick="deleteRow(this)">
-                                                                        <i class="fa-regular fa-trash-can text-danger"></i>
-                                                                    </a>
+                                                                    <div class="d-flex">
+                                                                        <div>
+                                                                            <input name="qty[]" type="number"
+                                                                                class="form-control form-control-sm border-0 rounded-1 py-3"
+                                                                                placeholder="QTY..">
+                                                                        </div>
+                                                                        <div>
+                                                                            <a href="javascript:void(0)" class="delete-btn"
+                                                                                onclick="deleteRow(this)">
+                                                                                <i
+                                                                                    class="fa-regular fa-trash-can text-danger"></i>
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         @endif
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="rfq-add-btns mt-2">
+                                                    <button type="button" class="rounded-1" onclick="addRow()">
+                                                        <i class="fa-solid fa-plus"></i>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,14 +134,49 @@
                                         </div>
                                         <div id="toggle-content-2" style="display: none;" class="mb-4">
                                             <div class="row gx-2">
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <input name="budget" type="number"
+                                                            class="form-control form-control-sm border-0 rounded-1 py-3"
+                                                            placeholder="Tentative Budget.." style="height: 50px;">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <select class="form-select form-select-sm select-inputs"
+                                                            name="project_status" data-placeholder="Select Project Status"
+                                                            id="project_status">
+                                                            <option>Current project status</option>
+                                                            <option value="budget_stage">Budget Stage</option>
+                                                            <option value="tor_stage">Tor Stage</option>
+                                                            <option value="rfq_stage">RFQ Stage</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="mb-3">
+                                                        <select class="form-select form-select-sm select-inputs"
+                                                            name="project_status" data-placeholder="Select Project Status"
+                                                            id="project_status">
+                                                            <option>Tentetive Purchase Date</option>
+                                                            <option value="less_one_month">1 Month
+                                                            </option>
+                                                            <option value="two_month">2 Month</option>
+                                                            <option value="three_month">3 Month</option>
+                                                            <option value="six_month">6 Month</option>
+                                                            <option value="one_year">1 Year</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <div class="col-lg-12">
                                                     <div class="form-floating">
                                                         <textarea class="form-control" name="message" placeholder="Leave a comment here" id="floatingTextarea2"
                                                             style="height: 100px"></textarea>
                                                         <label for="floatingTextarea2"
-                                                            style="font-weight: normal;">Comments</label>
+                                                            style="font-weight: normal;">Project details..</label>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -159,14 +202,16 @@
                                                 </svg>
                                             </div> --}}
                                             <div class="checkbox-wrapper-4">
-                                                <input class="inp-cbx" id="delivery" type="checkbox" onchange="toggleDiv()" />
+                                                <input class="inp-cbx" id="delivery" type="checkbox"
+                                                    onchange="toggleDiv()" />
                                                 <label class="cbx" for="delivery">
                                                     <span>
                                                         <svg width="12px" height="10px">
                                                             <use xlink:href="#delivery-location"></use>
                                                         </svg>
                                                     </span>
-                                                    <span class="ps-2" style="font-weight: normal;">Delivery Location</span>
+                                                    <span class="ps-2" style="font-weight: normal;">Delivery
+                                                        Location</span>
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <svg class="inline-svg">
@@ -178,10 +223,12 @@
                                         </div>
                                         <div id="toggle-content" style="display: none;" class="mb-4">
                                             <div class="row gx-2">
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <div class="mb-3">
                                                         <select class="select-form-input w-100 form-control"
-                                                            name="country" required>
+                                                        name="country" id="country" required>
+                                                            <option value="">Select Country</option>
+                                                            <option>Country</option>
                                                             <option value="Afghanistan">Afghanistan</option>
                                                             <option value="Åland Islands">Åland Islands</option>
                                                             <option value="Albania">Albania</option>
@@ -201,7 +248,7 @@
                                                             <option value="Azerbaijan">Azerbaijan</option>
                                                             <option value="Bahamas">Bahamas</option>
                                                             <option value="Bahrain">Bahrain</option>
-                                                            <option value="Bangladesh" selected>Bangladesh</option>
+                                                            <option value="Bangladesh">Bangladesh</option>
                                                             <option value="Barbados">Barbados</option>
                                                             <option value="Belarus">Belarus</option>
                                                             <option value="Belgium">Belgium</option>
@@ -401,7 +448,7 @@
                                                             <option value="Serbia">Serbia</option>
                                                             <option value="Seychelles">Seychelles</option>
                                                             <option value="Sierra Leone">Sierra Leone</option>
-                                                            <option value="Singapore">Singapore</option>
+                                                            <option value="Singapore" selected>Singapore</option>
                                                             <option value="Slovakia">Slovakia</option>
                                                             <option value="Slovenia">Slovenia</option>
                                                             <option value="Solomon Islands">Solomon Islands</option>
@@ -460,11 +507,11 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <div class="mb-3">
                                                         <select class="select-form-input w-100 form-control"
-                                                            name="city">
-                                                            <option>Choose The City</option>
+                                                        name="city" id="city" required>
+                                                            <option>City</option>
                                                             <option value="ny">New York</option>
                                                             <option value="london">London</option>
                                                             <option value="dhaka">Dhaka</option>
@@ -511,46 +558,22 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6">
+
+                                                <div class="col-lg-4">
                                                     <div class="mb-3">
-                                                        <select class="form-select form-select-sm select-inputs"
-                                                            name="project_status" data-placeholder="Select Project Status"
-                                                            id="project_status">
-                                                            <option>Choose project status</option>
-                                                            <option value="budget_stage">Budget Stage</option>
-                                                            <option value="tor_stage">Tor Stage</option>
-                                                            <option value="rfq_stage">RFQ Stage</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-3">
-                                                        <select class="form-select form-select-sm select-inputs"
-                                                            name="project_status" data-placeholder="Select Project Status"
-                                                            id="project_status">
-                                                            <option value="less_one_month">Less Than One Month
-                                                            </option>
-                                                            <option value="two_month">Two Months</option>
-                                                            <option value="three_month">Three Months</option>
-                                                            <option value="six_month">Six Months</option>
-                                                            <option value="one_year">One Year</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-3">
-                                                        <input name="budget" type="number"
+                                                        <input name="delivery_zip_code" type="text"
                                                             class="form-control form-control-sm border-0 rounded-1 py-3"
-                                                            placeholder="Tentative Budget..">
+                                                            placeholder="Your Zip Code">
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-12">
                                                     <div class="mb-3">
                                                         <input name="delivery_location" type="text"
                                                             class="form-control form-control-sm border-0 rounded-1 py-3"
-                                                            placeholder="Delivery Location..">
+                                                            placeholder="Address (eg: house, road, block)">
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -558,11 +581,14 @@
 
                                 </div>
                                 <div class="pt-3 d-flex justify-content-between align-items-center">
-                                    <p class="fw-normal m-0 p-0">Please complete your details for further communication needed!</p>
-                                    <button type="button" id="nextButtonmain" class="btn-secondary btn w-25 rounded-0" onclick="nextStep()" disabled>
-                                        <span>Next</span>
-                                        <i class="ps-2 fa-solid fa-arrow-right-long"></i>
-                                    </button>
+                                    <p class="fw-normal m-0 p-0">Please complete your contact details for further
+                                        communication
+                                        needed!</p>
+                                        <button type="button" id="nextButtonmain" class="btn-secondary btn w-25 rounded-0" onclick="nextStep()" disabled>
+                                            <span>Next</span>
+                                            <i class="ps-2 fa-solid fa-arrow-right-long"></i>
+                                        </button>
+
                                 </div>
                             </div>
 
@@ -570,7 +596,7 @@
                             <div id="contactStep" style="display: none;">
                                 <div class="p-5">
                                     <div class="row">
-                                        <p class="fw-normal">Contact Information</p>
+                                        <p class="fw-normal">Inquirers Contact Information</p>
                                         <div class="col-lg-6">
                                             <div class="mb-4">
                                                 <input name="name" type="text"
@@ -594,23 +620,23 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-4">
-                                                <input name="phone" type="text"
+                                                <input name="phone" type="number"
                                                     class="form-control form-control-sm border-0 rounded-1 py-3"
-                                                    placeholder="Contact  Number.." >
+                                                    placeholder="Contact  Number *"required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-4">
                                                 <input name="company_name" type="text"
                                                     class="form-control form-control-sm border-0 rounded-1 py-3"
-                                                    placeholder="Company name.." required>
+                                                    placeholder="Company name *" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-4">
                                                 <input name="address" type="text"
                                                     class="form-control form-control-sm border-0 rounded-1 py-3"
-                                                    placeholder="Company Address..">
+                                                    placeholder="Company Address *">
                                             </div>
                                         </div>
                                     </div>
@@ -634,5 +660,10 @@
 @endsection
 
 @section('scripts')
+    <script>
+        $('[data-toggle="tooltip"]').tooltip({
+            'placement': 'top'
+        });
+    </script>
     @include('frontend.pages.rfq.partials.rfq_js')
 @endsection

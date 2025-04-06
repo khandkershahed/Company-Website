@@ -119,9 +119,12 @@
         display: flex;
         justify-content: end;
         position: relative;
-        bottom: -16px;
+        bottom: -18px;
         z-index: 5;
-        left: 5px;
+        left: 8px;
+    }
+    .offcanvas.offcanvas-bottom{
+        height: auto;
     }
 </style>
 
@@ -135,7 +138,8 @@
         <span class="miniRFQQTY">{{ Cart::count() }}</span> RFQ Added
     </button>
     {{-- Offcanvas --}}
-    <div class="offcanvas offcanvas-bottom offcanvasRFQ" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
+    <div class="offcanvas offcanvas-bottom offcanvasRFQ" tabindex="-1" id="offcanvasBottom"
+        aria-labelledby="offcanvasBottomLabel">
         @include('frontend.partials.offcanvas')
     </div>
 
@@ -174,8 +178,8 @@
                                         value="{{ optional(Auth::guard('client')->user())->name }}" />
                                 </div>
                                 <div class="col-lg-4 mb-3 pe-0">
-                                    <input type="number" class="form-control rounded-0" id="phone"
-                                        name="phone" placeholder="Your Phone Number *" required
+                                    <input type="number" class="form-control rounded-0" id="phone" name="phone"
+                                        placeholder="Your Phone Number *" required
                                         value="{{ optional(Auth::guard('client')->user())->phone }}" />
                                 </div>
                                 <div class="col-lg-4 mb-3">

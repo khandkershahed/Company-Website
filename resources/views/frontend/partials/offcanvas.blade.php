@@ -9,8 +9,8 @@
 <div class="offcanvas-body p-0">
     <div class="container-fluid px-0">
         <div class="row ps-4">
-            <div class="col-lg-10">
-                <div class="row mt-4">
+            <div class="col-lg-9">
+                <div class="row mt-4 pb-5">
                     @if ($cart_items)
                         @foreach ($cart_items as $cart_item)
                             @php
@@ -20,27 +20,38 @@
                                     'name',
                                 ]);
                             @endphp
-                            <div class="col-lg-2 mb-4">
-                                <div style="margin-top: -30px;">
-                                    <div class="remove-box">
-                                        <a href="javascript:void(0);" class="remove-rfq text-danger"
-                                            id="{{ $cart_item->rowId }}" onClick='deleteRFQRow(event, this, this.id)'>
-                                            <i class="fa-solid fa-xmark"></i>
-                                        </a>
-                                    </div>
+                            <div class="col-lg-12">
+                                <div>
                                     <div class="card text-center border-0 rfq-cards">
                                         <div class="d-flex align-items-center">
-                                            <div class="rfq-imgs">
-                                                <img src="{{ !empty(optional($productRFQ)->thumbnail) && file_exists(public_path(optional($productRFQ)->thumbnail)) ? asset(optional($productRFQ)->thumbnail) : asset('frontend/images/random-no-img.png') }}"
-                                                    class="" alt="">
-                                            </div>
-                                            <div class="card-body border"
-                                                style="text-align: start;width: 100%;padding-left: 15px; height: 85px;display: flex;align-items: center;">
-                                                <small class="card-title fw-normal text-start">
-                                                    {{ implode(' ', array_slice(explode(' ', optional($productRFQ)->name), 0, 3)) }}
+                                            <div class="card-body"
+                                                style="text-align: start; width: 100%; padding-left: 15px; height: 100%; display: flex; align-items: center; justify-content: space-around; border-bottom: 1px solid #eee">
+
+                                                {{-- SL No. --}}
+                                                <small class="fw-normal text-start me-3">
+                                                    {{ $loop->iteration ?? '1' }}.
+                                                </small>
+
+                                                {{-- Name --}}
+                                                <small class="fw-normal text-start me-3" style="flex: 1;">
+                                                    {{ $productRFQ->name }}
+                                                </small>
+
+                                                {{-- Quantity --}}
+                                                <small class="fw-normal text-start me-5">
+                                                    Qty: {{ $productRFQ->quantity ?? 'N/A' }}
+                                                </small>
+                                                <small>
+                                                    <a href="javascript:void(0);"
+                                                        class="remove-rfq rounded-0 text-danger"
+                                                        id="{{ $cart_item->rowId }}"
+                                                        onClick='deleteRFQRow(event, this, this.id)'>
+                                                        <i class="fas fa-trash-can"></i>
+                                                    </a>
                                                 </small>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +61,7 @@
                     @endif
                 </div>
             </div>
-            <div class="col-lg-2 ">
+            <div class="col-lg-3 ">
                 <div class="text-center fixed-column" style="padding: 30px !important;">
                     <p>Check all added RFQ in one place, hit the button to show all added RFQ.</p>
                     <a href="{{ route('rfq') }}" class="btn-color">Submit RFQ</a>

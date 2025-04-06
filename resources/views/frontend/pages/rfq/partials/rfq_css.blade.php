@@ -40,7 +40,9 @@
         background-color: transparent;
         border: 0;
         padding: 5px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
+        border: 1px solid #ae0a46;
     }
 
     .rfq-delete-btns button {

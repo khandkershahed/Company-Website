@@ -17224,7 +17224,7 @@ nav > div a.nav-item.nav-link.active {
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
 }
 .rfq-cards {
-    height: 83px;
+    margin-bottom: 0px;
 }
 .rfq-head-bg {
     background-image: url("https://static.vecteezy.com/system/resources/thumbnails/003/782/514/small/black-abstract-header-metal-pattern-simply-mosaic-banner-with-evenly-stacked-crosses-vector.jpg");
