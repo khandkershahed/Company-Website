@@ -22,7 +22,7 @@
                         aria-orientation="vertical">
                         @foreach ($faq_categorys as $key => $faq_category)
                             <a class="nav-link faq  {{ $key == 0 ? 'active' : '' }}" id="v-pills-home-tab"
-                                data-toggle="pill" href="#{{ $faq_category }}" role="tab" aria-controls="v-pills-home"
+                                data-bs-toggle="pill" href="#{{ $faq_category }}" role="tab" aria-controls="v-pills-home"
                                 aria-selected="true">
                                 <span class="font-weight-bold small text-uppercase">{{ $faq_category->category }}</span></a>
                         @endforeach
@@ -44,7 +44,7 @@
                                             @foreach ($faqs as $subKey => $faq)
                                                 <div class="card-header p-0 border-0 mb-0 mt-1" id="heading-{{$faq->id}}">
                                                     <button class="btn btn-link accordion-title border-0 collapse rounded-0 {{$subKey === 0 ? 'show' : ''}}"
-                                                            data-toggle="collapse" data-target="#collapse-{{$faq->id}}" aria-expanded="{{$subKey === 0 ? 'true' : 'false'}}"
+                                                            data-bs-toggle="collapse" data-target="#collapse-{{$faq->id}}" aria-expanded="{{$subKey === 0 ? 'true' : 'false'}}"
                                                             aria-controls="#collapse-{{$faq->id}}">
                                                         <i class="fas fa-plus text-center d-flex align-items-center justify-content-center h-100"></i>
                                                         {{$faq->question}}

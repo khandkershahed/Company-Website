@@ -55,7 +55,7 @@
                                         <!---Category Edit modal--->
                                         <div id="update_category_{{ $category->slug }}" class="modal fade" tabindex="-1"
                                             style="display: none;" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-scrollable">
+                                            <div class="modal-dialog modal-dialog-scrollable modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title">Category Update Form</h5>
@@ -64,9 +64,9 @@
                                                     </div>
 
                                                     <div class="modal-body border br-7">
-                                                        @php
+                                                        {{-- @php
                                                             $category = App\Models\Admin\Category::where('slug', $category->slug)->first();
-                                                        @endphp
+                                                        @endphp --}}
                                                         <form method="post"
                                                             action="{{ route('category.update', $category->id) }}"
                                                             enctype="multipart/form-data">
@@ -90,7 +90,7 @@
                                                                 </div>
                                                                 <div class="col-sm-6 text-start">
 
-                                                                    <input type="file" name="banner_image"
+                                                                    <input type="file" name="image"
                                                                         class="form-control form-control-sm" id="image"
                                                                         accept="image/*" />
                                                                 </div>

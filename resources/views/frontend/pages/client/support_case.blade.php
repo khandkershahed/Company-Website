@@ -48,7 +48,7 @@
                                             <ul class="d-flex profile-menu mb-0">
                                                 <li class="mx-3 pb-2 text-end text-black">
                                                     <a href="javascript:void(0);" title="Create Support Case"
-                                                        data-toggle="modal" data-target="#casecommonmodal"><strong>+ Create
+                                                        data-bs-toggle="modal" data-bs-target="#casecommonmodal"><strong>+ Create
                                                             Cases</strong>
                                                     </a>
                                                 </li>
@@ -83,8 +83,8 @@
                                                 <p class="m-0 text-center text-white px-3 py-1 upper_title">
                                                     <i class="fa-solid fa-plus text-white"></i>
                                                     <a href="javascript:void(0);" class="text-white border-bottom"
-                                                        title="Create Support Case" data-toggle="modal"
-                                                        data-target="#casecommonmodal">Create Support
+                                                        title="Create Support Case" data-bs-toggle="modal"
+                                                        data-bs-target="#casecommonmodal">Create Support
                                                         Case
                                                     </a>
                                                 </p>

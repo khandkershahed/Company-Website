@@ -5,37 +5,63 @@
 <!-- Title -->
 <title>{{ !empty($setting->site_name) ? $setting->site_name : 'NGen IT Ltd.' }}</title>
 @yield('styles')
-<meta property="og:site_name" content="{{ !empty($setting->site_name) ? $setting->site_name : 'NGen IT Ltd.' }}" />
-<!-- Open Graph Meta Tags -->
-<meta property="og:title" content="{{ !empty($setting->site_name) ? $setting->site_name : 'NGen IT Ltd.' }}" />
-<meta property="og:description"
-    content="NGEN IT Ltd. is a System Integration, Software & Hardware based License Provider & Software development based company established in 2008. Our technical expertise, broad solutions portfolio, and supply chain capabilities give us the right resources and scale to achieve more for you. Cloud Services." />
-<meta property="og:image"
-    content="{{ !empty($brandpage->banner_image) && file_exists(public_path('storage/' . $brandpage->banner_image)) ? url('social-image/' . $brandpage->banner_image) : asset('frontend/images/no-banner(1920-330).png') }}" />
-<meta property="og:image:width" content="1200" /> <!-- Standard size for social sharing -->
-<meta property="og:image:height" content="630" />
-<meta property="og:url" content="{{ url()->current() }}" />
-<meta property="og:type" content="website" />
+@if (Route::currentRouteName() === 'product.details')
+    @php
+        $metaTitle = $sproduct->meta_title ?? $sproduct->name;
+        $metaDescription = strip_tags(
+            $sproduct->meta_description ?? substr(html_entity_decode($sproduct->short_desc), 0, 150),
+        );
+        $metaImage = $sproduct->thumbnail ?? ''; // Default image
+    @endphp
+
+    <meta name="title" content="{{ $metaTitle }}" />
+    <meta name="description" content="{!! $metaDescription !!}" />
+    <meta property="og:title" content="{{ $metaTitle }}" />
+    <meta property="og:description" content="{!! $metaDescription !!}" />
+    <meta property="og:image" content="{{ $metaImage ? asset('storage/' . $metaImage) : '' }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="product" />
+    <meta property="og:url" content="{{ request()->fullUrl() }}" />
+    <meta property="og:site_name" content="{{ !empty($setting->site_name) ? $setting->site_name : 'NGen IT Ltd.' }}" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="twitter:title" content="{{ $metaTitle }}" />
+    <meta property="twitter:description" content="{!! $metaDescription !!}" />
+    <meta property="twitter:image" content="{{ $metaImage ? asset('storage/' . $metaImage) : '' }}" />
+@else
+    <meta property="og:site_name" content="{{ !empty($setting->site_name) ? $setting->site_name : 'NGen IT Ltd.' }}" />
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ !empty($setting->site_name) ? $setting->site_name : 'NGen IT Ltd.' }}" />
+    <meta property="og:description"
+        content="NGEN IT Ltd. is a System Integration, Software & Hardware based License Provider & Software development based company established in 2008. Our technical expertise, broad solutions portfolio, and supply chain capabilities give us the right resources and scale to achieve more for you. Cloud Services." />
+    <meta property="og:image"
+        content="{{ !empty($brandpage->banner_image) && file_exists(public_path('storage/' . $brandpage->banner_image)) ? url('social-image/' . $brandpage->banner_image) : asset('frontend/images/no-banner(1920-330).png') }}" />
+    <meta property="og:image:width" content="1200" /> <!-- Standard size for social sharing -->
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ !empty($setting->site_name) ? $setting->site_name : 'NGen IT Ltd.' }}">
+    <meta name="twitter:description"
+        content="NGEN IT Ltd. is a System Integration, Software & Hardware based License Provider & Software development based company established in 2008. Our technical expertise, broad solutions portfolio, and supply chain capabilities give us the right resources and scale to achieve more for you. Cloud Services.">
+    <meta name="twitter:image"
+        content="{{ !empty($brandpage->banner_image) && file_exists(public_path('storage/' . $brandpage->banner_image)) ? url('social-image/' . $brandpage->banner_image) : asset('frontend/images/no-banner(1920-330).png') }}">
+    <meta name="twitter:site" content="@YourTwitterHandle"> <!-- Replace with your Twitter handle if available -->
+    <meta name="keywords"
+        content="software, hardware, training, books, license, Microsoft, Adobe, Software License, Acronis, Veeam, Industry, Solution, Health Industry, Financial Industry">
+    <meta name="robots" content="index, follow">
+@endif
+
+
 
 <!-- Twitter Card Meta Tags -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ !empty($setting->site_name) ? $setting->site_name : 'NGen IT Ltd.' }}">
-<meta name="twitter:description"
-    content="NGEN IT Ltd. is a System Integration, Software & Hardware based License Provider & Software development based company established in 2008. Our technical expertise, broad solutions portfolio, and supply chain capabilities give us the right resources and scale to achieve more for you. Cloud Services.">
-<meta name="twitter:image"
-    content="{{ !empty($brandpage->banner_image) && file_exists(public_path('storage/' . $brandpage->banner_image)) ? url('social-image/' . $brandpage->banner_image) : asset('frontend/images/no-banner(1920-330).png') }}">
-<meta name="twitter:site" content="@YourTwitterHandle"> <!-- Replace with your Twitter handle if available -->
 
 <!-- Fav-Icon -->
 <link rel="icon" type="image/x-icon"
     href="{{ !empty($setting->favicon) ? asset('storage/' . $setting->favicon) : url('upload/no_image.jpg') }}">
 
 <!-- SEO Meta Tags -->
-<meta name="description"
-    content="NGEN IT Ltd. is a System Integration, Software & Hardware based License Provider & Software development based company established in 2008. Our technical expertise, broad solutions portfolio, and supply chain capabilities give us the right resources and scale to achieve more for you. Cloud Services.">
-<meta name="keywords"
-    content="software, hardware, training, books, license, Microsoft, Adobe, Software License, Acronis, Veeam, Industry, Solution, Health Industry, Financial Industry">
-<meta name="robots" content="index, follow">
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="language" content="English">
 <meta name="revisit-after" content="1 hour">
@@ -51,9 +77,10 @@
 <link href="{{ asset('frontend/css/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/select-2/select2.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/toastr/toastr.min.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/custom_global.css') }}">
-
-<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/custom_responsive.css') }}">
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/custom_global.css') }}"> --}}
+<link rel="stylesheet" href="{{ asset('frontend/css/custom_global.css?v=' . time()) }}" />
+<link rel="stylesheet" href="{{ asset('frontend/css/custom_responsive.css?v=' . time()) }}" />
+{{-- <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/custom_responsive.css') }}"> --}}
 
 
 <!-- Scripts -->

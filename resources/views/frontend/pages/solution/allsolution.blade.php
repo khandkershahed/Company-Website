@@ -314,16 +314,16 @@
                         <div class="tabing_menu_area">
                             <nav>
                                 <div class="nav nav-tabs nav-fill text-capitalize" id="nav-tab" role="tablist">
-                                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
+                                    <a class="nav-item nav-link active" id="nav-home-tab" data-bs-toggle="tab"
                                         href="#nav-home" role="tab" aria-controls="nav-home"
                                         aria-selected="true">{{ Str::words($story1->badge, 2, $end = '') }}</a>
-                                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
+                                    <a class="nav-item nav-link" id="nav-profile-tab" data-bs-toggle="tab"
                                         href="#nav-profile" role="tab" aria-controls="nav-profile"
                                         aria-selected="false">{{ Str::words($story2->badge, 2, $end = '') }}</a>
-                                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                    <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                         href="#nav-contact" role="tab" aria-controls="nav-contact"
                                         aria-selected="false">{{ Str::words($story3->badge, 2, $end = '') }}</a>
-                                    <a class="nav-item nav-link" id="nav-about-tab" data-toggle="tab" href="#nav-about"
+                                    <a class="nav-item nav-link" id="nav-about-tab" data-bs-toggle="tab" href="#nav-about"
                                         role="tab" aria-controls="nav-about"
                                         aria-selected="false">{{ Str::words($story4->badge, 2, $end = '') }}</a>
                                 </div>

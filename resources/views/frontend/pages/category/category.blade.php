@@ -190,6 +190,15 @@
                 </div>
             </div>
         </section>
+        @else
+        <section>
+            <div class="ag-offer-block container">
+                <div class="common_product_item_title">
+                    <h3 class="text-danger">No Data Found</h3>
+                </div>
+
+            </div>
+        </section>
     @endif
     <!-- Sub Category section-->
 

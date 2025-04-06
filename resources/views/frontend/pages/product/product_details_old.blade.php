@@ -192,8 +192,8 @@
                                 </p>
                             </div>
                             <div>
-                                <button class="btn-color brand-product-btn" id="modal_view_left" data-toggle="modal"
-                                    data-target="#rfq{{ $sproduct->id }}" style="width: ;">Get Quote</button>
+                                <button class="btn-color brand-product-btn" id="modal_view_left" data-bs-toggle="modal"
+                                    data-bs-target="#rfq{{ $sproduct->id }}" style="width: ;">Get Quote</button>
                             </div>
                             {{-- <button class="common_button2 ms-3" type="submit">Add to Basket</button> --}}
                         </div>
@@ -229,7 +229,7 @@
                                         <div class="row js-add-to-cart-container">
                                             <div class="columns small-12 ds-v1 text-center">
                                                 <a type="button" style="font-weight: 600" class="text-danger"
-                                                    data-toggle="modal" data-target="#exampleModalCenter">
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                                                     <h5>This product has sell requirements</h5>
                                                 </a>
                                             </div>
@@ -253,9 +253,9 @@
                             <div>
                                 <p class="list_price mb-0">Custom Pricing</p>
                                 {{-- <button class="btn-color brand-product-btn" id="modal_view_left"
-                                                        data-toggle="modal" data-target="#rfq{{ $sproduct->id }}"
+                                                        data-bs-toggle="modal" data-bs-target="#rfq{{ $sproduct->id }}"
                                                         style="width: 100%;">Get Quote</button> --}}
-                                <a href="" data-toggle="modal" data-target="#rfq{{ $sproduct->id }}">
+                                <a href="" data-bs-toggle="modal" data-bs-target="#rfq{{ $sproduct->id }}">
                                     <span class="fw-bold" style="color: #ae0a46;">Get A Quote</span>
                                 </a>
                             </div>
@@ -275,25 +275,25 @@
                     <!-- Tabs nav -->
                     <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist"
                         aria-orientation="vertical">
-                        <a class="nav-link p-3 shadow-sm rounded-0 active" id="v-pills-overview-tab" data-toggle="pill"
+                        <a class="nav-link p-3 shadow-sm rounded-0 active" id="v-pills-overview-tab" data-bs-toggle="pill"
                             href="#v-pills-overview" role="tab" aria-controls="v-pills-overview"
                             aria-selected="true" style="margin-bottom: 1px;">
                             <i class="fa-solid fa-circle-info mr-2" style="font-size: 15px !important;"></i>
                             <span class="fw-bold fs-3">Overview</span></a>
 
-                        <a class="nav-link p-3 shadow-sm rounded-0" id="v-pills-specification-tab" data-toggle="pill"
+                        <a class="nav-link p-3 shadow-sm rounded-0" id="v-pills-specification-tab" data-bs-toggle="pill"
                             href="#v-pills-specification" role="tab" aria-controls="v-pills-specification"
                             aria-selected="false" style="margin-bottom: 1px;">
                             <i class="fa-solid fa-file mr-2" style="font-size: 15px !important;"></i>
                             <span class="fw-bold fs-3">Specification</span></a>
 
-                        <a class="nav-link p-3 shadow-sm rounded-0" id="v-pills-accessories-tab" data-toggle="pill"
+                        <a class="nav-link p-3 shadow-sm rounded-0" id="v-pills-accessories-tab" data-bs-toggle="pill"
                             href="#v-pills-accessories" role="tab" aria-controls="v-pills-accessories"
                             aria-selected="false" style="margin-bottom: 1px;">
                             <i class="fa-solid fa-boxes-stacked mr-2" style="font-size: 15px !important;"></i>
                             <span class="fw-bold fs-3">Accessories</span></a>
 
-                        <a class="nav-link p-3 shadow-sm rounded-0" id="v-pills-warranties-tab" data-toggle="pill"
+                        <a class="nav-link p-3 shadow-sm rounded-0" id="v-pills-warranties-tab" data-bs-toggle="pill"
                             href="#v-pills-warranties" role="tab" aria-controls="v-pills-warranties"
                             aria-selected="false" style="margin-bottom: 1px;">
                             <i class="fa-solid fa-shield-halved mr-2" style="font-size: 15px !important;"></i>

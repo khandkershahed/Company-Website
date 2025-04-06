@@ -28,7 +28,8 @@ class CategoryController extends Controller
         $data['sub_cats']           = SubCategory::orderBy('id', 'DESC')->get();
         $data['sub_sub_cats']       = SubSubCategory::orderBy('id', 'DESC')->get();
         $data['sub_sub_sub_cats']   = SubSubSubCategory::orderBy('id', 'DESC')->get();
-        return view('admin.pages.category.all', $data);
+        return view('metronic.pages.category.index', $data);
+        // return view('admin.pages.category.all', $data);
     }
 
     /**

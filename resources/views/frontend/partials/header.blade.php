@@ -59,7 +59,13 @@
                                         id="dropdownMenuClickableInside" data-bs-toggle="dropdown"
                                         data-bs-auto-close="outside" aria-expanded="false">
                                         <i class="fa-regular fa-star" style="font-size: 14px"></i>
-                                        <span class="">MY</span><span class="">NGEN IT</span>
+                                        <span class="">
+                                            @if (Auth::guard('client')->user())
+                                                {{ Auth::guard('client')->user()->name }}
+                                            @else
+                                            MY NGEN IT
+                                            @endif
+                                        </span>
                                     </a>
                                     <div class="dropdown-menu drop-down-menus" aria-labelledby="dropdownMenuButton">
                                         <div class="popover__content-2 text-start">
@@ -76,7 +82,8 @@
                                                 </li>
                                                 <li>
                                                     <i class="fa fa-star m-2"></i>
-                                                    <a href="{{ route('client.rfq') }}" class="">My RFQs/Deals</a>
+                                                    <a href="{{ route('client.rfq') }}" class="">My
+                                                        RFQs/Deals</a>
                                                 </li>
                                                 <li>
                                                     <i class="fa fa-list m-2"></i>
@@ -152,93 +159,95 @@
                     </a>
                     <!---Category--->
                     {{-- @if (!empty($header_categories)) --}}
-                        <div class="category-mobile">
-                            <div class="dropdown position-static header-category-button-60">
-                                <a class="tab_btn_icon upper-content-menu" href="#" role="button"
-                                    id="dropdownMenuLink2" data-bs-toggle="dropdown" data-bs-auto-close="outside"
-                                    aria-expanded="false" style="padding-left: none !important;">
-                                    <i class="fa-solid fa-bars" style="font-size: 18px !important;"></i>
-                                </a>
-                                <ul class="dropdown-menu w-100 extra_category bg-none"
-                                    aria-labelledby="dropdownMenuLink2">
-                                    <section class="header">
-                                        <div class="container-fluid">
-                                            <div class="row tab_area_main category-center">
-                                                <!-- Assuming $header_categories is already available in your controller or view -->
+                    <div class="category-mobile">
+                        <div class="dropdown position-static header-category-button-60">
+                            <a class="tab_btn_icon upper-content-menu" href="#" role="button"
+                                id="dropdownMenuLink2" data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                                aria-expanded="false" style="padding-left: none !important;">
+                                <i class="fa-solid fa-bars" style="font-size: 18px !important;"></i>
+                            </a>
+                            <ul class="dropdown-menu w-100 extra_category bg-none"
+                                aria-labelledby="dropdownMenuLink2">
+                                <section class="header">
+                                    <div class="container-fluid">
+                                        <div class="row tab_area_main category-center">
+                                            <!-- Assuming $header_categories is already available in your controller or view -->
 
-                                                <div class="col-md-2 tab_key_btns p-0 ">
-                                                    <div class="nav nav-custom flex-column nav-pills2 nav-pills-custom2"
-                                                        id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                                        @foreach ($header_categories as $key => $header_category)
-                                                            <a class="nav-link catregory-side-key {{ $key === 0 ? 'show active' : '' }}"
-                                                                id="v-pills-home-tab{{ $header_category->id }}"
-                                                                data-toggle="pill"
-                                                                href="#v-pills-home{{ $header_category->id }}" role="tab"
-                                                                aria-controls="v-pills-home{{ $header_category->id }}"
-                                                                aria-selected="true">
-                                                                <span class="ps-1">-&nbsp;
-                                                                    {{ $header_category->title }}</span>
-                                                            </a>
-                                                        @endforeach
-                                                    </div>
+                                            <div class="col-md-2 tab_key_btns p-0 ">
+                                                <div class="nav nav-custom flex-column nav-pills2 nav-pills-custom2"
+                                                    id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                                    @foreach ($header_categories as $key => $header_category)
+                                                        <a class="nav-link catregory-side-key {{ $key === 0 ? 'show active' : '' }}"
+                                                            id="v-pills-home-tab{{ $header_category->id }}"
+                                                            data-bs-toggle="pill"
+                                                            href="#v-pills-home{{ $header_category->id }}"
+                                                            role="tab"
+                                                            aria-controls="v-pills-home{{ $header_category->id }}"
+                                                            aria-selected="true">
+                                                            <span class="ps-1">-&nbsp;
+                                                                {{ $header_category->title }}</span>
+                                                        </a>
+                                                    @endforeach
                                                 </div>
-
-                                                <div class="col-md-10 p-0 bg-white">
-                                                    <div class="tab-content" id="v-pills-tabContent">
-                                                        @foreach ($header_categories as $key => $header_category)
-                                                            <div class="tab-pane fade rounded-0 p-1 {{ $key === 0 ? 'show active' : '' }}"
-                                                                id="v-pills-home{{ $header_category->id }}" role="tabpanel"
-                                                                aria-labelledby="v-pills-home-tab{{ $header_category->id }}"
-                                                                style="height: 22rem;">
-
-                                                                <div class="row p-4">
-                                                                    @if ($header_category->subCategorys->isEmpty())
-                                                                        <div class="col-12">
-                                                                            <p>No data found</p>
-                                                                        </div>
-                                                                    @else
-                                                                        @foreach ($header_category->subCategorys as $sub_category)
-                                                                            <div class="col-lg-3 col-sm-6">
-                                                                                <div class="fw-bold nav_title mb-2"
-                                                                                    style="font-size: 17px;">
-                                                                                    <span
-                                                                                        style="border-top: 4px solid #ae0a46;">{{ \Illuminate\Support\Str::substr($sub_category->title, 0, 3) }}</span>{{ \Illuminate\Support\Str::substr($sub_category->title, 3) }}
-                                                                                </div>
-
-                                                                                @if ($sub_category->subsubCategorys->isEmpty())
-                                                                                    <li class="py-2">
-                                                                                        <p>No data found</p>
-                                                                                    </li>
-                                                                                @else
-                                                                                    @foreach ($sub_category->subsubCategorys as $item)
-                                                                                        <li class="py-2"
-                                                                                            style="line-height: 1 !important;">
-                                                                                            <a class="p-0"
-                                                                                                href="{{ route('category.html', $item->slug) }}">
-                                                                                                <div>
-                                                                                                    {{ $item->title }}&nbsp;<i
-                                                                                                        class="ph ph-caret-right menu_icons"></i>
-                                                                                                </div>
-                                                                                            </a>
-                                                                                        </li>
-                                                                                    @endforeach
-                                                                                @endif
-                                                                            </div>
-                                                                        @endforeach
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-
-                                                    </div>
-                                                </div>
-
                                             </div>
+
+                                            <div class="col-md-10 p-0 bg-white">
+                                                <div class="tab-content" id="v-pills-tabContent">
+                                                    @foreach ($header_categories as $key => $header_category)
+                                                        <div class="tab-pane fade rounded-0 p-1 {{ $key === 0 ? 'show active' : '' }}"
+                                                            id="v-pills-home{{ $header_category->id }}"
+                                                            role="tabpanel"
+                                                            aria-labelledby="v-pills-home-tab{{ $header_category->id }}"
+                                                            style="height: 22rem;">
+
+                                                            <div class="row p-4">
+                                                                @if ($header_category->subCategorys->isEmpty())
+                                                                    <div class="col-12">
+                                                                        <p>No data found</p>
+                                                                    </div>
+                                                                @else
+                                                                    @foreach ($header_category->subCategorys as $sub_category)
+                                                                        <div class="col-lg-3 col-sm-6">
+                                                                            <div class="fw-bold nav_title mb-2"
+                                                                                style="font-size: 17px;">
+                                                                                <span
+                                                                                    style="border-top: 4px solid #ae0a46;">{{ \Illuminate\Support\Str::substr($sub_category->title, 0, 3) }}</span>{{ \Illuminate\Support\Str::substr($sub_category->title, 3) }}
+                                                                            </div>
+
+                                                                            @if ($sub_category->subsubCategorys->isEmpty())
+                                                                                <li class="py-2">
+                                                                                    <p>No data found</p>
+                                                                                </li>
+                                                                            @else
+                                                                                @foreach ($sub_category->subsubCategorys as $item)
+                                                                                    <li class="py-2"
+                                                                                        style="line-height: 1 !important;">
+                                                                                        <a class="p-0"
+                                                                                            href="{{ route('category.html', $item->slug) }}">
+                                                                                            <div>
+                                                                                                {{ $item->title }}&nbsp;<i
+                                                                                                    class="ph ph-caret-right menu_icons"></i>
+                                                                                            </div>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                @endforeach
+                                                                            @endif
+                                                                        </div>
+                                                                    @endforeach
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+
+                                                </div>
+                                            </div>
+
                                         </div>
-                                    </section>
-                                </ul>
-                            </div>
+                                    </div>
+                                </section>
+                            </ul>
                         </div>
+                    </div>
                     {{-- @endif --}}
                     <!---Category--->
                     <form method="post" action="{{ route('product.search') }}"
@@ -342,7 +351,8 @@
                                                                         <div class="col-lg-4 mb-2">
                                                                             <a class="d-flex align-items-center pb-2"
                                                                                 href="{{ route('industry.details', $header_industry->slug) }}">
-                                                                                <div>{{ $header_industry->title }} </div>
+                                                                                <div>{{ $header_industry->title }}
+                                                                                </div>
                                                                                 <div>
                                                                                     <i
                                                                                         class="ph ph-caret-right menu_icons"></i>
@@ -889,7 +899,8 @@
                                                                                 <i
                                                                                     class="fa-brands fa-whatsapp help-icons"></i>
                                                                             </span>
-                                                                            <span class="ps-2"><a href="https://wa.me/{{ $setting->whatsapp_number }}">{{ $setting->whatsapp_number }}</a></span>
+                                                                            <span class="ps-2"><a
+                                                                                    href="https://wa.me/{{ $setting->whatsapp_number }}">{{ $setting->whatsapp_number }}</a></span>
                                                                         </p>
                                                                         <p class="m-0 p-0 ps-3">
                                                                             <span>

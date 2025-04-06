@@ -363,51 +363,51 @@
                             <nav>
                                 <div class="row">
                                     <div class="nav nav-tabs nav-fill p-0" id="nav-tab" role="tablist">
-                                        <a class="nav-item nav-link active" id="nav-contact-tab" data-toggle="tab"
+                                        <a class="nav-item nav-link active" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#all" role="tab" aria-controls="nav-contact"
                                             aria-selected="false">All</a>
-                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#a" role="tab" aria-controls="nav-contact"
                                             aria-selected="false">A</a>
-                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#b" role="tab" aria-controls="nav-contact"
                                             aria-selected="false">B</a>
 
-                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#c" role="tab" aria-controls="nav-contact"
                                             aria-selected="false">C</a>
 
-                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#d" role="tab" aria-dontrols="nav-contact"
                                             aria-selected="false">D</a>
-                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#e" role="tab" aria-controls="nav-contact"
                                             aria-selected="false">E</a>
-                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#f" role="tab" aria-controls="nav-contact"
                                             aria-selected="false">F</a>
-                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#g" role="tab" aria-controls="nav-contact"
                                             aria-selected="false">G</a>
-                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#h" role="tab" aria-controls="nav-contact"
                                             aria-selected="false">H</a>
-                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#i" role="tab" aria-controls="nav-contact"
                                             aria-selected="false">I</a>
-                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#j" role="tab" aria-controls="nav-contact"
                                             aria-selected="false">J</a>
-                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#k" role="tab" aria-controls="nav-contact"
                                             aria-selected="false">K</a>
-                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#l" role="tab" aria-controls="nav-contact"
                                             aria-selected="false">L</a>
-                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#m" role="tab" aria-controls="nav-contact"
                                             aria-selected="false">M</a>
-                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#n" role="tab" aria-controls="nav-contact"
                                             aria-selected="false">N</a>
 
@@ -416,40 +416,40 @@
                                 <div class="row">
                                     <div class="col-lg-10 offset-lg-1">
                                         <div class="nav nav-tabs nav-fill p-0" id="nav-tab" role="tablist">
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                            <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                                 href="#o" role="tab" aria-controls="nav-contact"
                                                 aria-selected="false">O</a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                            <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                                 href="#p" role="tab" aria-controls="nav-contact"
                                                 aria-selected="false">P</a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                            <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                                 href="#q" role="tab" aria-controls="nav-contact"
                                                 aria-selected="false">Q</a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                            <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                                 href="#r" role="tab" aria-controls="nav-contact"
                                                 aria-selected="false">R</a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                            <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                                 href="#s" role="tab" aria-controls="nav-contact"
                                                 aria-selected="false">S</a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                            <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                                 href="#t" role="tab" aria-controls="nav-contact"
                                                 aria-selected="false">T</a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                            <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                                 href="#u" role="tab" aria-controls="nav-contact"
                                                 aria-selected="false">U</a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                            <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                                 href="#v" role="tab" aria-controls="nav-contact"
                                                 aria-selected="false">V</a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                            <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                                 href="#w" role="tab" aria-controls="nav-contact"
                                                 aria-selected="false">W</a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                            <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                                 href="#x" role="tab" aria-controls="nav-contact"
                                                 aria-selected="false">X</a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                            <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                                 href="#y" role="tab" aria-controls="nav-contact"
                                                 aria-selected="false">Y</a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                            <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                                 href="#z" role="tab" aria-controls="nav-contact"
                                                 aria-selected="false">Z</a>
                                         </div>

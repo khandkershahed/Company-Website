@@ -97,7 +97,7 @@
                                     href="{{route('all.solution')}}">Solutions</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);">Training</a> & <a href="javascript:void(0);">Books</a>
+                                <a href="{{route('training')}}">Training</a> & <a href="{{route('books')}}">Books</a>
                             </li>
                             {{-- <li>
                                 <a href="{{ route('contact') }}">Support</a> & <a

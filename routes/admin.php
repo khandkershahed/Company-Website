@@ -143,7 +143,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
             'rfq'          => RFQController::class,
             'solution-cms' => SolutionCMSController::class,
             'brand'        => BrandController::class,
-
+            'category'     => CategoryController::class,
         ]
     );
     Route::resources(
@@ -474,7 +474,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'presentation'               => PresentationController::class,
             'show-case-video'            => ShowCaseVideoController::class,
             'client-database'            => ClientDatabaseController::class,
-            'category'                   => CategoryController::class,
+            // 'category'                   => CategoryController::class,
             // 'brand'                      => BrandController::class,
             'success'                    => SuccessController::class,
             // 'setting'                 => SettingController::class,

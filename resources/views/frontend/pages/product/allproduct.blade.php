@@ -192,7 +192,7 @@
                     @endif
                 </div>
                 <div class="filters">
-                    <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#mobile-filter"
+                    <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-target="#mobile-filter"
                         aria-expanded="true" aria-controls="mobile-filter">Filter<span class="px-1 fas fa-filter"></span>
                     </button>
                 </div>
