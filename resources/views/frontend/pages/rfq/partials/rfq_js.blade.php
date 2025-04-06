@@ -61,7 +61,7 @@
 
 
 {{-- On Check Show --}}
-<script>
+{{-- <script>
     function toggleDiv() {
         const checkbox = document.getElementById("delivery");
         const toggleContent = document.getElementById("toggle-content");
@@ -69,17 +69,17 @@
         toggleContent.style.display = checkbox.checked ? "block" : "none";
 
         if (checkbox) {
-            // Ensure the checkbox exists before proceeding
+
             if (checkbox.checked) {
-                nextButton.disabled = false; // Enable the button
-                nextButton.classList.remove('btn'); // Remove 'btn-secondary'
-                nextButton.classList.remove('btn-secondary'); // Remove 'btn-secondary'
-                nextButton.classList.add('btn-color'); // Add 'btn-color'
+                nextButton.disabled = false;
+                nextButton.classList.remove('btn');
+                nextButton.classList.remove('btn-secondary');
+                nextButton.classList.add('btn-color');
             } else {
-                nextButton.disabled = true; // Disable the button
-                nextButton.classList.add('btn'); // Add 'btn-secondary'
-                nextButton.classList.add('btn-secondary'); // Add 'btn-secondary'
-                nextButton.classList.remove('btn-color'); // Remove 'btn-color'
+                nextButton.disabled = true;
+                nextButton.classList.add('btn');
+                nextButton.classList.add('btn-secondary');
+                nextButton.classList.remove('btn-color');
             }
         } else {
             console.error('Checkbox with id "delivery" not found.');
@@ -91,8 +91,94 @@
         const toggleContent = document.getElementById("toggle-content-2");
         toggleContent.style.display = checkbox.checked ? "block" : "none";
     }
+</script> --}}
+<script>
+    function toggleDiv() {
+        const checkbox = document.getElementById("delivery");
+        const toggleContent = document.getElementById("toggle-content");
+
+        if (checkbox && toggleContent) {
+            // Show or hide content based on checkbox status
+            toggleContent.style.display = checkbox.checked ? "block" : "none";
+        } else {
+            console.error('Required elements not found.');
+        }
+    }
+
+    function toggleDivInfo() {
+        const checkbox = document.getElementById("aditional_info");
+        const toggleContent = document.getElementById("toggle-content-2");
+
+        if (checkbox && toggleContent) {
+            // Show or hide content based on checkbox status
+            toggleContent.style.display = checkbox.checked ? "block" : "none";
+        } else {
+            console.error('Required elements not found.');
+        }
+    }
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const deliveryCity = document.querySelector('.deliveryCity');
+        if (deliveryCity) {
+            deliveryCity.addEventListener('change', function () {
+                const nextButton = document.querySelector('.nextButtonmain');
+
+                if (this.value !== '') {
+                    nextButton.removeAttribute('disabled');
+                    nextButton.classList.remove('btn-secondary-disable');
+                    nextButton.classList.add('btn-color');
+                } else {
+                    nextButton.setAttribute('disabled', 'true');
+                    nextButton.classList.remove('btn-color');
+                    nextButton.classList.add('btn-secondary-disable');
+                }
+            });
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const requiredFields = ['name', 'email', 'phone', 'company_name'];
+        const submitButton = document.querySelector('button[type="submit"]');
+
+        function checkFormFields() {
+            let allFilled = true;
+
+            requiredFields.forEach(fieldName => {
+                const input = document.querySelector(`input[name="${fieldName}"]`);
+                if (!input || input.value.trim() === '') {
+                    allFilled = false;
+                }
+            });
+
+            if (submitButton) {
+                if (allFilled) {
+                    submitButton.removeAttribute('disabled');
+                    submitButton.classList.remove('btn-secondary-disable');
+                    submitButton.classList.add('btn-color');
+                } else {
+                    submitButton.setAttribute('disabled', 'true');
+                    submitButton.classList.remove('btn-color');
+                    submitButton.classList.add('btn-secondary-disable');
+                }
+            }
+        }
+
+        // Attach input listeners to each required field
+        requiredFields.forEach(fieldName => {
+            const input = document.querySelector(`input[name="${fieldName}"]`);
+            if (input) {
+                input.addEventListener('input', checkFormFields);
+            }
+        });
+
+        // Initial check
+        checkFormFields();
+    });
+</script>
 
 
 <script>

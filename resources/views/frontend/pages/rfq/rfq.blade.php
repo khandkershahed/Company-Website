@@ -225,10 +225,9 @@
                                             <div class="row gx-2">
                                                 <div class="col-lg-4">
                                                     <div class="mb-3">
-                                                        <select class="select-form-input w-100 form-control"
-                                                        name="country" id="country" required>
+                                                        <select class="select-form-input w-100 form-select"
+                                                            name="country" required>
                                                             <option value="">Select Country</option>
-                                                            <option>Country</option>
                                                             <option value="Afghanistan">Afghanistan</option>
                                                             <option value="Åland Islands">Åland Islands</option>
                                                             <option value="Albania">Albania</option>
@@ -509,9 +508,9 @@
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <div class="mb-3">
-                                                        <select class="select-form-input w-100 form-control"
-                                                        name="city" id="city" required>
-                                                            <option>City</option>
+                                                        <select class=" w-100 form-select cst-select deliveryCity"
+                                                            name="city">
+                                                            <option value="">Select an option</option>
                                                             <option value="ny">New York</option>
                                                             <option value="london">London</option>
                                                             <option value="dhaka">Dhaka</option>
@@ -558,7 +557,6 @@
                                                         </select>
                                                     </div>
                                                 </div>
-
                                                 <div class="col-lg-4">
                                                     <div class="mb-3">
                                                         <input name="delivery_zip_code" type="text"
@@ -584,10 +582,13 @@
                                     <p class="fw-normal m-0 p-0">Please complete your contact details for further
                                         communication
                                         needed!</p>
-                                        <button type="button" id="nextButtonmain" class="btn-secondary btn w-25 rounded-0" onclick="nextStep()" disabled>
-                                            <span>Next</span>
-                                            <i class="ps-2 fa-solid fa-arrow-right-long"></i>
-                                        </button>
+                                    <button type="button" id="nextButtonmain"
+                                        class="btn-secondary-disable btn w-25 rounded-0 nextButtonmain"
+                                        onclick="nextStep()" disabled>
+                                        <span>Next</span>
+                                        <i class="ps-2 fa-solid fa-arrow-right-long"></i>
+                                    </button>
+                                    {{-- <button id="myButton" disabled>Submit</button> --}}
 
                                 </div>
                             </div>
@@ -644,8 +645,8 @@
                                         <button type="button" class="btn-color" onclick="prevStep()">
                                             <i class="pe-2 fa-solid fa-arrow-left-long"></i> Back
                                         </button>
-                                        <button type="submit" class="btn-color">Submit
-                                            <i class="fa-regular fa-paper-plane ps-2"></i>
+                                        <button type="submit" class="btn-secondary-disable" disabled>
+                                            Submit <i class="fa-regular fa-paper-plane ps-2"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -655,7 +656,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 

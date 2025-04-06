@@ -259,4 +259,42 @@
         background-repeat: no-repeat;
         width: 100%;
     }
+
+    .cst-select {
+        height: 50px;
+        background: #f7f6f5;
+        border: 0;
+        color: #808a8f;
+        font-size: 14px;
+        -webkit-appearance: none;
+        /* Removes default dropdown arrow in WebKit browsers */
+        -moz-appearance: none;
+        /* Removes default dropdown arrow in Firefox */
+        appearance: none;
+        /* Removes default dropdown arrow */
+        padding-right: 30px;
+        /* Adds space for the arrow */
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        /* Adjust the position of the arrow */
+        background-size: 12px 12px;
+        /* Set the size of the arrow */
+    }
+
+    .btn-secondary-disable {
+        height: 55px;
+        padding: 0 25px;
+        background-color: #6c757d !important;
+        color: white !important;
+        cursor: not-allowed;
+        border: 0;
+    }
+
+    .btn-color:hover {
+        border: 1px solid var(--secoandaryborder-color) !important;
+        background-color: #fff !important;
+        color: #ae0a46 !important;
+        transition: all 0.8s ease-in-out;
+    }
 </style>
