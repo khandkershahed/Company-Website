@@ -249,6 +249,7 @@
             var name = $(this).data('name');
             var quantity = $(this).data('quantity');
             var button = $('.cart_button' + id);
+            var button_text = $('.cart_button_text' + id);
             var cart_header = $('.miniRFQQTY');
             var offcanvasRFQ = $('.offcanvasRFQ');
 
@@ -271,6 +272,7 @@
                             title: 'Product Already in RFQ List',
                             text: 'This product is already in your added RFQ List.',
                         });
+
                     } else {
                         // Product added to the cart successfully
                         cart_header.empty();
@@ -279,13 +281,13 @@
                             response.cartHeader + '</span>'
                         );
                         button.empty();
-                        button.append(); // Update button, if needed
                         Swal.fire({
                             icon: 'success',
                             title: 'Added To RFQ Successfully!',
                             showConfirmButton: false,
                             timer: 1500
                         });
+                        button_text.html('✓ Added'); // Update button, if needed
                         offcanvasRFQ.html(response.html);
                     }
                 },
