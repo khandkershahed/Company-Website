@@ -282,7 +282,7 @@ class RFQController extends Controller
         $globalFunImage = $mainFile ? Helper::singleImageUpload($mainFile, $imgPath, 450, 350) : ['status' => 0];
 
         $rfq_id = Rfq::insertGetId([
-            'client_id' => !empty($request->client_id) ? $request->client_id : (!empty($client->id) ? $client->id : null),
+            'client_id'    => !empty($request->client_id) ? $request->client_id : (!empty($client->id) ? $client->id : null),
             'partner_id'   => $request->input('partner_id'),
             'product_id'   => $request->input('product_id'),
             'solution_id'  => $request->input('solution_id'),

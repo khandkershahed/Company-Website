@@ -1034,6 +1034,7 @@ class HomeController extends Controller
         $data['categorys'] = Category::get(['id', 'title']);
         $data['industrys'] = Industry::get(['id', 'title']);
         $cart_items = Cart::content();
+        // dd($cart_items);
         // $cartItems = Cart::content();
         //     if ($cartItems->isNotEmpty()) {
         //         $cartProductIds = $cartItems->pluck('id')->toArray();

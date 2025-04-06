@@ -13,6 +13,7 @@
                 <div class="row mt-4 pb-5">
                     @if ($cart_items)
                         @foreach ($cart_items as $cart_item)
+
                             @php
                                 $productRFQ = App\Models\Admin\Product::where('id', $cart_item->id)->first([
                                     'id',
@@ -39,7 +40,7 @@
 
                                                 {{-- Quantity --}}
                                                 <small class="fw-normal text-start me-5">
-                                                    Qty: {{ $productRFQ->quantity ?? 'N/A' }}
+                                                    Qty: {{ $cart_item->qty ?? 'N/A' }}
                                                 </small>
                                                 <small>
                                                     <a href="javascript:void(0);"
