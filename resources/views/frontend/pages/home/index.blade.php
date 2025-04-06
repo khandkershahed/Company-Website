@@ -481,12 +481,28 @@
                                                         </a>
                                                         {{-- <a href=""
                                                             class="d-flex justify-content-center align-items-center"> --}}
+                                                        {{-- @php
+                                                            $cart_items = in_array($product->id, $cartProductIds); // $cartProductIds = array of product IDs already in cart
+                                                        @endphp --}}
+                                                        @php
+                                                            $cart_items = Cart::content();
+                                                            $productInCart = false;
+
+                                                            foreach ($cart_items as $item) {
+                                                                if ($item->id == $product->id) {
+                                                                    $productInCart = true;
+                                                                    break;
+                                                                }
+                                                            }
+                                                        @endphp
+
                                                         <button
                                                             class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button add_to_cart"
                                                             data-id="{{ $product->id }}"
                                                             data-name="{{ $product->name }}" data-quantity="1">
-                                                            + Add RFQ
+                                                            {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
                                                         </button>
+
                                                         {{-- </a> --}}
                                                     </div>
                                                 @elseif ($product->price_status && $product->price_status == 'rfq')
