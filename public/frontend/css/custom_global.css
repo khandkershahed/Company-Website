@@ -795,7 +795,7 @@ ul {
     height: 100%;
     width: 100%;
     animation: myMove 10s linear infinite;
-border: 0;
+    border: 0;
 }
 
 .Advance-Slider .item {
@@ -2586,7 +2586,8 @@ footer p a:hover {
     height: 1em;
     padding: 0.25em 0.25em;
     color: #ffffff;
-    background: #e51b1be8 url(https://i.ibb.co/t2CkLrk/close.png) center / 1em auto no-repeat;
+    background: #e51b1be8 url(https://i.ibb.co/t2CkLrk/close.png) center / 1em
+        auto no-repeat;
     border: 0;
     border-radius: 0.375rem;
     opacity: 0.5;
@@ -17238,7 +17239,7 @@ nav > div a.nav-item.nav-link.active {
     overflow: hidden;
 }
 
-.quantity-selectors-container{
+.quantity-selectors-container {
     width: 30px;
     background: #eee;
     text-align: center;

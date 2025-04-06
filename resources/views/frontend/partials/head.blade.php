@@ -17,7 +17,6 @@
 <meta property="og:url" content="{{ url()->current() }}" />
 <meta property="og:type" content="website" />
 
-
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{ !empty($setting->site_name) ? $setting->site_name : 'NGen IT Ltd.' }}">
