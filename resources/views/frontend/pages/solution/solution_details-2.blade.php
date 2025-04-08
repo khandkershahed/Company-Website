@@ -191,7 +191,7 @@
                                     <h2 class="title">{{ $solution->row_four_title }}</h2>
                                 </div>
                                 <p>{{ $solution->row_four_header }}</p>
-                                @if (!empty($solution->row_four_link) && !empty($solution->row_four_button_name))
+                                @if (!empty($solution->row_four_link) || !empty($solution->row_four_button_name))
                                     <div class="play-btn">
                                         <a class="popup-video" href="{{ $solution->row_four_link }}"><i
                                                 class="fas fa-play"></i>
