@@ -191,11 +191,13 @@
                                     <h2 class="title">{{ $solution->row_four_title }}</h2>
                                 </div>
                                 <p>{{ $solution->row_four_header }}</p>
-                                <div class="play-btn">
-                                    <a class="popup-video" href="{{ $solution->row_four_link }}"><i
-                                            class="fas fa-play"></i>
-                                        <span>{{ $solution->row_four_button_name }}</span></a>
-                                </div>
+                                @if (!empty($solution->row_four_link) && !empty($solution->row_four_button_name))
+                                    <div class="play-btn">
+                                        <a class="popup-video" href="{{ $solution->row_four_link }}"><i
+                                                class="fas fa-play"></i>
+                                            <span>{{ $solution->row_four_button_name }}</span></a>
+                                    </div>
+                                @endif
                             </div>
                             <!-- About Content Wrap End -->
                         </div>
