@@ -223,7 +223,8 @@
                                                     {{-- <a class="search-btn-price"
                                                         href="{{ route('product.details', ['id' => $product->slug]) }}">Ask
                                                         For Price</a> --}}
-                                                    <a href="javascript:void(0)" class="search-btn-price" data-bs-toggle="modal"
+                                                    <a href="javascript:void(0)" class="search-btn-price"
+                                                        data-bs-toggle="modal"
                                                         data-bs-target="#rfq{{ $product->id }}">
                                                         Ask For Price
                                                     </a>
@@ -308,6 +309,22 @@
 
 <script>
     $(document).ready(function() {
+        // Initialize modals for all products
+        $('[data-bs-toggle="modal"]').each(function() {
+            const targetId = $(this).data('bs-target');
+            const modal = new bootstrap.Modal(document.getElementById(targetId.replace('#', '')));
+        });
+
+        // Handle modal triggering (optional)
+        $('.search-btn-price').on('click', function() {
+            var target = $(this).data('bs-target');
+            var modal = new bootstrap.Modal(document.getElementById(target.replace('#', '')));
+            modal.show();
+        });
+    });
+
+    $(document).ready(function() {
+
         $('.increment-quantity').on('click', function() {
             var productId = $(this).data('product-id');
             var quantityBox = $('#quantity-' + productId);
