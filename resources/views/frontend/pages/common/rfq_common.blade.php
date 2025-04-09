@@ -28,7 +28,7 @@
                             </div>
                             <div>
                                 <p class="mb-0 text-right text-white" style="font-size: 2rem;font-weight: 600;">
-                                    NGEN IT LTD.
+                                   RFQ
                                 </p>
                             </div>
                         </div>
