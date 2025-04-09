@@ -197,11 +197,11 @@ class RFQController extends Controller
      */
     public function store(Request $request)
     {
-        $blacklistedEmails = ['ericjonesmyemail@gmail.com','cristine.chatham@gmail.com'];
+        $blacklistedEmails = ['ericjonesmyemail@gmail.com', 'cristine.chatham@gmail.com'];
         $blacklistedNames = ['Eric Jones'];
         $blacklistedProduct = ['Eric Jones'];
         $blacklistedPhone = ['555-555-1212'];
-        $blacklistedWords = ['Web Visitor', 'trustedleadgeneration.com', 'SMS Text With Lead', 'Eric','marketersmentor','Cristine Unsubscribe','Cristine'];
+        $blacklistedWords = ['Web Visitor', 'trustedleadgeneration.com', 'SMS Text With Lead', 'Eric', 'marketersmentor', 'Cristine Unsubscribe', 'Cristine'];
 
         if (in_array($request->product_name, $blacklistedProduct) || in_array($request->email, $blacklistedEmails) || in_array($request->name, $blacklistedNames) || in_array($request->phone, $blacklistedPhone)) {
             // Session::flash('error', 'Your request cannot be processed.');
@@ -489,12 +489,16 @@ class RFQController extends Controller
             }
         }
         $qty = '';
+        $productNames = '';
         foreach ($request->qty as $key => $item) {
-            $productNames .= ($key + 1) . '. ' . $item;
-            if ($key < count($request->qty) - 1) {
-                $productNames .= ', ';
-            }
+            // Assuming $item is the quantity, and you want to display the product name separately.
+            $productName = $request->productNames[$key]; // Accessing the corresponding product name
+            $quantity = $item; // The quantity for the product
+
+            // Create the list item with serial number, product name, and quantity, followed by a semicolon and new line
+            $productNames .= ($key + 1) . '. ' . $productName . ' (Quantity: ' . $quantity . ');' . PHP_EOL;
         }
+        // dd($productNames);
         $data = [
             'name'         => $name,
             'product_name' => $productNames,

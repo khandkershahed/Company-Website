@@ -61,15 +61,7 @@
                         <div style="overflow-x: auto">
                             <table id="u_body"
                                 style="
-                    border-collapse: collapse;
-                    table-layout: fixed;
-                    border-spacing: 0;
-                    vertical-align: top;
-                    min-width: 320px;
-                    margin: 0 auto;
-                    width: 100%;
-                    background-color: #ae0a46;
-                  "
+                    border-collapse: collapse;table-layout: fixed;border-spacing: 0;vertical-align: top;min-width: 320px;margin: 0 auto;width: 100%;background-color: #ae0a46;"
                                 cellpadding="0" cellspacing="0">
                                 <tbody style="min-width: 320px">
                                     <tr style="vertical-align: top">
@@ -77,42 +69,20 @@
                                             <a href="https://ngenitltd.com" target="_blank">
                                                 <img src="{{ asset('images/NGen-Logo-white.png') }}" alt="Ngen IT"
                                                     title="Ngen IT"
-                                                    style="
-                              outline: none;
-                              text-decoration: none;
-                              -ms-interpolation-mode: bicubic;
-                              clear: both;
-                              display: inline-block !important;
-                              border: none;
-                              height: auto;
-                              float: none;
-                              width: 100%;
-                              max-width: 110px;
-                            "
+                                                    style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 110px;"
                                                     width="60" />
                                             </a>
                                         </td>
-                                        <td style="
-                          padding: 25px 30px 25px;text-align:right;color:#ffffff" ">
+                                        <td style="padding: 25px 30px 25px;text-align:right;color:#ffffff" ">
                                             <p
-                                                style="
-                            font-size: 2.5em;
-                            font-weight: 600;
-                            margin-bottom: 0;
-                          ">
+                                                style="font-size: 2.5em;font-weight: 600;margin-bottom: 0;">
                                                 RFQ
                                             </p>
                                             <p
-                                                style="
-                            font-size: 1.18em;
-                            font-weight: 600;
-                            margin-bottom: 0;
-                          ">
+                                                style="font-size: 1.18em;font-weight: 600;margin-bottom: 0;">
                                                 Received
                                             </p>
-                                            <!-- <p style="font-size: 16px; margin-bottom: 3px">
-                          REG.NO. <span style="color: #eee">20437861K</span>
-                        </p> -->
+
                                         </td>
                                     </tr>
                                 </tbody>
@@ -153,7 +123,7 @@
                                             style="padding:10px 15px;border-top:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
                                             {{ $data['product_name'] }}</td>
                                     </tr>
-                                      @if (!empty($data['qty']))
+                                    @if (!empty($data['qty']))
                                     <tr>
                                         <th
                                             style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;border-top:1px solid #f1f1f1;font-size:15px;text-align:left">

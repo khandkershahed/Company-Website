@@ -17228,7 +17228,8 @@ nav > div a.nav-item.nav-link.active {
     margin-bottom: 0px;
 }
 .rfq-head-bg {
-    background-image: url("https://static.vecteezy.com/system/resources/thumbnails/003/782/514/small/black-abstract-header-metal-pattern-simply-mosaic-banner-with-evenly-stacked-crosses-vector.jpg");
+    /* background-image: url("https://static.vecteezy.com/system/resources/thumbnails/003/782/514/small/black-abstract-header-metal-pattern-simply-mosaic-banner-with-evenly-stacked-crosses-vector.jpg"); */
+    background-image: url("../../images/rfq_bg.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
