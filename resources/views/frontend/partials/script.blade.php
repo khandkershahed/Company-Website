@@ -288,6 +288,7 @@
                             timer: 1500
                         });
                         button_text.html('✓ Added'); // Update button, if needed
+                        offcanvasRFQ.offcanvas('show');
                         offcanvasRFQ.html(response.html);
                     }
                 },
