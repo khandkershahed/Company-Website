@@ -302,6 +302,21 @@
 
 
     });
+
+    $(document).ready(function() {
+        // Initialize modals for all products
+        $('[data-bs-toggle="modal"]').each(function() {
+            const targetId = $(this).data('bs-target');
+            const modal = new bootstrap.Modal(document.getElementById(targetId.replace('#', '')));
+        });
+
+        // Handle modal triggering (optional)
+        $('.search-btn-price').on('click', function() {
+            var target = $(this).data('bs-target');
+            var modal = new bootstrap.Modal(document.getElementById(target.replace('#', '')));
+            modal.show();
+        });
+    });
 </script>
 
 {{-- Brand Page Single Product --}}
