@@ -26,7 +26,7 @@
         background: transparent url('{{ asset('images/close.png') }}') center / 0.7em auto no-repeat;
         border: 0;
         border-radius: 0.375rem;
-        opacity: 0.5;
+        opacity: 1;
     }
 
     /* this is new */
