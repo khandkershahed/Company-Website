@@ -120,7 +120,7 @@
                                             Product Name</th>
                                         <td
                                             style="padding:10px 15px;border-top:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
-                                            {{ $data['product_name'] }}</td>
+                                            {!! $data['product_name'] !!}</td>
                                     </tr>
 
                                     @if (!empty($data['qty']))

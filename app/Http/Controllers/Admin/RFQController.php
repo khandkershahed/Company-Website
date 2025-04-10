@@ -496,7 +496,8 @@ class RFQController extends Controller
             $quantity = $item; // The quantity for the product
 
             // Create the list item with serial number, product name, and quantity, followed by a semicolon and new line
-            $productNames .= ($key + 1) . '. ' . $productName . ' (Quantity: ' . $quantity . ');' . PHP_EOL;
+            // $productNames .= ($key + 1) . '. ' . $productName . ' (Quantity: ' . $quantity . ');' . break;
+            $productNames .= ($key + 1) . '. ' . $productName . ' (Quantity: ' . $quantity . ');<br>';
         }
         // dd($productNames);
         $data = [
