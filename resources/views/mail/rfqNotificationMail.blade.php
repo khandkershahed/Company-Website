@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="x-apple-disable-message-reformatting" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Price Quotation</title>
+    <title>RFQ Notification</title>
     <style type="text/css">
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
 
@@ -73,11 +73,7 @@
                                                     REG.NO. <span style="color: #eee">20437861K</span>
                                                 </p> -->
                                             <p
-                                                style="
-                                font-size: 0.85em;
-                            font-weight: 600;
-                            margin-bottom: 0;
-                          ">
+                                                style="font-size: 0.85em;font-weight: 600;margin-bottom: 0;">
                                                 Confirmation
                                             </p>
                                         </td>
@@ -288,8 +284,7 @@
                                                                                 style="font-size: 15px;margin-bottom: 0.5rem;">
                                                                                 <p style="margin: 0; color: #ae0a46">
                                                                                     sales@ngenitltd.com
-                                                                                    <i
-                                                                                        class="fa-solid fa-paper-plane"></i>
+                                                                                    <i class="fa-solid fa-paper-plane"></i>
                                                                                 </p>
                                                                             </div>
                                                                             <div
