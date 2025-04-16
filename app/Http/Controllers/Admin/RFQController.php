@@ -474,39 +474,8 @@ class RFQController extends Controller
             User::whereIn('email', $user_emails)->get(),
             new RfqCreate($name, $rfq_code)
         );
-        // $productNames = '';
-        // foreach ($request->product_name as $key => $item) {
-        //     $productNames .= ($key + 1) . '. ' . $item;
-        //     if ($key < count($request->product_name) - 1) {
-        //         $productNames .= ', ';
-        //     }
-        // }
-        // $qty = '';
-        // $productNames = '';
-        // foreach ($request->qty as $key => $item) {
-        //     // Assuming $item is the quantity, and you want to display the product name separately.
-        //     $productName = $request->productNames[$key]; // Accessing the corresponding product name
-        //     $quantity = $item; // The quantity for the product
-
-        //     // Create the list item with serial number, product name, and quantity, followed by a semicolon and new line
-        //     // $productNames .= ($key + 1) . '. ' . $productName . ' (Quantity: ' . $quantity . ');' . break;
-        //     $productNames .= ($key + 1) . '. ' . $productName . ' (Quantity: ' . $quantity . ');<br>';
-        // }
-        // // dd($productNames);
-        // $data = [
-        //     'name'         => $name,
-        //     'product_name' => $productNames,
-        //     'phone'        => $request->phone,
-        //     'qty'          => $qty,
-        //     'company_name' => $request->company_name,
-        //     'address'      => $request->address,
-        //     'message'      => $request->message,
-        //     'rfq_code'     => $rfq_code,
-        //     'email'        => $request->email,
-        //     'country'      => $request->country,
-        //     'link'         => route('single-rfq.show', $rfq_code),
-        // ];
-        $rfq = RFQ::with('rfqProducts')->where('rfq_code', $rfq_code)->first();
+        
+        $rfq = RFQ::with('rfqProducts')->where('id', $rfq_id)->first();
         $data = [
             'name'          => $rfq->name,
             'product_names' => $rfq->rfqProducts,
@@ -1210,50 +1179,59 @@ class RFQController extends Controller
     {
         $rfq = RFQ::with('rfqProducts')->where('rfq_code', $id)->first();
 
-        $users = User::whereJsonContains('department', ['business', 'logistics'])->get();
-        $user_emails = User::whereJsonContains('department', ['business'])
-            ->where(function ($query) {
-                $query->where('role', 'manager')
-                    ->orWhere('role', 'admin');
-            })
-            ->pluck('email')
-            ->toArray();
+        if ($rfq) {
+            $users = User::whereJsonContains('department', ['business', 'logistics'])->get();
+            $user_emails = User::whereJsonContains('department', ['business'])
+                ->where(function ($query) {
+                    $query->where('role', 'manager')
+                        ->orWhere('role', 'admin');
+                })
+                ->pluck('email')
+                ->toArray();
 
-        Notification::send($users, new RfqCreate($rfq->name, $rfq->rfq_code));
+            Notification::send($users, new RfqCreate($rfq->name, $rfq->rfq_code));
 
-        $data = [
-            'name'          => $rfq->name,
-            'product_names' => $rfq->rfqProducts,
-            'phone'         => $rfq->phone,
-            'qty'           => $rfq->qty,
-            'company_name'  => $rfq->company_name,
-            'address'       => $rfq->address,
-            'message'       => $rfq->message,
-            'rfq_code'      => $rfq->rfq_code,
-            'email'         => $rfq->email,
-            'country'       => $rfq->country,
-            'link'          => route('single-rfq.show', $rfq->rfq_code),
-        ];
+            $data = [
+                'name'          => $rfq->name,
+                'product_names' => $rfq->rfqProducts,
+                'phone'         => $rfq->phone,
+                'qty'           => $rfq->qty,
+                'company_name'  => $rfq->company_name,
+                'address'       => $rfq->address,
+                'message'       => $rfq->message,
+                'rfq_code'      => $rfq->rfq_code,
+                'email'         => $rfq->email,
+                'country'       => $rfq->country,
+                'link'          => route('single-rfq.show', $rfq->rfq_code),
+            ];
 
-        try {
-            Mail::to($rfq->email)->send(new RFQNotificationClientMail($data));
-            sleep(1); // Delay in seconds
-            foreach ($user_emails as $email) {
-                Mail::to($email)->send(new RFQNotificationAdminMail($data));
-                sleep(1);
+            try {
+                Mail::to($rfq->email)->send(new RFQNotificationClientMail($data));
+                sleep(1); // Delay in seconds
+                foreach ($user_emails as $email) {
+                    Mail::to($email)->send(new RFQNotificationAdminMail($data));
+                    sleep(1);
+                }
+            } catch (\Exception $e) {
+                Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
+                Session::flash('error', 'Email sending failed: ' . $e->getMessage());
             }
-        } catch (\Exception $e) {
-            Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
-            Session::flash('error', 'Email sending failed: ' . $e->getMessage());
+            Session::flash('success', 'RFQ has been approved successfully.');
+        } else {
+            Session::flash('error', 'RFQ has not been found.');
         }
-        Session::flash('success', 'RFQ has been approved successfully.');
         return redirect()->route('admin.rfq.index');
     }
     public function rfqReject($id)
     {
         $rfq = RFQ::with('rfqProducts', 'quotationProducts')->where('rfq_code', $id)->first();
-        $rfq->delete();
-        Session::flash('success', 'RFQ has been rejected successfully.');
+        if ($rfq) {
+            $rfq->delete();
+            Session::flash('success', 'RFQ has been rejected successfully.');
+        } else {
+            Session::flash('error', 'RFQ has not been found.');
+        }
+
         return redirect()->route('admin.rfq.index');
     }
 }

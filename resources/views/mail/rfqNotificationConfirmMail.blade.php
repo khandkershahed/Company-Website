@@ -231,7 +231,6 @@
                                                 style="padding-bottom:5px;margin-bottom:10px;margin-top:15px;font-size:14px !important;">
                                                 <strong>
                                                     <a href="{{ route('rfq.reject', $data['rfq_code']) }}"
-                                                        {{-- <a href="{{ route('single-rfq.show', $data['rfq_code']) }}" --}}
                                                         style="color: #FFF;
                                                     border: 1px solid #ae0a46;
                                                     background-color: #ae0a46;
