@@ -1247,13 +1247,13 @@ class RFQController extends Controller
             Session::flash('error', 'Email sending failed: ' . $e->getMessage());
         }
         Session::flash('success', 'RFQ has been approved successfully.');
-        return redirect()->route('rfq-manage.index');
+        return redirect()->route('admin.rfq.index');
     }
     public function rfqReject($id)
     {
         $rfq = RFQ::with('rfqProducts', 'quotationProducts')->where('rfq_code', $id)->first();
         $rfq->delete();
         Session::flash('success', 'RFQ has been rejected successfully.');
-        return redirect()->route('rfq-manage.index');
+        return redirect()->route('admin.rfq.index');
     }
 }
