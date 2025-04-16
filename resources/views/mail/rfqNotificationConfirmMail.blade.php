@@ -125,7 +125,7 @@
                                                 <div style="width:68%; font-size:12px; border:1px solid #eee;padding:10px;">Product Name</div>
                                                 <div style="width:20%; font-size:12px; border:1px solid #eee;padding:10px;">Qty</div>
                                             </div>
-                                            @foreach ($product_names as $product_name)
+                                            @foreach ($data['product_names'] as $product_name)
                                                 <div style="display: flex; align-items:center;">
                                                     <div style="width:12%; font-size:12px; border:1px solid #eee;padding:10px;">{{ $loop->iteration }}</div>
                                                     <div style="width:68%; font-size:12px; border:1px solid #eee;padding:10px;">{{ $product_name->product_name }}</div>
