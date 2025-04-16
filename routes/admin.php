@@ -137,8 +137,8 @@ use App\Http\Controllers\Marketing\MarketingManagerRoleController;
 use App\Http\Controllers\Solution\SolutionCMSController;
 
 // Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
-Route::get('/rfq_approve/{id}', [RFQController::class, 'rfqApprove'])->name('rfq.approve');
-Route::get('/rfq_reject/{id}', [RFQController::class, 'rfqReject'])->name('rfq.reject');
+Route::get('/admin/rfq_approve/{id}', [RFQController::class, 'rfqApprove'])->name('rfq.approve');
+Route::get('/admin/rfq_reject/{id}', [RFQController::class, 'rfqReject'])->name('rfq.reject');
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resources(
         [

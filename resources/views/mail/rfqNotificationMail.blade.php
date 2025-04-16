@@ -111,24 +111,24 @@
                                 cellpadding="0" cellspacing="0">
                                 <tbody style="min-width: 320px">
                                     <tr>
-                                        <th
-                                            style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;border-top:1px solid #f1f1f1;font-size:15px;text-align:left">
-                                            Product Name</th>
-                                        <td
-                                            style="padding:10px 15px;border-top:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
-                                            {!! $data['product_name'] !!}</td>
-                                    </tr>
 
-                                    @if (!empty($data['qty']))
-                                        <tr>
-                                            <th
-                                                style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;border-top:1px solid #f1f1f1;font-size:15px;text-align:left">
-                                                Quantity</th>
-                                            <td
-                                                style="padding:10px 15px;border-top:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
-                                                {{ $data['qty'] }}</td>
-                                        </tr>
-                                    @endif
+                                        <th colspan="2"
+                                            style="padding:10px 15px;border-top:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
+
+                                            <div style="display: flex; align-items:center;">
+                                                <div style="width:12%; font-size:12px; border:1px solid #eee;padding:10px;">Sl.</div>
+                                                <div style="width:68%; font-size:12px; border:1px solid #eee;padding:10px;">Product Name</div>
+                                                <div style="width:20%; font-size:12px; border:1px solid #eee;padding:10px;">Qty</div>
+                                            </div>
+                                            @foreach ($product_names as $product_name)
+                                                <div style="display: flex; align-items:center;">
+                                                    <div style="width:12%; font-size:12px; border:1px solid #eee;padding:10px;">{{ $loop->iteration }}</div>
+                                                    <div style="width:68%; font-size:12px; border:1px solid #eee;padding:10px;">{{ $product_name->product_name }}</div>
+                                                    <div style="width:20%; font-size:12px; border:1px solid #eee;padding:10px;">{{ $product_name->qty }}</div>
+                                                </div>
+                                            @endforeach
+                                        </th>
+                                    </tr>
 
                                     @if (!empty($data['message']))
                                         <tr>

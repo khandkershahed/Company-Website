@@ -116,8 +116,10 @@
                                 <tbody style="min-width: 320px">
 
                                     <tr>
+
                                         <th colspan="2"
                                             style="padding:10px 15px;border-top:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
+
                                             <div style="display: flex; align-items:center;">
                                                 <div style="width:12%; font-size:12px; border:1px solid #eee;padding:10px;">Sl.</div>
                                                 <div style="width:68%; font-size:12px; border:1px solid #eee;padding:10px;">Product Name</div>
@@ -133,17 +135,16 @@
                                         </th>
                                     </tr>
 
-
-                                     @if (!empty($data['message']))
-                                    <tr>
-                                        <th
-                                            style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;font-size:15px;text-align:left">
-                                            Inquiry Details</th>
-                                        <td
-                                            style="padding:10px 15px;border-top:1px solid #f1f1f1;border-bottom:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
-                                            {{ $data['message'] }}
-                                        </td>
-                                    </tr>
+                                    @if (!empty($data['message']))
+                                        <tr>
+                                            <th
+                                                style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;font-size:15px;text-align:left">
+                                                Inquiry Details</th>
+                                            <td
+                                                style="padding:10px 15px;border-top:1px solid #f1f1f1;border-bottom:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
+                                                {{ $data['message'] }}
+                                            </td>
+                                        </tr>
                                     @endif
 
                                     <tr>
@@ -213,15 +214,15 @@
                                             <div
                                                 style="padding-bottom:5px;margin-bottom:10px;margin-top:15px;font-size:14px !important;">
                                                 <strong>
-                                                    <a href="{{ route('single-rfq.quoation_mail', $data['rfq_code']) }}"
+                                                    <a href="{{ route('rfq.approve', $data['rfq_code']) }}"
                                                         style="color: #FFF;
-                                                    border: 1px solid #ae0a46;
-                                                    background-color: #ae0a46;
+                                                    border: 1px solid #069625;
+                                                    background-color: #069625;
                                                     transition: all 0.8s ease-in-out;padding: 10px 40px;
                                                     cursor: pointer;
                                                     font-size: 18px;
                                                     font-weight: 500;">
-                                                        Bypass Process</a>
+                                                        Confirm</a>
                                                 </strong>
                                             </div>
                                         </td>
@@ -229,7 +230,7 @@
                                             <div
                                                 style="padding-bottom:5px;margin-bottom:10px;margin-top:15px;font-size:14px !important;">
                                                 <strong>
-                                                    <a href="{{ route('admin.rfq.index', $data['rfq_code']) }}"
+                                                    <a href="{{ route('rfq.reject', $data['rfq_code']) }}"
                                                         {{-- <a href="{{ route('single-rfq.show', $data['rfq_code']) }}" --}}
                                                         style="color: #FFF;
                                                     border: 1px solid #ae0a46;
@@ -238,7 +239,7 @@
                                                     cursor: pointer;
                                                     font-size: 18px;
                                                     font-weight: 500;">
-                                                        Details Process</a>
+                                                        Reject</a>
                                                 </strong>
                                             </div>
                                         </td>
