@@ -137,8 +137,6 @@ use App\Http\Controllers\Marketing\MarketingManagerRoleController;
 use App\Http\Controllers\Solution\SolutionCMSController;
 
 // Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
-Route::get('/admin/rfq_approve/{id}', [RFQController::class, 'rfqApprove'])->name('rfq.approve');
-Route::get('/admin/rfq_reject/{id}', [RFQController::class, 'rfqReject'])->name('rfq.reject');
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resources(
         [
@@ -174,6 +172,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('sales-dashboard', 'salesDashboard')->name('sales-dashboard.index');
         Route::get('marketing-dashboard', 'marketingDashboard')->name('marketing-dashboard.index');
     });
+
 });
 
 
@@ -293,7 +292,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('/products/approved', 'approvedProducts')->name('product.approved');
     });
 
-
+    Route::get('/rfq_approve/{id}', [RFQController::class, 'rfqApprove'])->name('rfq.approve');
+    Route::get('/rfq_reject/{id}', [RFQController::class, 'rfqReject'])->name('rfq.reject');
 
 
 

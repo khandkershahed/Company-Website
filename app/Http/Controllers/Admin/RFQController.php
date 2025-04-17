@@ -474,7 +474,7 @@ class RFQController extends Controller
             User::whereIn('email', $user_emails)->get(),
             new RfqCreate($name, $rfq_code)
         );
-        
+
         $rfq = RFQ::with('rfqProducts')->where('id', $rfq_id)->first();
         $data = [
             'name'          => $rfq->name,
@@ -1179,7 +1179,7 @@ class RFQController extends Controller
     {
         $rfq = RFQ::with('rfqProducts')->where('rfq_code', $id)->first();
 
-        if ($rfq) {
+        if (!empty($rfq)) {
             $users = User::whereJsonContains('department', ['business', 'logistics'])->get();
             $user_emails = User::whereJsonContains('department', ['business'])
                 ->where(function ($query) {
@@ -1225,7 +1225,7 @@ class RFQController extends Controller
     public function rfqReject($id)
     {
         $rfq = RFQ::with('rfqProducts', 'quotationProducts')->where('rfq_code', $id)->first();
-        if ($rfq) {
+        if (!empty($rfq)) {
             $rfq->delete();
             Session::flash('success', 'RFQ has been rejected successfully.');
         } else {
