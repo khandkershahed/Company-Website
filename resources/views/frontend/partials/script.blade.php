@@ -276,10 +276,21 @@
                     } else {
                         // Product added to the cart successfully
                         cart_header.empty();
-                        cart_header.append(
-                            '<span class="miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
-                            response.cartHeader + '</span>'
-                        );
+                        // cart_header.append(
+                        //     '<span class="miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
+                        //     response.cartHeader + '</span>'
+                        // );
+                        if (response.cartHeader > 0) {
+                            if (response.cartHeader > 1) {
+                                cart_header.append('' + response.cartHeader +
+                                    ' Item(s) Added');
+                            } else {
+                                cart_header.append('' + response.cartHeader +
+                                    ' Item Added');
+                            }
+                        } else {
+                            cart_header.append('Ask Query');
+                        }
                         button.empty();
                         Swal.fire({
                             icon: 'success',
@@ -355,10 +366,19 @@
             dataType: 'json',
             success: function(data) {
                 cart_header.empty();
-                cart_header.append(
-                    '<span class="p-1 text-center text-white bg-black rounded-2 miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
-                    data.cartHeader + '</span>'
-                );
+                // cart_header.append(
+                //     '<span class="p-1 text-center text-white bg-black rounded-2 miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
+                //     data.cartHeader + 'RFQ Added</span>'
+                // );
+                if (data.cartHeader > 0) {
+                    if (data.cartHeader > 1) {
+                        cart_header.append('' + data.cartHeader + ' Item(s) Added');
+                    } else {
+                        cart_header.append('' + data.cartHeader + ' Item Added');
+                    }
+                } else {
+                    cart_header.append('Ask Query');
+                }
                 // button.empty();
                 // button.append(); // Update button, if needed
                 Swal.fire({

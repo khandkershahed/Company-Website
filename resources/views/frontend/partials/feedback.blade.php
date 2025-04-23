@@ -123,7 +123,8 @@
         z-index: 5;
         left: 8px;
     }
-    .offcanvas.offcanvas-bottom{
+
+    .offcanvas.offcanvas-bottom {
         height: auto;
     }
 </style>
@@ -135,7 +136,16 @@
             style="line-height: 0;font-family: 'PhpDebugbarFontAwesome';">
             {{ Cart::count() }}
         </span> --}}
-        <span class="miniRFQQTY">{{ Cart::count() }}</span> RFQ Added
+        @if (Cart::count() > 0)
+            <span class="miniRFQQTY" style="line-height: 1.3; font-size:1.2rem; font-family: system-ui;letter-spacing: 1px;">
+                {{ Cart::count() }} {{ Cart::count() > 1 ? 'Item(s)' : 'Item' }} Added
+            </span>
+        @else
+            <span class="miniRFQQTY" style="line-height: 1.3; font-size:1.2rem; font-family: system-ui;">
+                Ask Query
+            </span>
+        @endif
+
     </button>
     {{-- Offcanvas --}}
     <div class="offcanvas offcanvas-bottom offcanvasRFQ" tabindex="-1" id="offcanvasBottom"
