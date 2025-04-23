@@ -36,7 +36,7 @@
         cursor: pointer;
         position: fixed;
         bottom: 45%;
-        right: -65px;
+        right: -77px;
         color: var(--primary-color);
         border-top-right-radius: 8px;
         border-top-left-radius: 8px;
@@ -48,7 +48,7 @@
         overflow: hidden;
         z-index: 1000;
         height: 50px;
-        width: 175px;
+        width: 200px;
     }
 
     .feedback_upper_modal::after {
