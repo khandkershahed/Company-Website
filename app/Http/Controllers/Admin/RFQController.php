@@ -1240,5 +1240,6 @@ class RFQController extends Controller
                 Session::flash('error', 'RFQ has not been found.');
             }
         }
+        return redirect()->route('admin.rfq.index');
     }
 }
