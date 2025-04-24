@@ -1230,18 +1230,19 @@ class RFQController extends Controller
     public function rfqReject($id)
     {
         $rfq = RFQ::with('rfqProducts', 'quotationProducts')->where('rfq_code', $id)->first();
-        if ($rfq->confirmation == 'approved') {
+
+        if (!$rfq) {
+            Session::flash('error', 'RFQ has been rejected already.');
             return redirect()->route('admin.rfq.index');
-        } else {
-            if ($rfq) {
-                $rfq->delete();
-                Session::flash('success', 'RFQ has been rejected successfully.');
-            } else {
-                Session::flash('error', 'RFQ has been rejected already.');
-                return redirect()->route('admin.rfq.index');
-            }
         }
-        // Session::flash('error', 'RFQ has been rejected already.');
-        // return redirect()->route('admin.rfq.index');
+
+        if ($rfq->confirmation == 'approved') {
+            Session::flash('success', 'This RFQ has been approved by an admin already.');
+            return redirect()->route('admin.rfq.index');
+        }
+
+        $rfq->delete();
+        Session::flash('success', 'RFQ has been rejected successfully.');
+        return redirect()->route('admin.rfq.index');
     }
 }
