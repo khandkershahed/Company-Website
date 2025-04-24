@@ -51,6 +51,7 @@ return new class extends Migration
             $table->enum('tax_status', ['0', '1'])->default('0')->nullable();
             $table->enum('deal_type', ['new', 'renew'])->default('new')->nullable();
             $table->string('status', 100)->nullable();
+            $table->string('confirmation', 191)->nullable();
             $table->double('tax')->nullable();
             $table->double('vat')->nullable();
             $table->double('total_price')->nullable();
