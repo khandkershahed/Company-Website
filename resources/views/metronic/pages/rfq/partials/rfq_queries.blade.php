@@ -353,8 +353,6 @@
                                                 </div>
                                             </div>
 
-
-
                                             <div class="tab-content p-7" id="myTabContent">
                                                 <div class="tab-pane fade show active"
                                                     id="quoted_status-{{ $rfq->id }}" role="tabpanel">
@@ -561,7 +559,7 @@
                                     @foreach ($losts as $rfq)
                                         <li class="nav-item w-100 me-0 mb-md-2">
                                             <a class="nav-link w-100 {{ $loop->first ? 'active btn-active-primary' : '' }} btn btn-flex border"
-                                                data-bs-toggle="tab" href="#kt_vtab_pane_4">
+                                                data-bs-toggle="tab" href="#lost_rfq-{{ $rfq->id }}">
                                                 <i class="fa-regular fa-file fs-2 text-primary pe-3"></i>
                                                 <div class="row w-100">
                                                     <div class="col-sm-12">
@@ -583,7 +581,7 @@
                                 <div class="tab-content w-100 border rounded" id="myTabContent">
                                     @foreach ($losts as $rfq)
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                            id="kt_vtab_pane_4" role="tabpanel">
+                                            id="lost_rfq-{{ $rfq->id }}" role="tabpanel">
                                             <div class="d-flex flex-column justify-content-center align-items-center">
                                                 <div class="text-center p-5">
                                                     <h1 class="pb-5">View The RFQ</h1>
