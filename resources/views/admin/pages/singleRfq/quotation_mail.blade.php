@@ -350,7 +350,7 @@
             function updateCurrency(currencyValue) {
                 var currencyMap = {
                     'taka': 'TK',
-                    'dollar': '$',
+                    'dollar': 'USD',
                     'euro': '&euro;',
                     'pound': '&pound;'
                 };
