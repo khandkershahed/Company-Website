@@ -234,12 +234,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="tab-pane fade" id="rfq_st_details-{{ $rfq->id }}"
                                                     role="tabpanel">
                                                     <div class="card rounded-0">
                                                         <div class="card-header rounded-0 p-0 h-40px min-h-40px">
-
                                                             <div>
                                                                 <h3 class="m-0 p-0 ps-5 fw-bold card-title">RFQ Details ({{ $rfq->rfq_code }})</h3>
                                                             </div>
@@ -247,7 +245,6 @@
                                                         <div class="card-body p-0">
                                                             <div class="row rounded">
                                                                 @include('metronic.pages.rfq.partials.rfq_details')
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -299,7 +296,7 @@
                                     @foreach ($quoteds as $rfq)
                                         <li class="nav-item w-100 me-0 mb-md-2">
                                             <a class="nav-link w-100 {{ $loop->first ? 'active btn-active-primary' : '' }} btn btn-flex border"
-                                                data-bs-toggle="tab" href="#kt_vtab_pane_4">
+                                                data-bs-toggle="tab" href="#quoted_rfq-{{ $rfq->id }}">
                                                 <i class="fa-regular fa-file fs-2 text-primary pe-3"></i>
                                                 <div class="row w-100">
                                                     <div class="col-sm-12">
@@ -321,7 +318,7 @@
                                 <div class="tab-content w-100 border rounded" id="myTabContent">
                                     @foreach ($quoteds as $rfq)
                                         <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                            id="rfq_details-{{ $rfq->id }}" role="tabpanel">
+                                            id="quoted_rfq-{{ $rfq->id }}" role="tabpanel">
                                             <div
                                                 class="d-flex justify-content-between align-items-center p-5 px-7 border-bottom border-bottom-black">
                                                 <div class="text-center">
