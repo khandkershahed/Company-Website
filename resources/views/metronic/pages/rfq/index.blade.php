@@ -15,7 +15,7 @@
             'November',
             'December',
         ];
-    @endphp 
+    @endphp
     <div class="row gx-8 gx-xl-10">
         <div class="row mb-5">
             <!-- Attendance -->
@@ -259,20 +259,20 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table
-                                    class="data_table table table-striped table-row-bordered gy-5 gs-7 border rounded">
+                                    class="data_table text-center table table-striped table-row-bordered gy-5 gs-7 border rounded">
                                     <thead>
                                         <tr class="fw-bold fs-6 text-gray-800 px-7">
-                                            <th>Sl</th>
-                                            <th>RFQ Code</th>
-                                            <th>Client Name</th>
-                                            <th>Created At</th>
+                                            <th width="5%">Sl</th>
+                                            <th width="15%">RFQ Code</th>
+                                            <th width="25%">Client Name</th>
+                                            <th width="15%">Created At</th>
                                             {{-- <th>Assign To</th> --}}
-                                            <th>Status</th>
-                                            <th>Country</th>
+                                            <th width="15%">Status</th>
+                                            <th width="15%">Country</th>
                                             {{-- <th>Quick View</th> --}}
-                                            {{-- <th class="text-end">
+                                            <th width="10%">
                                                 Action
-                                            </th> --}}
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -289,14 +289,12 @@
                                                 </td> --}}
                                                 {{-- <td class="text-center">
                                                 </td>
-                                                <td class="text-end">
-                                                    <a href="" class="pe-3"><i
-                                                            class="fa-solid fa-eye"></i></a>
-                                                    <a href="" class="pe-3"><i
-                                                            class="fa-solid fa-eye"></i></a>
-                                                    <a href="" class="pe-3"><i
-                                                            class="fa-solid fa-eye"></i></a>
-                                                </td> --}}
+                                                --}}
+                                                <td>
+                                                    <a href="{{ route('admin.rfq.destroy', [$item->id]) }}" class="text-danger delete" title="Delete RFQ">
+                                                        <i class="delete fa-solid fa-trash-alt fs-3 dash-icons me-2 text-hover-danger"></i>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>

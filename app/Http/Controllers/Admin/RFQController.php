@@ -818,8 +818,7 @@ class RFQController extends Controller
     public function destroy($id)
     {
 
-        $rfq = RFQ::find($id);
-
+        $rfq = RFQ::with('rfqProducts', 'quotationProducts')->find($id);
         if (File::exists(public_path('storage/') . $rfq->image)) {
             File::delete(public_path('storage/') . $rfq->image);
         }

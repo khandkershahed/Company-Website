@@ -239,7 +239,27 @@
                                                     role="tabpanel">
                                                     <div class="card rounded-0">
                                                         <div class="card-header rounded-0 p-0 h-40px min-h-40px">
-
+                                                            {{-- <div>
+                                                                <ul class="nav nav-tabs border-0 d-flex justify-content- align-items-center"
+                                                                    style="padding-top: 0px;padding-bottom: 1px;">
+                                                                    <li class="nav-item mb-0 me-1">
+                                                                        <a href="#client_details-{{ $rfq->rfq_code }}"
+                                                                            class="nav-link btn btn-primary active cat-tab1 p-1"
+                                                                            data-bs-toggle="tab">
+                                                                            <p class="m-0 p-1">
+                                                                                Client Details</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="nav-item mb-0">
+                                                                        <a href="#product_details-{{ $rfq->rfq_code }}"
+                                                                            class="nav-link btn btn-primary cat-tab2 p-1 "
+                                                                            data-bs-toggle="tab">
+                                                                            <p class="m-0 p-1">
+                                                                                Product Details</p>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div> --}}
                                                             <div>
                                                                 <h3 class="m-0 p-0 ps-5 fw-bold card-title">RFQ Details ({{ $rfq->rfq_code }})</h3>
                                                             </div>
@@ -247,11 +267,108 @@
                                                         <div class="card-body p-0">
                                                             <div class="row rounded">
                                                                 @include('metronic.pages.rfq.partials.rfq_details')
+                                                                {{-- <div class="tab-content">
+                                                                    <div class="tab-pane fade show active"
+                                                                        id="client_details-{{ $rfq->rfq_code }}">
+                                                                        <table
+                                                                            class="table table-bordered table-hover text-center">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th width="10%">
+                                                                                        Client Type</th>
+                                                                                    <th width="20%">Name
+                                                                                    </th>
+                                                                                    <th width="20%">
+                                                                                        Company Name</th>
+                                                                                    <th width="15%">
+                                                                                        Phone Number</th>
+                                                                                    <th width="25%"
+                                                                                        class="text-center">
+                                                                                        Assigned
+                                                                                        Sales Manager
+                                                                                        (L1)
+                                                                                    </th>
+                                                                                    <th width="10%"
+                                                                                        class="text-center">
+                                                                                        Status</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="text-center">
+                                                                                        {{ ucfirst($rfq->client_type) }}
+                                                                                    </td>
+                                                                                    <td> {{ ucfirst($rfq->name) }}
+                                                                                    </td>
+                                                                                    <td> {{ ucfirst($rfq->company_name) }}
+                                                                                    </td>
 
+                                                                                    <td>{{ $rfq->phone }}
+                                                                                    </td>
+                                                                                    <td>{{ App\Models\User::where('id', $rfq->sales_man_id_L1)->value('name') }}
+                                                                                        <br>
+                                                                                        @if ($rfq->sales_man_id_T1)
+                                                                                            Assigned Sales
+                                                                                            Manager (T1) :
+                                                                                            {{ App\Models\User::where('id', $rfq->sales_man_id_T1)->value('name') }}
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($rfq->sales_man_id_T2)
+                                                                                            Assigned Sales
+                                                                                            Manager (T2) :
+                                                                                            {{ App\Models\User::where('id', $rfq->sales_man_id_T2)->value('name') }}
+                                                                                        @endif
+                                                                                    </td>
+                                                                                    <td>{{ ucfirst($rfq->status) }}
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="tab-content">
+                                                                    <div class="tab-pane fade show"
+                                                                        id="product_details-{{ $rfq->rfq_code }}">
+                                                                        <div class="table-responsive text-center">
+                                                                            <table
+                                                                                class="table table-bordered table-striped">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th> Product Name
+                                                                                        </th>
+                                                                                        <th> Quantity </th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    @if ($rfq->rfqProducts->count() > 0)
+                                                                                        @foreach ($rfq->rfqProducts as $product)
+                                                                                            <tr
+                                                                                                class="text-black bg-white">
+                                                                                                <td>{{ $product->product_name }}
+                                                                                                </td>
+                                                                                                <td>{{ $product->qty }}
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        @endforeach
+                                                                                    @else
+                                                                                        <tr> No Data
+                                                                                            Available</tr>
+                                                                                    @endif
+                                                                                </tbody>
+                                                                            </table>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div> --}}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {{-- <div class="tab-pane fade show active" id="kt_tab_pane_10"
+                                                            role="tabpanel">
+                                                            Et et consectetur ipsum labore excepteur est proident
+                                                            excepteur ad velit occaecat qui minim occaecat veniam.
+                                                        </div> --}}
                                             </div>
                                         </div>
                                     @endforeach
@@ -328,7 +445,7 @@
                                                     <h1 class="m-0">View The RFQ</h1>
                                                 </div>
                                                 <div>
-                                                    <ul class="nav nav-tabs nav-line-tabs fs-6 border-0">
+                                                    <ul class="nav nav-tabs nav-line-tabs mb-5 fs-6 border-0">
 
                                                         <li class="nav-item">
                                                             <a class="nav-link btn btn-primary active"
@@ -504,19 +621,137 @@
                                                 <div class="tab-pane fade" id="quoted_st_details-{{ $rfq->id }}"
                                                     role="tabpanel">
                                                     <div class="card rounded-0">
-                                                        <div class="card-header rounded-0 p-0 h-40px min-h-40px">
+                                                        <div class="card-header rounded-0 p-0">
                                                             <div>
-                                                                <h3 class="m-0 p-0 ps-5 fw-bold card-title">RFQ Details ({{ $rfq->rfq_code }})</h3>
+                                                                <ul class="nav nav-tabs border-0 d-flex justify-content- align-items-center"
+                                                                    style="padding-top: 0px;padding-bottom: 1px;">
+                                                                    <li class="nav-item mb-0 me-1">
+                                                                        <a href="#client_details-{{ $rfq->rfq_code }}"
+                                                                            class="nav-link btn btn-primary active cat-tab1 p-1"
+                                                                            data-bs-toggle="tab">
+                                                                            <p class="m-0 p-1">
+                                                                                Client Details</p>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li class="nav-item mb-0">
+                                                                        <a href="#product_details-{{ $rfq->rfq_code }}"
+                                                                            class="nav-link btn btn-primary cat-tab2 p-1 "
+                                                                            data-bs-toggle="tab">
+                                                                            <p class="m-0 p-1">
+                                                                                Product Details</p>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="m-0 p-0 ps-5 fw-normal">RFQ
+                                                                    Details</h5>
                                                             </div>
                                                         </div>
                                                         <div class="card-body p-0">
                                                             <div class="row rounded">
                                                                 @include('metronic.pages.rfq.partials.rfq_details')
+                                                                {{-- <div class="tab-content">
+                                                                    <div class="tab-pane fade show active"
+                                                                        id="client_details-{{ $rfq->rfq_code }}">
+                                                                        <table
+                                                                            class="table table-bordered table-hover text-center">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th width="10%">
+                                                                                        Client Type</th>
+                                                                                    <th width="20%">Name
+                                                                                    </th>
+                                                                                    <th width="20%">
+                                                                                        Company Name</th>
+                                                                                    <th width="15%">
+                                                                                        Phone Number</th>
+                                                                                    <th width="25%"
+                                                                                        class="text-center">
+                                                                                        Assigned
+                                                                                        Sales Manager
+                                                                                        (L1)
+                                                                                    </th>
+                                                                                    <th width="10%"
+                                                                                        class="text-center">
+                                                                                        Status</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td class="text-center">
+                                                                                        {{ ucfirst($rfq->client_type) }}
+                                                                                    </td>
+                                                                                    <td> {{ ucfirst($rfq->name) }}
+                                                                                    </td>
+                                                                                    <td> {{ ucfirst($rfq->company_name) }}
+                                                                                    </td>
+                                                                                    <td>{{ $rfq->phone }}
+                                                                                    </td>
+                                                                                    <td>{{ App\Models\User::where('id', $rfq->sales_man_id_L1)->value('name') }}
+                                                                                        <br>
+                                                                                        @if ($rfq->sales_man_id_T1)
+                                                                                            Assigned Sales
+                                                                                            Manager (T1) :
+                                                                                            {{ App\Models\User::where('id', $rfq->sales_man_id_T1)->value('name') }}
+                                                                                            <br>
+                                                                                        @endif
+                                                                                        @if ($rfq->sales_man_id_T2)
+                                                                                            Assigned Sales
+                                                                                            Manager (T2) :
+                                                                                            {{ App\Models\User::where('id', $rfq->sales_man_id_T2)->value('name') }}
+                                                                                        @endif
+                                                                                    </td>
+                                                                                    <td>{{ ucfirst($rfq->status) }}
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="tab-content">
+                                                                    <div class="tab-pane fade show"
+                                                                        id="product_details-{{ $rfq->rfq_code }}">
+                                                                        <div class="table-responsive text-center">
+                                                                            <table
+                                                                                class="table table-bordered table-striped">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th> Product Name
+                                                                                        </th>
+                                                                                        <th> Quantity </th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    @if ($rfq->rfqProducts->count() > 0)
+                                                                                        @foreach ($rfq->rfqProducts as $product)
+                                                                                            <tr
+                                                                                                class="text-black bg-white">
+                                                                                                <td>{{ $product->product_name }}
+                                                                                                </td>
+                                                                                                <td>{{ $product->qty }}
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        @endforeach
+                                                                                    @else
+                                                                                        <tr> No Data
+                                                                                            Available</tr>
+                                                                                    @endif
+                                                                                </tbody>
+                                                                            </table>
 
+                                                                        </div>
+                                                                    </div>
+                                                                </div> --}}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {{-- <div class="tab-pane fade show active" id="kt_tab_pane_10"
+                                                        role="tabpanel">
+                                                        Et et consectetur ipsum labore excepteur est proident
+                                                        excepteur ad velit occaecat qui minim occaecat veniam.
+                                                    </div> --}}
                                             </div>
                                         </div>
                                     @endforeach
