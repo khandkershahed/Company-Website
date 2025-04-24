@@ -1233,14 +1233,15 @@ class RFQController extends Controller
         if ($rfq->confirmation == 'approved') {
             return redirect()->route('admin.rfq.index');
         } else {
-            if (!empty($rfq)) {
+            if ($rfq) {
                 $rfq->delete();
                 Session::flash('success', 'RFQ has been rejected successfully.');
             } else {
-                Session::flash('error', 'RFQ has not been found.');
+                Session::flash('error', 'RFQ has been rejected already.');
+                return redirect()->route('admin.rfq.index');
             }
         }
-        Session::flash('error', 'RFQ has been rejected already.');
-        return redirect()->route('admin.rfq.index');
+        // Session::flash('error', 'RFQ has been rejected already.');
+        // return redirect()->route('admin.rfq.index');
     }
 }
