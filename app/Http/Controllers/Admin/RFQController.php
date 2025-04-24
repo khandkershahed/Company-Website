@@ -1237,7 +1237,7 @@ class RFQController extends Controller
         }
 
         if ($rfq->confirmation == 'approved') {
-            Session::flash('success', 'This RFQ has been approved by an admin already.');
+            Session::flash('warning', 'This RFQ has been approved by an admin already.');
             return redirect()->route('admin.rfq.index');
         }
 
