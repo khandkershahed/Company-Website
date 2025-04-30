@@ -144,6 +144,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
             'solution-cms' => SolutionCMSController::class,
             'brand'        => BrandController::class,
             'category'     => CategoryController::class,
+            'blog'         => BlogController::class,
         ]
     );
     Route::resources(
