@@ -962,7 +962,7 @@ class HomeController extends Controller
             ->where('products.product_status', 'product')
             ->where('brands.status', 'active')
             ->limit(10)
-            ->get(['products.id', 'products.name', 'products.slug', 'products.thumbnail', 'products.price', 'products.discount', 'products.rfq', 'products.qty', 'products.stock']);
+            ->get(['products.id', 'products.name', 'products.slug', 'products.thumbnail', 'products.price', 'products.discount', 'products.sku_code', 'products.rfq', 'products.qty', 'products.stock']);
 
         $data['solutions'] = SolutionDetail::where('name', 'LIKE', '%' . $query . '%')->where('status', 'active')->limit(5)->get(['id', 'name', 'slug']);
         $data['industries'] = Industry::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title', 'slug']);
@@ -1034,6 +1034,7 @@ class HomeController extends Controller
         $data['categorys'] = Category::get(['id', 'title']);
         $data['industrys'] = Industry::get(['id', 'title']);
         $cart_items = Cart::content();
+        // dd($cart_items);
         // $cartItems = Cart::content();
         //     if ($cartItems->isNotEmpty()) {
         //         $cartProductIds = $cartItems->pluck('id')->toArray();

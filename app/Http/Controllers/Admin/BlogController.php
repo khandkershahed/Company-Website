@@ -30,6 +30,7 @@ class BlogController extends Controller
     {
         $data['blogs'] = Blog::latest()->get();
         return view('admin.pages.blog.all', $data);
+        return view('metronic.pages.blog.index', $data);
     }
 
     /**

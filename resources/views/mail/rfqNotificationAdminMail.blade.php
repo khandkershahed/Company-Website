@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="x-apple-disable-message-reformatting" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Price Quotation</title>
+    <title>RFQ Notification</title>
     <style type="text/css">
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap");
 
@@ -61,15 +61,7 @@
                         <div style="overflow-x: auto">
                             <table id="u_body"
                                 style="
-                    border-collapse: collapse;
-                    table-layout: fixed;
-                    border-spacing: 0;
-                    vertical-align: top;
-                    min-width: 320px;
-                    margin: 0 auto;
-                    width: 100%;
-                    background-color: #ae0a46;
-                  "
+                    border-collapse: collapse;table-layout: fixed;border-spacing: 0;vertical-align: top;min-width: 320px;margin: 0 auto;width: 100%;background-color: #ae0a46;"
                                 cellpadding="0" cellspacing="0">
                                 <tbody style="min-width: 320px">
                                     <tr style="vertical-align: top">
@@ -77,42 +69,20 @@
                                             <a href="https://ngenitltd.com" target="_blank">
                                                 <img src="{{ asset('images/NGen-Logo-white.png') }}" alt="Ngen IT"
                                                     title="Ngen IT"
-                                                    style="
-                              outline: none;
-                              text-decoration: none;
-                              -ms-interpolation-mode: bicubic;
-                              clear: both;
-                              display: inline-block !important;
-                              border: none;
-                              height: auto;
-                              float: none;
-                              width: 100%;
-                              max-width: 110px;
-                            "
+                                                    style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 100%;max-width: 110px;"
                                                     width="60" />
                                             </a>
                                         </td>
-                                        <td style="
-                          padding: 25px 30px 25px;text-align:right;color:#ffffff" ">
+                                        <td style="padding: 25px 30px 25px;text-align:right;color:#ffffff" ">
                                             <p
-                                                style="
-                            font-size: 2.5em;
-                            font-weight: 600;
-                            margin-bottom: 0;
-                          ">
+                                                style="font-size: 2.5em;font-weight: 600;margin-bottom: 0;">
                                                 RFQ
                                             </p>
                                             <p
-                                                style="
-                            font-size: 1.18em;
-                            font-weight: 600;
-                            margin-bottom: 0;
-                          ">
+                                                style="font-size: 1.18em;font-weight: 600;margin-bottom: 0;">
                                                 Received
                                             </p>
-                                            <!-- <p style="font-size: 16px; margin-bottom: 3px">
-                          REG.NO. <span style="color: #eee">20437861K</span>
-                        </p> -->
+
                                         </td>
                                     </tr>
                                 </tbody>
@@ -146,34 +116,34 @@
                                 <tbody style="min-width: 320px">
 
                                     <tr>
-                                        <th
-                                            style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;border-top:1px solid #f1f1f1;font-size:15px;text-align:left">
-                                            Product Name</th>
-                                        <td
+                                        <th colspan="2"
                                             style="padding:10px 15px;border-top:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
-                                            {{ $data['product_name'] }}</td>
+                                            <div style="display: flex; align-items:center;">
+                                                <div style="width:12%; font-size:12px; border:1px solid #eee;padding:10px;">Sl.</div>
+                                                <div style="width:68%; font-size:12px; border:1px solid #eee;padding:10px;">Product Name</div>
+                                                <div style="width:20%; font-size:12px; border:1px solid #eee;padding:10px;">Qty</div>
+                                            </div>
+                                            @foreach ($data['product_names'] as $product_name)
+                                                <div style="display: flex; align-items:center;">
+                                                    <div style="width:12%; font-size:12px; border:1px solid #eee;padding:10px;">{{ $loop->iteration }}</div>
+                                                    <div style="width:68%; font-size:12px; border:1px solid #eee;padding:10px;">{{ $product_name->product_name }}</div>
+                                                    <div style="width:20%; font-size:12px; border:1px solid #eee;padding:10px;">{{ $product_name->qty }}</div>
+                                                </div>
+                                            @endforeach
+                                        </th>
                                     </tr>
-                                      @if (!empty($data['qty']))
+
+
+                                     @if (!empty($data['message']))
                                     <tr>
                                         <th
-                                            style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;border-top:1px solid #f1f1f1;font-size:15px;text-align:left">
-                                            Quantity</th>
+                                            style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;font-size:15px;text-align:left">
+                                            Inquiry Details</th>
                                         <td
-                                            style="padding:10px 15px;border-top:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
-                                            {{ $data['qty'] }}</td>
+                                            style="padding:10px 15px;border-top:1px solid #f1f1f1;border-bottom:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
+                                            {{ $data['message'] }}
+                                        </td>
                                     </tr>
-                                    @endif
-
-                                    @if (!empty($data['message']))
-                                        <tr>
-                                            <th
-                                                style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;font-size:15px;text-align:left">
-                                                Inquiry Details</th>
-                                            <td
-                                                style="padding:10px 15px;border-top:1px solid #f1f1f1;border-bottom:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
-                                                {{ $data['message'] }}
-                                            </td>
-                                        </tr>
                                     @endif
 
                                     <tr>

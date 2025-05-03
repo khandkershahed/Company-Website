@@ -144,6 +144,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
             'solution-cms' => SolutionCMSController::class,
             'brand'        => BrandController::class,
             'category'     => CategoryController::class,
+            'blog'         => BlogController::class,
         ]
     );
     Route::resources(
@@ -172,6 +173,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('sales-dashboard', 'salesDashboard')->name('sales-dashboard.index');
         Route::get('marketing-dashboard', 'marketingDashboard')->name('marketing-dashboard.index');
     });
+
 });
 
 
@@ -291,7 +293,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('/products/approved', 'approvedProducts')->name('product.approved');
     });
 
-
+    Route::get('/rfq_approve/{id}', [RFQController::class, 'rfqApprove'])->name('rfq.approve');
+    Route::get('/rfq_reject/{id}', [RFQController::class, 'rfqReject'])->name('rfq.reject');
 
 
 

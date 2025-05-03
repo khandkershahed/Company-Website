@@ -1,14 +1,13 @@
 @extends('frontend.master')
 @section('content')
     @include('frontend.pages.rfq.partials.rfq_css')
-    <div class="container py-5">
+    <div class="container">
         <div class="row justify-content-center align-items-center g-2">
-
-            <div class="col-lg-8 col-offset-lg-2">
-                <div class="w-lg-50 w-100 mx-auto my-5 card rounded-2 shadow-sm" style="border: 1px solid #eee;">
+            <div class="col-lg-8">
+                <div class="mx-auto my-5 card rounded-2 shadow-sm" style="border: 1px solid #eee;">
                     <div class="card-header rfq-header border-0">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h3 class="text-white py-2">Request for Quotation</h3>
+                            <h3 class="text-white mb-0">Request for Quotation</h3>
                             <div class="d-flex align-items-center justify-content-end align-items-center">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
@@ -43,7 +42,7 @@
                                             <div class="col-lg-12 mx-0">
                                                 <div class="rfq-repeater parent-container">
                                                     <div class="rfq-title-btns" id="productRowsContainer">
-                                                        @if ($cart_products)
+                                                        @if ($cart_products->count() > 0)
                                                             @foreach ($cart_products as $key => $cart_product)
                                                                 <div class="row gx-2 align-items-center product-row mb-2">
                                                                     <div class="col-lg-10 col-9">
@@ -73,26 +72,18 @@
                                                             @endforeach
                                                         @else
                                                             <div class="row gx-2 align-items-center product-row">
-                                                                <div class="col-lg-10 col-9">
-                                                                    <input name="product_name[]"
-                                                                        class="form-control form-control-sm border-0 rounded-1 py-3"
-                                                                        placeholder="Product Title" required>
+                                                                <div class="col-lg-9 col-10 mt-1">
+                                                                    <input name="product_name[]" class="form-control form-control-sm border-0 rounded-1 py-3"
+                                                                        placeholder="Product Title *" required>
                                                                 </div>
-                                                                <div class="col-lg-1 col-2">
-                                                                    <div class="d-flex">
-                                                                        <div>
-                                                                            <input name="qty[]" type="number"
-                                                                                class="form-control form-control-sm border-0 rounded-1 py-3"
-                                                                                placeholder="QTY..">
-                                                                        </div>
-                                                                        <div>
-                                                                            <a href="javascript:void(0)" class="delete-btn"
-                                                                                onclick="deleteRow(this)">
-                                                                                <i
-                                                                                    class="fa-regular fa-trash-can text-danger"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
+                                                                <div class="col-lg-2 col-1">
+                                                                    <input name="qty[]" type="number" class="form-control form-control-sm border-0 rounded-1 py-3"
+                                                                        placeholder="QTY.. *">
+                                                                </div>
+                                                                <div class="col-lg-1 col-1">
+                                                                    <a href="javascript:void(0)" class="delete-btn" onclick="deleteRow(this)">
+                                                                        <i class="fa-regular fa-trash-can text-danger"></i>
+                                                                    </a>
                                                                 </div>
                                                             </div>
                                                         @endif
@@ -102,7 +93,8 @@
                                             <div class="col-lg-12">
                                                 <div class="rfq-add-btns mt-2">
                                                     <button type="button" class="rounded-1" onclick="addRow()">
-                                                        <i class="fa-solid fa-plus"></i>
+                                                        {{-- <i class="fa-solid fa-plus"></i> --}}
+                                                        Add
                                                     </button>
                                                 </div>
                                             </div>

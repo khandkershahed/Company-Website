@@ -9,10 +9,11 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class RFQNotificationMail extends Mailable
+class RFQConfirmationMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
+
     /**
      * Create a new message instance.
      *
@@ -31,14 +32,19 @@ class RFQNotificationMail extends Mailable
      public function build()
     {
         return $this->from('support@ngenit.com', 'NGEN-Business')
-                    ->view('mail.rfqNotificationMail', ['data' => $this->data])
-                    ->subject('[NGEN IT-Sales] - Reply in response of your RFQ');
+                    ->view('mail.rfqNotificationConfirmMail', ['data' => $this->data])
+                    ->subject('[New Customer] - A RFQ has been received and need to confirm.');
     }
 
+    /**
+     * Get the message envelope.
+     *
+     * @return \Illuminate\Mail\Mailables\Envelope
+     */
     public function envelope()
     {
         return new Envelope(
-            subject: 'Reply in response of your RFQ',
+            subject: '[New Customer] - A RFQ has been received and need to confirm',
         );
     }
 

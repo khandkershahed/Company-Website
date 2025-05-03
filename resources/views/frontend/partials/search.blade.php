@@ -10,8 +10,6 @@
         outline: none;
         box-shadow: none;
     }
-
-
 </style>
 
 
@@ -176,7 +174,7 @@
                                             <h6 style="color: #ae0a46;">
                                                 {{ $product->name }}</h6>
                                         </a>
-                                        <p class="fw-normal">SKU#: {{ $product->sku_code ?? 'No SKU' }}</p>
+                                        <p class="fw-normal">SKU#: {{ $product->sku_code ?? 'NO SKU' }}</p>
                                     </div>
                                     <div class="col-lg-12 col-sm-12">
                                         {{-- <div>
@@ -222,35 +220,64 @@
                                         <div class="d-flex justify-content-between align-items-center mt-4">
                                             <div class="d-flex align-items-center">
                                                 <div class="pe-2">
-                                                    <a class="search-btn-price"
-                                                        href="{{ route('product.details', ['id' => $product->slug]) }}">Ask For Price</a>
+                                                    {{-- <a class="search-btn-price"
+                                                        href="{{ route('product.details', ['id' => $product->slug]) }}">Ask
+                                                        For Price</a> --}}
+                                                    <a href="javascript:void(0)" class="search-btn-price"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#rfq{{ $product->id }}">
+                                                        Ask For Price
+                                                    </a>
                                                 </div>
                                             </div>
                                             <div class="d-flex border" style="height: 2.6rem;">
-                                                <input data-min="1" data-max="0" type="text" name="quantity"
-                                                    value="2" readonly="true" style="width: 3rem; padding: 5px 10px;"
-                                                    class="quantity-box border-0">
+                                                <input type="text" name="quantity" value="1" readonly="true"
+                                                    style="width: 3rem; padding: 5px 10px;"
+                                                    class="quantity-box border-0" id="quantity-{{ $product->id }}"
+                                                    data-product-id="{{ $product->id }}">
+                                                <!-- Store product ID for later use -->
+
                                                 <div class="quantity-selectors-container">
-                                                    <div class="quantity-selectors" style="display: inline-grid;">
+                                                    <div class="quantity-selectors selectorbox-{{ $product->id }}"
+                                                        style="display: inline-grid;">
                                                         <button type="button" class="increment-quantity border-0"
-                                                            aria-label="Add one" data-direction="1">
+                                                            aria-label="Add one" data-direction="1"
+                                                            data-product-id="{{ $product->id }}">
                                                             <i class="fa-solid fa-plus" style="color: #7a7577"></i>
                                                         </button>
                                                         <button type="button" class="decrement-quantity border-0"
-                                                            aria-label="Subtract one" data-direction="-1"
-                                                            disabled="disabled">
-                                                            <i class="fa-solid fa-minus"
-                                                                style="color: #7a7577"></i>
+                                                            aria-label="Subtract one" data-direction="-1" disabled
+                                                            data-product-id="{{ $product->id }}">
+                                                            <i class="fa-solid fa-minus" style="color: #7a7577"></i>
                                                         </button>
                                                     </div>
                                                 </div>
                                             </div>
+
+
                                             <div>
-                                                <a class="search-btns pb-2 bg-transparent border-0"
+                                                @php
+                                                    $cart_items = Cart::content();
+                                                    $productInCart = false;
+
+                                                    foreach ($cart_items as $item) {
+                                                        if ($item->id == $product->id) {
+                                                            $productInCart = true;
+                                                            break;
+                                                        }
+                                                    }
+                                                @endphp
+                                                <button
+                                                    class="header_cart_button px-3 py-2 text-black bg-transparent border btn-color cart_button_text{{ $product->id }} border-0"
+                                                    data-id="{{ $product->id }}" data-name="{{ $product->name }}"
+                                                    data-quantity="1">
+                                                    {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
+                                                </button>
+                                                {{-- <a class="search-btns pb-2 bg-transparent border-0"
                                                     style="color: rgb(10 51 113);"
                                                     href="{{ route('product.details', ['id' => $product->slug]) }}"><i
                                                         class="fa-solid fa-plus pe-2"></i>Add RFQ
-                                                </a>
+                                                </a> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -278,7 +305,163 @@
 
 @endif
 
+
+
 <script>
+    
+
+    $(document).ready(function() {
+
+        $('.increment-quantity').on('click', function() {
+            var productId = $(this).data('product-id');
+            var quantityBox = $('#quantity-' + productId);
+            var selectorBox = $('.selectorbox-' + productId);
+            var currentQuantity = parseInt(quantityBox.val());
+            var newQuantity = currentQuantity + 1;
+
+            // Update quantity value
+            quantityBox.val(newQuantity);
+
+            // Enable decrement button if quantity > 1
+            if (newQuantity > 1) {
+                selectorBox.find('.decrement-quantity').removeAttr("disabled");
+            }
+        });
+
+        // Decrement quantity
+        $('.decrement-quantity').on('click', function() {
+            var productId = $(this).data('product-id');
+            var quantityBox = $('#quantity-' + productId);
+            var currentQuantity = parseInt(quantityBox.val());
+
+            if (currentQuantity > 1) {
+                var newQuantity = currentQuantity - 1;
+                quantityBox.val(newQuantity);
+            }
+
+            // Disable decrement button if quantity is 1
+            if (parseInt(quantityBox.val()) <= 1) {
+                $(this).prop('disabled', true);
+            }
+        });
+        // Add to cart function (modified to use the correct quantity for each product)
+        function addToCart(event, button) {
+            event.preventDefault(); // Prevent page reload if the button is inside a form
+            var id = $(button).data('id');
+            var name = $(button).data('name');
+            var quantity = $('#quantity-' + id).val(); // Get quantity based on product ID
+            var button_text = $('.cart_button_text' + id);
+            var cart_header = $('.miniRFQQTY');
+            var offcanvasRFQ = $('.offcanvasRFQ');
+
+            var formData = {
+                product_id: id,
+                name: name,
+                qty: quantity
+            };
+
+            $.ajax({
+                url: "{{ route('add.cart') }}", // Update with your route
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.exists) {
+                        // Product is already in the cart
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Product Already in RFQ List',
+                            text: 'This product is already in your added RFQ List.',
+                        });
+                    } else {
+                        // Product added to the cart successfully
+                        cart_header.empty();
+                        cart_header.append(
+                            '<span class="miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
+                            response.cartHeader + '</span>');
+                        button_text.html('✓ Added'); // Update button text
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Added To RFQ Successfully!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        offcanvasRFQ.offcanvas('show');
+                        offcanvasRFQ.html(response.html);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+
+        // Bind the click event for the "Add to Cart" buttons
+        $(".header_cart_button").on("click", function(event) {
+            addToCart(event, this);
+        });
+    });
+</script>
+
+
+{{-- <script>
+    $(document).ready(function() {
+        function addToCart(event, button) {
+            event.preventDefault(); // Prevent page reload if the button is inside a form
+            var id = $(button).data('id');
+            var name = $(button).data('name');
+            var quantity = $(button).data('quantity');
+            var button_text = $('.cart_button_text' + id);
+            var cart_header = $('.miniRFQQTY');
+            var offcanvasRFQ = $('.offcanvasRFQ');
+
+            var formData = {
+                product_id: id,
+                name: name,
+                qty: quantity
+            };
+
+            $.ajax({
+                url: "{{ route('add.cart') }}", // Update with your route
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.exists) {
+                        // Product is already in the cart
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Product Already in RFQ List',
+                            text: 'This product is already in your added RFQ List.',
+                        });
+                    } else {
+                        // Product added to the cart successfully
+                        cart_header.empty();
+                        cart_header.append(
+                            '<span class="miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
+                            response.cartHeader + '</span>');
+                        button_text.html('✓ Added'); // Update button text
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Added To RFQ Successfully!',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        offcanvasRFQ.offcanvas('show');
+                        offcanvasRFQ.html(response.html);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+
+        // Bind the click event for the "Add to Cart" buttons
+        $(".header_cart_button").on("click", function(event) {
+            addToCart(event, this);
+        });
+    });
     $("button").on("click", function(ev) {
         var currentQty = $('input[name="quantity"]').val();
         var qtyDirection = $(this).data("direction");
@@ -307,4 +490,4 @@
             $('input[name="quantity"]').val("1");
         }
     });
-</script>
+</script> --}}

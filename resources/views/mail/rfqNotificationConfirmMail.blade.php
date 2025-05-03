@@ -42,18 +42,26 @@
 
 <body class="clean-body u_body" style="margin: 0; padding: 0; background-color: #f4f4f4">
     <table cellpadding="0" cellspacing="0"
-        style="border-collapse: collapse;width: 70%;max-width: 70%;margin: 0 auto;background-color: white;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+        style="
+        border-collapse: collapse;
+        width: 70%;
+        max-width: 70%;
+        margin: 0 auto;
+        background-color: white;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      ">
         <tr>
             <td>
                 <!-- Your email content goes here -->
                 <section
-                    tyle="margin-top: 0rem; margin-bottom: 0rem; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+                    style="margin-top: 0rem; margin-bottom: 0rem; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                     <!-- Email Header Start -->
                     <div class="wrapper" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                         <!-- Email Header Start -->
                         <div style="overflow-x: auto">
                             <table id="u_body"
-                                style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;vertical-align: top;min-width: 320px;margin: 0 auto;width: 100%;background-color: #ae0a46; "
+                                style="
+                    border-collapse: collapse;table-layout: fixed;border-spacing: 0;vertical-align: top;min-width: 320px;margin: 0 auto;width: 100%;background-color: #ae0a46;"
                                 cellpadding="0" cellspacing="0">
                                 <tbody style="min-width: 320px">
                                     <tr style="vertical-align: top">
@@ -65,51 +73,48 @@
                                                     width="60" />
                                             </a>
                                         </td>
-                                        <td style="padding: 25px 30px 25px;text-align:right;color:#ffffff">
-                                            <p style="font-size: 2.5em;font-weight: 600;margin-bottom: 0; ">
+                                        <td style="padding: 25px 30px 25px;text-align:right;color:#ffffff" ">
+                                            <p
+                                                style="font-size: 2.5em;font-weight: 600;margin-bottom: 0;">
                                                 RFQ
                                             </p>
-                                            <!-- <p style="font-size: 16px; margin-bottom: 3px">
-                                                    REG.NO. <span style="color: #eee">20437861K</span>
-                                                </p> -->
                                             <p
-                                                style="font-size: 0.85em;font-weight: 600;margin-bottom: 0;">
-                                                Confirmation
+                                                style="font-size: 1.18em;font-weight: 600;margin-bottom: 0;">
+                                                Received
                                             </p>
+
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                        <!-- Email Header End -->
                         <!-- Main Content Start -->
                         <div style="overflow-x: auto">
                             <table id="u_body"
                                 style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;vertical-align: top;min-width: 320px;margin: 0 auto;width: 100%;"
                                 cellpadding="0" cellspacing="0">
                                 <tbody style="min-width: 320px">
+
                                     <tr>
-                                        <div style="text-align: left;padding: 15px;">
-                                            <h4 style="text-align: left; font-size: 18px; color: #141414;">Dear
-                                                {{ $data['name'] }}</h4>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <div style="text-align: left;padding: 15px;">
+                                        <div style="text-align: left; padding: 3rem 2rem;">
                                             <p style="text-align: left; font-size: 18px; color: #141414;">
-                                                We have received your query, Thank you for your interest! Our dedicated
-                                                sales representative will contact with you within 24 hour working days.
+                                                We have received a RFQ. Please respond immediately for best customer service and reputation.
                                             </p>
                                         </div>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+
+
                         <div style="overflow-x: auto; margin-bottom:10px;">
                             <hr class="m-0 p-0" style="padding-bottom:1rem; border: none; border-top: 1px solid #eee;">
                             <table id="u_body"
                                 style="border: 1px solid #eee;border-collapse: collapse;table-layout: fixed;border-spacing: 0;vertical-align: top;min-width: 320px;margin: 0 auto;width: 70%;"
                                 cellpadding="0" cellspacing="0">
                                 <tbody style="min-width: 320px">
+
                                     <tr>
 
                                         <th colspan="2"
@@ -137,32 +142,24 @@
                                                 Inquiry Details</th>
                                             <td
                                                 style="padding:10px 15px;border-top:1px solid #f1f1f1;border-bottom:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
-
-
                                                 {{ $data['message'] }}
                                             </td>
                                         </tr>
                                     @endif
 
-
                                     <tr>
                                         <th
                                             style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;font-size:15px;text-align:left">
-                                            Fullname</th>
+                                            Customer Name</th>
                                         <td
                                             style="padding:10px 15px;border-top:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
-                                            {{ $data['name'] }}
-                                        </td>
+                                            {{ $data['name'] }}</td>
                                     </tr>
-
-
-
-
                                     @if (!empty($data['company_name']))
                                         <tr>
                                             <th
                                                 style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;font-size:15px;text-align:left">
-                                                Company</th>
+                                                Customer Company</th>
                                             <td
                                                 style="padding:10px 15px;border-top:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
                                                 {{ $data['company_name'] }}</td>
@@ -173,7 +170,7 @@
                                         <tr>
                                             <th
                                                 style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;font-size:15px;text-align:left">
-                                                Telephone</th>
+                                                Customer Telephone</th>
                                             <td
                                                 style="width: 30%;padding:10px 15px;border-top:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
                                                 {{ $data['phone'] }}</td>
@@ -182,25 +179,26 @@
                                     <tr>
                                         <th
                                             style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;font-size:15px;text-align:left">
-                                            Email</th>
+                                            Customer Email</th>
                                         <td
                                             style="padding:10px 15px;border-top:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
                                             <a href="mailto:{{ $data['email'] }}"
                                                 target="_blank">{{ $data['email'] }}</a>
                                         </td>
                                     </tr>
+
+
                                     @if (isset($data['country']) && !empty($data['country']))
                                         <tr>
                                             <th
                                                 style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;font-size:15px;text-align:left">
-                                                Country</th>
+                                                Customer Country</th>
                                             <td
                                                 style="padding:10px 15px;border-top:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
                                                 {{ $data['country'] }}
                                             </td>
                                         </tr>
                                     @endif
-
                                 </tbody>
                             </table>
                         </div>
@@ -212,39 +210,38 @@
                                 cellpadding="0" cellspacing="0">
                                 <tbody style="min-width: 320px">
                                     <tr>
-                                        <div style="text-align: center;padding: 15px; padding-bottom: 5px;">
-                                            <p style="text-align: center; font-size: 16px; color: #141414;">
-                                                Want to get update of our products often, please <a
-                                                    href="{{ route('shop') }}" style="color: #ae0a46; font-size:18px">
-                                                    Click here..</a>
-                                            </p>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <div style="text-align: center;padding: 15px; padding-bottom: 5px;">
-                                            <p style="text-align: center; font-size: 16px; color: #141414;">
-                                                If you are not a registered client yet, <a
-                                                    href="{{ route('client.login') }}"
-                                                    style="color: #ae0a46; font-size:18px">Click here</a> to register as a client.
-                                            </p>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <div style="text-align: center;padding: 15px; padding-bottom: 5px;">
-                                            <p style="text-align: center; font-size: 16px; color: #141414;">
-                                                If you are not a registered partner yet, <a
-                                                    href="{{ route('partner.login') }}"
-                                                    style="color: #ae0a46; font-size:18px">Click here</a> to register as a partner.
-                                            </p>
-                                        </div>
-                                    </tr>
-                                    <tr>
-                                        <div style="text-align: center;padding: 15px; padding-bottom: 15px;">
-                                            <p style="text-align: center; font-size: 16px; color: #141414;">
-                                                Contact us through , <a href="https://wa.me/8801714243446"
-                                                    style="color: #ae0a46; font-size:18px">Whatsapp (8801714243446)</a>.
-                                            </p>
-                                        </div>
+                                        <td style="padding:15px;text-align:center;font-size:12px">
+                                            <div
+                                                style="padding-bottom:5px;margin-bottom:10px;margin-top:15px;font-size:14px !important;">
+                                                <strong>
+                                                    <a href="{{ route('rfq.approve', $data['rfq_code']) }}"
+                                                        style="color: #FFF;
+                                                    border: 1px solid #069625;
+                                                    background-color: #069625;
+                                                    transition: all 0.8s ease-in-out;padding: 10px 40px;
+                                                    cursor: pointer;
+                                                    font-size: 18px;
+                                                    font-weight: 500;">
+                                                        Confirm</a>
+                                                </strong>
+                                            </div>
+                                        </td>
+                                        <td style="padding:15px;text-align:center;font-size:12px">
+                                            <div
+                                                style="padding-bottom:5px;margin-bottom:10px;margin-top:15px;font-size:14px !important;">
+                                                <strong>
+                                                    <a href="{{ route('rfq.reject', $data['rfq_code']) }}"
+                                                        style="color: #FFF;
+                                                    border: 1px solid #ae0a46;
+                                                    background-color: #ae0a46;
+                                                    transition: all 0.8s ease-in-out;padding: 10px 40px;
+                                                    cursor: pointer;
+                                                    font-size: 18px;
+                                                    font-weight: 500;">
+                                                        Reject</a>
+                                                </strong>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -284,7 +281,8 @@
                                                                                 style="font-size: 15px;margin-bottom: 0.5rem;">
                                                                                 <p style="margin: 0; color: #ae0a46">
                                                                                     sales@ngenitltd.com
-                                                                                    <i class="fa-solid fa-paper-plane"></i>
+                                                                                    <i
+                                                                                        class="fa-solid fa-paper-plane"></i>
                                                                                 </p>
                                                                             </div>
                                                                             <div
@@ -297,10 +295,7 @@
                                                                             <div style="font-size: 15px">
                                                                                 <p
                                                                                     style="margin: 0; padding: 0; color: #ae0a46">
-                                                                                    <a href="https://wa.me/8801714243446"
-                                                                                        style="color: inherit; text-decoration: none;">
-                                                                                        (whats app) +880 1714 243446
-                                                                                    </a>
+                                                                                    (whats app) +880 1714 243446
                                                                                 </p>
                                                                             </div>
                                                                         </td>
@@ -320,13 +315,31 @@
                         <!-- Email Footer -->
                         <div style="overflow-x: auto">
                             <table id="u_body"
-                                style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;vertical-align: top;min-width: 320px;margin: 0 auto;width: 100%;"
+                                style="
+                    border-collapse: collapse;
+                    table-layout: fixed;
+                    border-spacing: 0;
+                    vertical-align: top;
+                    min-width: 320px;
+                    margin: 0 auto;
+                    width: 100%;
+                  "
                                 cellpadding="0" cellspacing="0">
                                 <tbody style="min-width: 320px">
                                     <tr>
-                                        <div style="text-align: center;background-color: #ae0a46;padding: 15px;">
+                                        <div
+                                            style="
+                          text-align: center;
+                          background-color: #ae0a46;
+                          padding: 15px;
+                        ">
                                             <a class="" href="www.ngenitltd.com"
-                                                style="color: #ffff;font-size: 18px;text-align: center;letter-spacing: 4px;">www.ngenitltd.com</a>
+                                                style="
+                            color: #ffff;
+                            font-size: 18px;
+                            text-align: center;
+                            letter-spacing: 4px;
+                          ">www.ngenitltd.com</a>
                                         </div>
                                     </tr>
                                 </tbody>
@@ -334,8 +347,8 @@
                         </div>
                         <!-- Email Footer End-->
                     </div>
+                    <!-- ... -->
                 </section>
-                <!-- Your email content goes here -->
             </td>
         </tr>
     </table>

@@ -1,10 +1,15 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <style>
     .form-control {
-        color: #212529;
-        background-color: #fbfbfb;
+        /* color: #212529;
+        background-color: #fbfbfb; */
     }
-
+    .form-control::placeholder {
+        color: #303030;
+        font-size: 12px;
+        font-weight: 400;
+        opacity: 1;
+    }
     form .btn {
         width: 100%;
         border-radius: 5px;
@@ -40,8 +45,8 @@
         background-color: transparent;
         border: 0;
         padding: 5px;
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 35px;
         border: 1px solid #ae0a46;
     }
 

@@ -318,7 +318,7 @@ class RFQManageController extends Controller
         } elseif ($data['quotation']->currency == 'euro') {
             $data['currency'] = '€';
         } elseif ($data['quotation']->currency == 'dollar') {
-            $data['currency'] = '$';
+            $data['currency'] = 'USD';
         } elseif ($data['quotation']->currency == 'pound') {
             $data['currency'] = '£';
         } else {

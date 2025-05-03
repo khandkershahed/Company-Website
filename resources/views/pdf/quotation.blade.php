@@ -266,11 +266,11 @@
                                 <td style="text-align: center">{{ $quotationproduct->qty }}</td>
                                 <td style="text-align: right">
                                     {{ number_format(round((float) optional($quotationproduct)->unit_final_price), 2) }}
-                                    {{ $currency }}
+                                    {{-- {{ $currency }} --}}
                                 </td>
                                 <td style="text-align: right">
                                     {{ number_format(round((float) optional($quotationproduct)->unit_final_total_price), 2) }}
-                                    {{ $currency }}
+                                    {{-- {{ $currency }} --}}
                                 </td>
                             </tr>
                         @endforeach
@@ -281,7 +281,7 @@
                         </td>
                         <td style="text-align: right; font-weight: 500">
                             {{ number_format(round((float) optional($singleproduct)->sub_total_final_total_price), 2) }}
-                            <span class="currency">{{ $currency }}</span>
+                            {{-- <span class="currency">{{ $currency }}</span> --}}
                         </td>
                     </tr>
                     <tr
@@ -290,8 +290,8 @@
                             Special Discount ({{ optional($singleproduct)->special_discount_percentage }}%)
                         </td>
                         <td style="text-align: right; font-weight: 400">
-                            {{ number_format(round((float) optional($singleproduct)->special_discount_final_total_price), 2) }}<span
-                                class="currency">{{ $currency }}</span></td>
+                            {{ number_format(round((float) optional($singleproduct)->special_discount_final_total_price), 2) }}
+                            {{-- <span class="currency">{{ $currency }}</span></td> --}}
                     </tr>
                     <tr
                         style="background-color: #eeeeee3d; display: {{ optional($quotation)->vat_display == '1' ? 'table-row' : 'none' }};">
@@ -300,7 +300,7 @@
                         </td>
                         <td style="text-align: right; font-weight: 400">
                             {{ number_format(round((float) optional($singleproduct)->vat_final_total_price), 2) }}
-                            <span class="currency">{{ $currency }}</span>
+                            {{-- <span class="currency">{{ $currency }}</span> --}}
                         </td>
                     </tr>
 
@@ -310,7 +310,7 @@
                         </td>
                         <td style="text-align: right; font-weight: 500">
                             {{ number_format(round((float) optional($singleproduct)->total_final_total_price), 2) }}
-                            <span class="currency">{{ $currency }}</span>
+                            {{-- <span class="currency">{{ $currency }}</span> --}}
                         </td>
                     </tr>
                 </tbody>

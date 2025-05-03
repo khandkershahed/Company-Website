@@ -197,13 +197,13 @@
         newRow.classList.add('row', 'gx-2', 'align-items-center', 'product-row');
 
         newRow.innerHTML = `
-            <div class="col-lg-10 col-10 mt-1">
+            <div class="col-lg-9 col-10 mt-1">
                 <input name="product_name[]" class="form-control form-control-sm border-0 rounded-1 py-3"
-                    placeholder="Product Title" required>
+                    placeholder="Product Title *" required>
             </div>
-            <div class="col-lg-1 col-1">
+            <div class="col-lg-2 col-1">
                 <input name="qty[]" type="number" class="form-control form-control-sm border-0 rounded-1 py-3"
-                    placeholder="QTY..">
+                    placeholder="QTY.. *">
             </div>
             <div class="col-lg-1 col-1">
                 <a href="javascript:void(0)" class="delete-btn" onclick="deleteRow(this)">
@@ -219,6 +219,12 @@
     function deleteRow(button) {
         // Remove the row containing the clicked delete button
         var row = button.closest('.product-row');
-        row.remove();
+        // row.remove();
+        const rows = document.querySelectorAll('.product-row');
+        if (rows.length > 1) {
+            row.remove();
+        } else {
+            alert("At least one row is required.");
+        }
     }
 </script>

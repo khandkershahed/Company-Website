@@ -20,6 +20,7 @@ use App\Models\Admin\RfqProduct;
 use App\Notifications\RfqAssign;
 use App\Notifications\RfqCreate;
 use App\Notifications\WorkOrder;
+use App\Mail\RFQConfirmationMail;
 use App\Mail\RFQNotificationMail;
 use App\Notifications\DealConvert;
 use Illuminate\Support\Facades\Log;
@@ -197,11 +198,11 @@ class RFQController extends Controller
      */
     public function store(Request $request)
     {
-        $blacklistedEmails = ['ericjonesmyemail@gmail.com','cristine.chatham@gmail.com'];
+        $blacklistedEmails = ['ericjonesmyemail@gmail.com', 'cristine.chatham@gmail.com'];
         $blacklistedNames = ['Eric Jones'];
         $blacklistedProduct = ['Eric Jones'];
         $blacklistedPhone = ['555-555-1212'];
-        $blacklistedWords = ['Web Visitor', 'trustedleadgeneration.com', 'SMS Text With Lead', 'Eric','marketersmentor','Cristine Unsubscribe','Cristine'];
+        $blacklistedWords = ['Web Visitor', 'trustedleadgeneration.com', 'SMS Text With Lead', 'Eric', 'marketersmentor', 'Cristine Unsubscribe', 'Cristine'];
 
         if (in_array($request->product_name, $blacklistedProduct) || in_array($request->email, $blacklistedEmails) || in_array($request->name, $blacklistedNames) || in_array($request->phone, $blacklistedPhone)) {
             // Session::flash('error', 'Your request cannot be processed.');
@@ -244,17 +245,13 @@ class RFQController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-
         $userIp = $request->ip();
         $lastRequestTime = session("last_form_submission_{$userIp}");
 
         if ($lastRequestTime && now()->diffInMinutes($lastRequestTime) < 1) {
             Session::flash('error', 'You can only submit the form once every 5 minutes.');
-            // Toastr::error('You can only submit the form once every 5 minutes.');
             return redirect()->back()->withErrors('You can only submit the form once every 5 minutes.');
         }
-
-
 
 
         $data['deal_type'] = 'new';
@@ -282,7 +279,7 @@ class RFQController extends Controller
         $globalFunImage = $mainFile ? Helper::singleImageUpload($mainFile, $imgPath, 450, 350) : ['status' => 0];
 
         $rfq_id = Rfq::insertGetId([
-            'client_id' => !empty($request->client_id) ? $request->client_id : (!empty($client->id) ? $client->id : null),
+            'client_id'    => !empty($request->client_id) ? $request->client_id : (!empty($client->id) ? $client->id : null),
             'partner_id'   => $request->input('partner_id'),
             'product_id'   => $request->input('product_id'),
             'solution_id'  => $request->input('solution_id'),
@@ -338,27 +335,25 @@ class RFQController extends Controller
 
         Notification::send($users, new RfqCreate($name, $rfq_code));
 
+        $rfq = RFQ::with('rfqProducts')->where('rfq_code', $rfq_code)->first();
         $data = [
-            'name'         => $name,
-            'sku_code'     => !empty($product->sku_code) ?? $product->sku_code,
-            'product_name' => $product_name,
-            'phone'        => $request->input('phone'),
-            'qty'          => $request->input('qty'),
-            'company_name' => $request->input('company_name'),
-            'address'      => $request->input('address'),
-            'message'      => $request->input('message'),
-            'rfq_code'     => $rfq_code,
-            'email'        => $request->input('email'),
-            'country'      => $request->input('country'),
-            'link'         => route('single-rfq.show', $rfq_code),
+            'name'          => $rfq->name,
+            'product_names' => $rfq->rfqProducts,
+            'phone'         => $rfq->phone,
+            'qty'           => $rfq->qty,
+            'company_name'  => $rfq->company_name,
+            'address'       => $rfq->address,
+            'message'       => $rfq->message,
+            'rfq_code'      => $rfq->rfq_code,
+            'email'         => $rfq->email,
+            'country'       => $rfq->country,
+            'link'          => route('single-rfq.show', $rfq->rfq_code),
         ];
-        // dd($rfq_code);
-        // dd($request->all());
         try {
-            Mail::to($request->email)->send(new RFQNotificationClientMail($data));
+            // Mail::to($request->email)->send(new RFQNotificationClientMail($data));
             sleep(1); // Delay in seconds
             foreach ($user_emails as $email) {
-                Mail::to($email)->send(new RFQNotificationAdminMail($data));
+                Mail::to($email)->send(new RFQConfirmationMail($data));
                 sleep(1);
             }
         } catch (\Exception $e) {
@@ -368,8 +363,6 @@ class RFQController extends Controller
         session()->put("last_form_submission_{$userIp}", now());
         Session::flash('success', 'Your RFQ has been submitted successfully.');
         // Toastr::success('Your RFQ has been submitted successfully.');
-
-
         return redirect()->back();
     }
 
@@ -481,38 +474,25 @@ class RFQController extends Controller
             User::whereIn('email', $user_emails)->get(),
             new RfqCreate($name, $rfq_code)
         );
-        $productNames = '';
-        foreach ($request->product_name as $key => $item) {
-            $productNames .= ($key + 1) . '. ' . $item;
-            if ($key < count($request->product_name) - 1) {
-                $productNames .= ', ';
-            }
-        }
-        $qty = '';
-        foreach ($request->qty as $key => $item) {
-            $productNames .= ($key + 1) . '. ' . $item;
-            if ($key < count($request->qty) - 1) {
-                $productNames .= ', ';
-            }
-        }
-        $data = [
-            'name'         => $name,
-            'product_name' => $productNames,
-            'phone'        => $request->phone,
-            'qty'          => $qty,
-            'company_name' => $request->company_name,
-            'address'      => $request->address,
-            'message'      => $request->message,
-            'rfq_code'     => $rfq_code,
-            'email'        => $request->email,
-            'country'      => $request->country,
-            'link'         => route('single-rfq.show', $rfq_code),
-        ];
 
+        $rfq = RFQ::with('rfqProducts')->where('id', $rfq_id)->first();
+        $data = [
+            'name'          => $rfq->name,
+            'product_names' => $rfq->rfqProducts,
+            'phone'         => $rfq->phone,
+            'qty'           => $rfq->qty,
+            'company_name'  => $rfq->company_name,
+            'address'       => $rfq->address,
+            'message'       => $rfq->message,
+            'rfq_code'      => $rfq->rfq_code,
+            'email'         => $rfq->email,
+            'country'       => $rfq->country,
+            'link'          => route('single-rfq.show', $rfq->rfq_code),
+        ];
         try {
-            Mail::to($request->email)->send(new RFQNotificationClientMail($data));
+            // Mail::to($request->email)->send(new RFQNotificationClientMail($data));
             foreach ($user_emails as $email) {
-                Mail::to($email)->send(new RFQNotificationAdminMail($data));
+                Mail::to($email)->send(new RFQConfirmationMail($data));
             }
         } catch (\Exception $e) {
             Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
@@ -838,8 +818,7 @@ class RFQController extends Controller
     public function destroy($id)
     {
 
-        $rfq = RFQ::find($id);
-
+        $rfq = RFQ::with('rfqProducts', 'quotationProducts')->find($id);
         if (File::exists(public_path('storage/') . $rfq->image)) {
             File::delete(public_path('storage/') . $rfq->image);
         }
@@ -1193,5 +1172,131 @@ class RFQController extends Controller
         ]);
         Toastr::success('Proof of Payment uploaded Succssfully.');
         return redirect()->back();
+    }
+
+    // public function rfqApprove($id)
+    // {
+    //     $rfq = RFQ::with('rfqProducts')->where('rfq_code', $id)->first();
+
+    //     if (!$rfq) {
+    //         Session::flash('error', 'This RFQ has been rejected already by an admin.');
+    //         return redirect()->route('admin.rfq.index');
+    //     } else {
+    //         if ($rfq->confirmation == 'approved') {
+    //             return redirect()->route('admin.rfq.index');
+    //         } else {
+    //             $users = User::whereJsonContains('department', ['business', 'logistics'])->get();
+    //             $user_emails = User::whereJsonContains('department', ['business'])
+    //                 ->where(function ($query) {
+    //                     $query->where('role', 'manager')
+    //                         ->orWhere('role', 'admin');
+    //                 })
+    //                 ->pluck('email')
+    //                 ->toArray();
+
+    //             Notification::send($users, new RfqCreate($rfq->name, $rfq->rfq_code));
+
+    //             $data = [
+    //                 'name'          => $rfq->name,
+    //                 'product_names' => $rfq->rfqProducts,
+    //                 'phone'         => $rfq->phone,
+    //                 'qty'           => $rfq->qty,
+    //                 'company_name'  => $rfq->company_name,
+    //                 'address'       => $rfq->address,
+    //                 'message'       => $rfq->message,
+    //                 'rfq_code'      => $rfq->rfq_code,
+    //                 'email'         => $rfq->email,
+    //                 'country'       => $rfq->country,
+    //                 'link'          => route('single-rfq.show', $rfq->rfq_code),
+    //             ];
+
+    //             try {
+    //                 $rfq->update(['confirmation' => 'approved']);
+    //                 Mail::to($rfq->email)->send(new RFQNotificationClientMail($data));
+    //                 sleep(1); // Delay in seconds
+    //                 foreach ($user_emails as $email) {
+    //                     Mail::to($email)->send(new RFQNotificationAdminMail($data));
+    //                     sleep(1);
+    //                 }
+    //             } catch (\Exception $e) {
+    //                 Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
+    //                 Session::flash('error', 'Email sending failed: ' . $e->getMessage());
+    //             }
+    //             Session::flash('success', 'RFQ has been approved successfully.');
+    //         }
+    //     }
+    //     return redirect()->route('admin.rfq.index');
+    // }
+
+    public function rfqApprove($id)
+    {
+        $rfq = RFQ::with('rfqProducts')->where('rfq_code', $id)->first();
+
+        if (!$rfq) {
+            Session::flash('error', 'This RFQ has been rejected already by an admin.');
+            return redirect()->route('admin.rfq.index');
+        }
+
+        if ($rfq->confirmation == 'approved') {
+            Session::flash('info', 'This RFQ is already approved by an admin.');
+            return redirect()->route('admin.rfq.index');
+        }
+
+        // Get users and emails
+        $users = User::whereJsonContains('department', ['business', 'logistics'])->get();
+        $user_emails = User::whereJsonContains('department', ['business'])
+            ->whereIn('role', ['manager', 'admin'])
+            ->pluck('email')
+            ->toArray();
+
+        // Send internal notification
+        Notification::send($users, new RfqCreate($rfq->name, $rfq->rfq_code));
+        // Email data
+        $data = [
+            'name'          => $rfq->name,
+            'product_names' => $rfq->rfqProducts,
+            'phone'         => $rfq->phone,
+            'qty'           => $rfq->qty,
+            'company_name'  => $rfq->company_name,
+            'address'       => $rfq->address,
+            'message'       => $rfq->message,
+            'rfq_code'      => $rfq->rfq_code,
+            'email'         => $rfq->email,
+            'country'       => $rfq->country,
+            'link'          => route('single-rfq.show', $rfq->rfq_code),
+        ];
+        try {
+            $rfq->update(['confirmation' => 'approved']);
+            // Email client
+            Mail::to($rfq->email)->send(new RFQNotificationClientMail($data));
+            // Email admins (you should ideally queue this)
+            foreach ($user_emails as $email) {
+                Mail::to($email)->send(new RFQNotificationAdminMail($data));
+            }
+            Session::flash('success', 'RFQ has been approved successfully.');
+        } catch (\Exception $e) {
+            Log::error('Email sending failed: ' . $e->getMessage());
+            Session::flash('error', 'RFQ approved, but email sending failed.');
+        }
+        return redirect()->route('admin.rfq.index');
+    }
+
+    public function rfqReject($id)
+    {
+        $rfq = RFQ::with('rfqProducts', 'quotationProducts')->where('rfq_code', $id)->first();
+
+        if (!$rfq) {
+            Session::flash('error', 'RFQ has been rejected already.');
+            return redirect()->route('admin.rfq.index');
+        }
+
+        if ($rfq->confirmation == 'approved') {
+            Session::flash('warning', 'This RFQ has been approved by an admin already.');
+            return redirect()->route('admin.rfq.index');
+        }
+
+        $rfq->delete();
+        Session::flash('success', 'RFQ has been rejected successfully.');
+        return redirect()->route('admin.rfq.index');
     }
 }

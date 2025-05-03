@@ -237,7 +237,7 @@
                                                         <span>Brand</span>
                                                     </div>
                                                 </a>
-                                                <a href="{{ route('category.index') }}" class="btn navigation_btn"
+                                                <a href="{{ route('admin.category.index') }}" class="btn navigation_btn"
                                                     style="width: 120px;">
                                                     <div class="d-flex align-items-center">
                                                         <i class="fas fa-plus me-1" style="font-size: 11px;"></i>

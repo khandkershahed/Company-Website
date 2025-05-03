@@ -249,6 +249,7 @@
             var name = $(this).data('name');
             var quantity = $(this).data('quantity');
             var button = $('.cart_button' + id);
+            var button_text = $('.cart_button_text' + id);
             var cart_header = $('.miniRFQQTY');
             var offcanvasRFQ = $('.offcanvasRFQ');
 
@@ -271,21 +272,34 @@
                             title: 'Product Already in RFQ List',
                             text: 'This product is already in your added RFQ List.',
                         });
+
                     } else {
                         // Product added to the cart successfully
                         cart_header.empty();
-                        cart_header.append(
-                            '<span class="miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
-                            response.cartHeader + '</span>'
-                        );
+                        // cart_header.append(
+                        //     '<span class="miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
+                        //     response.cartHeader + '</span>'
+                        // );
+                        if (response.cartHeader > 0) {
+                            if (response.cartHeader > 1) {
+                                cart_header.append('' + response.cartHeader +
+                                    ' Item(s) Added');
+                            } else {
+                                cart_header.append('' + response.cartHeader +
+                                    ' Item Added');
+                            }
+                        } else {
+                            cart_header.append('Ask Query');
+                        }
                         button.empty();
-                        button.append(); // Update button, if needed
                         Swal.fire({
                             icon: 'success',
                             title: 'Added To RFQ Successfully!',
                             showConfirmButton: false,
                             timer: 1500
                         });
+                        button_text.html('✓ Added'); // Update button, if needed
+                        offcanvasRFQ.offcanvas('show');
                         offcanvasRFQ.html(response.html);
                     }
                 },
@@ -297,6 +311,22 @@
 
 
 
+
+    });
+
+    $(document).ready(function() {
+        // Initialize modals for all products
+        $('[data-bs-toggle="modal"]').each(function() {
+            const targetId = $(this).data('bs-target');
+            const modal = new bootstrap.Modal(document.getElementById(targetId.replace('#', '')));
+        });
+
+        // Handle modal triggering (optional)
+        $('.search-btn-price').on('click', function() {
+            var target = $(this).data('bs-target');
+            var modal = new bootstrap.Modal(document.getElementById(target.replace('#', '')));
+            modal.show();
+        });
     });
 </script>
 
@@ -336,10 +366,19 @@
             dataType: 'json',
             success: function(data) {
                 cart_header.empty();
-                cart_header.append(
-                    '<span class="p-1 text-center text-white bg-black rounded-2 miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
-                    data.cartHeader + '</span>'
-                );
+                // cart_header.append(
+                //     '<span class="p-1 text-center text-white bg-black rounded-2 miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
+                //     data.cartHeader + 'RFQ Added</span>'
+                // );
+                if (data.cartHeader > 0) {
+                    if (data.cartHeader > 1) {
+                        cart_header.append('' + data.cartHeader + ' Item(s) Added');
+                    } else {
+                        cart_header.append('' + data.cartHeader + ' Item Added');
+                    }
+                } else {
+                    cart_header.append('Ask Query');
+                }
                 // button.empty();
                 // button.append(); // Update button, if needed
                 Swal.fire({
