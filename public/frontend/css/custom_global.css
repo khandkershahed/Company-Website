@@ -1,12 +1,12 @@
-@font-face {
+/* @font-face {
     font-family: "ngenit-custom-Regular";
     src: url("../css/font/ngenit-custom-Regular.woff2") format("woff2"),
         url("../css/font/ngenit-custom-Regular.woff") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-}
-
+} */
+@import url('https://fonts.googleapis.com/css2?family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
@@ -23,7 +23,8 @@
     --border-color: #eee;
     --secoandaryborder-color: #bbbbbb;
     --custom-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    --primary-font: "ngenit-custom-Regular";
+    /* --primary-font: "ngenit-custom-Regular"; */
+    --primary-font: "Victor Mono", monospace;
     --number-font: "Poppins", sans-serif;
     --section-title-font-size: 1.75rem;
     /*28px*/
@@ -50,7 +51,8 @@
         --border-color: #eee;
         --secoandaryborder-color: #bbbbbb;
         --custom-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        --primary-font: "ngenit-custom-Regular";
+        --primary-font: "Victor Mono", monospace;
+        /* --primary-font: "ngenit-custom-Regular"; */
         --number-font: "Poppins", sans-serif;
         --section-title-font-size: 1.5rem;
         /*28px*/
@@ -78,7 +80,8 @@
         --border-color: #eee;
         --secoandaryborder-color: #bbbbbb;
         --custom-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        --primary-font: "ngenit-custom-Regular";
+        --primary-font: "Victor Mono", monospace;
+        /* --primary-font: "ngenit-custom-Regular"; */
         --number-font: "Poppins", sans-serif;
         --section-title-font-size: 1.5rem;
         /*28px*/
@@ -16713,7 +16716,8 @@ nav > div a.nav-item.nav-link.active:after {
 .common_button3 {
     padding: 5px 22px;
     cursor: pointer;
-    font-family: "ngenit-custom-Regular";
+    /* font-family: "ngenit-custom-Regular"; */
+    font-family: "Victor Mono", monospace;
     font-size: 18px;
     font-weight: 500;
     text-align: center;
@@ -16953,7 +16957,8 @@ ul {
 .common_button2 {
     padding: 15px 20px;
     cursor: pointer;
-    font-family: "ngenit-custom-Regular";
+    font-family: "Victor Mono", monospace;
+    /* font-family: "ngenit-custom-Regular"; */
     font-size: 13px;
     font-weight: 500;
     text-align: center;
