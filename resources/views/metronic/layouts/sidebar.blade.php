@@ -76,7 +76,11 @@
                                 ],
                                 [
                                     'title' => 'Category Management',
-                                    'routes' => ['admin.category.index', 'admin.category.create', 'admin.category.edit'],
+                                    'routes' => [
+                                        'admin.category.index',
+                                        'admin.category.create',
+                                        'admin.category.edit',
+                                    ],
                                     'route' => 'admin.category.index',
                                 ],
                                 // [
@@ -128,11 +132,19 @@
                                 'admin.solution-cms.create',
                                 'admin.solution-cms.edit',
                                 'admin.site-content.index',
+                                'admin.job-post.index',
+                                'admin.job-post.create',
+                                'admin.job-post.edit',
                             ],
                             'subMenu' => [
                                 [
                                     'title' => 'Pages',
-                                    'routes' => ['admin.site-content.index'],
+                                    'routes' => [
+                                        'admin.site-content.index',
+                                        'admin.job-post.index',
+                                        'admin.job-post.create',
+                                        'admin.job-post.edit',
+                                    ],
                                     'route' => 'admin.site-content.index',
                                 ],
                                 [
@@ -162,11 +174,11 @@
                         [
                             'title' => 'HR & Admin',
                             'icon' => 'fa-duotone fa-user-tie fs-3',
-                            'routes' => ['admin.hrDashboard.index',],
+                            'routes' => ['admin.hrDashboard.index'],
                             'subMenu' => [
                                 [
                                     'title' => 'Dashboard',
-                                    'routes' => ['admin.hrDashboard.index',],
+                                    'routes' => ['admin.hrDashboard.index'],
                                     'route' => 'admin.hrDashboard.index',
                                 ],
                             ],
