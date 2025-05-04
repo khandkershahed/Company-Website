@@ -79,7 +79,7 @@
                         <x-metronic.label for="description"
                             class="col-form-label fw-bold fs-6 required">{{ __('Job Description') }}
                         </x-metronic.label>
-                        <textarea name="description" id="description" rows="8" class="ckeditor mb-2 form-control" placeholder="Description">{{ old('description') }}
+                        <textarea name="description"  id="tinymce-editor" rows="8" class="mb-2 form-control" placeholder="Description">{{ old('description') }}
                         </textarea>
                     </div>
                 </div>
