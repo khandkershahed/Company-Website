@@ -26,15 +26,15 @@
                     @foreach ($jobs as $job)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $jobs->name }}</td>
-                            <td>{{ $jobs->deadline }}</td>
+                            <td>{{ $job->name }}</td>
+                            <td>{{ $job->deadline }}</td>
                             <td>
-                                <a href="{{ $jobs->link }}">
+                                <a href="{{ $job->link }}">
                                     <i
                                         class="fa-solid fa-arrow-up-right-from-square main_color"></i>
                                 </a>
                             </td>
-                            <td>{{ $jobs->category }}</td>
+                            <td>{{ $job->category }}</td>
 
                             <td>
                                 <a href="{{ route('admin.job-post.edit', $job->id) }}"
