@@ -55,6 +55,12 @@
                         {{-- Inner Page Tab --}}
                         <!-- Header Navigation Btn -->
                         <div>
+                            <a href="{{ route('admin.job-post.index') }}" class="btn navigation_btn">
+                                <div class="d-flex align-items-center">
+                                    <i class="fa-solid fa-user-plus me-1" style="font-size: 12px;"></i>
+                                    <span>Job Post</span>
+                                </div>
+                            </a>
                             <a href="{{ route('blog.index') }}" class="btn navigation_btn">
                                 <div class="d-flex align-items-center">
                                     <i class="fa-solid fa-business-time me-1" style="font-size: 12px;"></i>
@@ -277,6 +283,13 @@
                                                     <div class="d-flex align-items-center">
                                                         <i class="fas fa-plus me-1" style="font-size: 11px;"></i>
                                                         <span>SAS</span>
+                                                    </div>
+                                                </a>
+                                                <a href="{{ route('admin.job-post.index') }}" class="btn navigation_btn"
+                                                    style="width: 150px;">
+                                                    <div class="d-flex align-items-center">
+                                                        <i class="fas fa-user-plus me-1" style="font-size: 11px;"></i>
+                                                        <span>Job Post</span>
                                                     </div>
                                                 </a>
                                                 {{-- <a href="ngenitltd.com/admin/purchase" class="btn navigation_btn"

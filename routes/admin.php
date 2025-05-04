@@ -145,13 +145,16 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
             'brand'        => BrandController::class,
             'category'     => CategoryController::class,
             'blog'         => BlogController::class,
+            'job-post'     => JobController::class,
         ]
     );
     Route::resources(
         [
-            'contact'      => ContactController::class,
-        ]
+            'contact' => ContactController::class,
+        ],
+        ['except' => ['show', 'create']]
     );
+
     Route::post('template/store', [SolutionCMSController::class, 'templateStore'])->name('solution.template.add');
     Route::get('/rfqFilter', [RfqController::class, 'filterRFQ'])->name('rfq.filter');
     Route::get('web-setting', [WebSettingController::class, 'index'])->name('setting.index');
@@ -497,7 +500,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'solutionCard'               => SolutionCardController::class,
             'solutionDetails'            => SolutionDetailsController::class,
             'policy'                     => PolicyController::class,
-            'job'                        => JobController::class,
             'feature'                    => FeatureController::class,
             'brandPage'                  => BrandPageController::class,
             'country'                    => CountryController::class,

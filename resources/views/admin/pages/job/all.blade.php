@@ -131,15 +131,13 @@
                             <div class="table-responsive">
                                 <table class="datatable table jobDT table-striped table-bordered table-hover text-center">
                                     <thead
-                                        style="background-color: #ae0a46 !important;
-                                    color: white;">
+                                        style="background-color: #ae0a46 !important;color: white;">
                                         <tr>
                                             <th width="5%">Id</th>
                                             <th width="25%">Name</th>
                                             <th width="15%">Deadline</th>
                                             <th width="20%">Post Link</th>
                                             <th width="20%">Category</th>
-                                            {{-- <th width="14%">Experience</th> --}}
                                             <th width="15%" class="text-center">Actions</th>
                                         </tr>
                                     </thead>

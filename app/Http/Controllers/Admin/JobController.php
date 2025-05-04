@@ -6,6 +6,7 @@ use App\Models\Admin\Job;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\JobPost;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Validator;
 
@@ -18,8 +19,9 @@ class JobController extends Controller
      */
     public function index()
     {
-        $data['jobs'] = Job::get();
-        return view('admin.pages.job.all', $data);
+        $data['jobs'] = JobPost::get();
+        // return view('admin.pages.job.all', $data);
+        return view('metronic.pages.jobPost.index', $data);
     }
 
     /**
@@ -29,7 +31,7 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.job.add');
+        return view('metronic.pages.jobPost.create');
     }
 
     /**
@@ -55,13 +57,13 @@ class JobController extends Controller
         );
 
         $slug = Str::slug($request->name);
-        $count = Job::where('slug', $slug)->count();
+        $count = JobPost::where('slug', $slug)->count();
         if ($count > 0) {
             $slug = $slug . '-' . date('ymdis') . '-' . rand(0, 999);
         }
         $data['slug'] = $slug;
         if ($validator->passes()) {
-            Job::create([
+            JobPost::create([
                 'name'         => $request->name,
                 'slug'         => $data['slug'],
                 'vacancy'      => $request->vacancy,
@@ -101,8 +103,9 @@ class JobController extends Controller
      */
     public function edit($id)
     {
-        $data['job'] = Job::find($id);
-        return view('admin.pages.job.edit', $data);
+        $data['job'] = JobPost::find($id);
+        // return view('admin.pages.job.edit', $data);
+        return view('metronic.pages.jobPost.edit', $data);
     }
 
     /**
@@ -114,7 +117,7 @@ class JobController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $job = Job::where('id', $id)->first();
+        $job = JobPost::where('id', $id)->first();
         $validator = Validator::make(
             $request->all(),
             [
@@ -132,7 +135,7 @@ class JobController extends Controller
             $data['slug'] = $job->slug;
         } else {
             $slug = Str::slug($request->name);
-            $count = Job::where('slug', $slug)->count();
+            $count = JobPost::where('slug', $slug)->count();
             if ($count > 0) {
                 $slug = $slug . '-' . date('ymdis') . '-' . rand(0, 999);
             }
@@ -140,7 +143,7 @@ class JobController extends Controller
         }
 
         if ($validator->passes()) {
-            Job::findOrFail($id)->update([
+            JobPost::findOrFail($id)->update([
                 'name'         => $request->name,
                 'slug'         => $data['slug'],
                 'vacancy'      => $request->vacancy,
@@ -169,6 +172,6 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        Job::findOrFail($id)->delete();
+        JobPost::findOrFail($id)->delete();
     }
 }
