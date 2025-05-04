@@ -671,16 +671,16 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 px-0">
-                                                        <div class="header-bottom-link py-5">
+                                                        <div class="header-bottom-link py-3">
                                                             <div class="row px-5">
-                                                                <div class="col-lg-2 ps-3 pe-0">
+                                                                <div class="col-lg-2 pt-2 ps-3 pe-0">
                                                                     <a href="{{ route('shop.html') }}"
                                                                         style="border-top: 3px solid #ae0a46;">
                                                                         NGen IT Showcase <i
                                                                             class="fa-solid fa-arrow-right"></i>
                                                                     </a>
                                                                 </div>
-                                                                <div class="col-lg-2">
+                                                                <div class="col-lg-2 pt-2">
                                                                     <a class="ms-3"
                                                                         href="{{ route('all.category') }}"
                                                                         style="border-top: 3px solid #ae0a46;">
@@ -688,14 +688,14 @@
                                                                             class="fa-solid fa-arrow-right"></i>
                                                                     </a>
                                                                 </div>
-                                                                <div class="col-lg-6 ps-2 text-center">
+                                                                <div class="col-lg-6 pt-2 ps-2 text-center">
                                                                     <a class="" href="{{ route('all.brand') }}"
                                                                         style="border-top: 3px solid #ae0a46;">
                                                                         View All Brands <i
                                                                             class="fa-solid fa-arrow-right"></i>
                                                                     </a>
                                                                 </div>
-                                                                <div class="col-lg-2">
+                                                                <div class="col-lg-2 pt-2">
 
                                                                 </div>
                                                             </div>
@@ -880,13 +880,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-12 px-0">
-                                                        <div class="header-bottom-link py-5">
+                                                        <div class="header-bottom-link py-3">
                                                             <div class="row px-5 align-items-center">
                                                                 <div class="col-lg-3 ps-3 pe-0">
                                                                     <div class="m-0 d-flex"
                                                                         style="font-family: 'Libre Franklin', sans-serif;">
-                                                                        <h2>Help </h2>
-                                                                        <h2>
+                                                                        <h2 class="mb-0">Help </h2>
+                                                                        <h2 class="mb-0">
                                                                             <i class="fa-solid fa-arrow-right-long ps-3"
                                                                                 style="font-size: 24px;color: #ae0a46;"></i>
                                                                         </h2>
