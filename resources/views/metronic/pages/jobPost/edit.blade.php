@@ -21,8 +21,9 @@
         </div>
         <div class="card-body pt-0">
 
-            <form class="form" action="{{ route('admin.job-post.store') }}" method="POST" enctype="multipart/form-data">
+            <form class="form" action="{{ route('admin.job-post.update',$job->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <div class="col-lg-6 mb-7">
                         <x-metronic.label for="name"

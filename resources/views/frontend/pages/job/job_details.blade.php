@@ -37,7 +37,7 @@
                     <div class="job_details_content">
                         <div>
                             <h6>Vacancy</h6>
-                            <p>{{ $job->vacancy }}</p>
+                            <p>{{ $job->vacancy }}</p> 
                         </div>
                         <div>
                             <p>{!! ($job->description) !!}</p>
