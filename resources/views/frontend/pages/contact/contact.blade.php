@@ -1,5 +1,6 @@
 @extends('frontend.master')
 @section('content')
+
     <!--======// Header Title //======-->
     <section class="common_product_header" style="background:url('{{ asset('frontend/images/Contact.jpg') }}');">
         <div class="container ">

@@ -11,8 +11,9 @@ use App\Models\Admin\Feature;
 use App\Models\Admin\Product;
 use App\Models\Admin\Category;
 use App\Models\Admin\Industry;
-use App\Models\Admin\SolutionDetail;
 use App\Models\Admin\TechGlossy;
+use Illuminate\Support\Facades\URL;
+use App\Models\Admin\SolutionDetail;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
@@ -96,12 +97,9 @@ class AppServiceProvider extends ServiceProvider
                     ->first(['id', 'badge', 'title', 'image', 'created_at', 'created_by']));
             }
 
-
-
-
-
-
-
+            if (app()->environment('production')) {
+                URL::forceScheme('https');
+            }
 
 
 

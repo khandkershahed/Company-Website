@@ -16,6 +16,7 @@
 @endphp
 
 
+<link rel="canonical" href="{{ url()->current() }}" />
 
 <link rel="icon" type="image/x-icon"
     href="{{ !empty($setting->favicon) ? asset('storage/' . $setting->favicon) : url('upload/no_image.jpg') }}">
