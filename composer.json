@@ -16,7 +16,6 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "laravelcollective/html": "^6.3",
         "php-flasher/flasher-laravel": "^1.15",
         "rats/zkteco": "^002.0",
         "realrashid/sweet-alert": "^5.1",
