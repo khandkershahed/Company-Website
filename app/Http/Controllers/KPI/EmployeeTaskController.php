@@ -26,7 +26,8 @@ class EmployeeTaskController extends Controller
         public function employeeTasks($employeeId)
         {
             $data = [
-                'tasks' => Task::where('employee_id' , $employeeId)->get(),
+                'tasks' => '',
+                // 'tasks' => Task::where('employee_id' , $employeeId)->get(),
             ];
             $view = view('admin.pages.employeeTask.partials.monthly_task_table', $data)->render();
             return response()->json(['html' => $view]);
