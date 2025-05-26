@@ -1,20 +1,20 @@
 <!--=======// Footer Section//=========-->
-<footer class="container-fluid p-0" style="background: #222222;">
+<footer class="p-0 container-fluid" style="background: #222222;">
     <!-- footyer gradient -->
     <div class="footer_top">
         <p class="mb-0">We determined to pace with Next Generation Information Technology.</p>
     </div>
     <!-- main footer -->
-    <div class="footer_middle pt-3">
+    <div class="pt-3 footer_middle">
         <div class="container pb-3">
             <div class="row">
-                <div class="row footer_middle_wrapper my-5">
+                <div class="my-5 row footer_middle_wrapper">
                     <!-- item -->
                     <div class="col-lg-6 col-md-6 col-sm-12 footer_item_wrapper">
                         <!-- title -->
                         <h6><span style="border-bottom: 5px solid #ae0a46;">New</span>sletter</h6>
                         <!-- text -->
-                        <p class="footer_text pt-4">
+                        <p class="pt-4 footer_text">
                             Sign up to receive the IT content that matters most to you.
                             You can update your preferences or unsubscribe any time.
                         </p>
@@ -25,9 +25,9 @@
                             <div class="input-group w-75 footer_subscribe">
                                 <input type="email" class="form-control" placeholder="Enter your email"
                                     style="height: 37px;">
-                                <span class="input-group-btns ml-1" style="width:30%;">
+                                <span class="ml-1 input-group-btns" style="width:30%;">
                                     <button class="newsletter-btns" type="submit"
-                                        style="line-height: 36px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">Subscribe</button>
+                                        style="height: 44px; line-height: 36px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">Subscribe</button>
                                 </span>
                         </form>
                     </div>
@@ -38,7 +38,7 @@
                     <h6 class="home_title_text" style="text-align: start;"><span
                             style="border-bottom: 5px solid #ae0a46;">Abo</span>ut & Contact</h6>
                     <!-- nav list -->
-                    <div class="footer_nav_list pt-lg-4 pt-2">
+                    <div class="pt-2 footer_nav_list pt-lg-4">
                         <ul class="footer_link_text">
                             <li>
                                 <a href="{{route('about')}}">Company</a> & <a
@@ -63,7 +63,7 @@
                     <h6 class="home_title_text" style="text-align: start;"><span
                             style="border-bottom: 5px solid #ae0a46;">Kno</span>wledge Base</h6>
                     <!-- nav list -->
-                    <div class="footer_nav_list pt-lg-4 pt-2">
+                    <div class="pt-2 footer_nav_list pt-lg-4">
                         <ul class="footer_link_text">
                             <li>
                                 <a href="{{ route('all.blog') }}">NGEN IT Blogs</a>
@@ -86,7 +86,7 @@
                     <h6 class="home_title_text" style="text-align: start;"><span
                             style="border-bottom: 5px solid #ae0a46;">Pro</span>duct & Services</h6>
                     <!-- nav list -->
-                    <div class="footer_nav_list pt-lg-4 pt-2">
+                    <div class="pt-2 footer_nav_list pt-lg-4">
                         <ul class="footer_link_text">
                             <li>
                                 <a href="{{ route('software.common') }}">Software</a> & <a
@@ -117,8 +117,8 @@
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
                 <div class="trial-block" id="ContactUs">
-                    <div class="section-title text-center">
-                        <span class="section-title-line section-title-line"></span>
+                    <div class="text-center section-title">
+                        <span class="section-title-line"></span>
                     </div>
                     <div class="social-overlap process-scetion">
                         <div class="container">
@@ -147,7 +147,7 @@
         <div class="row px-lg-4 px-sm-0 align-items-center">
             <div class="col-lg-6 text-lg-start text-sm-center">
                 <div>
-                    <p class="m-0 p-0 text-white">&copy {{ date('Y') }} NGen IT</p>
+                    <p class="p-0 m-0 text-white">&copy {{ date('Y') }} NGen IT</p>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -175,13 +175,13 @@
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <div class="modal-header py-2">
+            <div class="py-2 modal-header">
                 <img src="http://165.22.48.109/ngenit/upload/logoimage/1766111041030883.png" width="70px"
                     height="50px" alt="">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="bg-light p-3">
+                <div class="p-3 bg-light">
                     <h1 class="text-center">This website uses cookies</h1>
                     <p>DHI A/S, our affiliates, suppliers and business partners use cookies to provide the best possible
                         service to our website users. Cookies are used for:</p>
@@ -193,8 +193,8 @@
                     </ul>
 
 
-                    <div class="card border-0 shadow-lg">
-                        <div class="d-flex justify-content-between py-3 px-3  border-0">
+                    <div class="border-0 shadow-lg card">
+                        <div class="px-3 py-3 border-0 d-flex justify-content-between">
                             <div class="form-check form-check-inline form-check-reverse">
                                 <div class="row d-flex align-items-center">
                                     <div class="col-sm-12">
@@ -239,25 +239,25 @@
                         </div>
                     </div>
                     {{--  --}}
-                    <div class="card border-0">
+                    <div class="border-0 card">
                         <p class="px-3" id="marketing" style="display: none">
                             Marketing allWe will not place cookies from this website unless you consent hereto (except for technical
                             cookies
                         </p>
                     </div>
-                    <div class="card border-0">
+                    <div class="border-0 card">
                         <p class="px-3" id="functional" style="display: none">
                             functional allWe will not place cookies from this website unless you consent hereto (except for technical
                             cookies
                         </p>
                     </div>
-                    <div class="card border-0">
+                    <div class="border-0 card">
                         <p class="px-3" id="statistical" style="display: none">
                             statistical allWe will not place cookies from this website unless you consent hereto (except for technical
                             cookies
                         </p>
                     </div>
-                    <div class="card border-0">
+                    <div class="border-0 card">
                         <p class="px-3" id="normaal" style="display: none">
                             normaal allWe will not place cookies from this website unless you consent hereto (except for technical
                             cookies
@@ -270,7 +270,7 @@
                     <a href=""><button class="common_button2 effect01" id="texts"
                             style="display:none">Save
                             Setting</button></a>
-                    <a href=""><button class="common_button_accept effect01 mt-2">Accept All</button></a>
+                    <a href=""><button class="mt-2 common_button_accept effect01">Accept All</button></a>
                 </div>
 
                 {{-- Accordion --}}
