@@ -4,14 +4,14 @@
     <div class="container">
         <div class="row justify-content-center align-items-center g-2">
             <div class="col-lg-8">
-                <div class="mx-auto my-5 card rounded-2 shadow-sm" style="border: 1px solid #eee;">
-                    <div class="card-header rfq-header border-0">
+                <div class="mx-auto my-5 shadow-sm card rounded-2" style="border: 1px solid #eee;">
+                    <div class="border-0 card-header rfq-header">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h3 class="text-white mb-0">Request for Quotation</h3>
-                            <div class="d-flex align-items-center justify-content-end align-items-center">
+                            <h3 class="mb-0 text-white">Request for Quotation</h3>
+                            <div class="d-flex align-items-center justify-content-end">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                    <label class="form-check-label fw-normal text-white" for="flexCheckChecked">
+                                    <label class="text-white form-check-label fw-normal" for="flexCheckChecked">
                                         <small>RFQ by Case</small>
                                     </label>
                                     <i class="fa-solid fa-question" data-toggle="tooltip"
@@ -38,18 +38,24 @@
                             <div id="projectStep" class="p-3">
                                 <div class="row gx-2">
                                     <div class="col-lg-12" id="inputRepeater">
-                                        <div class="row align-items-center mb-5 input-row mt-3">
-                                            <div class="col-lg-12 mx-0">
+                                        <div class="mt-3 mb-5 row align-items-center input-row">
+                                            <div class="mx-0 col-lg-12">
                                                 <div class="rfq-repeater parent-container">
                                                     <div class="rfq-title-btns" id="productRowsContainer">
                                                         @if ($cart_products->count() > 0)
                                                             @foreach ($cart_products as $key => $cart_product)
-                                                                <div class="row gx-2 align-items-center product-row mb-2">
-                                                                    <div class="col-lg-10 col-9">
+                                                                <div class="mb-2 row gx-2 align-items-center product-row">
+                                                                    <div class="col-lg-1 serial-number">
+                                                                        <span
+                                                                            class="border-0 d-flex justify-content-center form-control form-control-sm rounded-1">
+                                                                            1
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="mt-1 col-lg-9 col-10">
                                                                         <div>
                                                                             <input type="text" name="product_name[]"
                                                                                 value="{{ $cart_product->name }}"
-                                                                                class="form-control form-control-sm border-0 rounded-1 py-3"
+                                                                                class="py-3 border-0 form-control form-control-sm rounded-1"
                                                                                 placeholder="Product Title" required>
                                                                         </div>
                                                                     </div>
@@ -58,7 +64,7 @@
                                                                             <div class="pe-3">
                                                                                 <input name="qty[]" type="number"
                                                                                     value="1"
-                                                                                    class="form-control text-center form-control-sm border-0 rounded-1 py-3"
+                                                                                    class="py-3 border-0 text-end form-control form-control-sm rounded-1"
                                                                                     placeholder="QTY..">
                                                                             </div>
                                                                             <a href="javascript:void(0)" class="delete-btn"
@@ -72,16 +78,26 @@
                                                             @endforeach
                                                         @else
                                                             <div class="row gx-2 align-items-center product-row">
-                                                                <div class="col-lg-9 col-10 mt-1">
-                                                                    <input name="product_name[]" class="form-control form-control-sm border-0 rounded-1 py-3"
+                                                                <div class="col-lg-1 serial-number">
+                                                                    <span
+                                                                        class="border-0 d-flex justify-content-center align-items-center form-control form-control-sm rounded-1">
+                                                                        1
+                                                                    </span>
+                                                                </div>
+                                                                <div class="mt-1 col-lg-9 col-10">
+                                                                    <input name="product_name[]"
+                                                                        class="py-3 border-0 form-control form-control-sm rounded-1"
                                                                         placeholder="Product Title *" required>
                                                                 </div>
-                                                                <div class="col-lg-2 col-1">
-                                                                    <input name="qty[]" type="number" class="form-control form-control-sm border-0 rounded-1 py-3"
+                                                                <div class="col-lg-1 col-1">
+                                                                    <input name="qty[]" type="number"
+                                                                    value="1"
+                                                                        class="py-3 border-0 text-end form-control form-control-sm rounded-1"
                                                                         placeholder="QTY.. *">
                                                                 </div>
                                                                 <div class="col-lg-1 col-1">
-                                                                    <a href="javascript:void(0)" class="delete-btn" onclick="deleteRow(this)">
+                                                                    <a href="javascript:void(0)" class="delete-btn"
+                                                                        onclick="deleteRow(this)">
                                                                         <i class="fa-regular fa-trash-can text-danger"></i>
                                                                     </a>
                                                                 </div>
@@ -91,9 +107,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
-                                                <div class="rfq-add-btns mt-2">
+                                                <div class="mt-2 rfq-add-btns">
                                                     <button type="button" class="rounded-1" onclick="addRow()">
-                                                        {{-- <i class="fa-solid fa-plus"></i> --}}
+                                                        <i class="fa-solid fa-plus"></i>
                                                         Add
                                                     </button>
                                                 </div>
@@ -129,13 +145,13 @@
                                                 <div class="col-lg-4">
                                                     <div class="mb-3">
                                                         <input name="budget" type="number"
-                                                            class="form-control form-control-sm border-0 rounded-1 py-3"
+                                                            class="py-3 border-0 form-control form-control-sm rounded-1"
                                                             placeholder="Tentative Budget.." style="height: 50px;">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <div class="mb-3">
-                                                        <select class="form-select form-select-sm select-inputs"
+                                                        <select class="w-100 form-select cst-select select-inputs"
                                                             name="project_status" data-placeholder="Select Project Status"
                                                             id="project_status">
                                                             <option>Current project status</option>
@@ -147,7 +163,7 @@
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <div class="mb-3">
-                                                        <select class="form-select form-select-sm select-inputs"
+                                                        <select class="w-100 form-select cst-select select-inputs"
                                                             name="project_status" data-placeholder="Select Project Status"
                                                             id="project_status">
                                                             <option>Tentetive Purchase Date</option>
@@ -215,10 +231,17 @@
                                         </div>
                                         <div id="toggle-content" style="display: none;" class="mb-4">
                                             <div class="row gx-2">
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <div class="mb-3">
-                                                        <select class="select-form-input w-100 form-select"
-                                                            name="country" required>
+                                                        <input name="end_user" type="text"
+                                                            class="py-3 border-0 form-control form-control-sm rounded-1"
+                                                            placeholder="End User *" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="mb-3">
+                                                        <select class="select-form-input w-100 cst-select form-select" name="country"
+                                                            required>
                                                             <option value="">Select Country</option>
                                                             <option value="Afghanistan">Afghanistan</option>
                                                             <option value="Åland Islands">Åland Islands</option>
@@ -498,9 +521,9 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <div class="mb-3">
-                                                        <select class=" w-100 form-select cst-select deliveryCity"
+                                                        <select class="w-100 form-select cst-select deliveryCity"
                                                             name="city">
                                                             <option value="">Select an option</option>
                                                             <option value="ny">New York</option>
@@ -549,17 +572,17 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <div class="mb-3">
                                                         <input name="delivery_zip_code" type="text"
-                                                            class="form-control form-control-sm border-0 rounded-1 py-3"
-                                                            placeholder="Your Zip Code">
+                                                            class="py-3 border-0 form-control form-control-sm rounded-1"
+                                                            placeholder="Zip Code *" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="mb-3">
                                                         <input name="delivery_location" type="text"
-                                                            class="form-control form-control-sm border-0 rounded-1 py-3"
+                                                            class="py-3 border-0 form-control form-control-sm rounded-1"
                                                             placeholder="Address (eg: house, road, block)">
                                                     </div>
                                                 </div>
@@ -571,7 +594,7 @@
 
                                 </div>
                                 <div class="pt-3 d-flex justify-content-between align-items-center">
-                                    <p class="fw-normal m-0 p-0">Please complete your contact details for further
+                                    <p class="p-0 m-0 fw-normal">Please complete your contact details for further
                                         communication
                                         needed!</p>
                                     <button type="button" id="nextButtonmain"
@@ -589,51 +612,51 @@
                             <div id="contactStep" style="display: none;">
                                 <div class="p-5">
                                     <div class="row">
-                                        <p class="fw-normal">Inquirers Contact Information</p>
+                                        <p class="fw-normal">Inquirer's Contact Information</p>
                                         <div class="col-lg-6">
                                             <div class="mb-4">
                                                 <input name="name" type="text"
-                                                    class="form-control form-control-sm border-0 rounded-1 py-3"
+                                                    class="py-3 border-0 form-control form-control-sm rounded-1"
                                                     placeholder="Full Name *" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-4">
                                                 <input name="designation" type="text"
-                                                    class="form-control form-control-sm border-0 rounded-1 py-3"
-                                                    placeholder="Your designation..">
+                                                    class="py-3 border-0 form-control form-control-sm rounded-1"
+                                                    placeholder="Designation..">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-4">
                                                 <input name="email" type="text"
-                                                    class="form-control form-control-sm border-0 rounded-1 py-3"
+                                                    class="py-3 border-0 form-control form-control-sm rounded-1"
                                                     placeholder="Email Id *" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-4">
                                                 <input name="phone" type="number"
-                                                    class="form-control form-control-sm border-0 rounded-1 py-3"
+                                                    class="py-3 border-0 form-control form-control-sm rounded-1"
                                                     placeholder="Contact  Number *"required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-4">
                                                 <input name="company_name" type="text"
-                                                    class="form-control form-control-sm border-0 rounded-1 py-3"
+                                                    class="py-3 border-0 form-control form-control-sm rounded-1"
                                                     placeholder="Company name *" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-4">
                                                 <input name="address" type="text"
-                                                    class="form-control form-control-sm border-0 rounded-1 py-3"
+                                                    class="py-3 border-0 form-control form-control-sm rounded-1"
                                                     placeholder="Company Address *">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="d-flex justify-content-between align-items-center mt-5">
+                                    <div class="mt-5 d-flex justify-content-between align-items-center">
                                         <button type="button" class="btn-color" onclick="prevStep()">
                                             <i class="pe-2 fa-solid fa-arrow-left-long"></i> Back
                                         </button>

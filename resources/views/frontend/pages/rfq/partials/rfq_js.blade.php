@@ -141,7 +141,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const requiredFields = ['name', 'email', 'phone', 'company_name'];
+        const requiredFields = ['name', 'email', 'phone', 'company_name','delivery_zip_code'];
         const submitButton = document.querySelector('button[type="submit"]');
 
         function checkFormFields() {
@@ -189,7 +189,13 @@
 
 
 <script>
-    // Function to add a new row to the repeater
+    function updateSerialNumbers() {
+        const serials = document.querySelectorAll('.product-row .serial-number span');
+        serials.forEach((span, index) => {
+            span.textContent = index + 1;
+        });
+    }
+
     function addRow() {
         var container = document.getElementById('productRowsContainer');
 
@@ -197,12 +203,15 @@
         newRow.classList.add('row', 'gx-2', 'align-items-center', 'product-row');
 
         newRow.innerHTML = `
-            <div class="col-lg-9 col-10 mt-1">
-                <input name="product_name[]" class="form-control form-control-sm border-0 rounded-1 py-3"
+            <div class="col-lg-1 serial-number">
+                <span class="border-0 d-flex justify-content-center form-control form-control-sm rounded-1">1</span>
+            </div>
+            <div class="mt-1 col-lg-9 col-10">
+                <input name="product_name[]" class="py-3 border-0 form-control form-control-sm rounded-1"
                     placeholder="Product Title *" required>
             </div>
-            <div class="col-lg-2 col-1">
-                <input name="qty[]" type="number" class="form-control form-control-sm border-0 rounded-1 py-3"
+            <div class="col-lg-1 col-1">
+                <input name="qty[]" value="1" type="number" class="py-3 border-0 text-end form-control form-control-sm rounded-1"
                     placeholder="QTY.. *">
             </div>
             <div class="col-lg-1 col-1">
@@ -213,18 +222,21 @@
         `;
 
         container.appendChild(newRow);
+        updateSerialNumbers(); // 🔄 Recalculate serial numbers
     }
 
-    // Function to delete a row from the repeater
     function deleteRow(button) {
-        // Remove the row containing the clicked delete button
         var row = button.closest('.product-row');
-        // row.remove();
         const rows = document.querySelectorAll('.product-row');
         if (rows.length > 1) {
             row.remove();
+            updateSerialNumbers(); // 🔄 Recalculate serial numbers
         } else {
             alert("At least one row is required.");
         }
     }
+
+    // Initial call if needed (optional)
+    document.addEventListener('DOMContentLoaded', updateSerialNumbers);
 </script>
+
