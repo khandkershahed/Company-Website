@@ -116,13 +116,40 @@
             console.error('Required elements not found.');
         }
     }
+
+    // function toggleEndUserDiv() {
+    //     const checkbox = document.getElementById("enduser");
+    //     const toggleContent = document.getElementById("toggle-content-enduser");
+
+    //     if (checkbox && toggleContent) {
+    //         toggleContent.style.display = checkbox.checked ? "block" : "none";
+    //     } else {
+    //         console.error('Required elements not found for End User.');
+    //     }
+    // }
+</script>
+<script>
+    function toggleEndUserDiv() {
+        const checkbox = document.getElementById("enduser");
+        const toggleContent = document.getElementById("toggle-content-enduser");
+
+        if (checkbox && toggleContent) {
+            // Only show the div when the checkbox is UNchecked
+            toggleContent.style.display = checkbox.checked ? "none" : "block";
+        } else {
+            console.error('Required elements not found for End User.');
+        }
+    }
+
+    // Run this once on page load to hide the div initially
+    window.addEventListener('DOMContentLoaded', toggleEndUserDiv);
 </script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const deliveryCity = document.querySelector('.deliveryCity');
         if (deliveryCity) {
-            deliveryCity.addEventListener('change', function () {
+            deliveryCity.addEventListener('change', function() {
                 const nextButton = document.querySelector('.nextButtonmain');
 
                 if (this.value !== '') {
@@ -140,8 +167,8 @@
 </script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const requiredFields = ['name', 'email', 'phone', 'company_name','delivery_zip_code'];
+    document.addEventListener('DOMContentLoaded', function() {
+        const requiredFields = ['name', 'email', 'phone', 'company_name', 'delivery_zip_code'];
         const submitButton = document.querySelector('button[type="submit"]');
 
         function checkFormFields() {
@@ -239,4 +266,3 @@
     // Initial call if needed (optional)
     document.addEventListener('DOMContentLoaded', updateSerialNumbers);
 </script>
-

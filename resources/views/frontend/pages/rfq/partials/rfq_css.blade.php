@@ -43,11 +43,11 @@
     }
 
     .rfq-add-btns button {
-        color: #ffffff;
-        background-color: #ae0a46;
+        color: #ae0a46;
+        background-color: #ffffff;
         border: 0;
         padding: 11px;
-        width: 70px;
+        width: 130px;
         height: 40px;
         border: 1px solid #ae0a46;
     }
@@ -302,5 +302,10 @@
         background-color: #fff !important;
         color: #ae0a46 !important;
         transition: all 0.8s ease-in-out;
+    }
+
+    .nav-tabs .nav-link:focus,
+    .nav-tabs .nav-link:hover {
+        border-radius: 60px;
     }
 </style>
