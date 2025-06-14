@@ -1,3 +1,9 @@
+<style>
+    .page-link {
+        height: 42px;
+        padding-top: 8px;
+    }
+</style>
 <div class="row mt-2" id="products-container">
     @foreach ($products as $product)
         <div class="custom-col-5 col-sm-6 col-md-4 brand_prduct">
@@ -15,10 +21,10 @@
 
                     <div class="content-section text-center py-3">
                         <a href="{{ route('product.details', $product->slug) }}" class="mb-2">
-                            <p class="pb-0 mb-0 text-muted brandpage_product_title mb-2">
+                            <p class="pb-0 text-muted brandpage_product_title mb-2">
                                 {{ Str::words($product->name, 15) }}</p>
                         </a>
-                        <div >
+                        <div>
                             <span class="brandpage_product_span"><i class="fa-solid fa-tag"></i>
                                 {{ $product->getCategoryName() }}</span>
                             <span class="brandpage_product_span"><i class="fa-solid fa-tag"></i>
@@ -33,13 +39,19 @@
                         {{-- <span style="font-size: 10px"><i class="fa-solid fa-tag"></i> KR 4 AGILUS</span> --}}
                         @if ($product->rfq == 1)
                             <div class="d-flex justify-content-center">
-                                <button class="btn-color special_btn" data-bs-toggle="modal"
-                                    data-bs-target="#rfq{{ $product->id }}">Ask For Price</button>
+                                {{-- <button class="btn-color special_btn" data-bs-toggle="modal"
+                                    data-bs-target="#rfq{{ $product->id }}">Ask For Price</button> --}}
+                                <a href="{{ route('rfq') }}"
+                                    class="px-3 py-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button mt-2">Ask
+                                    For Price</a>
                             </div>
                         @elseif ($product->price_status && $product->price_status == 'rfq')
                             <div class="d-flex justify-content-center">
-                                <button class="btn-color special_btn" data-bs-toggle="modal"
-                                    data-bs-target="#rfq{{ $product->id }}">Ask For Price</button>
+                                {{-- <button class="btn-color special_btn" data-bs-toggle="modal"
+                                    data-bs-target="#rfq{{ $product->id }}">Ask For Price</button> --}}
+                                <a href="{{ route('rfq') }}"
+                                    class="px-3 py-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button mt-2">Ask
+                                    For Price</a>
                             </div>
                         @elseif ($product->price_status && $product->price_status == 'offer_price')
                             <div class="d-flex justify-content-center">
@@ -48,7 +60,8 @@
                             </div>
                         @else
                             <div class="d-flex justify-content-center" class="cart_button{{ $product->id }}">
-                                <a href="{{ route('product.details', $product->slug) }}" class="btn-color special_btn">Details</a>
+                                <a href="{{ route('product.details', $product->slug) }}"
+                                    class="btn-color special_btn">Details</a>
                                 {{-- <button class="btn-color special_btn add_to_cart" data-id="{{ $product->id }}"
                                     data-name="{{ $product->name }}" data-quantity="1">Add to Cart</button> --}}
                             </div>
