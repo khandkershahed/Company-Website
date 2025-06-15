@@ -1,38 +1,40 @@
 {
-    "name": "laravel/laravel",
+    "name": "ngenit-limited/shahed",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "Official website for NGen IT Limited, showcasing services, products, and company information using Laravel.",
+    "homepage": "https://www.ngenitltd.com/",
+    "keywords": ["ngenit", "laravel", "it-company", "web-development", "services"],
     "license": "MIT",
     "require": {
-        "php": "^8.0.2",
+        "php": "^8.1",
         "barryvdh/laravel-dompdf": "^2.0",
         "brian2694/laravel-toastr": "^5.57",
-        "bumbummen99/shoppingcart": "^4.2",
         "emotality/tawk-laravel": "^2.1",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
+        "jmrashed/zkteco": "^1.0",
         "jorenvanhocht/laravel-share": "^4.2",
-        "laravel/framework": "^9.19",
+        "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.0",
-        "laravel/tinker": "^2.7",
+        "laravel/tinker": "^2.8",
+        "mindscms/laravelshoppingcart": "^2.1",
         "php-flasher/flasher-laravel": "^1.15",
         "rats/zkteco": "^002.0",
-        "realrashid/sweet-alert": "^5.1",
-        "spatie/laravel-permission": "^5.7",
+        "realrashid/sweet-alert": "^6.0",
+        "spatie/laravel-permission": "^5.11",
         "stripe/stripe-php": "^10.3",
-        "yajra/laravel-datatables-oracle": "10.3.1"
+        "yajra/laravel-datatables-oracle": "^10.6"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
-        "fakerphp/faker": "^1.9.1",
-        "laravel/breeze": "^1.15",
+        "fakerphp/faker": "^1.20",
+        "laravel/breeze": "^1.20",
         "laravel/pint": "^1.0",
-        "laravel/sail": "^1.0.1",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1",
-        "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "laravel/sail": "^1.22",
+        "mockery/mockery": "^1.5",
+        "nunomaduro/collision": "^7.0",
+        "phpunit/phpunit": "^10.0",
+        "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -77,6 +79,6 @@
             "pestphp/pest-plugin": true
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

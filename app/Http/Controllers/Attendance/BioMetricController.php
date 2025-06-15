@@ -133,7 +133,6 @@ class BioMetricController extends Controller
         }
         // $users = User::get();
         // dd(($attendanceData));
-
         // dd(count($attendanceData));
 
         return view('admin.pages.attendance.device', [
@@ -462,6 +461,8 @@ class BioMetricController extends Controller
 
     public function attendanceDataCurrentMonth($id)
     {
+        set_time_limit(120);
+        ini_set('max_execution_time', 120);
         // Connect to the ZKtecho device
         $deviceip = $this->device_ip();
         $zk = new ZKTeco($deviceip, 4370);
@@ -538,6 +539,8 @@ class BioMetricController extends Controller
     }
     public function attendanceDataSingle($id)
     {
+        set_time_limit(120);
+        ini_set('max_execution_time', 120);
         // Connect to the ZKtecho device
         $deviceip = $this->device_ip();
         $zk = new ZKTeco($deviceip, 4370);
@@ -547,7 +550,7 @@ class BioMetricController extends Controller
         $attendances_all = $zk->getAttendance(2);
         $users = $zk->getUser();
         $user = null;
-
+        // dd($attendances_all);
         foreach ($users as $userData) {
             if ($userData['userid'] === $id) {
                 $user = $userData;
@@ -700,6 +703,12 @@ class BioMetricController extends Controller
 
     public function device_information()
     {
+
+        // if (function_exists('socket_create')) {
+        //     dd("Sockets extension is enabled.");
+        // } else {
+        //     dd("Sockets extension is not enabled.");
+        // }
         $deviceip = $this->device_ip();
         $zk = new ZKTeco($deviceip, 4370);
 

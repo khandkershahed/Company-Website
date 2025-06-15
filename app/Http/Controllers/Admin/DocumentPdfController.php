@@ -24,7 +24,7 @@ class DocumentPdfController extends Controller
      */
     public function index()
     {
-        $data['pdfs'] = DocumentPdf::latest()->get();
+        $data['pdfs'] = DocumentPdf::latest()->get(); 
 
         return view('admin.pages.document.index', $data);
     }

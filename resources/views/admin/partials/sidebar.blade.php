@@ -155,7 +155,7 @@
                             <li class="nav-item"><a href="{{ route('employee.index') }}"
                                     class="nav-link">Employees</a>
                             </li>
-                            <li class="nav-item"><a href="{{ route('job.index') }}" class="nav-link">Job Post</a>
+                            <li class="nav-item"><a href="{{ route('admin.job-post.index') }}" class="nav-link">Job Post</a>
                             </li>
                             <li class="nav-item"><a href="{{ route('job.regiserUser') }}" class="nav-link">Job
                                     Applier's List</a></li>

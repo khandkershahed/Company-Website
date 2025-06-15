@@ -6,7 +6,7 @@
             <div class="page-header-content d-lg-flex">
                 <div class="d-flex px-2">
                     <div class="breadcrumb py-2">
-                        <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
+                        <a href="" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="" class="breadcrumb-item">Home</a>
                         <span class="breadcrumb-item active">Device Information</span>
                     </div>
