@@ -265,8 +265,10 @@
                                         <div class="d-flex justify-content-between align-items-center mt-4">
                                             <div class="d-flex align-items-center">
                                                 <div class="d-flex align-items-center ">
-                                                    <a class="search-btn-price me-2"
-                                                        href="{{ route('product.details', ['id' => $product->slug]) }}">Ask
+                                                    {{-- <a class="search-btn-price me-2" --}}
+                                                    <a class="px-3 py-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button mt-0 me-2"
+                                                        {{-- href="{{ route('product.details', ['id' => $product->slug]) }}">Ask --}}
+                                                        href="{{ route('rfq') }}">Ask
                                                         For Price</a>
                                                 </div>
                                                 <div class="d-flex border">
@@ -277,7 +279,7 @@
                                                         <div class="quantity-selectors">
                                                             <button type="button" class="increment-quantity border-0"
                                                                 aria-label="Add one" data-direction="1">
-                                                                <i class="fa-solid fa-plus"
+                                                                <i class="fa-solid fa-plus pt-1"
                                                                     style="color: #7a7577"></i>
                                                             </button>
                                                             <button type="button" class="decrement-quantity border-0"
@@ -291,7 +293,8 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <a class="pb-2 bg-transparent border-0 text-end"
+                                                {{-- <a class="pb-2 bg-transparent border-0 text-end" --}}
+                                                <a class="header_cart_button search-btn-price text-white text-end"
                                                     style="color: rgb(10 51 113);"
                                                     href="{{ route('product.details', ['id' => $product->slug]) }}"><i
                                                         class="fa-solid fa-plus pe-2"></i> Add RFQ

@@ -24,13 +24,13 @@
         (is_countable($tech_glossys) && count($tech_glossys) > 0))
     <div class="card-body">
         <div class="row">
-            <div class="col-12 p-2 d-lg-none mb-3">
+            <div class="p-2 mb-3 col-12 d-lg-none">
                 @if (count($products) > 0)
                     <!-- First Product Start -->
                     @foreach ($products as $product)
-                        <div class="row m-0 p-2 rounded-0  bg-white rounded-0 d-flex align-items-center"
+                        <div class="p-2 m-0 bg-white row rounded-0 d-flex align-items-center"
                             style="border-bottom: 2px solid #dee2e6;">
-                            <div class="col-2 m-0 p-0">
+                            <div class="p-0 m-0 col-2">
                                 <img class="" height="50px" width="50px" src="{{ asset($product->thumbnail) }}"
                                     alt="{{ $product->name }}">
                             </div>
@@ -48,18 +48,18 @@
                     <!-- First Product End -->
                 @else
                     <div class="col-md-12 col-sm-12">
-                        <div class="row m-0 p-2 shadow-lg bg-white border rounded d-flex align-items-center">
-                            <h4 class="text-danger text-center">No Product Found. Search again.
+                        <div class="p-2 m-0 bg-white border rounded shadow-lg row d-flex align-items-center">
+                            <h4 class="text-center text-danger">No Product Found. Search again.
                             </h4>
                         </div>
                     </div>
                 @endif
             </div>
             <div class="col-lg-6">
-                <div class="row mb-4">
+                <div class="mb-4 row">
                     @if (is_countable($brands) && count($brands) > 0)
                         <div class="col-lg-6 col-5">
-                            <h5 class="fw-bold border-bottom pb-2">Brands</h5>
+                            <h5 class="pb-2 fw-bold border-bottom">Brands</h5>
                             @foreach ($brands as $brand)
                                 <h6><a class="search_titles"
                                         href="{{ route('brand.overview', $brand->slug) }}">{{ $brand->title }}</a></h6>
@@ -68,7 +68,7 @@
                     @endif
                     @if (is_countable($categorys) && count($categorys) > 0)
                         <div class="col-lg-6 col-7">
-                            <h5 class="fw-bold border-bottom pb-2">Categorys</h5>
+                            <h5 class="pb-2 fw-bold border-bottom">Categorys</h5>
                             @foreach ($categorys as $category)
                                 <h6><a class="search_titles"
                                         href="{{ route('category.html', $category->slug) }}">{{ $category->title }}</a>
@@ -90,10 +90,10 @@
 
                 </div>
 
-                <div class="row mt-2 mb-4">
+                <div class="mt-2 mb-4 row">
                     @if (is_countable($industries) && count($industries) > 0)
                         <div class="col-lg-6 col-5">
-                            <h5 class="fw-bold border-bottom pb-2">Industries</h5>
+                            <h5 class="pb-2 fw-bold border-bottom">Industries</h5>
                             @foreach ($industries as $industrie)
                                 <h6>
                                     <a class="search_titles"
@@ -104,7 +104,7 @@
                     @endif
                     @if (is_countable($solutions) && count($solutions) > 0)
                         <div class="col-lg-6 col-7">
-                            <h5 class="fw-bold border-bottom pb-2">Solutions</h5>
+                            <h5 class="pb-2 fw-bold border-bottom">Solutions</h5>
                             @foreach ($solutions as $solution)
                                 <h6><a class="search_titles"
                                         href="{{ route('solution.details', $solution->slug) }}">{{ $solution->name }}</a>
@@ -116,8 +116,8 @@
                 </div>
 
                 @if (is_countable($blogs) && count($blogs) > 0)
-                    <div class="row mt-2 mb-4">
-                        <h5 class="fw-bold border-bottom pb-2">Blogs</h5>
+                    <div class="mt-2 mb-4 row">
+                        <h5 class="pb-2 fw-bold border-bottom">Blogs</h5>
                         @foreach ($blogs as $blog)
                             <h6>
                                 <a class="search_titles"href="{{ route('blog.details', $blog->id) }}">
@@ -130,8 +130,8 @@
                     </div>
                 @endif
                 @if (is_countable($storys) && count($storys) > 0)
-                    <div class="row mt-2 mb-4">
-                        <h5 class="fw-bold border-bottom pb-2">Client storys</h5>
+                    <div class="mt-2 mb-4 row">
+                        <h5 class="pb-2 fw-bold border-bottom">Client storys</h5>
                         @foreach ($storys as $story)
                             <h6><a class="search_titles" href="{{ route('story.details', $story->id) }}">
                                     {{-- {{ $story->title }} --}}
@@ -142,8 +142,8 @@
                     </div>
                 @endif
                 @if (is_countable($tech_glossys) && count($tech_glossys) > 0)
-                    <div class="row mt-2 mb-4">
-                        <h5 class="fw-bold border-bottom pb-2">Tech Glossary</h5>
+                    <div class="mt-2 mb-4 row">
+                        <h5 class="pb-2 fw-bold border-bottom">Tech Glossary</h5>
                         @foreach ($tech_glossys as $tech_glossy)
                             <h6><a class="search_titles" href="{{ route('techglossy.details', $tech_glossy) }}">
                                     {{-- {{ $tech_glossy->title }} --}}
@@ -155,19 +155,19 @@
                 @endif
             </div>
             <div class="col-lg-6 d-lg-block d-sm-none">
-                <h5 class="fw-bold border-bottom pb-2">Products</h5>
+                <h5 class="pb-2 fw-bold border-bottom">Products</h5>
                 @if (count($products) > 0)
                     <!-- First Product Start -->
                     @foreach ($products as $product)
-                        <div class="row m-0 p-0 rounded-0  bg-white rounded-0 d-flex align-items-center"
+                        <div class="p-0 m-0 bg-white row rounded-0 d-flex align-items-center"
                             style="border-bottom: 2px solid #dee2e6;">
-                            <div class="col-md-3 p-0 py-1">
+                            <div class="p-0 py-1 col-md-3">
                                 <img class="img-fluid img-responsive rounded-0 product-image"
                                     src="{{ asset($product->thumbnail) }}" alt="{{ $product->name }}"
                                     onerror="this.onerror=null; this.src='{{ asset('frontend/images/no-img-png.png') }}';">
                             </div>
                             <div class="col-md-9 col-sm-12">
-                                <div class="row d-flex align-items-center py-4">
+                                <div class="py-4 row d-flex align-items-center">
                                     <div class="col-lg-12 col-sm-12">
                                         <a class="search_titles"
                                             href="{{ route('product.details', ['id' => $product->slug]) }}">
@@ -186,7 +186,7 @@
                                                     in stock
                                                 </h6>
                                             @else
-                                                <p class="text-end text-success mb-2"
+                                                <p class="mb-2 text-end text-success"
                                                     style="font-size:13px; text-transform:capitalize;"><i
                                                         class="fa-solid fa-box-open"></i>
                                                     {{ ucfirst($product->stock) }}</p>
@@ -195,7 +195,7 @@
                                         {{-- <div>
                                             <a class="search-details"
                                                 href="{{ route('product.details', ['id' => $product->slug]) }}"><i
-                                                    class="fa-solid fa-circle-info pe-1 pt-1"></i>Details</a>
+                                                    class="pt-1 fa-solid fa-circle-info pe-1"></i>Details</a>
                                         </div> --}}
                                         <div>
                                             @if ($product->rfq != 1)
@@ -217,35 +217,36 @@
                                     </div>
                                     {{--  --}}
                                     <div class="col-lg-10">
-                                        <div class="d-flex justify-content-between align-items-center mt-4">
+                                        <div class="mt-4 d-flex justify-content-between align-items-center">
                                             <div class="d-flex align-items-center">
                                                 <div class="pe-2">
                                                     {{-- <a class="search-btn-price"
                                                         href="{{ route('product.details', ['id' => $product->slug]) }}">Ask
                                                         For Price</a> --}}
-                                                    <a href="javascript:void(0)" class="search-btn-price"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#rfq{{ $product->id }}">
+                                                    <a href="{{ route('rfq') }}" class="px-3 py-2 text-black bg-transparent border btn-color cart_button_text{{ $product->id }} popular_product-button mt-2"
+                                                        {{-- data-bs-toggle="modal"
+                                                        data-bs-target="#rfq{{ $product->id }}" --}}
+                                                        >
                                                         Ask For Price
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div class="d-flex border" style="height: 2.6rem;">
+                                            <div class="border d-flex" style="height: 2.6rem;">
                                                 <input type="text" name="quantity" value="1" readonly="true"
                                                     style="width: 3rem; padding: 5px 10px;"
-                                                    class="quantity-box border-0" id="quantity-{{ $product->id }}"
+                                                    class="border-0 quantity-box" id="quantity-{{ $product->id }}"
                                                     data-product-id="{{ $product->id }}">
                                                 <!-- Store product ID for later use -->
 
                                                 <div class="quantity-selectors-container">
                                                     <div class="quantity-selectors selectorbox-{{ $product->id }}"
                                                         style="display: inline-grid;">
-                                                        <button type="button" class="increment-quantity border-0"
+                                                        <button type="button" class="border-0 increment-quantity"
                                                             aria-label="Add one" data-direction="1"
                                                             data-product-id="{{ $product->id }}">
                                                             <i class="fa-solid fa-plus" style="color: #7a7577"></i>
                                                         </button>
-                                                        <button type="button" class="decrement-quantity border-0"
+                                                        <button type="button" class="border-0 decrement-quantity"
                                                             aria-label="Subtract one" data-direction="-1" disabled
                                                             data-product-id="{{ $product->id }}">
                                                             <i class="fa-solid fa-minus" style="color: #7a7577"></i>
@@ -268,12 +269,12 @@
                                                     }
                                                 @endphp
                                                 <button
-                                                    class="header_cart_button px-3 py-2 text-black bg-transparent border btn-color cart_button_text{{ $product->id }} border-0"
+                                                    class="header_cart_button search-btn-price"
                                                     data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                     data-quantity="1">
                                                     {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
                                                 </button>
-                                                {{-- <a class="search-btns pb-2 bg-transparent border-0"
+                                                {{-- <a class="pb-2 bg-transparent border-0 search-btns"
                                                     style="color: rgb(10 51 113);"
                                                     href="{{ route('product.details', ['id' => $product->slug]) }}"><i
                                                         class="fa-solid fa-plus pe-2"></i>Add RFQ
@@ -289,8 +290,8 @@
                     <!-- First Product End -->
                 @else
                     <div class="col-md-12 col-sm-12">
-                        <div class="row m-0 p-2 shadow-lg bg-white border rounded d-flex align-items-center">
-                            <h4 class="text-danger text-center">No Product Found. Search again.
+                        <div class="p-2 m-0 bg-white border rounded shadow-lg row d-flex align-items-center">
+                            <h4 class="text-center text-danger">No Product Found. Search again.
                             </h4>
                         </div>
                     </div>
@@ -299,7 +300,7 @@
         </div>
     </div>
 @else
-    <div class="text-center p-4">
+    <div class="p-4 text-center">
         <h4 style="color: #ae0a46;"> Nothing Found ! Search again.</h4>
     </div>
 
@@ -308,7 +309,7 @@
 
 
 <script>
-    
+
 
     $(document).ready(function() {
 

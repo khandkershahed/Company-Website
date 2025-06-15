@@ -4,12 +4,14 @@
         /* color: #212529;
         background-color: #fbfbfb; */
     }
+
     .form-control::placeholder {
         color: #303030;
         font-size: 12px;
         font-weight: 400;
         opacity: 1;
     }
+
     form .btn {
         width: 100%;
         border-radius: 5px;
@@ -24,7 +26,7 @@
     }
 
     .rfq-add-btns {
-        width: 5%;
+        width: 10%;
     }
 
     .rfq-title-btns {
@@ -42,11 +44,11 @@
 
     .rfq-add-btns button {
         color: #ae0a46;
-        background-color: transparent;
+        background-color: #ffffff;
         border: 0;
-        padding: 5px;
-        width: 50px;
-        height: 35px;
+        padding: 11px;
+        width: 130px;
+        height: 40px;
         border: 1px solid #ae0a46;
     }
 
@@ -193,18 +195,12 @@
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
         border-radius: 3px;
-        height: 50px;
+        height: 44px;
         outline: none !important;
         transition: all .15s ease-in-out;
     }
 
-    .select2.select2-container .select2-selection .select2-selection__rendered {
-        color: #748188;
-        line-height: 48px;
-        padding-right: 33px;
-        font-size: 13px;
-        background-color: #f7f6f5;
-    }
+
 
     .select2.select2-container .select2-selection .select2-selection__arrow {
         background: #f8f8f8;
@@ -212,7 +208,7 @@
         -webkit-border-radius: 0 3px 3px 0;
         -moz-border-radius: 0 3px 3px 0;
         border-radius: 0 3px 3px 0;
-        height: 48px;
+        height: 44px;
         width: 33px;
     }
 
@@ -265,26 +261,31 @@
         width: 100%;
     }
 
-    .cst-select {
-        height: 50px;
-        background: #f7f6f5;
+    .select2.select2-container .select2-selection .select2-selection__rendered {
+        height: 44px;
+        background: #fdfdfc;
         border: 0;
         color: #808a8f;
+        border-radius: 2px;
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+
+    .cst-select {
+        height: 44px;
+        background: #fdfdfc;
+        border: 0;
+        color: #808a8f;
+        border-radius: 2px;
         font-size: 14px;
         -webkit-appearance: none;
-        /* Removes default dropdown arrow in WebKit browsers */
         -moz-appearance: none;
-        /* Removes default dropdown arrow in Firefox */
         appearance: none;
-        /* Removes default dropdown arrow */
         padding-right: 30px;
-        /* Adds space for the arrow */
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
         background-repeat: no-repeat;
         background-position: right 10px center;
-        /* Adjust the position of the arrow */
         background-size: 12px 12px;
-        /* Set the size of the arrow */
     }
 
     .btn-secondary-disable {
@@ -301,5 +302,10 @@
         background-color: #fff !important;
         color: #ae0a46 !important;
         transition: all 0.8s ease-in-out;
+    }
+
+    .nav-tabs .nav-link:focus,
+    .nav-tabs .nav-link:hover {
+        border-radius: 60px;
     }
 </style>
