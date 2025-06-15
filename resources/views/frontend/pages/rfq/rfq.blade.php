@@ -128,8 +128,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <hr class="m-0 pb-3">
-                                    <div class="row mt-4">
+                                    <hr class="pb-3 m-0">
+                                    <div class="mt-4 row">
                                         <div class="col-lg-12">
                                             <!-- Nav tabs -->
                                             <ul class="nav nav-tabs d-flex justify-content-center" id="myTab"
@@ -138,7 +138,7 @@
                                                     <button class="nav-link active" id="your-information-tab"
                                                         data-bs-toggle="tab" data-bs-target="#your-information"
                                                         type="button" role="tab" aria-controls="your-information"
-                                                        aria-selected="true" style="font-size: 16px">
+                                                        aria-selected="true" style="font-size: 14px">
                                                         Company Info
                                                     </button>
                                                 </li>
@@ -146,14 +146,14 @@
                                                     <button class="nav-link" id="delivery-location-tab"
                                                         data-bs-toggle="tab" data-bs-target="#delivery-location"
                                                         type="button" role="tab" aria-controls="delivery-location"
-                                                        aria-selected="false" style="font-size: 16px">
+                                                        aria-selected="false" style="font-size: 14px">
                                                         Shipping Address
                                                     </button>
                                                 </li>
                                                 <li class="nav-item me-" role="presentation">
                                                     <button class="nav-link" id="end-user-tab" data-bs-toggle="tab"
                                                         data-bs-target="#end-user" type="button" role="tab"
-                                                        aria-controls="end-user" aria-selected="false" style="font-size: 16px">
+                                                        aria-controls="end-user" aria-selected="false" style="font-size: 14px">
                                                         Final User Info
                                                     </button>
                                                 </li>
@@ -161,7 +161,7 @@
                                                     <button class="nav-link" id="aditional-location-tab"
                                                         data-bs-toggle="tab" data-bs-target="#aditional-location"
                                                         type="button" role="tab" aria-controls="aditional-location"
-                                                        aria-selected="false" style="font-size: 16px">
+                                                        aria-selected="false" style="font-size: 14px">
                                                         Aditional Information
                                                     </button>
                                                 </li>
@@ -177,14 +177,14 @@
                                                                 <div class="mb-4">
                                                                     <input name="company_name" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. NGEN IT Ltd. *" required>
+                                                                        placeholder="Your Company Name *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="address" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. Dhaka,Bangladesh. *">
+                                                                        placeholder="Your Address *">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
@@ -529,7 +529,7 @@
                                                                     <select
                                                                         class="w-100 form-select cst-select deliveryCity"
                                                                         name="city">
-                                                                        <option value="">Select an option</option>
+                                                                        <option value="">Select an city</option>
                                                                         <option value="ny">New York</option>
                                                                         <option value="london">London</option>
                                                                         <option value="dhaka">Dhaka</option>
@@ -581,7 +581,7 @@
                                                                 <div class="mb-3">
                                                                     <input name="delivery_zip_code" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. 1216 *" required>
+                                                                        placeholder="Delivery Zip Code *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-12">
@@ -595,28 +595,28 @@
                                                                 <div class="mb-4">
                                                                     <input name="name" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. Jhone Doue *" required>
+                                                                        placeholder="Your Name *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="designation" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. Sales Manager *">
+                                                                        placeholder="Your Designation *">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="email" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. sales@mail.com *" required>
+                                                                        placeholder="Your Email *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="phone" type="number"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. 01*********** *"required>
+                                                                        placeholder="Your Phone Number *"required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -641,14 +641,14 @@
                                                                 <div class="mb-4">
                                                                     <input name="company_name" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. NGEN IT Ltd. *" required>
+                                                                        placeholder="Your Company Name *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="address" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. Dhaka,Bangladesh. *">
+                                                                        placeholder="Your Company Address *">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
@@ -993,7 +993,7 @@
                                                                     <select
                                                                         class="w-100 form-select cst-select deliveryCity"
                                                                         name="city">
-                                                                        <option value="">Select an option</option>
+                                                                        <option value="">Select an city</option>
                                                                         <option value="ny">New York</option>
                                                                         <option value="london">London</option>
                                                                         <option value="dhaka">Dhaka</option>
@@ -1045,7 +1045,7 @@
                                                                 <div class="mb-3">
                                                                     <input name="delivery_zip_code" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. 1216 *" required>
+                                                                        placeholder="Delivery Zip Code *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-12">
@@ -1059,28 +1059,28 @@
                                                                 <div class="mb-4">
                                                                     <input name="name" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. Jhone Doue *" required>
+                                                                        placeholder="Your Name *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="designation" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. Sales Manager *">
+                                                                        placeholder="Your Designation *">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="email" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. sales@mail.com *" required>
+                                                                        placeholder="Your Email *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="phone" type="number"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. 01*********** *"required>
+                                                                        placeholder="Your Phone *"required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1103,14 +1103,14 @@
                                                                 <div class="mb-4">
                                                                     <input name="company_name" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. NGEN IT Ltd. *" required>
+                                                                        placeholder="Your Company Name *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="address" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. Dhaka,Bangladesh. *">
+                                                                        placeholder="Your Address *">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
@@ -1458,7 +1458,7 @@
                                                                     <select
                                                                         class="w-100 form-select cst-select deliveryCity"
                                                                         name="city">
-                                                                        <option value="">Select an option</option>
+                                                                        <option value="">Select an city</option>
                                                                         <option value="ny">New York</option>
                                                                         <option value="london">London</option>
                                                                         <option value="dhaka">Dhaka</option>
@@ -1510,7 +1510,7 @@
                                                                 <div class="mb-3">
                                                                     <input name="delivery_zip_code" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. 1216 *" required>
+                                                                        placeholder="Delivery Zip Code *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-12">
@@ -1524,28 +1524,28 @@
                                                                 <div class="mb-4">
                                                                     <input name="name" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. Jhone Doue *" required>
+                                                                        placeholder="Your Name *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="designation" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. Sales Manager *">
+                                                                        placeholder="Your Designation *">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="email" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. sales@mail.com *" required>
+                                                                        placeholder="Your Email Address *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="phone" type="number"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. 01*********** *"required>
+                                                                        placeholder="Your Phone Number *"required>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1568,14 +1568,14 @@
                                                                 <div class="mb-4">
                                                                     <input name="company_name" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. NGEN IT Ltd. *" required>
+                                                                        placeholder="Your Company Name *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="address" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. Dhaka,Bangladesh. *">
+                                                                        placeholder="Your Company Address. *">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-4">
@@ -1924,7 +1924,7 @@
                                                                     <select
                                                                         class="w-100 form-select cst-select deliveryCity"
                                                                         name="city">
-                                                                        <option value="">Select an option</option>
+                                                                        <option value="">Select an city</option>
                                                                         <option value="ny">New York</option>
                                                                         <option value="london">London</option>
                                                                         <option value="dhaka">Dhaka</option>
@@ -1976,7 +1976,7 @@
                                                                 <div class="mb-3">
                                                                     <input name="delivery_zip_code" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. 1216 *" required>
+                                                                        placeholder="Delivery Zip Code *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-12">
@@ -1990,28 +1990,28 @@
                                                                 <div class="mb-4">
                                                                     <input name="name" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. Jhone Doue *" required>
+                                                                        placeholder="Your Name *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="designation" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. Sales Manager *">
+                                                                        placeholder="Your Designation *">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="email" type="text"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. sales@mail.com *" required>
+                                                                        placeholder="Your Email Address *" required>
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="mb-4">
                                                                     <input name="phone" type="number"
                                                                         class="py-3 border-0 form-control form-control-sm rounded-1"
-                                                                        placeholder="e.g. 01*********** *"required>
+                                                                        placeholder="Your Phone Number *"required>
                                                                 </div>
                                                             </div>
                                                         </div>

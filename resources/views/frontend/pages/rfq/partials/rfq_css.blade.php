@@ -48,7 +48,7 @@
         border: 0;
         padding: 11px;
         width: 130px;
-        height: 40px;
+        height: 45px;
         border: 1px solid #ae0a46;
     }
 
