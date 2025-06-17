@@ -1,311 +1,298 @@
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <style>
-    .form-control {
-        /* color: #212529;
-        background-color: #fbfbfb; */
-    }
-
-    .form-control::placeholder {
-        color: #303030;
-        font-size: 12px;
-        font-weight: 400;
-        opacity: 1;
-    }
-
-    form .btn {
-        width: 100%;
-        border-radius: 5px;
-        position: relative;
-        overflow: hidden;
-        top: -5px;
-    }
-
-    .rfq-header {
-        background-color: #f6f5f4;
-        color: white;
-    }
-
-    .rfq-add-btns {
-        width: 10%;
-    }
-
-    .rfq-title-btns {
-        width: 100%;
-    }
-
-    .rfq-delete-btns {
-        width: 5%;
-    }
-
-    .rfq-repeater {
+    .progress-bar-steps {
         display: flex;
-        align-items: end;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #eee;
     }
 
-    .rfq-add-btns button {
-        color: #ae0a46;
-        background-color: #ffffff;
-        border: 0;
-        padding: 11px;
-        width: 130px;
-        height: 45px;
-        border: 1px solid #ae0a46;
+    .step {
+        flex: 1;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        padding: 10px 10px;
+        border-radius: 0px;
+        background-color: #fcfbfb;
+        transition: background-color 0.3s;
     }
 
-    .rfq-delete-btns button {
-        color: #ae0a46;
-        /* color: white; */
-        background-color: transparent;
-        border: 0;
-        padding: 5px;
-        height: 50px;
-        margin-left: 5px;
+    /* Hide checkmark icons by default */
+    .step .fa-check {
+        display: none;
     }
 
-    .checkbox-wrapper-4 * {
-        box-sizing: border-box;
-    }
-
-    .checkbox-wrapper-4 .cbx {
-        -webkit-user-select: none;
-        user-select: none;
-        cursor: pointer;
-        padding: 6px 8px;
-        border-radius: 6px;
-        overflow: hidden;
-        transition: all 0.2s ease;
+    /* Show checkmark icon only on completed steps */
+    .step.completed .fa-check {
         display: inline-block;
     }
 
-    .checkbox-wrapper-4 .cbx:not(:last-child) {
-        margin-right: 6px;
+    /* Style the icon inside the step circle */
+    .step .circle i {
+        font-size: 16px;
+        color: #ae0a46;
+        transition: color 0.3s, background-color 0.3s;
     }
 
-    .checkbox-wrapper-4 .cbx:hover {
-        background: #ae0a462a;
+    /* Step label default style */
+    .step .step-label {
+        font-weight: 600;
+        font-size: 16px;
+        color: #333;
+        transition: color 0.3s, background-color 0.3s;
     }
 
-    .checkbox-wrapper-4 .cbx span {
-        float: left;
-        vertical-align: middle;
-        transform: translate3d(0, 0, 0);
+    /* Completed step style */
+    .step.completed {
+        background-color: #eee;
+        color: black;
     }
 
-    .checkbox-wrapper-4 .cbx span:first-child {
-        position: relative;
-        width: 18px;
-        height: 18px;
-        border-radius: 4px;
-        transform: scale(1);
-        border: 1px solid #cccfdb;
-        transition: all 0.2s ease;
-        box-shadow: 0 1px 1px rgba(0, 16, 75, 0.05);
+    .step.completed .step-label,
+    .step.completed .circle i {
+        background-color: #eee !important;
+        color: black !important;
     }
 
-    .checkbox-wrapper-4 .cbx span:first-child svg {
-        position: absolute;
-        top: 3px;
-        left: 2px;
-        fill: none;
-        stroke: #fff;
-        stroke-width: 2;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-dasharray: 16px;
-        stroke-dashoffset: 16px;
-        transition: all 0.3s ease;
-        transition-delay: 0.1s;
-        transform: translate3d(0, 0, 0);
+    /* ✅ Active/current step style - red background */
+    .step.active {
+        background-color: #ae0a46;
+        color: white;
     }
 
-    .checkbox-wrapper-4 .cbx span:last-child {
-        padding-left: 8px;
-        line-height: 18px;
-    }
-
-    .checkbox-wrapper-4 .cbx:hover span:first-child {
-        border-color: #ae0a46;
-    }
-
-    .checkbox-wrapper-4 .inp-cbx {
-        position: absolute;
-        visibility: hidden;
-    }
-
-    .checkbox-wrapper-4 .inp-cbx:checked+.cbx span:first-child {
-        background: #ae0a46;
-        border-color: #ae0a46;
-        animation: wave-4 0.4s ease;
-    }
-
-    .checkbox-wrapper-4 .inp-cbx:checked+.cbx span:first-child svg {
-        stroke-dashoffset: 0;
-    }
-
-    .checkbox-wrapper-4 .inline-svg {
-        position: absolute;
-        width: 0;
-        height: 0;
-        pointer-events: none;
-        user-select: none;
-    }
-
-    @media screen and (max-width: 640px) {
-        .checkbox-wrapper-4 .cbx {
-            width: 100%;
-            display: inline-block;
-        }
-    }
-
-    @-moz-keyframes wave-4 {
-        50% {
-            transform: scale(0.9);
-        }
-    }
-
-    @-webkit-keyframes wave-4 {
-        50% {
-            transform: scale(0.9);
-        }
-    }
-
-    @-o-keyframes wave-4 {
-        50% {
-            transform: scale(0.9);
-        }
-    }
-
-    @keyframes wave-4 {
-        50% {
-            transform: scale(0.9);
-        }
-    }
-
-    .select2.select2-container {
-        width: 100% !important;
-    }
-
-    .select2-dropdown {
-        background-color: white;
-        border: 1px solid #b3b3b363;
-    }
-
-    .select2.select2-container .select2-selection {
-        border: 1px solid #f7f6f5;
-        -webkit-border-radius: 3px;
-        -moz-border-radius: 3px;
-        border-radius: 3px;
-        height: 44px;
-        outline: none !important;
-        transition: all .15s ease-in-out;
-    }
-
-
-
-    .select2.select2-container .select2-selection .select2-selection__arrow {
-        background: #f8f8f8;
-        border-left: 1px solid #f7f6f5;
-        -webkit-border-radius: 0 3px 3px 0;
-        -moz-border-radius: 0 3px 3px 0;
-        border-radius: 0 3px 3px 0;
-        height: 44px;
-        width: 33px;
-    }
-
-    .select2.select2-container.select2-container--open .select2-selection.select2-selection--single {
-        background: #f8f8f8;
-    }
-
-    .select2.select2-container.select2-container--open .select2-selection.select2-selection--single .select2-selection__arrow {
-        -webkit-border-radius: 0 3px 0 0;
-        -moz-border-radius: 0 3px 0 0;
-        border-radius: 0 3px 0 0;
-    }
-
-    .select2-search--dropdown {
-        display: block;
-        padding: 4px;
-        border-top: 1px solid #f7f6f5;
-    }
-
-    .select2-container--default .select2-search--dropdown .select2-search__field {
-        border: 1px solid #f7f6f5;
-        padding: 10px;
-    }
-
-    .select2-container--default .select2-results__option--highlighted[aria-selected] {
-        background-color: #f7f6f5;
-        color: #000000;
-    }
-
-    .select2-results__option[aria-selected] {
-        cursor: pointer;
-        padding: 14px;
-    }
-
-    .select2-container .select2-selection--single .select2-selection__rendered {
-        font-weight: normal;
-    }
-
-    .select-inputs {
-        background-color: #f7f6f5;
-        border: 0;
-        padding: 14px;
-        border-radius: 3px;
-    }
-
-    .rfq-header {
-        background-image: url('{{ asset('images/rfq-bg-banner.jpg') }}');
-        background-position: center;
-        background-repeat: no-repeat;
-        width: 100%;
-    }
-
-    .select2.select2-container .select2-selection .select2-selection__rendered {
-        height: 44px;
-        background: #fdfdfc;
-        border: 0;
-        color: #808a8f;
-        border-radius: 2px;
-        font-size: 14px;
-        padding: 8px 12px;
-    }
-
-    .cst-select {
-        height: 44px;
-        background: #fdfdfc;
-        border: 0;
-        color: #808a8f;
-        border-radius: 2px;
-        font-size: 14px;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        padding-right: 30px;
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
-        background-repeat: no-repeat;
-        background-position: right 10px center;
-        background-size: 12px 12px;
-    }
-
-    .btn-secondary-disable {
-        height: 55px;
-        padding: 0 25px;
-        background-color: #6c757d !important;
-        color: white !important;
-        cursor: not-allowed;
-        border: 0;
-    }
-
-    .btn-color:hover {
-        border: 1px solid var(--secoandaryborder-color) !important;
-        background-color: #fff !important;
+    .step.active .step-label,
+    .step.active .circle i {
+        text-align: center;
         color: #ae0a46 !important;
-        transition: all 0.8s ease-in-out;
+        background-color: transparent !important;
     }
 
-    .nav-tabs .nav-link:focus,
-    .nav-tabs .nav-link:hover {
-        border-radius: 60px;
+    .step.completed .circle i,
+    .step.completed .step-label {
+        color: white;
+        font-weight: bold;
+    }
+
+    .step-content {
+        display: none;
+    }
+
+    .step-content.active {
+        display: block;
+    }
+
+    .icon-info {
+        border: 1px solid #eee;
+        width: 30px;
+        text-align: center;
+        height: 30px;
+        line-height: 30px;
+        cursor: pointer;
+    }
+
+    .form-select {
+        color: #212529;
+        background-color: #f7f6f5;
+        border-radius: 0px;
+        padding: 10px;
+        box-shadow: none !important;
+        z-index: 10;
+        transition-duration: 0.4s;
+        -moz-transition-duration: 0.4s;
+        -webkit-transition-duration: 0.4s;
+        -o-transition-duration: 0.4s;
+    }
+
+    .form-control {
+        color: #212529;
+        background-color: #f7f6f5;
+        border-radius: 0px;
+        padding: 10px;
+        box-shadow: none !important;
+        z-index: 10;
+        transition-duration: 0.4s;
+        -moz-transition-duration: 0.4s;
+        -webkit-transition-duration: 0.4s;
+        -o-transition-duration: 0.4s;
+    }
+
+    .form-control:focus {
+        color: #212529;
+        background-color: #f7f6f5;
+        border-radius: 0px;
+        padding: 10px;
+        box-shadow: none !important;
+        z-index: 10;
+        transition-duration: 0.4s;
+        -moz-transition-duration: 0.4s;
+        -webkit-transition-duration: 0.4s;
+        -o-transition-duration: 0.4s;
+    }
+
+    .rfq-add-btns {
+        color: #ae0a46;
+        background-color: transparent;
+        border: 0;
+        padding: 10px;
+        border-radius: 5px;
+        width: 150px;
+        border: 1px solid #ae0a46;
+    }
+
+    .rfq-add-btns:hover {
+        color: #fff;
+        background-color: #ae0a46;
+        border-radius: 5px;
+        transition: 0.5s all;
+    }
+
+    .trash-btn {
+        background-color: transparent;
+        color: #ae0a46;
+        border: 0;
+        border-radius: 5px;
+        font-size: 20px;
+    }
+
+    .trash-btn:hover {
+        background-color: red;
+        color: white;
+        border: 0;
+        border-radius: 5px;
+        font-size: 20px;
+    }
+
+    .next-btn {
+        padding: 10px 20px;
+        border-radius: 5px;
+        width: 150px;
+        background-color: #ae0a46;
+        border: 1px solid #ae0a46;
+    }
+
+    .next-btn:hover {
+        padding: 10px 20px;
+        width: 150px;
+        border-radius: 5px;
+        background-color: #ae0a46;
+        border: 1px solid #ae0a46;
+    }
+
+    .prev-btn {
+        padding: 10px 20px;
+        border-radius: 5px;
+        width: 150px;
+        background-color: black;
+        border: 1px solid black;
+    }
+
+    .prev-btn:hover {
+        padding: 10px 20px;
+        width: 150px;
+        border-radius: 5px;
+        background-color: black;
+        border: 1px solid black;
+    }
+
+    .btn.disabled,
+    .btn:disabled,
+    fieldset:disabled .btn {
+        background-color: #ae0a466c;
+        border: 1px solid #ae0a466c;
+    }
+
+    .form-control::placeholder {
+        color: #888888b2;
+        opacity: 3;
+        font-size: 16px;
+    }
+
+    .custom-form-check:checked {
+        background-color: #ae0a46 !important;
+        border-color: #ae0a46 !important;
+    }
+
+    .custom-form-check:focus {
+        border-color: #ae0a46;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem #ae0a4623;
+    }
+
+    .check-label {
+        font-size: 18px;
+        color: #ae0a46;
+        font-weight: 600;
+    }
+
+    /* Shine animation keyframes */
+    @keyframes shine {
+        0% {
+            left: -100%;
+        }
+
+        40% {
+            left: 100%;
+        }
+
+        100% {
+            left: 100%;
+        }
+    }
+
+    /* .counting-btn {
+  position: relative;
+  top: -51px;
+  left: 38px;
+} */
+    .qty-btn {
+        font-size: 10px;
+        padding: 0px;
+        width: 21px !important;
+        height: 22px !important;
+    }
+
+    .increment-quantity {
+        border: 2px solid #eee;
+    }
+
+    .decrement-quantity {
+
+        border: 2px solid #eee;
+    }
+
+    .current-step-red {
+        background-color: transparent !important;
+        /* Bootstrap red */
+        color: #ae0a46 !important;
+        display: flex;
+        justify-content: center;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+            rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    }
+
+    .current-step-red .step-label {
+        background-color: transparent !important;
+        /* Bootstrap red */
+        color: #ae0a46 !important;
+    }
+
+    .is-invalid {
+        border: 0;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .rfq-title {
+            font-size: 20px;
+        }
+
+        .case-title {
+            font-size: 12px;
+        }
+
+        .step .step-label {
+            font-weight: 600;
+            font-size: 11px;
+            color: #333;
+            transition: color 0.3s;
+        }
     }
 </style>
