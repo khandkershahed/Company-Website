@@ -1,268 +1,268 @@
-{{-- For Steper Form And Validation --}}
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <!-- jQuery Repeater -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            let currentStep = 1;
+            const totalSteps = 4;
 
-<script>
-    function nextStep() {
-        // Select all inputs in step 1 that have the 'required' attribute
-        const projectStepInputs = document.querySelectorAll(
-            '#projectStep input[required], #projectStep textarea[required]');
+            // Custom validation rules
+            $.validator.addMethod(
+                "customEmail",
+                function(value, element) {
+                    return (
+                        this.optional(element) ||
+                        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)
+                    );
+                },
+                "Please enter a valid email (e.g., user@gmail.com)"
+            );
 
-        // Validate each required input
-        let allValid = true;
-        projectStepInputs.forEach(input => {
-            if (!input.value.trim()) {
-                allValid = false;
-                input.reportValidity(); // Display error message
-            }
-        });
+            $.validator.addMethod(
+                "customPhone",
+                function(value, element) {
+                    const isValidPattern = /^01[3-9]\d{1,12}$/.test(value);
+                    const lengthValid = value.length >= 4 && value.length <= 15;
+                    return this.optional(element) || (isValidPattern && lengthValid);
+                },
+                "Please enter a valid phone number between 4 and 15 digits (e.g., 0186...)"
+            );
 
-        // Only proceed to next step if all fields are valid
-        if (allValid) {
-            document.getElementById("projectStep").style.display = "none";
-            document.getElementById("contactStep").style.display = "block";
-        }
-    }
+            $.validator.addMethod(
+                "customZip",
+                function(value, element) {
+                    return this.optional(element) || /^[0-9]{3,6}$/.test(value);
+                },
+                "Please enter a valid ZIP code with 3 to 6 digits"
+            );
 
-    function prevStep() {
-        document.getElementById("projectStep").style.display = "block";
-        document.getElementById("contactStep").style.display = "none";
-    }
-</script>
-
-{{-- Repeater Of Add And Delete Product Name & Quantity --}}
-<script>
-    // Function to add a new row
-    function addRow() {
-        const repeater = document.getElementById('inputRepeater');
-
-        // Clone the first row as a template
-        const newRow = document.querySelector('.input-row').cloneNode(true);
-
-        // Clear the input values in the new row
-        newRow.querySelectorAll('input').forEach(input => input.value = '');
-
-        // Append the cloned row to the repeater container
-        repeater.appendChild(newRow);
-    }
-
-    // Function to delete a row
-    function deleteRow(button) {
-        const row = button.closest('.input-row');
-
-        // Ensure there's at least one row remaining
-        const rows = document.querySelectorAll('.input-row');
-        if (rows.length > 1) {
-            row.remove();
-        } else {
-            alert("At least one row is required.");
-        }
-    }
-</script>
-
-
-{{-- On Check Show --}}
-{{-- <script>
-    function toggleDiv() {
-        const checkbox = document.getElementById("delivery");
-        const toggleContent = document.getElementById("toggle-content");
-        const nextButton = document.getElementById('nextButtonmain');
-        toggleContent.style.display = checkbox.checked ? "block" : "none";
-
-        if (checkbox) {
-
-            if (checkbox.checked) {
-                nextButton.disabled = false;
-                nextButton.classList.remove('btn');
-                nextButton.classList.remove('btn-secondary');
-                nextButton.classList.add('btn-color');
-            } else {
-                nextButton.disabled = true;
-                nextButton.classList.add('btn');
-                nextButton.classList.add('btn-secondary');
-                nextButton.classList.remove('btn-color');
-            }
-        } else {
-            console.error('Checkbox with id "delivery" not found.');
-        }
-    }
-
-    function toggleDivInfo() {
-        const checkbox = document.getElementById("aditional_info");
-        const toggleContent = document.getElementById("toggle-content-2");
-        toggleContent.style.display = checkbox.checked ? "block" : "none";
-    }
-</script> --}}
-<script>
-    function toggleDiv() {
-        const checkbox = document.getElementById("delivery");
-        const toggleContent = document.getElementById("toggle-content");
-
-        if (checkbox && toggleContent) {
-            // Show or hide content based on checkbox status
-            toggleContent.style.display = checkbox.checked ? "block" : "none";
-        } else {
-            console.error('Required elements not found.');
-        }
-    }
-
-    function toggleDivInfo() {
-        const checkbox = document.getElementById("aditional_info");
-        const toggleContent = document.getElementById("toggle-content-2");
-
-        if (checkbox && toggleContent) {
-            // Show or hide content based on checkbox status
-            toggleContent.style.display = checkbox.checked ? "block" : "none";
-        } else {
-            console.error('Required elements not found.');
-        }
-    }
-
-    // function toggleEndUserDiv() {
-    //     const checkbox = document.getElementById("enduser");
-    //     const toggleContent = document.getElementById("toggle-content-enduser");
-
-    //     if (checkbox && toggleContent) {
-    //         toggleContent.style.display = checkbox.checked ? "block" : "none";
-    //     } else {
-    //         console.error('Required elements not found for End User.');
-    //     }
-    // }
-</script>
-<script>
-    function toggleEndUserDiv() {
-        const checkbox = document.getElementById("enduser");
-        const toggleContent = document.getElementById("toggle-content-enduser");
-
-        if (checkbox && toggleContent) {
-            // Only show the div when the checkbox is UNchecked
-            toggleContent.style.display = checkbox.checked ? "none" : "block";
-        } else {
-            console.error('Required elements not found for End User.');
-        }
-    }
-
-    // Run this once on page load to hide the div initially
-    window.addEventListener('DOMContentLoaded', toggleEndUserDiv);
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const deliveryCity = document.querySelector('.deliveryCity');
-        if (deliveryCity) {
-            deliveryCity.addEventListener('change', function() {
-                const nextButton = document.querySelector('.nextButtonmain');
-
-                if (this.value !== '') {
-                    nextButton.removeAttribute('disabled');
-                    nextButton.classList.remove('btn-secondary-disable');
-                    nextButton.classList.add('btn-color');
-                } else {
-                    nextButton.setAttribute('disabled', 'true');
-                    nextButton.classList.remove('btn-color');
-                    nextButton.classList.add('btn-secondary-disable');
-                }
+            $("#stepperForm").validate({
+                errorClass: "is-invalid",
+                validClass: "is-valid",
+                errorPlacement: function(error, element) {
+                    error.addClass("text-danger");
+                    error.insertAfter(element);
+                },
+                onkeyup: false,
+                onfocusout: function(element) {
+                    $(element).valid();
+                    toggleNextButton();
+                    toggleCheckboxes();
+                },
+                onclick: false,
             });
-        }
-    });
-</script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const requiredFields = ['name', 'email', 'phone', 'company_name', 'delivery_zip_code'];
-        const submitButton = document.querySelector('button[type="submit"]');
+            $('input[name="email"]').rules("add", {
+                customEmail: true
+            });
+            $('input[name="phone"]').rules("add", {
+                customPhone: true
+            });
+            $('input[name="company_zip_code"]').rules("add", {
+                customZip: true
+            });
 
-        function checkFormFields() {
-            let allFilled = true;
+            function toggleNextButton() {
+                const $currentStepContent = $(`.step-content[data-step="${currentStep}"]`);
+                const $requiredInputs = $currentStepContent
+                    .find("input, select, textarea")
+                    .filter("[required]");
 
-            requiredFields.forEach(fieldName => {
-                const input = document.querySelector(`input[name="${fieldName}"]`);
-                if (!input || input.value.trim() === '') {
-                    allFilled = false;
+                let allValid = true;
+                if ($requiredInputs.length > 0) {
+                    $requiredInputs.each(function() {
+                        if (!$("#stepperForm").validate().element(this)) {
+                            allValid = false;
+                            return false;
+                        }
+                    });
+                }
+                $currentStepContent.find(".next-step").prop("disabled", !allValid);
+            }
+
+            function toggleCheckboxes() {
+                const $step1 = $('.step-content[data-step="1"]');
+                const $requiredInputs = $step1.find("input, select").filter("[required]");
+                let allValid = true;
+
+                $requiredInputs.each(function() {
+                    if (!$("#stepperForm").validate().element(this)) {
+                        allValid = false;
+                        return false;
+                    }
+                });
+
+                $("#deliveryAddress, #endUser, #resellerCheckbox").prop(
+                    "disabled",
+                    !allValid
+                );
+            }
+
+            function updateProgress() {
+                $(".step").removeClass("active completed current-step-red");
+
+                $(".step").each(function(index) {
+                    const stepNum = index + 1;
+                    if (stepNum < currentStep) {
+                        $(this).addClass("completed").find("i").show(); // ✅ Show icon only if completed
+                    } else if (stepNum === currentStep) {
+                        $(this).addClass("active current-step-red").find("i")
+                            .hide(); // ❌ Hide icon on current step
+                    } else {
+                        $(this).removeClass("completed").find("i")
+                            .hide(); // Make sure future steps are clean
+                    }
+                });
+
+                $(".step-content").removeClass("active");
+                $(`.step-content[data-step="${currentStep}"]`).addClass("active");
+
+                toggleNextButton();
+                toggleCheckboxes();
+            }
+
+            $(document).on(
+                "input change",
+                ".step-content.active input, .step-content.active select, .step-content.active textarea",
+                function() {
+                    toggleNextButton();
+                    toggleCheckboxes();
+                }
+            );
+
+            $(".next-step").click(function() {
+                const $currentStepContent = $(`.step-content[data-step="${currentStep}"]`);
+                const $requiredInputs = $currentStepContent
+                    .find("input, select, textarea")
+                    .filter("[required]");
+
+                if ($requiredInputs.length === 0 || $requiredInputs.valid()) {
+                    if (currentStep === 1) {
+                        const deliveryAddress = $("#deliveryAddress").is(":checked");
+                        const endUser = $("#endUser").is(":checked");
+
+                        if (deliveryAddress && endUser) {
+                            currentStep = 4;
+                        } else if (deliveryAddress) {
+                            currentStep = 3;
+                        } else {
+                            currentStep = 2;
+                        }
+                    } else if (currentStep < totalSteps) {
+                        currentStep++;
+                    }
+                    updateProgress();
+                } else {
+                    $requiredInputs.valid();
                 }
             });
 
-            if (submitButton) {
-                if (allFilled) {
-                    submitButton.removeAttribute('disabled');
-                    submitButton.classList.remove('btn-secondary-disable');
-                    submitButton.classList.add('btn-color');
+            $(".prev-step").click(function() {
+                if (currentStep > 1) {
+                    currentStep--;
+                    updateProgress();
+                }
+            });
+
+            $("#stepperForm").on("submit", function(e) {
+                e.preventDefault();
+                if ($(this).valid()) {
+                    alert("Form submitted successfully!");
+                }
+            });
+
+            $(".repeater").repeater({
+                initEmpty: false,
+                defaultValues: {
+                    phone: ""
+                },
+                show: function() {
+                    $(this).slideDown();
+                },
+                hide: function(deleteElement) {
+                    if (confirm("Are you sure you want to delete this entry?")) {
+                        $(this).slideUp(deleteElement);
+                    }
+                },
+            });
+
+            function handleCheckboxVisibility() {
+                const $checkDefaultWrapper = $("#endUser").closest(".form-check");
+                if ($("#resellerCheckbox").is(":checked")) {
+                    $checkDefaultWrapper.hide();
+                    $("#endUser").prop("checked", false);
                 } else {
-                    submitButton.setAttribute('disabled', 'true');
-                    submitButton.classList.remove('btn-color');
-                    submitButton.classList.add('btn-secondary-disable');
+                    $checkDefaultWrapper.show();
                 }
             }
-        }
 
-        // Attach input listeners to each required field
-        requiredFields.forEach(fieldName => {
-            const input = document.querySelector(`input[name="${fieldName}"]`);
-            if (input) {
-                input.addEventListener('input', checkFormFields);
+            $("#resellerCheckbox").on("change", function() {
+                handleCheckboxVisibility();
+                toggleNextButton();
+                toggleCheckboxes();
+            });
+
+            function setupStepTwoJumpCheckbox() {
+                $("#stepTwoGotoStep3").on("change", function() {
+                    if ($(this).is(":checked") && currentStep === 2) {
+                        currentStep = 3;
+                        updateProgress();
+                    }
+                });
             }
+
+            function setupStepTwoJumpCheckboxThree() {
+                $("#stepThreeGotoStep4").on("change", function() {
+                    if ($(this).is(":checked") && currentStep === 3) {
+                        currentStep = 4;
+                        updateProgress();
+                    }
+                });
+            }
+
+            // Initial run
+            handleCheckboxVisibility();
+            updateProgress();
+            setupStepTwoJumpCheckbox();
+            setupStepTwoJumpCheckboxThree();
         });
 
-        // Initial check
-        checkFormFields();
-    });
-</script>
+        // Country placeholder
+        const selects = document.getElementsByClassName("countrySelect");
 
+        for (let i = 0; i < selects.length; i++) {
+            const select = selects[i];
 
-<script>
-    $(document).ready(function() {
-        $('.select-form-input').select2();
-    });
-</script>
+            // Initial color set
+            if (select.value === "") {
+                select.style.color = "#888888b2";
+            }
 
-
-<script>
-    function updateSerialNumbers() {
-        const serials = document.querySelectorAll('.product-row .serial-number span');
-        serials.forEach((span, index) => {
-            span.textContent = index + 1;
-        });
-    }
-
-    function addRow() {
-        var container = document.getElementById('productRowsContainer');
-
-        var newRow = document.createElement('div');
-        newRow.classList.add('row', 'gx-2', 'align-items-center', 'product-row');
-
-        newRow.innerHTML = `
-            <div class="col-lg-1 serial-number">
-                <span class="border-0 d-flex justify-content-center form-control form-control-sm rounded-1">1</span>
-            </div>
-            <div class="mt-1 col-lg-9 col-10">
-                <input name="product_name[]" class="py-3 border-0 form-control form-control-sm rounded-1"
-                    placeholder="Product Title *" required>
-            </div>
-            <div class="col-lg-1 col-1">
-                <input name="qty[]" value="1" type="number" class="py-3 border-0 text-end form-control form-control-sm rounded-1"
-                    placeholder="QTY.. *">
-            </div>
-            <div class="col-lg-1 col-1">
-                <a href="javascript:void(0)" class="delete-btn" onclick="deleteRow(this)">
-                    <i class="fa-regular fa-trash-can text-danger"></i>
-                </a>
-            </div>
-        `;
-
-        container.appendChild(newRow);
-        updateSerialNumbers(); // 🔄 Recalculate serial numbers
-    }
-
-    function deleteRow(button) {
-        var row = button.closest('.product-row');
-        const rows = document.querySelectorAll('.product-row');
-        if (rows.length > 1) {
-            row.remove();
-            updateSerialNumbers(); // 🔄 Recalculate serial numbers
-        } else {
-            alert("At least one row is required.");
+            // On change
+            select.addEventListener("change", function() {
+                if (select.value === "") {
+                    select.style.color = "#888888b2";
+                } else {
+                    select.style.color = "#000";
+                }
+            });
         }
-    }
 
-    // Initial call if needed (optional)
-    document.addEventListener('DOMContentLoaded', updateSerialNumbers);
-</script>
+        function toggleDiv() {
+            const checkbox = document.getElementById("delivery");
+            const toggleContent = document.getElementById("toggle-content");
+            toggleContent.style.display = checkbox.checked ? "block" : "none";
+        }
+
+        function increment() {
+            const input = document.getElementById("qty");
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function decrement() {
+            const input = document.getElementById("qty");
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+    </script>

@@ -8653,11 +8653,11 @@ input.qtyminus {
     min-height: 100vh;
 }
 
-[type="checkbox"]:checked,
+/* [type="checkbox"]:checked,
 [type="checkbox"]:not(:checked) {
     position: absolute;
     left: -9999px;
-}
+} */
 
 .checkbox:checked + label,
 .checkbox:not(:checked) + label {
