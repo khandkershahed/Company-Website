@@ -16,6 +16,15 @@ class Category extends Model
      */
     protected $guarded = [];
 
+    protected static function booted()
+    {
+        static::saved(function () {
+            cache()->forget('header_categories');
+        });
+        static::deleted(function () {
+            cache()->forget('header_categories');
+        });
+    }
     public function subCategorys()
     {
         return $this->hasMany(SubCategory::class,'cat_id');

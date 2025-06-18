@@ -189,7 +189,8 @@ class HomeController extends Controller
 
         // Randomize the products in PHP (if required) after fetching
         $data['products'] = $products->random(10); // Randomize in PHP after fetching
-
+        $data['productCount'] = Product::where('product_status', 'product')->count();
+        $data['brandCount'] = Brand::where('status', 'active')->count();
         // Return the view with the optimized data
         return view('frontend.pages.home.index', $data);
     }
@@ -407,6 +408,8 @@ class HomeController extends Controller
     public function whatWeDo()
     {
         $data['whatwedo'] = WhatWeDoPage::latest('id', 'desc')->firstOrFail();
+        $data['productCount'] = Product::where('product_status', 'product')->count();
+        $data['brandCount'] = Brand::where('status', 'active')->count();
         if (!empty($data['whatwedo'])) {
             $data['row_two'] = Row::where('id', $data['whatwedo']->row_two_id)->first();
             $data['row_three'] = Row::where('id', $data['whatwedo']->row_three_id)->first();

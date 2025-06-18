@@ -3,8 +3,9 @@
 namespace App\Models\Admin;
 
 use App\Traits\HasSlug;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Brand extends Model
 {
@@ -39,16 +40,17 @@ class Brand extends Model
     {
         return $this->hasMany(Product::class, 'brand_id');
     }
-    public function Brandproducts(){
-        return $this->hasMany('App\Models\Admin\Product','brand_id','id');
+    public function Brandproducts()
+    {
+        return $this->hasMany('App\Models\Admin\Product', 'brand_id', 'id');
     }
-    public static function getProductByBrand($slug){
+    public static function getProductByBrand($slug)
+    {
         // dd($slug);
-        return Brand::with('Brandproducts')->where('slug',$slug)->first();
+        return Brand::with('Brandproducts')->where('slug', $slug)->first();
     }
     public function brandPage()
     {
         return $this->hasOne(BrandPage::class);
     }
-
 }

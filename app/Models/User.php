@@ -6,9 +6,10 @@ namespace App\Models;
 
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
+use App\Models\Admin\RfqOrderStatus;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Admin\EmployeeCategory;
 use App\Models\Admin\LeaveApplication;
-use App\Models\Admin\RfqOrderStatus;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -51,7 +52,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected static function booted()
+    {
+        static::saved(function () {
+            Cache::forget('all_employees');
+        });
 
+        static::deleted(function () {
+            Cache::forget('all_employees');
+        });
+    }
     public static function getpermissionGroups()
     {
 

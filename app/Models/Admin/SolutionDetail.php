@@ -16,6 +16,17 @@ class SolutionDetail extends Model
      * @var array
      */
     protected $guarded = [];
+
+    protected static function booted()
+    {
+        static::saved(function () {
+            cache()->forget('header_solutions');
+        });
+        static::deleted(function () {
+            cache()->forget('header_solutions');
+        });
+    }
+
     public function solutionProducts()
     {
         return $this->belongsToMany(Product::class, 'multi_solutions', 'solution_id', 'product_id')

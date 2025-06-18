@@ -4,6 +4,7 @@ namespace App\Models\Admin;
 
 use App\Models\Admin\Brand;
 use App\Models\Admin\Category;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -18,6 +19,7 @@ class Product extends Model
     //     // dd($slug);
     //     return $this->hasMany('App\Models\Admin\Product','deals'!= NULL);
     // }
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'cat_id');

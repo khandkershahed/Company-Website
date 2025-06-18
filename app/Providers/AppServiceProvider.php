@@ -12,6 +12,8 @@ use App\Models\Admin\Product;
 use App\Models\Admin\Category;
 use App\Models\Admin\Industry;
 use App\Models\Admin\TechGlossy;
+use App\Services\ViewDataService;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use App\Models\Admin\SolutionDetail;
 use Illuminate\Pagination\Paginator;
@@ -105,11 +107,48 @@ class AppServiceProvider extends ServiceProvider
 
             Blade::directive('limit_words', function ($expression) {
                 list($string, $limit) = explode(',', $expression);
-                return "<?php echo implode(' ', array_slice(explode(' ', $string), 0, $limit)); ?>";
+        return "<?php echo implode(' ', array_slice(explode(' ', $string), 0, $limit)); ?f>";
             });
         } catch (Exception $e) {
         }
 
         Paginator::useBootstrap();
+        try {
+            if (
+                Schema::hasTable('users') &&
+                Schema::hasTable('products') &&
+                Schema::hasTable('brands') &&
+                Schema::hasTable('sites') &&
+                Schema::hasTable('industries') &&
+                Schema::hasTable('solution_details') &&
+                Schema::hasTable('categories') &&
+                Schema::hasTable('features') &&
+                Schema::hasTable('blog') &&
+                Schema::hasTable('techglossy')
+            ) {
+                $globalData = ViewDataService::getGlobalViewData();
+                // dd($globalData);
+                foreach ($globalData as $key => $value) {
+                    View::share($key, $value);
+                }
+            }
+
+            if (app()->environment('production')) {
+                URL::forceScheme('https');
+            }
+
+            Blade::directive('limit_words', function ($expression) {
+                list($string, $limit) = explode(',', $expression);
+                return "<?php echo implode(' ', array_slice(explode(' ', $string), 0, $limit)); ?>";
+            });
+        } catch (\Exception $e) {
+
+            Log::error('AppServiceProvider boot error: ' . $e->getMessage());
+        }
+
+        Paginator::useBootstrap();
     }
 }
+
+
+

@@ -1,30 +1,14 @@
-@font-face {
-    font-family: 'Allumni';
-    src: url("../css/font/Alumni/fonnts.com-Allumi_Std_Book.otf") format("woff2"),
-        url("../css/font/Alumni/fonnts.com-Allumi_Std_Book_Bold.otf") format("woff");
+/* @font-face {
+    font-family: "Rajdhani", sans-serif;
+    src: url("../css/font/ngenit-custom-Regular.woff2") format("woff2"),
+        url("../css/font/ngenit-custom-Regular.woff") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-}
-@font-face {
-    font-family: 'Allumni';
-    src: url("../css/font/Alumni/fonnts.com-Allumi_Std_Light.otf") format("woff2"),
-        url("../css/font/Alumni/fonnts.com-Allumi_Std_Light_Bold.otf") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'KlinicSlab';
-    src: url("../css/font/klinic_slab/KlinicSlab-Book.woff2") format("woff2"),
-        url("../css/font/klinic_slab/KlinicSlab-Bold.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-/* @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap");
+} */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=KlinicSlab:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
     --primary-color: #ae0a46;
@@ -39,8 +23,8 @@
     --border-color: #eee;
     --secoandaryborder-color: #bbbbbb;
     --custom-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    --primary-font: 'Allumni';
-    --number-font: "KlinicSlab";
+    --primary-font: "Rajdhani", sans-serif;
+    --number-font: "Poppins", sans-serif;
     --section-title-font-size: 1.75rem;
     /*28px*/
     --header-font-size: 1.125rem;
@@ -66,8 +50,8 @@
         --border-color: #eee;
         --secoandaryborder-color: #bbbbbb;
         --custom-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        --primary-font: 'Allumni';
-        --number-font: "KlinicSlab";
+        --primary-font: "Rajdhani", sans-serif;
+        --number-font: "Poppins", sans-serif;
         --section-title-font-size: 1.5rem;
         /*28px*/
         --header-font-size: 1rem;
@@ -94,8 +78,8 @@
         --border-color: #eee;
         --secoandaryborder-color: #bbbbbb;
         --custom-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        --primary-font: 'Allumni';
-        --number-font: "KlinicSlab";
+        --primary-font: "Rajdhani", sans-serif;
+        --number-font: "Poppins", sans-serif;
         --section-title-font-size: 1.5rem;
         /*28px*/
         --header-font-size: 1rem;
@@ -457,7 +441,7 @@ ul {
     padding-bottom: 60px !important;
     padding-left: 50px;
 }
-..connect-us-header {
+.connect-us-header {
     padding-top: 60px !important;
     padding-bottom: 60px !important;
     padding-left: 50px;
@@ -2808,11 +2792,10 @@ select:focus-visible {
 }
 
 .form-control {
-    height: 44px !important;
     color: #212529;
-    background-color: #f7f6f545;
-    border: 1px solid #f7f6f5 !important;
+    background-color: #f7f6f5;
     outline: 0;
+    border: 0;
     border-radius: 0px;
     padding: 0.375rem 0.75rem;
     box-shadow: none !important;
@@ -2826,8 +2809,8 @@ select:focus-visible {
 .form-control:focus {
     color: #212529;
     background-color: #f7f6f5;
-    border: 1px solid #eee;
     outline: 0;
+    border: 0;
     border-radius: 0px;
     padding: 0.375rem 0.75rem;
     box-shadow: none !important;
@@ -16730,7 +16713,7 @@ nav > div a.nav-item.nav-link.active:after {
 .common_button3 {
     padding: 5px 22px;
     cursor: pointer;
-    font-family: 'Allumni';
+    font-family: "Rajdhani", sans-serif;
     font-size: 18px;
     font-weight: 500;
     text-align: center;
@@ -16970,7 +16953,7 @@ ul {
 .common_button2 {
     padding: 15px 20px;
     cursor: pointer;
-    font-family: 'Allumni';
+    font-family: "Rajdhani", sans-serif;
     font-size: 13px;
     font-weight: 500;
     text-align: center;

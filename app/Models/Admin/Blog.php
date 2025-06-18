@@ -9,4 +9,13 @@ class Blog extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected static function booted()
+    {
+        static::saved(function () {
+            cache()->forget('header_blogs');
+        });
+        static::deleted(function () {
+            cache()->forget('header_blogs');
+        });
+    }
 }

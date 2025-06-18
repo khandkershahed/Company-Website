@@ -2,14 +2,27 @@
 
 namespace App\Models\Admin;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Industry extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function industryPage() {
+
+    protected static function booted()
+    {
+        static::saved(function () {
+            Cache::forget('header_industrys');
+        });
+        static::deleted(function () {
+            Cache::forget('header_industrys');
+        });
+    }
+
+    public function industryPage()
+    {
         return $this->hasOne(IndustryPage::class);
     }
     public function products()
