@@ -59,7 +59,7 @@
                 setTimeout(function() {
                     preloader.style.display = "none";
                 }, 100); // Same duration as preloader CSS animation
-            }, 800); // Simulated delay in milliseconds
+            }, 200); // Simulated delay in milliseconds
         });
     </script>
 

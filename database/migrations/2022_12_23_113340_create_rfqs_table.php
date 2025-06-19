@@ -31,6 +31,30 @@ return new class extends Migration
             $table->string('designation', 200)->nullable();
             $table->text('address')->nullable();
             $table->string('country', 200)->nullable();
+            // New fields for RFQ
+            $table->string('city', 200)->nullable();
+            $table->string('zip_code', 20)->nullable();
+            $table->enum('is_reseller', ['0', '1'])->default('0')->nullable();
+            $table->string('shipping_name', 200)->nullable();
+            $table->string('shipping_email', 200)->nullable();
+            $table->string('shipping_phone',20)->nullable();
+            $table->string('shipping_company_name', 200)->nullable();
+            $table->string('shipping_designation', 200)->nullable();
+            $table->text('shipping_address')->nullable();
+            $table->string('shipping_country', 200)->nullable();
+            $table->string('shipping_city', 200)->nullable();
+            $table->string('shipping_zip_code', 20)->nullable();
+            $table->string('end_user_name', 200)->nullable();
+            $table->string('end_user_email', 200)->nullable();
+            $table->string('end_user_phone',20)->nullable();
+            $table->string('end_user_company_name', 200)->nullable();
+            $table->string('end_user_designation', 200)->nullable();
+            $table->text('end_user_address')->nullable();
+            $table->string('end_user_country', 200)->nullable();
+            $table->string('end_user_city', 200)->nullable();
+            $table->string('end_user_zip_code', 20)->nullable();
+            $table->string('project_name', 20)->nullable();
+            // New fields for RFQ
             $table->date('create_date')->nullable();
             $table->date('close_date')->nullable();
             $table->date('sale_date')->nullable();

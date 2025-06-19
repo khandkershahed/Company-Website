@@ -1032,10 +1032,11 @@ class HomeController extends Controller
     public function rfqCreate(Request $request)
     {
         $data['sales_mans'] = User::where('role', 'sales')->select('users.id', 'users.name')->get();
-        $data['products'] = Product::where('product_status', 'product')->select('products.id', 'products.name')->get();
-        $data['brands'] = Brand::where('status', 'active')->get(['id', 'title']);
-        $data['categorys'] = Category::get(['id', 'title']);
-        $data['industrys'] = Industry::get(['id', 'title']);
+        // $data['products'] = Product::where('product_status', 'product')->select('products.id', 'products.name')->get();
+        // $data['brands'] = Brand::where('status', 'active')->get(['id', 'title']);
+        // $data['categorys'] = Category::get(['id', 'title']);
+        // $data['industrys'] = Industry::get(['id', 'title']);
+        $data['countries'] = Country::orderBy('country_name', 'ASC')->get(['id', 'country_name']);
         $cart_items = Cart::content();
         // dd($cart_items);
         // $cartItems = Cart::content();

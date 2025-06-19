@@ -6,7 +6,7 @@
 @endsection
 <section class="">
     <!--======// Banner Section //======-->
-    @if (!empty($home->branner1) && !empty($home->branner2) && !empty($home->branner3)) 
+    @if (!empty($home->branner1) && !empty($home->branner2) && !empty($home->branner3))
         <section>
             <div class="Advance-Slider">
                 <!-- Item -->
@@ -567,7 +567,7 @@
                 @endif
             </div>
             <!-- Carousel Container -->
-            @include('frontend.pages.home.rfq_modal')
+            {{-- @include('frontend.pages.home.rfq_modal') --}}
         </div>
     </div>
 </section>

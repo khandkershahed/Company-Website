@@ -374,7 +374,6 @@ class RFQController extends Controller
             [
                 'name'                   => 'required',
                 'email'                  => 'required|email:rfc,dns',
-                // 'rfq_code'               => 'unique:rfqs',
                 'image'                  => 'file|mimes:jpeg,png,jpg|max:2048',
                 'country'                => 'required',
                 'product_name'           => 'required|array|min:1',
@@ -433,7 +432,7 @@ class RFQController extends Controller
             'email'             => $request->email,
             'phone'             => $request->phone,
             'company_name'      => $request->company_name,
-            'designation'       => $request->designation,
+            'designation'       => $request->designation, 
             'address'           => $request->address,
             'country'           => $request->country,
             'create_date'       => now(),
