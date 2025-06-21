@@ -256,7 +256,7 @@
                                                 <!-- Delivery Address Checkbox -->
                                                 <div class="mt-2 form-check">
                                                     <input class="form-check-input custom-form-check" type="checkbox"
-                                                        value="" id="deliveryAddress" disabled required />
+                                                        value="is_contact_address" id="deliveryAddress" value="1" disabled required />
                                                     <label class="form-check-label" for="deliveryAddress">
                                                         My delivery address is the same as the company
                                                         address
@@ -348,16 +348,8 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <select class="form-select countrySelect" aria-label="Select City"
-                                                    required name="city">
-                                                    <option value="" selected disabled>
-                                                        Select City
-                                                    </option>
-                                                    <option value="Dhaka">Dhaka</option>
-                                                    <option value="Chattogram">Chattogram</option>
-                                                    <option value="Khulna">Khulna</option>
-                                                    <option value="Rajshahi">Rajshahi</option>
-                                                </select>
+                                                <input type="text" name="city" class="form-control"
+                                                    placeholder="Enter your City Name" required/>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
