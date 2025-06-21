@@ -249,7 +249,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <input type="text" name="company_zip_code" class="form-control"
+                                                <input type="text" name="zip_code" class="form-control"
                                                     placeholder="ZIP Code (e.g: 1207)" required />
                                             </div>
                                         </div>
@@ -258,7 +258,8 @@
                                                 <!-- Delivery Address Checkbox -->
                                                 <div class="mt-2 form-check">
                                                     <input class="form-check-input custom-form-check" type="checkbox"
-                                                        value="is_contact_address" id="deliveryAddress" value="1" disabled required />
+                                                        value="is_contact_address" id="deliveryAddress" value="1"
+                                                        disabled required />
                                                     <label class="form-check-label" for="deliveryAddress">
                                                         My delivery address is the same as the company
                                                         address
@@ -306,63 +307,64 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="mb-3">
-                                                <input type="text" name="company_name" class="form-control"
-                                                    placeholder="Company Name (e.g: NGen It)" required />
+                                                <input type="text" name="shipping_company_name" class="form-control"
+                                                    placeholder="Shipping Company Name (e.g: NGen It)" required />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <input type="text" name="name" class="form-control"
+                                                <input type="text" name="shipping_name" class="form-control"
                                                     placeholder="Client Name (e.g: Jhone Doe)" required />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <input type="text" name="address" class="form-control"
+                                                <input type="text" name="shipping_address" class="form-control"
                                                     placeholder="Address (e.g: House No, Road, Block)" required />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <input type="text" name="designation" class="form-control"
+                                                <input type="text" name="shipping_designation" class="form-control"
                                                     placeholder="Designation (e.g: Sales Manager)" required />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <select class="form-select countrySelect" aria-label="Select Country"
-                                                    required name="country">
+                                                    required name="shipping_country">
                                                     <option value="" selected disabled
                                                         style="color: #7a7577 !important">
                                                         Select Country
                                                     </option>
-                                                    <option value="Bangladesh">Bangladesh</option>
-                                                    <option value="India">India</option>
-                                                    <option value="Pakistan">Pakistan</option>
+                                                    @foreach ($countries as $country)
+                                                        <option value="{{ $country->country_name }}">
+                                                            {{ $country->country_name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <input type="email" name="email" class="form-control"
+                                                <input type="email" name="shipping_email" class="form-control"
                                                     placeholder="Email Address (e.g: jhone@mail.com)" required />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <input type="text" name="city" class="form-control"
-                                                    placeholder="Enter your City Name" required/>
+                                                <input type="text" name="shipping_city" class="form-control"
+                                                    placeholder="Enter your City Name" required />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <input type="number" name="phone" class="form-control"
+                                                <input type="number" name="shipping_phone" class="form-control"
                                                     placeholder="Phone Number (e.g: 018687955852)" required />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <input type="text" name="company_zip_code" class="form-control"
+                                                <input type="text" name="shipping_zip_code" class="form-control"
                                                     placeholder="ZIP Code (e.g: 1207)" required />
                                             </div>
                                         </div>
@@ -490,10 +492,8 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <select class="form-select countrySelect" aria-label="Select Country"
-                                                    name="status">
-                                                    <option value="" selected>
-                                                        Current project status
-                                                    </option>
+                                                    name="project_status">
+                                                    <option value="" selected> Current project status </option>
                                                     <option value="budget_stage">Budget Stage</option>
                                                     <option value="tor_stage">Tor Stage</option>
                                                     <option value="rfq_stage">RFQ Stage</option>
@@ -503,7 +503,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <select class="form-select countrySelect" aria-label="Select Country"
-                                                    name="status">
+                                                    name="approximate_delivery_time">
                                                     <option value="" selected>
                                                         Tentetive Purchase Date
                                                     </option>

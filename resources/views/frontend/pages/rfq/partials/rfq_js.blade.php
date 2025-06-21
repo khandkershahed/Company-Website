@@ -1,8 +1,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-    <!-- jQuery Repeater -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
+    
     <script>
         $(document).ready(function() {
             let currentStep = 1;
@@ -221,7 +220,6 @@
                     }
                 });
             }
-
             // Initial run
             handleCheckboxVisibility();
             updateProgress();
