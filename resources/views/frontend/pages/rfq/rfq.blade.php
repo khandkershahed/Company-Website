@@ -20,6 +20,7 @@
                             </div>
                         </div>
                         <div class="p-4 card-body">
+
                             <form id="stepperForm" action="{{ route('rfqCreate') }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
@@ -31,7 +32,7 @@
                                                 @foreach ($cart_products as $key => $cart_product)
                                                     <div data-repeater-item class="row g-1">
                                                         <div class="col-lg-1 col-2">
-                                                            <input type="text" name="sl"
+                                                            <input type="text" name="sl[]"
                                                                 class="text-center form-control" value="1" />
                                                         </div>
                                                         <div class="col-lg-9 col-6">
@@ -75,7 +76,7 @@
                                             @else
                                                 <div data-repeater-item class="row g-1">
                                                     <div class="col-lg-1 col-2">
-                                                        <input type="text" name="sl"
+                                                        <input type="text" name="sl[]"
                                                             class="text-center form-control" value="1" />
                                                     </div>
                                                     <div class="col-lg-9 col-6">
@@ -212,7 +213,8 @@
                                                         Select Country
                                                     </option>
                                                     @foreach ($countries as $country)
-                                                        <option value="{{ $country->country_name }}">{{ $country->country_name }}</option>
+                                                        <option value="{{ $country->country_name }}">
+                                                            {{ $country->country_name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -226,7 +228,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="city" class="form-control"
-                                                    placeholder="Enter your City Name" required/>
+                                                    placeholder="Enter your City Name" required />
                                                 {{-- <select class="form-select countrySelect" aria-label="Select City"
                                                     required name="city">
                                                     <option value="" selected disabled>

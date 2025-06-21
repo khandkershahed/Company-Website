@@ -1,5 +1,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <!-- jQuery Repeater -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -171,20 +173,20 @@
                 }
             });
 
-            $(".repeater").repeater({
-                initEmpty: false,
-                defaultValues: {
-                    phone: ""
-                },
-                show: function() {
-                    $(this).slideDown();
-                },
-                hide: function(deleteElement) {
-                    if (confirm("Are you sure you want to delete this entry?")) {
-                        $(this).slideUp(deleteElement);
-                    }
-                },
-            });
+            // $(".repeater").repeater({
+            //     initEmpty: false,
+            //     defaultValues: {
+            //         phone: ""
+            //     },
+            //     show: function() {
+            //         $(this).slideDown();
+            //     },
+            //     hide: function(deleteElement) {
+            //         if (confirm("Are you sure you want to delete this entry?")) {
+            //             $(this).slideUp(deleteElement);
+            //         }
+            //     },
+            // });
 
             function handleCheckboxVisibility() {
                 const $checkDefaultWrapper = $("#endUser").closest(".form-check");
@@ -265,4 +267,21 @@
                 input.value = parseInt(input.value) - 1;
             }
         }
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.repeater').repeater({
+                show: function() {
+                    $(this).slideDown();
+                },
+                hide: function(deleteElement) {
+                    if (confirm('Are you sure you want to delete this element?')) {
+                        $(this).slideUp(deleteElement, function() {
+                            $(this).remove(); // Actually remove the DOM element
+                        });
+                    }
+                },
+                isFirstItemUndeletable: false
+            });
+        });
     </script>
