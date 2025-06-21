@@ -1,7 +1,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
-    
+
     <script>
         $(document).ready(function() {
             let currentStep = 1;
@@ -32,9 +32,9 @@
             $.validator.addMethod(
                 "customZip",
                 function(value, element) {
-                    return this.optional(element) || /^[0-9]{3,6}$/.test(value);
+                    return this.optional(element) || /^[0-9]{4,6}$/.test(value);
                 },
-                "Please enter a valid ZIP code with 3 to 6 digits"
+                "Please enter a valid ZIP code with 4 to 6 digits"
             );
 
             $("#stepperForm").validate({
@@ -59,7 +59,16 @@
             $('input[name="phone"]').rules("add", {
                 customPhone: true
             });
-            $('input[name="company_zip_code"]').rules("add", {
+            $('input[name="zip_code"]').rules("add", {
+                customZip: true
+            });
+            $('input[name="shipping_email"]').rules("add", {
+                customEmail: true
+            });
+            $('input[name="shipping_phone"]').rules("add", {
+                customPhone: true
+            });
+            $('input[name="shipping_zip_code"]').rules("add", {
                 customZip: true
             });
 
@@ -273,7 +282,7 @@
                     $(this).slideDown();
                 },
                 hide: function(deleteElement) {
-                    if (confirm('Are you sure you want to delete this element?')) {
+                    if (confirm('Are you sure you want to delete this product?')) {
                         $(this).slideUp(deleteElement, function() {
                             $(this).remove(); // Actually remove the DOM element
                         });

@@ -6,7 +6,7 @@
             color: #000000 !important;
         }
     </style>
-    <div class="content-wrapper">
+    <div class="content-wrapper"> 
         <!-- Inner content -->
         <!-- Page header -->
         <div class="page-header page-header-light shadow">

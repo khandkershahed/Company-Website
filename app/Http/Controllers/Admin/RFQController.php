@@ -66,51 +66,56 @@ class RFQController extends Controller
     public function index(Request $request)
     {
         // Fetch users with 'business' department and 'manager' role
-        $users = User::where(function ($query) {
-            $query->whereJsonContains('department', 'business');
-        })->where('role', 'manager')->select('id', 'name')->orderBy('id', 'DESC')->get();
+        $users = User::whereJsonContains('department', 'business')
+            ->where('role', 'manager')
+            ->select('id', 'name')
+            ->orderBy('id', 'DESC')
+            ->get();
 
-        // Get the total count of RFQs
-        $rfq_count = Rfq::where('rfq_type', 'rfq')->latest()->count();
+        // Base RFQ query
+        $baseQuery = Rfq::where('rfq_type', 'rfq');
 
-        // Default RFQ query
-        $query = Rfq::where('rfq_type', 'rfq');
+        // Count total RFQs
+        $rfq_count = (clone $baseQuery)->count();
 
-        // Apply year filter if provided
-        if ($request->has('year') && $request->year != '') {
-            $query->whereYear('created_at', $request->year);
+        // Get new customers where 'confirmation' is null
+        $new_customers = (clone $baseQuery)->whereNull('confirmation')->where('created_at', '>=', Carbon::now()->subMonths(1))->latest()->get();
+
+        // Apply filters dynamically
+        if ($request->filled('year')) {
+            $baseQuery->whereYear('created_at', $request->year);
         }
 
-        // Apply month filter if provided
-        if ($request->has('month') && $request->month != '') {
-            $monthNumber = date('m', strtotime($request->month)); // Convert month name to number
-            $query->whereMonth('created_at', $monthNumber);
+        if ($request->filled('month')) {
+            $monthNumber = date('m', strtotime($request->month));
+            $baseQuery->whereMonth('created_at', $monthNumber);
         }
 
-        // Apply status filter if provided (pending, quoted, etc.)
-        if ($request->has('status') && $request->status != '') {
-            $query->where('status', $request->status);
+        if ($request->filled('status')) {
+            $baseQuery->where('status', $request->status);
         }
 
-        // Fetch the filtered RFQs
-        $rfqs = $query->latest()->get();
+        // Fetch filtered RFQs
+        $rfqs = $baseQuery->latest()->get();
 
-        // Separate RFQs by their status
+        // Separate RFQs by status
         $pendings = $rfqs->where('status', 'rfq_created');
-        $quoteds = $rfqs->where('status', 'quoted');
-        $losts = $rfqs->where('status', 'lost');
+        $quoteds  = $rfqs->where('status', 'quoted');
+        $losts    = $rfqs->where('status', 'lost');
 
         // Return data to the view
         return view('metronic.pages.rfq.index', [
-            'rfqs'      => $rfqs,
-            'pendings'  => $pendings,
-            'quoteds'   => $quoteds,
-            'losts'     => $losts,
-            'users'     => $users,
-            'rfq_count' => $rfq_count,
-            'tab_status' => '',
+            'rfqs'          => $rfqs,
+            'pendings'      => $pendings,
+            'quoteds'       => $quoteds,
+            'losts'         => $losts,
+            'users'         => $users,
+            'rfq_count'     => $rfq_count,
+            'new_customers' => $new_customers,
+            'tab_status'    => '',
         ]);
     }
+
 
     public function filterRFQ(Request $request)
     {
@@ -419,27 +424,49 @@ class RFQController extends Controller
 
         // Save RFQ
         $rfq_id = RFQ::insertGetId([
-            'rfq_code'          => $rfq_code,
-            'sales_man_id_L1'   => $request->sales_man_id_L1,
-            'sales_man_id_T1'   => $request->sales_man_id_T1,
-            'sales_man_id_T2'   => $request->sales_man_id_T2,
-            'client_id'         => $request->client_id ?? $client->id ?? null,
-            'partner_id'        => $request->partner_id,
-            'product_id'        => $request->product_id,
-            'solution_id'       => $request->solution_id,
-            'client_type'       => $client_type,
-            'name'              => $request->name,
-            'email'             => $request->email,
-            'phone'             => $request->phone,
-            'company_name'      => $request->company_name,
-            'designation'       => $request->designation, 
-            'address'           => $request->address,
-            'country'           => $request->country,
-            'create_date'       => now(),
-            'message'           => $request->message,
-            'delivery_location' => $request->delivery_location,
-            'budget'            => $request->budget,
-            'project_status'    => $request->project_status,
+            'rfq_code'              => $rfq_code,
+            'sales_man_id_L1'       => $request->sales_man_id_L1,
+            'sales_man_id_T1'       => $request->sales_man_id_T1,
+            'sales_man_id_T2'       => $request->sales_man_id_T2,
+            'client_id'             => $request->client_id ?? $client->id ?? null,
+            'partner_id'            => $request->partner_id,
+            'product_id'            => $request->product_id,
+            'solution_id'           => $request->solution_id,
+            'client_type'           => $client_type,
+            'name'                  => $request->name,
+            'email'                 => $request->email,
+            'phone'                 => $request->phone,
+            'company_name'          => $request->company_name,
+            'designation'           => $request->designation,
+            'address'               => $request->address,
+            'country'               => $request->country,
+            'create_date'           => now(),
+            'message'               => $request->message,
+            'delivery_location'     => $request->delivery_location,
+            'budget'                => $request->budget,
+            'city'                  => $request->city,
+            'zip_code'              => $request->zip_code,
+            'is_reseller'           => $request->is_reseller,
+            'shipping_name'         => $request->shipping_name,
+            'shipping_email'        => $request->shipping_email,
+            'shipping_phone'        => $request->shipping_phone,
+            'shipping_company_name' => $request->shipping_company_name,
+            'shipping_designation'  => $request->shipping_designation,
+            'shipping_address'      => $request->shipping_address,
+            'shipping_country'      => $request->shipping_country,
+            'shipping_city'         => $request->shipping_city,
+            'shipping_zip_code'     => $request->shipping_zip_code,
+            'end_user_name'         => $request->end_user_name,
+            'end_user_email'        => $request->end_user_email,
+            'end_user_phone'        => $request->end_user_phone,
+            'end_user_company_name' => $request->end_user_company_name,
+            'end_user_designation'  => $request->end_user_designation,
+            'end_user_address'      => $request->end_user_address,
+            'end_user_country'      => $request->end_user_country,
+            'end_user_city'         => $request->end_user_city,
+            'end_user_zip_code'     => $request->end_user_zip_code,
+            'project_name'          => $request->project_name,
+
             // 'image'             => $imagePath['status'] == 1 ? $imagePath['file_name']: null,
             'status'            => 'rfq_created',
             'deal_type'         => 'new',
