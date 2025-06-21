@@ -531,7 +531,7 @@ style="background: url('{{ asset('images/mandala-bg.jpg') }}') no-repeat center 
                             <span>Job</span>
                         </a>
                         <ul class="nav-group-sub collapse">
-                            <li class="nav-item"><a href="{{ route('job.index') }}" class="nav-link"><i
+                            <li class="nav-item"><a href="{{ route('admin.job-post.index') }}" class="nav-link"><i
                                         class="ph-headset"></i>
                                     <span>Job Posting</span></a></li>
                         </ul>

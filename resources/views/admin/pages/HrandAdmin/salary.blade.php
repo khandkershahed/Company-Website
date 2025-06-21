@@ -102,7 +102,7 @@
                             </div>
 
                         </a>
-                        <a href="{{ route('job.index') }}" class="btn navigation_btn">
+                        <a href="{{ route('admin.job-post.index') }}" class="btn navigation_btn">
                             <div class="d-flex align-items-center ">
                                 <i class="fa-solid fa-users me-1" style="font-size: 12px;"></i>
                                 <span>Job Post</span>

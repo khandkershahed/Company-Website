@@ -12,7 +12,7 @@
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
-                        <a href="{{ route('job.index') }}" class="breadcrumb-item">Job Form</a>
+                        <a href="{{ route('admin.job-post.index') }}" class="breadcrumb-item">Job Form</a>
                         <a href="" class="breadcrumb-item">Add</a>
                     </div>
                     <a href="#breadcrumb_elements"
@@ -36,7 +36,7 @@
                                 <div class="col-lg-4 col-sm-12">
                                     <div>
                                         <a class="btn btn-primary btn-rounded rounded-circle btn-icon back-btn"
-                                            href="{{ route('job.index') }}">
+                                            href="{{ route('admin.job-post.index') }}">
                                             <i class="fa-solid fa-arrow-left main_color"></i>
                                         </a>
                                     </div>
