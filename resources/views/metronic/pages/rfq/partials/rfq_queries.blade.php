@@ -263,7 +263,7 @@
                     @endif
 
                     <div class="row g-4">
-                        <div class="col-lg-5">
+                        <div class="col-lg-5 h-lg-500px h-500px overflow-scroll">
                             <ul class="nav nav-tabs nav-pills border-0">
                                 <!-- Filter Bar -->
                                 <li class="nav-item w-100 me-0 mb-md-2">

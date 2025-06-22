@@ -303,8 +303,8 @@
         <!-- Container for the filtered RFQ queries -->
         {{-- <div id="defaultDiv" class="default-div visible col-xl-12">
             <div class="tab-content" id="myTabContent"> --}}
-                @include('metronic.pages.rfq.partials.rfq_queries')
-            {{-- </div>
+        @include('metronic.pages.rfq.partials.rfq_queries')
+        {{-- </div>
         </div> --}}
 
     </div>
@@ -447,6 +447,32 @@
                 //     $(this).addClass('active');
                 //     fetchRfqData(); // Fetch data based on the selected tab
                 // });
+            });
+        </script>
+        
+        <script>
+            const tabSelector = document.getElementById("tabSelector");
+            const tabs = document.querySelectorAll("#track_tab, #message_tab");
+
+            function switchTab(selectedId) {
+                tabs.forEach((tab) => {
+                    tab.classList.remove("tab-visible");
+                    tab.classList.add("tab-hidden");
+                });
+
+                const selectedTab = document.getElementById(selectedId);
+                if (selectedTab) {
+                    selectedTab.classList.remove("tab-hidden");
+                    selectedTab.classList.add("tab-visible");
+                }
+            }
+
+            // On page load
+            switchTab(tabSelector.value);
+
+            // On selection change
+            tabSelector.addEventListener("change", function() {
+                switchTab(this.value);
             });
         </script>
     @endpush
