@@ -44,7 +44,7 @@
                                                         <div class="col-lg-1 col-2">
                                                             <div class="d-flex">
                                                                 <input type="text" name="qty[]" value="1"
-                                                                    class="text-center form-control qty-input" readonly
+                                                                    class="text-center form-control qty-input" 
                                                                     style="width: 60px; margin-bottom: 6px" />
 
                                                                 <div class="d-flex flex-column counting-btn">
@@ -88,7 +88,7 @@
                                                     <div class="col-lg-1 col-2">
                                                          <div class="d-flex">
                                                                 <input type="text" name="qty[]" value="1"
-                                                                    class="text-center form-control qty-input" readonly
+                                                                    class="text-center form-control qty-input"
                                                                     style="width: 60px; margin-bottom: 6px" />
 
                                                                 <div class="d-flex flex-column counting-btn">
