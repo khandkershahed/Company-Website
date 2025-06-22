@@ -386,9 +386,9 @@ class RFQController extends Controller
                 // 'product_name.*'         => 'required|string',
                 // 'qty'                    => 'required|array|min:1',
                 // 'qty.*'                  => 'required|integer|min:1',
-                'contacts'               => 'required|array|min:1',
+                'contacts'                => 'required|array|min:1',
                 'contacts.*.product_name' => 'required|string',
-                'contacts.*.qty'         => 'required|integer|min:1',
+                'contacts.*.qty'          => 'required|integer|min:1',
             ],
             [
                 'required'                         => 'The :attribute field is required.',
@@ -404,7 +404,7 @@ class RFQController extends Controller
                 'contacts.*.qty.min'               => 'Quantity must be at least 1.',
             ]
         );
-
+        // dd($request->contacts);
         if ($validator->fails()) {
             foreach ($validator->messages()->all() as $message) {
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);

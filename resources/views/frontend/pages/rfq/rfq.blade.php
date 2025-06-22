@@ -32,18 +32,18 @@
                                                 @foreach ($cart_products as $key => $cart_product)
                                                     <div data-repeater-item class="row g-1">
                                                         <div class="col-lg-1 col-2">
-                                                            <input type="text" name="sl[]"
+                                                            <input type="text" name="sl"
                                                                 class="text-center form-control sl-input" value="1"
                                                                 disabled autocomplet="off" />
                                                         </div>
                                                         <div class="col-lg-9 col-6">
-                                                            <input type="text" name="product_name[]" class="form-control"
+                                                            <input type="text" name="product_name" class="form-control"
                                                                 value="{{ $cart_product->name }}"
                                                                 placeholder="Product Name " required autocomplete="" />
                                                         </div>
                                                         <div class="col-lg-1 col-2">
                                                             <div class="d-flex">
-                                                                <input type="text" name="qty[]" value="1"
+                                                                <input type="text" name="qty" value="1"
                                                                     class="text-center form-control qty-input"
                                                                     style="width: 60px; margin-bottom: 6px" />
 
@@ -77,17 +77,17 @@
                                             @else
                                                 <div data-repeater-item class="row g-1">
                                                     <div class="col-lg-1 col-2">
-                                                        <input type="text" name="sl[]"
+                                                        <input type="text" name="sl"
                                                             class="text-center form-control sl-input" value="1"
                                                             readonly autocomplete="" />
                                                     </div>
                                                     <div class="col-lg-9 col-6">
-                                                        <input type="text" name="product_name[]" class="form-control"
+                                                        <input type="text" name="product_name" class="form-control"
                                                             placeholder="Product Name" required autocomplete="off" />
                                                     </div>
                                                     <div class="col-lg-1 col-2">
                                                          <div class="d-flex">
-                                                                <input type="text" name="qty[]" value="1"
+                                                                <input type="text" name="qty" value="1"
                                                                     class="text-center form-control qty-input"
                                                                     style="width: 60px; margin-bottom: 6px" />
 
