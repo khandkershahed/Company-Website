@@ -1,526 +1,625 @@
-@extends('admin.master')
-@section('content')
-    <style>
-        thead {
-            background-color: rgb(255, 255, 255) !important;
-            color: #000000 !important;
-        }
-    </style>
-    <div class="content-wrapper"> 
-        <!-- Inner content -->
-        <!-- Page header -->
-        <div class="page-header page-header-light shadow">
-            <div class="page-header-content d-lg-flex border-top">
-                <div class="d-flex">
-                    <div class="breadcrumb py-2">
-                        <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
-                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <a href="{{ route('product-sourcing.index') }}" class="breadcrumb-item">Deal</a>
-                        <span class="breadcrumb-item active">Deal Add</span>
-                    </div>
-                    <a href="#breadcrumb_elements"
-                        class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
-                        data-bs-toggle="collapse">
-                        <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- /page header -->
-        <!-- Content area -->
-        <div class="content pt-1">
-            <div class="row my-2">
-                <div class="col-lg-8 offset-lg-2">
-                    @include('admin.pages.rfq-manage.partial.rfq_sidebar')
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="card px-0">
-                        <div class="text-start">
-                            <div class="row main_bg py-1 rounded-1 d-flex align-items-center justify-content-center gx-0 px-2">
-                                <div class="col-lg-5 col-sm-12 d-flex justify-content-center">
-                                    <h5 class="text-white p-0 m-0 fw-bold">Deal Create</h5>
+<x-admin-app-layout :title="'Deal Create Form'">
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <div id="kt_content_container" class="app-container container-fluid py-10 pt-5">
+            <div class="d-flex align-items-center justify-content-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="text-center my-10 mt-5">
+                                <h1 class="rfq-title fw-bold mb-0 text-primary">
+                                    Business Manager & Deal Information
+                                </h1>
+                                <div class="text-primary mt-2">
+                                    <p class="mb-0">
+                                        Fill out the form below to complete the deal.
+                                        Review the details, confirm accuracy, submit, and
+                                        update the status.
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body px-0 py-0">
-                            <div class="row gx-0">
-                                <div class="col-lg-2 bg-light pt-1">
-                                    <ul class="nav nav-tabs flex-column" id="myTabs" role="tablist" style="border-bottom: 0px;">
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab"
-                                                data-bs-target="#tab1" type="button" role="tab" aria-controls="tab1"
-                                                aria-selected="true">Assigned SM</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2"
-                                                type="button" role="tab" aria-controls="tab2" aria-selected="false">Client
-                                                Details</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3"
-                                                type="button" role="tab" aria-controls="tab3" aria-selected="false">Add
-                                                Product</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="tab4-tab" data-bs-toggle="tab" data-bs-target="#tab4"
-                                                type="button" role="tab" aria-controls="tab4" aria-selected="false">Terms &
-                                                Condition</button>
-                                        </li>
-                                    </ul>
+                        <div class="col-lg-10 mx-0">
+                            <div class="card border-0 shadow-sm">
+                                <div class="row g-0 align-items-center card-header mx-0 py-10"
+                                    style="background-color: #0b6476">
+                                    <div class="col-lg-3 ps-0">
+                                        <div>
+                                            <h4 class="fw-bold text-white">
+                                                Sales Manager Details
+                                            </h4>
+                                            <ul class="ps-0 mb-0 text-white" style="list-style-type: none">
+                                                <li>
+                                                    <span class="fw-bold">Name:</span>
+                                                    <span class="text-muted">Akramul Arefin</span>
+                                                </li>
+                                                <li>
+                                                    <span class="fw-bold">Email:</span>
+                                                    <a href="mailto:akramul@gmail.com"
+                                                        class="text-muted text-decoration-underline">akramul@gmail.com</a>
+                                                </li>
+                                                <li>
+                                                    <span class="fw-bold">Contact:</span>
+                                                    <a href="tel:+8801856854846"
+                                                        class="text-muted text-decoration-underline">0185-6854846</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 text-center text-white ps-0"></div>
+                                    <div class="col-lg-2 text-white pe-0">
+                                        <div class="">
+                                            <h4 class="fw-bold text-white">
+                                                Deal Information
+                                            </h4>
+                                            <p class="mb-0 pe-2 case-title">
+                                                <span class="fw-bold">Date:</span>
+                                                <span class="text-muted">6 June 2025</span>
+                                            </p>
+                                            <p class="mb-0 pe-2 case-title">
+                                                <span class="fw-bold">ID:</span>
+                                                <span class="text-muted">RFQ-20250606</span>
+                                            </p>
+                                            <p class="mb-0 pe-2 case-title">
+                                                <span class="fw-bold">Status:</span>
+                                                <span class="text-muted">Pending</span>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-lg-10">
-                                    <form method="post" action="{{ route('deal.store') }}" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="tab-content bg-white p-2 pt-0" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="tab1" role="tabpanel"
-                                                aria-labelledby="tab1-tab">
-                                                <h6 class="mb-0 text-info">Assigned Sales Manager</h6>
-                                                <div class="row mb-3 gx-0 border border-secondary bg-light">
-                                                    <div class="col-lg-12 p-2">
-                                                        <div class="row">
-                                                            <div class="col-lg-4 mb-2">
-                                                                <div class="form-group">
-                                                                    <label for="sales_man_id_L1" class="form-label mb-0">Sales
-                                                                        Manager Name(Leader - L1) <span
-                                                                            class="text-danger">*</span></label>
-                                                                    <select name="sales_man_id_L1"
-                                                                        data-placeholder="Select Sales Manager(L1).."
-                                                                        id="sales_man_id_L1" data-allow-clear="true"
-                                                                        class="form-select w-100 select-wizard" required>
-                                                                        <option></option>
-                                                                        @foreach ($users as $user)
-                                                                            <option value="{{ $user->id }}">
-                                                                                {{ $user->name }}
-                                                                            </option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4 mb-2">
-                                                                <div class="form-group">
-                                                                    <label for="sales_man_id_T1" class="form-label mb-0">Sales
-                                                                        Manager Name (Team - T1)</label>
-                                                                    <select class="form-select w-100 select-wizard"
-                                                                        name="sales_man_id_T1" data-allow-clear="true"
-                                                                        data-placeholder="Select Sales Manager(T1)...">
-                                                                        <option></option>
-                                                                        @foreach ($users as $user)
-                                                                            <option value="{{ $user->id }}">
-                                                                                {{ $user->name }}
-                                                                            </option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4 mb-2">
-                                                                <div class="form-group">
-                                                                    <label for="sales_man_id_T2" class="form-label mb-0">Sales
-                                                                        Manager Name (Team - T2)</label>
-                                                                    <select class="form-select w-100 select-wizard"
-                                                                        name="sales_man_id_T2" data-allow-clear="true"
-                                                                        data-placeholder="Select Sales Manager(T1)...">
-                                                                        <option></option>
-                                                                        @foreach ($users as $user)
-                                                                            <option value="{{ $user->id }}">
-                                                                                {{ $user->name }}
-                                                                            </option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4 mb-2">
-                                                                <div class="form-group">
-                                                                    <label for="close_date"
-                                                                        class="form-label form-label-sm mb-0">Closed
-                                                                        date</label>
-                                                                    <input type="date" name="close_date"
-                                                                        class="form-control" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-4 mb-2">
-                                                                <div class="form-group">
-                                                                    <label for="deal_type" class="form-label mb-0">Deal Type
-                                                                    </label>
-                                                                    <select name="deal_type" data-allow-clear="true"
-                                                                        class="form-select w-100 select-wizard "
-                                                                        data-minimum-results-for-search="Infinity"
-                                                                        data-placeholder="Chose Deal Type">
-                                                                        <option></option>
-                                                                        <option class="form-select" value="new">
-                                                                            New
-                                                                        </option>
-                                                                        <option class="form-select" value="renew">
-                                                                            Renew</option>
-                                                                    </select>
-                                                                </div>
+                                <div class="card-body">
+                                    <!-- ✅ Repeater goes here as you said -->
+                                    <div class="mb-4 mt-5">
+                                        <div class="repeater">
+                                            <div data-repeater-list="contacts">
+                                                <div data-repeater-item class="row g-1">
+                                                    <div class="col-lg-1 col-2">
+                                                        <input type="text" name="sl"
+                                                            class="form-control text-center" autocomplete="off"
+                                                            value="1" />
+                                                    </div>
+                                                    <div class="col-lg-9 col-6">
+                                                        <input type="text" name="product_name" class="form-control"
+                                                            autocomplete="off" placeholder="Product Name " required />
+                                                    </div>
+                                                    <div class="col-lg-1 col-2">
+                                                        <div class="d-flex">
+                                                            <input type="text" id="qty" value="1"
+                                                                class="form-control text-center" autocomplete="off"
+                                                                min="1" readonly
+                                                                style="
+                                      width: 60px;
+                                      margin-bottom: 6px;
+                                    " />
+                                                            <div class="d-flex flex-column counting-btn">
+                                                                <button type="button"
+                                                                    class="qty-btn increment-quantity"
+                                                                    aria-label="Add one" onclick="increment()"
+                                                                    style="width: 32px; height: 32px">
+                                                                    <i class="fas fa-chevron-up"
+                                                                        style="color: #7a7577"></i>
+                                                                </button>
+                                                                <button type="button"
+                                                                    class="qty-btn decrement-quantity"
+                                                                    aria-label="Subtract one" onclick="decrement()"
+                                                                    style="width: 32px; height: 32px">
+                                                                    <i class="fas fa-chevron-down"
+                                                                        style="color: #7a7577"></i>
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12 text-end">
-                                                        <button type="submit" class="btn btn-success" name="action"
-                                                            id="submitbtn" value="save">Save<i
-                                                                class="ph-paper-plane-tilt "></i></button>
-                                                        <a href="javascript:void(0);" class="btn btn-info rounded-0 p-2 px-2"
-                                                            id="nextTabButton">Next
-                                                            <i class="ph-arrow-circle-right "></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="tab2" role="tabpanel"
-                                                aria-labelledby="tab2-tab">
-                                                <h6 class="ms-1 mb-0 text-info">Client Details</h6>
-
-                                                <div class="row mb-3 p-3 mx-1 border border-secondary bg-light">
-                                                    <div class="row offset-lg-2">
-                                                        <div class="col-lg-8 d-flex justify-content-end align-items-center">
-                                                            <div
-                                                                class="center bg-gray p-1 text-center d-flex align-items-baseline">
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        value="1" name="regular" id="flexRadioDefault1">
-                                                                    <label class="form-check-label" for="flexRadioDefault1">
-                                                                        Regular Discount
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        value="1" name="special" id="flexRadioDefault1">
-                                                                    <label class="form-check-label" for="flexRadioDefault1">
-                                                                        Special Discount
-                                                                    </label>
-                                                                </div>
-                                                                <div class="form-check form-check-inline">
-                                                                    <input class="form-check-input" type="checkbox"
-                                                                        value="1" name="tax_status"
-                                                                        id="flexRadioDefault1">
-                                                                    <label class="form-check-label" for="flexRadioDefault1">
-                                                                        Tax / VAT
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-3 mb-2">
-                                                            <div class="form-group">
-                                                                <label for="sales_man_id_L1" class="form-label mb-0">Client
-                                                                    Type<span class="text-danger">*</span></label>
-                                                                <select name="client_type"
-                                                                    class="form-select w-100 select-wizard client_select"
-                                                                    data-minimum-results-for-search="Infinity"
-                                                                    data-allow-clear="true"
-                                                                    data-placeholder="Chose client Type">
-                                                                    <option></option>
-                                                                    <option class="form-select" value="client">
-                                                                        Client
-                                                                    </option>
-                                                                    <option class="form-select" value="partner">
-                                                                        Partner</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-3 mb-2 partner_display d-none">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">Partner
-                                                                Type<span class="text-danger">*</span></label>
-                                                            <select name="partner_id"
-                                                                class="form-select w-100 select-wizard partnerID"
-                                                                data-placeholder="Choose Partner" data-allow-clear="true">
-                                                                <option class="common_partner"></option>
-                                                                @foreach ($partners as $partner)
-                                                                    <option value="{{ $partner->id }}">Name :
-                                                                        {{ $partner->name }}; Company Name :
-                                                                        {{ $partner->company_name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-lg-3 mb-2 client_display d-none">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">Search Client<span class="text-danger">*</span></label>
-                                                            <select name="client_id"
-                                                                class="form-select w-100 select-wizard clientID"
-                                                                data-allow-clear="true" data-placeholder="Choose Client">
-                                                                <option class="common_client"></option>
-                                                                @foreach ($clients as $client)
-                                                                    <option value="{{ $client->id }}">Name :
-                                                                        {{ $client->name }}; Company Name :
-                                                                        {{ $client->company_name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-lg-4 mt-3 partner_account d-none text-warning">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input account" type="checkbox"
-                                                                    value="partner" name="account" id="flexCheckDefault">
-                                                                <label class="form-check-label" for="flexCheckDefault">
-                                                                    Create Partner Account
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4 mt-3 client_account d-none text-warning">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input account" type="checkbox"
-                                                                    value="client" name="account" id="flexCheckDefault">
-                                                                <label class="form-check-label" for="flexCheckDefault">
-                                                                    Create Client Account
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div class="col-lg-3 mb-2">
-                                                        <div class="form-group">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">Name<span
-                                                                    class="text-danger">*</span></label>
-                                                            <input type="text" name="name"
-                                                                class="form-control form-control-sm maxlength"
-                                                                maxlength="100" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3 mb-2">
-                                                        <div class="form-group">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">Email<span
-                                                                    class="text-danger">*</span></label>
-                                                            <input type="email" name="email"
-                                                                class="form-control form-control-sm maxlength"
-                                                                maxlength="100" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3 mb-2">
-                                                        <div class="form-group">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">Phone<span
-                                                                    class="text-danger">*</span></label>
-                                                            <input type="text" name="phone"
-                                                                class="form-control form-control-sm maxlength" maxlength="100"
-                                                                required />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3 mb-2">
-                                                        <div class="form-group">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">Company
-                                                                Name<span class="text-danger">*</span></label>
-                                                            <input type="text" name="company_name"
-                                                                class="form-control form-control-sm maxlength"
-                                                                maxlength="200" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-4 mb-2">
-                                                        <div class="form-group">
-                                                            <label for="sales_man_id_L1"
-                                                                class="form-label mb-0">Designation<span
-                                                                    class="text-danger">*</span></label>
-                                                            <input type="text" name="designation"
-                                                                class="form-control form-control-sm maxlength"
-                                                                maxlength="100" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-4 mb-2">
-                                                        <div class="form-group">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">Address<span
-                                                                    class="text-danger">*</span></label>
-                                                            <input type="text" name="address"
-                                                                class="form-control form-control-sm maxlength"
-                                                                maxlength="200" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-4 mb-2 user_password d-none">
-                                                        <div class="form-group">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">User
-                                                                Password<span class="text-danger">*</span></label>
-                                                            <input type="password" name="password"
-                                                                class="form-control form-control-sm maxlength"
-                                                                maxlength="100" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12 text-end">
-                                                        <button type="submit" class="btn btn-success" name="action"
-                                                            id="submitbtn" value="save">Save<i
-                                                                class="ph-paper-plane-tilt"></i></button>
-                                                        <a href="javascript:void(0);" class="btn btn-info rounded-0 p-2 px-2"
-                                                            id="nextTabButton2">Next
-                                                            <i class="ph-arrow-circle-right"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="tab3" role="tabpanel"
-                                                aria-labelledby="tab3-tab">
-                                                <h6 class="mb-0 text-info">Product Description</h6>
-                                                <div class="row  gx-0 pt-2 border border-secondary bg-light">
-                                                    <div class="col-lg-12 p-2">
-                                                        <div class="table-responsive col-md-12">
-                                                            <table class="table table-bordered col-md-12" style="width:100%">
-
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th style="padding:7px !important;">
-                                                                            Product Name <span class="text-danger">*</span>
-                                                                        </th>
-                                                                        <th style="padding:7px !important;"> Qty </th>
-                                                                        <th style="padding:7px !important;"> Unit Price</th>
-                                                                        <th style="padding:7px !important;"> Regular Discount
-                                                                        </th>
-                                                                        <th style="padding:7px !important;">
-                                                                            <a href="javascript:void(0)"
-                                                                                class="btn btn-primary addRow">
-                                                                                <i class="ph-plus"></i>
-                                                                            </a>
-                                                                        </th>
-                                                                    </tr>
-                                                                </thead>
-
-                                                                <tbody class="repeater">
-                                                                    <tr>
-                                                                        <td> <input type="text" class="form-control"
-                                                                                name="item_name[]" placeholder='Product Name*'
-                                                                                required></td>
-                                                                        <td> <input type="text" class="form-control"
-                                                                                name="qty[]" placeholder='Quantity'></td>
-                                                                        <td> <input type="text" class="form-control"
-                                                                                name="unit_price[]"></td>
-                                                                        <td> <input type="text" class="form-control"
-                                                                                name="regular_discount[]"></td>
-
-
-                                                                        <td class="text-center"> <a href="javascript:void(0)"
-                                                                                class=" removeRow"><i
-                                                                                    class="ph-minus"></i></a>
-                                                                        </td>
-                                                                    </tr>
-
-                                                                </tbody>
-                                                            </table>
-                                                            {{-- <div class="col-md-11 mt-3">
-                                                                <button type="submit" class="btn btn-primary text-right">Submit</button>
-                                                            </div> --}}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12 text-end mt-3">
-                                                        <button type="submit" class="btn btn-success" name="action"
-                                                            id="submitbtn" value="save">Save<i
-                                                                class="ph-paper-plane-tilt"></i></button>
-                                                        <a href="javascript:void(0);" class="btn btn-info rounded-0 p-2 px-2"
-                                                            id="nextTabButton3">Next
-                                                            <i class="ph-arrow-circle-right"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="tab4" role="tabpanel"
-                                                aria-labelledby="tab4-tab">
-                                                {{-- <h5>Tab 3 Content</h5> --}}
-                                                <h6 class="ms-1 mb-0 text-info">Source Details</h6>
-                                                <div class="row mb-3 gx-0 border border-secondary bg-light">
-                                                    <table class="table table-bordered table-striped">
-                                                        <thead>
-                                                            <tr>
-                                                                <th width="10%">Validity </th>
-                                                                <td width="22%">
-                                                                    <input type="text" name="validity"
-                                                                        class="form-control maxlength" form-control-sm
-                                                                        maxlength="200"
-                                                                        value="7 Days from the PQ date.Offer may change on the bank forex rate or stock availability" />
-                                                                </td>
-                                                                <th width="10%">Payment </th>
-                                                                <td width="22%">
-                                                                    <input type="text" name="payment"
-                                                                        class="form-control form-control-sm maxlength"
-                                                                        maxlength="200"
-                                                                        value="100% advanced payment with Work Order for Renewal order Excuation" />
-                                                                </td>
-                                                                <th width="10%">Payment Mode </th>
-                                                                <td width="22%">
-                                                                    <input type="text" name="payment_mode"
-                                                                        class="form-control form-control-sm maxlength"
-                                                                        maxlength="200"
-                                                                        value="Payment must be through Cheque/EFTN/WT & hit in the NGen IT account" />
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th width="10%">Delivery </th>
-                                                                <td width="22%">
-                                                                    <input type="text" name="delivery"
-                                                                        class="form-control form-control-sm maxlength"
-                                                                        maxlength="200"
-                                                                        value="3 business wks upon receiving of WO & Payment.Extended time may require for disaster issues" />
-                                                                </td>
-                                                                <th width="10%">Delivery Location </th>
-                                                                <td width="22%">
-                                                                    <input type="text" name="delivery_location"
-                                                                        class="form-control form-control-sm maxlength"
-                                                                        maxlength="200"
-                                                                        value="Automatice Renewal Activation to the Licenses & Client's Console Panel" />
-                                                                </td>
-                                                                <th width="10%">Product & Order </th>
-                                                                <td width="22%">
-                                                                    <input type="text" name="product_order"
-                                                                        class="form-control form-control-sm maxlength"
-                                                                        maxlength="200"
-                                                                        value="May reject/modify order on any dispute in pr. price or product non-availability during execuation" />
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th width="10%">Installation Support </th>
-                                                                <td width="22%">
-                                                                    <input type="text" name="installation_support"
-                                                                        class="form-control form-control-sm maxlength"
-                                                                        maxlength="200"
-                                                                        value="Not Applicable. Local Support is Not Included with this Cost as per requirements" />
-                                                                </td>
-                                                                <th width="10%">Pmt Condition </th>
-                                                                <td width="22%">
-                                                                    <input type="text" name="pmt_condition"
-                                                                        class="form-control form-control-sm maxlength"
-                                                                        maxlength="200"
-                                                                        value="1.5% penalty per week on late from 7 days of / Payment Date" />
-                                                                </td>
-                                                                <th width="10%">Terms Nine </th>
-                                                                <td width="22%">
-                                                                    <input type="text" name="terms_nine"
-                                                                        class="form-control form-control-sm maxlength"
-                                                                        maxlength="200" value="" />
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th width="10%">Terms Ten </th>
-                                                                <td width="22%">
-                                                                    <input type="text" name="terms_ten"
-                                                                        class="form-control form-control-sm maxlength"
-                                                                        maxlength="200" value="" />
-                                                                </td>
-                                                                <th width="10%">Terms Eleven </th>
-                                                                <td width="22%">
-                                                                    <input type="text" name="terms_eleven"
-                                                                        class="form-control form-control-sm maxlength"
-                                                                        maxlength="200" value="" />
-                                                                </td>
-                                                            </tr>
-                                                        </thead>
-                                                    </table>
-                                                </div>
-                                                <div class="row mt-5 text-end">
-                                                    <div class="col-lg-4"></div>
-                                                    <div class="col-lg-8">
-                                                        <button type="submit" class="btn btn-success" name="action"
-                                                            id="submitbtn" value="save">Save<i
-                                                                class="ph-paper-plane-tilt"></i></button>
-                                                        <button type="submit" class="btn btn-primary " name="action"
-                                                            id="submitbtn" value="approval"> Submit
-                                                            <i class="ph-paper-plane-tilt"></i>
+                                                    <div class="col-lg-1 col-2">
+                                                        <button type="button" data-repeater-delete
+                                                            class="btn btn-sm w-100 py-2 trash-btn">
+                                                            <i class="fas fa-trash text-danger fs-1"></i>
                                                         </button>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <button type="button" data-repeater-create class="rfq-add-btns mb-3 mt-4">
+                                                <i class="fas fa-plus"></i> Add Items
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- ✅ End of repeater placement -->
+                                    <hr class="my-10" />
+                                    <!-- For Desktop Only -->
+                                    <!-- Progress Bar -->
+                                    <div class="progress-bar-steps pt-3 for-desktop">
+                                        <div class="step" data-step="1">
+                                            <!-- <div class="step-label">Company Info</div> -->
+                                            <div class="step-label">
+                                                <span class="d-none d-sm-inline">Company Info</span>
+                                                <span class="d-inline d-sm-none">Company</span>
+                                            </div>
+                                            <div class="circle pt-1 ps-2">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                        </div>
+                                        <div class="step" data-step="2">
+                                            <div class="step-label">
+                                                <span class="d-none d-sm-inline">Shipping Details</span>
+                                                <span class="d-inline d-sm-none">Shipping</span>
+                                            </div>
+                                            <div class="circle pt-1 ps-2">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                        </div>
+                                        <div class="step" data-step="3">
+                                            <div class="step-label">
+                                                <span class="d-none d-sm-inline">End User Info</span>
+                                                <span class="d-inline d-sm-none">End User</span>
+                                            </div>
+                                            <div class="circle pt-1 ps-2">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                        </div>
+                                        <div class="step" data-step="4">
+                                            <div class="step-label">
+                                                <span class="d-none d-sm-inline">Additional Details</span>
+                                                <span class="d-inline d-sm-none">Additional</span>
+                                            </div>
+                                            <div class="circle pt-1 ps-2">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Form starts here -->
+                                    <form id="stepperForm">
+                                        <!-- Step 1 -->
+                                        <div class="step-content active" data-step="1">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="company_name"
+                                                            class="form-control" autocomplete="off"
+                                                            placeholder="Company Name (e.g: NGen It)" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-check mt-4 mb-4">
+                                                        <div>
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" id="resellerCheckbox" required />
+                                                            <label class="form-check-label" for="resellerCheckbox">
+                                                                I am a reseller (Check if you are a
+                                                                reseller partner)
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="name" class="form-control"
+                                                            autocomplete="off"
+                                                            placeholder="Client Name (e.g: Jhone Doe)" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="address" class="form-control"
+                                                            autocomplete="off"
+                                                            placeholder="Address (e.g: House No, Road, Block)"
+                                                            required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="designation" class="form-control"
+                                                            autocomplete="off"
+                                                            placeholder="Designation (e.g: Sales Manager)" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <select class="form-select form-select-solid countrySelect"
+                                                            name="country" aria-label="Select Country" required>
+                                                            <option value="" selected disabled
+                                                                style="color: #7a7577 !important">
+                                                                Select Country
+                                                            </option>
+                                                            <option value="Bangladesh">
+                                                                Bangladesh
+                                                            </option>
+                                                            <option value="India">India</option>
+                                                            <option value="Pakistan">
+                                                                Pakistan
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="email" name="email" class="form-control"
+                                                            autocomplete="off"
+                                                            placeholder="Email Address (e.g: jhone@mail.com)"
+                                                            required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <select class="form-select form-select-solid countrySelect"
+                                                            name="city" aria-label="Select City" required>
+                                                            <option value="" selected disabled>
+                                                                Select City
+                                                            </option>
+                                                            <option value="Dhaka">Dhaka</option>
+                                                            <option value="Chattogram">
+                                                                Chattogram
+                                                            </option>
+                                                            <option value="Khulna">Khulna</option>
+                                                            <option value="Rajshahi">
+                                                                Rajshahi
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="number" name="phone" class="form-control"
+                                                            autocomplete="off"
+                                                            placeholder="Phone Number (e.g: 018687955852)" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="company_zip_code"
+                                                            class="form-control" autocomplete="off"
+                                                            placeholder="ZIP Code (e.g: 1207)" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="my-10">
+                                                        <!-- Delivery Address Checkbox -->
+                                                        <div class="form-check mt-2">
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="" id="deliveryAddress" disabled
+                                                                required />
+                                                            <label class="form-check-label" for="deliveryAddress">
+                                                                My delivery address is the same as the
+                                                                company address
+                                                            </label>
+                                                        </div>
+                                                        <div id="checkDefaultContainer">
+                                                            <div class="form-check mb-4 mt-3">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                    value="" id="endUser" disabled required />
+                                                                <label class="form-check-label" for="endUser">
+                                                                    I am the end user and my information
+                                                                    is the same as the company address
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center mt-5">
+                                                <div>
+                                                    <p class="mb-0 fw-semibold case-title">
+                                                        "Please provide accurate and complete
+                                                        details so we can reach out to you
+                                                        smoothly."
+                                                    </p>
+                                                </div>
+                                                <button type="button" class="btn btn-primary next-step next-btn">
+                                                    Next <i class="fas fa-arrow-right-long"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- Step 2 -->
+                                        <div class="step-content" data-step="2">
+                                            <div>
+                                                <!-- Delivery Address Checkbox -->
+
+                                                <div class="form-check my-15">
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                        id="stepTwoGotoStep3" />
+                                                    <label class="form-check-label" for="stepTwoGotoStep3">
+                                                        Delivery address is same as the company
+                                                        address
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- Step 2 Inputs Field -->
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="company_name"
+                                                            class="form-control" autocomplete="off"
+                                                            placeholder="Company Name (e.g: NGen It)" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="name" class="form-control"
+                                                            autocomplete="off"
+                                                            placeholder="Client Name (e.g: Jhone Doe)" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="address" class="form-control"
+                                                            autocomplete="off"
+                                                            placeholder="Address (e.g: House No, Road, Block)"
+                                                            required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="designation" class="form-control"
+                                                            autocomplete="off"
+                                                            placeholder="Designation (e.g: Sales Manager)" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <select class="form-select form-select-solid countrySelect"
+                                                            aria-label="Select Country" required name="country">
+                                                            <option value="" selected disabled
+                                                                style="color: #7a7577 !important">
+                                                                Select Country
+                                                            </option>
+                                                            <option value="Bangladesh">
+                                                                Bangladesh
+                                                            </option>
+                                                            <option value="India">India</option>
+                                                            <option value="Pakistan">
+                                                                Pakistan
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="email" name="email" class="form-control"
+                                                            autocomplete="off"
+                                                            placeholder="Email Address (e.g: jhone@mail.com)"
+                                                            required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <select class="form-select form-select-solid countrySelect"
+                                                            aria-label="Select City" required name="city">
+                                                            <option value="" selected disabled>
+                                                                Select City
+                                                            </option>
+                                                            <option value="Dhaka">Dhaka</option>
+                                                            <option value="Chattogram">
+                                                                Chattogram
+                                                            </option>
+                                                            <option value="Khulna">Khulna</option>
+                                                            <option value="Rajshahi">
+                                                                Rajshahi
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="number" name="phone" class="form-control"
+                                                            autocomplete="off"
+                                                            placeholder="Phone Number (e.g: 018687955852)" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="company_zip_code"
+                                                            class="form-control" autocomplete="off"
+                                                            placeholder="ZIP Code (e.g: 1207)" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Step 2 Inputs Field End-->
+                                            <div class="d-flex justify-content-between align-items-center mt-15">
+                                                <button type="button" class="btn btn-secondary prev-step prev-btn">
+                                                    <i class="fas fa-arrow-left-long pe-2"></i>
+                                                    Previous
+                                                </button>
+                                                <button type="button" class="btn btn-primary next-step next-btn">
+                                                    Next <i class="fas fa-arrow-right-long"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- Step 3 -->
+                                        <div class="step-content" data-step="3">
+                                            <!-- End User Checkbox -->
+                                            <div>
+                                                <div class="form-check my-15">
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                        id="stepThreeGotoStep4" />
+                                                    <label class="form-check-label" for="stepThreeGotoStep4">
+                                                        I am the end user & same as the company
+                                                        address
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <!-- Step 3 Inputs Field-->
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="company_name"
+                                                            class="form-control" autocomplete="off"
+                                                            placeholder="Company Name (e.g: NGen It)" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="name" class="form-control"
+                                                            autocomplete="off"
+                                                            placeholder="Client Name (e.g: Jhone Doe)" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="address" class="form-control"
+                                                            autocomplete="off"
+                                                            placeholder="Address (e.g: House No, Road, Block)"
+                                                            required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="designation" class="form-control"
+                                                            autocomplete="off"
+                                                            placeholder="Designation (e.g: Sales Manager)" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <select class="form-select form-select-solid countrySelect"
+                                                            aria-label="Select Country" required name="country">
+                                                            <option value="" selected disabled
+                                                                style="color: #7a7577 !important">
+                                                                Select Country
+                                                            </option>
+                                                            <option value="Bangladesh">
+                                                                Bangladesh
+                                                            </option>
+                                                            <option value="India">India</option>
+                                                            <option value="Pakistan">
+                                                                Pakistan
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="email" name="email" class="form-control"
+                                                            autocomplete="off"
+                                                            placeholder="Email Address (e.g: jhone@mail.com)"
+                                                            required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <select class="form-select form-select-solid countrySelect"
+                                                            aria-label="Select City" required name="city">
+                                                            <option value="" selected disabled>
+                                                                Select City
+                                                            </option>
+                                                            <option value="Dhaka">Dhaka</option>
+                                                            <option value="Chattogram">
+                                                                Chattogram
+                                                            </option>
+                                                            <option value="Khulna">Khulna</option>
+                                                            <option value="Rajshahi">
+                                                                Rajshahi
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="number" name="phone" class="form-control"
+                                                            autocomplete="off"
+                                                            placeholder="Phone Number (e.g: 018687955852)" required />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="company_zip_code"
+                                                            class="form-control" autocomplete="off"
+                                                            placeholder="ZIP Code (e.g: 1207)" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Step 3 Inputs Field End-->
+                                            <div class="d-flex justify-content-between align-items-center mt-15">
+                                                <button type="button" class="btn btn-secondary prev-step prev-btn">
+                                                    <i class="fas fa-arrow-left-long pe-2"></i>
+                                                    Previous
+                                                </button>
+                                                <button type="button" class="btn btn-primary next-step next-btn">
+                                                    Next <i class="fas fa-arrow-right-long"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- Step 4 -->
+                                        <div class="step-content" data-step="4">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="project_name"
+                                                            class="form-control" autocomplete="off"
+                                                            placeholder="Project Name" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <input type="text" name="budget" class="form-control"
+                                                            autocomplete="off" placeholder="Tentative Budget.." />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <select class="form-select form-select-solid countrySelect"
+                                                            aria-label="Select Country" name="status">
+                                                            <option value="" selected>
+                                                                Current project status
+                                                            </option>
+                                                            <option value="budget_stage">
+                                                                Budget Stage
+                                                            </option>
+                                                            <option value="tor_stage">
+                                                                Tor Stage
+                                                            </option>
+                                                            <option value="rfq_stage">
+                                                                RFQ Stage
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-5">
+                                                        <select class="form-select countrySelect"
+                                                            aria-label="Select Country" name="status">
+                                                            <option value="" selected>
+                                                                Tentetive Purchase Date
+                                                            </option>
+                                                            <option value="less_one_month">
+                                                                1 Month
+                                                            </option>
+                                                            <option value="two_month">
+                                                                2 Month
+                                                            </option>
+                                                            <option value="three_month">
+                                                                3 Month
+                                                            </option>
+                                                            <option value="six_month">
+                                                                6 Month
+                                                            </option>
+                                                            <option value="one_year">1 Year</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 mb-3">
+                                                    <textarea class="form-control" autocomplete="off" id="messageTextarea" name="project_brief"
+                                                        placeholder="Leave a comment or message here..." rows="2" data-gtm-form-interact-field-id="9"></textarea>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-check my-15">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            value="" id="flexCheckChecked" checked />
+                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                            Skip the additional information
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <button type="button" class="btn btn-secondary prev-step prev-btn">
+                                                    <i class="fas fa-arrow-left-long pe-2"></i>
+                                                    Previous
+                                                </button>
+                                                <button type="submit" class="btn btn-primary next-step next-btn">
+                                                    Submit
+                                                </button>
+                                            </div>
                                         </div>
                                     </form>
+                                    <!-- End form -->
                                 </div>
                             </div>
                         </div>
@@ -528,263 +627,283 @@
                 </div>
             </div>
         </div>
-        <!-- /content area -->
-        <!-- /inner content -->
     </div>
-@endsection
-@once
-    @push('scripts')
-        <script>
-            // Get the next tab button for Tab 1
-            const nextTabButton = document.getElementById('nextTabButton');
-            // Add a click event listener to the button
-            nextTabButton.addEventListener('click', function() {
-                // Activate Tab 2
-                const tab2Button = document.getElementById('tab2-tab');
-                tab2Button.classList.add('active');
-                tab2Button.setAttribute('aria-selected', 'true');
-                // Show Tab 2's content
-                const tab2Content = document.getElementById('tab2');
-                tab2Content.classList.add('active', 'show');
-                // Deactivate Tab 1
-                const tab1Button = document.getElementById('tab1-tab');
-                tab1Button.classList.remove('active');
-                tab1Button.setAttribute('aria-selected', 'false');
-                // Hide Tab 1's content
-                const tab1Content = document.getElementById('tab1');
-                tab1Content.classList.remove('active', 'show');
-            });
-            // Get the next tab button for Tab 2
-            const nextTabButton2 = document.getElementById('nextTabButton2');
-            // Add a click event listener to the button
-            nextTabButton2.addEventListener('click', function() {
-                // Activate Tab 3
-                const tab3Button = document.getElementById('tab3-tab');
-                tab3Button.classList.add('active');
-                tab3Button.setAttribute('aria-selected', 'true');
-                // Show Tab 3's content
-                const tab3Content = document.getElementById('tab3');
-                tab3Content.classList.add('active', 'show');
-                // Deactivate Tab 2
-                const tab2Button = document.getElementById('tab2-tab');
-                tab2Button.classList.remove('active');
-                tab2Button.setAttribute('aria-selected', 'false');
-                // Hide Tab 2's content
-                const tab2Content = document.getElementById('tab2');
-                tab2Content.classList.remove('active', 'show');
-            });
-            // Get the next tab button for Tab 3
-            const nextTabButton3 = document.getElementById('nextTabButton3');
-            // Add a click event listener to the button
-            nextTabButton3.addEventListener('click', function() {
-                // Activate Tab 4
-                const tab4Button = document.getElementById('tab4-tab');
-                tab4Button.classList.add('active');
-                tab4Button.setAttribute('aria-selected', 'true');
-                // Show Tab 4's content
-                const tab4Content = document.getElementById('tab4');
-                tab4Content.classList.add('active', 'show');
-                // Deactivate Tab 3
-                const tab3Button = document.getElementById('tab3-tab');
-                tab3Button.classList.remove('active');
-                tab3Button.setAttribute('aria-selected', 'false');
-                // Hide Tab 3's content
-                const tab3Content = document.getElementById('tab3');
-                tab3Content.classList.remove('active', 'show');
-            });
-        </script>
 
+    @push('sscripts')
+        <script src="{{ asset('assets/js/admin/deal/add.js') }}"></script>
+        <script src="{{ asset('assets/js/admin/deal/repeater.js') }}"></script>
+        <script src="{{ asset('assets/js/admin/deal/stepper.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
         <script>
             $(document).ready(function() {
-                $('.client_select').on('change', function() {
-                    var client_value = $(this).find(":selected").val();
+                let currentStep = 1;
+                const totalSteps = 4;
 
-                    if (client_value == 'client') {
-                        $(".client_display").removeClass("d-none");
-                        $(".partner_display").addClass("d-none");
+                // Custom validation rules
+                $.validator.addMethod(
+                    "customEmail",
+                    function(value, element) {
+                        return (
+                            this.optional(element) ||
+                            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)
+                        );
+                    },
+                    "Please enter a valid email (e.g., user@gmail.com)"
+                );
 
-                    } else if (client_value == 'partner') {
-                        $(".partner_display").removeClass("d-none");
-                        $(".client_display").addClass("d-none");
+                $.validator.addMethod(
+                    "customPhone",
+                    function(value, element) {
+                        const isValidPattern = /^01[3-9]\d{1,12}$/.test(value);
+                        const lengthValid = value.length >= 4 && value.length <= 15;
+                        return this.optional(element) || (isValidPattern && lengthValid);
+                    },
+                    "Please enter a valid phone number between 4 and 15 digits (e.g., 0186...)"
+                );
 
-                    } else {
-                        $(".partner_display").addClass("d-none");
-                        $(".client_display").addClass("d-none");
-                    }
+                $.validator.addMethod(
+                    "customZip",
+                    function(value, element) {
+                        return this.optional(element) || /^[0-9]{3,6}$/.test(value);
+                    },
+                    "Please enter a valid ZIP code with 3 to 6 digits"
+                );
+
+                $("#stepperForm").validate({
+                    errorClass: "is-invalid",
+                    validClass: "is-valid",
+                    errorPlacement: function(error, element) {
+                        error.addClass("text-danger");
+                        error.insertAfter(element);
+                    },
+                    onkeyup: false,
+                    onfocusout: function(element) {
+                        $(element).valid();
+                        toggleNextButton();
+                        toggleCheckboxes();
+                    },
+                    onclick: false,
                 });
-                $('.client_select').on('change', function() {
-                    var client_value = $(this).find(":selected").val();
 
-                    if (client_value == 'client') {
-                        $(".client_display").removeClass("d-none");
-                        $(".partner_display").addClass("d-none");
-
-                    } else if (client_value == 'partner') {
-                        $(".partner_display").removeClass("d-none");
-                        $(".client_display").addClass("d-none");
-
-                    } else {
-                        $(".partner_display").addClass("d-none");
-                        $(".client_display").addClass("d-none");
-                    }
+                $('input[name="email"]').rules("add", {
+                    customEmail: true
                 });
-            });
-        </script>
-
-        <script>
-            $(document).ready(function() {
-                $('thead').on('click', '.addRow', function() {
-
-                    var tr = "<tr>" +
-                        "<td> <input type='text' class='form-control' name='item_name[]' placeholder='Product Name*' required></td>" +
-                        "<td> <input type='text' class='form-control' name='qty[]' placeholder='Quantity' required></td>" +
-                        "<td> <input type='text' class='form-control' name='unit_price[]' ></td>" +
-                        "<td> <input type='text' class='form-control' name='regular_discount[]' ></td>" +
-                        "<td> <a href='javascript:void(0)' class='btn btn-danger removeRow'><i class='ph-minus'></i></a></td>" +
-                        "</tr>"
-                    $('.repeater').append(tr);
+                $('input[name="phone"]').rules("add", {
+                    customPhone: true
+                });
+                $('input[name="company_zip_code"]').rules("add", {
+                    customZip: true
                 });
 
-                $('tbody').on('click', '.removeRow', function() {
-                    $(this).parent().parent().remove();
-                });
-            });
-        </script>
+                function toggleNextButton() {
+                    const $currentStepContent = $(
+                        `.step-content[data-step="${currentStep}"]`
+                    );
+                    const $requiredInputs = $currentStepContent
+                        .find("input, select, textarea")
+                        .filter("[required]");
 
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('select[name="partner_id"]').on('change', function() {
-                    var partner_id = $(this).val();
-                    if (partner_id) {
-                        $.ajax({
-                            url: "{{ url('admin/partner/ajax') }}/" + partner_id,
-                            type: "GET",
-                            dataType: "json",
-                            success: function(data) {
-                                $('input[name="name"]').val(data.name);
-                                $('input[name="email"]').val(data.email);
-                                $('input[name="company_name"]').val(data.company_name);
-                                $('input[name="address"]').val(data.address);
-                                $('input[name="phone"]').val(data.phone);
-                            },
-
+                    let allValid = true;
+                    if ($requiredInputs.length > 0) {
+                        $requiredInputs.each(function() {
+                            if (!$("#stepperForm").validate().element(this)) {
+                                allValid = false;
+                                return false;
+                            }
                         });
                     }
+                    $currentStepContent.find(".next-step").prop("disabled", !allValid);
+                }
 
-                });
-            });
-        </script>
+                function toggleCheckboxes() {
+                    const $step1 = $('.step-content[data-step="1"]');
+                    const $requiredInputs = $step1
+                        .find("input, select")
+                        .filter("[required]");
+                    let allValid = true;
 
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('select[name="client_id"]').on('change', function() {
-                    var client_id = $(this).val();
-                    if (client_id) {
-                        $.ajax({
-                            url: "{{ url('admin/client/ajax') }}/" + client_id,
-                            type: "GET",
-                            dataType: "json",
-                            success: function(data) {
-                                $('input[name="name"]').val(data.name);
-                                $('input[name="email"]').val(data.email);
-                                $('input[name="phone"]').val(data.phone);
-                                $('input[name="address"]').val(data.address);
-
-                            },
-
-                        });
-                    }
-                });
-            });
-        </script>
-
-        <script>
-            $(document).ready(function() {
-                $('select[name="client_type"]').on('change', function() {
-                    var client_type = $(this).val();
-                    if (client_type == 'partner') {
-                        $('select[name="client_id"]').val('').change();
-                    } else if (client_type == 'client') {
-                        $('select[name="partner_id"]').val('').change();
-                    } else {
-                        $('select[name="client_id"]').val('').change();
-                        $('select[name="partner_id"]').val('').change();
-                    }
-
-                });
-
-
-                $('select[name="client_type"]').on('change', function() {
-                    var client_type = $(this).find(":selected").val();
-
-                    if (client_type) {
-
-                        if (client_type == 'partner') {
-                            $('.partner_account').removeClass('d-none');
-                            $('.client_account').addClass('d-none');
-                            $('select[name="partner_id"]').on('change', function() {
-                                var partner = $('select[name="partner_id"]').find(":selected").val();
-                                if (partner) {
-                                    $('.partner_account').addClass('d-none');
-                                    $('input[name="password"]').val('');
-                                } else {
-                                    $('.partner_account').removeClass('d-none');
-                                }
-                            });
+                    $requiredInputs.each(function() {
+                        if (!$("#stepperForm").validate().element(this)) {
+                            allValid = false;
+                            return false;
                         }
-                        if (client_type == 'client') {
-                            $('.client_account').removeClass('d-none');
-                            $('.partner_account').addClass('d-none');
-                            $('select[name="client_id"]').on('change', function() {
-                                var client = $('select[name="client_id"]').find(":selected").val();
-                                if (client) {
-                                    $('.client_account').addClass('d-none');
-                                    $('input[name="password"]').val('');
-                                } else {
-                                    $('.client_account').removeClass('d-none');
-                                }
-                            });
+                    });
+
+                    $("#deliveryAddress, #endUser, #resellerCheckbox").prop(
+                        "disabled",
+                        !allValid
+                    );
+                }
+
+                function updateProgress() {
+                    $(".step").removeClass("active completed current-step-red");
+
+                    $(".step").each(function(index) {
+                        const stepNum = index + 1;
+                        if (stepNum < currentStep) {
+                            $(this).addClass("completed").find("i").show(); // ✅ Show icon only if completed
+                        } else if (stepNum === currentStep) {
+                            $(this).addClass("active current-step-red").find("i")
+                        .hide(); // ❌ Hide icon on current step
+                        } else {
+                            $(this).removeClass("completed").find("i")
+                        .hide(); // Make sure future steps are clean
                         }
+                    });
+
+                    $(".step-content").removeClass("active");
+                    $(`.step-content[data-step="${currentStep}"]`).addClass("active");
+
+                    toggleNextButton();
+                    toggleCheckboxes();
+                }
+
+                $(document).on(
+                    "input change",
+                    ".step-content.active input, .step-content.active select, .step-content.active textarea",
+                    function() {
+                        toggleNextButton();
+                        toggleCheckboxes();
+                    }
+                );
+
+                $(".next-step").click(function() {
+                    const $currentStepContent = $(
+                        `.step-content[data-step="${currentStep}"]`
+                    );
+                    const $requiredInputs = $currentStepContent
+                        .find("input, select, textarea")
+                        .filter("[required]");
+
+                    if ($requiredInputs.length === 0 || $requiredInputs.valid()) {
+                        if (currentStep === 1) {
+                            const deliveryAddress = $("#deliveryAddress").is(":checked");
+                            const endUser = $("#endUser").is(":checked");
+
+                            if (deliveryAddress && endUser) {
+                                currentStep = 4;
+                            } else if (deliveryAddress) {
+                                currentStep = 3;
+                            } else {
+                                currentStep = 2;
+                            }
+                        } else if (currentStep < totalSteps) {
+                            currentStep++;
+                        }
+                        updateProgress();
                     } else {
-                        $('.client_account').addClass('d-none');
-                        $('.partner_account').addClass('d-none');
+                        $requiredInputs.valid();
                     }
                 });
 
-                $('.account').on('click', function() {
-                    if ($('.account').is(':checked')) {
-                        $('.user_password').removeClass('d-none');
-                    } else {
-                        $('.user_password').addClass('d-none');
+                $(".prev-step").click(function() {
+                    if (currentStep > 1) {
+                        currentStep--;
+                        updateProgress();
                     }
                 });
 
-
-                $("input[name='phone']").on('keyup change', function() {
-                    var password = $("input[name='phone']").val();
-                    $("input[name='password']").val(password);
+                $("#stepperForm").on("submit", function(e) {
+                    e.preventDefault();
+                    if ($(this).valid()) {
+                        alert("Form submitted successfully!");
+                    }
                 });
 
-                $('.client_select').on('change', function() {
-
-                    $('input[name="name"]').val('');
-                    $('input[name="email"]').val('');
-                    $('input[name="company_name"]').val('');
-                    $('input[name="address"]').val('');
-                    $('input[name="phone"]').val('');
-
-
+                $(".repeater").repeater({
+                    initEmpty: false,
+                    defaultValues: {
+                        phone: ""
+                    },
+                    show: function() {
+                        $(this).slideDown();
+                    },
+                    hide: function(deleteElement) {
+                        if (confirm("Are you sure you want to delete this entry?")) {
+                            $(this).slideUp(deleteElement);
+                        }
+                    },
                 });
 
+                function handleCheckboxVisibility() {
+                    const $checkDefaultWrapper = $("#endUser").closest(".form-check");
+                    if ($("#resellerCheckbox").is(":checked")) {
+                        $checkDefaultWrapper.hide();
+                        $("#endUser").prop("checked", false);
+                    } else {
+                        $checkDefaultWrapper.show();
+                    }
+                }
 
-            });
-        </script>
-        <script>
-            $(document).ready(function() {
+                $("#resellerCheckbox").on("change", function() {
+                    handleCheckboxVisibility();
+                    toggleNextButton();
+                    toggleCheckboxes();
+                });
 
-                $('.select-wizard').select2();
+                function setupStepTwoJumpCheckbox() {
+                    $("#stepTwoGotoStep3").on("change", function() {
+                        if ($(this).is(":checked") && currentStep === 2) {
+                            currentStep = 3;
+                            updateProgress();
+                        }
+                    });
+                }
+
+                function setupStepTwoJumpCheckboxThree() {
+                    $("#stepThreeGotoStep4").on("change", function() {
+                        if ($(this).is(":checked") && currentStep === 3) {
+                            currentStep = 4;
+                            updateProgress();
+                        }
+                    });
+                }
+
+                // Initial run
+                handleCheckboxVisibility();
+                updateProgress();
+                setupStepTwoJumpCheckbox();
+                setupStepTwoJumpCheckboxThree();
             });
+
+            // Country placeholder
+            const selects = document.getElementsByClassName("countrySelect");
+
+            for (let i = 0; i < selects.length; i++) {
+                const select = selects[i];
+
+                // Initial color set
+                if (select.value === "") {
+                    select.style.color = "#888888b2";
+                }
+
+                // On change
+                select.addEventListener("change", function() {
+                    if (select.value === "") {
+                        select.style.color = "#888888b2";
+                    } else {
+                        select.style.color = "#000";
+                    }
+                });
+            }
+
+            function toggleDiv() {
+                const checkbox = document.getElementById("delivery");
+                const toggleContent = document.getElementById("toggle-content");
+                toggleContent.style.display = checkbox.checked ? "block" : "none";
+            }
+
+            function increment() {
+                const input = document.getElementById("qty");
+                input.value = parseInt(input.value) + 1;
+            }
+
+            function decrement() {
+                const input = document.getElementById("qty");
+                if (parseInt(input.value) > 1) {
+                    input.value = parseInt(input.value) - 1;
+                }
+            }
         </script>
     @endpush
-@endonce
+</x-admin-app-layout>
