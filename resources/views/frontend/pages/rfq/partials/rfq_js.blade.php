@@ -1,6 +1,5 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
-
     <script>
         $(document).ready(function() {
             let currentStep = 1;
@@ -180,21 +179,6 @@
                 }
             });
 
-            // $(".repeater").repeater({
-            //     initEmpty: false,
-            //     defaultValues: {
-            //         phone: ""
-            //     },
-            //     show: function() {
-            //         $(this).slideDown();
-            //     },
-            //     hide: function(deleteElement) {
-            //         if (confirm("Are you sure you want to delete this entry?")) {
-            //             $(this).slideUp(deleteElement);
-            //         }
-            //     },
-            // });
-
             function handleCheckboxVisibility() {
                 const $checkDefaultWrapper = $("#endUser").closest(".form-check");
                 if ($("#resellerCheckbox").is(":checked")) {
@@ -261,62 +245,56 @@
             const toggleContent = document.getElementById("toggle-content");
             toggleContent.style.display = checkbox.checked ? "block" : "none";
         }
-
-        // function increment() {
-        //     const input = document.getElementById("qty");
-        //     input.value = parseInt(input.value) + 1;
-        // }
-
-        // function decrement() {
-        //     const input = document.getElementById("qty");
-        //     if (parseInt(input.value) > 1) {
-        //         input.value = parseInt(input.value) - 1;
-        //     }
-        // }
     </script>
     <script>
-    function increment(button) {
-        const input = button.closest('.counting-btn').previousElementSibling;
-        let value = parseInt(input.value);
-        input.value = isNaN(value) || value < 1 ? 1 : value + 1;
-    }
-
-    function decrement(button) {
-        const input = button.closest('.counting-btn').previousElementSibling;
-        let value = parseInt(input.value);
-        if (isNaN(value) || value <= 1) {
-            input.value = 1;
-        } else {
-            input.value = value - 1;
+        function increment(button) {
+            const input = button.closest('.counting-btn').previousElementSibling;
+            let value = parseInt(input.value);
+            input.value = isNaN(value) || value < 1 ? 1 : value + 1;
         }
-    }
-</script>
-    <script>
-    function updateSerials() {
-        $('[data-repeater-list] [data-repeater-item]').each(function (i) {
-            $(this).find('.sl-input').val(i + 1);
-        });
-    }
 
-    $(document).ready(function () {
-        $('.repeater').repeater({
-            show: function () {
-                $(this).slideDown('fast', function () {
-                    updateSerials();
-                });
-            },
-            hide: function (deleteElement) {
-                if (confirm('Are you sure?')) {
-                    $(this).slideUp('fast', function () {
-                        $(this).remove();
+        function decrement(button) {
+            const input = button.closest('.counting-btn').previousElementSibling;
+            let value = parseInt(input.value);
+            if (isNaN(value) || value <= 1) {
+                input.value = 1;
+            } else {
+                input.value = value - 1;
+            }
+        }
+    </script>
+    <script>
+        function updateSerials() {
+            $('[data-repeater-list] [data-repeater-item]').each(function(i) {
+                $(this).find('.sl-input').val(i + 1);
+            });
+        }
+
+        $(document).ready(function() {
+            $('.repeater').repeater({
+                show: function() {
+                    $(this).slideDown('fast', function() {
                         updateSerials();
                     });
-                }
-            },
-            isFirstItemUndeletable: false
+                },
+                hide: function(deleteElement) {
+                    const $list = $(this).closest('[data-repeater-list]');
+                    const itemCount = $list.find('[data-repeater-item]').length;
+
+                    if (itemCount > 1) {
+                        if (confirm('Are you sure?')) {
+                            $(this).slideUp('fast', function() {
+                                $(this).remove();
+                                updateSerials();
+                            });
+                        }
+                    } else {
+                        alert('At least one item must remain.');
+                    }
+                },
+                isFirstItemUndeletable: false
+            });
+
+            updateSerials(); // Initial run
         });
-
-        updateSerials(); // Initial run
-    });
-</script>
-
+    </script>
