@@ -285,6 +285,7 @@
     padding-right: 0.75rem; /* Or whatever fits your layout */
     background: none !important;
     background-image: none !important;
+    background: #f7f6f5 !important;
 }
 
 
