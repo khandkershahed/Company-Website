@@ -268,7 +268,7 @@
                                 <li class="nav-item w-100 me-0 mb-md-2">
                                     <div class="d-flex align-items-center">
                                         <div
-                                            class="text-white me-2 rounded d-flex align-items-center w-auto">
+                                            class="position-relative text-white me-2 rounded d-flex align-items-center w-auto">
                                             <i
                                                 class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
                                             <input type="text" id="searchQuery" data-kt-table-widget-4="search"
@@ -276,18 +276,11 @@
                                         </div>
                                         <div class="me-2">
                                             <select class="form-select form-select-sm w-auto me-2"
-                                                data-control="select2">
+                                                data-control="select2" id="filterCountry" name="country">
                                                 <option selected disabled>Country</option>
-                                                <option value="1">United States</option>
-                                                <option value="2">Canada</option>
-                                                <option value="3">United Kingdom</option>
-                                                <option value="4">Australia</option>
-                                                <option value="5">Germany</option>
-                                                <option value="6">France</option>
-                                                <option value="7">India</option>
-                                                <option value="8">China</option>
-                                                <option value="9">Brazil</option>
-                                                <option value="10">South Africa</option>
+                                                @foreach ($countries as $country)
+                                                    <option value="{{ $country }}">{{ $country }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="me-2">
@@ -338,7 +331,7 @@
                                 @foreach ($rfqs as $rfq)
                                     <li class="nav-item w-100 me-0 mb-md-2 mt-2">
                                         <a class="nav-link {{ $loop->first ? 'active btn-active-primary' : '' }} w-100 btn btn-flex border p-3"
-                                            data-bs-toggle="tab" href="#kt_vtab_pane_4">
+                                            data-bs-toggle="tab" href="#pending_rfq_{{ $rfq->id }}">
                                             <div class="row w-100 align-items-center">
                                                 <div class="col-md-4 d-flex align-items-center">
                                                     <i class="fa-regular fa-file fs-2 text-primary pe-3"></i>
@@ -367,7 +360,7 @@
                                                     <div
                                                         class="fs-7 text-muted d-flex align-items-center justify-content-end">
                                                         <i class="fas fa-bell fa-shake me-2 text-muted"></i>
-                                                        2 Days Pending
+                                                        {{ \Carbon\Carbon::parse($rfq->created_at)->diffInDays(now(), false) }} Days Pending
                                                     </div>
                                                 </div>
                                             </div>
@@ -379,672 +372,674 @@
                             </ul>
                         </div>
                         <div class="col-lg-7">
-                            <div class="tab-content border rounded" id="myTabContent">
-                                <div class="tab-pane fade show active" id="kt_vtab_pane_4" role="tabpanel">
-                                    <div class="card shadow-none">
-                                        <div
-                                            class="bg-light rounded-3 d-flex justify-content-between align-items-center w-100 p-2">
-                                            <div>
-                                                <h3 class="mb-0 text-primary ps-3">
-                                                    {{ $rfq->rfq_code }}
-                                                </h3>
-                                            </div>
-                                            <div>{{ $rfq->company_name }} @if (!empty($rfq->country))
-                                                    | {{ $rfq->country }}
-                                                @endif
-                                            </div>
-                                            <div>
-                                                <!-- Dropdown Selector -->
+                            @foreach ($rfqs as $rfq)
+                                <div class="tab-content border rounded" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="pending_rfq_{{ $rfq->id }}" role="tabpanel">
+                                        <div class="card shadow-none">
+                                            <div
+                                                class="bg-light rounded-3 d-flex justify-content-between align-items-center w-100 p-2">
                                                 <div>
-                                                    <select class="form-select form-select-sm" id="tabSelector">
-                                                        <option value="track_tab">
-                                                            Track
-                                                        </option>
-                                                        <option value="message_tab">
-                                                            Messages
-                                                        </option>
-                                                        <option value="message_tab">
-                                                            Delete
-                                                        </option>
-                                                    </select>
+                                                    <h3 class="mb-0 text-primary ps-3">
+                                                        {{ $rfq->rfq_code }}
+                                                    </h3>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <!-- Tab Content -->
-                                        <div>
-                                            <div id="track_tab" class="tab-visible">
-                                                <div class="row justify-content-center align-items-center">
-                                                    <div class="col-lg-12">
-                                                        <div class="trackNavbar">
-                                                            <ul class="nav nav-tabs justify-content-between"
-                                                                role="tablist">
-                                                                <li class="nav-item inactive">
-                                                                    <a class="nav-link disabled">
-                                                                        <i class="fas fa-hamburger">
-                                                                            <span class="text-capitalize">order
-                                                                                placed</span>
-                                                                        </i>
-                                                                    </a>
-                                                                    <div class="line"></div>
-                                                                </li>
-                                                                <li class="nav-item active">
-                                                                    <a class="nav-link ripple active">
-                                                                        <i class="fas fa-truck-moving jump">
-                                                                            <span class="text-capitalize">on the
-                                                                                way</span>
-                                                                        </i>
-                                                                    </a>
-                                                                    <div class="line"></div>
-                                                                </li>
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link ripple">
-                                                                        <i class="fas fa-truck-moving jump">
-                                                                            <span class="text-capitalize">on the
-                                                                                way</span>
-                                                                        </i>
-                                                                    </a>
-                                                                    <div class="line"></div>
-                                                                </li>
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link ripple">
-                                                                        <i class="fas fa-truck-moving jump">
-                                                                            <span class="text-capitalize">on the
-                                                                                way</span>
-                                                                        </i>
-                                                                    </a>
-                                                                    <div class="line"></div>
-                                                                </li>
-                                                                <li class="nav-item">
-                                                                    <a class="nav-link disabled">
-                                                                        <i class="fas fa-user">
-                                                                            <span
-                                                                                class="text-capitalize">delivered</span>
-                                                                        </i>
-                                                                    </a>
-                                                                    <div class="line"></div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
+                                                <div>{{ $rfq->company_name }} @if (!empty($rfq->country))
+                                                        | {{ $rfq->country }}
+                                                    @endif
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="card shadow-none border">
-                                                            <div class="card-header py-0 bg-light">
-                                                                <h5 class="card-title fw-semibold m-0">
-                                                                    Client Information
-                                                                </h5>
-                                                            </div>
-                                                            <div class="card-body p-2">
-                                                                <!-- Responsive Table -->
-                                                                <div class="table-responsive">
-                                                                    <table class="table table-bordered mb-0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <th scope="row">Name</th>
-                                                                                <td>Jhone Doe</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th scope="row">Email</th>
-                                                                                <td>jhonedoe@mail.com</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th scope="row">
-                                                                                    Company
-                                                                                </th>
-                                                                                <td>Ngen It LTD</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th scope="row">Phone</th>
-                                                                                <td>01586548586</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th scope="row">
-                                                                                    Tentative Budget
-                                                                                </th>
-                                                                                <td>$5000</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th scope="row">
-                                                                                    Purchase Date
-                                                                                </th>
-                                                                                <td>2 Month</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th scope="row">
-                                                                                    Delivery Country
-                                                                                </th>
-                                                                                <td>Singapore</td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <th scope="row">
-                                                                                    Delivery Zip Code
-                                                                                </th>
-                                                                                <td>2515</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="card shadow-none border">
-                                                            <div class="card-header py-0 bg-light">
-                                                                <h5 class="card-title fw-semibold m-0">
-                                                                    Product Information
-                                                                </h5>
-                                                            </div>
-                                                            <div class="card-body p-2">
-                                                                <!-- Second table (products list) -->
-                                                                <div class="table-responsive">
-                                                                    <table class="table table-bordered mb-0">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td>1</td>
-                                                                                <td>
-                                                                                    Lorem ipsum dolor sit,
-                                                                                    amet consectetur.
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>2</td>
-                                                                                <td>
-                                                                                    Lorem ipsum dolor sit,
-                                                                                    amet consectetur.
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>3</td>
-                                                                                <td>
-                                                                                    Lorem ipsum dolor sit,
-                                                                                    amet consectetur.
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>4</td>
-                                                                                <td>
-                                                                                    Lorem ipsum dolor sit,
-                                                                                    amet consectetur.
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>5</td>
-                                                                                <td>
-                                                                                    Lorem ipsum dolor sit,
-                                                                                    amet consectetur.
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>6</td>
-                                                                                <td>
-                                                                                    Lorem ipsum dolor sit,
-                                                                                    amet consectetur.
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>6</td>
-                                                                                <td>
-                                                                                    Lorem ipsum dolor sit,
-                                                                                    amet consectetur.
-                                                                                </td>
-                                                                            </tr>
-                                                                            <tr>
-                                                                                <td>6</td>
-                                                                                <td>
-                                                                                    Lorem ipsum dolor sit,
-                                                                                    amet consectetur amet
-                                                                                    sit
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                <div>
+                                                    <!-- Dropdown Selector -->
+                                                    <div>
+                                                        <select class="form-select form-select-sm" id="tabSelector">
+                                                            <option value="track_tab">
+                                                                Track
+                                                            </option>
+                                                            <option value="message_tab">
+                                                                Messages
+                                                            </option>
+                                                            <option value="message_tab">
+                                                                Delete
+                                                            </option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="message_tab" class="tab-hidden">
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="card w-100 border-0 rounded-0"
-                                                            id="kt_drawer_chat_messenger">
-                                                            <div class="card-header pe-5"
-                                                                id="kt_drawer_chat_messenger_header">
-                                                                <div class="card-title">
-                                                                    <div
-                                                                        class="d-flex justify-content-center flex-column me-3">
-                                                                        <a href="#"
-                                                                            class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">Brian
-                                                                            Cox</a>
-
-                                                                        <div class="mb-0 lh-1">
-                                                                            <span
-                                                                                class="badge badge-success badge-circle w-10px h-10px me-1"></span>
-                                                                            <span
-                                                                                class="fs-7 fw-semibold text-muted">Active</span>
-                                                                        </div>
+                                            <!-- Tab Content -->
+                                            <div>
+                                                <div id="track_tab" class="tab-visible">
+                                                    <div class="row justify-content-center align-items-center">
+                                                        <div class="col-lg-12">
+                                                            <div class="trackNavbar">
+                                                                <ul class="nav nav-tabs justify-content-between"
+                                                                    role="tablist">
+                                                                    <li class="nav-item inactive">
+                                                                        <a class="nav-link disabled">
+                                                                            <i class="fas fa-hamburger">
+                                                                                <span class="text-capitalize">order
+                                                                                    placed</span>
+                                                                            </i>
+                                                                        </a>
+                                                                        <div class="line"></div>
+                                                                    </li>
+                                                                    <li class="nav-item active">
+                                                                        <a class="nav-link ripple active">
+                                                                            <i class="fas fa-truck-moving jump">
+                                                                                <span class="text-capitalize">on the
+                                                                                    way</span>
+                                                                            </i>
+                                                                        </a>
+                                                                        <div class="line"></div>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link ripple">
+                                                                            <i class="fas fa-truck-moving jump">
+                                                                                <span class="text-capitalize">on the
+                                                                                    way</span>
+                                                                            </i>
+                                                                        </a>
+                                                                        <div class="line"></div>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link ripple">
+                                                                            <i class="fas fa-truck-moving jump">
+                                                                                <span class="text-capitalize">on the
+                                                                                    way</span>
+                                                                            </i>
+                                                                        </a>
+                                                                        <div class="line"></div>
+                                                                    </li>
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link disabled">
+                                                                            <i class="fas fa-user">
+                                                                                <span
+                                                                                    class="text-capitalize">delivered</span>
+                                                                            </i>
+                                                                        </a>
+                                                                        <div class="line"></div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="card shadow-none border">
+                                                                <div class="card-header py-0 bg-light">
+                                                                    <h5 class="card-title fw-semibold m-0">
+                                                                        Client Information
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="card-body p-2">
+                                                                    <!-- Responsive Table -->
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-bordered mb-0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <th scope="row">Name</th>
+                                                                                    <td>Jhone Doe</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th scope="row">Email</th>
+                                                                                    <td>jhonedoe@mail.com</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th scope="row">
+                                                                                        Company
+                                                                                    </th>
+                                                                                    <td>Ngen It LTD</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th scope="row">Phone</th>
+                                                                                    <td>01586548586</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th scope="row">
+                                                                                        Tentative Budget
+                                                                                    </th>
+                                                                                    <td>$5000</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th scope="row">
+                                                                                        Purchase Date
+                                                                                    </th>
+                                                                                    <td>2 Month</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th scope="row">
+                                                                                        Delivery Country
+                                                                                    </th>
+                                                                                    <td>Singapore</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <th scope="row">
+                                                                                        Delivery Zip Code
+                                                                                    </th>
+                                                                                    <td>2515</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="card shadow-none border">
+                                                                <div class="card-header py-0 bg-light">
+                                                                    <h5 class="card-title fw-semibold m-0">
+                                                                        Product Information
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="card-body p-2">
+                                                                    <!-- Second table (products list) -->
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-bordered mb-0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>1</td>
+                                                                                    <td>
+                                                                                        Lorem ipsum dolor sit,
+                                                                                        amet consectetur.
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>2</td>
+                                                                                    <td>
+                                                                                        Lorem ipsum dolor sit,
+                                                                                        amet consectetur.
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>3</td>
+                                                                                    <td>
+                                                                                        Lorem ipsum dolor sit,
+                                                                                        amet consectetur.
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>4</td>
+                                                                                    <td>
+                                                                                        Lorem ipsum dolor sit,
+                                                                                        amet consectetur.
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>5</td>
+                                                                                    <td>
+                                                                                        Lorem ipsum dolor sit,
+                                                                                        amet consectetur.
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>6</td>
+                                                                                    <td>
+                                                                                        Lorem ipsum dolor sit,
+                                                                                        amet consectetur.
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>6</td>
+                                                                                    <td>
+                                                                                        Lorem ipsum dolor sit,
+                                                                                        amet consectetur.
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>6</td>
+                                                                                    <td>
+                                                                                        Lorem ipsum dolor sit,
+                                                                                        amet consectetur amet
+                                                                                        sit
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="message_tab" class="tab-hidden">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="card w-100 border-0 rounded-0"
+                                                                id="kt_drawer_chat_messenger">
+                                                                <div class="card-header pe-5"
+                                                                    id="kt_drawer_chat_messenger_header">
+                                                                    <div class="card-title">
+                                                                        <div
+                                                                            class="d-flex justify-content-center flex-column me-3">
+                                                                            <a href="#"
+                                                                                class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">Brian
+                                                                                Cox</a>
 
-                                                                <div class="card-toolbar">
-                                                                    <div class="me-0">
-                                                                        <button
-                                                                            class="btn btn-sm btn-icon btn-active-color-primary"
-                                                                            data-kt-menu-trigger="click"
-                                                                            data-kt-menu-placement="bottom-end">
-                                                                            <i class="fas fa-dots-square fs-2"><span
-                                                                                    class="path1"></span><span
-                                                                                    class="path2"></span><span
-                                                                                    class="path3"></span><span
-                                                                                    class="path4"></span></i>
-                                                                        </button>
+                                                                            <div class="mb-0 lh-1">
+                                                                                <span
+                                                                                    class="badge badge-success badge-circle w-10px h-10px me-1"></span>
+                                                                                <span
+                                                                                    class="fs-7 fw-semibold text-muted">Active</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
 
-                                                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3"
-                                                                            data-kt-menu="true">
-                                                                            <div class="menu-item px-3">
-                                                                                <div
-                                                                                    class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">
-                                                                                    Contacts
+                                                                    <div class="card-toolbar">
+                                                                        <div class="me-0">
+                                                                            <button
+                                                                                class="btn btn-sm btn-icon btn-active-color-primary"
+                                                                                data-kt-menu-trigger="click"
+                                                                                data-kt-menu-placement="bottom-end">
+                                                                                <i class="fas fa-dots-square fs-2"><span
+                                                                                        class="path1"></span><span
+                                                                                        class="path2"></span><span
+                                                                                        class="path3"></span><span
+                                                                                        class="path4"></span></i>
+                                                                            </button>
+
+                                                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3"
+                                                                                data-kt-menu="true">
+                                                                                <div class="menu-item px-3">
+                                                                                    <div
+                                                                                        class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">
+                                                                                        Contacts
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
 
-                                                                            <div class="menu-item px-3">
-                                                                                <a href="#"
-                                                                                    class="menu-link px-3"
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#kt_modal_users_search">
-                                                                                    Add Contact
-                                                                                </a>
-                                                                            </div>
+                                                                                <div class="menu-item px-3">
+                                                                                    <a href="#"
+                                                                                        class="menu-link px-3"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#kt_modal_users_search">
+                                                                                        Add Contact
+                                                                                    </a>
+                                                                                </div>
 
-                                                                            <div class="menu-item px-3">
-                                                                                <a href="#"
-                                                                                    class="menu-link flex-stack px-3"
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#kt_modal_invite_friends">
-                                                                                    Invite Contacts
+                                                                                <div class="menu-item px-3">
+                                                                                    <a href="#"
+                                                                                        class="menu-link flex-stack px-3"
+                                                                                        data-bs-toggle="modal"
+                                                                                        data-bs-target="#kt_modal_invite_friends">
+                                                                                        Invite Contacts
 
-                                                                                    <span class="ms-2"
+                                                                                        <span class="ms-2"
+                                                                                            data-bs-toggle="tooltip"
+                                                                                            aria-label="Specify a contact email to send an invitation"
+                                                                                            data-bs-original-title="Specify a contact email to send an invitation"
+                                                                                            data-kt-initialized="1">
+                                                                                            <i
+                                                                                                class="fas fa-information fs-7"><span
+                                                                                                    class="path1"></span><span
+                                                                                                    class="path2"></span><span
+                                                                                                    class="path3"></span></i>
+                                                                                        </span>
+                                                                                    </a>
+                                                                                </div>
+
+                                                                                <div class="menu-item px-3"
+                                                                                    data-kt-menu-trigger="hover"
+                                                                                    data-kt-menu-placement="right-start">
+                                                                                    <a href="#"
+                                                                                        class="menu-link px-3">
+                                                                                        <span
+                                                                                            class="menu-title">Groups</span>
+                                                                                        <span class="menu-arrow"></span>
+                                                                                    </a>
+
+                                                                                    <div
+                                                                                        class="menu-sub menu-sub-dropdown w-175px py-4">
+                                                                                        <div class="menu-item px-3">
+                                                                                            <a href="#"
+                                                                                                class="menu-link px-3"
+                                                                                                data-bs-toggle="tooltip"
+                                                                                                data-bs-original-title="Coming soon"
+                                                                                                data-kt-initialized="1">
+                                                                                                Create Group
+                                                                                            </a>
+                                                                                        </div>
+
+                                                                                        <div class="menu-item px-3">
+                                                                                            <a href="#"
+                                                                                                class="menu-link px-3"
+                                                                                                data-bs-toggle="tooltip"
+                                                                                                data-bs-original-title="Coming soon"
+                                                                                                data-kt-initialized="1">
+                                                                                                Invite Members
+                                                                                            </a>
+                                                                                        </div>
+
+                                                                                        <div class="menu-item px-3">
+                                                                                            <a href="#"
+                                                                                                class="menu-link px-3"
+                                                                                                data-bs-toggle="tooltip"
+                                                                                                data-bs-original-title="Coming soon"
+                                                                                                data-kt-initialized="1">
+                                                                                                Settings
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="menu-item px-3 my-1">
+                                                                                    <a href="#"
+                                                                                        class="menu-link px-3"
                                                                                         data-bs-toggle="tooltip"
-                                                                                        aria-label="Specify a contact email to send an invitation"
-                                                                                        data-bs-original-title="Specify a contact email to send an invitation"
+                                                                                        data-bs-original-title="Coming soon"
                                                                                         data-kt-initialized="1">
-                                                                                        <i
-                                                                                            class="fas fa-information fs-7"><span
-                                                                                                class="path1"></span><span
-                                                                                                class="path2"></span><span
-                                                                                                class="path3"></span></i>
-                                                                                    </span>
-                                                                                </a>
-                                                                            </div>
-
-                                                                            <div class="menu-item px-3"
-                                                                                data-kt-menu-trigger="hover"
-                                                                                data-kt-menu-placement="right-start">
-                                                                                <a href="#"
-                                                                                    class="menu-link px-3">
-                                                                                    <span
-                                                                                        class="menu-title">Groups</span>
-                                                                                    <span class="menu-arrow"></span>
-                                                                                </a>
-
-                                                                                <div
-                                                                                    class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                                                    <div class="menu-item px-3">
-                                                                                        <a href="#"
-                                                                                            class="menu-link px-3"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Coming soon"
-                                                                                            data-kt-initialized="1">
-                                                                                            Create Group
-                                                                                        </a>
-                                                                                    </div>
-
-                                                                                    <div class="menu-item px-3">
-                                                                                        <a href="#"
-                                                                                            class="menu-link px-3"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Coming soon"
-                                                                                            data-kt-initialized="1">
-                                                                                            Invite Members
-                                                                                        </a>
-                                                                                    </div>
-
-                                                                                    <div class="menu-item px-3">
-                                                                                        <a href="#"
-                                                                                            class="menu-link px-3"
-                                                                                            data-bs-toggle="tooltip"
-                                                                                            data-bs-original-title="Coming soon"
-                                                                                            data-kt-initialized="1">
-                                                                                            Settings
-                                                                                        </a>
-                                                                                    </div>
+                                                                                        Settings
+                                                                                    </a>
                                                                                 </div>
                                                                             </div>
-
-                                                                            <div class="menu-item px-3 my-1">
-                                                                                <a href="#"
-                                                                                    class="menu-link px-3"
-                                                                                    data-bs-toggle="tooltip"
-                                                                                    data-bs-original-title="Coming soon"
-                                                                                    data-kt-initialized="1">
-                                                                                    Settings
-                                                                                </a>
-                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="btn btn-sm btn-icon btn-active-color-primary"
-                                                                        id="kt_drawer_chat_close">
-                                                                        <i class="fas fa-cross-square fs-2"><span
-                                                                                class="path1"></span><span
-                                                                                class="path2"></span></i>
+                                                                        <div class="btn btn-sm btn-icon btn-active-color-primary"
+                                                                            id="kt_drawer_chat_close">
+                                                                            <i class="fas fa-cross-square fs-2"><span
+                                                                                    class="path1"></span><span
+                                                                                    class="path2"></span></i>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="card-body" id="kt_drawer_chat_messenger_body">
-                                                                <div class="scroll-y me-n5 pe-5"
-                                                                    data-kt-element="messages" data-kt-scroll="true"
-                                                                    data-kt-scroll-activate="true"
-                                                                    data-kt-scroll-height="auto"
-                                                                    data-kt-scroll-dependencies="#kt_drawer_chat_messenger_header, #kt_drawer_chat_messenger_footer"
-                                                                    data-kt-scroll-wrappers="#kt_drawer_chat_messenger_body"
-                                                                    data-kt-scroll-offset="0px" style="height: 104px">
-                                                                    <div class="d-flex justify-content-start mb-10">
-                                                                        <div
-                                                                            class="d-flex flex-column align-items-start">
+                                                                <div class="card-body" id="kt_drawer_chat_messenger_body">
+                                                                    <div class="scroll-y me-n5 pe-5"
+                                                                        data-kt-element="messages" data-kt-scroll="true"
+                                                                        data-kt-scroll-activate="true"
+                                                                        data-kt-scroll-height="auto"
+                                                                        data-kt-scroll-dependencies="#kt_drawer_chat_messenger_header, #kt_drawer_chat_messenger_footer"
+                                                                        data-kt-scroll-wrappers="#kt_drawer_chat_messenger_body"
+                                                                        data-kt-scroll-offset="0px" style="height: 104px">
+                                                                        <div class="d-flex justify-content-start mb-10">
                                                                             <div
-                                                                                class="d-flex align-items-center mb-2">
+                                                                                class="d-flex flex-column align-items-start">
                                                                                 <div
-                                                                                    class="symbol symbol-35px symbol-circle">
-                                                                                    <img alt="Pic"
-                                                                                        src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
+                                                                                    class="d-flex align-items-center mb-2">
+                                                                                    <div
+                                                                                        class="symbol symbol-35px symbol-circle">
+                                                                                        <img alt="Pic"
+                                                                                            src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
+                                                                                    </div>
+                                                                                    <div class="ms-3">
+                                                                                        <a href="#"
+                                                                                            class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
+                                                                                            Cox</a>
+                                                                                        <span
+                                                                                            class="text-muted fs-7 mb-1">2
+                                                                                            mins</span>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="ms-3">
-                                                                                    <a href="#"
-                                                                                        class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
-                                                                                        Cox</a>
-                                                                                    <span
-                                                                                        class="text-muted fs-7 mb-1">2
-                                                                                        mins</span>
-                                                                                </div>
-                                                                            </div>
 
-                                                                            <div class="p-5 rounded bg-light-info text-gray-900 fw-semibold mw-lg-400px text-start"
-                                                                                data-kt-element="message-text">
-                                                                                How likely are you to
-                                                                                recommend our company to
-                                                                                your friends and family ?
+                                                                                <div class="p-5 rounded bg-light-info text-gray-900 fw-semibold mw-lg-400px text-start"
+                                                                                    data-kt-element="message-text">
+                                                                                    How likely are you to
+                                                                                    recommend our company to
+                                                                                    your friends and family ?
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="d-flex justify-content-end mb-10">
-                                                                        <div
-                                                                            class="d-flex flex-column align-items-end">
+                                                                        <div class="d-flex justify-content-end mb-10">
                                                                             <div
-                                                                                class="d-flex align-items-center mb-2">
-                                                                                <div class="me-3">
-                                                                                    <span
-                                                                                        class="text-muted fs-7 mb-1">5
-                                                                                        mins</span>
-                                                                                    <a href="#"
-                                                                                        class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">You</a>
-                                                                                </div>
-
+                                                                                class="d-flex flex-column align-items-end">
                                                                                 <div
-                                                                                    class="symbol symbol-35px symbol-circle">
-                                                                                    <img alt="Pic"
-                                                                                        src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
-                                                                                </div>
-                                                                            </div>
+                                                                                    class="d-flex align-items-center mb-2">
+                                                                                    <div class="me-3">
+                                                                                        <span
+                                                                                            class="text-muted fs-7 mb-1">5
+                                                                                            mins</span>
+                                                                                        <a href="#"
+                                                                                            class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">You</a>
+                                                                                    </div>
 
-                                                                            <div class="p-5 rounded bg-light-primary text-gray-900 fw-semibold mw-lg-400px text-end"
-                                                                                data-kt-element="message-text">
-                                                                                Hey there, we’re just
-                                                                                writing to let you know
-                                                                                that you’ve been
-                                                                                subscribed to a repository
-                                                                                on GitHub.
+                                                                                    <div
+                                                                                        class="symbol symbol-35px symbol-circle">
+                                                                                        <img alt="Pic"
+                                                                                            src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="p-5 rounded bg-light-primary text-gray-900 fw-semibold mw-lg-400px text-end"
+                                                                                    data-kt-element="message-text">
+                                                                                    Hey there, we’re just
+                                                                                    writing to let you know
+                                                                                    that you’ve been
+                                                                                    subscribed to a repository
+                                                                                    on GitHub.
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="d-flex justify-content-start mb-10">
-                                                                        <div
-                                                                            class="d-flex flex-column align-items-start">
+                                                                        <div class="d-flex justify-content-start mb-10">
                                                                             <div
-                                                                                class="d-flex align-items-center mb-2">
+                                                                                class="d-flex flex-column align-items-start">
                                                                                 <div
-                                                                                    class="symbol symbol-35px symbol-circle">
-                                                                                    <img alt="Pic"
-                                                                                        src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
+                                                                                    class="d-flex align-items-center mb-2">
+                                                                                    <div
+                                                                                        class="symbol symbol-35px symbol-circle">
+                                                                                        <img alt="Pic"
+                                                                                            src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
+                                                                                    </div>
+                                                                                    <div class="ms-3">
+                                                                                        <a href="#"
+                                                                                            class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
+                                                                                            Cox</a>
+                                                                                        <span
+                                                                                            class="text-muted fs-7 mb-1">1
+                                                                                            Hour</span>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="ms-3">
-                                                                                    <a href="#"
-                                                                                        class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
-                                                                                        Cox</a>
-                                                                                    <span
-                                                                                        class="text-muted fs-7 mb-1">1
-                                                                                        Hour</span>
-                                                                                </div>
-                                                                            </div>
 
-                                                                            <div class="p-5 rounded bg-light-info text-gray-900 fw-semibold mw-lg-400px text-start"
-                                                                                data-kt-element="message-text">
-                                                                                Ok, Understood!
+                                                                                <div class="p-5 rounded bg-light-info text-gray-900 fw-semibold mw-lg-400px text-start"
+                                                                                    data-kt-element="message-text">
+                                                                                    Ok, Understood!
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="d-flex justify-content-end mb-10">
-                                                                        <div
-                                                                            class="d-flex flex-column align-items-end">
+                                                                        <div class="d-flex justify-content-end mb-10">
                                                                             <div
-                                                                                class="d-flex align-items-center mb-2">
-                                                                                <div class="me-3">
-                                                                                    <span
-                                                                                        class="text-muted fs-7 mb-1">2
-                                                                                        Hours</span>
-                                                                                    <a href="#"
-                                                                                        class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">You</a>
-                                                                                </div>
-
+                                                                                class="d-flex flex-column align-items-end">
                                                                                 <div
-                                                                                    class="symbol symbol-35px symbol-circle">
-                                                                                    <img alt="Pic"
-                                                                                        src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
-                                                                                </div>
-                                                                            </div>
+                                                                                    class="d-flex align-items-center mb-2">
+                                                                                    <div class="me-3">
+                                                                                        <span
+                                                                                            class="text-muted fs-7 mb-1">2
+                                                                                            Hours</span>
+                                                                                        <a href="#"
+                                                                                            class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">You</a>
+                                                                                    </div>
 
-                                                                            <div class="p-5 rounded bg-light-primary text-gray-900 fw-semibold mw-lg-400px text-end"
-                                                                                data-kt-element="message-text">
-                                                                                You’ll receive
-                                                                                notifications for all
-                                                                                issues, pull requests!
+                                                                                    <div
+                                                                                        class="symbol symbol-35px symbol-circle">
+                                                                                        <img alt="Pic"
+                                                                                            src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="p-5 rounded bg-light-primary text-gray-900 fw-semibold mw-lg-400px text-end"
+                                                                                    data-kt-element="message-text">
+                                                                                    You’ll receive
+                                                                                    notifications for all
+                                                                                    issues, pull requests!
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="d-flex justify-content-start mb-10">
-                                                                        <div
-                                                                            class="d-flex flex-column align-items-start">
+                                                                        <div class="d-flex justify-content-start mb-10">
                                                                             <div
-                                                                                class="d-flex align-items-center mb-2">
+                                                                                class="d-flex flex-column align-items-start">
                                                                                 <div
-                                                                                    class="symbol symbol-35px symbol-circle">
-                                                                                    <img alt="Pic"
-                                                                                        src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
+                                                                                    class="d-flex align-items-center mb-2">
+                                                                                    <div
+                                                                                        class="symbol symbol-35px symbol-circle">
+                                                                                        <img alt="Pic"
+                                                                                            src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
+                                                                                    </div>
+                                                                                    <div class="ms-3">
+                                                                                        <a href="#"
+                                                                                            class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
+                                                                                            Cox</a>
+                                                                                        <span
+                                                                                            class="text-muted fs-7 mb-1">3
+                                                                                            Hours</span>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="ms-3">
-                                                                                    <a href="#"
-                                                                                        class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
-                                                                                        Cox</a>
-                                                                                    <span
-                                                                                        class="text-muted fs-7 mb-1">3
-                                                                                        Hours</span>
-                                                                                </div>
-                                                                            </div>
 
-                                                                            <div class="p-5 rounded bg-light-info text-gray-900 fw-semibold mw-lg-400px text-start"
-                                                                                data-kt-element="message-text">
-                                                                                You can unwatch this
-                                                                                repository immediately by
-                                                                                clicking here:
-                                                                                <a
-                                                                                    href="https://keenthemes.com">Keenthemes.com</a>
+                                                                                <div class="p-5 rounded bg-light-info text-gray-900 fw-semibold mw-lg-400px text-start"
+                                                                                    data-kt-element="message-text">
+                                                                                    You can unwatch this
+                                                                                    repository immediately by
+                                                                                    clicking here:
+                                                                                    <a
+                                                                                        href="https://keenthemes.com">Keenthemes.com</a>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="d-flex justify-content-end mb-10">
-                                                                        <div
-                                                                            class="d-flex flex-column align-items-end">
+                                                                        <div class="d-flex justify-content-end mb-10">
                                                                             <div
-                                                                                class="d-flex align-items-center mb-2">
-                                                                                <div class="me-3">
-                                                                                    <span
-                                                                                        class="text-muted fs-7 mb-1">4
-                                                                                        Hours</span>
-                                                                                    <a href="#"
-                                                                                        class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">You</a>
-                                                                                </div>
-
+                                                                                class="d-flex flex-column align-items-end">
                                                                                 <div
-                                                                                    class="symbol symbol-35px symbol-circle">
-                                                                                    <img alt="Pic"
-                                                                                        src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
-                                                                                </div>
-                                                                            </div>
+                                                                                    class="d-flex align-items-center mb-2">
+                                                                                    <div class="me-3">
+                                                                                        <span
+                                                                                            class="text-muted fs-7 mb-1">4
+                                                                                            Hours</span>
+                                                                                        <a href="#"
+                                                                                            class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">You</a>
+                                                                                    </div>
 
-                                                                            <div class="p-5 rounded bg-light-primary text-gray-900 fw-semibold mw-lg-400px text-end"
-                                                                                data-kt-element="message-text">
-                                                                                Most purchased Business
-                                                                                courses during this sale!
+                                                                                    <div
+                                                                                        class="symbol symbol-35px symbol-circle">
+                                                                                        <img alt="Pic"
+                                                                                            src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="p-5 rounded bg-light-primary text-gray-900 fw-semibold mw-lg-400px text-end"
+                                                                                    data-kt-element="message-text">
+                                                                                    Most purchased Business
+                                                                                    courses during this sale!
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="d-flex justify-content-start mb-10">
-                                                                        <div
-                                                                            class="d-flex flex-column align-items-start">
+                                                                        <div class="d-flex justify-content-start mb-10">
                                                                             <div
-                                                                                class="d-flex align-items-center mb-2">
+                                                                                class="d-flex flex-column align-items-start">
                                                                                 <div
-                                                                                    class="symbol symbol-35px symbol-circle">
-                                                                                    <img alt="Pic"
-                                                                                        src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
+                                                                                    class="d-flex align-items-center mb-2">
+                                                                                    <div
+                                                                                        class="symbol symbol-35px symbol-circle">
+                                                                                        <img alt="Pic"
+                                                                                            src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
+                                                                                    </div>
+                                                                                    <div class="ms-3">
+                                                                                        <a href="#"
+                                                                                            class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
+                                                                                            Cox</a>
+                                                                                        <span
+                                                                                            class="text-muted fs-7 mb-1">5
+                                                                                            Hours</span>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="ms-3">
-                                                                                    <a href="#"
-                                                                                        class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
-                                                                                        Cox</a>
-                                                                                    <span
-                                                                                        class="text-muted fs-7 mb-1">5
-                                                                                        Hours</span>
-                                                                                </div>
-                                                                            </div>
 
-                                                                            <div class="p-5 rounded bg-light-info text-gray-900 fw-semibold mw-lg-400px text-start"
-                                                                                data-kt-element="message-text">
-                                                                                Company BBQ to celebrate
-                                                                                the last quater
-                                                                                achievements and goals.
-                                                                                Food and drinks provided
+                                                                                <div class="p-5 rounded bg-light-info text-gray-900 fw-semibold mw-lg-400px text-start"
+                                                                                    data-kt-element="message-text">
+                                                                                    Company BBQ to celebrate
+                                                                                    the last quater
+                                                                                    achievements and goals.
+                                                                                    Food and drinks provided
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="d-flex justify-content-end mb-10 d-none"
-                                                                        data-kt-element="template-out">
-                                                                        <div
-                                                                            class="d-flex flex-column align-items-end">
+                                                                        <div class="d-flex justify-content-end mb-10 d-none"
+                                                                            data-kt-element="template-out">
                                                                             <div
-                                                                                class="d-flex align-items-center mb-2">
-                                                                                <div class="me-3">
-                                                                                    <span
-                                                                                        class="text-muted fs-7 mb-1">Just
-                                                                                        now</span>
-                                                                                    <a href="#"
-                                                                                        class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">You</a>
-                                                                                </div>
-
+                                                                                class="d-flex flex-column align-items-end">
                                                                                 <div
-                                                                                    class="symbol symbol-35px symbol-circle">
-                                                                                    <img alt="Pic"
-                                                                                        src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
-                                                                                </div>
-                                                                            </div>
+                                                                                    class="d-flex align-items-center mb-2">
+                                                                                    <div class="me-3">
+                                                                                        <span
+                                                                                            class="text-muted fs-7 mb-1">Just
+                                                                                            now</span>
+                                                                                        <a href="#"
+                                                                                            class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">You</a>
+                                                                                    </div>
 
-                                                                            <div class="p-5 rounded bg-light-primary text-gray-900 fw-semibold mw-lg-400px text-end"
-                                                                                data-kt-element="message-text"></div>
+                                                                                    <div
+                                                                                        class="symbol symbol-35px symbol-circle">
+                                                                                        <img alt="Pic"
+                                                                                            src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="p-5 rounded bg-light-primary text-gray-900 fw-semibold mw-lg-400px text-end"
+                                                                                    data-kt-element="message-text"></div>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div class="d-flex justify-content-start mb-10 d-none"
-                                                                        data-kt-element="template-in">
-                                                                        <div
-                                                                            class="d-flex flex-column align-items-start">
+                                                                        <div class="d-flex justify-content-start mb-10 d-none"
+                                                                            data-kt-element="template-in">
                                                                             <div
-                                                                                class="d-flex align-items-center mb-2">
+                                                                                class="d-flex flex-column align-items-start">
                                                                                 <div
-                                                                                    class="symbol symbol-35px symbol-circle">
-                                                                                    <img alt="Pic"
-                                                                                        src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
+                                                                                    class="d-flex align-items-center mb-2">
+                                                                                    <div
+                                                                                        class="symbol symbol-35px symbol-circle">
+                                                                                        <img alt="Pic"
+                                                                                            src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
+                                                                                    </div>
+                                                                                    <div class="ms-3">
+                                                                                        <a href="#"
+                                                                                            class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
+                                                                                            Cox</a>
+                                                                                        <span
+                                                                                            class="text-muted fs-7 mb-1">Just
+                                                                                            now</span>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="ms-3">
-                                                                                    <a href="#"
-                                                                                        class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
-                                                                                        Cox</a>
-                                                                                    <span
-                                                                                        class="text-muted fs-7 mb-1">Just
-                                                                                        now</span>
-                                                                                </div>
-                                                                            </div>
 
-                                                                            <div class="p-5 rounded bg-light-info text-gray-900 fw-semibold mw-lg-400px text-start"
-                                                                                data-kt-element="message-text">
-                                                                                Right before vacation
-                                                                                season we have the next
-                                                                                Big Deal for you.
+                                                                                <div class="p-5 rounded bg-light-info text-gray-900 fw-semibold mw-lg-400px text-start"
+                                                                                    data-kt-element="message-text">
+                                                                                    Right before vacation
+                                                                                    season we have the next
+                                                                                    Big Deal for you.
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="card-footer pt-4"
-                                                                id="kt_drawer_chat_messenger_footer">
-                                                                <textarea class="form-control form-control-flush mb-3 border" rows="1" data-kt-element="input"
-                                                                    placeholder="Type a message"></textarea>
+                                                                <div class="card-footer pt-4"
+                                                                    id="kt_drawer_chat_messenger_footer">
+                                                                    <textarea class="form-control form-control-flush mb-3 border" rows="1" data-kt-element="input"
+                                                                        placeholder="Type a message"></textarea>
 
-                                                                <div class="d-flex flex-stack">
-                                                                    <div class="d-flex align-items-center me-2">
-                                                                        <button
-                                                                            class="btn btn-sm btn-icon btn-active-light-primary me-1"
-                                                                            type="button" data-bs-toggle="tooltip"
-                                                                            aria-label="Coming soon"
-                                                                            data-bs-original-title="Coming soon"
-                                                                            data-kt-initialized="1">
-                                                                            <i class="fas fa-paperclip fs-3"></i>
-                                                                        </button>
-                                                                        <button
-                                                                            class="btn btn-sm btn-icon btn-active-light-primary me-1"
-                                                                            type="button" data-bs-toggle="tooltip"
-                                                                            aria-label="Coming soon"
-                                                                            data-bs-original-title="Coming soon"
-                                                                            data-kt-initialized="1">
-                                                                            <i class="fas fa-cloud-arrow-up fs-3"></i>
+                                                                    <div class="d-flex flex-stack">
+                                                                        <div class="d-flex align-items-center me-2">
+                                                                            <button
+                                                                                class="btn btn-sm btn-icon btn-active-light-primary me-1"
+                                                                                type="button" data-bs-toggle="tooltip"
+                                                                                aria-label="Coming soon"
+                                                                                data-bs-original-title="Coming soon"
+                                                                                data-kt-initialized="1">
+                                                                                <i class="fas fa-paperclip fs-3"></i>
+                                                                            </button>
+                                                                            <button
+                                                                                class="btn btn-sm btn-icon btn-active-light-primary me-1"
+                                                                                type="button" data-bs-toggle="tooltip"
+                                                                                aria-label="Coming soon"
+                                                                                data-bs-original-title="Coming soon"
+                                                                                data-kt-initialized="1">
+                                                                                <i class="fas fa-cloud-arrow-up fs-3"></i>
+                                                                            </button>
+                                                                        </div>
+
+                                                                        <button class="btn btn-primary" type="button"
+                                                                            data-kt-element="send">
+                                                                            Send
                                                                         </button>
                                                                     </div>
-
-                                                                    <button class="btn btn-primary" type="button"
-                                                                        data-kt-element="send">
-                                                                        Send
-                                                                    </button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1053,44 +1048,44 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="tab-pane fade" id="kt_vtab_pane_5" role="tabpanel">
-                                    <p>
-                                        Nulla est ullamco ut irure incididunt nulla
-                                        Lorem Lorem minim irure officia enim
-                                        reprehenderit. Magna duis labore cillum sint
-                                        adipisicing exercitation ipsum. Nostrud ut
-                                        anim non exercitation velit laboris fugiat
-                                        cupidatat. Commodo esse dolore fugiat sint
-                                        velit ullamco magna consequat voluptate minim
-                                        amet aliquip ipsum aute laboris nisi. Labore
-                                        labore veniam irure irure ipsum pariatur
-                                        mollit magna in cupidatat dolore magna irure
-                                        esse tempor ad mollit. Dolore commodo nulla
-                                        minim amet ipsum officia consectetur amet
-                                        ullamco voluptate nisi commodo ea sit eu.
-                                    </p>
-                                </div>
+                                    <div class="tab-pane fade" id="kt_vtab_pane_5" role="tabpanel">
+                                        <p>
+                                            Nulla est ullamco ut irure incididunt nulla
+                                            Lorem Lorem minim irure officia enim
+                                            reprehenderit. Magna duis labore cillum sint
+                                            adipisicing exercitation ipsum. Nostrud ut
+                                            anim non exercitation velit laboris fugiat
+                                            cupidatat. Commodo esse dolore fugiat sint
+                                            velit ullamco magna consequat voluptate minim
+                                            amet aliquip ipsum aute laboris nisi. Labore
+                                            labore veniam irure irure ipsum pariatur
+                                            mollit magna in cupidatat dolore magna irure
+                                            esse tempor ad mollit. Dolore commodo nulla
+                                            minim amet ipsum officia consectetur amet
+                                            ullamco voluptate nisi commodo ea sit eu.
+                                        </p>
+                                    </div>
 
-                                <div class="tab-pane fade" id="kt_vtab_pane_6" role="tabpanel">
-                                    <p>
-                                        Sint sit mollit irure quis est nostrud cillum
-                                        consequat Lorem esse do quis dolor esse fugiat
-                                        sunt do. Eu ex commodo veniam Lorem aliquip
-                                        laborum occaecat qui Lorem esse mollit dolore
-                                        anim cupidatat. eserunt officia id Lorem
-                                        nostrud aute id commodo elit eiusmod enim
-                                        irure amet eiusmod qui reprehenderit nostrud
-                                        tempor. Fugiat ipsum excepteur in aliqua non
-                                        et quis aliquip ad irure in labore cillum elit
-                                        enim. Consequat aliquip incididunt ipsum et
-                                        minim laborum laborum laborum et cillum
-                                        labore. Deserunt adipisicing cillum id nulla
-                                        minim nostrud labore eiusmod et amet.
-                                    </p>
+                                    <div class="tab-pane fade" id="kt_vtab_pane_6" role="tabpanel">
+                                        <p>
+                                            Sint sit mollit irure quis est nostrud cillum
+                                            consequat Lorem esse do quis dolor esse fugiat
+                                            sunt do. Eu ex commodo veniam Lorem aliquip
+                                            laborum occaecat qui Lorem esse mollit dolore
+                                            anim cupidatat. eserunt officia id Lorem
+                                            nostrud aute id commodo elit eiusmod enim
+                                            irure amet eiusmod qui reprehenderit nostrud
+                                            tempor. Fugiat ipsum excepteur in aliqua non
+                                            et quis aliquip ad irure in labore cillum elit
+                                            enim. Consequat aliquip incididunt ipsum et
+                                            minim laborum laborum laborum et cillum
+                                            labore. Deserunt adipisicing cillum id nulla
+                                            minim nostrud labore eiusmod et amet.
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

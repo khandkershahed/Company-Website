@@ -429,6 +429,7 @@
                     var year = $('#filterYear').val();
                     var month = $('#filterMonth').val();
                     var company = $('#filterCompany').val();
+                    var country = $('#filterCountry').val();
                     var activeTab = $('.rfq-tabs .nav-link.active');
                     var status = activeTab.data('status'); // Get selected status from active tab
                     var search = $('#searchQuery').val(); // Get the search query value
@@ -441,7 +442,7 @@
                             year: year,
                             month: month,
                             status: status,
-                            company: company,
+                            country: country,
                             search: search // Send the search query
                         },
                         success: function(response) {
@@ -463,7 +464,7 @@
                 }
 
                 // Trigger the fetchRfqData function when a filter is changed
-                $('#filterYear, #filterMonth, #searchQuery, #filterCompany').on('input change', function() {
+                $('#filterYear, #filterMonth, #searchQuery, #filterCompany', '#filterCountry').on('input change', function() {
                     fetchRfqData();
                 });
 

@@ -78,6 +78,7 @@ class RFQController extends Controller
         // Count total RFQs
         $rfq_count = (clone $baseQuery)->count();
         $companies = (clone $baseQuery)->whereNotNull('company_name')->distinct('company_name')->pluck('company_name');
+        $countries = (clone $baseQuery)->whereNotNull('country')->distinct('country')->pluck('country');
         // Get new customers where 'confirmation' is null
         $new_customers = (clone $baseQuery)->whereNull('confirmation')->where('created_at', '>=', Carbon::now()->subMonths(1))->latest()->get();
 
@@ -113,6 +114,7 @@ class RFQController extends Controller
             'rfq_count'     => $rfq_count,
             'new_customers' => $new_customers,
             'companies'     => $companies,
+            'countries'     => $countries,
             'tab_status'    => '',
         ]);
     }
@@ -129,6 +131,7 @@ class RFQController extends Controller
         // dd($request->search);
         $query = Rfq::where('rfq_type', 'rfq');
         $companies = (clone $query)->whereNotNull('company_name')->distinct('company_name')->pluck('company_name');
+        $countries = (clone $query)->whereNotNull('country')->distinct('country')->pluck('country');
 
         // Apply year filter if provided
         if ($request->has('year') && $request->year != '') {
@@ -142,6 +145,9 @@ class RFQController extends Controller
         }
         if ($request->has('company') && $request->company != '') {
             $query->where('company_name', $request->company);
+        }
+        if ($request->has('country') && $request->country != '') {
+            $query->where('country', $request->country);
         }
 
         // Apply status filter if provided
@@ -183,6 +189,7 @@ class RFQController extends Controller
                 'losts'      => $losts,
                 'users'         => $users,
                 'companies'     => $companies,
+                'countries'     => $countries,
                 'tab_status' => $tab_status,
             ])->render(),
         ]);
