@@ -351,7 +351,7 @@
                                 <!-- RFQ Card -->
                                 @foreach ($rfqs as $rfq)
                                     <li class="nav-item w-100 me-0 mb-md-2 mt-2">
-                                        <a class="nav-link active w-100 btn btn-flex btn-active-primary border p-3"
+                                        <a class="nav-link {{ $loop->first ? 'active btn-active-primary' : '' }} w-100 btn btn-flex border p-3"
                                             data-bs-toggle="tab" href="#kt_vtab_pane_4">
                                             <div class="row w-100 align-items-center">
                                                 <div class="col-md-4 d-flex align-items-center">
