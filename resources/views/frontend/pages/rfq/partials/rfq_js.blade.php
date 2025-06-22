@@ -94,16 +94,15 @@
                 let allValid = true;
 
                 $requiredInputs.each(function() {
-                    if (!$("#stepperForm").validate().element(this)) {
+                    const isValid = $("#stepperForm").validate().element(this);
+                    if (!isValid) {
                         allValid = false;
-                        return false;
+                        return false; // Breaks the .each loop
                     }
                 });
 
-                $("#deliveryAddress, #endUser,").prop(
-                    "disabled",
-                    !allValid
-                );
+                // ✅ Fixed selector (removed trailing comma)
+                $("#deliveryAddress, #endUser").prop("disabled", !allValid);
             }
 
             function updateProgress() {

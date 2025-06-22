@@ -34,7 +34,7 @@
                                                         <div class="col-lg-1 col-2">
                                                             <input type="text" name="sl[]"
                                                                 class="text-center form-control sl-input" value="1"
-                                                                disabled autocomplet="" />
+                                                                disabled autocomplet="off" />
                                                         </div>
                                                         <div class="col-lg-9 col-6">
                                                             <input type="text" name="product_name[]" class="form-control"
