@@ -373,6 +373,7 @@ class RFQController extends Controller
 
     public function rfqCreate(Request $request)
     {
+        dd($request->all());
         // Validate the input
         $validator = Validator::make(
             $request->all(),
@@ -381,19 +382,26 @@ class RFQController extends Controller
                 'email'                  => 'required|email:rfc,dns',
                 'image'                  => 'file|mimes:jpeg,png,jpg|max:2048',
                 'country'                => 'required',
-                'product_name'           => 'required|array|min:1',
-                'product_name.*'         => 'required|string',
-                'qty'                    => 'required|array|min:1',
-                'qty.*'                  => 'required|integer|min:1',
+                // 'product_name'           => 'required|array|min:1',
+                // 'product_name.*'         => 'required|string',
+                // 'qty'                    => 'required|array|min:1',
+                // 'qty.*'                  => 'required|integer|min:1',
+                'contacts'               => 'required|array|min:1',
+                'contacts.*.product_name' => 'required|string',
+                'contacts.*.qty'         => 'required|integer|min:1',
             ],
             [
-                'required'               => 'The :attribute field is required.',
-                'mimes'                  => 'The :attribute must be a file of type:jpeg,png,jpg.',
-                'email'                  => 'The :attribute must be a valid email address.',
-                'unique'                 => 'The :attribute must be unique.',
-                'product_name.required'  => 'At least one product name must be provided.',
-                'qty.required'           => 'At least one quantity must be provided.',
-                'qty.*.min'              => 'Each quantity must be greater than 0.',
+                'required'                         => 'The :attribute field is required.',
+                'mimes'                            => 'The :attribute must be a file of type:jpeg,png,jpg.',
+                'email'                            => 'The :attribute must be a valid email address.',
+                'unique'                           => 'The :attribute must be unique.',
+                // 'product_name.required'  => 'At least one product name must be provided.',
+                // 'qty.required'           => 'At least one quantity must be provided.',
+                // 'qty.*.min'              => 'Each quantity must be greater than 0.',
+                'contacts.*.product_name.required' => 'Each product must have a name.',
+                'contacts.*.qty.required'          => 'Each product must have a quantity.',
+                'contacts.*.qty.integer'           => 'Quantity must be a number.',
+                'contacts.*.qty.min'               => 'Quantity must be at least 1.',
             ]
         );
 
@@ -474,19 +482,39 @@ class RFQController extends Controller
         ]);
 
         // Save Products to RfqProduct and QuotationProduct
-        foreach ($request->product_name as $key => $productName) {
-            RfqProduct::create([
-                'rfq_id'       => $rfq_id,
-                'product_name' => $productName,
-                'qty'          => $request->qty[$key],
-                'created_at'   => now(),
-            ]);
-            QuotationProduct::create([
-                'rfq_id'       => $rfq_id,
-                'product_name' => $productName,
-                'qty'          => $request->qty[$key],
-                'created_at'   => now(),
-            ]);
+        // foreach ($request->product_name as $key => $productName) {
+        //     RfqProduct::create([
+        //         'rfq_id'       => $rfq_id,
+        //         'product_name' => $productName,
+        //         'qty'          => $request->qty[$key],
+        //         'created_at'   => now(),
+        //     ]);
+        //     QuotationProduct::create([
+        //         'rfq_id'       => $rfq_id,
+        //         'product_name' => $productName,
+        //         'qty'          => $request->qty[$key],
+        //         'created_at'   => now(),
+        //     ]);
+        // }
+        foreach ($request->contacts as $contact) {
+            $productName = $contact['product_name'] ?? null;
+            $qty = $contact['qty'] ?? null;
+
+            if ($productName && $qty) {
+                RfqProduct::create([
+                    'rfq_id'       => $rfq_id,
+                    'product_name' => $productName,
+                    'qty'          => $qty,
+                    'created_at'   => now(),
+                ]);
+
+                QuotationProduct::create([
+                    'rfq_id'       => $rfq_id,
+                    'product_name' => $productName,
+                    'qty'          => $qty,
+                    'created_at'   => now(),
+                ]);
+            }
         }
 
         // Notify users and send emails
