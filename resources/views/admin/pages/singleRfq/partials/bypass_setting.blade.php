@@ -81,9 +81,6 @@
                                         </label>
                                     </div>
                                 </td>
-
-                            </tr>
-                            <tr>
                                 <td width="50%">
                                     <div class="d-flex align-items-center">
                                         <div class="me-3">
@@ -103,7 +100,6 @@
                                     </div>
 
                                 </td>
-
                             </tr>
                         </tbody>
                     </table>
