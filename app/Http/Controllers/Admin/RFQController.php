@@ -373,7 +373,7 @@ class RFQController extends Controller
 
     public function rfqCreate(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         // Validate the input
         $validator = Validator::make(
             $request->all(),

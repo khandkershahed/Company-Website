@@ -294,14 +294,9 @@
                                                 <option selected disabled>
                                                     Sales Man
                                                 </option>
-                                                <option value="1">John Doe</option>
-                                                <option value="2">Jane Smith</option>
-                                                <option value="3">Michael Johnson</option>
-                                                <option value="4">Emily Davis</option>
-                                                <option value="5">Robert Brown</option>
-                                                <option value="6">Olivia Wilson</option>
-                                                <option value="7">Daniel Martinez</option>
-                                                <option value="8">Sophia Taylor</option>
+                                                @foreach ($collection as $item)
+                                                    <option value="1">John Doe</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="me-2">
