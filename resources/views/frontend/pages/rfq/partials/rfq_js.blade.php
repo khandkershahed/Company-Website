@@ -21,10 +21,10 @@
                 "customPhone",
                 function(value, element) {
                     const isValidPattern = /^01[3-9]\d{1,12}$/.test(value);
-                    const lengthValid = value.length >= 4 && value.length <= 15;
+                    const lengthValid = value.length >= 9 && value.length <= 15;
                     return this.optional(element) || (isValidPattern && lengthValid);
                 },
-                "Please enter a valid phone number between 4 and 15 digits (e.g., 0186...)"
+                "Please enter a valid phone number between 9 and 15 digits (e.g., 0186...)"
             );
 
             $.validator.addMethod(
@@ -171,10 +171,16 @@
                 }
             });
 
+            let isSubmitting = false;
+
             $("#stepperForm").on("submit", function(e) {
+                if (isSubmitting) return;
+
                 e.preventDefault();
+
                 if ($(this).valid()) {
-                    alert("Form submitted successfully!");
+                    isSubmitting = true;
+                    this.submit(); // Native form submission
                 }
             });
 
