@@ -16,6 +16,11 @@
             padding: 13px;
             color: rgb(0, 0, 0) !important;
         }
+        .btn-outline-primary {
+            border: 1px solid #237075 !important;
+            /* border-color: #237075 !important; */
+            color: #237075 !important;
+        }
     </style>
     <!-- Main Content Start -->
     @php
@@ -449,7 +454,7 @@
                 // });
             });
         </script>
-        
+
         <script>
             const tabSelector = document.getElementById("tabSelector");
             const tabs = document.querySelectorAll("#track_tab, #message_tab");
