@@ -400,10 +400,10 @@
                                             class="bg-light rounded-3 d-flex justify-content-between align-items-center w-100 p-2">
                                             <div>
                                                 <h3 class="mb-0 text-primary ps-3">
-                                                    14568RFQ
+                                                    {{ $rfq->rfq_code }}
                                                 </h3>
                                             </div>
-                                            <div>Ngen It | Bangladesh</div>
+                                            <div>{{ $rfq->company_name }} @if (!empty($rfq->country)) | {{ $rfq->country }} @endif</div>
                                             <div>
                                                 <!-- Dropdown Selector -->
                                                 <div>

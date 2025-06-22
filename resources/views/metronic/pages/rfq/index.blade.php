@@ -16,10 +16,31 @@
             padding: 13px;
             color: rgb(0, 0, 0) !important;
         }
+
         .btn-outline-primary {
             border: 1px solid #237075 !important;
             /* border-color: #237075 !important; */
             color: #237075 !important;
+        }
+
+        .btn-check:active+.btn.btn-active-primary,
+        .btn-check:checked+.btn.btn-active-primary,
+        .btn.btn-active-primary.active,
+        .btn.btn-active-primary.show,
+        .btn.btn-active-primary:active:not(.btn-active),
+        .btn.btn-active-primary:focus:not(.btn-active),
+        .btn.btn-active-primary:hover:not(.btn-active),
+        .show>.btn.btn-active-primary {
+            color: #0b6476;
+            border-color: #0b6476;
+            background-color: #f1faff !important;
+        }
+
+        .nav-pills .nav-link.active,
+        .nav-pills .show>.nav-link {
+            color: #0b6476;
+            border-color: #0b6476;
+            background-color: #f1faff !important;
         }
     </style>
     <!-- Main Content Start -->
