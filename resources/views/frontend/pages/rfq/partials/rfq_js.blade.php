@@ -298,3 +298,20 @@
             updateSerials(); // Initial run
         });
     </script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize the repeater
+            $('.deliveryAddress').onchange({
+
+                function() {
+                    const isChecked = $(this).is(':checked');
+                    $('deliveryAddress').prop('checked');
+                    // $('#shippingAddress').prop('disabled', isChecked);
+                    // $('#shippingEmail').prop('disabled', isChecked);
+                    // $('#shippingPhone').prop('disabled', isChecked);
+                    // $('#shippingZipCode').prop('disabled', isChecked);
+                }
+            });
+        });
+    </script>

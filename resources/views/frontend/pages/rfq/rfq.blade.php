@@ -34,12 +34,12 @@
                                                         <div class="col-lg-1 col-2">
                                                             <input type="text" name="sl[]"
                                                                 class="text-center form-control sl-input" value="1"
-                                                                disabled autocomplet="" />
+                                                                disabled autocomplete="" />
                                                         </div>
                                                         <div class="col-lg-9 col-6">
                                                             <input type="text" name="product_name[]" class="form-control"
                                                                 value="{{ $cart_product->name }}"
-                                                                placeholder="Product Name " required autocomplet="" />
+                                                                placeholder="Product Name " required autocomplete="" />
                                                         </div>
                                                         <div class="col-lg-1 col-2">
                                                             <div class="d-flex">
@@ -79,11 +79,11 @@
                                                     <div class="col-lg-1 col-2">
                                                         <input type="text" name="sl[]"
                                                             class="text-center form-control sl-input" value="1"
-                                                            readonly autocomplet="" />
+                                                            readonly autocomplete="" />
                                                     </div>
                                                     <div class="col-lg-9 col-6">
                                                         <input type="text" name="product_name[]" class="form-control"
-                                                            placeholder="Product Name" required autocomplet="off" />
+                                                            placeholder="Product Name" required autocomplete="off" />
                                                     </div>
                                                     <div class="col-lg-1 col-2">
                                                          <div class="d-flex">
@@ -126,7 +126,7 @@
                                     </div>
                                 </div>
                                 <!-- ✅ End of repeater placement -->
-                                <hr class="mb-4" autocomplet="" />
+                                <hr class="mb-4" autocomplete="" />
                                 <!-- Progress Bar -->
                                 <div class="pt-3 progress-bar-steps for-desktop">
                                     <div class="step" data-step="1">
@@ -175,7 +175,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="company_name" class="form-control"
-                                                    placeholder="Company Name (e.g: NGen It)" required autocomplet="" />
+                                                    placeholder="Company Name (e.g: NGen It)" required autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -183,7 +183,7 @@
                                                 <div>
                                                     <input class="form-check-input custom-form-check" type="checkbox"
                                                         value="1" name="is_reseller" id="resellerCheckbox"
-                                                        autocomplet="" />
+                                                        autocomplete="" />
                                                     <label class="form-check-label" for="resellerCheckbox">
                                                         I am a reseller (Check if you are a reseller
                                                         partner)
@@ -194,21 +194,21 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="name" class="form-control"
-                                                    placeholder="Client Name (e.g: Jhone Doe)" required autocomplet="" />
+                                                    placeholder="Client Name (e.g: Jhone Doe)" required autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="address" class="form-control"
                                                     placeholder="Address (e.g: House No, Road, Block)" required
-                                                    autocomplet="" />
+                                                    autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="designation" class="form-control"
                                                     placeholder="Designation (e.g: Sales Manager)" required
-                                                    autocomplet="" />
+                                                    autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -230,13 +230,13 @@
                                             <div class="mb-3">
                                                 <input type="email" name="email" class="form-control"
                                                     placeholder="Email Address (e.g: jhone@mail.com)" required
-                                                    autocomplet="" />
+                                                    autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="city" class="form-control"
-                                                    placeholder="Enter your City Name" required autocomplet="" />
+                                                    placeholder="Enter your City Name" required autocomplete="" />
                                                 {{-- <select class="form-select countrySelect" aria-label="Select City"
                                                     required name="city">
                                                     <option value="" selected disabled>
@@ -253,22 +253,22 @@
                                             <div class="mb-3">
                                                 <input type="number" name="phone" class="form-control"
                                                     placeholder="Phone Number (e.g: 018687955852)" required
-                                                    autocomplet="" />
+                                                    autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="zip_code" class="form-control"
-                                                    placeholder="ZIP Code (e.g: 1207)" required autocomplet="" />
+                                                    placeholder="ZIP Code (e.g: 1207)" required autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="mt-4">
                                                 <!-- Delivery Address Checkbox -->
                                                 <div class="mt-2 form-check">
-                                                    <input class="form-check-input custom-form-check" type="checkbox"
+                                                    <input class="form-check-input custom-form-check deliveryAddress" type="checkbox"
                                                         value="is_contact_address" id="deliveryAddress" value="1"
-                                                        disabled required autocomplet="" />
+                                                        disabled required autocomplete="" />
                                                     <label class="form-check-label" for="deliveryAddress">
                                                         My delivery address is the same as the company
                                                         address
@@ -278,7 +278,7 @@
                                                     <div class="mb-4 form-check">
                                                         <input class="form-check-input custom-form-check" type="checkbox"
                                                             value="" id="endUser" disabled required
-                                                            autocomplet="" />
+                                                            autocompletee />
                                                         <label class="form-check-label" for="endUser">
                                                             I am the end user and my information is the same
                                                             as the company address
@@ -306,9 +306,9 @@
                                         <!-- Delivery Address Checkbox -->
 
                                         <div class="mt-2 mb-4 form-check">
-                                            <input class="form-check-input custom-form-check" type="checkbox"
-                                                value="" id="stepTwoGotoStep3" autocomplet="" />
-                                            <label class="form-check-label" for="stepTwoGotoStep3">
+                                            <input class="form-check-input custom-form-check deliveryAddress" type="checkbox"
+                                                value="1" id="step2Address" autocomplete="" />
+                                            <label class="form-check-label" for="step2Address">
                                                 Delivery address is same as the company address
                                             </label>
                                         </div>
@@ -319,27 +319,27 @@
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_company_name" class="form-control"
                                                     placeholder="Shipping Company Name (e.g: NGen It)" required
-                                                    autocomplet="" />
+                                                    autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_name" class="form-control"
-                                                    placeholder="Client Name (e.g: Jhone Doe)" required autocomplet="" />
+                                                    placeholder="Client Name (e.g: Jhone Doe)" required autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_address" class="form-control"
                                                     placeholder="Address (e.g: House No, Road, Block)" required
-                                                    autocomplet="" />
+                                                    autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_designation" class="form-control"
                                                     placeholder="Designation (e.g: Sales Manager)" required
-                                                    autocomplet="" />
+                                                    autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -361,26 +361,26 @@
                                             <div class="mb-3">
                                                 <input type="email" name="shipping_email" class="form-control"
                                                     placeholder="Email Address (e.g: jhone@mail.com)" required
-                                                    autocomplet="" />
+                                                    autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_city" class="form-control"
-                                                    placeholder="Enter your City Name" required autocomplet="" />
+                                                    placeholder="Enter your City Name" required autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="number" name="shipping_phone" class="form-control"
                                                     placeholder="Phone Number (e.g: 018687955852)" required
-                                                    autocomplet="" />
+                                                    autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_zip_code" class="form-control"
-                                                    placeholder="ZIP Code (e.g: 1207)" required autocomplet="" />
+                                                    placeholder="ZIP Code (e.g: 1207)" required autocomplete="" />
                                             </div>
                                         </div>
                                     </div>
@@ -400,7 +400,7 @@
                                     <div>
                                         <div class="mt-2 mb-4 form-check">
                                             <input class="form-check-input custom-form-check" type="checkbox"
-                                                value="" id="stepThreeGotoStep4" autocomplet="" />
+                                                value="" id="stepThreeGotoStep4" autocomplete="" />
                                             <label class="form-check-label" for="stepThreeGotoStep4">
                                                 I am the end user & same as the company address
                                             </label>
@@ -411,27 +411,27 @@
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <input type="text" name="end_user_company_name" class="form-control"
-                                                    placeholder="Company Name (e.g: NGen It)" required autocomplet="" />
+                                                    placeholder="Company Name (e.g: NGen It)" required autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="end_user_name" class="form-control"
-                                                    placeholder="Client Name (e.g: Jhone Doe)" required autocomplet="" />
+                                                    placeholder="Client Name (e.g: Jhone Doe)" required autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="end_user_address" class="form-control"
                                                     placeholder="Address (e.g: House No, Road, Block)" required
-                                                    autocomplet="" />
+                                                    autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="end_user_designation" class="form-control"
                                                     placeholder="Designation (e.g: Sales Manager)" required
-                                                    autocomplet="" />
+                                                    autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -453,26 +453,26 @@
                                             <div class="mb-3">
                                                 <input type="email" name="end_user_email" class="form-control"
                                                     placeholder="Email Address (e.g: jhone@mail.com)" required
-                                                    autocomplet="" />
+                                                    autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="end_user_city" class="form-control"
-                                                    placeholder="Enter your City Name" required autocomplet="" />
+                                                    placeholder="Enter your City Name" required autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="number" name="end_user_phone" class="form-control"
                                                     placeholder="Phone Number (e.g: 018687955852)" required
-                                                    autocomplet="" />
+                                                    autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="end_user_zip_code" class="form-control"
-                                                    placeholder="ZIP Code (e.g: 1207)" required autocomplet="" />
+                                                    placeholder="ZIP Code (e.g: 1207)" required autocomplete="" />
                                             </div>
                                         </div>
                                     </div>
@@ -492,13 +492,13 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="project_name" class="form-control"
-                                                    placeholder="Project Name" autocomplet="" />
+                                                    placeholder="Project Name" autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="budget" class="form-control"
-                                                    placeholder="Tentative Budget.." autocomplet="" />
+                                                    placeholder="Tentative Budget.." autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -534,7 +534,7 @@
                                         <div class="col-lg-12">
                                             <div class="my-2 mb-5 form-check">
                                                 <input class="form-check-input custom-form-check" type="checkbox"
-                                                    value="" id="flexCheckChecked" checked autocomplete="off" />
+                                                    value="" id="flexCheckChecked" checked autocompletee="off" />
                                                 <label class="form-check-label" for="flexCheckChecked">
                                                     Skip the additional information
                                                 </label>
