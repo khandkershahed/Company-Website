@@ -77,7 +77,7 @@ class RFQController extends Controller
 
         // Count total RFQs
         $rfq_count = (clone $baseQuery)->count();
-
+        $companies = (clone $baseQuery)->whereNotNull('company_name')->distinct('company_name')->pluck('company_name');
         // Get new customers where 'confirmation' is null
         $new_customers = (clone $baseQuery)->whereNull('confirmation')->where('created_at', '>=', Carbon::now()->subMonths(1))->latest()->get();
 
@@ -112,6 +112,7 @@ class RFQController extends Controller
             'users'         => $users,
             'rfq_count'     => $rfq_count,
             'new_customers' => $new_customers,
+            'companies'     => $companies,
             'tab_status'    => '',
         ]);
     }
@@ -119,8 +120,15 @@ class RFQController extends Controller
 
     public function filterRFQ(Request $request)
     {
+        $users = User::whereJsonContains('department', 'business')
+            ->where('role', 'manager')
+            ->select('id', 'name')
+            ->orderBy('id', 'DESC')
+            ->get();
+
         // dd($request->search);
         $query = Rfq::where('rfq_type', 'rfq');
+        $companies = (clone $query)->whereNotNull('company_name')->distinct('company_name')->pluck('company_name');
 
         // Apply year filter if provided
         if ($request->has('year') && $request->year != '') {
@@ -131,6 +139,9 @@ class RFQController extends Controller
         if ($request->has('month') && $request->month != '') {
             $monthNumber = date('m', strtotime($request->month)); // Convert month name to number
             $query->whereMonth('create_date', $monthNumber);
+        }
+        if ($request->has('company') && $request->company != '') {
+            $query->where('company_name', $request->company);
         }
 
         // Apply status filter if provided
@@ -170,6 +181,8 @@ class RFQController extends Controller
                 'pendings'   => $pendings,
                 'quoteds'    => $quoteds,
                 'losts'      => $losts,
+                'users'         => $users,
+                'companies'     => $companies,
                 'tab_status' => $tab_status,
             ])->render(),
         ]);

@@ -308,12 +308,12 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="position-relative my-1">
+                            {{-- <div class="position-relative my-1">
                                 <i
                                     class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
                                 <input type="text" id="searchQuery" data-kt-table-widget-4="search"
                                     class="form-control w-150px fs-7 ps-12" placeholder="Search" />
-                            </div>
+                            </div> --}}
                             <div>
                                 <a href="javascript:void(0)" class="btn btn-sm fw-bold btn-primary"
                                     data-bs-toggle="collapse" data-bs-target="#allRFQ">
@@ -327,11 +327,9 @@
         </div>
 
         <!-- Container for the filtered RFQ queries -->
-        {{-- <div id="defaultDiv" class="default-div visible col-xl-12">
-            <div class="tab-content" id="myTabContent"> --}}
-        @include('metronic.pages.rfq.partials.rfq_queries')
-        {{-- </div>
-        </div> --}}
+        <div class="row" id="filterContainer">
+            @include('metronic.pages.rfq.partials.rfq_queries')
+        </div>
 
     </div>
     <!-- Main Content End -->
@@ -396,7 +394,7 @@
                             // Check if the view content is in the response
                             if (response.view) {
                                 // Update the RFQ content with the new filtered data
-                                $('#myTabContent').html(response.view);
+                                $('#filterContainer').html(response.view);
                                 // Re-select the active tab to preserve the selected status
                                 $('.rfq-tabs .nav-link').removeClass('active');
                                 activeTab.addClass('active');
@@ -430,6 +428,7 @@
                     // Collect filter values
                     var year = $('#filterYear').val();
                     var month = $('#filterMonth').val();
+                    var company = $('#filterCompany').val();
                     var activeTab = $('.rfq-tabs .nav-link.active');
                     var status = activeTab.data('status'); // Get selected status from active tab
                     var search = $('#searchQuery').val(); // Get the search query value
@@ -442,13 +441,14 @@
                             year: year,
                             month: month,
                             status: status,
+                            company: company,
                             search: search // Send the search query
                         },
                         success: function(response) {
                             // Check if the view content is in the response
                             if (response.view) {
                                 // Update the RFQ content with the new filtered data
-                                $('#myTabContent').html(response.view);
+                                $('#filterContainer').html(response.view);
                                 // Keep the active tab the same after filtering
                                 $('.rfq-tabs .nav-link').removeClass('active');
                                 activeTab.addClass('active');
@@ -463,7 +463,7 @@
                 }
 
                 // Trigger the fetchRfqData function when a filter is changed
-                $('#filterYear, #filterMonth, #searchQuery').on('input change', function() {
+                $('#filterYear, #filterMonth, #searchQuery, #filterCompany').on('input change', function() {
                     fetchRfqData();
                 });
 

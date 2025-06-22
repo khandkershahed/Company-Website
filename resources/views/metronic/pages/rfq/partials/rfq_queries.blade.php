@@ -2,7 +2,6 @@
     id="pending" role="tabpanel"> --}}
 <div class="tab-pane fade {{ empty($tab_status) || $tab_status == 'pending' ? 'show active' : '' }}" id="pending"
     role="tabpanel">
-
     <div class="row">
         <div class="card shadow-sm">
             <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse"
@@ -269,8 +268,11 @@
                                 <li class="nav-item w-100 me-0 mb-md-2">
                                     <div class="d-flex align-items-center">
                                         <div
-                                            class="bg-primary text-white px-4 py-2 me-2 rounded d-flex align-items-center w-auto">
-                                            <i class="fas fa-search me-2"></i> Search
+                                            class="text-white me-2 rounded d-flex align-items-center w-auto">
+                                            <i
+                                                class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
+                                            <input type="text" id="searchQuery" data-kt-table-widget-4="search"
+                                                class="form-control w-150px fs-7 ps-12" placeholder="Search" />
                                         </div>
                                         <div class="me-2">
                                             <select class="form-select form-select-sm w-auto me-2"
@@ -294,34 +296,23 @@
                                                 <option selected disabled>
                                                     Sales Man
                                                 </option>
-                                                @foreach ($collection as $item)
-                                                    <option value="1">John Doe</option>
+                                                @foreach ($users as $user)
+                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="me-2">
                                             <select class="form-select form-select-sm w-auto me-2"
-                                                data-control="select2">
+                                                data-control="select2" id="filterCompany" name="company">
                                                 <option selected disabled>Company</option>
-                                                <option value="1">
-                                                    Acme Corporation
-                                                </option>
-                                                <option value="2">
-                                                    Globex Industries
-                                                </option>
-                                                <option value="3">Initech</option>
-                                                <option value="4">Hooli</option>
-                                                <option value="5">
-                                                    Stark Enterprises
-                                                </option>
-                                                <option value="6">Wayne Tech</option>
-                                                <option value="7">Umbrella Corp</option>
-                                                <option value="8">
-                                                    Wonka Industries
-                                                </option>
+                                                @foreach ($companies as $company)
+                                                    <option value="{{ $company }}">
+                                                        {{ $company }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
-                                        <div class="me-2">
+                                        {{-- <div class="me-2">
                                             <select class="form-select form-select-sm w-auto" data-control="select2">
                                                 <option selected disabled>
                                                     RFQ Date & Time
@@ -339,7 +330,7 @@
                                                 <option value="11">November</option>
                                                 <option value="12">December</option>
                                             </select>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </li>
 
@@ -398,7 +389,10 @@
                                                     {{ $rfq->rfq_code }}
                                                 </h3>
                                             </div>
-                                            <div>{{ $rfq->company_name }} @if (!empty($rfq->country)) | {{ $rfq->country }} @endif</div>
+                                            <div>{{ $rfq->company_name }} @if (!empty($rfq->country))
+                                                    | {{ $rfq->country }}
+                                                @endif
+                                            </div>
                                             <div>
                                                 <!-- Dropdown Selector -->
                                                 <div>
