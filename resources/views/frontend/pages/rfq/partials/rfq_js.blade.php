@@ -262,32 +262,61 @@
             toggleContent.style.display = checkbox.checked ? "block" : "none";
         }
 
-        function increment() {
-            const input = document.getElementById("qty");
-            input.value = parseInt(input.value) + 1;
-        }
+        // function increment() {
+        //     const input = document.getElementById("qty");
+        //     input.value = parseInt(input.value) + 1;
+        // }
 
-        function decrement() {
-            const input = document.getElementById("qty");
-            if (parseInt(input.value) > 1) {
-                input.value = parseInt(input.value) - 1;
-            }
-        }
+        // function decrement() {
+        //     const input = document.getElementById("qty");
+        //     if (parseInt(input.value) > 1) {
+        //         input.value = parseInt(input.value) - 1;
+        //     }
+        // }
     </script>
     <script>
-        $(document).ready(function() {
-            $('.repeater').repeater({
-                show: function() {
-                    $(this).slideDown();
-                },
-                hide: function(deleteElement) {
-                    if (confirm('Are you sure you want to delete this product?')) {
-                        $(this).slideUp(deleteElement, function() {
-                            $(this).remove(); // Actually remove the DOM element
-                        });
-                    }
-                },
-                isFirstItemUndeletable: false
-            });
+    function increment(button) {
+        const input = button.closest('.counting-btn').previousElementSibling;
+        let value = parseInt(input.value);
+        input.value = isNaN(value) || value < 1 ? 1 : value + 1;
+    }
+
+    function decrement(button) {
+        const input = button.closest('.counting-btn').previousElementSibling;
+        let value = parseInt(input.value);
+        if (isNaN(value) || value <= 1) {
+            input.value = 1;
+        } else {
+            input.value = value - 1;
+        }
+    }
+</script>
+    <script>
+    function updateSerials() {
+        $('[data-repeater-list] [data-repeater-item]').each(function (i) {
+            $(this).find('.sl-input').val(i + 1);
         });
-    </script>
+    }
+
+    $(document).ready(function () {
+        $('.repeater').repeater({
+            show: function () {
+                $(this).slideDown('fast', function () {
+                    updateSerials();
+                });
+            },
+            hide: function (deleteElement) {
+                if (confirm('Are you sure?')) {
+                    $(this).slideUp('fast', function () {
+                        $(this).remove();
+                        updateSerials();
+                    });
+                }
+            },
+            isFirstItemUndeletable: false
+        });
+
+        updateSerials(); // Initial run
+    });
+</script>
+
