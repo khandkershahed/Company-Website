@@ -280,13 +280,14 @@
     }
 
     .sl-input.is-valid,
-.was-validated .sl-input:valid {
-    border-color: #198754;
-    padding-right: 0.75rem; /* Or whatever fits your layout */
-    background: none !important;
-    background-image: none !important;
-    background: #f7f6f5 !important;
-}
+    .was-validated .sl-input:valid {
+        border-color: #198754;
+        padding-right: 0.75rem;
+        /* Or whatever fits your layout */
+        background: none !important;
+        background-image: none !important;
+        background: #f7f6f5 !important;
+    }
 
 
     @media only screen and (max-width: 600px) {

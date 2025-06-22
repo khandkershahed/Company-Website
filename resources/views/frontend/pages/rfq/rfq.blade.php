@@ -34,7 +34,7 @@
                                                         <div class="col-lg-1 col-2">
                                                             <input type="text" name="sl[]"
                                                                 class="text-center form-control sl-input" value="1"
-                                                                disabled autocomplete="" />
+                                                                disabled autocomplet="off" />
                                                         </div>
                                                         <div class="col-lg-9 col-6">
                                                             <input type="text" name="product_name[]" class="form-control"
@@ -267,7 +267,7 @@
                                                 <!-- Delivery Address Checkbox -->
                                                 <div class="mt-2 form-check">
                                                     <input class="form-check-input custom-form-check deliveryAddress" type="checkbox"
-                                                        value="is_contact_address" id="deliveryAddress" value="1"
+                                                        value="1" id="deliveryAddress"
                                                         disabled required autocomplete="" />
                                                     <label class="form-check-label" for="deliveryAddress">
                                                         My delivery address is the same as the company
@@ -276,9 +276,9 @@
                                                 </div>
                                                 <div id="checkDefaultContainer">
                                                     <div class="mb-4 form-check">
-                                                        <input class="form-check-input custom-form-check" type="checkbox"
+                                                        <input class="form-check-input custom-form-check endUser" type="checkbox"
                                                             value="" id="endUser" disabled required
-                                                            autocompletee />
+                                                            autocomplete />
                                                         <label class="form-check-label" for="endUser">
                                                             I am the end user and my information is the same
                                                             as the company address
@@ -307,7 +307,7 @@
 
                                         <div class="mt-2 mb-4 form-check">
                                             <input class="form-check-input custom-form-check deliveryAddress" type="checkbox"
-                                                value="1" id="step2Address" autocomplete="" />
+                                                value="1" name="is_contact_address" id="step2Address" autocomplete="" />
                                             <label class="form-check-label" for="step2Address">
                                                 Delivery address is same as the company address
                                             </label>
@@ -399,8 +399,8 @@
                                     <!-- End User Checkbox -->
                                     <div>
                                         <div class="mt-2 mb-4 form-check">
-                                            <input class="form-check-input custom-form-check" type="checkbox"
-                                                value="" id="stepThreeGotoStep4" autocomplete="" />
+                                            <input class="form-check-input custom-form-check" type="checkbox" name="end_user_is_contact_address"
+                                                value="1" id="stepThreeGotoStep4" autocomplete="" />
                                             <label class="form-check-label" for="stepThreeGotoStep4">
                                                 I am the end user & same as the company address
                                             </label>

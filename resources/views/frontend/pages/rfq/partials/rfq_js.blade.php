@@ -94,16 +94,15 @@
                 let allValid = true;
 
                 $requiredInputs.each(function() {
-                    if (!$("#stepperForm").validate().element(this)) {
+                    const isValid = $("#stepperForm").validate().element(this);
+                    if (!isValid) {
                         allValid = false;
-                        return false;
+                        return false; // Breaks the .each loop
                     }
                 });
 
-                $("#deliveryAddress, #endUser,").prop(
-                    "disabled",
-                    !allValid
-                );
+                // ✅ Fixed selector (removed trailing comma)
+                $("#deliveryAddress, #endUser").prop("disabled", !allValid);
             }
 
             function updateProgress() {
@@ -301,17 +300,52 @@
 
     <script>
         $(document).ready(function() {
-            // Initialize the repeater
-            $('.deliveryAddress').onchange({
+            const fieldPairs = [
+                ['shipping_name', 'name'],
+                ['shipping_email', 'email'],
+                ['shipping_phone', 'phone'],
+                ['shipping_company_name', 'company_name'],
+                ['shipping_designation', 'designation'],
+                ['shipping_address', 'address'],
+                ['shipping_country', 'country'],
+                ['shipping_city', 'city'],
+                ['shipping_zip_code', 'zip_code']
+            ];
 
-                function() {
-                    const isChecked = $(this).is(':checked');
-                    $('deliveryAddress').prop('checked');
-                    // $('#shippingAddress').prop('disabled', isChecked);
-                    // $('#shippingEmail').prop('disabled', isChecked);
-                    // $('#shippingPhone').prop('disabled', isChecked);
-                    // $('#shippingZipCode').prop('disabled', isChecked);
-                }
+            $('[name="is_contact_address"], .deliveryAddress').on('change', function() {
+                const isChecked = $(this).is(':checked');
+                $('[name="is_contact_address"]').prop('checked', isChecked);
+                $('.deliveryAddress').prop('checked', isChecked);
+                fieldPairs.forEach(([shippingName, contactName]) => {
+                    const value = isChecked ? $(`[name="${contactName}"]`).val() : '';
+                    $(`[name="${shippingName}"]`).val(value);
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            const fieldPairs = [
+                ['end_user_name', 'name'],
+                ['end_user_email', 'email'],
+                ['end_user_phone', 'phone'],
+                ['end_user_company_name', 'company_name'],
+                ['end_user_designation', 'designation'],
+                ['end_user_address', 'address'],
+                ['end_user_country', 'country'],
+                ['end_user_city', 'city'],
+                ['end_user_zip_code', 'zip_code']
+            ];
+
+            $('[name="end_user_is_contact_address"], .endUser').on('change', function() {
+                const isChecked = $(this).is(':checked');
+                $('[name="end_user_is_contact_address"]').prop('checked', isChecked);
+                $('.endUser').prop('checked', isChecked);
+
+                fieldPairs.forEach(([shippingName, contactName]) => {
+                    const value = isChecked ? $(`[name="${contactName}"]`).val() : '';
+                    $(`[name="${shippingName}"]`).val(value);
+                });
             });
         });
     </script>
