@@ -203,10 +203,9 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
                             Close
                         </button>
-                        <button type="button" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </div>
@@ -321,58 +320,7 @@
                 hiddenDiv.classList.toggle("visible");
             });
         </script>
-        {{-- <script type="text/javascript">
-            $(document).ready(function() {
-                // AJAX function for filtering RFQs
-                function fetchRfqData() {
-                    // Collect filter values
-                    var year = $('#filterYear').val();
-                    var month = $('#filterMonth').val();
-                    var activeTab = $('.rfq-tabs .nav-link.active');
-                    var status = activeTab.data('status'); // Get selected status from active tab
-                    var search = $('#searchQuery').val(); // Get the search query value
 
-                    // AJAX request to fetch filtered RFQs
-                    $.ajax({
-                        url: '{{ route('admin.rfq.filter') }}',
-                        type: 'GET',
-                        data: {
-                            year: year,
-                            month: month,
-                            status: status,
-                            search: search // Send the search query
-                        },
-                        success: function(response) {
-                            // Check if the view content is in the response
-                            if (response.view) {
-                                // Update the RFQ content with the new filtered data
-                                $('#filterContainer').html(response.view);
-                                // Re-select the active tab to preserve the selected status
-                                $('.rfq-tabs .nav-link').removeClass('active');
-                                activeTab.addClass('active');
-                            } else {
-                                console.error('No view content returned');
-                            }
-                        },
-                        error: function() {
-                            alert('Error fetching data.');
-                        }
-                    });
-                }
-
-                // Trigger the fetchRfqData function when a filter is changed
-                $('#filterYear, #filterMonth, #searchQuery').on('input change', function() {
-                    fetchRfqData();
-                });
-
-                // $('.rfq-tabs .nav-link').click(function() {
-                //     // Change the active class on tabs when clicked
-                //     $('.rfq-tabs .nav-link').removeClass('active');
-                //     $(this).addClass('active');
-                //     fetchRfqData(); // Fetch data based on the selected tab
-                // });
-            });
-        </script> --}}
         <script>
             $(document).ready(function() {
                 // AJAX function for filtering RFQs
@@ -430,31 +378,6 @@
             });
         </script>
 
-        {{-- <script>
-            const tabSelector = document.getElementById("tabSelector");
-            const tabs = document.querySelectorAll("#track_tab, #message_tab");
-
-            function switchTab(selectedId) {
-                tabs.forEach((tab) => {
-                    tab.classList.remove("tab-visible");
-                    tab.classList.add("tab-hidden");
-                });
-
-                const selectedTab = document.getElementById(selectedId);
-                if (selectedTab) {
-                    selectedTab.classList.remove("tab-hidden");
-                    selectedTab.classList.add("tab-visible");
-                }
-            }
-
-            // On page load
-            switchTab(tabSelector.value);
-
-            // On selection change
-            tabSelector.addEventListener("change", function() {
-                switchTab(this.value);
-            });
-        </script> --}}
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const selects = document.querySelectorAll('.pendingRFQ, .quotedRFQ, .lostRFQ');

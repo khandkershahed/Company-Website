@@ -173,16 +173,30 @@
 
             let isSubmitting = false;
 
-            $("#stepperForm").on("submit", function(e) {
-                if (isSubmitting) return;
 
-                e.preventDefault();
+            let isSubmitting = false;
+
+            $("#stepperForm").on("submit", function(e) {
+                if (isSubmitting) {
+                    e.preventDefault();
+                    return;
+                }
 
                 if ($(this).valid()) {
                     isSubmitting = true;
-                    this.submit(); // Native form submission
+
+                    // Optional: Disable submit button
+                    $(this).find('button[type="submit"]').prop('disabled', true);
+                    $(this).find('button[type="submit"]').html('Submitting...');
+
+                    // Use native form submission
+                    this.submit();
+                } else {
+                    e.preventDefault(); // Prevent submission if invalid
                 }
             });
+
+
 
             function handleCheckboxVisibility() {
                 const $checkDefaultWrapper = $("#endUser").closest(".form-check");
