@@ -171,8 +171,6 @@
                 }
             });
 
-            let isSubmitting = false;
-
 
             let isSubmitting = false;
 
