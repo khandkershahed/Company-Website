@@ -130,6 +130,9 @@
                                     <a href="#allRFQ" class="text-gray-800 fs-5 fw-bold lh-0">New Customers
                                         <span class="text-gray-500 fw-semibold d-block fs-6 pt-4">Pending</span>
                                     </a>
+                                    <a href="{{ route('deal.create') }}" class="text-primary fs-5 fw-bold lh-0">
+                                        Create Deal
+                                    </a>
                                 </div>
                             </div>
 
@@ -423,9 +426,9 @@
                     });
 
                 // Optional: tab switching triggers filtering
-                $('.rfq-tabs .nav-link').on('click', function() {
-                    setTimeout(fetchRfqData, 10); // Wait for tab to activate
-                });
+                // $('.rfq-tabs .nav-link').on('click', function() {
+                //     setTimeout(fetchRfqData, 10); // Wait for tab to activate
+                // });
             });
         </script>
 
@@ -457,17 +460,7 @@
                     } else if (selectedValue.startsWith('message_tab')) {
                         trackContainer.style.display = 'none';
                         messageContainer.style.display = 'block';
-                    } else if (selectedValue.startsWith('delete_rfq')) {
-                        const confirmed = confirm('Are you sure you want to delete this RFQ?');
-                        if (!confirmed) {
-                            // Reset to "Track" if cancel delete
-                            selectElement.value = `track_tab_${rfqId}`;
-                            handleSelectChange(selectElement);
-                        } else {
-                            // Redirect to delete route (update as needed)
-                            window.location.href = `/admin/rfq/${rfqId}/destroy`;
-                        }
-                    }
+                    } 
                 }
             });
         </script>

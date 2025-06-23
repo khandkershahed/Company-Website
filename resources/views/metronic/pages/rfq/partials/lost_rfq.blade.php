@@ -21,7 +21,7 @@
                         </select>
                     </div>
 
-                    {{-- <script>
+                    <script>
                         document.getElementById('tabSelector').addEventListener('change', function() {
                             const selected = this.value;
                             if (selected === 'delete_rfq') {
@@ -33,7 +33,7 @@
                                 }
                             }
                         });
-                    </script> --}}
+                    </script>
 
                 </div>
             </div>
