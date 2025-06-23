@@ -136,7 +136,9 @@
                         </div>
                         <div class="col-lg-7 h-lg-650px h-650px overflow-scroll">
                             <div class="tab-content border rounded" id="myTabContent">
-                                @include('metronic.pages.rfq.partials.rfq_details')
+                                @foreach ($rfqs as $rfq)
+                                    @include('metronic.pages.rfq.partials.rfq_details')
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -235,7 +237,7 @@
                                 </li>
 
                                 <!-- RFQ Card -->
-                                @foreach ($rfqs as $rfq)
+                                @foreach ($quoteds as $rfq)
                                     <li class="nav-item w-100 me-0 mb-md-2 mt-2">
                                         <a class="nav-link {{ $loop->first ? 'active btn-active-primary' : '' }} w-100 btn btn-flex border p-3"
                                             data-bs-toggle="tab" href="#pending_rfq_{{ $rfq->id }}">
@@ -281,7 +283,9 @@
                         </div>
                         <div class="col-lg-7 h-lg-650px h-650px overflow-scroll">
                             <div class="tab-content border rounded" id="myTabContent">
-                                @include('metronic.pages.rfq.partials.rfq_details')
+                                @foreach ($quoteds as $rfq)
+                                    @include('metronic.pages.rfq.partials.rfq_details')
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -313,63 +317,106 @@
             </div>
             <div id="lost_rfq" class="collapse show">
                 <div class="card-body">
-                    @if ($losts->count() > 0)
-                        <div class="py-5">
-                            <div class="d-flex flex-column flex-md-row rounded">
-                                <ul
-                                    class="nav nav-tabs nav-pills flex-row border-0 flex-md-column me-5 mb-3 mb-md-0 fs-6 min-w-lg-250px">
-                                    @foreach ($losts as $rfq)
-                                        <li class="nav-item w-100 me-0 mb-md-2">
-                                            <a class="nav-link w-100 {{ $loop->first ? 'active btn-active-primary' : '' }} btn btn-flex border"
-                                                data-bs-toggle="tab" href="#lost_rfq-{{ $rfq->id }}">
-                                                <i class="fa-regular fa-file fs-2 text-primary pe-3"></i>
-                                                <div class="row w-100">
-                                                    <div class="col-sm-12">
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="fs-7 fw-bold">{{ $rfq->name }}</span>
-                                                            <span class="fs-7">#{{ $rfq->rfq_code }}</span>
+                    <div class="row g-4">
+                        <div class="col-lg-5 h-lg-650px h-650px overflow-scroll">
+                            <ul class="nav nav-tabs nav-pills border-0">
+                                <!-- Filter Bar -->
+                                <li class="nav-item w-100 me-0 mb-md-2">
+                                    <div class="d-flex align-items-center">
+                                        <div
+                                            class="position-relative text-white me-2 rounded d-flex align-items-center w-auto">
+                                            <i
+                                                class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
+                                            <input type="text" id="searchQuery" data-kt-table-widget-4="search"
+                                                class="form-control w-150px fs-7 ps-12" placeholder="Search" />
+                                        </div>
+                                        <div class="me-2">
+                                            <select class="form-select form-select-sm w-auto me-2"
+                                                data-control="select2" id="filterCountry" name="country">
+                                                <option selected disabled>Country</option>
+                                                @foreach ($countries as $country)
+                                                    <option value="{{ $country }}">{{ $country }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="me-2">
+                                            <select class="form-select form-select-sm w-auto me-2"
+                                                data-control="select2">
+                                                <option selected disabled>
+                                                    Sales Man
+                                                </option>
+                                                @foreach ($users as $user)
+                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="me-2">
+                                            <select class="form-select form-select-sm w-auto me-2"
+                                                data-control="select2" id="filterCompany" name="company">
+                                                <option selected disabled>Company</option>
+                                                @foreach ($companies as $company)
+                                                    <option value="{{ $company }}">
+                                                        {{ $company }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!-- RFQ Card -->
+                                @foreach ($losts as $rfq)
+                                    <li class="nav-item w-100 me-0 mb-md-2 mt-2">
+                                        <a class="nav-link {{ $loop->first ? 'active btn-active-primary' : '' }} w-100 btn btn-flex border p-3"
+                                            data-bs-toggle="tab" href="#pending_rfq_{{ $rfq->id }}">
+                                            <div class="row w-100 align-items-center">
+                                                <div class="col-md-4 d-flex align-items-center">
+                                                    <i class="fa-regular fa-file fs-2 text-primary pe-3"></i>
+                                                    <div>
+                                                        <div class="fw-semibold">
+                                                            {{ $rfq->name }}
                                                         </div>
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="fs-7 fw-bold">{{ $rfq->country }}</span>
-                                                            <span class="fs-7">{{ $rfq->create_date }}</span>
+                                                        <div class="fs-7 text-muted">
+                                                            {{ $rfq->country }}
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-
-                                <div class="tab-content w-100 border rounded" id="myTabContent">
-                                    @foreach ($losts as $rfq)
-                                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
-                                            id="lost_rfq-{{ $rfq->id }}" role="tabpanel">
-                                            <div class="d-flex flex-column justify-content-center align-items-center">
-                                                <div class="text-center p-5">
-                                                    <h1 class="pb-5">View The RFQ</h1>
+                                                <div class="col-md-4">
+                                                    <div class="fs-7">{{ $rfq->rfq_code }}</div>
+                                                    <div class="fs-7">
+                                                        {{ optional($rfq->created_at)->format('d M Y | h:i A') }}
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <button class="btn btn-primary me-2"><i
-                                                            class="fa-solid fa-signs-post pe-2"></i>Bypass</button>
-                                                    <button class="btn btn-primary"><i
-                                                            class="fa-regular fa-handshake pe-2"></i>
-                                                        Deal</button>
-                                                    <button class="btn btn-primary"><i
-                                                            class="fa-regular fa-pen-to-square pe-2"></i>Edit</button>
-                                                    <button class="btn btn-primary"><i
-                                                            class="fa-solid fa-expand pe-2"></i>View</button>
+                                                <div class="col-md-4 text-end">
+                                                    <div class="d-flex gap-2 justify-content-end mb-1">
+                                                        <button class="btn btn-sm w-50 btn-outline-primary"
+                                                            onclick="window.location.href='deal-form.html';">
+                                                            Deal
+                                                        </button>
+                                                    </div>
+                                                    <div
+                                                        class="fs-7 text-muted d-flex align-items-center justify-content-end">
+                                                        <i class="fas fa-bell fa-shake me-2 text-muted"></i>
+                                                        {{ \Carbon\Carbon::parse($rfq->created_at)->diffInDays(now(), false) }}
+                                                        Days Pending
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endforeach
-                                </div>
+                                        </a>
+                                    </li>
+                                @endforeach
+
+
+                            </ul>
+                        </div>
+                        <div class="col-lg-7 h-lg-650px h-650px overflow-scroll">
+                            <div class="tab-content border rounded" id="myTabContent">
+                                @foreach ($losts as $rfq)
+                                    @include('metronic.pages.rfq.partials.rfq_details')
+                                @endforeach
                             </div>
                         </div>
-                    @else
-                        <div class="py-5">
-                            <h2 class="text-center text-warning"> No Lost RFQ Available</h2>
-                        </div>
-                    @endif
+                    </div>
                 </div>
             </div>
         </div>
