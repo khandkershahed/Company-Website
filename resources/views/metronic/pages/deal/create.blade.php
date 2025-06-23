@@ -68,106 +68,109 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <!-- ✅ Repeater goes here as you said -->
-                                    <div class="mb-4 mt-5">
-                                        <div class="repeater">
-                                            <div data-repeater-list="contacts">
-                                                <div data-repeater-item class="row g-1">
-                                                    <div class="col-lg-1 col-2">
-                                                        <input type="text" name="sl"
-                                                            class="form-control text-center" autocomplete="off"
-                                                            value="1" />
-                                                    </div>
-                                                    <div class="col-lg-9 col-6">
-                                                        <input type="text" name="product_name" class="form-control"
-                                                            autocomplete="off" placeholder="Product Name " required />
-                                                    </div>
-                                                    <div class="col-lg-1 col-2">
-                                                        <div class="d-flex">
-                                                            <input type="text" id="qty" value="1"
+                                    <form id="stepperForm" action="{{ route('rfqCreate') }}" method="post"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        <!-- ✅ Repeater goes here as you said -->
+                                        <div class="mb-4 mt-5">
+                                            <div class="repeater">
+                                                <div data-repeater-list="contacts">
+                                                    <div data-repeater-item class="row g-1">
+                                                        <div class="col-lg-1 col-2">
+                                                            <input type="text" name="sl"
                                                                 class="form-control text-center" autocomplete="off"
-                                                                min="1" readonly
-                                                                style="
-                                      width: 60px;
-                                      margin-bottom: 6px;
-                                    " />
-                                                            <div class="d-flex flex-column counting-btn">
-                                                                <button type="button"
-                                                                    class="qty-btn increment-quantity"
-                                                                    aria-label="Add one" onclick="increment()"
-                                                                    style="width: 32px; height: 32px">
-                                                                    <i class="fas fa-chevron-up"
-                                                                        style="color: #7a7577"></i>
-                                                                </button>
-                                                                <button type="button"
-                                                                    class="qty-btn decrement-quantity"
-                                                                    aria-label="Subtract one" onclick="decrement()"
-                                                                    style="width: 32px; height: 32px">
-                                                                    <i class="fas fa-chevron-down"
-                                                                        style="color: #7a7577"></i>
-                                                                </button>
+                                                                value="1" />
+                                                        </div>
+                                                        <div class="col-lg-9 col-6">
+                                                            <input type="text" name="product_name"
+                                                                class="form-control" autocomplete="off"
+                                                                placeholder="Product Name " required />
+                                                        </div>
+                                                        <div class="col-lg-1 col-2">
+                                                            <div class="d-flex">
+                                                                <input type="text" id="qty" value="1"
+                                                                    class="form-control text-center" autocomplete="off"
+                                                                    min="1" readonly
+                                                                    style="width: 60px;
+                                                                        margin-bottom: 6px;
+                                                                        " />
+                                                                <div class="d-flex flex-column counting-btn">
+                                                                    <button type="button"
+                                                                        class="qty-btn increment-quantity"
+                                                                        aria-label="Add one" onclick="increment()"
+                                                                        style="width: 32px; height: 32px">
+                                                                        <i class="fas fa-chevron-up"
+                                                                            style="color: #7a7577"></i>
+                                                                    </button>
+                                                                    <button type="button"
+                                                                        class="qty-btn decrement-quantity"
+                                                                        aria-label="Subtract one" onclick="decrement()"
+                                                                        style="width: 32px; height: 32px">
+                                                                        <i class="fas fa-chevron-down"
+                                                                            style="color: #7a7577"></i>
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-1 col-2">
-                                                        <button type="button" data-repeater-delete
-                                                            class="btn btn-sm w-100 py-2 trash-btn">
-                                                            <i class="fas fa-trash text-danger fs-1"></i>
-                                                        </button>
+                                                        <div class="col-lg-1 col-2">
+                                                            <button type="button" data-repeater-delete
+                                                                class="btn btn-sm w-100 py-2 trash-btn">
+                                                                <i class="fas fa-trash text-danger fs-1"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <button type="button" data-repeater-create
-                                                class="rfq-add-btns mb-3 mt-4">
-                                                <i class="fas fa-plus"></i> Add Items
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <!-- ✅ End of repeater placement -->
-                                    <hr class="my-10" />
-                                    <!-- For Desktop Only -->
-                                    <!-- Progress Bar -->
-                                    <div class="progress-bar-steps pt-3 for-desktop">
-                                        <div class="step" data-step="1">
-                                            <!-- <div class="step-label">Company Info</div> -->
-                                            <div class="step-label">
-                                                <span class="d-none d-sm-inline">Company Info</span>
-                                                <span class="d-inline d-sm-none">Company</span>
-                                            </div>
-                                            <div class="circle pt-1 ps-2">
-                                                <i class="fas fa-check"></i>
+                                                <button type="button" data-repeater-create
+                                                    class="rfq-add-btns mb-3 mt-4">
+                                                    <i class="fas fa-plus"></i> Add Items
+                                                </button>
                                             </div>
                                         </div>
-                                        <div class="step" data-step="2">
-                                            <div class="step-label">
-                                                <span class="d-none d-sm-inline">Shipping Details</span>
-                                                <span class="d-inline d-sm-none">Shipping</span>
+                                        <!-- ✅ End of repeater placement -->
+                                        <hr class="my-10" />
+                                        <!-- For Desktop Only -->
+                                        <!-- Progress Bar -->
+                                        <div class="progress-bar-steps pt-3 for-desktop">
+                                            <div class="step" data-step="1">
+                                                <!-- <div class="step-label">Company Info</div> -->
+                                                <div class="step-label">
+                                                    <span class="d-none d-sm-inline">Company Info</span>
+                                                    <span class="d-inline d-sm-none">Company</span>
+                                                </div>
+                                                <div class="circle pt-1 ps-2">
+                                                    <i class="fas fa-check"></i>
+                                                </div>
                                             </div>
-                                            <div class="circle pt-1 ps-2">
-                                                <i class="fas fa-check"></i>
+                                            <div class="step" data-step="2">
+                                                <div class="step-label">
+                                                    <span class="d-none d-sm-inline">Shipping Details</span>
+                                                    <span class="d-inline d-sm-none">Shipping</span>
+                                                </div>
+                                                <div class="circle pt-1 ps-2">
+                                                    <i class="fas fa-check"></i>
+                                                </div>
+                                            </div>
+                                            <div class="step" data-step="3">
+                                                <div class="step-label">
+                                                    <span class="d-none d-sm-inline">End User Info</span>
+                                                    <span class="d-inline d-sm-none">End User</span>
+                                                </div>
+                                                <div class="circle pt-1 ps-2">
+                                                    <i class="fas fa-check"></i>
+                                                </div>
+                                            </div>
+                                            <div class="step" data-step="4">
+                                                <div class="step-label">
+                                                    <span class="d-none d-sm-inline">Additional Details</span>
+                                                    <span class="d-inline d-sm-none">Additional</span>
+                                                </div>
+                                                <div class="circle pt-1 ps-2">
+                                                    <i class="fas fa-check"></i>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="step" data-step="3">
-                                            <div class="step-label">
-                                                <span class="d-none d-sm-inline">End User Info</span>
-                                                <span class="d-inline d-sm-none">End User</span>
-                                            </div>
-                                            <div class="circle pt-1 ps-2">
-                                                <i class="fas fa-check"></i>
-                                            </div>
-                                        </div>
-                                        <div class="step" data-step="4">
-                                            <div class="step-label">
-                                                <span class="d-none d-sm-inline">Additional Details</span>
-                                                <span class="d-inline d-sm-none">Additional</span>
-                                            </div>
-                                            <div class="circle pt-1 ps-2">
-                                                <i class="fas fa-check"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Form starts here -->
-                                    <form id="stepperForm">
+                                        <!-- Form starts here -->
+
                                         <!-- Step 1 -->
                                         <div class="step-content active" data-step="1">
                                             <div class="row">
@@ -806,9 +809,22 @@
                 });
 
                 $("#stepperForm").on("submit", function(e) {
-                    e.preventDefault();
+                    if (isSubmitting) {
+                        e.preventDefault();
+                        return;
+                    }
+
                     if ($(this).valid()) {
-                        alert("Form submitted successfully!");
+                        isSubmitting = true;
+
+                        // Optional: Disable submit button
+                        $(this).find('button[type="submit"]').prop('disabled', true);
+                        $(this).find('button[type="submit"]').html('Submitting...');
+
+                        // Use native form submission
+                        this.submit();
+                    } else {
+                        e.preventDefault(); // Prevent submission if invalid
                     }
                 });
 

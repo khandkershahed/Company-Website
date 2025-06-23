@@ -22,7 +22,7 @@
                     </div>
 
                     <script>
-                        document.getElementById('tabSelector').addEventListener('change', function() {
+                        document.querySelectorAll('.lostRFQ').addEventListener('change', function() {
                             const selected = this.value;
                             if (selected === 'delete_rfq') {
                                 const confirmed = confirm('Are you sure you want to delete this RFQ?');
