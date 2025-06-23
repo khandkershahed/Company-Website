@@ -271,12 +271,7 @@
                                 <input type="text" id="searchQuery" data-kt-table-widget-4="search"
                                     class="form-control w-150px fs-7 ps-12" placeholder="Search" />
                             </div> --}}
-                            <div>
-                                <a href="javascript:void(0)" class="btn btn-sm fw-bold btn-primary"
-                                    data-bs-toggle="collapse" data-bs-target="#allRFQ">
-                                    <i class="fa-solid fa-layer-group"></i>
-                                </a>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>

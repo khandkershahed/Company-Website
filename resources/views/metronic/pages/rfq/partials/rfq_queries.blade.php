@@ -4,7 +4,7 @@
     role="tabpanel">
     <div class="row">
         <div class="card shadow-sm">
-            <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse"
+            {{-- <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse"
                 data-bs-target="#pending_rfq">
                 <h3 class="card-title">Pending RFQs</h3>
                 <div class="card-toolbar rotate-180">
@@ -21,7 +21,7 @@
                     </span>
                 </div>
             </div>
-            <div id="pending_rfq" class="collapse show">
+            <div id="pending_rfq" class="collapse show"> --}}
                 <div class="card-body">
                     <div class="row g-4">
                         <div class="col-lg-5 h-lg-650px h-650px overflow-scroll">
@@ -143,7 +143,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            {{-- </div> --}}
         </div>
     </div>
 </div>
@@ -151,7 +151,7 @@
     role="tabpanel">
     <div class="row">
         <div class="card shadow-sm">
-            <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse"
+            {{-- <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse"
                 data-bs-target="#quoted_rfq">
                 <h3 class="card-title">Quoted RFQs</h3>
                 <div class="card-toolbar rotate-180">
@@ -168,7 +168,7 @@
                     </span>
                 </div>
             </div>
-            <div id="quoted_rfq" class="collapse show">
+            <div id="quoted_rfq" class="collapse show"> --}}
                 <div class="card-body">
                     <div class="row g-4">
                         <div class="col-lg-5 h-lg-650px h-650px overflow-scroll">
@@ -290,7 +290,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            {{-- </div> --}}
         </div>
     </div>
 </div>
@@ -298,7 +298,7 @@
     role="tabpanel">
     <div class="row">
         <div class="card shadow-sm">
-            <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse"
+            {{-- <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse"
                 data-bs-target="#lost_rfq">
                 <h3 class="card-title">Lost RFQs</h3>
                 <div class="card-toolbar rotate-180">
@@ -315,7 +315,7 @@
                     </span>
                 </div>
             </div>
-            <div id="lost_rfq" class="collapse show">
+            <div id="lost_rfq" class="collapse show"> --}}
                 <div class="card-body">
                     <div class="row g-4">
                         <div class="col-lg-5 h-lg-650px h-650px overflow-scroll">
@@ -418,7 +418,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            {{-- </div> --}}
         </div>
     </div>
 </div>
