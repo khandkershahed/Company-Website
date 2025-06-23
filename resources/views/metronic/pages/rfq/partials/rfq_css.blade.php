@@ -49,7 +49,7 @@
         align-items: center;
         height: 200px;
         display: flex;
-        width: 80%;
+        width: 90%;
         margin: auto;
     }
 
@@ -59,7 +59,7 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
-        background-color: #0b6476;
+        background-color: #e4e6ef;
         height: 5px;
     }
 
@@ -155,7 +155,7 @@
         padding-right: 5px;
         transition: opacity 0.3s ease-out, bottom 0.5s ease;
         font-size: 12px;
-        width: 225px;
+        width: 100px;
         font-family: "Poppins";
     }
 
