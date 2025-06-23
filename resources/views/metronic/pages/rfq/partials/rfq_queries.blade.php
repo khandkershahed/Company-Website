@@ -373,9 +373,9 @@
                             </ul>
                         </div>
                         <div class="col-lg-7">
-                            @foreach ($rfqs as $rfq)
-                                <div class="tab-content border rounded" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="pending_rfq_{{ $rfq->id }}"
+                            <div class="tab-content border rounded" id="myTabContent">
+                                    @foreach ($rfqs as $rfq)
+                                    <div class="tab-pane fade {{ $loop->first ?? 'show active' }}" id="pending_rfq_{{ $rfq->id }}"
                                         role="tabpanel">
                                         <div class="card shadow-none">
                                             <div
@@ -1115,44 +1115,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
 
-                                    <div class="tab-pane fade" id="kt_vtab_pane_5" role="tabpanel">
-                                        <p>
-                                            Nulla est ullamco ut irure incididunt nulla
-                                            Lorem Lorem minim irure officia enim
-                                            reprehenderit. Magna duis labore cillum sint
-                                            adipisicing exercitation ipsum. Nostrud ut
-                                            anim non exercitation velit laboris fugiat
-                                            cupidatat. Commodo esse dolore fugiat sint
-                                            velit ullamco magna consequat voluptate minim
-                                            amet aliquip ipsum aute laboris nisi. Labore
-                                            labore veniam irure irure ipsum pariatur
-                                            mollit magna in cupidatat dolore magna irure
-                                            esse tempor ad mollit. Dolore commodo nulla
-                                            minim amet ipsum officia consectetur amet
-                                            ullamco voluptate nisi commodo ea sit eu.
-                                        </p>
-                                    </div>
-
-                                    <div class="tab-pane fade" id="kt_vtab_pane_6" role="tabpanel">
-                                        <p>
-                                            Sint sit mollit irure quis est nostrud cillum
-                                            consequat Lorem esse do quis dolor esse fugiat
-                                            sunt do. Eu ex commodo veniam Lorem aliquip
-                                            laborum occaecat qui Lorem esse mollit dolore
-                                            anim cupidatat. eserunt officia id Lorem
-                                            nostrud aute id commodo elit eiusmod enim
-                                            irure amet eiusmod qui reprehenderit nostrud
-                                            tempor. Fugiat ipsum excepteur in aliqua non
-                                            et quis aliquip ad irure in labore cillum elit
-                                            enim. Consequat aliquip incididunt ipsum et
-                                            minim laborum laborum laborum et cillum
-                                            labore. Deserunt adipisicing cillum id nulla
-                                            minim nostrud labore eiusmod et amet.
-                                        </p>
-                                    </div>
                                 </div>
-                            @endforeach
                         </div>
                     </div>
                 </div>
