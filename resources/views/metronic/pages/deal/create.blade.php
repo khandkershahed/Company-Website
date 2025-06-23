@@ -274,9 +274,9 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="zip_code"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="ZIP Code (e.g: 1207)" required />
+                                                        <input type="text" name="zip_code" class="form-control"
+                                                            autocomplete="off" placeholder="ZIP Code (e.g: 1207)"
+                                                            required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12">
@@ -342,52 +342,52 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="shipping_name" class="form-control"
-                                                            autocomplete="off"
+                                                        <input type="text" name="shipping_name"
+                                                            class="form-control" autocomplete="off"
                                                             placeholder="Client Name (e.g: Jhone Doe)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="shipping_address" class="form-control"
-                                                            autocomplete="off"
+                                                        <input type="text" name="shipping_address"
+                                                            class="form-control" autocomplete="off"
                                                             placeholder="Address (e.g: House No, Road, Block)"
                                                             required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="shipping_designation" class="form-control"
-                                                            autocomplete="off"
+                                                        <input type="text" name="shipping_designation"
+                                                            class="form-control" autocomplete="off"
                                                             placeholder="Designation (e.g: Sales Manager)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="shipping_country" class="form-control"
-                                                            autocomplete="off" placeholder="Country (e.g: Bangladesh)"
-                                                            required />
+                                                        <input type="text" name="shipping_country"
+                                                            class="form-control" autocomplete="off"
+                                                            placeholder="Country (e.g: Bangladesh)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="email" name="shipping_email" class="form-control"
-                                                            autocomplete="off"
+                                                        <input type="email" name="shipping_email"
+                                                            class="form-control" autocomplete="off"
                                                             placeholder="Email Address (e.g: jhone@mail.com)"
                                                             required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="shipping_city" class="form-control"
-                                                            autocomplete="off" placeholder="City (e.g: Dhaka)"
-                                                            required />
+                                                        <input type="text" name="shipping_city"
+                                                            class="form-control" autocomplete="off"
+                                                            placeholder="City (e.g: Dhaka)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="number" name="shipping_phone" class="form-control"
-                                                            autocomplete="off"
+                                                        <input type="number" name="shipping_phone"
+                                                            class="form-control" autocomplete="off"
                                                             placeholder="Phone Number (e.g: 018687955852)" required />
                                                     </div>
                                                 </div>
@@ -434,52 +434,52 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="end_user_name" class="form-control"
-                                                            autocomplete="off"
+                                                        <input type="text" name="end_user_name"
+                                                            class="form-control" autocomplete="off"
                                                             placeholder="Client Name (e.g: Jhone Doe)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="end_user_address" class="form-control"
-                                                            autocomplete="off"
+                                                        <input type="text" name="end_user_address"
+                                                            class="form-control" autocomplete="off"
                                                             placeholder="Address (e.g: House No, Road, Block)"
                                                             required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="end_user_designation" class="form-control"
-                                                            autocomplete="off"
+                                                        <input type="text" name="end_user_designation"
+                                                            class="form-control" autocomplete="off"
                                                             placeholder="Designation (e.g: Sales Manager)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="end_user_country" class="form-control"
-                                                            autocomplete="off" placeholder="Country (e.g: Bangladesh)"
-                                                            required />
+                                                        <input type="text" name="end_user_country"
+                                                            class="form-control" autocomplete="off"
+                                                            placeholder="Country (e.g: Bangladesh)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="email" name="end_user_email" class="form-control"
-                                                            autocomplete="off"
+                                                        <input type="email" name="end_user_email"
+                                                            class="form-control" autocomplete="off"
                                                             placeholder="Email Address (e.g: jhone@mail.com)"
                                                             required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="end_user_city" class="form-control"
-                                                            autocomplete="off" placeholder="City (e.g: Dhaka)"
-                                                            required />
+                                                        <input type="text" name="end_user_city"
+                                                            class="form-control" autocomplete="off"
+                                                            placeholder="City (e.g: Dhaka)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="number" name="end_user_phone" class="form-control"
-                                                            autocomplete="off"
+                                                        <input type="number" name="end_user_phone"
+                                                            class="form-control" autocomplete="off"
                                                             placeholder="Phone Number (e.g: 018687955852)" required />
                                                     </div>
                                                 </div>
@@ -540,7 +540,8 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
                                                         <select class="form-select countrySelect"
-                                                            aria-label="Select Country" name="approximate_delivery_time">
+                                                            aria-label="Select Country"
+                                                            name="approximate_delivery_time">
                                                             <option value="" selected>
                                                                 Tentetive Purchase Date
                                                             </option>
@@ -884,6 +885,57 @@
                     input.value = parseInt(input.value) - 1;
                 }
             }
+        </script>
+        <script>
+            $(document).ready(function() {
+                const fieldPairs = [
+                    ['shipping_name', 'name'],
+                    ['shipping_email', 'email'],
+                    ['shipping_phone', 'phone'],
+                    ['shipping_company_name', 'company_name'],
+                    ['shipping_designation', 'designation'],
+                    ['shipping_address', 'address'],
+                    ['shipping_country', 'country'],
+                    ['shipping_city', 'city'],
+                    ['shipping_zip_code', 'zip_code']
+                ];
+
+                $('[name="is_contact_address"], .deliveryAddress').on('change', function() {
+                    const isChecked = $(this).is(':checked');
+                    $('[name="is_contact_address"]').prop('checked', isChecked);
+                    $('.deliveryAddress').prop('checked', isChecked);
+                    fieldPairs.forEach(([shippingName, contactName]) => {
+                        const value = isChecked ? $(`[name="${contactName}"]`).val() : '';
+                        $(`[name="${shippingName}"]`).val(value);
+                    });
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                const fieldPairs = [
+                    ['end_user_name', 'name'],
+                    ['end_user_email', 'email'],
+                    ['end_user_phone', 'phone'],
+                    ['end_user_company_name', 'company_name'],
+                    ['end_user_designation', 'designation'],
+                    ['end_user_address', 'address'],
+                    ['end_user_country', 'country'],
+                    ['end_user_city', 'city'],
+                    ['end_user_zip_code', 'zip_code']
+                ];
+
+                $('[name="end_user_is_contact_address"], .endUser').on('change', function() {
+                    const isChecked = $(this).is(':checked');
+                    $('[name="end_user_is_contact_address"]').prop('checked', isChecked);
+                    $('.endUser').prop('checked', isChecked);
+
+                    fieldPairs.forEach(([shippingName, contactName]) => {
+                        const value = isChecked ? $(`[name="${contactName}"]`).val() : '';
+                        $(`[name="${shippingName}"]`).val(value);
+                    });
+                });
+            });
         </script>
     @endpush
 </x-admin-app-layout>

@@ -472,11 +472,12 @@
                             selectElement.value = `track_tab_${rfqId}`;
                             handleSelectChange(selectElement);
                         } else {
-                            
+
                         }
                     }
                 }
             });
         </script>
+        
     @endpush
 </x-admin-app-layout>
