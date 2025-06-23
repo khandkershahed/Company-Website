@@ -221,21 +221,22 @@
                     <div class="card-toolbar">
                         <ul class="nav nav-tabs nav-line-tabs fs-6 rfq-tabs">
                             <li class="nav-item">
-                                <a class="nav-link {{ !empty($tab_status) && $tab_status == 'pending' ? 'active' : '' }} {{ !empty($tab_status) && $tab_status == 'quoted' ? '' : 'active' }} {{ !empty($tab_status) && $tab_status == 'lost' ? '' : 'active' }} px-4"
+                                <a class="nav-link {{ empty($tab_status) || $tab_status == 'pending' ? 'active' : '' }}"
                                     data-bs-toggle="tab" href="#pending" data-status="pending">Pending
                                     ({{ $rfqs->count() }})</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ !empty($tab_status) && $tab_status == 'quoted' ? 'active' : '' }} px-4"
+                                <a class="nav-link {{ !empty($tab_status) && $tab_status == 'quoted' ? 'active' : '' }}"
                                     data-bs-toggle="tab" href="#quoted" data-status="quoted">Quoted
                                     ({{ $quoteds->count() }})</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ !empty($tab_status) && $tab_status == 'lost' ? 'active' : '' }} px-4"
+                                <a class="nav-link {{ !empty($tab_status) && $tab_status == 'lost' ? 'active' : '' }}"
                                     data-bs-toggle="tab" href="#failed" data-status="lost">Failed
                                     ({{ $losts->count() }})</a>
                             </li>
                         </ul>
+
                     </div>
 
                     <div class="card-toolbar">
@@ -321,7 +322,7 @@
             });
         </script>
 
-        <script>
+        {{-- <script>
             $(document).ready(function() {
                 // AJAX function for filtering RFQs
                 function fetchRfqData() {
@@ -375,6 +376,56 @@
                 //     $(this).addClass('active');
                 //     fetchRfqData(); // Fetch data based on the selected tab
                 // });
+            });
+        </script> --}}
+
+        <script>
+            $(document).ready(function() {
+                function fetchRfqData() {
+                    var year = $('#filterYear').val();
+                    var month = $('#filterMonth').val();
+                    var company = $('#filterCompany').val();
+                    var country = $('#filterCountry').val();
+                    var activeTab = $('.rfq-tabs .nav-link.active');
+                    var status = activeTab.data('status');
+                    var search = $('#searchQuery').val();
+
+                    $.ajax({
+                        url: '{{ route('admin.rfq.filter') }}',
+                        type: 'GET',
+                        data: {
+                            year: year,
+                            month: month,
+                            status: status,
+                            country: country,
+                            company: company,
+                            search: search
+                        },
+                        success: function(response) {
+                            if (response.view) {
+                                $('#filterContainer').html(response.view);
+                                $('.rfq-tabs .nav-link').removeClass('active');
+                                activeTab.addClass('active');
+                            } else {
+                                console.error('No view content returned');
+                            }
+                        },
+                        error: function() {
+                            alert('Error fetching data.');
+                        }
+                    });
+                }
+
+                // 👇 Corrected selector
+                $('#filterYear, #filterMonth, #searchQuery, #filterCompany, #filterCountry').on('input change',
+                    function() {
+                        fetchRfqData();
+                    });
+
+                // Optional: tab switching triggers filtering
+                $('.rfq-tabs .nav-link').on('click', function() {
+                    setTimeout(fetchRfqData, 10); // Wait for tab to activate
+                });
             });
         </script>
 
