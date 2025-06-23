@@ -115,7 +115,7 @@
                                                 <div class="col-md-4 text-end">
                                                     <div class="d-flex gap-2 justify-content-end mb-1">
                                                         <button class="btn btn-sm w-50 btn-outline-primary"
-                                                            onclick="window.location.href='deal-form.html';">
+                                                            onclick="window.location.href='{{ route('deal.create') }}';">
                                                             Deal
                                                         </button>
                                                     </div>
@@ -262,7 +262,7 @@
                                                 <div class="col-md-4 text-end">
                                                     <div class="d-flex gap-2 justify-content-end mb-1">
                                                         <button class="btn btn-sm w-50 btn-outline-primary"
-                                                            onclick="window.location.href='deal-form.html';">
+                                                            onclick="window.location.href='{{ route('deal.create') }}';">
                                                             Deal
                                                         </button>
                                                     </div>
@@ -390,7 +390,7 @@
                                                 <div class="col-md-4 text-end">
                                                     <div class="d-flex gap-2 justify-content-end mb-1">
                                                         <button class="btn btn-sm w-50 btn-outline-primary"
-                                                            onclick="window.location.href='deal-form.html';">
+                                                            onclick="window.location.href='{{ route('deal.create') }}';">
                                                             Deal
                                                         </button>
                                                     </div>
