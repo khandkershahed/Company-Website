@@ -90,7 +90,7 @@
                                                             <div class="d-flex">
                                                                 <input type="text" id="qty" value="1"
                                                                     class="form-control text-center" autocomplete="off"
-                                                                    min="1" readonly
+                                                                    min="1" readonly name="qty"
                                                                     style="width: 60px;
                                                                         margin-bottom: 6px;
                                                                         " />
@@ -217,7 +217,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <select class="form-select form-select-solid countrySelect"
+                                                        {{-- <select class="form-select form-select-solid countrySelect"
                                                             name="country" aria-label="Select Country" required>
                                                             <option value="" selected disabled
                                                                 style="color: #7a7577 !important">
@@ -230,7 +230,10 @@
                                                             <option value="Pakistan">
                                                                 Pakistan
                                                             </option>
-                                                        </select>
+                                                        </select> --}}
+                                                        <input type="text" name="country" class="form-control"
+                                                            autocomplete="off" placeholder="Country (e.g: Bangladesh)"
+                                                            required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -243,7 +246,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <select class="form-select form-select-solid countrySelect"
+                                                        {{-- <select class="form-select form-select-solid countrySelect"
                                                             name="city" aria-label="Select City" required>
                                                             <option value="" selected disabled>
                                                                 Select City
@@ -256,7 +259,10 @@
                                                             <option value="Rajshahi">
                                                                 Rajshahi
                                                             </option>
-                                                        </select>
+                                                        </select> --}}
+                                                        <input type="text" name="city" class="form-control"
+                                                            autocomplete="off" placeholder="City (e.g: Dhaka)"
+                                                            required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -268,7 +274,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="company_zip_code"
+                                                        <input type="text" name="zip_code"
                                                             class="form-control" autocomplete="off"
                                                             placeholder="ZIP Code (e.g: 1207)" required />
                                                     </div>
@@ -329,21 +335,21 @@
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="mb-5">
-                                                        <input type="text" name="company_name"
+                                                        <input type="text" name="shipping_company_name"
                                                             class="form-control" autocomplete="off"
                                                             placeholder="Company Name (e.g: NGen It)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="name" class="form-control"
+                                                        <input type="text" name="shipping_name" class="form-control"
                                                             autocomplete="off"
                                                             placeholder="Client Name (e.g: Jhone Doe)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="address" class="form-control"
+                                                        <input type="text" name="shipping_address" class="form-control"
                                                             autocomplete="off"
                                                             placeholder="Address (e.g: House No, Road, Block)"
                                                             required />
@@ -351,32 +357,21 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="designation" class="form-control"
+                                                        <input type="text" name="shipping_designation" class="form-control"
                                                             autocomplete="off"
                                                             placeholder="Designation (e.g: Sales Manager)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <select class="form-select form-select-solid countrySelect"
-                                                            aria-label="Select Country" required name="country">
-                                                            <option value="" selected disabled
-                                                                style="color: #7a7577 !important">
-                                                                Select Country
-                                                            </option>
-                                                            <option value="Bangladesh">
-                                                                Bangladesh
-                                                            </option>
-                                                            <option value="India">India</option>
-                                                            <option value="Pakistan">
-                                                                Pakistan
-                                                            </option>
-                                                        </select>
+                                                        <input type="text" name="shipping_country" class="form-control"
+                                                            autocomplete="off" placeholder="Country (e.g: Bangladesh)"
+                                                            required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="email" name="email" class="form-control"
+                                                        <input type="email" name="shipping_email" class="form-control"
                                                             autocomplete="off"
                                                             placeholder="Email Address (e.g: jhone@mail.com)"
                                                             required />
@@ -384,32 +379,21 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <select class="form-select form-select-solid countrySelect"
-                                                            aria-label="Select City" required name="city">
-                                                            <option value="" selected disabled>
-                                                                Select City
-                                                            </option>
-                                                            <option value="Dhaka">Dhaka</option>
-                                                            <option value="Chattogram">
-                                                                Chattogram
-                                                            </option>
-                                                            <option value="Khulna">Khulna</option>
-                                                            <option value="Rajshahi">
-                                                                Rajshahi
-                                                            </option>
-                                                        </select>
+                                                        <input type="text" name="shipping_city" class="form-control"
+                                                            autocomplete="off" placeholder="City (e.g: Dhaka)"
+                                                            required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="number" name="phone" class="form-control"
+                                                        <input type="number" name="shipping_phone" class="form-control"
                                                             autocomplete="off"
                                                             placeholder="Phone Number (e.g: 018687955852)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="company_zip_code"
+                                                        <input type="text" name="shipping_zip_code"
                                                             class="form-control" autocomplete="off"
                                                             placeholder="ZIP Code (e.g: 1207)" required />
                                                     </div>
@@ -443,21 +427,21 @@
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="mb-5">
-                                                        <input type="text" name="company_name"
+                                                        <input type="text" name="end_user_company_name"
                                                             class="form-control" autocomplete="off"
                                                             placeholder="Company Name (e.g: NGen It)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="name" class="form-control"
+                                                        <input type="text" name="end_user_name" class="form-control"
                                                             autocomplete="off"
                                                             placeholder="Client Name (e.g: Jhone Doe)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="address" class="form-control"
+                                                        <input type="text" name="end_user_address" class="form-control"
                                                             autocomplete="off"
                                                             placeholder="Address (e.g: House No, Road, Block)"
                                                             required />
@@ -465,32 +449,21 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="designation" class="form-control"
+                                                        <input type="text" name="end_user_designation" class="form-control"
                                                             autocomplete="off"
                                                             placeholder="Designation (e.g: Sales Manager)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <select class="form-select form-select-solid countrySelect"
-                                                            aria-label="Select Country" required name="country">
-                                                            <option value="" selected disabled
-                                                                style="color: #7a7577 !important">
-                                                                Select Country
-                                                            </option>
-                                                            <option value="Bangladesh">
-                                                                Bangladesh
-                                                            </option>
-                                                            <option value="India">India</option>
-                                                            <option value="Pakistan">
-                                                                Pakistan
-                                                            </option>
-                                                        </select>
+                                                        <input type="text" name="end_user_country" class="form-control"
+                                                            autocomplete="off" placeholder="Country (e.g: Bangladesh)"
+                                                            required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="email" name="email" class="form-control"
+                                                        <input type="email" name="end_user_email" class="form-control"
                                                             autocomplete="off"
                                                             placeholder="Email Address (e.g: jhone@mail.com)"
                                                             required />
@@ -498,32 +471,21 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <select class="form-select form-select-solid countrySelect"
-                                                            aria-label="Select City" required name="city">
-                                                            <option value="" selected disabled>
-                                                                Select City
-                                                            </option>
-                                                            <option value="Dhaka">Dhaka</option>
-                                                            <option value="Chattogram">
-                                                                Chattogram
-                                                            </option>
-                                                            <option value="Khulna">Khulna</option>
-                                                            <option value="Rajshahi">
-                                                                Rajshahi
-                                                            </option>
-                                                        </select>
+                                                        <input type="text" name="end_user_city" class="form-control"
+                                                            autocomplete="off" placeholder="City (e.g: Dhaka)"
+                                                            required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="number" name="phone" class="form-control"
+                                                        <input type="number" name="end_user_phone" class="form-control"
                                                             autocomplete="off"
                                                             placeholder="Phone Number (e.g: 018687955852)" required />
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
-                                                        <input type="text" name="company_zip_code"
+                                                        <input type="text" name="end_user_zip_code"
                                                             class="form-control" autocomplete="off"
                                                             placeholder="ZIP Code (e.g: 1207)" required />
                                                     </div>
@@ -559,7 +521,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
                                                         <select class="form-select form-select-solid countrySelect"
-                                                            aria-label="Select Country" name="status">
+                                                            aria-label="Select Country" name="project_status">
                                                             <option value="" selected>
                                                                 Current project status
                                                             </option>
@@ -578,7 +540,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="mb-5">
                                                         <select class="form-select countrySelect"
-                                                            aria-label="Select Country" name="status">
+                                                            aria-label="Select Country" name="approximate_delivery_time">
                                                             <option value="" selected>
                                                                 Tentetive Purchase Date
                                                             </option>

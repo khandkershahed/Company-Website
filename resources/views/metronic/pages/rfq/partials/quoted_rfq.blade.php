@@ -22,19 +22,24 @@
                         </select>
                     </div>
 
-                    <script>
-                        document.querySelectorAll('.quotedRFQ').addEventListener('change', function() {
-                            const selected = this.value;
-                            if (selected === 'delete_rfq') {
-                                const confirmed = confirm('Are you sure you want to delete this RFQ?');
-                                if (confirmed) {
-                                    window.location.href = "{{ route('admin.rfq.destroy', [$quoted_rfq->id]) }}";
-                                } else {
-                                    this.value = 'track_tab'; // Reset selection if not confirmed
-                                }
-                            }
-                        });
-                    </script>
+
+                    @push('scripts')
+                        <script>
+                            document.querySelectorAll('.quotedRFQ').forEach(function(selectElement) {
+                                selectElement.addEventListener('change', function() {
+                                    const selected = this.value;
+                                    if (selected === 'delete_rfq') {
+                                        const confirmed = confirm('Are you sure you want to delete this RFQ?');
+                                        if (confirmed) {
+                                            window.location.href = "{{ route('admin.rfq.destroy', [$quoted_rfq->id]) }}";
+                                        } else {
+                                            this.value = 'track_tab_{{ $quoted_rfq->id }}'; // Reset selection if not confirmed
+                                        }
+                                    }
+                                });
+                            });
+                        </script>
+                    @endpush
 
                 </div>
             </div>
