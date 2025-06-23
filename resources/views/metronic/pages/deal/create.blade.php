@@ -1,12 +1,12 @@
 <x-admin-app-layout :title="'Deal Create Form'">
-    @include('admin')
+    @include('metronic.pages.deal.deal_css')
     <div class="post d-flex flex-column-fluid" id="kt_post">
         <div id="kt_content_container" class="app-container container-fluid">
             <div class="d-flex align-items-center justify-content-center">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-12">
-                            <div class="text-center my-10 mt-5">
+                            <div class="text-center mb-5">
                                 <h1 class="rfq-title fw-bold mb-0 text-primary">
                                     Business Manager & Deal Information
                                 </h1>

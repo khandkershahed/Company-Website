@@ -136,9 +136,7 @@
                         </div>
                         <div class="col-lg-7 h-lg-650px h-650px overflow-scroll">
                             <div class="tab-content border rounded" id="myTabContent">
-                                @foreach ($rfqs as $rfq)
-                                    @include('metronic.pages.rfq.partials.rfq_details')
-                                @endforeach
+                                    @include('metronic.pages.rfq.partials.pending_rfq')
                             </div>
                         </div>
                     </div>
@@ -237,26 +235,26 @@
                                 </li>
 
                                 <!-- RFQ Card -->
-                                @foreach ($quoteds as $rfq)
+                                @foreach ($quoteds as $quoted_rfq)
                                     <li class="nav-item w-100 me-0 mb-md-2 mt-2">
                                         <a class="nav-link {{ $loop->first ? 'active btn-active-primary' : '' }} w-100 btn btn-flex border p-3"
-                                            data-bs-toggle="tab" href="#pending_rfq_{{ $rfq->id }}">
+                                            data-bs-toggle="tab" href="#quoted_rfq_{{ $quoted_rfq->id }}">
                                             <div class="row w-100 align-items-center">
                                                 <div class="col-md-4 d-flex align-items-center">
                                                     <i class="fa-regular fa-file fs-2 text-primary pe-3"></i>
                                                     <div>
                                                         <div class="fw-semibold">
-                                                            {{ $rfq->name }}
+                                                            {{ $quoted_rfq->name }}
                                                         </div>
                                                         <div class="fs-7 text-muted">
-                                                            {{ $rfq->country }}
+                                                            {{ $quoted_rfq->country }}
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <div class="fs-7">{{ $rfq->rfq_code }}</div>
+                                                    <div class="fs-7">{{ $quoted_rfq->rfq_code }}</div>
                                                     <div class="fs-7">
-                                                        {{ optional($rfq->created_at)->format('d M Y | h:i A') }}
+                                                        {{ optional($quoted_rfq->created_at)->format('d M Y | h:i A') }}
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 text-end">
@@ -269,7 +267,7 @@
                                                     <div
                                                         class="fs-7 text-muted d-flex align-items-center justify-content-end">
                                                         <i class="fas fa-bell fa-shake me-2 text-muted"></i>
-                                                        {{ \Carbon\Carbon::parse($rfq->created_at)->diffInDays(now(), false) }}
+                                                        {{ \Carbon\Carbon::parse($quoted_rfq->created_at)->diffInDays(now(), false) }}
                                                         Days Pending
                                                     </div>
                                                 </div>
@@ -283,9 +281,7 @@
                         </div>
                         <div class="col-lg-7 h-lg-650px h-650px overflow-scroll">
                             <div class="tab-content border rounded" id="myTabContent">
-                                @foreach ($quoteds as $rfq)
-                                    @include('metronic.pages.rfq.partials.rfq_details')
-                                @endforeach
+                                    @include('metronic.pages.rfq.partials.quoted_rfq')
                             </div>
                         </div>
                     </div>
@@ -365,26 +361,26 @@
                                 </li>
 
                                 <!-- RFQ Card -->
-                                @foreach ($losts as $rfq)
+                                @foreach ($losts as $lost_rfq)
                                     <li class="nav-item w-100 me-0 mb-md-2 mt-2">
                                         <a class="nav-link {{ $loop->first ? 'active btn-active-primary' : '' }} w-100 btn btn-flex border p-3"
-                                            data-bs-toggle="tab" href="#pending_rfq_{{ $rfq->id }}">
+                                            data-bs-toggle="tab" href="#lost_rfq_{{ $lost_rfq->id }}">
                                             <div class="row w-100 align-items-center">
                                                 <div class="col-md-4 d-flex align-items-center">
                                                     <i class="fa-regular fa-file fs-2 text-primary pe-3"></i>
                                                     <div>
                                                         <div class="fw-semibold">
-                                                            {{ $rfq->name }}
+                                                            {{ $lost_rfq->name }}
                                                         </div>
                                                         <div class="fs-7 text-muted">
-                                                            {{ $rfq->country }}
+                                                            {{ $lost_rfq->country }}
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <div class="fs-7">{{ $rfq->rfq_code }}</div>
+                                                    <div class="fs-7">{{ $lost_rfq->rfq_code }}</div>
                                                     <div class="fs-7">
-                                                        {{ optional($rfq->created_at)->format('d M Y | h:i A') }}
+                                                        {{ optional($lost_rfq->created_at)->format('d M Y | h:i A') }}
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 text-end">
@@ -397,7 +393,7 @@
                                                     <div
                                                         class="fs-7 text-muted d-flex align-items-center justify-content-end">
                                                         <i class="fas fa-bell fa-shake me-2 text-muted"></i>
-                                                        {{ \Carbon\Carbon::parse($rfq->created_at)->diffInDays(now(), false) }}
+                                                        {{ \Carbon\Carbon::parse($lost_rfq->created_at)->diffInDays(now(), false) }}
                                                         Days Pending
                                                     </div>
                                                 </div>
@@ -411,9 +407,7 @@
                         </div>
                         <div class="col-lg-7 h-lg-650px h-650px overflow-scroll">
                             <div class="tab-content border rounded" id="myTabContent">
-                                @foreach ($losts as $rfq)
-                                    @include('metronic.pages.rfq.partials.rfq_details')
-                                @endforeach
+                                    @include('metronic.pages.rfq.partials.lost_rfq')
                             </div>
                         </div>
                     </div>

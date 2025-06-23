@@ -271,7 +271,7 @@
                                 <input type="text" id="searchQuery" data-kt-table-widget-4="search"
                                     class="form-control w-150px fs-7 ps-12" placeholder="Search" />
                             </div> --}}
-                            
+
                         </div>
                     </div>
                 </div>
@@ -416,9 +416,10 @@
                 }
 
                 // Trigger the fetchRfqData function when a filter is changed
-                $('#filterYear, #filterMonth, #searchQuery, #filterCompany', '#filterCountry').on('input change', function() {
-                    fetchRfqData();
-                });
+                $('#filterYear, #filterMonth, #searchQuery, #filterCompany', '#filterCountry').on('input change',
+                    function() {
+                        fetchRfqData();
+                    });
 
                 // $('.rfq-tabs .nav-link').click(function() {
                 //     // Change the active class on tabs when clicked
@@ -429,7 +430,7 @@
             });
         </script>
 
-        <script>
+        {{-- <script>
             const tabSelector = document.getElementById("tabSelector");
             const tabs = document.querySelectorAll("#track_tab, #message_tab");
 
@@ -452,6 +453,48 @@
             // On selection change
             tabSelector.addEventListener("change", function() {
                 switchTab(this.value);
+            });
+        </script> --}}
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const selects = document.querySelectorAll('.pendingRFQ, .quotedRFQ, .lostRFQ');
+
+                selects.forEach(select => {
+                    // Ensure default "track" is visible
+                    handleSelectChange(select);
+
+                    select.addEventListener('change', function() {
+                        handleSelectChange(this);
+                    });
+                });
+
+                function handleSelectChange(selectElement) {
+                    const selectedValue = selectElement.value;
+                    const rfqId = selectedValue.split('_').pop(); // Get the numeric ID from value
+
+                    const trackContainer = document.getElementById(`track_container_${rfqId}`);
+                    const messageContainer = document.getElementById(`message_container_${rfqId}`);
+
+                    if (!trackContainer || !messageContainer) return;
+
+                    if (selectedValue.startsWith('track_tab')) {
+                        trackContainer.style.display = 'block';
+                        messageContainer.style.display = 'none';
+                    } else if (selectedValue.startsWith('message_tab')) {
+                        trackContainer.style.display = 'none';
+                        messageContainer.style.display = 'block';
+                    } else if (selectedValue.startsWith('delete_rfq')) {
+                        const confirmed = confirm('Are you sure you want to delete this RFQ?');
+                        if (!confirmed) {
+                            // Reset to "Track" if cancel delete
+                            selectElement.value = `track_tab_${rfqId}`;
+                            handleSelectChange(selectElement);
+                        } else {
+                            // Redirect to delete route (update as needed)
+                            window.location.href = `/admin/rfq/${rfqId}/destroy`;
+                        }
+                    }
+                }
             });
         </script>
     @endpush

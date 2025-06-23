@@ -1,115 +1,115 @@
-
-    <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="pending_rfq_{{ $rfq->id }}"
+@foreach ($quoteds as $quoted_rfq)
+    <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="quoted_rfq_{{ $quoted_rfq->id }}"
         role="tabpanel">
         <div class="card shadow-none">
             <div class="bg-light rounded-3 d-flex justify-content-between align-items-center w-100 p-2">
                 <div>
                     <h3 class="mb-0 text-primary ps-3">
-                        {{ $rfq->rfq_code }}
+                        {{ $quoted_rfq->rfq_code }}
                     </h3>
                 </div>
-                <div>{{ $rfq->company_name }} @if (!empty($rfq->country))
-                        | {{ $rfq->country }}
+                <div>{{ $quoted_rfq->company_name }} @if (!empty($quoted_rfq->country))
+                        | {{ $quoted_rfq->country }}
                     @endif
                 </div>
                 <div>
                     <!-- Dropdown Selector -->
                     <div>
-                        <select class="form-select form-select-sm" id="tabSelector">
-                            <option value="track_tab">Track</option>
-                            <option value="message_tab">Messages</option>
-                            <option value="delete_rfq">Delete</option>
+                        <select class="form-select form-select-sm quotedRFQ" id="tabSelector">
+                            <option value="track_tab_{{ $quoted_rfq->id }}">Track</option>
+                            <option value="message_tab_{{ $quoted_rfq->id }}">Messages</option>
+                            <option value="delete_rfq_{{ $quoted_rfq->id }}">Delete</option>
                         </select>
                     </div>
 
-                    <script>
+                    {{-- <script>
                         document.getElementById('tabSelector').addEventListener('change', function() {
                             const selected = this.value;
                             if (selected === 'delete_rfq') {
                                 const confirmed = confirm('Are you sure you want to delete this RFQ?');
                                 if (confirmed) {
-                                    window.location.href = "{{ route('admin.rfq.destroy', [$rfq->id]) }}";
+                                    window.location.href = "{{ route('admin.rfq.destroy', [$quoted_rfq->id]) }}";
                                 } else {
                                     this.value = 'track_tab'; // Reset selection if not confirmed
                                 }
                             }
                         });
-                    </script>
+                    </script> --}}
 
                 </div>
             </div>
             <!-- Tab Content -->
             <div>
-                <div id="track_tab" class="tab-visible">
-                    @if ($rfq->rfq_type == 'rfq')
+                <div id="track_container_{{ $quoted_rfq->id }}" class="tab-visible_{{ $quoted_rfq->id }}">
+                    @if ($quoted_rfq->rfq_type == 'rfq')
                         @php
                             $steps = [
                                 [
                                     'status' => 'rfq_created',
                                     'label' => 'RFQ Created',
                                     'icon' => 'fa fa-user-check',
-                                    'route' => '#assign-manager-' . $rfq->rfq_code,
-                                    'condition' => $rfq->status == 'rfq_created',
+                                    'route' => '#assign-manager-' . $quoted_rfq->rfq_code,
+                                    'condition' => $quoted_rfq->status == 'rfq_created',
                                 ],
                                 [
                                     'status' => 'assigned',
                                     'label' => 'Salesman Assigned',
                                     'icon' => 'fa fa-user-tie',
-                                    'route' => route('deal.convert', $rfq->id),
-                                    'condition' => $rfq->status == 'assigned',
+                                    'route' => route('deal.convert', $quoted_rfq->id),
+                                    'condition' => $quoted_rfq->status == 'assigned',
                                 ],
                                 [
                                     'status' => 'deal_created',
                                     'label' => 'Deal Created',
                                     'icon' => 'fa fa-file-alt',
-                                    'route' => route('deal-sas.show', $rfq->rfq_code),
-                                    'condition' => $rfq->status == 'deal_created',
+                                    'route' => route('deal-sas.show', $quoted_rfq->rfq_code),
+                                    'condition' => $quoted_rfq->status == 'deal_created',
                                 ],
                                 [
                                     'status' => 'sas_created',
                                     'label' => 'SAS Created',
                                     'icon' => 'fa fa-edit',
-                                    'route' => route('deal-sas.edit', $rfq->rfq_code),
-                                    'condition' => $rfq->status == 'sas_created',
+                                    'route' => route('deal-sas.edit', $quoted_rfq->rfq_code),
+                                    'condition' => $quoted_rfq->status == 'sas_created',
                                 ],
                                 [
                                     'status' => 'sas_approved',
                                     'label' => 'SAS Approved',
                                     'icon' => 'fa fa-thumbs-up',
-                                    'route' => route('dealsasapprove', $rfq->rfq_code),
-                                    'condition' => $rfq->status == 'sas_created',
+                                    'route' => route('dealsasapprove', $quoted_rfq->rfq_code),
+                                    'condition' => $quoted_rfq->status == 'sas_created',
                                 ],
                                 [
                                     'status' => 'quoted',
                                     'label' => 'Quotation Sent',
                                     'icon' => 'fa fa-paper-plane',
-                                    'route' => '#quotation-send-' . $rfq->rfq_code,
-                                    'condition' => $rfq->status == 'sas_approved',
+                                    'route' => '#quotation-send-' . $quoted_rfq->rfq_code,
+                                    'condition' => $quoted_rfq->status == 'sas_approved',
                                 ],
                                 [
                                     'status' => 'workorder_uploaded',
                                     'label' => 'Work Order Uploaded',
                                     'icon' => 'fa fa-file-upload',
-                                    'route' => '#Work-order-' . $rfq->rfq_code,
-                                    'condition' => $rfq->status == 'quoted',
+                                    'route' => '#Work-order-' . $quoted_rfq->rfq_code,
+                                    'condition' => $quoted_rfq->status == 'quoted',
                                 ],
                                 [
                                     'status' => 'invoice_sent',
                                     'label' => 'Invoice Sent',
                                     'icon' => 'fa fa-file-invoice',
-                                    'route' => '#invoice-send-' . $rfq->rfq_code,
-                                    'condition' => $rfq->status == 'workorder_uploaded',
+                                    'route' => '#invoice-send-' . $quoted_rfq->rfq_code,
+                                    'condition' => $quoted_rfq->status == 'workorder_uploaded',
                                 ],
                                 [
                                     'status' => 'proof_of_payment_uploaded',
                                     'label' => 'Proof of Payment Uploaded',
                                     'icon' => 'fa fa-receipt',
-                                    'route' => '#proofpayment-' . $rfq->rfq_code,
-                                    'condition' => $rfq->status == 'invoice_sent',
+                                    'route' => '#proofpayment-' . $quoted_rfq->rfq_code,
+                                    'condition' => $quoted_rfq->status == 'invoice_sent',
                                 ],
                             ];
                             // Find current step index
-                            $currentIndex = array_search($rfq->status, array_column($steps, 'status'));
+                            $currentIndex = array_search($quoted_rfq->status, array_column($steps, 'status'));
                         @endphp
 
                         <div class="row justify-content-center align-items-center">
@@ -118,7 +118,7 @@
                                     <ul class="nav nav-tabs justify-content-between" role="tablist">
                                         @php
                                             // Find current step index
-                                            $currentIndex = array_search($rfq->status, array_column($steps, 'status'));
+                                            $currentIndex = array_search($quoted_rfq->status, array_column($steps, 'status'));
                                         @endphp
 
                                         @foreach ($steps as $index => $step)
@@ -165,47 +165,47 @@
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">Name</th>
-                                                    <td>{{ $rfq->name }}</td>
+                                                    <td>{{ $quoted_rfq->name }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Email</th>
-                                                    <td>{{ $rfq->email }}</td>
+                                                    <td>{{ $quoted_rfq->email }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">
                                                         Company
                                                     </th>
-                                                    <td>{{ $rfq->company_name }}</td>
+                                                    <td>{{ $quoted_rfq->company_name }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">Phone</th>
-                                                    <td>{{ $rfq->phone }}</td>
+                                                    <td>{{ $quoted_rfq->phone }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">
                                                         Tentative Budget
                                                     </th>
-                                                    <td>{{ $rfq->budget }}</td>
+                                                    <td>{{ $quoted_rfq->budget }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">
                                                         Purchase Date
                                                     </th>
-                                                    <td>{{ $rfq->approximate_delivery_time }}
+                                                    <td>{{ $quoted_rfq->approximate_delivery_time }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">
                                                         Delivery Country
                                                     </th>
-                                                    <td>{{ $rfq->shipping_country }}
+                                                    <td>{{ $quoted_rfq->shipping_country }}
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">
                                                         Delivery Zip Code
                                                     </th>
-                                                    <td>{{ $rfq->shipping_zip_code }}
+                                                    <td>{{ $quoted_rfq->shipping_zip_code }}
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -226,8 +226,8 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered mb-0">
                                             <tbody>
-                                                @if ($rfq->rfqProducts->count() > 0)
-                                                    @foreach ($rfq->rfqProducts as $product)
+                                                @if ($quoted_rfq->rfqProducts->count() > 0)
+                                                    @foreach ($quoted_rfq->rfqProducts as $product)
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>
@@ -250,7 +250,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="message_tab" class="tab-hidden">
+                <div id="message_container_{{ $quoted_rfq->id }}" class="tab-hidden_{{ $quoted_rfq->id }}">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card w-100 border-0 rounded-0" id="kt_drawer_chat_messenger">
@@ -258,7 +258,7 @@
                                     <div class="card-title">
                                         <div class="d-flex justify-content-center flex-column me-3">
                                             <a href="#"
-                                                class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">{{ $rfq->name }}</a>
+                                                class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">{{ $quoted_rfq->name }}</a>
 
                                             <div class="mb-0 lh-1">
                                                 <span
@@ -463,4 +463,4 @@
             </div>
         </div>
     </div>
-
+@endforeach
