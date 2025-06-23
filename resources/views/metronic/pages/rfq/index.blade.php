@@ -127,8 +127,8 @@
                                 </a>
                                 <div class="flex-grow-1">
 
-                                    <a href="#allRFQ" class="text-gray-800 fs-5 fw-bold lh-0">New Customers
-                                        <span class="text-gray-500 fw-semibold d-block fs-6 pt-4">Pending</span>
+                                    <a href="#allRFQ" class="text-gray-800 fs-5 fw-bold lh-0">New Customers Pending
+                                        {{-- <span class="text-gray-500 fw-semibold d-block fs-6 pt-4">Pending</span> --}}
                                     </a>
                                     <a href="{{ route('deal.create') }}" class="text-primary fs-5 fw-bold lh-0">
                                         Create Deal
