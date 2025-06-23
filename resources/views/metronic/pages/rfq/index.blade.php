@@ -465,6 +465,15 @@
                     } else if (selectedValue.startsWith('message_tab')) {
                         trackContainer.style.display = 'none';
                         messageContainer.style.display = 'block';
+                    } else if (selectedValue.startsWith('delete_rfq')) {
+                        const confirmed = confirm('Are you sure you want to delete this RFQ?');
+                        if (!confirmed) {
+                            // Revert to track tab if delete is canceled
+                            selectElement.value = `track_tab_${rfqId}`;
+                            handleSelectChange(selectElement);
+                        } else {
+                            
+                        }
                     }
                 }
             });
