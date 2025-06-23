@@ -497,7 +497,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <input type="text" name="budget" class="form-control"
+                                                <input type="number" name="budget" class="form-control"
                                                     placeholder="Tentative Budget.." autocomplete="" />
                                             </div>
                                         </div>

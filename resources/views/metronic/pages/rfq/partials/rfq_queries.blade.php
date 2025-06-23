@@ -115,8 +115,8 @@
                                                 <div class="col-md-4 text-end">
                                                     <div class="d-flex gap-2 justify-content-end mb-1">
                                                         <button class="btn btn-sm w-50 btn-outline-primary"
-                                                            onclick="window.location.href='{{ route('deal.create') }}';">
-                                                            Deal
+                                                            onclick="window.location.href='{{ route('single-rfq.quoation_mail', $rfq->rfq_code) }}';">
+                                                            Quote
                                                         </button>
                                                     </div>
                                                     <div
@@ -243,8 +243,8 @@
                                                 <div class="col-md-4 text-end">
                                                     <div class="d-flex gap-2 justify-content-end mb-1">
                                                         <button class="btn btn-sm w-50 btn-outline-primary"
-                                                            onclick="window.location.href='{{ route('deal.create') }}';">
-                                                            Deal
+                                                            onclick="window.location.href='{{ route('single-rfq.quoation_mail', $rfq->rfq_code) }}';">
+                                                            Quote
                                                         </button>
                                                     </div>
                                                     <div
@@ -368,8 +368,8 @@
                                                 <div class="col-md-4 text-end">
                                                     <div class="d-flex gap-2 justify-content-end mb-1">
                                                         <button class="btn btn-sm w-50 btn-outline-primary"
-                                                            onclick="window.location.href='{{ route('deal.create') }}';">
-                                                            Deal
+                                                            onclick="window.location.href='{{ route('single-rfq.quoation_mail', $rfq->rfq_code) }}';">
+                                                            Quote
                                                         </button>
                                                     </div>
                                                     <div
