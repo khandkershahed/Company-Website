@@ -407,6 +407,11 @@
                         success: function(response) {
                             if (response.view) {
                                 $('#filterContainer').html(response.view);
+
+                                // Rebind filter inputs after view is replaced
+                                bindFilterEvents();
+
+                                // Restore active tab
                                 $('.rfq-tabs .nav-link').removeClass('active');
                                 activeTab.addClass('active');
                             } else {
@@ -419,16 +424,16 @@
                     });
                 }
 
-                // 👇 Corrected selector
-                $('#filterYear, #filterMonth, #searchQuery, #filterCompany, #filterCountry').on('input change',
-                    function() {
-                        fetchRfqData();
-                    });
+                function bindFilterEvents() {
+                    $('#filterYear, #filterMonth, #searchQuery, #filterCompany, #filterCountry').off('input change').on(
+                        'input change',
+                        function() {
+                            fetchRfqData();
+                        });
+                }
 
-                // Optional: tab switching triggers filtering
-                // $('.rfq-tabs .nav-link').on('click', function() {
-                //     setTimeout(fetchRfqData, 10); // Wait for tab to activate
-                // });
+                // Initial binding
+                bindFilterEvents();
             });
         </script>
 
@@ -460,7 +465,7 @@
                     } else if (selectedValue.startsWith('message_tab')) {
                         trackContainer.style.display = 'none';
                         messageContainer.style.display = 'block';
-                    } 
+                    }
                 }
             });
         </script>
