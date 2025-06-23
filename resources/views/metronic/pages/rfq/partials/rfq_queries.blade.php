@@ -360,7 +360,8 @@
                                                     <div
                                                         class="fs-7 text-muted d-flex align-items-center justify-content-end">
                                                         <i class="fas fa-bell fa-shake me-2 text-muted"></i>
-                                                        {{ \Carbon\Carbon::parse($rfq->created_at)->diffInDays(now(), false) }} Days Pending
+                                                        {{ \Carbon\Carbon::parse($rfq->created_at)->diffInDays(now(), false) }}
+                                                        Days Pending
                                                     </div>
                                                 </div>
                                             </div>
@@ -374,7 +375,8 @@
                         <div class="col-lg-7">
                             @foreach ($rfqs as $rfq)
                                 <div class="tab-content border rounded" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="pending_rfq_{{ $rfq->id }}" role="tabpanel">
+                                    <div class="tab-pane fade show active" id="pending_rfq_{{ $rfq->id }}"
+                                        role="tabpanel">
                                         <div class="card shadow-none">
                                             <div
                                                 class="bg-light rounded-3 d-flex justify-content-between align-items-center w-100 p-2">
@@ -398,7 +400,7 @@
                                                                 Messages
                                                             </option>
                                                             <option value="message_tab">
-                                                                Delete
+                                                                a
                                                             </option>
                                                         </select>
                                                     </div>
@@ -407,6 +409,97 @@
                                             <!-- Tab Content -->
                                             <div>
                                                 <div id="track_tab" class="tab-visible">
+                                                    @if ($rfq->rfq_type == 'rfq')
+                                                        @php
+                                                            $steps = [
+                                                                [
+                                                                    'status' => 'rfq_created',
+                                                                    'label' => 'RFQ Created',
+                                                                    'icon' => 'icon-user-check',
+                                                                    'route' => '#assign-manager-' . $rfq->rfq_code,
+                                                                    'condition' => $rfq->status == 'rfq_created',
+                                                                ],
+                                                                [
+                                                                    'status' => 'assigned',
+                                                                    'label' => 'Salesman Assigned',
+                                                                    'icon' => 'icon-pen-plus',
+                                                                    'route' => route('deal.convert', $rfq->id),
+                                                                    'condition' => $rfq->status == 'assigned',
+                                                                ],
+                                                                [
+                                                                    'status' => 'deal_created',
+                                                                    'label' => 'Deal Created',
+                                                                    'icon' => 'icon-file-plus2',
+                                                                    'route' => route('deal-sas.show', $rfq->rfq_code),
+                                                                    'condition' => $rfq->status == 'deal_created',
+                                                                ],
+                                                                [
+                                                                    'status' => 'sas_created',
+                                                                    'label' => 'SAS Created',
+                                                                    'icon' => 'icon-pencil',
+                                                                    'route' => route('deal-sas.edit', $rfq->rfq_code),
+                                                                    'condition' => $rfq->status == 'sas_created',
+                                                                ],
+                                                                [
+                                                                    'status' => 'sas_approved',
+                                                                    'label' => 'SAS Approved',
+                                                                    'icon' => 'icon-paperplane',
+                                                                    'route' => route('dealsasapprove', $rfq->rfq_code),
+                                                                    'condition' => $rfq->status == 'sas_created',
+                                                                ],
+                                                                [
+                                                                    'status' => 'quoted',
+                                                                    'label' => 'Quotation Sent',
+                                                                    'icon' => 'icon-paperplane',
+                                                                    'route' => '#quotation-send-' . $rfq->rfq_code,
+                                                                    'condition' => $rfq->status == 'sas_approved',
+                                                                ],
+                                                                [
+                                                                    'status' => 'workorder_uploaded',
+                                                                    'label' => 'Work Order Uploaded',
+                                                                    'icon' => 'icon-file-plus2',
+                                                                    'route' => '#Work-order-' . $rfq->rfq_code,
+                                                                    'condition' => $rfq->status == 'quoted',
+                                                                ],
+                                                                [
+                                                                    'status' => 'invoice_sent',
+                                                                    'label' => 'Invoice Sent',
+                                                                    'icon' => 'icon-paperplane',
+                                                                    'route' => '#invoice-send-' . $rfq->rfq_code,
+                                                                    'condition' => $rfq->status == 'workorder_uploaded',
+                                                                ],
+                                                                [
+                                                                    'status' => 'proof_of_payment_uploaded',
+                                                                    'label' => 'Proof of Payment Uploaded',
+                                                                    'icon' => 'icon-file-plus2',
+                                                                    'route' => '#proofpayment-' . $rfq->rfq_code,
+                                                                    'condition' => $rfq->status == 'invoice_sent',
+                                                                ],
+                                                            ];
+                                                        @endphp
+
+                                                        @foreach ($steps as $step)
+                                                            <div
+                                                                class="step {{ $rfq->status == $step['status'] ? 'active' : '' }}">
+                                                                <span class="icon">
+                                                                    @if ($rfq->status == $step['status'])
+                                                                        <i class="fa fa-check"></i>
+                                                                    @else
+                                                                        <i class="fa fa-times"></i>
+                                                                    @endif
+                                                                </span>
+                                                                <span class="text">{{ $step['label'] }}</span>
+                                                                @if ($step['condition'])
+                                                                    <span class="text">
+                                                                        <a href="{{ $step['route'] }}"
+                                                                            class="text-primary mx-3" title="Action">
+                                                                            <i class="{{ $step['icon'] }}"></i>
+                                                                        </a>
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                        @endforeach
+                                                    @endif
                                                     <div class="row justify-content-center align-items-center">
                                                         <div class="col-lg-12">
                                                             <div class="trackNavbar">
@@ -476,45 +569,48 @@
                                                                             <tbody>
                                                                                 <tr>
                                                                                     <th scope="row">Name</th>
-                                                                                    <td>Jhone Doe</td>
+                                                                                    <td>{{ $rfq->name }}</td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <th scope="row">Email</th>
-                                                                                    <td>jhonedoe@mail.com</td>
+                                                                                    <td>{{ $rfq->email }}</td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <th scope="row">
                                                                                         Company
                                                                                     </th>
-                                                                                    <td>Ngen It LTD</td>
+                                                                                    <td>{{ $rfq->company_name }}</td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <th scope="row">Phone</th>
-                                                                                    <td>01586548586</td>
+                                                                                    <td>{{ $rfq->phone }}</td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <th scope="row">
                                                                                         Tentative Budget
                                                                                     </th>
-                                                                                    <td>$5000</td>
+                                                                                    <td>{{ $rfq->budget }}</td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <th scope="row">
                                                                                         Purchase Date
                                                                                     </th>
-                                                                                    <td>2 Month</td>
+                                                                                    <td>{{ $rfq->approximate_delivery_time }}
+                                                                                    </td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <th scope="row">
                                                                                         Delivery Country
                                                                                     </th>
-                                                                                    <td>Singapore</td>
+                                                                                    <td>{{ $rfq->shipping_country }}
+                                                                                    </td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <th scope="row">
                                                                                         Delivery Zip Code
                                                                                     </th>
-                                                                                    <td>2515</td>
+                                                                                    <td>{{ $rfq->shipping_zip_code }}
+                                                                                    </td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>
@@ -534,63 +630,22 @@
                                                                     <div class="table-responsive">
                                                                         <table class="table table-bordered mb-0">
                                                                             <tbody>
-                                                                                <tr>
-                                                                                    <td>1</td>
-                                                                                    <td>
-                                                                                        Lorem ipsum dolor sit,
-                                                                                        amet consectetur.
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>2</td>
-                                                                                    <td>
-                                                                                        Lorem ipsum dolor sit,
-                                                                                        amet consectetur.
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>3</td>
-                                                                                    <td>
-                                                                                        Lorem ipsum dolor sit,
-                                                                                        amet consectetur.
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>4</td>
-                                                                                    <td>
-                                                                                        Lorem ipsum dolor sit,
-                                                                                        amet consectetur.
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>5</td>
-                                                                                    <td>
-                                                                                        Lorem ipsum dolor sit,
-                                                                                        amet consectetur.
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>6</td>
-                                                                                    <td>
-                                                                                        Lorem ipsum dolor sit,
-                                                                                        amet consectetur.
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>6</td>
-                                                                                    <td>
-                                                                                        Lorem ipsum dolor sit,
-                                                                                        amet consectetur.
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>6</td>
-                                                                                    <td>
-                                                                                        Lorem ipsum dolor sit,
-                                                                                        amet consectetur amet
-                                                                                        sit
-                                                                                    </td>
-                                                                                </tr>
+                                                                                @if ($rfq->rfqProducts->count() > 0)
+                                                                                    @foreach ($rfq->rfqProducts as $product)
+                                                                                        <tr>
+                                                                                            <td>{{ $loop->iteration }}</td>
+                                                                                            <td>
+                                                                                                {{ $product->product_name }}
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                {{ $product->qty }}
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    @endforeach
+                                                                                @else
+                                                                                    <tr> No Data Available</tr>
+                                                                                @endif
+
                                                                             </tbody>
                                                                         </table>
                                                                     </div>
@@ -681,7 +736,8 @@
                                                                                         class="menu-link px-3">
                                                                                         <span
                                                                                             class="menu-title">Groups</span>
-                                                                                        <span class="menu-arrow"></span>
+                                                                                        <span
+                                                                                            class="menu-arrow"></span>
                                                                                     </a>
 
                                                                                     <div
@@ -739,15 +795,19 @@
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="card-body" id="kt_drawer_chat_messenger_body">
+                                                                <div class="card-body"
+                                                                    id="kt_drawer_chat_messenger_body">
                                                                     <div class="scroll-y me-n5 pe-5"
-                                                                        data-kt-element="messages" data-kt-scroll="true"
+                                                                        data-kt-element="messages"
+                                                                        data-kt-scroll="true"
                                                                         data-kt-scroll-activate="true"
                                                                         data-kt-scroll-height="auto"
                                                                         data-kt-scroll-dependencies="#kt_drawer_chat_messenger_header, #kt_drawer_chat_messenger_footer"
                                                                         data-kt-scroll-wrappers="#kt_drawer_chat_messenger_body"
-                                                                        data-kt-scroll-offset="0px" style="height: 104px">
-                                                                        <div class="d-flex justify-content-start mb-10">
+                                                                        data-kt-scroll-offset="0px"
+                                                                        style="height: 104px">
+                                                                        <div
+                                                                            class="d-flex justify-content-start mb-10">
                                                                             <div
                                                                                 class="d-flex flex-column align-items-start">
                                                                                 <div
@@ -807,7 +867,8 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="d-flex justify-content-start mb-10">
+                                                                        <div
+                                                                            class="d-flex justify-content-start mb-10">
                                                                             <div
                                                                                 class="d-flex flex-column align-items-start">
                                                                                 <div
@@ -863,7 +924,8 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="d-flex justify-content-start mb-10">
+                                                                        <div
+                                                                            class="d-flex justify-content-start mb-10">
                                                                             <div
                                                                                 class="d-flex flex-column align-items-start">
                                                                                 <div
@@ -922,7 +984,8 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="d-flex justify-content-start mb-10">
+                                                                        <div
+                                                                            class="d-flex justify-content-start mb-10">
                                                                             <div
                                                                                 class="d-flex flex-column align-items-start">
                                                                                 <div
@@ -974,7 +1037,8 @@
                                                                                 </div>
 
                                                                                 <div class="p-5 rounded bg-light-primary text-gray-900 fw-semibold mw-lg-400px text-end"
-                                                                                    data-kt-element="message-text"></div>
+                                                                                    data-kt-element="message-text">
+                                                                                </div>
                                                                             </div>
                                                                         </div>
 
@@ -1019,7 +1083,8 @@
                                                                         <div class="d-flex align-items-center me-2">
                                                                             <button
                                                                                 class="btn btn-sm btn-icon btn-active-light-primary me-1"
-                                                                                type="button" data-bs-toggle="tooltip"
+                                                                                type="button"
+                                                                                data-bs-toggle="tooltip"
                                                                                 aria-label="Coming soon"
                                                                                 data-bs-original-title="Coming soon"
                                                                                 data-kt-initialized="1">
@@ -1027,11 +1092,13 @@
                                                                             </button>
                                                                             <button
                                                                                 class="btn btn-sm btn-icon btn-active-light-primary me-1"
-                                                                                type="button" data-bs-toggle="tooltip"
+                                                                                type="button"
+                                                                                data-bs-toggle="tooltip"
                                                                                 aria-label="Coming soon"
                                                                                 data-bs-original-title="Coming soon"
                                                                                 data-kt-initialized="1">
-                                                                                <i class="fas fa-cloud-arrow-up fs-3"></i>
+                                                                                <i
+                                                                                    class="fas fa-cloud-arrow-up fs-3"></i>
                                                                             </button>
                                                                         </div>
 

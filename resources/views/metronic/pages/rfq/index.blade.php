@@ -1,48 +1,5 @@
 <x-admin-app-layout :title="'RFQ'">
-    <style>
-        .table td,
-        .table th,
-        .table tr {
-            font-size: 14px;
-        }
-
-        .nav-line-tabs .nav-item .nav-link.active,
-        .nav-line-tabs .nav-item .nav-link:hover:not(.disabled),
-        .nav-line-tabs .nav-item.show .nav-link {
-            background-color: transparent !important;
-            border: 0;
-            border-bottom: 2px solid #237075;
-            transition: color 0.2s ease, background-color 0.2s ease;
-            padding: 13px;
-            color: rgb(0, 0, 0) !important;
-        }
-
-        .btn-outline-primary {
-            border: 1px solid #237075 !important;
-            /* border-color: #237075 !important; */
-            color: #237075 !important;
-        }
-
-        .btn-check:active+.btn.btn-active-primary,
-        .btn-check:checked+.btn.btn-active-primary,
-        .btn.btn-active-primary.active,
-        .btn.btn-active-primary.show,
-        .btn.btn-active-primary:active:not(.btn-active),
-        .btn.btn-active-primary:focus:not(.btn-active),
-        .btn.btn-active-primary:hover:not(.btn-active),
-        .show>.btn.btn-active-primary {
-            color: #0b6476;
-            border-color: #0b6476;
-            background-color: #f1faff !important;
-        }
-
-        .nav-pills .nav-link.active,
-        .nav-pills .show>.nav-link {
-            color: #0b6476;
-            border-color: #0b6476;
-            background-color: #f1faff !important;
-        }
-    </style>
+    @include('metronic.pages.rfq.partials.rfq_css')
     <!-- Main Content Start -->
     @php
         $months = [
