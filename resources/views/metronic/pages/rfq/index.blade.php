@@ -469,39 +469,7 @@
                 }
             });
         </script>
-        {{-- <script>
-            $(document).ready(function() {
-                function bindRFQDelete() {
-                    $('.pendingRFQ, .quotedRFQ, .lostRFQ').off('change').on('change', function() {
-                        const value = $(this).val();
-                        if (value.startsWith('delete_')) {
-                            const rfqId = value.split('_')[1]; // Extract the RFQ ID
-                            if (confirm('Are you sure you want to delete this RFQ?')) {
-                                $.ajax({
-                                    url: '{{ route('admin.rfq.destroy', '') }}/' + rfqId,
-                                    type: 'DELETE',
-                                    data: {
-                                        _token: '{{ csrf_token() }}'
-                                    },
-                                    success: function(response) {
-                                        alert('RFQ deleted successfully.');
-                                        location.reload(); // Reload the page to reflect changes
-                                    },
-                                    error: function(xhr) {
-                                        alert('Error deleting RFQ: ' + xhr.responseText);
-                                    }
-                                });
-                            } else {
-                                $(this).val(''); // Reset the select if deletion is cancelled
-                            }
-                        }
-                    });
-                }
-
-                // Initial binding
-                bindRFQDelete();
-            });
-        </script> --}}
+       
         <script>
             $(document).ready(function() {
                 function bindRFQDelete() {
