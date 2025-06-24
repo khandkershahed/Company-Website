@@ -325,73 +325,21 @@
             });
         </script>
 
-        {{-- <script>
-            $(document).ready(function() {
-                // AJAX function for filtering RFQs
-                function fetchRfqData() {
-                    // Collect filter values
-                    var year = $('#filterYear').val();
-                    var month = $('#filterMonth').val();
-                    var company = $('#filterCompany').val();
-                    var country = $('#filterCountry').val();
-                    var activeTab = $('.rfq-tabs .nav-link.active');
-                    var status = activeTab.data('status'); // Get selected status from active tab
-                    var search = $('#searchQuery').val(); // Get the search query value
 
-                    // AJAX request to fetch filtered RFQs
-                    $.ajax({
-                        url: '{{ route('admin.rfq.filter') }}',
-                        type: 'GET',
-                        data: {
-                            year: year,
-                            month: month,
-                            status: status,
-                            country: country,
-                            search: search // Send the search query
-                        },
-                        success: function(response) {
-                            // Check if the view content is in the response
-                            if (response.view) {
-                                // Update the RFQ content with the new filtered data
-                                $('#filterContainer').html(response.view);
-                                // Keep the active tab the same after filtering
-                                $('.rfq-tabs .nav-link').removeClass('active');
-                                activeTab.addClass('active');
-                            } else {
-                                console.error('No view content returned');
-                            }
-                        },
-                        error: function() {
-                            alert('Error fetching data.');
-                        }
-                    });
-                }
 
-                // Trigger the fetchRfqData function when a filter is changed
-                $('#filterYear, #filterMonth, #searchQuery, #filterCompany', '#filterCountry').on('input change',
-                    function() {
-                        fetchRfqData();
-                    });
 
-                // $('.rfq-tabs .nav-link').click(function() {
-                //     // Change the active class on tabs when clicked
-                //     $('.rfq-tabs .nav-link').removeClass('active');
-                //     $(this).addClass('active');
-                //     fetchRfqData(); // Fetch data based on the selected tab
-                // });
-            });
-        </script> --}}
 
         <script>
             $(document).ready(function() {
                 function fetchRfqData() {
+                    // Store current filter values
                     var year = $('#filterYear').val();
                     var month = $('#filterMonth').val();
                     var company = $('#filterCompany').val();
                     var country = $('#filterCountry').val();
+                    var search = $('#searchQuery').val();
                     var activeTab = $('.rfq-tabs .nav-link.active');
                     var status = activeTab.data('status');
-                    var search = $('#searchQuery').val();
 
                     $.ajax({
                         url: '{{ route('admin.rfq.filter') }}',
@@ -408,10 +356,17 @@
                             if (response.view) {
                                 $('#myTabContent').html(response.view);
 
-                                // Rebind filter inputs after view is replaced
+                                // Restore filter values
+                                $('#filterYear').val(year);
+                                $('#filterMonth').val(month);
+                                $('#filterCompany').val(company).trigger('change');
+                                $('#filterCountry').val(country).trigger('change');
+                                $('#searchQuery').val(search);
+
+                                // Rebind events after DOM update
                                 bindFilterEvents();
 
-                                // Restore active tab
+                                // Restore active tab state
                                 $('.rfq-tabs .nav-link').removeClass('active');
                                 activeTab.addClass('active');
                             } else {
@@ -425,17 +380,25 @@
                 }
 
                 function bindFilterEvents() {
-                    $('#filterYear, #filterMonth, #searchQuery, #filterCompany, #filterCountry').off('input change').on(
-                        'input change',
-                        function() {
+                    $('#filterYear, #filterMonth, #searchQuery, #filterCompany, #filterCountry')
+                        .off('input change') // Prevent multiple bindings
+                        .on('input change', function() {
                             fetchRfqData();
                         });
+
+                    // Optional: trigger on Enter keypress in search box
+                    $('#searchQuery').off('keypress').on('keypress', function(e) {
+                        if (e.which === 13) {
+                            fetchRfqData();
+                        }
+                    });
                 }
 
-                // Initial binding
+                // Initial event bindings
                 bindFilterEvents();
             });
         </script>
+
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
