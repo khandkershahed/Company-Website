@@ -282,7 +282,7 @@
         </div>
 
         <!-- Container for the filtered RFQ queries -->
-        <div class="tab-content" id="myTabContent" id="filterContainer">
+        <div class="tab-content" id="myTabContent">
             @include('metronic.pages.rfq.partials.rfq_queries')
         </div>
 
@@ -406,7 +406,7 @@
                         },
                         success: function(response) {
                             if (response.view) {
-                                $('#filterContainer').html(response.view);
+                                $('#myTabContent').html(response.view);
 
                                 // Rebind filter inputs after view is replaced
                                 bindFilterEvents();
