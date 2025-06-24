@@ -277,7 +277,7 @@
                                                 <div id="checkDefaultContainer">
                                                     <div class="mb-4 form-check">
                                                         <input class="form-check-input custom-form-check endUser" type="checkbox"
-                                                            value="" id="endUser" disabled required
+                                                            value="1" id="endUser" disabled required
                                                             autocomplete />
                                                         <label class="form-check-label" for="endUser">
                                                             I am the end user and my information is the same

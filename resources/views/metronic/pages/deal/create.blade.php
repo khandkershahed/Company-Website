@@ -283,8 +283,8 @@
                                                     <div class="my-10">
                                                         <!-- Delivery Address Checkbox -->
                                                         <div class="form-check mt-2">
-                                                            <input class="form-check-input" type="checkbox"
-                                                                value="" id="deliveryAddress" disabled
+                                                            <input class="form-check-input deliveryAddress" type="checkbox"
+                                                                value="1" id="deliveryAddress" disabled
                                                                 required />
                                                             <label class="form-check-label" for="deliveryAddress">
                                                                 My delivery address is the same as the
@@ -293,8 +293,8 @@
                                                         </div>
                                                         <div id="checkDefaultContainer">
                                                             <div class="form-check mb-4 mt-3">
-                                                                <input class="form-check-input" type="checkbox"
-                                                                    value="" id="endUser" disabled required />
+                                                                <input class="form-check-input endUser" type="checkbox"
+                                                                    value="1" id="endUser" disabled required />
                                                                 <label class="form-check-label" for="endUser">
                                                                     I am the end user and my information
                                                                     is the same as the company address
@@ -323,7 +323,7 @@
                                                 <!-- Delivery Address Checkbox -->
 
                                                 <div class="form-check my-15">
-                                                    <input class="form-check-input" type="checkbox" value=""
+                                                    <input class="form-check-input deliveryAddress" type="checkbox" name="is_contact_address" value="1"
                                                         id="stepTwoGotoStep3" />
                                                     <label class="form-check-label" for="stepTwoGotoStep3">
                                                         Delivery address is same as the company
@@ -415,8 +415,8 @@
                                             <!-- End User Checkbox -->
                                             <div>
                                                 <div class="form-check my-15">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="stepThreeGotoStep4" />
+                                                    <input class="form-check-input endUser" type="checkbox" value="1"
+                                                        id="stepThreeGotoStep4" name="end_user_is_contact_address"/>
                                                     <label class="form-check-label" for="stepThreeGotoStep4">
                                                         I am the end user & same as the company
                                                         address
