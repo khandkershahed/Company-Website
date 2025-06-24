@@ -310,20 +310,7 @@
             });
         </script>
 
-        <script>
-            // JavaScript for toggling div visibility
-            const toggleBtn = document.getElementById("toggleBtn");
-            const defaultDiv = document.getElementById("defaultDiv");
-            const hiddenDiv = document.getElementById("hiddenDiv");
 
-            toggleBtn.addEventListener("click", function() {
-                // Toggle visibility classes
-                defaultDiv.classList.toggle("hidden");
-                defaultDiv.classList.toggle("visible");
-                hiddenDiv.classList.toggle("hidden");
-                hiddenDiv.classList.toggle("visible");
-            });
-        </script>
 
 
 
@@ -399,50 +386,29 @@
             });
         </script>
 
-
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const selects = document.querySelectorAll('.pendingRFQ, .quotedRFQ, .lostRFQ');
+            $(document).ready(function() {
+                $(document).on('change', '.pendingRFQ, .quotedRFQ, .lostRFQ', function() {
+                    const selectedValue = $(this).val();
+                    const selectElement = $(this);
+                    const rfqId = selectedValue.split('_').pop(); // Get ID at the end
 
-                selects.forEach(select => {
-                    // Ensure default "track" is visible
-                    handleSelectChange(select);
-
-                    select.addEventListener('change', function() {
-                        handleSelectChange(this);
-                    });
-                });
-
-                function handleSelectChange(selectElement) {
-                    const selectedValue = selectElement.value;
-                    const rfqId = selectedValue.split('_').pop(); // Get the numeric ID from value
-
+                    // Handle "track_tab" or "message_tab"
                     const trackContainer = document.getElementById(`track_container_${rfqId}`);
                     const messageContainer = document.getElementById(`message_container_${rfqId}`);
 
-                    if (!trackContainer || !messageContainer) return;
-
-                    if (selectedValue.startsWith('track_tab')) {
-                        trackContainer.style.display = 'block';
-                        messageContainer.style.display = 'none';
-                    } else if (selectedValue.startsWith('message_tab')) {
-                        trackContainer.style.display = 'none';
-                        messageContainer.style.display = 'block';
+                    if (trackContainer && messageContainer) {
+                        if (selectedValue.startsWith('track_tab')) {
+                            trackContainer.style.display = 'block';
+                            messageContainer.style.display = 'none';
+                        } else if (selectedValue.startsWith('message_tab')) {
+                            trackContainer.style.display = 'none';
+                            messageContainer.style.display = 'block';
+                        }
                     }
-                }
-            });
-        </script>
 
-        <script>
-            $(document).ready(function() {
-                // Use event delegation on a static parent (like document)
-                $(document).on('change', '.pendingRFQ, .quotedRFQ, .lostRFQ', function() {
-                    const value = $(this).val();
-                    const selectElement = $(this);
-
-                    if (value.startsWith('delete_')) {
-                        const rfqId = value.split('_')[1]; // Extract RFQ ID
-
+                    // Handle "delete"
+                    if (selectedValue.startsWith('delete_')) {
                         Swal.fire({
                             title: 'Are you sure?',
                             text: 'This will permanently delete the RFQ.',
@@ -480,7 +446,7 @@
                                     }
                                 });
                             } else {
-                                // Reset the dropdown selection
+                                // Reset dropdown if user cancels deletion
                                 selectElement.val('');
                             }
                         });

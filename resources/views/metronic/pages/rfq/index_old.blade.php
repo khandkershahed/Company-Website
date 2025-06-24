@@ -303,8 +303,8 @@
         <!-- Container for the filtered RFQ queries -->
         {{-- <div id="defaultDiv" class="default-div visible col-xl-12">
             <div class="tab-content" id="myTabContent"> --}}
-                @include('metronic.pages.rfq.partials.rfq_queries')
-            {{-- </div>
+        @include('metronic.pages.rfq.partials.rfq_queries')
+        {{-- </div>
         </div> --}}
 
 
@@ -626,5 +626,108 @@
                 // });
             });
         </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const selects = document.querySelectorAll('.pendingRFQ, .quotedRFQ, .lostRFQ');
+
+                selects.forEach(select => {
+                    // Ensure default "track" is visible
+                    handleSelectChange(select);
+
+                    select.addEventListener('change', function() {
+                        handleSelectChange(this);
+                    });
+                });
+
+                function handleSelectChange(selectElement) {
+                    const selectedValue = selectElement.value;
+                    const rfqId = selectedValue.split('_').pop(); // Get the numeric ID from value
+
+                    const trackContainer = document.getElementById(`track_container_${rfqId}`);
+                    const messageContainer = document.getElementById(`message_container_${rfqId}`);
+
+                    if (!trackContainer || !messageContainer) return;
+
+                    if (selectedValue.startsWith('track_tab')) {
+                        trackContainer.style.display = 'block';
+                        messageContainer.style.display = 'none';
+                    } else if (selectedValue.startsWith('message_tab')) {
+                        trackContainer.style.display = 'none';
+                        messageContainer.style.display = 'block';
+                    }
+                }
+            });
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                // Use event delegation on a static parent (like document)
+                $(document).on('change', '.pendingRFQ, .quotedRFQ, .lostRFQ', function() {
+                    const value = $(this).val();
+                    const selectElement = $(this);
+
+                    if (value.startsWith('delete_')) {
+                        const rfqId = value.split('_')[1]; // Extract RFQ ID
+
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: 'This will permanently delete the RFQ.',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Yes, delete it!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: '{{ route('admin.rfq.destroy', '') }}/' + rfqId,
+                                    type: 'DELETE',
+                                    data: {
+                                        _token: '{{ csrf_token() }}'
+                                    },
+                                    success: function(response) {
+                                        Swal.fire({
+                                            title: 'Deleted!',
+                                            text: 'The RFQ has been deleted.',
+                                            icon: 'success',
+                                            timer: 2000,
+                                            showConfirmButton: false
+                                        }).then(() => {
+                                            location.reload();
+                                        });
+                                    },
+                                    error: function(xhr) {
+                                        Swal.fire({
+                                            title: 'Error!',
+                                            text: 'Failed to delete RFQ: ' + xhr
+                                                .responseText,
+                                            icon: 'error'
+                                        });
+                                    }
+                                });
+                            } else {
+                                // Reset the dropdown selection
+                                selectElement.val('');
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+
+        {{-- <script>
+            // JavaScript for toggling div visibility
+            const toggleBtn = document.getElementById("toggleBtn");
+            const defaultDiv = document.getElementById("defaultDiv");
+            const hiddenDiv = document.getElementById("hiddenDiv");
+
+            toggleBtn.addEventListener("click", function() {
+                // Toggle visibility classes
+                defaultDiv.classList.toggle("hidden");
+                defaultDiv.classList.toggle("visible");
+                hiddenDiv.classList.toggle("hidden");
+                hiddenDiv.classList.toggle("visible");
+            });
+        </script> --}}
     @endpush
 </x-admin-app-layout>
