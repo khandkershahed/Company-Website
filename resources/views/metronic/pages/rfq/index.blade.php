@@ -282,7 +282,7 @@
         </div>
 
         <!-- Container for the filtered RFQ queries -->
-        <div class="row" id="filterContainer">
+        <div class="tab-content" id="myTabContent" id="filterContainer">
             @include('metronic.pages.rfq.partials.rfq_queries')
         </div>
 
@@ -465,7 +465,7 @@
                     } else if (selectedValue.startsWith('message_tab')) {
                         trackContainer.style.display = 'none';
                         messageContainer.style.display = 'block';
-                    } 
+                    }
                 }
             });
         </script>
