@@ -286,7 +286,7 @@
         <div class="card shadow-sm">
 
             <div class="card-body">
-                @if ($quoteds->count() > 0)
+                @if ($losts->count() > 0)
                     <div class="row g-4">
                         <div class="col-lg-5 h-lg-650px h-650px overflow-scroll">
                             <ul class="nav nav-tabs nav-pills border-0">
@@ -389,7 +389,7 @@
                     <div class="row">
                         <div class="col-12 text-center">
                             <div class="alert alert-info">
-                                <strong>No RFQs have been quoted yet.</strong>
+                                <strong>No RFQs have been lost yet.</strong>
                             </div>
                         </div>
                     </div>

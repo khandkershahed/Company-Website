@@ -18,28 +18,12 @@
                         <select class="form-select form-select-sm quotedRFQ" id="tabSelector">
                             <option value="track_tab_{{ $quoted_rfq->id }}">Track</option>
                             <option value="message_tab_{{ $quoted_rfq->id }}">Messages</option>
-                            <option value="delete_rfq_{{ $quoted_rfq->id }}">Delete</option>
+                            <option value="delete_{{ $quoted_rfq->id }}">Delete</option>
                         </select>
                     </div>
 
 
-                    @push('scripts')
-                        <script>
-                            document.querySelectorAll('.quotedRFQ').forEach(function(selectElement) {
-                                selectElement.addEventListener('change', function() {
-                                    const selected = this.value;
-                                    if (selected === 'delete_rfq') {
-                                        const confirmed = confirm('Are you sure you want to delete this RFQ?');
-                                        if (confirmed) {
-                                            window.location.href = "{{ route('admin.rfq.destroy', [$quoted_rfq->id]) }}";
-                                        } else {
-                                            this.value = 'track_tab_{{ $quoted_rfq->id }}'; // Reset selection if not confirmed
-                                        }
-                                    }
-                                });
-                            });
-                        </script>
-                    @endpush
+
 
                 </div>
             </div>

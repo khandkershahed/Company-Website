@@ -469,6 +469,97 @@
                 }
             });
         </script>
+        {{-- <script>
+            $(document).ready(function() {
+                function bindRFQDelete() {
+                    $('.pendingRFQ, .quotedRFQ, .lostRFQ').off('change').on('change', function() {
+                        const value = $(this).val();
+                        if (value.startsWith('delete_')) {
+                            const rfqId = value.split('_')[1]; // Extract the RFQ ID
+                            if (confirm('Are you sure you want to delete this RFQ?')) {
+                                $.ajax({
+                                    url: '{{ route('admin.rfq.destroy', '') }}/' + rfqId,
+                                    type: 'DELETE',
+                                    data: {
+                                        _token: '{{ csrf_token() }}'
+                                    },
+                                    success: function(response) {
+                                        alert('RFQ deleted successfully.');
+                                        location.reload(); // Reload the page to reflect changes
+                                    },
+                                    error: function(xhr) {
+                                        alert('Error deleting RFQ: ' + xhr.responseText);
+                                    }
+                                });
+                            } else {
+                                $(this).val(''); // Reset the select if deletion is cancelled
+                            }
+                        }
+                    });
+                }
 
+                // Initial binding
+                bindRFQDelete();
+            });
+        </script> --}}
+        <script>
+            $(document).ready(function() {
+                function bindRFQDelete() {
+                    $('.pendingRFQ, .quotedRFQ, .lostRFQ').off('change').on('change', function() {
+                        const value = $(this).val();
+                        const selectElement = $(this);
+
+                        if (value.startsWith('delete_')) {
+                            const rfqId = value.split('_')[1]; // Extract RFQ ID
+
+                            Swal.fire({
+                                title: 'Are you sure?',
+                                text: 'This will permanently delete the RFQ.',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#d33',
+                                cancelButtonColor: '#3085d6',
+                                confirmButtonText: 'Yes, delete it!'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        url: '{{ route('admin.rfq.destroy', '') }}/' + rfqId,
+                                        type: 'DELETE',
+                                        data: {
+                                            _token: '{{ csrf_token() }}'
+                                        },
+                                        success: function(response) {
+                                            Swal.fire({
+                                                title: 'Deleted!',
+                                                text: 'The RFQ has been deleted.',
+                                                icon: 'success',
+                                                timer: 2000,
+                                                showConfirmButton: false
+                                            }).then(() => {
+                                                location.reload();
+                                            });
+                                        },
+                                        error: function(xhr) {
+                                            Swal.fire({
+                                                title: 'Error!',
+                                                text: 'Failed to delete RFQ: ' + xhr
+                                                    .responseText,
+                                                icon: 'error'
+                                            });
+                                        }
+                                    });
+                                } else {
+                                    // Reset the dropdown selection
+                                    selectElement.val('');
+                                }
+                            });
+                        }
+                    });
+                }
+
+                // Initial binding
+                bindRFQDelete();
+            });
+        </script>
     @endpush
 </x-admin-app-layout>
