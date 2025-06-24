@@ -380,7 +380,7 @@
                 }
 
                 function bindFilterEvents() {
-                    $('#filterYear, #filterMonth, #searchQuery, #filterCompany, #filterCountry')
+                    $('#filterYear, #filterMonth, #filterCompany, #filterCountry')
                         .off('input change') // Prevent multiple bindings
                         .on('input change', function() {
                             fetchRfqData();
