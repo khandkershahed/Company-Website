@@ -1,4 +1,13 @@
 <x-admin-app-layout :title="'Website Setting'">
+    <style>
+        .nav-line-tabs .nav-item .nav-link.active,
+        .nav-line-tabs .nav-item .nav-link:hover:not(.disabled),
+        .nav-line-tabs .nav-item.show .nav-link {
+            background-color: transparent;
+            padding: 13px;
+            color: #500066 !important;
+        }
+    </style>
     <div class="card">
         <div class="card-header align-items-center">
             <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-bold">

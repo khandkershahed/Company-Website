@@ -259,7 +259,7 @@ class ClientSupportController extends Controller
 
             $paths = [
                 storage_path("app/public/{$clientSupport->attachment}"),
-                storage_path("app/public/requestImg/{$clientSupport->attachment}")
+                storage_path("app/public/{$clientSupport->attachment}")
             ];
             foreach ($paths as $path) {
                 if (File::exists($path)) {

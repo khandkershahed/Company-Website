@@ -177,7 +177,7 @@ class WhatWeDoPageController extends Controller
                 $globalFunRowOneImage = Helper::customUpload($row_one_image, $uploadPath, 320, 270);
                 $paths = [
                     storage_path("app/public/{$whatwedo->row_one_image}"),
-                    storage_path("app/public/requestImg/{$whatwedo->row_one_image}")
+                    storage_path("app/public/{$whatwedo->row_one_image}")
                 ];
                 foreach ($paths as $path) {
                     if (File::exists($path)) {
@@ -256,7 +256,7 @@ class WhatWeDoPageController extends Controller
 
         $paths = [
             storage_path('app/public/') . $whatWeDoPage->row_one_image,
-            storage_path('app/public/requestImg/') . $whatWeDoPage->row_one_image
+            storage_path('app/public/') . $whatWeDoPage->row_one_image
         ];
 
         // Delete any existing logo and requestImg images

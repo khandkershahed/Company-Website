@@ -161,12 +161,12 @@ class ClientController extends Controller
 
             if ($globalFunImgLogo['status'] == 1) {
                 File::delete(public_path('storage/') . $client->logo);
-                File::delete(public_path('storage/requestImg/') . $client->logo);
+                File::delete(public_path('storage/') . $client->logo);
                 File::delete(public_path('storage/thumb/') . $client->logo);
             }
             if ($globalFunImage['status'] == 1) {
                 File::delete(public_path('storage/') . $client->image);
-                File::delete(public_path('storage/requestImg/') . $client->image);
+                File::delete(public_path('storage/') . $client->image);
                 File::delete(public_path('storage/thumb/') . $client->image);
             }
 
@@ -203,8 +203,8 @@ class ClientController extends Controller
         if (File::exists(public_path('storage/') . $client->logo)) {
             File::delete(public_path('storage/') . $client->logo);
         }
-        if (File::exists(public_path('storage/requestImg/') . $client->logo)) {
-            File::delete(public_path('storage/requestImg/') . $client->logo);
+        if (File::exists(public_path('storage/') . $client->logo)) {
+            File::delete(public_path('storage/') . $client->logo);
         }
         if (File::exists(public_path('storage/thumb/') . $client->logo)) {
             File::delete(public_path('storage/thumb/') . $client->logo);
@@ -214,8 +214,8 @@ class ClientController extends Controller
         if (File::exists(public_path('storage/') . $client->image)) {
             File::delete(public_path('storage/') . $client->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $client->image)) {
-            File::delete(public_path('storage/requestImg/') . $client->image);
+        if (File::exists(public_path('storage/') . $client->image)) {
+            File::delete(public_path('storage/') . $client->image);
         }
         if (File::exists(public_path('storage/thumb/') . $client->image)) {
             File::delete(public_path('storage/thumb/') . $client->image);

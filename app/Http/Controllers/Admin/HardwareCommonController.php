@@ -181,7 +181,7 @@ class HardwareCommonController extends Controller
                 // Delete old logo files stored on disk
                 $paths = [
                     storage_path("app/public/{$hardwareCommon->banner_image}"),
-                    storage_path("app/public/requestImg/{$hardwareCommon->banner_image}")
+                    storage_path("app/public/{$hardwareCommon->banner_image}")
                 ];
                 foreach ($paths as $path) {
                     if (File::exists($path)) {
@@ -196,7 +196,7 @@ class HardwareCommonController extends Controller
 
                 $paths = [
                     storage_path("app/public/{$hardwareCommon->row_six_image}"),
-                    storage_path("app/public/requestImg/{$hardwareCommon->row_six_image}")
+                    storage_path("app/public/{$hardwareCommon->row_six_image}")
                 ];
                 foreach ($paths as $path) {
                     if (File::exists($path)) {
@@ -260,7 +260,7 @@ class HardwareCommonController extends Controller
         //banner_image
         $paths = [
             storage_path('app/public/') . $hardwareCommon->banner_image,
-            storage_path('app/public/requestImg/') . $hardwareCommon->banner_image
+            storage_path('app/public/') . $hardwareCommon->banner_image
         ];
 
         // Delete any existing logo and requestImg images
@@ -271,7 +271,7 @@ class HardwareCommonController extends Controller
         }
         $paths = [
             storage_path('app/public/') . $hardwareCommon->row_six_image,
-            storage_path('app/public/requestImg/') . $hardwareCommon->row_six_image
+            storage_path('app/public/') . $hardwareCommon->row_six_image
         ];
 
         // Delete any existing logo and requestImg images

@@ -147,7 +147,7 @@ class SolutionCardController extends Controller
                 if ($globalFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $solutionCard->image);
                     File::delete(public_path($uploadPath . '/thumb/') . $solutionCard->image);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $solutionCard->image);
+                    File::delete(public_path($uploadPath . '/') . $solutionCard->image);
                 }
 
                 $solutionCard->update([
@@ -180,8 +180,8 @@ class SolutionCardController extends Controller
         if (File::exists(public_path('storage/') . $solutionCard->image)) {
             File::delete(public_path('storage/') . $solutionCard->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $solutionCard->image)) {
-            File::delete(public_path('storage/requestImg/') . $solutionCard->image);
+        if (File::exists(public_path('storage/') . $solutionCard->image)) {
+            File::delete(public_path('storage/') . $solutionCard->image);
         }
         if (File::exists(public_path('storage/thumb/') . $solutionCard->image)) {
             File::delete(public_path('storage/thumb/') . $solutionCard->image);

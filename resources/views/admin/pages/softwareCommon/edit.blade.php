@@ -54,7 +54,7 @@
                                             <input name="banner_image" type="file" class="form-control form-control-sm w-75"
                                                 placeholder="Enter Software Banner Image" value="{{ $softwareCommon->banner_image }}">
                                             <img class="px-1" id="showImage" height="30px" width="50px"
-                                                src="{{asset('storage/requestImg/'.$softwareCommon->banner_image)}}" alt="">
+                                                src="{{asset('storage/'.$softwareCommon->banner_image)}}" alt="">
                                         </div>
 
                                     </div>
@@ -349,7 +349,7 @@
                                                 class="form-control form-control-sm w-75"
                                                 placeholder="Enter Software Row Six Image" value="{{ $softwareCommon->row_six_image }}">
                                             <img class="px-1" id="showImage1" height="30px" width="50px"
-                                                src="{{asset('storage/requestImg/'.$softwareCommon->row_six_image)}}" alt="">
+                                                src="{{asset('storage/'.$softwareCommon->row_six_image)}}" alt="">
                                         </div>
                                     </div>
                                     {{--  --}}

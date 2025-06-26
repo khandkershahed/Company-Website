@@ -183,7 +183,7 @@ class TechGlossyController extends Controller
                 if ($globalFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $techglossy->image);
                     File::delete(public_path($uploadPath . '/thumb/') . $techglossy->image);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $techglossy->image);
+                    File::delete(public_path($uploadPath . '/') . $techglossy->image);
                 }
 
                 $techglossy->update([
@@ -227,8 +227,8 @@ class TechGlossyController extends Controller
         if (File::exists(public_path('storage/') . $techglossy->image)) {
             File::delete(public_path('storage/') . $techglossy->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $techglossy->image)) {
-            File::delete(public_path('storage/requestImg/') . $techglossy->image);
+        if (File::exists(public_path('storage/') . $techglossy->image)) {
+            File::delete(public_path('storage/') . $techglossy->image);
         }
         if (File::exists(public_path('storage/thumb/') . $techglossy->image)) {
             File::delete(public_path('storage/thumb/') . $techglossy->image);

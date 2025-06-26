@@ -189,12 +189,12 @@ class FeatureController extends Controller
 
             if ($globalFunImgLogo['status'] == 1) {
                 File::delete(public_path('storage/') . $feature->logo);
-                File::delete(public_path('storage/requestImg/') . $feature->logo);
+                File::delete(public_path('storage/') . $feature->logo);
                 File::delete(public_path('storage/thumb/') . $feature->logo);
             }
             if ($globalFunImage['status'] == 1) {
                 File::delete(public_path('storage/') . $feature->image);
-                File::delete(public_path('storage/requestImg/') . $feature->image);
+                File::delete(public_path('storage/') . $feature->image);
                 File::delete(public_path('storage/thumb/') . $feature->image);
             }
 
@@ -241,8 +241,8 @@ class FeatureController extends Controller
         if (File::exists(public_path('storage/') . $feature->logo)) {
             File::delete(public_path('storage/') . $feature->logo);
         }
-        if (File::exists(public_path('storage/requestImg/') . $feature->logo)) {
-            File::delete(public_path('storage/requestImg/') . $feature->logo);
+        if (File::exists(public_path('storage/') . $feature->logo)) {
+            File::delete(public_path('storage/') . $feature->logo);
         }
         if (File::exists(public_path('storage/thumb/') . $feature->logo)) {
             File::delete(public_path('storage/thumb/') . $feature->logo);
@@ -252,8 +252,8 @@ class FeatureController extends Controller
         if (File::exists(public_path('storage/') . $feature->image)) {
             File::delete(public_path('storage/') . $feature->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $feature->image)) {
-            File::delete(public_path('storage/requestImg/') . $feature->image);
+        if (File::exists(public_path('storage/') . $feature->image)) {
+            File::delete(public_path('storage/') . $feature->image);
         }
         if (File::exists(public_path('storage/thumb/') . $feature->image)) {
             File::delete(public_path('storage/thumb/') . $feature->image);

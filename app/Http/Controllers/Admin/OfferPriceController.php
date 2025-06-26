@@ -243,8 +243,8 @@ class OfferPriceController extends Controller
                     if (File::exists(public_path('storage/') . $offerPrice->image)) {
                         File::delete(public_path('storage/') . $offerPrice->image);
                     }
-                    if (File::exists(public_path('storage/requestImg/') . $offerPrice->image)) {
-                        File::delete(public_path('storage/requestImg/') . $offerPrice->image);
+                    if (File::exists(public_path('storage/') . $offerPrice->image)) {
+                        File::delete(public_path('storage/') . $offerPrice->image);
                     }
                     if (File::exists(public_path('storage/thumb/') . $offerPrice->image)) {
                         File::delete(public_path('storage/thumb/') . $offerPrice->image);
@@ -315,8 +315,8 @@ class OfferPriceController extends Controller
         if (File::exists(public_path('storage/') . $offerPrice->image)) {
             File::delete(public_path('storage/') . $offerPrice->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $offerPrice->image)) {
-            File::delete(public_path('storage/requestImg/') . $offerPrice->image);
+        if (File::exists(public_path('storage/') . $offerPrice->image)) {
+            File::delete(public_path('storage/') . $offerPrice->image);
         }
         if (File::exists(public_path('storage/thumb/') . $offerPrice->image)) {
             File::delete(public_path('storage/thumb/') . $offerPrice->image);

@@ -112,8 +112,8 @@ class PortfolioClientFeedbackController extends Controller
                     if (File::exists(public_path('storage/') . $PortfolioClientFeedback->image)) {
                         File::delete(public_path('storage/') . $PortfolioClientFeedback->image);
                     }
-                    if (File::exists(public_path('storage/requestImg/') . $PortfolioClientFeedback->image)) {
-                        File::delete(public_path('storage/requestImg/') . $PortfolioClientFeedback->image);
+                    if (File::exists(public_path('storage/') . $PortfolioClientFeedback->image)) {
+                        File::delete(public_path('storage/') . $PortfolioClientFeedback->image);
                     }
                     if (File::exists(public_path('storage/thumb/') . $PortfolioClientFeedback->image)) {
                         File::delete(public_path('storage/thumb/') . $PortfolioClientFeedback->image);
@@ -152,8 +152,8 @@ class PortfolioClientFeedbackController extends Controller
         if (File::exists(public_path('storage/') . $portfolioClientFeedback->image)) {
             File::delete(public_path('storage/') . $portfolioClientFeedback->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $portfolioClientFeedback->image)) {
-            File::delete(public_path('storage/requestImg/') . $portfolioClientFeedback->image);
+        if (File::exists(public_path('storage/') . $portfolioClientFeedback->image)) {
+            File::delete(public_path('storage/') . $portfolioClientFeedback->image);
         }
         if (File::exists(public_path('storage/thumb/') . $portfolioClientFeedback->image)) {
             File::delete(public_path('storage/thumb/') . $portfolioClientFeedback->image);

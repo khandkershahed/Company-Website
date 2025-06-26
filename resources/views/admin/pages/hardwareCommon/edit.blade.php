@@ -55,7 +55,7 @@
                                             <input name="banner_image" type="file" class="form-control form-control-sm w-75"
                                                 placeholder="Enter Hardware Banner Image" value="{{ $hardwareCommon->banner_image }}">
                                             <img class="px-1" id="showImage" height="30px" width="50px"
-                                                src="{{asset('storage/requestImg/'.$hardwareCommon->banner_image)}}" alt="">
+                                                src="{{asset('storage/'.$hardwareCommon->banner_image)}}" alt="">
                                         </div>
                                     </div>
                                     {{--  --}}
@@ -349,7 +349,7 @@
                                                 class="form-control form-control-sm w-75"
                                                 placeholder="Enter Hardware Row Six Image" value="{{ $hardwareCommon->row_six_image }}">
                                             <img class="px-1" id="showImage" height="30px" width="50px"
-                                                src="{{asset('storage/requestImg/'.$hardwareCommon->row_six_image)}}" alt="">
+                                                src="{{asset('storage/'.$hardwareCommon->row_six_image)}}" alt="">
                                         </div>
                                     </div>
                                     {{--  --}}

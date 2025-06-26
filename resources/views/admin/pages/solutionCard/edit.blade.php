@@ -68,7 +68,7 @@
                                                 placeholder="Enter Solution Card Image">
                                             </div>
                                                 <div class=" ms-2" style="width: 10%">
-                                                    {{-- <img id="showImage" src="{{ asset('storage/requestImg/' . $solutionCard->image) }}"
+                                                    {{-- <img id="showImage" src="{{ asset('storage/' . $solutionCard->image) }}"
                                                         alt="" height="87px" width="157px"> --}}
                                                     <img class="img-fluid rounded-circle" id="showImage" src="https://t4.ftcdn.net/jpg/03/17/25/45/360_F_317254576_lKDALRrvGoBr7gQSa1k4kJBx7O2D15dc.jpg"
                                                         alt="" style="width: 30px;

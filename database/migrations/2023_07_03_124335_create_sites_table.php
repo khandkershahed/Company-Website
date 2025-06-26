@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('meta_description', 255)->nullable();
             $table->string('logo')->nullable();
             $table->string('favicon')->nullable();
+            $table->string('og_image')->nullable();
             $table->string('phone_one')->nullable();
             $table->string('phone_two')->nullable();
             $table->string('whatsapp_number')->nullable();

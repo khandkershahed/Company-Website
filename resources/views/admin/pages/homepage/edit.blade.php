@@ -55,7 +55,7 @@
                                             </div>
                                             <div class=" ms-2" style="width: 10%">
                                                 <img class="img-fluid rounded-circle" id="showImage"
-                                                    src="{{ asset('storage/requestImg/' . $homePage->branner1) }}"
+                                                    src="{{ asset('storage/' . $homePage->branner1) }}"
                                                     alt=""
                                                     style="width: 30px;
                                                         height: 30px;
@@ -128,7 +128,7 @@
                                             </div>
                                             <div class=" ms-2" style="width: 10%">
                                                 <img class="img-fluid rounded-circle" id="showImage"
-                                                    src="{{ asset('storage/requestImg/' . $homePage->branner2) }}"
+                                                    src="{{ asset('storage/' . $homePage->branner2) }}"
                                                     alt=""
                                                     style="width: 30px;
                                                         height: 30px;
@@ -201,7 +201,7 @@
                                             </div>
                                             <div class=" ms-2" style="width: 10%">
                                                 <img class="img-fluid rounded-circle" id="showImage"
-                                                    src="{{ asset('storage/requestImg/' . $homePage->branner3) }}"
+                                                    src="{{ asset('storage/' . $homePage->branner3) }}"
                                                     alt=""
                                                     style="width: 30px;
                                                         height: 30px;

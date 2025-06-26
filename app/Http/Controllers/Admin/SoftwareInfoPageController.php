@@ -181,7 +181,7 @@ class SoftwareInfoPageController extends Controller
                 // Delete old logo files stored on disk
                 $paths = [
                     storage_path("app/public/{$softwareInfoPage->banner_image}"),
-                    storage_path("app/public/requestImg/{$softwareInfoPage->banner_image}")
+                    storage_path("app/public/{$softwareInfoPage->banner_image}")
                 ];
                 foreach ($paths as $path) {
                     if (File::exists($path)) {
@@ -199,7 +199,7 @@ class SoftwareInfoPageController extends Controller
                 // Delete old logo files stored on disk
                 $paths = [
                     storage_path("app/public/{$softwareInfoPage->row_six_image}"),
-                    storage_path("app/public/requestImg/{$softwareInfoPage->row_six_image}")
+                    storage_path("app/public/{$softwareInfoPage->row_six_image}")
                 ];
                 foreach ($paths as $path) {
                     if (File::exists($path)) {
@@ -263,7 +263,7 @@ class SoftwareInfoPageController extends Controller
         //banner_image
         $paths = [
             storage_path('app/public/') . $softwareInfoPage->banner_image,
-            storage_path('app/public/requestImg/') . $softwareInfoPage->banner_image
+            storage_path('app/public/') . $softwareInfoPage->banner_image
         ];
 
         // Delete any existing logo and requestImg images
@@ -274,7 +274,7 @@ class SoftwareInfoPageController extends Controller
         }
         $paths = [
             storage_path('app/public/') . $softwareInfoPage->row_six_image,
-            storage_path('app/public/requestImg/') . $softwareInfoPage->row_six_image
+            storage_path('app/public/') . $softwareInfoPage->row_six_image
         ];
 
         // Delete any existing logo and requestImg images

@@ -195,7 +195,7 @@ class TrainingPageController extends Controller
                 // Delete old logo files stored on disk
                 $paths = [
                     storage_path("app/public/{$trainingPage->banner_image}"),
-                    storage_path("app/public/requestImg/{$trainingPage->banner_image}")
+                    storage_path("app/public/{$trainingPage->banner_image}")
                 ];
                 foreach ($paths as $path) {
                     if (File::exists($path)) {
@@ -213,7 +213,7 @@ class TrainingPageController extends Controller
                 // Delete old logo files stored on disk
                 $paths = [
                     storage_path("app/public/{$trainingPage->background_image}"),
-                    storage_path("app/public/requestImg/{$trainingPage->background_image}")
+                    storage_path("app/public/{$trainingPage->background_image}")
                 ];
                 foreach ($paths as $path) {
                     if (File::exists($path)) {
@@ -231,7 +231,7 @@ class TrainingPageController extends Controller
                 // Delete old logo files stored on disk
                 $paths = [
                     storage_path("app/public/{$trainingPage->row_two_image}"),
-                    storage_path("app/public/requestImg/{$trainingPage->row_two_image}")
+                    storage_path("app/public/{$trainingPage->row_two_image}")
                 ];
                 foreach ($paths as $path) {
                     if (File::exists($path)) {
@@ -308,7 +308,7 @@ class TrainingPageController extends Controller
                 // Paths to check and delete
                 $paths = [
                     storage_path('app/public/') . $trainingPage->$attribute,
-                    storage_path('app/public/requestImg/') . $trainingPage->$attribute
+                    storage_path('app/public/') . $trainingPage->$attribute
                 ];
 
                 foreach ($paths as $path) {

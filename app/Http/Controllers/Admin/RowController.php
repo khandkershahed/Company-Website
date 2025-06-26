@@ -110,7 +110,7 @@ class RowController extends Controller
                 if ($globalFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $row->image);
                     File::delete(public_path($uploadPath . '/thumb/') . $row->image);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $row->image);
+                    File::delete(public_path($uploadPath . '/') . $row->image);
                 }
             } else {
                 $globalFunImg['status'] = 0;
@@ -148,8 +148,8 @@ class RowController extends Controller
         if (File::exists(public_path('storage/') . $row->image)) {
             File::delete(public_path('storage/') . $row->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $row->image)) {
-            File::delete(public_path('storage/requestImg/') . $row->image);
+        if (File::exists(public_path('storage/') . $row->image)) {
+            File::delete(public_path('storage/') . $row->image);
         }
         if (File::exists(public_path('storage/thumb/') . $row->image)) {
             File::delete(public_path('storage/thumb/') . $row->image);

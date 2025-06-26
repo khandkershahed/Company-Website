@@ -101,7 +101,7 @@
 
                                                                         <div class="input-group">
                                                                             <img id="showImage" class="img-thumbnail"
-                                                                                src="{{ asset('storage/requestImg/' . $item->image) }}" alt=""
+                                                                                src="{{ asset('storage/' . $item->image) }}" alt=""
                                                                                 height="50px" width="50px">
 
                                                                         </div>

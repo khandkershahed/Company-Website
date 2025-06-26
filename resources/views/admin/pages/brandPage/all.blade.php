@@ -63,11 +63,11 @@
                                     </td>
                                     <td>{{ $brandPage->header }}</td>
                                     <td class="text-center">
-                                        <img class="img-fluid rounded-circle" src="{{ asset('storage/requestImg/' . $brandPage->banner_image) }}"
+                                        <img class="img-fluid rounded-circle" src="{{ asset('storage/' . $brandPage->banner_image) }}"
                                             alt="" style="width: 40px; height: 40px;">
                                     </td>
                                     <td class="text-center">
-                                        <img class="img-fluid rounded-circle" src="{{ asset('storage/requestImg/' . $brandPage->row_six_image) }}"
+                                        <img class="img-fluid rounded-circle" src="{{ asset('storage/' . $brandPage->row_six_image) }}"
                                         alt="" style="width: 40px; height: 40px;">
                                     </td>
                                     <td class="text-center">

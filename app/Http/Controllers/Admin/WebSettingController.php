@@ -78,13 +78,13 @@ class WebSettingController extends Controller
 
         $logoMainFile    = $request->file('logo');
         $faviconMainFile = $request->file('favicon');
+        $ogImageMainFile = $request->file('og_image');
         $uploadPath      = storage_path('app/public/');
 
         if ($request->hasFile('logo')) {
             if (!empty($webSetting->logo)) {
                 $filePaths = [
                     storage_path("app/public/" . $webSetting->logo),
-                    storage_path("app/public/requestImg/" . $webSetting->logo)
                 ];
 
                 foreach ($filePaths as $filePath) {
@@ -102,7 +102,7 @@ class WebSettingController extends Controller
             if (!empty($webSetting->favicon)) {
                 $filePaths = [
                     storage_path("app/public/" . $webSetting->favicon),
-                    storage_path("app/public/requestImg/" . $webSetting->favicon)
+                    storage_path("app/public/" . $webSetting->favicon)
                 ];
 
                 foreach ($filePaths as $filePath) {
@@ -115,6 +115,22 @@ class WebSettingController extends Controller
         } else {
             $globalFunImgFavicon = ['status' => 0];
         }
+        if ($request->hasFile('og_image')) {
+            if (!empty($webSetting->og_image)) {
+                $filePaths = [
+                    storage_path("app/public/" . $webSetting->og_image),
+                ];
+
+                foreach ($filePaths as $filePath) {
+                    if (File::exists($filePath)) {
+                        File::delete($filePath);
+                    }
+                }
+            }
+            $globalFunImgOGImage = Helper::customUpload($ogImageMainFile, $uploadPath, 44, 44);
+        } else {
+            $globalFunImgOGImage = ['status' => 0];
+        }
 
         Site::updateOrCreate([], [
             'site_name'        => $request->site_name,
@@ -122,6 +138,7 @@ class WebSettingController extends Controller
             'site_slogan'      => $request->site_slogan,
             'logo'             => $globalFunImgLogo['status']    == 1 ? $logoMainFile->hashName()   : $webSetting->logo,
             'favicon'          => $globalFunImgFavicon['status'] == 1 ? $faviconMainFile->hashName() : $webSetting->favicon,
+            'og_image'         => $globalFunImgOGImage['status'] == 1 ? $ogImageMainFile->hashName() : $webSetting->og_image,
             'phone_one'        => $request->phone_one,
             'phone_two'        => $request->phone_two,
             'whatsapp_number'  => $request->whatsapp_number,

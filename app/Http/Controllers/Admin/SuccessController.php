@@ -128,7 +128,7 @@ class SuccessController extends Controller
                 // Delete old logo files stored on disk
                 $paths = [
                     storage_path("app/public/{$success->image}"),
-                    storage_path("app/public/requestImg/{$success->image}")
+                    storage_path("app/public/{$success->image}")
                 ];
                 foreach ($paths as $path) {
                     if (File::exists($path)) {
@@ -169,7 +169,7 @@ class SuccessController extends Controller
         //image
         $paths = [
             storage_path('app/public/') . $success->image,
-            storage_path('app/public/requestImg/') . $success->image
+            storage_path('app/public/') . $success->image
         ];
 
         // Delete any existing logo and requestImg images

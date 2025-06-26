@@ -234,7 +234,7 @@ class SolutionDetailsController extends Controller
                 if ($globalFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $solutionDetails->banner_image);
                     File::delete(public_path($uploadPath . '/thumb/') . $solutionDetails->banner_image);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $solutionDetails->banner_image);
+                    File::delete(public_path($uploadPath . '/') . $solutionDetails->banner_image);
                 }
 
                 if (!empty($solutionDetails->slug)) {

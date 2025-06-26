@@ -6,12 +6,12 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-4">
             <div class="mb-5">
                 <label class="form-label">Site Name</label>
                 <input type="text" id="site_name" name="site_name" value="{{ optional($site)->site_name }}"
-                    class="form-control form-control-solid maxlength-options" maxlength="200" placeholder="Enter Site Name"
-                    required>
+                    class="form-control form-control-solid maxlength-options" maxlength="200"
+                    placeholder="Enter Site Name" required>
             </div>
         </div>
         <div class="col-lg-3">
@@ -22,7 +22,7 @@
                     placeholder="Enter Company Name">
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-5">
             <div class="mb-5">
                 <label class="form-label">Site Slogan</label>
                 <input type="text" id="site_slogan" name="site_slogan" value="{{ optional($site)->site_slogan }}"
@@ -30,6 +30,7 @@
                     placeholder="Enter Product Site Slogan">
             </div>
         </div>
+
         <div class="col-lg-3">
             <div class="mb-5">
                 <label class="form-label">Favicon </label>
@@ -37,8 +38,23 @@
                     :value="old('favicon', $site->favicon)"></x-metronic.file-input>
             </div>
         </div>
-    </div>
-    <div class="row">
+
+        <div class="col-lg-3">
+            <div class="mb-5">
+                <label class="form-label">Logo </label>
+                <x-metronic.file-input class="form-control-solid" id="logo" name="logo" :source="asset('storage/' . optional($site)->logo)"
+                    :value="old('logo', $site->logo)"></x-metronic.file-input>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="mb-5">
+                <label class="form-label">OG Image </label>
+                <x-metronic.file-input class="form-control-solid" id="og_image" name="og_image"
+                    :source="asset('storage/' . optional($site)->og_image)"
+                    :value="old('og_image', $site->og_image)"></x-metronic.file-input>
+            </div>
+        </div>
+
         <div class="col-lg-3">
             <div class="mb-5">
                 <label class="form-label">Phone One</label>
@@ -60,16 +76,9 @@
                     name="whatsapp_number" value="{{ optional($site)->whatsapp_number }}">
             </div>
         </div>
+
+
         <div class="col-lg-3">
-            <div class="mb-5">
-                <label class="form-label">Logo </label>
-                <x-metronic.file-input class="form-control-solid" id="logo" name="logo" :source="asset('storage/' . optional($site)->logo)"
-                    :value="old('logo', $site->logo)"></x-metronic.file-input>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-2">
             <div class="mb-5">
                 <label class="form-label">Currency</label>
                 <input type="text" class="form-control form-control-solid" placeholder="Enter currency"
@@ -77,7 +86,7 @@
                 <span class="form-text"></span>
             </div>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-3">
             <div class="mb-5">
                 <label class="form-label">Country Name</label>
                 <select name="country_id" data-placeholder="Select a country..."
@@ -91,16 +100,15 @@
                 </select>
             </div>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-3">
             <div class="mb-5">
                 <label class="form-label">Service Time</label>
-                <input type="time" id="service_time" name="service_time"
-                    value="{{ optional($site)->service_time }}"
+                <input type="time" id="service_time" name="service_time" value="{{ optional($site)->service_time }}"
                     class="form-control form-control-solid maxlength-options" maxlength="100"
                     placeholder="Enter Service Time">
             </div>
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-3">
             <div class="mb-5">
                 <label class="form-label">Service Days</label>
                 <input type="text" id="service_days" name="service_days"
@@ -109,7 +117,7 @@
                     placeholder="Enter Service Days">
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
             <div class="mb-5">
                 <label class="form-label">Default Language</label>
                 <input type="text" id="default_language" name="default_language"
@@ -118,8 +126,7 @@
                     placeholder="Enter Default Language">
             </div>
         </div>
-    </div>
-    <div class="row">
+
         <div class="col-lg-3">
             <div class="mb-5">
                 <label class="form-label">Contact Email</label>
@@ -150,14 +157,14 @@
             <div class="mb-5">
                 <label class="form-label">Sales Email</label>
                 <input type="email" id="sales_email" name="sales_email"
-                    value="{{ optional($site)->sales_email }}" class="form-control form-control-solid maxlength-options"
-                    maxlength="100" placeholder="Enter Sales Email">
+                    value="{{ optional($site)->sales_email }}"
+                    class="form-control form-control-solid maxlength-options" maxlength="100"
+                    placeholder="Enter Sales Email">
             </div>
         </div>
 
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
+
+        <div class="col-lg-4">
             <div class="mb-5">
                 <label class="form-label">Service </label>
                 <input type="text" id="service_days" name="service_days"
@@ -166,7 +173,7 @@
                     placeholder="Enter Service URL">
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-5">
             <div class="mb-5">
                 <label class="form-label">Address</label>
                 <textarea rows="1" cols="1" class="form-control form-control-solid" name="address"

@@ -423,8 +423,8 @@ class RFQManageController extends Controller
         if (File::exists(public_path('storage/') . $rfq->image)) {
             File::delete(public_path('storage/') . $rfq->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $rfq->image)) {
-            File::delete(public_path('storage/requestImg/') . $rfq->image);
+        if (File::exists(public_path('storage/') . $rfq->image)) {
+            File::delete(public_path('storage/') . $rfq->image);
         }
         if (File::exists(public_path('storage/thumb/') . $rfq->image)) {
             File::delete(public_path('storage/thumb/') . $rfq->image);

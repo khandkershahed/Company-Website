@@ -225,17 +225,17 @@ class HomepageController extends Controller
 
             if ($globalFunImgBannerOne['status'] == 1) {
                 File::delete(public_path('storage/') . $homepage->branner1);
-                File::delete(public_path('storage/requestImg/') . $homepage->branner1);
+                File::delete(public_path('storage/') . $homepage->branner1);
                 File::delete(public_path('storage/thumb/') . $homepage->branner1);
             }
             if ($globalFunBannerTwo['status'] == 1) {
                 File::delete(public_path('storage/') . $homepage->branner2);
-                File::delete(public_path('storage/requestImg/') . $homepage->branner2);
+                File::delete(public_path('storage/') . $homepage->branner2);
                 File::delete(public_path('storage/thumb/') . $homepage->branner2);
             }
             if ($globalFunBannerThree['status'] == 1) {
                 File::delete(public_path('storage/') . $homepage->branner3);
-                File::delete(public_path('storage/requestImg/') . $homepage->branner3);
+                File::delete(public_path('storage/') . $homepage->branner3);
                 File::delete(public_path('storage/thumb/') . $homepage->branner3);
             }
 
@@ -302,8 +302,8 @@ class HomepageController extends Controller
         if (File::exists(public_path('storage/') . $homepage->image)) {
             File::delete(public_path('storage/') . $homepage->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $homepage->image)) {
-            File::delete(public_path('storage/requestImg/') . $homepage->image);
+        if (File::exists(public_path('storage/') . $homepage->image)) {
+            File::delete(public_path('storage/') . $homepage->image);
         }
         if (File::exists(public_path('storage/thumb/') . $homepage->image)) {
             File::delete(public_path('storage/thumb/') . $homepage->image);

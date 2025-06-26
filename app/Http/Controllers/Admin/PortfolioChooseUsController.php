@@ -88,7 +88,7 @@ class PortfolioChooseUsController extends Controller
 
             if ($globalFunimage['status'] == 1) {
                 File::delete(public_path('storage/') . $portfolioChooseUs->image);
-                File::delete(public_path('storage/requestImg/') . $portfolioChooseUs->image);
+                File::delete(public_path('storage/') . $portfolioChooseUs->image);
                 File::delete(public_path('storage/thumb/') . $portfolioChooseUs->image);
             }
 

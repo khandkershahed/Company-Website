@@ -435,7 +435,7 @@
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="related-item">
                                 <a href="{{ route('blog.details', $item->id) }}">
-                                    <img class="img-fluid" src="{{ asset('storage/requestImg/' . $item->image) }}"
+                                    <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}"
                                         alt="" style="height:140px; ">
                                     <h4>{{ $item->badge }}</h6>
                                         <h3>

@@ -105,7 +105,7 @@ class PartnerPermission extends Controller
                 if ($globalFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $partner->logo);
                     File::delete(public_path($uploadPath . '/thumb/') . $partner->logo);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $partner->logo);
+                    File::delete(public_path($uploadPath . '/') . $partner->logo);
                 }
 
                 $partner->update([

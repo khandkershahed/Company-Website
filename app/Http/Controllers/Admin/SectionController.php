@@ -162,8 +162,8 @@ class SectionController extends Controller
                     if (File::exists(public_path('storage/') . $section->image)) {
                         File::delete(public_path('storage/') . $section->image);
                     }
-                    if (File::exists(public_path('storage/requestImg/') . $section->image)) {
-                        File::delete(public_path('storage/requestImg/') . $section->image);
+                    if (File::exists(public_path('storage/') . $section->image)) {
+                        File::delete(public_path('storage/') . $section->image);
                     }
                     if (File::exists(public_path('storage/thumb/') . $section->image)) {
                         File::delete(public_path('storage/thumb/') . $section->image);
@@ -200,8 +200,8 @@ class SectionController extends Controller
         if (File::exists(public_path('storage/') . $section->image)) {
             File::delete(public_path('storage/') . $section->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $section->image)) {
-            File::delete(public_path('storage/requestImg/') . $section->image);
+        if (File::exists(public_path('storage/') . $section->image)) {
+            File::delete(public_path('storage/') . $section->image);
         }
         if (File::exists(public_path('storage/thumb/') . $section->image)) {
             File::delete(public_path('storage/thumb/') . $section->image);

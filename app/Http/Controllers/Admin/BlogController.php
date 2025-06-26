@@ -193,7 +193,7 @@ class BlogController extends Controller
                 if ($globalFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $blog->image);
                     File::delete(public_path($uploadPath . '/thumb/') . $blog->image);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $blog->image);
+                    File::delete(public_path($uploadPath . '/') . $blog->image);
                 }
 
                 $blog->update([
@@ -237,8 +237,8 @@ class BlogController extends Controller
         if (File::exists(public_path('storage/') . $blog->image)) {
             File::delete(public_path('storage/') . $blog->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $blog->image)) {
-            File::delete(public_path('storage/requestImg/') . $blog->image);
+        if (File::exists(public_path('storage/') . $blog->image)) {
+            File::delete(public_path('storage/') . $blog->image);
         }
         if (File::exists(public_path('storage/thumb/') . $blog->image)) {
             File::delete(public_path('storage/thumb/') . $blog->image);

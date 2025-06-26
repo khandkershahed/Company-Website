@@ -114,8 +114,8 @@ class FrontendNavbarMenuItemController extends Controller
                     if (File::exists(public_path('storage/') . $frontendNavbarMenuItem->image)) {
                         File::delete(public_path('storage/') . $frontendNavbarMenuItem->image);
                     }
-                    if (File::exists(public_path('storage/requestImg/') . $frontendNavbarMenuItem->image)) {
-                        File::delete(public_path('storage/requestImg/') . $frontendNavbarMenuItem->image);
+                    if (File::exists(public_path('storage/') . $frontendNavbarMenuItem->image)) {
+                        File::delete(public_path('storage/') . $frontendNavbarMenuItem->image);
                     }
                     if (File::exists(public_path('storage/thumb/') . $frontendNavbarMenuItem->image)) {
                         File::delete(public_path('storage/thumb/') . $frontendNavbarMenuItem->image);
@@ -153,8 +153,8 @@ class FrontendNavbarMenuItemController extends Controller
         if (File::exists(public_path('storage/') . $frontendNavbarMenuItem->image)) {
             File::delete(public_path('storage/') . $frontendNavbarMenuItem->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $frontendNavbarMenuItem->image)) {
-            File::delete(public_path('storage/requestImg/') . $frontendNavbarMenuItem->image);
+        if (File::exists(public_path('storage/') . $frontendNavbarMenuItem->image)) {
+            File::delete(public_path('storage/') . $frontendNavbarMenuItem->image);
         }
         if (File::exists(public_path('storage/thumb/') . $frontendNavbarMenuItem->image)) {
             File::delete(public_path('storage/thumb/') . $frontendNavbarMenuItem->image);

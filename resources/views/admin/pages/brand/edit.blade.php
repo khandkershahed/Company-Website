@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <img id="showImage" class="img-thumbnail"
-                                            src="{{ asset('storage/requestImg/' . $brand->image) }}" alt="Brand"
+                                            src="{{ asset('storage/' . $brand->image) }}" alt="Brand"
                                             height="87px" width="157px">
                                     </div>
                                 </div>

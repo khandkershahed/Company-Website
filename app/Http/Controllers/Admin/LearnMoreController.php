@@ -181,12 +181,12 @@ class LearnMoreController extends Controller
 
             if ($globalFunImgimage_banner['status'] == 1) {
                 File::delete(public_path('storage/') . $learnMore->image_banner);
-                File::delete(public_path('storage/requestImg/') . $learnMore->image_banner);
+                File::delete(public_path('storage/') . $learnMore->image_banner);
                 File::delete(public_path('storage/thumb/') . $learnMore->image_banner);
             }
             if ($globalFunbackground_image['status'] == 1) {
                 File::delete(public_path('storage/') . $learnMore->background_image);
-                File::delete(public_path('storage/requestImg/') . $learnMore->background_image);
+                File::delete(public_path('storage/') . $learnMore->background_image);
                 File::delete(public_path('storage/thumb/') . $learnMore->background_image);
             }
 
@@ -235,8 +235,8 @@ class LearnMoreController extends Controller
         if (File::exists(public_path('storage/') . $learnMore->image_banner)) {
             File::delete(public_path('storage/') . $learnMore->image_banner);
         }
-        if (File::exists(public_path('storage/requestImg/') . $learnMore->image_banner)) {
-            File::delete(public_path('storage/requestImg/') . $learnMore->image_banner);
+        if (File::exists(public_path('storage/') . $learnMore->image_banner)) {
+            File::delete(public_path('storage/') . $learnMore->image_banner);
         }
         if (File::exists(public_path('storage/thumb/') . $learnMore->image_banner)) {
             File::delete(public_path('storage/thumb/') . $learnMore->image_banner);
@@ -246,8 +246,8 @@ class LearnMoreController extends Controller
         if (File::exists(public_path('storage/') . $learnMore->background_image)) {
             File::delete(public_path('storage/') . $learnMore->background_image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $learnMore->background_image)) {
-            File::delete(public_path('storage/requestImg/') . $learnMore->background_image);
+        if (File::exists(public_path('storage/') . $learnMore->background_image)) {
+            File::delete(public_path('storage/') . $learnMore->background_image);
         }
         if (File::exists(public_path('storage/thumb/') . $learnMore->background_image)) {
             File::delete(public_path('storage/thumb/') . $learnMore->background_image);

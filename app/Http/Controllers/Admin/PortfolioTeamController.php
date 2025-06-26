@@ -94,7 +94,7 @@ class PortfolioTeamController extends Controller
 
             if ($globalFunimage['status'] == 1) {
                 File::delete(public_path('storage/') . $portfolioTeam->image);
-                File::delete(public_path('storage/requestImg/') . $portfolioTeam->image);
+                File::delete(public_path('storage/') . $portfolioTeam->image);
                 File::delete(public_path('storage/thumb/') . $portfolioTeam->image);
             }
 
@@ -124,8 +124,8 @@ class PortfolioTeamController extends Controller
         if (File::exists(public_path('storage/') . $portfolioTeam->image)) {
             File::delete(public_path('storage/') . $portfolioTeam->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $portfolioTeam->image)) {
-            File::delete(public_path('storage/requestImg/') . $portfolioTeam->image);
+        if (File::exists(public_path('storage/') . $portfolioTeam->image)) {
+            File::delete(public_path('storage/') . $portfolioTeam->image);
         }
         if (File::exists(public_path('storage/thumb/') . $portfolioTeam->image)) {
             File::delete(public_path('storage/thumb/') . $portfolioTeam->image);

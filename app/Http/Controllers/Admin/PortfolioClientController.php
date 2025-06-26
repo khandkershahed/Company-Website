@@ -89,7 +89,7 @@ class PortfolioClientController extends Controller
 
             if ($globalFunlogo['status'] == 1) {
                 File::delete(public_path('storage/') . $portfolioClient->logo);
-                File::delete(public_path('storage/requestImg/') . $portfolioClient->logo);
+                File::delete(public_path('storage/') . $portfolioClient->logo);
                 File::delete(public_path('storage/thumb/') . $portfolioClient->logo);
             }
 
@@ -117,8 +117,8 @@ class PortfolioClientController extends Controller
         if (File::exists(public_path('storage/') . $portfolioClient->logo)) {
             File::delete(public_path('storage/') . $portfolioClient->logo);
         }
-        if (File::exists(public_path('storage/requestImg/') . $portfolioClient->logo)) {
-            File::delete(public_path('storage/requestImg/') . $portfolioClient->logo);
+        if (File::exists(public_path('storage/') . $portfolioClient->logo)) {
+            File::delete(public_path('storage/') . $portfolioClient->logo);
         }
         if (File::exists(public_path('storage/thumb/') . $portfolioClient->logo)) {
             File::delete(public_path('storage/thumb/') . $portfolioClient->logo);

@@ -67,7 +67,7 @@
                                                 <tr>
                                                     <td>{{ ++$key }}</td>
                                                     <td class="text-center"><img
-                                                            src="{{ asset('storage/requestImg/' . $section->image) }}" height="30px"
+                                                            src="{{ asset('storage/' . $section->image) }}" height="30px"
                                                             width="100px" alt=""></td>
                                                     <td>{{ $section->title }}</td>
                                                     <td class="text-center">
@@ -123,7 +123,7 @@
                                                                                             </div>
                                                                                             <div class="col-sm-9 text-secondary">
                                                                                                 <img id="showImage" class="img-thumbnail"
-                                                                                                    src="{{ asset('storage/requestImg/' . $section->image) }}" alt="Section"
+                                                                                                    src="{{ asset('storage/' . $section->image) }}" alt="Section"
                                                                                                     height="87px" width="157px">
                                                                                             </div>
                                                                                         </div>

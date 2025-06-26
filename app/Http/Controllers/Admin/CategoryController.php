@@ -160,12 +160,12 @@ class CategoryController extends Controller
                 if ($globalFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $category->image);
                     File::delete(public_path($uploadPath . '/thumb/') . $category->image);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $category->image);
+                    File::delete(public_path($uploadPath . '/') . $category->image);
                 }
                 if ($globalbannerFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $category->banner_image);
                     File::delete(public_path($uploadPath . '/thumb/') . $category->banner_image);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $category->banner_image);
+                    File::delete(public_path($uploadPath . '/') . $category->banner_image);
                 }
 
                 $category->update([
@@ -200,8 +200,8 @@ class CategoryController extends Controller
         if (File::exists(public_path('storage/') . $category->image)) {
             File::delete(public_path('storage/') . $category->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $category->image)) {
-            File::delete(public_path('storage/requestImg/') . $category->image);
+        if (File::exists(public_path('storage/') . $category->image)) {
+            File::delete(public_path('storage/') . $category->image);
         }
         if (File::exists(public_path('storage/thumb/') . $category->image)) {
             File::delete(public_path('storage/thumb/') . $category->image);
@@ -454,12 +454,12 @@ class CategoryController extends Controller
                 if ($globalFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $subcategory->image);
                     File::delete(public_path($uploadPath . '/thumb/') . $subcategory->image);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $subcategory->image);
+                    File::delete(public_path($uploadPath . '/') . $subcategory->image);
                 }
                 if ($globalbannerFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $subcategory->banner_image);
                     File::delete(public_path($uploadPath . '/thumb/') . $subcategory->banner_image);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $subcategory->banner_image);
+                    File::delete(public_path($uploadPath . '/') . $subcategory->banner_image);
                 }
 
                 $subcategory->update([
@@ -522,12 +522,12 @@ class CategoryController extends Controller
                 if ($globalFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $subsubcategory->image);
                     File::delete(public_path($uploadPath . '/thumb/') . $subsubcategory->image);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $subsubcategory->image);
+                    File::delete(public_path($uploadPath . '/') . $subsubcategory->image);
                 }
                 if ($globalbannerFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $subsubcategory->banner_image);
                     File::delete(public_path($uploadPath . '/thumb/') . $subsubcategory->banner_image);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $subsubcategory->banner_image);
+                    File::delete(public_path($uploadPath . '/') . $subsubcategory->banner_image);
                 }
 
                 $subsubcategory->update([
@@ -596,12 +596,12 @@ class CategoryController extends Controller
                 if ($globalFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $subsubsubcategory->image);
                     File::delete(public_path($uploadPath . '/thumb/') . $subsubsubcategory->image);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $subsubsubcategory->image);
+                    File::delete(public_path($uploadPath . '/') . $subsubsubcategory->image);
                 }
                 if ($globalbannerFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $subsubsubcategory->banner_image);
                     File::delete(public_path($uploadPath . '/thumb/') . $subsubsubcategory->banner_image);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $subsubsubcategory->banner_image);
+                    File::delete(public_path($uploadPath . '/') . $subsubsubcategory->banner_image);
                 }
 
                 $subsubsubcategory->update([
@@ -636,8 +636,8 @@ class CategoryController extends Controller
         if (File::exists(public_path('storage/') . $category->image)) {
             File::delete(public_path('storage/') . $category->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $category->image)) {
-            File::delete(public_path('storage/requestImg/') . $category->image);
+        if (File::exists(public_path('storage/') . $category->image)) {
+            File::delete(public_path('storage/') . $category->image);
         }
         if (File::exists(public_path('storage/thumb/') . $category->image)) {
             File::delete(public_path('storage/thumb/') . $category->image);
@@ -645,8 +645,8 @@ class CategoryController extends Controller
         if (File::exists(public_path('storage/') . $category->banner_image)) {
             File::delete(public_path('storage/') . $category->banner_image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $category->banner_image)) {
-            File::delete(public_path('storage/requestImg/') . $category->banner_image);
+        if (File::exists(public_path('storage/') . $category->banner_image)) {
+            File::delete(public_path('storage/') . $category->banner_image);
         }
         if (File::exists(public_path('storage/thumb/') . $category->banner_image)) {
             File::delete(public_path('storage/thumb/') . $category->banner_image);
@@ -661,8 +661,8 @@ class CategoryController extends Controller
         if (File::exists(public_path('storage/') . $category->image)) {
             File::delete(public_path('storage/') . $category->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $category->image)) {
-            File::delete(public_path('storage/requestImg/') . $category->image);
+        if (File::exists(public_path('storage/') . $category->image)) {
+            File::delete(public_path('storage/') . $category->image);
         }
         if (File::exists(public_path('storage/thumb/') . $category->image)) {
             File::delete(public_path('storage/thumb/') . $category->image);
@@ -670,8 +670,8 @@ class CategoryController extends Controller
         if (File::exists(public_path('storage/') . $category->banner_image)) {
             File::delete(public_path('storage/') . $category->banner_image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $category->banner_image)) {
-            File::delete(public_path('storage/requestImg/') . $category->banner_image);
+        if (File::exists(public_path('storage/') . $category->banner_image)) {
+            File::delete(public_path('storage/') . $category->banner_image);
         }
         if (File::exists(public_path('storage/thumb/') . $category->banner_image)) {
             File::delete(public_path('storage/thumb/') . $category->banner_image);
@@ -686,8 +686,8 @@ class CategoryController extends Controller
         if (File::exists(public_path('storage/') . $category->image)) {
             File::delete(public_path('storage/') . $category->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $category->image)) {
-            File::delete(public_path('storage/requestImg/') . $category->image);
+        if (File::exists(public_path('storage/') . $category->image)) {
+            File::delete(public_path('storage/') . $category->image);
         }
         if (File::exists(public_path('storage/thumb/') . $category->image)) {
             File::delete(public_path('storage/thumb/') . $category->image);
@@ -695,8 +695,8 @@ class CategoryController extends Controller
         if (File::exists(public_path('storage/') . $category->banner_image)) {
             File::delete(public_path('storage/') . $category->banner_image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $category->banner_image)) {
-            File::delete(public_path('storage/requestImg/') . $category->banner_image);
+        if (File::exists(public_path('storage/') . $category->banner_image)) {
+            File::delete(public_path('storage/') . $category->banner_image);
         }
         if (File::exists(public_path('storage/thumb/') . $category->banner_image)) {
             File::delete(public_path('storage/thumb/') . $category->banner_image);

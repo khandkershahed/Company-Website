@@ -298,7 +298,7 @@ class LeaveApplicationController extends Controller
                 if (!empty($uploadedImage)) {
                     $paths = [
                         storage_path("app/public/{$leaveApplication->$file}"),
-                        storage_path("app/public/requestImg/{$leaveApplication->$file}")
+                        storage_path("app/public/{$leaveApplication->$file}")
                     ];
                     foreach ($paths as $path) {
                         if (File::exists($path)) {
@@ -370,7 +370,7 @@ class LeaveApplicationController extends Controller
 
         $paths = [
             'storage/',
-            'storage/requestImg/',
+            'storage/',
         ];
 
         $files = [

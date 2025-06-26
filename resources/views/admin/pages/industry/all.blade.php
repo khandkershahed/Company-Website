@@ -60,7 +60,7 @@
                                     <tr>
                                         <td>{{ ++$key }}</td>
                                         <td>
-                                            <img class="rounded-circle" src="{{ asset('storage/requestImg/' . $item->logo) }}" width="25px"
+                                            <img class="rounded-circle" src="{{ asset('storage/' . $item->logo) }}" width="25px"
                                                 height="25px" alt="">
                                         </td>
                                         <td>{{ App\Models\Admin\Industry::where('id',$item->parent_id)->value('title') }}</td>
@@ -126,7 +126,7 @@
                                                                         </div>
                                                                         <div class="col-sm-2">
                                                                             <img class="rounded-circle" id="showImage" height="25px" width="25px"
-                                                                                src="{{ asset('storage/requestImg/' . $item->logo) }}" alt="">
+                                                                                src="{{ asset('storage/' . $item->logo) }}" alt="">
                                                                         </div>
                                                                     </div>
                                                                     {{--  --}}
@@ -140,7 +140,7 @@
                                                                         </div>
                                                                         <div class="col-sm-2">
                                                                             <img class="rounded-circle" id="showImage1" height="25px" width="25px"
-                                                                                src="{{ asset('storage/requestImg/' . $item->image) }}" alt="">
+                                                                                src="{{ asset('storage/' . $item->image) }}" alt="">
                                                                         </div>
                                                                     </div>
                                                                     {{--  --}}

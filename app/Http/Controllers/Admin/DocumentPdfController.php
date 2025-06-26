@@ -182,7 +182,7 @@ class DocumentPdfController extends Controller
                 // Delete existing files
                 $paths = [
                     storage_path("app/public/{$documentPdf->$type}"),
-                    storage_path("app/public/requestImg/{$documentPdf->$type}")
+                    storage_path("app/public/{$documentPdf->$type}")
                 ];
 
                 foreach ($paths as $path) {
@@ -226,7 +226,7 @@ class DocumentPdfController extends Controller
 
         $basePaths = [
             storage_path('app/public/'),
-            storage_path('app/public/requestImg/')
+            storage_path('app/public/')
         ];
 
         foreach (['document', 'page_image'] as $field) {

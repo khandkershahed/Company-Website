@@ -181,17 +181,17 @@ class BrandPageController extends Controller
 
             if ($globalFunImgimage_banner_image['status'] == 1) {
                 File::delete(public_path('storage/') . $brandPage->banner_image);
-                File::delete(public_path('storage/requestImg/') . $brandPage->banner_image);
+                File::delete(public_path('storage/') . $brandPage->banner_image);
                 File::delete(public_path('storage/thumb/') . $brandPage->banner_image);
             }
             if ($globalFunrow_six_image['status'] == 1) {
                 File::delete(public_path('storage/') . $brandPage->row_six_image);
-                File::delete(public_path('storage/requestImg/') . $brandPage->row_six_image);
+                File::delete(public_path('storage/') . $brandPage->row_six_image);
                 File::delete(public_path('storage/thumb/') . $brandPage->row_six_image);
             }
             if ($globalFunbrand_logo['status'] == 1) {
                 File::delete(public_path('storage/') . $brandPage->brand_logo);
-                File::delete(public_path('storage/requestImg/') . $brandPage->brand_logo);
+                File::delete(public_path('storage/') . $brandPage->brand_logo);
                 File::delete(public_path('storage/thumb/') . $brandPage->brand_logo);
             }
 
@@ -235,8 +235,8 @@ class BrandPageController extends Controller
         if (File::exists(public_path('storage/') . $brandPage->banner_image)) {
             File::delete(public_path('storage/') . $brandPage->banner_image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $brandPage->banner_image)) {
-            File::delete(public_path('storage/requestImg/') . $brandPage->banner_image);
+        if (File::exists(public_path('storage/') . $brandPage->banner_image)) {
+            File::delete(public_path('storage/') . $brandPage->banner_image);
         }
         if (File::exists(public_path('storage/thumb/') . $brandPage->banner_image)) {
             File::delete(public_path('storage/thumb/') . $brandPage->banner_image);
@@ -246,8 +246,8 @@ class BrandPageController extends Controller
         if (File::exists(public_path('storage/') . $brandPage->row_six_image)) {
             File::delete(public_path('storage/') . $brandPage->row_six_image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $brandPage->row_six_image)) {
-            File::delete(public_path('storage/requestImg/') . $brandPage->row_six_image);
+        if (File::exists(public_path('storage/') . $brandPage->row_six_image)) {
+            File::delete(public_path('storage/') . $brandPage->row_six_image);
         }
         if (File::exists(public_path('storage/thumb/') . $brandPage->row_six_image)) {
             File::delete(public_path('storage/thumb/') . $brandPage->row_six_image);
@@ -256,8 +256,8 @@ class BrandPageController extends Controller
         if (File::exists(public_path('storage/') . $brandPage->brand_logo)) {
             File::delete(public_path('storage/') . $brandPage->brand_logo);
         }
-        if (File::exists(public_path('storage/requestImg/') . $brandPage->brand_logo)) {
-            File::delete(public_path('storage/requestImg/') . $brandPage->brand_logo);
+        if (File::exists(public_path('storage/') . $brandPage->brand_logo)) {
+            File::delete(public_path('storage/') . $brandPage->brand_logo);
         }
         if (File::exists(public_path('storage/thumb/') . $brandPage->brand_logo)) {
             File::delete(public_path('storage/thumb/') . $brandPage->brand_logo);

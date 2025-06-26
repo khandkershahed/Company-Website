@@ -81,7 +81,7 @@
                                                     src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png" alt="Brand"
                                                     height="40px" width="40px">
                                                 <img id="showImage" class="rounded-circle"
-                                                    src="{{ asset('storage/requestImg/' . $brand->image) }}" alt="Brand"
+                                                    src="{{ asset('storage/' . $brand->image) }}" alt="Brand"
                                                     height="40px" width="40px">
                                             </div>
                                         </div>

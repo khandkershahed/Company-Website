@@ -28,8 +28,8 @@ class Helper
 
     public static function imageDirectory()
     {
-        if (!File::isDirectory(storage_path("app/public/requestImg/"))) {
-            File::makeDirectory(storage_path("app/public/requestImg/", 0777, true, true));
+        if (!File::isDirectory(storage_path("app/public/"))) {
+            File::makeDirectory(storage_path("app/public/", 0777, true, true));
         }
         if (!File::isDirectory(storage_path("app/public/thumb/"))) {
             File::makeDirectory(storage_path("app/public/thumb/", 0777, true, true));
@@ -51,7 +51,7 @@ class Helper
         $fileName         = $currentTime . '.' . $fileExtention;
 
         $mainFile->storeAs('public/', $fileName);
-        $img = Image::make($mainFile)->resize($reqWidth, $reqHeight)->save($path . '/requestImg/' . $fileName);
+        $img = Image::make($mainFile)->resize($reqWidth, $reqHeight)->save($path . '/' . $fileName);
         $img->resize(146, 204)->save($path . '/thumb/' . $fileName);
 
         $output['status']             = 1;
@@ -101,7 +101,7 @@ class Helper
             $path = $storagePath;
 
             $mainFile->storeAs('public/', $fileName);
-            $img = Image::make($mainFile)->resize($reqWidth, $reqHeight)->save($path . '/requestImg/' . $fileName);
+            $img = Image::make($mainFile)->resize($reqWidth, $reqHeight)->save($path . '/' . $fileName);
             $img->resize(146, 204)->save($path . '/thumb/' . $fileName);
         } else {
             $mainFile->storeAs('public/files', $fileName);
@@ -192,7 +192,7 @@ class Helper
             //     $constraint->aspectRatio();
             //     $constraint->upsize();
             // });
-            // $img->save("{$uploadPath}/requestImg/{$fileName}");
+            // $img->save("{$uploadPath}/{$fileName}");
             $mainFile->storeAs('public/', $fileName);
             $img = Image::make($mainFile);
             if ($reqWidth !== null && $reqHeight !== null) {
@@ -200,7 +200,7 @@ class Helper
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 });
-                $img->save("{$uploadPath}/requestImg/{$fileName}");
+                $img->save("{$uploadPath}/{$fileName}");
             }
         } else {
             // Non-image file upload
@@ -293,7 +293,7 @@ class Helper
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 });
-                $img->save("{$uploadPath}/requestImg/{$fileName}");
+                $img->save("{$uploadPath}/{$fileName}");
             }
         } else {
             // Non-image file upload

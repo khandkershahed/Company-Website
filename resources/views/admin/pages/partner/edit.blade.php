@@ -249,7 +249,7 @@
                                         </div>
                                         <div class="col-lg-2 col-sm-12">
                                             <img class="img-fluid ronded-circle" id="showImage"
-                                                src="{{ asset('storage/requestImg/' . $partner->logo) }}" alt=""
+                                                src="{{ asset('storage/' . $partner->logo) }}" alt=""
                                                 style="width: 30px; height: 30px; border-radius: 50%;">
                                         </div>
                                     </div>

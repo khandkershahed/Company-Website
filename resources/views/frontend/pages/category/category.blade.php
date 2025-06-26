@@ -143,7 +143,7 @@
                                 style="border: 1px dotted rgb(179, 179, 179); margin: 0.15rem!important;">
                                 <div class="ag-offer_visible-item">
                                     <div class="ag-offer_img-box px-2">
-                                        <img src="{{ asset('storage/requestImg/' . $item->image) }}" class="ag-offer_img"
+                                        <img src="{{ asset('storage/' . $item->image) }}" class="ag-offer_img"
                                             alt="{{ $item->title }}"
                                             style="width:75px !important;height:75px !important;" />
                                     </div>
@@ -168,7 +168,7 @@
                                     style="border: 1px dotted rgb(179, 179, 179); margin: 0.15rem!important;">
                                     <div class="ag-offer_visible-item">
                                         <div class="ag-offer_img-box px-2">
-                                            <img src="{{ asset('storage/requestImg/' . $item->image) }}"
+                                            <img src="{{ asset('storage/' . $item->image) }}"
                                                 class="ag-offer_img" alt="{{ $item->title }}"
                                                 style="width:75px !important;height:75px !important;" />
                                         </div>

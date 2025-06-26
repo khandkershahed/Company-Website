@@ -100,7 +100,7 @@ class PortfolioCategoryController extends Controller
 
             if ($globalFunimage['status'] == 1) {
                 File::delete(public_path('storage/') . $portfolioCategory->image);
-                File::delete(public_path('storage/requestImg/') . $portfolioCategory->image);
+                File::delete(public_path('storage/') . $portfolioCategory->image);
                 File::delete(public_path('storage/thumb/') . $portfolioCategory->image);
             }
 
@@ -128,8 +128,8 @@ class PortfolioCategoryController extends Controller
         if (File::exists(public_path('storage/') . $portfolioCategory->image)) {
             File::delete(public_path('storage/') . $portfolioCategory->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $portfolioCategory->image)) {
-            File::delete(public_path('storage/requestImg/') . $portfolioCategory->image);
+        if (File::exists(public_path('storage/') . $portfolioCategory->image)) {
+            File::delete(public_path('storage/') . $portfolioCategory->image);
         }
         if (File::exists(public_path('storage/thumb/') . $portfolioCategory->image)) {
             File::delete(public_path('storage/thumb/') . $portfolioCategory->image);

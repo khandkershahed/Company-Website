@@ -165,7 +165,7 @@
                     <div class="box">
                         <div class="our-services settings">
                             <div class="icon d-flex justify-content-start"> <img
-                                    src="http://127.0.0.1:8000/storage/requestImg/uw4RfXgPS7tbv9xZ1674019792.png" alt=""> </div>
+                                    src="http://127.0.0.1:8000/storage/uw4RfXgPS7tbv9xZ1674019792.png" alt=""> </div>
                             <h4>Settings</h4>
                             <p class="pb-3">Find the hardware, software and IT services you need to be ready</p>
                             <div class="m-1">
@@ -178,7 +178,7 @@
                     <div class="box">
                         <div class="our-services settings">
                             <div class="icon d-flex justify-content-start"> <img
-                                    src="http://127.0.0.1:8000/storage/requestImg/uw4RfXgPS7tbv9xZ1674019792.png" alt=""> </div>
+                                    src="http://127.0.0.1:8000/storage/uw4RfXgPS7tbv9xZ1674019792.png" alt=""> </div>
                             <h4>Settings</h4>
                             <p class="pb-3">Find the hardware, software and IT services you need to be ready</p>
                             <div class="m-1">
@@ -191,7 +191,7 @@
                     <div class="box">
                         <div class="our-services settings">
                             <div class="icon d-flex justify-content-start"> <img
-                                    src="http://127.0.0.1:8000/storage/requestImg/uw4RfXgPS7tbv9xZ1674019792.png" alt=""> </div>
+                                    src="http://127.0.0.1:8000/storage/uw4RfXgPS7tbv9xZ1674019792.png" alt=""> </div>
                             <h4>Settings</h4>
                             <p class="pb-3">Find the hardware, software and IT services you need to be ready</p>
                             <div class="m-1">
@@ -204,7 +204,7 @@
                     <div class="box">
                         <div class="our-services settings">
                             <div class="icon d-flex justify-content-start"> <img
-                                    src="http://127.0.0.1:8000/storage/requestImg/uw4RfXgPS7tbv9xZ1674019792.png" alt=""> </div>
+                                    src="http://127.0.0.1:8000/storage/uw4RfXgPS7tbv9xZ1674019792.png" alt=""> </div>
                             <h4>Settings</h4>
                             <p class="pb-3">Find the hardware, software and IT services you need to be ready</p>
                             <div class="m-1">

@@ -202,7 +202,7 @@ class EmploymentController extends Controller
             if (!empty($uploadedImage)) {
                 $paths = [
                     storage_path("app/public/{$user->$file}"),
-                    storage_path("app/public/requestImg/{$user->$file}")
+                    storage_path("app/public/{$user->$file}")
                 ];
                 foreach ($paths as $path) {
                     if (File::exists($path)) {
@@ -317,7 +317,7 @@ class EmploymentController extends Controller
 
         $paths = [
             'storage/',
-            'storage/requestImg/',
+            'storage/',
         ];
 
         $files = [

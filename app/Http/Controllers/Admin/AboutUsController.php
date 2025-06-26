@@ -146,7 +146,7 @@ class AboutUsController extends Controller
                 $globalFunbanner_image = Helper::Upload($banner_image, $uploadPath);
                 $paths = [
                     storage_path("app/public/{$aboutUs->banner_image}"),
-                    storage_path("app/public/requestImg/{$aboutUs->banner_image}")
+                    storage_path("app/public/{$aboutUs->banner_image}")
                 ];
                 foreach ($paths as $path) {
                     if (File::exists($path)) {
@@ -161,7 +161,7 @@ class AboutUsController extends Controller
                 $globalFunceo_image = Helper::Upload($ceo_image, $uploadPath);
                 $paths = [
                     storage_path("app/public/{$aboutUs->ceo_image}"),
-                    storage_path("app/public/requestImg/{$aboutUs->ceo_image}")
+                    storage_path("app/public/{$aboutUs->ceo_image}")
                 ];
                 foreach ($paths as $path) {
                     if (File::exists($path)) {
@@ -215,14 +215,14 @@ class AboutUsController extends Controller
         if (File::exists(public_path('storage/') . $aboutUs->banner_image)) {
             File::delete(public_path('storage/') . $aboutUs->banner_image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $aboutUs->banner_image)) {
-            File::delete(public_path('storage/requestImg/') . $aboutUs->banner_image);
+        if (File::exists(public_path('storage/') . $aboutUs->banner_image)) {
+            File::delete(public_path('storage/') . $aboutUs->banner_image);
         }
         if (File::exists(public_path('storage/') . $aboutUs->ceo_image)) {
             File::delete(public_path('storage/') . $aboutUs->ceo_image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $aboutUs->ceo_image)) {
-            File::delete(public_path('storage/requestImg/') . $aboutUs->ceo_image);
+        if (File::exists(public_path('storage/') . $aboutUs->ceo_image)) {
+            File::delete(public_path('storage/') . $aboutUs->ceo_image);
         }
         $aboutUs->delete();
     }

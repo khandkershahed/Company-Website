@@ -187,8 +187,8 @@ class SolutionController extends Controller
         if (File::exists(public_path('storage/') . $solution->image)) {
             File::delete(public_path('storage/') . $solution->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $solution->image)) {
-            File::delete(public_path('storage/requestImg/') . $solution->image);
+        if (File::exists(public_path('storage/') . $solution->image)) {
+            File::delete(public_path('storage/') . $solution->image);
         }
         if (File::exists(public_path('storage/thumb/') . $solution->image)) {
             File::delete(public_path('storage/thumb/') . $solution->image);

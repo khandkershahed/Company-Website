@@ -309,7 +309,7 @@ class ProjectController extends Controller
                 $globalFunFile = Helper::customUpload($mainFile, $filePath);
                 $paths = [
                     storage_path("app/public/{$project->contact_agreement}"),
-                    storage_path("app/public/requestImg/{$project->contact_agreement}")
+                    storage_path("app/public/{$project->contact_agreement}")
                 ];
                 foreach ($paths as $path) {
                     if (File::exists($path)) {

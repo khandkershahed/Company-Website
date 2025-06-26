@@ -251,7 +251,7 @@ class PortfolioDetailController extends Controller
 
                     if ($$globalFunImage['status'] == 1) {
                         $imagePath = public_path('storage/' . $PortfolioDetails->$image);
-                        $requestImagePath = public_path('storage/requestImg/' . $PortfolioDetails->$image);
+                        $requestImagePath = public_path('storage/' . $PortfolioDetails->$image);
                         $thumbPath = public_path('storage/thumb/' . $PortfolioDetails->$image);
 
                         if (File::exists($imagePath)) {
@@ -334,8 +334,8 @@ class PortfolioDetailController extends Controller
             if (File::exists(public_path('storage/') . $image)) {
                 File::delete(public_path('storage/') . $image);
             }
-            if (File::exists(public_path('storage/requestImg/') . $image)) {
-                File::delete(public_path('storage/requestImg/') . $image);
+            if (File::exists(public_path('storage/') . $image)) {
+                File::delete(public_path('storage/') . $image);
             }
             if (File::exists(public_path('storage/thumb/') . $image)) {
                 File::delete(public_path('storage/thumb/') . $image);

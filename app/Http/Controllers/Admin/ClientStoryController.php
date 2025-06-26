@@ -181,7 +181,7 @@ class ClientStoryController extends Controller
                 if ($globalFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $story->image);
                     File::delete(public_path($uploadPath . '/thumb/') . $story->image);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $story->image);
+                    File::delete(public_path($uploadPath . '/') . $story->image);
                 }
 
                 $story->update([
@@ -225,8 +225,8 @@ class ClientStoryController extends Controller
         if (File::exists(public_path('storage/') . $story->image)) {
             File::delete(public_path('storage/') . $story->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $story->image)) {
-            File::delete(public_path('storage/requestImg/') . $story->image);
+        if (File::exists(public_path('storage/') . $story->image)) {
+            File::delete(public_path('storage/') . $story->image);
         }
         if (File::exists(public_path('storage/thumb/') . $story->image)) {
             File::delete(public_path('storage/thumb/') . $story->image);

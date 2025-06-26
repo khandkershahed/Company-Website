@@ -57,7 +57,7 @@
                                         <td class="text-center">{{ ++$key }}</td>
                                         <td>
                                             <img class="rounded-circle img-fluid"
-                                                src="{{ asset('storage/requestImg/' . $solutionCard->image) }}"
+                                                src="{{ asset('storage/' . $solutionCard->image) }}"
                                                 alt="" width="25" height="25">
                                         </td>
                                         <td>{{ $solutionCard->title }}</td>

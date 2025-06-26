@@ -58,7 +58,7 @@
                             <tr>
                                 <td>{{ ++$key }}</td>
                                 <td class="text-center"><img class="img-fluid rounded-circle"
-                                        src="{{ asset('storage/requestImg/' . $partner->logo) }}" height="25"
+                                        src="{{ asset('storage/' . $partner->logo) }}" height="25"
                                         width="25" alt=""></td>
                                 <td>{{ $partner->name }}</td>
                                 <td>{{ $partner->primary_email_address }}</td>

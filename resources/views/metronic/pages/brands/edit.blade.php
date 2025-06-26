@@ -55,7 +55,7 @@
                         <x-metronic.label for="logo" class="col-form-label fw-bold fs-6 ">{{ __('Logo') }}
                         </x-metronic.label>
 
-                        <x-metronic.file-input id="logo" name="logo" :source="asset('storage/requestImg/' . $brand->image)" :value="old('logo', $brand->logo)"></x-metronic.file-input>
+                        <x-metronic.file-input id="logo" name="logo" :source="asset('storage/' . $brand->image)" :value="old('logo', $brand->logo)"></x-metronic.file-input>
                     </div>
                     {{-- <div class="col-lg-4 mb-7">
                         <x-metronic.label for="image"

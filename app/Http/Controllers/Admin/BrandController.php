@@ -101,8 +101,8 @@ class BrandController extends Controller
                     if (File::exists(public_path('storage/') . $brand->image)) {
                         File::delete(public_path('storage/') . $brand->image);
                     }
-                    if (File::exists(public_path('storage/requestImg/') . $brand->image)) {
-                        File::delete(public_path('storage/requestImg/') . $brand->image);
+                    if (File::exists(public_path('storage/') . $brand->image)) {
+                        File::delete(public_path('storage/') . $brand->image);
                     }
                     if (File::exists(public_path('storage/thumb/') . $brand->image)) {
                         File::delete(public_path('storage/thumb/') . $brand->image);
@@ -135,8 +135,8 @@ class BrandController extends Controller
         if (File::exists(public_path('storage/') . $brand->image)) {
             File::delete(public_path('storage/') . $brand->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $brand->image)) {
-            File::delete(public_path('storage/requestImg/') . $brand->image);
+        if (File::exists(public_path('storage/') . $brand->image)) {
+            File::delete(public_path('storage/') . $brand->image);
         }
         if (File::exists(public_path('storage/thumb/') . $brand->image)) {
             File::delete(public_path('storage/thumb/') . $brand->image);

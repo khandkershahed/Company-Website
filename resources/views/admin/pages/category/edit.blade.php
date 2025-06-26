@@ -56,7 +56,7 @@
                                 <input type="file" name="image" class="form-control" id="image" accept="image/*"
                                     required />
                                 <div class="form-text">Accepts only png, jpg, jpeg images</div>
-                                <img src="{{ asset('storage/requestImg/' . $category->image) }}" height="80"
+                                <img src="{{ asset('storage/' . $category->image) }}" height="80"
                                     alt="">
                             </div>
                         </div>

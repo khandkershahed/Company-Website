@@ -58,7 +58,7 @@
                                                 placeholder="Enter Software Banner Image"
                                                 value="{{ $trainingPage->banner_image }}">
                                             <img class="px-1" id="showImage" height="30px" width="50px"
-                                                src="{{ asset('storage/requestImg/' . $trainingPage->banner_image) }}"
+                                                src="{{ asset('storage/' . $trainingPage->banner_image) }}"
                                                 alt="">
                                         </div>
                                     </div>
@@ -197,7 +197,7 @@
                                                 placeholder="Enter Background Image"
                                                 value="{{ $trainingPage->background_image }}">
                                             <img class="px-1" id="showImage" height="30px" width="50px"
-                                                src="{{ asset('storage/requestImg/' . $trainingPage->background_image) }}"
+                                                src="{{ asset('storage/' . $trainingPage->background_image) }}"
                                                 alt="">
                                         </div>
 

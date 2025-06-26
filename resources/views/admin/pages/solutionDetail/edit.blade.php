@@ -114,7 +114,7 @@
                                                 id="image" accept="image/*" type="file"
                                                 class="form-control form-control-sm" placeholder="Enter Banner Image">
                                             {{-- <img id="showImage" height="87px" width="157px"
-                                                src="{{ asset('storage/requestImg/' . $solutionDetail->banner_image) }}"
+                                                src="{{ asset('storage/' . $solutionDetail->banner_image) }}"
                                                 alt=""> --}}
                                         </div>
                                     </div>

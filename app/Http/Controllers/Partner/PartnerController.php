@@ -225,7 +225,7 @@ class PartnerController extends Controller
             foreach ($images as $image) {
                 if (!empty($partner->$image)) {
                     $deleteMainImagePath = storage_path('app/public/' . $partner->$image);
-                    $deleteImagePath = storage_path('app/public/requestImg/' . $partner->$image);
+                    $deleteImagePath = storage_path('app/public/' . $partner->$image);
                     $imagePath = storage_path('app/public/thumb/' . $partner->$image);
 
                     foreach ([$deleteMainImagePath, $deleteImagePath, $imagePath] as $filePath) {
@@ -297,7 +297,7 @@ class PartnerController extends Controller
 
         $files = [
             public_path('storage/'),
-            public_path('storage/requestImg/'),
+            public_path('storage/'),
             public_path('storage/thumb/')
         ];
 

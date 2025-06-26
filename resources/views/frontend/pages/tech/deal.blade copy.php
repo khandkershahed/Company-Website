@@ -675,7 +675,7 @@
                     <!-- image -->
                     <div class="tech_deals_thumbnail">
                         <a href="{{route('brand.html',$item->slug)}}">
-                            <img src="{{asset('storage/requestImg/'.$item->image)}}" alt="{{$item->title}}">
+                            <img src="{{asset('storage/'.$item->image)}}" alt="{{$item->title}}">
                         </a>
                     </div>
                 </div>
@@ -701,7 +701,7 @@
 
         @foreach ($categories as $item)
             <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 p-4">
-                <img class="img-fluid mb-4" src="{{asset('storage/requestImg/'.$item->image)}}" alt="{{$item->title}}">
+                <img class="img-fluid mb-4" src="{{asset('storage/'.$item->image)}}" alt="{{$item->title}}">
                 <div class="common_product_item_text">
                     <a href="{{route('category.html',$item->slug)}}">{{$item->title}}</a>
                 </div>

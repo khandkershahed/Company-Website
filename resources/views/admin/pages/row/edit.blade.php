@@ -240,7 +240,7 @@
                                                                 <div class="form-text">Accepts only png, jpg, jpeg images
                                                                 </div>
                                                                 <img id="showImage" height="100px" width="100px"
-                                                                    src="{{ asset('storage/requestImg/' . $row->image) }}"
+                                                                    src="{{ asset('storage/' . $row->image) }}"
                                                                     alt="">
                                                             </div>
                                                         </div>

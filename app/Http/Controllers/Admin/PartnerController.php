@@ -183,7 +183,7 @@ class PartnerController extends Controller
                 if ($globalFunImg['status'] == 1) {
                     File::delete(public_path($uploadPath . '/') . $partner->logo);
                     File::delete(public_path($uploadPath . '/thumb/') . $partner->logo);
-                    File::delete(public_path($uploadPath . '/requestImg/') . $partner->logo);
+                    File::delete(public_path($uploadPath . '/') . $partner->logo);
                 }
                 $partner->update([
                     'name'                  => $request->name,
@@ -232,8 +232,8 @@ class PartnerController extends Controller
         if (File::exists(public_path('storage/') . $partner->logo)) {
             File::delete(public_path('storage/') . $partner->logo);
         }
-        if (File::exists(public_path('storage/requestImg/') . $partner->logo)) {
-            File::delete(public_path('storage/requestImg/') . $partner->logo);
+        if (File::exists(public_path('storage/') . $partner->logo)) {
+            File::delete(public_path('storage/') . $partner->logo);
         }
         if (File::exists(public_path('storage/thumb/') . $partner->logo)) {
             File::delete(public_path('storage/thumb/') . $partner->logo);

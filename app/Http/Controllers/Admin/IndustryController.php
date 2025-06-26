@@ -148,12 +148,12 @@ class IndustryController extends Controller
 
             if ($globalFunImgLogo['status'] == 1) {
                 File::delete(public_path('storage/') . $industry->logo);
-                File::delete(public_path('storage/requestImg/') . $industry->logo);
+                File::delete(public_path('storage/') . $industry->logo);
                 File::delete(public_path('storage/thumb/') . $industry->logo);
             }
             if ($globalFunImage['status'] == 1) {
                 File::delete(public_path('storage/') . $industry->image);
-                File::delete(public_path('storage/requestImg/') . $industry->image);
+                File::delete(public_path('storage/') . $industry->image);
                 File::delete(public_path('storage/thumb/') . $industry->image);
             }
 
@@ -186,8 +186,8 @@ class IndustryController extends Controller
         if (File::exists(public_path('storage/') . $industry->logo)) {
             File::delete(public_path('storage/') . $industry->logo);
         }
-        if (File::exists(public_path('storage/requestImg/') . $industry->logo)) {
-            File::delete(public_path('storage/requestImg/') . $industry->logo);
+        if (File::exists(public_path('storage/') . $industry->logo)) {
+            File::delete(public_path('storage/') . $industry->logo);
         }
         if (File::exists(public_path('storage/thumb/') . $industry->logo)) {
             File::delete(public_path('storage/thumb/') . $industry->logo);
@@ -197,8 +197,8 @@ class IndustryController extends Controller
         if (File::exists(public_path('storage/') . $industry->image)) {
             File::delete(public_path('storage/') . $industry->image);
         }
-        if (File::exists(public_path('storage/requestImg/') . $industry->image)) {
-            File::delete(public_path('storage/requestImg/') . $industry->image);
+        if (File::exists(public_path('storage/') . $industry->image)) {
+            File::delete(public_path('storage/') . $industry->image);
         }
         if (File::exists(public_path('storage/thumb/') . $industry->image)) {
             File::delete(public_path('storage/thumb/') . $industry->image);

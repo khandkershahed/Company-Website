@@ -101,7 +101,7 @@
                                                 </div>
                                                 <div class="col-sm-1">
                                                     <img class="ms-2" id="showImage1" height="30px" width="30px"
-                                                        src="{{ asset('storage/requestImg/' . $brandPage->brand_logo) }}"
+                                                        src="{{ asset('storage/' . $brandPage->brand_logo) }}"
                                                         alt="">
                                                 </div>
                                             </div>
@@ -116,7 +116,7 @@
                                                 </div>
                                                 <div class="col-sm-1">
                                                     <img class="ms-2" id="showImage" height="30px" width="30px"
-                                                        src="{{ asset('storage/requestImg/' . $brandPage->banner_image) }}"
+                                                        src="{{ asset('storage/' . $brandPage->banner_image) }}"
                                                         alt="">
                                                 </div>
                                             </div>
@@ -269,7 +269,7 @@
                                                 </div>
                                                 <div class="col-sm-1">
                                                     <img class="ms-2" id="showImage2" height="30px" width="30px"
-                                                        src="{{ asset('storage/requestImg/' . $brandPage->row_six_image) }}"
+                                                        src="{{ asset('storage/' . $brandPage->row_six_image) }}"
                                                         alt="">
                                                 </div>
                                             </div>
