@@ -398,8 +398,8 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/products/{slug}', 'productDetails')->name('product.details');
     Route::get('/brand/{slug}', 'overview')->name('brand.overview');
     Route::get('/{slug}/products', 'brandProducts')->name('brand.products');
-    Route::get('/{slug}/pdfs', 'brandPdf')->name('brand.pdfs');
-    Route::get('/{slug}/contents', 'content')->name('brand.content');
+    Route::get('/{slug}/pdfs', 'brandPdf')->name('brand.pdf');
+    Route::get('/{slug}/contents', 'brandContents')->name('brand.content');
     Route::get('/{slug}/products/paginate', 'ajaxBrandProductsPagination')->name('brand.products.paginate');
 });
 

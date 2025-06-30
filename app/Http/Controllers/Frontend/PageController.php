@@ -204,7 +204,7 @@ class PageController extends Controller
     }
 
 
-    public function content($id)
+    public function brandContents($id)
     {
         $data['brand'] = Brand::where('slug', $id)->where('status', '!=', 'inactive')->select('id', 'slug', 'title', 'image')->first();
         $data['brandpage'] = BrandPage::where('brand_id', $data['brand']->id)->first(['id', 'banner_image', 'brand_logo', 'header']);
