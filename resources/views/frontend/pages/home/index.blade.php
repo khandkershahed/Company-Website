@@ -331,7 +331,7 @@
                                             <p>{{ Str::words($story->header, 10) }}</p>
                                             <h5 class="download-hover-btn">
                                                 <a class="text-white"
-                                                    href="{{ route('story.details', $story->id) }}">Read Story
+                                                    href="{{ route('story.details', $story->slug) }}">Read Story
                                                     <i class="fa-solid fa-chevron-right" style="font-size: 12px;"></i>
                                                 </a>
                                             </h5>
@@ -374,7 +374,7 @@
                                             <p>{{ Str::words($story->header, 10) }}</p>
                                             <h5 class="download-hover-btn">
                                                 <a class="text-white"
-                                                    href="{{ route('story.details', $story->id) }}">Read Story
+                                                    href="{{ route('story.details', $story->slug) }}">Read Story
                                                     <i class="fa-solid fa-chevron-right" style="font-size: 12px;"></i>
                                                 </a>
                                             </h5>

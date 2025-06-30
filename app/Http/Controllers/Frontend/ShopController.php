@@ -648,7 +648,7 @@ class ShopController extends Controller
 
 
 
-    public function Shop()
+    public function shop()
     {
 
         $products = Product::query()->where('product_status', 'product');
@@ -739,7 +739,7 @@ class ShopController extends Controller
 
 
 
-    public function ShopFilter(Request $request)
+    public function shopFilter(Request $request)
     {
 
 

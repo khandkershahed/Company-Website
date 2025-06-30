@@ -419,14 +419,14 @@ class HomeController extends Controller
 
 
     //Feature Details
-    public function FeatureDetails($slug)
+    public function featureDetails($slug)
     {
         $data['learnmore'] = LearnMore::orderBy('id', 'DESC')->select('learn_mores.industry_header', 'learn_mores.consult_title', 'learn_mores.consult_short_des', 'learn_mores.background_image')->firstOrFail();
         $data['feature'] = Feature::with(['rowOne', 'rowTwo'])->where('slug', $slug)->firstOrFail();
         $data['row_one'] = $data['feature']->rowOne;
         $data['row_two'] = $data['feature']->rowTwo;
         $data['features'] = Feature::with('rowOne', 'rowTwo')
-            ->where('slug', '!=', $slug)->select('logo', 'id', 'badge', 'header')->get();
+            ->where('slug', '!=', $slug)->select('logo', 'id', 'slug', 'badge', 'header')->get();
         return view('frontend.pages.feature.feature_details', $data);
     }
 

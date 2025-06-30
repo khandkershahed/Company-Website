@@ -279,13 +279,13 @@ Route::get('/newsletter', [NewsletterController::class, 'newsletter']);
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 
 // Features
-Route::get('/features/{slug}', [HomeController::class, 'FeatureDetails'])->name('feature.details');
+Route::get('/features/{slug}', [HomeController::class, 'featureDetails'])->name('feature.details');
 
 // Shop
 Route::prefix('shop')->group(function () {
     Route::get('/', [ShopController::class, 'mainShop'])->name('shop');
     Route::get('/custom', [ShopController::class, 'customProduct'])->name('shop.custom');
-    Route::match(['get', 'post'], '/filter', [ShopController::class, 'ShopFilter'])->name('shop.filter');
+    Route::match(['get', 'post'], '/filter', [ShopController::class, 'shopFilter'])->name('shop.filter');
     Route::match(['get', 'post'], '/filter-page', [ShopController::class, 'getShopProducts'])->name('shop.filter.partial');
     Route::match(['get', 'post'], '/custom/{slug}', [ShopController::class, 'CustomProductFilter'])->name('custom.product');
     Route::post('/brand-search', [ShopController::class, 'brandSearch'])->name('brand.search');
