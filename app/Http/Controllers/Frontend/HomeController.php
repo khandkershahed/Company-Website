@@ -139,21 +139,7 @@ class HomeController extends Controller
     public function index()
     {
         // Load the latest homepage with all relationships eager-loaded
-        $data['home'] = Homepage::with([
-            'feature1',
-            'feature2',
-            'feature3',
-            'feature4',
-            'feature5',
-            'success1',
-            'success2',
-            'success3',
-            'story1',
-            'story2',
-            'story3',
-            'story4',
-            'techglossy'
-        ])->latest('id')->first();
+        $data['home'] = Homepage::with(['feature1', 'feature2', 'feature3', 'feature4', 'feature5', 'success1', 'success2', 'success3', 'story1', 'story2', 'story3', 'story4', 'techglossy'])->latest('id')->first();
 
         // Prepare the features, stories, and successItems arrays directly from the loaded homepage
         $data['features'] = [
@@ -450,11 +436,11 @@ class HomeController extends Controller
     //Feature Details
     public function SolutionDetails($id)
     {
-        $data['solution'] = SolutionDetail::with('rowOne','solutionProducts', 'card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'card7', 'card8', 'rowFour')->where('slug', $id)->firstOrFail();
+        $data['solution'] = SolutionDetail::with('rowOne', 'solutionProducts', 'card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'card7', 'card8', 'rowFour')->where('slug', $id)->firstOrFail();
         $data['solutions'] = SolutionDetail::where('id', '!=', $id)->where('status', 'active')->get();
         $solution_id = json_encode($data['solution']->id);
         $data['products'] = $data['solution']->solutionProducts;
-        $data['features'] = Feature::whereJsonContains('solution_id' , $solution_id)->get();
+        $data['features'] = Feature::whereJsonContains('solution_id', $solution_id)->get();
         $data['blogs'] = Blog::whereJsonContains('solution_id', $solution_id)->get();
         // dd(json_encode($data['solution']->id));
         // dd($data['blogs'] );
@@ -462,11 +448,11 @@ class HomeController extends Controller
         // dd($data['solution']);
         if ($data['solution']->solution_template == 'template_one') {
             return view('frontend.pages.solution.solution_details-1', $data);
-        }elseif ($data['solution']->solution_template == 'template_two') {
+        } elseif ($data['solution']->solution_template == 'template_two') {
             return view('frontend.pages.solution.solution_details-2', $data);
-        }elseif ($data['solution']->solution_template == 'template_three') {
+        } elseif ($data['solution']->solution_template == 'template_three') {
             return view('frontend.pages.solution.solution_details-3', $data);
-        }elseif ($data['solution']->solution_template == 'template_four') {
+        } elseif ($data['solution']->solution_template == 'template_four') {
             return view('frontend.pages.solution.solution_details-4', $data);
         }
     }
