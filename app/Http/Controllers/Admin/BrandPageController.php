@@ -71,18 +71,18 @@ class BrandPageController extends Controller
             $brand_logo = $request->brand_logo;
             $uploadPath = storage_path('app/public/');
             if (isset($banner_image)) {
-                $globalFunImgBanner = Helper::singleImageUpload($banner_image, $uploadPath, 1920, 1080);
+                $globalFunImgBanner = Helper::singleImageUpload($banner_image, $uploadPath);
             } else {
                 $globalFunImgBanner = ['status' => 0];
             }
 
             if (isset($rowSixImage)) {
-                $rowSixImage = Helper::singleImageUpload($rowSixImage, $uploadPath, 1800, 625);
+                $rowSixImage = Helper::singleImageUpload($rowSixImage, $uploadPath);
             } else {
                 $rowSixImage = ['status' => 0];
             }
             if (isset($brand_logo)) {
-                $brand_logo = Helper::singleImageUpload($brand_logo, $uploadPath, 220, 100);
+                $brand_logo = Helper::singleImageUpload($brand_logo, $uploadPath);
             } else {
                 $brand_logo = ['status' => 0];
             }
@@ -163,18 +163,18 @@ class BrandPageController extends Controller
             $brand_logo = $request->brand_logo;
             $uploadPath    = storage_path('app/public/');
             if (isset($banner_image)) {
-                $globalFunImgimage_banner_image = Helper::singleImageUpload($banner_image, $uploadPath, 1800, 625);
+                $globalFunImgimage_banner_image = Helper::singleImageUpload($banner_image, $uploadPath);
             } else {
                 $globalFunImgimage_banner_image = ['status' => 0];
             }
 
             if (isset($row_six_image)) {
-                $globalFunrow_six_image = Helper::singleImageUpload($row_six_image, $uploadPath, 1920, 1080);
+                $globalFunrow_six_image = Helper::singleImageUpload($row_six_image, $uploadPath);
             } else {
                 $globalFunrow_six_image = ['status' => 0];
             }
             if (isset($brand_logo)) {
-                $globalFunbrand_logo = Helper::singleImageUpload($brand_logo, $uploadPath, 220, 100);
+                $globalFunbrand_logo = Helper::singleImageUpload($brand_logo, $uploadPath);
             } else {
                 $globalFunbrand_logo = ['status' => 0];
             }
