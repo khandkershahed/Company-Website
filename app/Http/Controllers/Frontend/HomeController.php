@@ -980,9 +980,17 @@ class HomeController extends Controller
     }
     public function faq()
     {
-        $data['faq_categorys'] = Faq::select('category')->distinct()->get();
+        $faqs = Faq::select('category', 'id', 'question', 'answer')
+            ->orderBy('category')
+            ->get()
+            ->groupBy('category'); // Group in PHP, reduce queries
+
+        $data['faq_categories'] = $faqs->keys();
+        $data['faqs_by_category'] = $faqs;
+
         return view('frontend.pages.policy.faq', $data);
     }
+
 
 
     public function Portfolio()
