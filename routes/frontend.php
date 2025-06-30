@@ -233,7 +233,7 @@ use App\Http\Controllers\Payment\StripeController;
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
 
 // Learn More
-Route::get('/learn-more', [HomeController::class, 'LearnMore'])->name('learn.more');
+Route::get('/learn-more', [HomeController::class, 'learnMore'])->name('learn.more');
 
 // What We Do
 Route::get('/what-we-do', [HomeController::class, 'whatWeDo'])->name('whatwedo');

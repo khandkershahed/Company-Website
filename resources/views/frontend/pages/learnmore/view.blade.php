@@ -291,7 +291,7 @@
                         @foreach ($industrys as $industry)
                             <div class="col-lg-3 col-sm-6 p-1">
                                 <div class="we_serve_item">
-                                    <a href="{{ isset($industry->slug) ? route('industry.details', ['id' => $industry->slug]) : '' }}">
+                                    <a href="{{ isset($industry->slug) ? route('industry.details', ['slug' => $industry->slug]) : '' }}">
                                         <div class="we_serve_item_image">
                                             <img class="img-fluid"
                                             src="{{ !empty($industry->logo) && file_exists(public_path('storage/' . $industry->logo)) ? asset('storage/' . $industry->logo) : asset('frontend/images/no-industy-img.png') }}"
@@ -315,7 +315,7 @@
                     @if ($random_industries)
                         @foreach ($random_industries as $random_industry)
                             <div class="pt-2">
-                                <a href="{{ isset($random_industry->slug) ? route('industry.details', ['id' => $random_industry->slug]) : '' }}">
+                                <a href="{{ isset($random_industry->slug) ? route('industry.details', ['slug' => $random_industry->slug]) : '' }}">
                                     <div id="fed-bg">
                                         <div class="p-2">
                                             <h5 class="text-white brand_side_text">{{ $random_industry->title }} ›</h5>

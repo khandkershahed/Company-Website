@@ -101,7 +101,7 @@
                         @if ($key >= 4) style="display: none;" @endif>
                         <div class="container-area-brand">
                             <div class="content-brand">
-                                <a href="{{ isset($item->slug) ? route('solution.details', ['id' => $item->slug]) : '' }}">
+                                <a href="{{ isset($item->slug) ? route('solution.details', ['slug' => $item->slug]) : '' }}">
                                     <div class="content-overlay-brand"></div>
                                     <div>
                                         <img class="content-image"
@@ -123,7 +123,7 @@
                                         </div>
                                         <div class="description-footer-brand inline-center text-white">
                                             <hr class="p-1 pt-1 m-0 text-white">
-                                            <a href="{{ isset($item->slug) ? route('solution.details', ['id' => $item->slug]) : '' }}"
+                                            <a href="{{ isset($item->slug) ? route('solution.details', ['slug' => $item->slug]) : '' }}"
                                                 class="link text-white"><i class="fa fa-plus-circle me-2"></i>More
                                                 information</a>
                                         </div>
@@ -538,7 +538,7 @@
                 @if ($industrys)
                     @foreach ($industrys as $industry)
                         <div class="col-lg-3 col-6">
-                            <a href="{{ isset($industry->slug) ? route('industry.details', ['id' => $industry->slug]) : '' }}"
+                            <a href="{{ isset($industry->slug) ? route('industry.details', ['slug' => $industry->slug]) : '' }}"
                                 class="we_serve_item mb-4">
                                 <div class="we_serve_item_image">
                                     <img src="{{ asset('storage/' . $industry->logo) }}" alt="">
@@ -559,7 +559,7 @@
                     @foreach ($random_industries as $random_industry)
                         <div class="pt-2">
                             <a
-                                href="{{ isset($random_industry->slug) ? route('industry.details', ['id' => $random_industry->slug]) : '' }}">
+                                href="{{ isset($random_industry->slug) ? route('industry.details', ['slug' => $random_industry->slug]) : '' }}">
                                 <div id="fed-bg">
                                     <div class="p-2">
                                         <h5 class="text-white brand_side_text">{{ $random_industry->title }} ›</h5>
