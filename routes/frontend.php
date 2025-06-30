@@ -236,7 +236,7 @@ Route::get('/', [HomeController::class, 'index'])->name('homepage');
 Route::get('/learn-more', [HomeController::class, 'LearnMore'])->name('learn.more');
 
 // What We Do
-Route::get('/what-we-do', [HomeController::class, 'whatWeDo'])->name('what.we.do');
+Route::get('/what-we-do', [HomeController::class, 'whatWeDo'])->name('whatwedo');
 
 // Software
 Route::prefix('software')->group(function () {
@@ -258,21 +258,21 @@ Route::get('/books', [HomeController::class, 'books'])->name('books');
 
 // Industries
 Route::prefix('industries')->group(function () {
-    Route::get('/', [HomeController::class, 'AllIndustry'])->name('industries.index');
-    Route::get('/{slug}', [HomeController::class, 'IndustryDetails'])->name('industries.show');
+    Route::get('/', [HomeController::class, 'AllIndustry'])->name('all.industry');
+    Route::get('/{slug}', [HomeController::class, 'IndustryDetails'])->name('industry.details');
 });
 
 // Solutions
 Route::prefix('solutions')->group(function () {
-    Route::get('/', [HomeController::class, 'allSolution'])->name('solutions.index');
-    Route::get('/{slug}', [HomeController::class, 'SolutionDetails'])->name('solutions.show');
+    Route::get('/', [HomeController::class, 'allSolution'])->name('all.solution');
+    Route::get('/{slug}', [HomeController::class, 'SolutionDetails'])->name('solution.details');
 });
 
 // Contact & Support
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/location', [HomeController::class, 'location'])->name('location');
-Route::get('/support', [HomeController::class, 'Support'])->name('support');
+Route::get('/support', [HomeController::class, 'Support'])->name('client.support');
 
 // Newsletter
 Route::get('/newsletter', [NewsletterController::class, 'newsletter']);
@@ -348,7 +348,7 @@ Route::get('/portfolio/{slug}', [HomeController::class, 'portfolioDetails'])->na
 Route::get('/rfq', [HomeController::class, 'rfqCreate'])->name('rfq');
 Route::post('/rfq', [RFQController::class, 'store'])->name('rfq.store');
 Route::get('/rfq/{slug}/success', [HomeController::class, 'rfqSuccess'])->name('rfq.success');
-
+Route::post('rfq/store', [RFQController::class, 'store'])->name('rfq.add');
 // Work Order & Payment Upload
 Route::put('/upload/work-order/{id}', [RFQController::class, 'workOrderUpload'])->name('work-order.upload');
 Route::put('/upload/payment-proof/{id}', [RFQController::class, 'proofPaymentUpload'])->name('payment-proof.upload');

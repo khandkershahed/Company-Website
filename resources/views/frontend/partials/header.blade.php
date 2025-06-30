@@ -375,7 +375,7 @@
                                                                 @foreach ($header_solutions as $header_solution)
                                                                     <div class="col-lg-12 mb-2">
                                                                         <a class="d-flex align-items-center pb-2"
-                                                                            href="{{ !empty($header_solution->slug) ? route('solution.details', ['id' => $header_solution->slug]) : '' }}">
+                                                                            href="{{ !empty($header_solution->slug) ? route('solution.details', ['slug' => $header_solution->slug]) : '' }}">
                                                                             <div>{{ $header_solution->name }}</div>
                                                                             <div>
                                                                                 <i
@@ -1072,7 +1072,7 @@
                                             @foreach ($header_solutions as $header_solution)
                                                 <div class="col-lg-12 mb-2">
                                                     <a class="d-flex align-items-center pb-2"
-                                                        href="{{ !empty($header_solution->slug) ? route('solution.details', ['id' => $header_solution->slug]) : '' }}">
+                                                        href="{{ !empty($header_solution->slug) ? route('solution.details', ['slug' => $header_solution->slug]) : '' }}">
                                                         <div>{{ $header_solution->name }}</div>
                                                         <div>
                                                             <i class="ph ph-caret-right menu_icons"></i>

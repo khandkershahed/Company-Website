@@ -52,7 +52,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('contact') }}">Contact</a> & <a
-                                    href="{{ route('support') }}">Supports</a>
+                                    href="{{ route('client.support') }}">Supports</a>
                             </li>
                         </ul>
                     </div>
@@ -100,7 +100,7 @@
                             </li>
                             {{-- <li>
                                 <a href="{{ route('contact') }}">Support</a> & <a
-                                    href="{{ route('support') }}">Services</a>
+                                    href="{{ route('client.support') }}">Services</a>
                             </li> --}}
                         </ul>
                     </div>
