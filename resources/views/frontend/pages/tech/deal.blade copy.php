@@ -703,7 +703,7 @@
             <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 p-4">
                 <img class="img-fluid mb-4" src="{{asset('storage/'.$item->image)}}" alt="{{$item->title}}">
                 <div class="common_product_item_text">
-                    <a href="{{route('category.html',$item->slug)}}">{{$item->title}}</a>
+                    <a href="{{route('category.details',$item->slug)}}">{{$item->title}}</a>
                 </div>
             </div>
         @endforeach

@@ -71,17 +71,17 @@
                             <h5 class="pb-2 fw-bold border-bottom">Categorys</h5>
                             @foreach ($categorys as $category)
                                 <h6><a class="search_titles"
-                                        href="{{ route('category.html', $category->slug) }}">{{ $category->title }}</a>
+                                        href="{{ route('category.details', $category->slug) }}">{{ $category->title }}</a>
                                 </h6>
                             @endforeach
                             @foreach ($subcategorys as $subcategory)
                                 <h6><a class="search_titles"
-                                        href="{{ route('category.html', $subcategory->slug) }}">{{ $subcategory->title }}</a>
+                                        href="{{ route('category.details', $subcategory->slug) }}">{{ $subcategory->title }}</a>
                                 </h6>
                             @endforeach
                             @foreach ($subsubcategorys as $subsubcategory)
                                 <h6><a class="search_titles"
-                                        href="{{ route('category.html', $subsubcategory->slug) }}">{{ $subsubcategory->title }}</a>
+                                        href="{{ route('category.details', $subsubcategory->slug) }}">{{ $subsubcategory->title }}</a>
                                 </h6>
                             @endforeach
                         </div>

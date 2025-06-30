@@ -70,7 +70,7 @@
                         <span>></span>
                     </li>
 
-                    <a href="{{ route('category.html', $cat_title->slug) }}">
+                    <a href="{{ route('category.details', $cat_title->slug) }}">
                         <li class="breadcrumb__item ">
                             <span class="breadcrumb__inner">
                                 <span class="breadcrumb__title">{{ $cat_title->title }}</span>
@@ -93,7 +93,7 @@
                         <span>></span>
                     </li>
 
-                    <a href="{{ route('category.html', $cat_title->slug) }}">
+                    <a href="{{ route('category.details', $cat_title->slug) }}">
                         <li class="breadcrumb__item">
                             <span class="breadcrumb__inner">
                                 <span class="breadcrumb__title">{{ $cat_title->title }}</span>
@@ -104,7 +104,7 @@
                         <span>></span>
                     </li>
 
-                    <a href="{{ route('category.html', $sub_cat_title->slug) }}">
+                    <a href="{{ route('category.details', $sub_cat_title->slug) }}">
                         <li class="breadcrumb__item">
                             <span class="breadcrumb__inner">
                                 <span class="breadcrumb__title">{{ $sub_cat_title->title }}</span>
@@ -153,7 +153,7 @@
                                 </div>
                                 <div class="ag-offer_hidden-item">
                                     <div class="mx-auto">
-                                        <a href="{{ route('category.html', $item->slug) }}" class="btn-color">
+                                        <a href="{{ route('category.details', $item->slug) }}" class="btn-color">
                                             Details
                                         </a>
                                     </div>
@@ -178,7 +178,7 @@
                                     </div>
                                     <div class="ag-offer_hidden-item">
                                         <div class="mx-auto">
-                                            <a href="{{ route('category.html', $item->slug) }}" class="btn-color">
+                                            <a href="{{ route('category.details', $item->slug) }}" class="btn-color">
                                                 Details
                                             </a>
                                         </div>

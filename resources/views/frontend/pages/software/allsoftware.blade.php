@@ -695,7 +695,7 @@
                                     @endforeach
                                     <div class="px-4 mt-2 col-lg-12 col-md-12 col-sm-12 text-end"
                                         style="padding-top: 1rem; color: #ae0a46;">
-                                        <a class="text-site" href="{{ route('category.html', $category->slug) }}">See
+                                        <a class="text-site" href="{{ route('category.details', $category->slug) }}">See
                                             More <i class="fa-solid fa-arrow-right"></i></a>
                                     </div>
                                 </div>

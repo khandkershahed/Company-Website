@@ -52,7 +52,7 @@
                             </li>
                             <li>
                                 <a href="{{ route('contact') }}">Contact</a> & <a
-                                    href="{{ route('website.support') }}">Supports</a>
+                                    href="{{ route('support') }}">Supports</a>
                             </li>
                         </ul>
                     </div>

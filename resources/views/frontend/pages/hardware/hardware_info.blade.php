@@ -160,7 +160,7 @@
                                 @if (!empty($categories))
                                     @foreach ($categories as $category)
                                         <div class="col-lg-3 col-6 mb-4">
-                                            <a href="{{ route('category.html', $category->slug) }}"
+                                            <a href="{{ route('category.details', $category->slug) }}"
                                                 style="cursor: pointer;">
                                                 <div class="p-lg-4 p-4 shadow-sm bg-white">
                                                     <div class="d-lg-flex align-items-center">
@@ -174,7 +174,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="text_area text-end d-lg-block d-sm-none">
-                                                        <a href="{{ route('category.html', $category->slug) }}"><i
+                                                        <a href="{{ route('category.details', $category->slug) }}"><i
                                                                 class="fa-solid fa-plus"></i></a>
                                                     </div>
                                                 </div>
@@ -337,7 +337,7 @@
                                     @endforeach
                                     <div class="col-lg-12 col-md-12 col-sm-12 text-end mt-2 px-4"
                                         style="padding-top: 1rem; color: #ae0a46;">
-                                        <a class="text-site" href="{{ route('category.html', $category->slug) }}">See
+                                        <a class="text-site" href="{{ route('category.details', $category->slug) }}">See
                                             More <i class="fa-solid fa-arrow-right"></i></a>
                                     </div>
                                 </div>

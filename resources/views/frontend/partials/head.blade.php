@@ -46,7 +46,7 @@
         content="NGEN IT Ltd. is a System Integration, Software & Hardware based License Provider & Software development based company established in 2008. Our technical expertise, broad solutions portfolio, and supply chain capabilities give us the right resources and scale to achieve more for you. Cloud Services.">
     <meta name="twitter:image"
         content="{{ !empty($brandpage->banner_image) && file_exists(public_path('storage/' . $brandpage->banner_image)) ? url('social-image/' . $brandpage->banner_image) : asset('frontend/images/no-banner(1920-330).png') }}">
-    <meta name="twitter:site" content="@YourTwitterHandle"> <!-- Replace with your Twitter handle if available -->
+    <meta name="twitter:site" content=""> <!-- Replace with your Twitter handle if available -->
     <meta name="keywords"
         content="software, hardware, training, books, license, Microsoft, Adobe, Software License, Acronis, Veeam, Industry, Solution, Health Industry, Financial Industry">
     <meta name="robots" content="index, follow">

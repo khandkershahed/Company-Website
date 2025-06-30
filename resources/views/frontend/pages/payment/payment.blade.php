@@ -94,7 +94,7 @@
                         <p class="m-0">Select a Payment Option to Continue with Your Order</p><br>
                         <p class="m-0 mb-3">For Further Queries,
                             Please Contact with
-                            <a href="{{ route('website.support') }}">Our Support Team</a>
+                            <a href="{{ route('support') }}">Our Support Team</a>
                         </p>
                     </div>
                     <div class="col-lg-1"></div>

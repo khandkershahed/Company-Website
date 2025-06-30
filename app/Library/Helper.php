@@ -434,4 +434,24 @@ class Helper
     //         'check_out' => end($attendance)
     //     ];
     // }
+
+    public static function slug($string, $model, $column = 'slug')
+    {
+        // Convert to lowercase and sanitize
+        $slug = strtolower($string);
+        $slug = preg_replace('/[^a-z0-9\s-]/', '', $slug); // Remove special characters
+        $slug = preg_replace('/\s+/', '-', $slug);         // Replace spaces with hyphens
+        $slug = preg_replace('/-+/', '-', $slug);          // Remove multiple hyphens
+        $slug = trim($slug, '-');
+
+        // Check for uniqueness
+        $originalSlug = $slug;
+        $count = 1;
+
+        while ($model::where($column, $slug)->exists()) {
+            $slug = $originalSlug . '-' . $count++;
+        }
+
+        return $slug;
+    }
 }

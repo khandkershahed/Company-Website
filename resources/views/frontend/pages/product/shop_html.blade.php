@@ -187,7 +187,7 @@
                                     @if ($all_categories)
                                         @foreach ($all_categories as $item)
                                             <div class="col-md-3 col-sm-6 my-4 mb-2">
-                                                <a href="{{ route('category.html', $item->slug) }}">
+                                                <a href="{{ route('category.details', $item->slug) }}">
                                                     <div class="serviceBox">
                                                         <div class="service-icon">
                                                             <img class="img-fluid"
@@ -210,7 +210,7 @@
                                     @if ($software_categories)
                                         @foreach ($software_categories as $item)
                                             <div class="col-md-3 col-sm-6 my-4 mb-2">
-                                                <a href="{{ route('category.html', $item->slug) }}">
+                                                <a href="{{ route('category.details', $item->slug) }}">
                                                     <div class="serviceBox">
                                                         <div class="service-icon">
                                                             <img class="img-fluid"
@@ -236,7 +236,7 @@
                                                 @if ($hardware_categories)
                                                     @foreach ($hardware_categories as $item)
                                                         <div class="col-md-3 col-sm-6 my-4 mb-2">
-                                                            <a href="{{ route('category.html', $item->slug) }}">
+                                                            <a href="{{ route('category.details', $item->slug) }}">
                                                                 <div class="serviceBox">
                                                                     <div class="service-icon">
                                                                         <img class="img-fluid"
@@ -264,7 +264,7 @@
                                                 @if ($training_categories)
                                                     @foreach ($training_categories as $item)
                                                         <div class="col-md-3 col-sm-6 my-4 mb-2">
-                                                            <a href="{{ route('category.html', $item->slug) }}">
+                                                            <a href="{{ route('category.details', $item->slug) }}">
                                                                 <div class="serviceBox">
                                                                     <div class="service-icon">
                                                                         <img class="img-fluid"

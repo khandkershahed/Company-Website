@@ -503,7 +503,7 @@
                                         <span class="sub-title">Leave us massage</span>
                                         <h3 class="title">How May We Help You!</h3>
                                     </div>
-                                    <form action="{{ route('contactus.store') }}" method="post"
+                                    <form action="{{ route('contact.store') }}" method="post"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" name="type" value="contact">

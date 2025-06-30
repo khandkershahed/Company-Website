@@ -89,12 +89,13 @@ class FeatureController extends Controller
 
             Feature::create([
 
-                'category_id' => json_encode($request->category_id),
-                'brand_id'    => json_encode($request->brand_id),
-                'industry_id' => json_encode($request->industry_id),
-                'solution_id' => json_encode($request->solution_id),
+                'category_id'      => json_encode($request->category_id),
+                'brand_id'         => json_encode($request->brand_id),
+                'industry_id'      => json_encode($request->industry_id),
+                'solution_id'      => json_encode($request->solution_id),
                 'badge'            => $request->badge,
                 'title'            => $request->title,
+                'slug'             => Helper::slug($request->title, Feature::class),
                 'banner_btn_name'  => $request->banner_btn_name,
                 'banner_btn_link'  => $request->banner_btn_link,
                 'header'           => $request->header,
@@ -157,75 +158,68 @@ class FeatureController extends Controller
     public function update(Request $request, $id)
     {
         $feature = Feature::find($id);
-        if (!empty($feature)) {
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'badge'  => 'required',
-                    'title'  => 'required',
-                    'header' => 'required',
-                ]
 
-            );
+        if (!$feature) {
+            Toastr::error('Feature not found.');
+            return redirect()->back();
         }
 
+        $validator = Validator::make($request->all(), [
+            'badge'  => 'required',
+            'title'  => 'required',
+            'header' => 'required',
+        ]);
 
-
-        if ($validator->passes()) {
-            $logoMainFile  = $request->logo;
-            $imageMainFile = $request->image;
-            $uploadPath    = storage_path('app/public/');
-            if (isset($logoMainFile)) {
-                $globalFunImgLogo = Helper::singleImageUpload($logoMainFile, $uploadPath);
-            } else {
-                $globalFunImgLogo = ['status' => 0];
+        if ($validator->fails()) {
+            foreach ($validator->messages()->all() as $message) {
+                Toastr::error($message, 'Validation Failed', ['timeOut' => 30000]);
             }
+            return redirect()->back();
+        }
 
-            if (isset($imageMainFile)) {
-                $globalFunImage = Helper::singleImageUpload($imageMainFile, $uploadPath);
-            } else {
-                $globalFunImage = ['status' => 0];
-            }
+        $logoMainFile  = $request->logo;
+        $imageMainFile = $request->image;
+        $uploadPath    = storage_path('app/public/');
 
-            if ($globalFunImgLogo['status'] == 1) {
-                File::delete(public_path('storage/') . $feature->logo);
-                File::delete(public_path('storage/') . $feature->logo);
-                File::delete(public_path('storage/thumb/') . $feature->logo);
-            }
-            if ($globalFunImage['status'] == 1) {
-                File::delete(public_path('storage/') . $feature->image);
-                File::delete(public_path('storage/') . $feature->image);
-                File::delete(public_path('storage/thumb/') . $feature->image);
-            }
+        $globalFunImgLogo = $logoMainFile ? Helper::singleImageUpload($logoMainFile, $uploadPath) : ['status' => 0];
+        $globalFunImage   = $imageMainFile ? Helper::singleImageUpload($imageMainFile, $uploadPath) : ['status' => 0];
 
-            $feature->update([
-
-                'logo'             => $globalFunImgLogo['status'] == 1 ? $globalFunImgLogo['file_name'] : $feature->logo,
-                'image'            => $globalFunImage['status']   == 1 ? $globalFunImage['file_name']  : $feature->image,
-                'row_one_id'       => $request->row_one_id,
-                'row_two_id'       => $request->row_two_id,
-                'badge'            => $request->badge,
-                'title'            => $request->title,
-                'header'           => $request->header,
-                'row_three_title'  => $request->row_three_title,
-                'row_three_header' => $request->row_three_header,
-                'row_four_title'   => $request->row_four_title,
-                'row_four_header'  => $request->row_four_header,
-                'row_five_title'   => $request->row_five_title,
-                'row_five_header'  => $request->row_five_header,
-                'footer'           => $request->footer,
-
+        if ($globalFunImgLogo['status'] == 1) {
+            File::delete([
+                public_path('storage/') . $feature->logo,
+                public_path('storage/thumb/') . $feature->logo
             ]);
-
-            Toastr::success('Data has been updated');
-        } else {
-            $messages = $validator->messages();
-            foreach ($messages->all() as $message) {
-                Toastr::error($message, 'Failed', ['timeOut' => 30000]);
-            }
         }
+
+        if ($globalFunImage['status'] == 1) {
+            File::delete([
+                public_path('storage/') . $feature->image,
+                public_path('storage/thumb/') . $feature->image
+            ]);
+        }
+
+        $feature->update([
+            'logo'             => $globalFunImgLogo['status'] == 1 ? $globalFunImgLogo['file_name'] : $feature->logo,
+            'image'            => $globalFunImage['status']   == 1 ? $globalFunImage['file_name']  : $feature->image,
+            'row_one_id'       => $request->row_one_id,
+            'row_two_id'       => $request->row_two_id,
+            'badge'            => $request->badge,
+            'title'            => $request->title,
+            'slug'             => $request->title == $feature->title ? $feature->slug : Helper::slug($request->title, Feature::class),
+            'header'           => $request->header,
+            'row_three_title'  => $request->row_three_title,
+            'row_three_header' => $request->row_three_header,
+            'row_four_title'   => $request->row_four_title,
+            'row_four_header'  => $request->row_four_header,
+            'row_five_title'   => $request->row_five_title,
+            'row_five_header'  => $request->row_five_header,
+            'footer'           => $request->footer,
+        ]);
+
+        Toastr::success('Data has been updated successfully.');
         return redirect()->back();
     }
+
 
     /**
      * Remove the specified resource from storage.

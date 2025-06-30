@@ -541,7 +541,7 @@ class ShopController extends Controller
         $keywordURL = $request->filled('keyword') ? '&keyword=' . $request->input('keyword') : '';
         $priceRangeUrl = $request->filled('price_range') ? '&price=' . $request->input('price_range') : '';
 
-        return redirect()->route('custom.shop', $customURL . $showURL . $sortByURL . $categoryUrl . $subcategoryUrl . $brandUrl . $priceRangeUrl . $keywordURL);
+        return redirect()->route('shop.custom', $customURL . $showURL . $sortByURL . $categoryUrl . $subcategoryUrl . $brandUrl . $priceRangeUrl . $keywordURL);
     }
 
 
@@ -618,7 +618,7 @@ class ShopController extends Controller
     //         $priceRangeUrl .= '&price=' . $data['price_range'];
     //     }
 
-    //     return redirect()->route('custom.shop', $customURL . $showURL . $sortByURL . $catUrl . $brandUrl . $priceRangeUrl . $keywordURL);
+    //     return redirect()->route('shop.custom', $customURL . $showURL . $sortByURL . $catUrl . $brandUrl . $priceRangeUrl . $keywordURL);
     // } // End Method
 
 
@@ -854,7 +854,7 @@ class ShopController extends Controller
 
 
 
-        return redirect()->route('shop.filter_partial', $showURL . $sortByURL . $catUrl . $sub_catUrl . $sub_sub_catUrl . $brandUrl . $priceRangeUrl . $keywordURL);
+        return redirect()->route('shop.filter.partial', $showURL . $sortByURL . $catUrl . $sub_catUrl . $sub_sub_catUrl . $brandUrl . $priceRangeUrl . $keywordURL);
     } // End Method
 
 

@@ -407,7 +407,7 @@
                                         <span>US</span>
                                     </div>
                                 </div>
-                                <form id="myform" action="{{ route('contactus.store') }}" method="post"
+                                <form id="myform" action="{{ route('contact.store') }}" method="post"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="screen-body-item screen-body-item-right">

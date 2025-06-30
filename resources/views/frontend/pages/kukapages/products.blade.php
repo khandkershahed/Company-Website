@@ -243,7 +243,7 @@
                             <div class="row py-3">
                                 @foreach ($related_search['categories'] as $related_category)
                                     <div class="col-sm-3 col-6 p-0">
-                                        <a href="{{ route('category.html', $related_category->slug) }}"
+                                        <a href="{{ route('category.details', $related_category->slug) }}"
                                             class="related_search_links"><i
                                                 class="fa-solid fa-angles-right text-danger"></i>
                                             {{ $related_category->title }} </a>

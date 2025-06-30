@@ -223,7 +223,7 @@
                                                                                     <li class="py-2"
                                                                                         style="line-height: 1 !important;">
                                                                                         <a class="p-0"
-                                                                                            href="{{ route('category.html', $item->slug) }}">
+                                                                                            href="{{ route('category.details', $item->slug) }}">
                                                                                             <div>
                                                                                                 {{ $item->title }}&nbsp;<i
                                                                                                     class="ph ph-caret-right menu_icons"></i>

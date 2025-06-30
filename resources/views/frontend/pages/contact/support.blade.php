@@ -53,7 +53,7 @@
                     <div>
                         <h4>Contact us</h4>
                     </div>
-                    <form id="recaptcha-form" action="{{ route('contactus.store') }}" method="POST"
+                    <form id="recaptcha-form" action="{{ route('contact.store') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="type" value="support">

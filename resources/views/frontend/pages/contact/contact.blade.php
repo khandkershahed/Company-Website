@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
                                     <form id="recaptcha-form" class="w-75 feature_form"
-                                        action="{{ route('contactus.store') }}" method="post"
+                                        action="{{ route('contact.store') }}" method="post"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="screen-body-item screen-body-item-right">

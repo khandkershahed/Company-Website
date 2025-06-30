@@ -419,16 +419,14 @@ class HomeController extends Controller
 
 
     //Feature Details
-    public function FeatureDetails($id)
+    public function FeatureDetails($slug)
     {
         $data['learnmore'] = LearnMore::orderBy('id', 'DESC')->select('learn_mores.industry_header', 'learn_mores.consult_title', 'learn_mores.consult_short_des', 'learn_mores.background_image')->firstOrFail();
-        $data['feature'] = Feature::with(['rowOne', 'rowTwo'])->findOrFail($id);
-
+        $data['feature'] = Feature::with(['rowOne', 'rowTwo'])->where('slug', $slug)->firstOrFail();
         $data['row_one'] = $data['feature']->rowOne;
         $data['row_two'] = $data['feature']->rowTwo;
-
         $data['features'] = Feature::with('rowOne', 'rowTwo')
-            ->where('id', '!=', $id)->select('logo', 'id', 'badge', 'header')->get();
+            ->where('slug', '!=', $slug)->select('logo', 'id', 'badge', 'header')->get();
         return view('frontend.pages.feature.feature_details', $data);
     }
 
@@ -537,10 +535,9 @@ class HomeController extends Controller
         return view('frontend.pages.story.all_story', $data);
     }
 
-    public function StoryDetails($id)
+    public function StoryDetails($slug)
     {
-
-        $data['blog'] = ClientStory::where('id', $id)->firstOrFail();
+        $data['blog'] = ClientStory::where('slug', $slug)->firstOrFail();
         $data['storys'] = ClientStory::inRandomOrder()->limit(4)->get();
         return view('frontend.pages.story.story_details', $data);
     }

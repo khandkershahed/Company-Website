@@ -69,7 +69,7 @@
                             </div>
                             <div class="ag-offer_hidden-item">
                                 <div class="mx-auto">
-                                    <a href="{{ route('category.html', $category->slug) }}" class="btn-color">
+                                    <a href="{{ route('category.details', $category->slug) }}" class="btn-color">
                                         Details
                                     </a>
                                 </div>
@@ -111,7 +111,7 @@
                                         </div>
                                         <div class="col-12 text-center">
                                             <div class="mx-auto">
-                                                <a href="{{ route('category.html', $category->slug) }}"
+                                                <a href="{{ route('category.details', $category->slug) }}"
                                                     class="btn-color p-2 px-4">
                                                     Details
                                                 </a>
@@ -151,7 +151,7 @@
                             </div>
                             <div class="ag-offer_hidden-item">
                                 <div class="mx-auto">
-                                    <a href="{{ route('category.html', $slug) }}" class="btn-color">
+                                    <a href="{{ route('category.details', $slug) }}" class="btn-color">
                                         Details
                                     </a>
                                 </div>
@@ -223,7 +223,7 @@
                                         </div>
                                         <div class="col-12 text-center">
                                             <div class="mx-auto">
-                                                <a href="{{ route('category.html', $sub_cat->slug) }}"
+                                                <a href="{{ route('category.details', $sub_cat->slug) }}"
                                                     class="btn-color p-2 px-4">
                                                     Details
                                                 </a>
@@ -255,7 +255,7 @@
                                         </div>
                                         <div class="col-12 text-center">
                                             <div class="mx-auto">
-                                                <a href="{{ route('category.html', $sub_sub_cat->slug) }}"
+                                                <a href="{{ route('category.details', $sub_sub_cat->slug) }}"
                                                     class="btn-color p-2 px-4">
                                                     Details
                                                 </a>

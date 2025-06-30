@@ -18,7 +18,7 @@
         <!-- sidebar + content -->
         <section class="mt-3">
             <div class="container">
-                <form class="filterForm" action="{{ route('shop.filter_partial') }}">
+                <form class="filterForm" action="{{ route('shop.filter.partial') }}">
                     <div class="row">
                         <!-- sidebar -->
                         <div class="col-lg-3">
