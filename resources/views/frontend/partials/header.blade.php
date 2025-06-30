@@ -440,7 +440,7 @@
                                                                         style="width:130px;height:70px;">
                                                                     <div class="ms-3">
                                                                         <a
-                                                                            href="{{ route('feature.details', $header_feature->id) }}">
+                                                                            href="{{ route('feature.details', $header_feature->slug) }}">
                                                                             <strong
                                                                                 style="font-size:14px;">{{ Str::limit($header_feature->title, 100) }}</strong>
                                                                         </a>
@@ -459,7 +459,7 @@
                                                                     alt="" style="width:130px;height:70px;">
                                                                 <div class="ms-3">
                                                                     <a
-                                                                        href="{{ route('feature.details', $header_blog->id) }}">
+                                                                        href="{{ route('blog.details', $header_blog->id) }}">
                                                                         <strong
                                                                             style="font-size:14px;">{{ Str::limit($header_blog->title, 100) }}</strong>
                                                                     </a>
@@ -477,7 +477,7 @@
                                                                     alt="" style="width:130px;height:65px;">
                                                                 <div class="ms-3">
                                                                     <a
-                                                                        href="{{ route('feature.details', $header_techglossy->id) }}">
+                                                                        href="{{ route('techglossy.details', $header_techglossy->id) }}">
                                                                         <strong
                                                                             style="font-size:14px;">{{ Str::limit($header_techglossy->title, 100) }}</strong>
                                                                     </a>

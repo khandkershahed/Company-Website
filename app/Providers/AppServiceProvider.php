@@ -140,7 +140,7 @@ class AppServiceProvider extends ServiceProvider
                     'header_features',
                     $cacheDuration,
                     fn() =>
-                    Feature::inRandomOrder()->limit(4)->get(['id', 'title', 'image', 'created_at', 'badge'])
+                    Feature::inRandomOrder()->limit(4)->get(['id','slug', 'title', 'image', 'created_at', 'badge'])
                 ));
             }
 

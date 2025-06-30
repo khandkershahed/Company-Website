@@ -570,7 +570,7 @@
                                             loading="lazy" />
                                     </div>
                                     <div class="p-3 text-center">
-                                        <a href="{{ route('feature.details', $feature->id) }}">
+                                        <a href="{{ route('feature.details', $feature->slug) }}">
                                             <h5 class="fw-bold text-white">{{ $feature->badge }}</h5>
                                             <p class="text-white">
                                                 {{ Str::words($feature->header, 10, $end = '') }}

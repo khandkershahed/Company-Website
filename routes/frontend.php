@@ -279,7 +279,7 @@ Route::get('/newsletter', [NewsletterController::class, 'newsletter']);
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 
 // Features
-Route::get('/features/{slug}', [HomeController::class, 'FeatureDetails'])->name('features.show');
+Route::get('/features/{slug}', [HomeController::class, 'FeatureDetails'])->name('feature.details');
 
 // Shop
 Route::prefix('shop')->group(function () {
@@ -403,5 +403,3 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/{slug}/products/paginate', 'ajaxBrandProductsPagination')->name('brand.products.paginate');
 });
 
-// Social image
-Route::get('/social-image/{path}', [HomeController::class, 'socialImage'])->where('path', '.*');

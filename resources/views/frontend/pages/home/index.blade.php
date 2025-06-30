@@ -170,7 +170,7 @@
                             <div class="feature_description">
                                 <p class="feature_descrip">{{ Str::words($feature->header, 12, $end = '') }}</p>
                             </div>
-                            <a href="{{ route('feature.details', $feature->id) }}" class="pt-3 business_item_button">
+                            <a href="{{ route('feature.details', $feature->slug) }}" class="pt-3 business_item_button">
                                 <span>Learn More</span>
                                 <span class="business_item_button_icon">
                                     <i class="fa-solid fa-arrow-right-long"></i>
@@ -209,7 +209,7 @@
                                     <p class="feature_descrip">{{ Str::words($feature->header, 12, $end = '') }}
                                     </p>
                                 </div>
-                                <a href="{{ route('feature.details', $feature->id) }}"
+                                <a href="{{ route('feature.details', $feature->slug) }}"
                                     class="pt-3 business_item_button">
                                     <span>Learn More</span>
                                     <span class="business_item_button_icon">
