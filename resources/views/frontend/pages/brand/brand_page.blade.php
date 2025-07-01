@@ -98,9 +98,9 @@
 
     <!--======// Solution feature 1//======-->
     @if (!empty($row_one))
-        <section class="my-5 pb-4">
+        <section class="pb-4 my-5">
             <div class="container">
-                <div class="row d-flex justify-content-center my-3">
+                <div class="my-3 row d-flex justify-content-center">
                     <div class="col-lg-6 col-sm-12 ">
                         <h4>{{ $row_one->title }}</h4>
                         <p class="text-justify">{!! $row_one->description !!}</p>
@@ -126,7 +126,7 @@
     @if (!empty($row_three))
         <section class="my-5">
             <div class="container">
-                <div class="row d-flex justify-content-center my-3">
+                <div class="my-3 row d-flex justify-content-center">
                     <div class="col-lg-6 col-sm-12">
                         <img class="img-fluid" src="{{ asset('storage/' . $row_three->image) }}" alt=""
                             style="height: 300px;width: 580px;border-radius: 15px;">
@@ -152,11 +152,11 @@
         <div class="container">
             <!-- section title -->
             <div class="">
-                <h3 class="section_title w-50 mx-auto">{{ $brandpage->row_one_title }} </h3>
-                <p class="w-75 mx-auto" style="text-align: center;">{{ $brandpage->row_one_header }} </p>
+                <h3 class="mx-auto section_title w-50">{{ $brandpage->row_one_title }} </h3>
+                <p class="mx-auto w-75" style="text-align: center;">{{ $brandpage->row_one_header }} </p>
             </div>
             <!-- wrapper -->
-            <div class="row pt-2">
+            <div class="pt-2 row">
                 <!-- item -->
                 @if ($card1)
                     <div class="col-lg-4 col-sm-12">
@@ -190,10 +190,10 @@
     <!-------------End--------->
 
     <!--======// Call to action //======-->
-    <div class="call_to_action my-5"
+    <div class="my-5 call_to_action"
         style="background-image: url('{{ asset('storage/' . $brandpage->row_six_image) }}');background-attachment: scroll;">
         <div class="container">
-            <div class="call_to_action_text w-75 mx-auto">
+            <div class="mx-auto call_to_action_text w-75">
                 <h4 class="">{{ $brandpage->row_six_title }}</h4>
                 <p>{{ $brandpage->row_six_header }}</p>
             </div>
@@ -235,7 +235,7 @@
                         <img class="img-fluid" src="{{ asset('storage/' . $row_five->image) }}"
                             style="height: 300px;width: 580px;border-radius: 15px;">
                     </div>
-                    <div class="col-lg-6 col-sm-12 pl-4 section_text_wrapper">
+                    <div class="pl-4 col-lg-6 col-sm-12 section_text_wrapper">
                         <h4>{{ $row_five->title }}</h4>
                         <p>{!! $row_five->description !!}</p>
                         @if (!empty($row_five->link))
@@ -256,10 +256,10 @@
             <div class="software_feature_title">
                 <h1 class="text-center">Popular Products</h1>
             </div>
-            <div class="Container px-0">
+            <div class="px-0 Container">
                 <h3 class="Head" style="font-size:30px;">
                     <a class="btn-white" href="{{ route('custom.product',$brand->slug) }}">Shop
-                        <i class="fa fa-arrow-right mx-2"></i>
+                        <i class="mx-2 fa fa-arrow-right"></i>
                     </a>
                     <span class="Arrows"></span>
                 </h3>
@@ -268,7 +268,7 @@
                     @if ($products)
                         @foreach ($products as $item)
                             <!-- Item -->
-                            <div class="ProductBlock mb-3 mt-3">
+                            <div class="mt-3 mb-3 ProductBlock">
                                 <div class="Content">
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12">
@@ -285,29 +285,30 @@
                                                     <ul class="product-links">
                                                         <li><a href="#" data-tip="Quick View" data-bs-toggle="modal"
                                                                 data-bs-target="#productDetails{{ $item->id }}"><i
-                                                                    class="fa fa-eye text-white"></i></a>
+                                                                    class="text-white fa fa-eye"></i></a>
                                                         </li>
                                                         <li><a href="#" data-tip="View Product"><i
-                                                                    class="fa fa-random text-white"></i></a></li>
+                                                                    class="text-white fa fa-random"></i></a></li>
                                                     </ul>
 
 
                                                 </div>
                                                 <div class="product-content">
-                                                    <h3 class="titles mb-2 ask_for_price website-color text-center"
+                                                    <h3 class="mb-2 text-center titles ask_for_price website-color"
                                                         style="height: 4.5rem;"><a
                                                             href="{{ route('product.details', $item->slug) }}">{{ Str::limit($item->name, 85) }}</a>
                                                     </h3>
                                                     @if ($item->rfq == 1)
                                                         <div class="price">
-                                                            <p class="text-muted text-center">
+                                                            <p class="text-center text-muted">
                                                                 <small>USD</small>
                                                                 --.-- $
                                                             </p>
-                                                            <a href=""
+                                                            <a href="{{ route('rfq') }}"
                                                                 class="d-flex justify-content-center align-items-center"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}">
+                                                                {{-- data-bs-toggle="modal"
+                                                                data-bs-target="#rfq{{ $item->id }}" --}}
+                                                                >
                                                                 <button class="btn-color">
                                                                     Ask For Price
                                                                 </button>
@@ -315,7 +316,7 @@
                                                         </div>
                                                     @elseif ($item->price_status && $item->price_status == 'price')
                                                         <div class="price">
-                                                            <p class="text-muted text-center"><small>USD</small>
+                                                            <p class="text-center text-muted"><small>USD</small>
                                                                 {{ number_format($item->price, 2) }} $
                                                             </p>
                                                             <div class="d-flex justify-content-center align-items-center">
@@ -341,7 +342,7 @@
                                                         </div>
                                                     @else
                                                     <div class="price">
-                                                        <p class="text-muted text-center" style="text-decoration: line-through;text-decoration-thickness: 2px; text-decoration-color: #ae0a46;">
+                                                        <p class="text-center text-muted" style="text-decoration: line-through;text-decoration-thickness: 2px; text-decoration-color: #ae0a46;">
                                                             USD
                                                             {{ number_format($item->price, 2) }} $
                                                         </p>
@@ -378,8 +379,8 @@
                         data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-lg">
                             <div class="modal-content">
-                                <div class="modal-header py-2" style="background: #ae0a46;">
-                                    <h5 class="modal-title text-white" id="staticBackdropLabel">Product Details
+                                <div class="py-2 modal-header" style="background: #ae0a46;">
+                                    <h5 class="text-white modal-title" id="staticBackdropLabel">Product Details
                                     </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
@@ -391,11 +392,11 @@
                                             <div class="col-lg-4 col-sm-12 single_product_images">
                                                 <!-- gallery pic -->
                                                 <div class="mx-auto d-block">
-                                                    <img id="expand" class="geeks img-fluid rounded mx-auto d-block"
+                                                    <img id="expand" class="mx-auto rounded geeks img-fluid d-block"
                                                         src="{{ asset($item->thumbnail) }}">
                                                 </div>
 
-                                                {{-- <div class="img_gallery_wrapper row pt-1">
+                                                {{-- <div class="pt-1 img_gallery_wrapper row">
                                                             <div class="col-3">
                                                                 <img class="img-fluid"
                                                                     src="{{ asset($item->thumbnail) }}"
@@ -404,14 +405,14 @@
                                                         </div> --}}
                                             </div>
                                             <!-- content -->
-                                            <div class="col-lg-8 col-sm-12 pl-4">
+                                            <div class="pl-4 col-lg-8 col-sm-12">
                                                 <h3>{{ $item->name }}</h3>
                                                 {{-- <h6 class="text-dark product_code">SKU #00017-SW-JIR-002 | MF #00017-SW-JIR-002
                                                             | NG #00017-SW-JIR-002
                                                         </h6> --}}
-                                                <div class="row pt-3">
+                                                <div class="pt-3 row">
                                                     <div class="col-lg-8">
-                                                        <p class="list_price mb-0">List
+                                                        <p class="mb-0 list_price">List
                                                             Price</p>
                                                         <div class="product__details__price ">
                                                             <p class="mb-0">US $
@@ -485,8 +486,8 @@
                         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <div class="modal-header py-2" style="background: #ae0a46;">
-                                    <h5 class="modal-title text-white" id="staticBackdropLabel">Your Price Form
+                                <div class="py-2 modal-header" style="background: #ae0a46;">
+                                    <h5 class="text-white modal-title" id="staticBackdropLabel">Your Price Form
                                     </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
@@ -494,8 +495,8 @@
                                 <div class="modal-body">
                                     <div class="container px-0">
                                         <form>
-                                            <div class="py-2 px-2 bg-light rounded">
-                                                <div class="row mb-1">
+                                            <div class="px-2 py-2 rounded bg-light">
+                                                <div class="mb-1 row">
                                                     <div class="col">
                                                         <div class="row">
                                                             <div
@@ -527,7 +528,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row mb-1">
+                                                <div class="mb-1 row">
                                                     <div class="col">
                                                         <div class="row">
                                                             <div
@@ -559,7 +560,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row mb-1">
+                                                <div class="mb-1 row">
                                                     <div class="col">
                                                         <div class="row">
                                                             <div
@@ -623,8 +624,8 @@
                         aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <div class="modal-header py-2" style="background: #ae0a46;">
-                                    <h5 class="modal-title text-white" id="staticBackdropLabel">Ask For Price Form
+                                <div class="py-2 modal-header" style="background: #ae0a46;">
+                                    <h5 class="text-white modal-title" id="staticBackdropLabel">Ask For Price Form
                                     </h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
@@ -632,14 +633,14 @@
                                 <div class="modal-body">
                                     <div class="container px-0">
                                         <form>
-                                            <div class="py-2 px-2 rounded">
-                                                <div class="row mb-1">
+                                            <div class="px-2 py-2 rounded">
+                                                <div class="mb-1 row">
                                                     <h6 class="mb-0"> {{ $item->name }}</h6>
                                                 </div>
                                             </div>
-                                            <div class="py-2 px-2 bg-light rounded">
+                                            <div class="px-2 py-2 rounded bg-light">
 
-                                                <div class="row mb-1">
+                                                <div class="mb-1 row">
                                                     <div class="col">
                                                         <div class="row">
                                                             <div
@@ -671,7 +672,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row mb-1">
+                                                <div class="mb-1 row">
                                                     <div class="col">
                                                         <div class="row">
                                                             <div
@@ -703,7 +704,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row mb-1">
+                                                <div class="mb-1 row">
                                                     <div class="col">
                                                         <div class="row">
                                                             <div

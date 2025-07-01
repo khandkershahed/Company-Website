@@ -11,13 +11,13 @@
     <!----------End--------->
     <section>
         <div class="container">
-            <h3 class="mb-0 py-5 text-center"><span style="border-top: 4px solid #ae0a46;">Ref</span>urbished Categor<span
+            <h3 class="py-5 mb-0 text-center"><span style="border-top: 4px solid #ae0a46;">Ref</span>urbished Categor<span
                     style="border-bottom: 4px solid #ae0a46;">ies</span></h3>
-            <div class="row pt-2">
-                <div class="col-lg-12 px-0 px-0">
-                    <ul class="nav nav-tabs refurbished_tabs px-0 d-flex justify-content-center" id="myTab" role="tablist">
+            <div class="pt-2 row">
+                <div class="px-0 col-lg-12">
+                    <ul class="px-0 nav nav-tabs refurbished_tabs d-flex justify-content-center" id="myTab" role="tablist">
                         @foreach ($categories as $category)
-                        <li class="nav-item me-2 mb-2 shadow-sm" role="presentation">
+                        <li class="mb-2 shadow-sm nav-item me-2" role="presentation">
                             <button class="nav-link d-flex justify-content-between align-items-center" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
                                 type="button" role="tab" aria-controls="home" aria-selected="true">
                                 <img class="refurbished_tabs-img"
@@ -30,19 +30,19 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show" id="home" role="tabpanel"
                             aria-labelledby="home-tab">
-                            <div class="card p-0 border-0 shadow-none pt-4">
+                            <div class="p-0 pt-4 border-0 shadow-none card">
                                 <h4 class="mb-0 text-center">
                                     Releted Brands
                                 </h4>
-                                <div class="card-body p-0 mt-2">
+                                <div class="p-0 mt-2 card-body">
                                     <!-- Nav tabs -->
-                                    <ul class="nav nav-tabs nested-brand-link px-0 pt-5" id="myTab" role="tablist">
+                                    <ul class="px-0 pt-5 nav nav-tabs nested-brand-link" id="myTab" role="tablist">
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link nested-nav-link shadow-sm" id="nested-brand-all-tab"
+                                            <button class="shadow-sm nav-link nested-nav-link" id="nested-brand-all-tab"
                                                 data-bs-toggle="tab" data-bs-target="#nested-brand-all" type="button"
                                                 role="tab" aria-controls="nested-brand-all" aria-selected="true">
-                                                <div class="card p-0 border-0 shadow-none">
-                                                    <div class="card-body p-0 nested-refurbished-brand">
+                                                <div class="p-0 border-0 shadow-none card">
+                                                    <div class="p-0 card-body nested-refurbished-brand">
                                                         <img src="https://www.signalitsolutions.com/wp-content/uploads/2021/07/acronis-bw.png"
                                                             alt="">
                                                     </div>
@@ -50,11 +50,11 @@
                                             </button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link nested-nav-link shadow-sm" id="nested-brand-one-tab"
+                                            <button class="shadow-sm nav-link nested-nav-link" id="nested-brand-one-tab"
                                                 data-bs-toggle="tab" data-bs-target="#nested-brand-one" type="button"
                                                 role="tab" aria-controls="nested-brand-one" aria-selected="false">
-                                                <div class="card p-0 border-0 shadow-none">
-                                                    <div class="card-body p-0 nested-refurbished-brand">
+                                                <div class="p-0 border-0 shadow-none card">
+                                                    <div class="p-0 card-body nested-refurbished-brand">
                                                         <img src="https://static.vecteezy.com/system/resources/previews/022/897/304/original/bdm-letter-logo-design-in-illustration-logo-calligraphy-designs-for-logo-poster-invitation-etc-vector.jpg"
                                                             alt="">
                                                     </div>
@@ -62,11 +62,11 @@
                                             </button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link nested-nav-link shadow-sm" id="nested-brand-one-tab"
+                                            <button class="shadow-sm nav-link nested-nav-link" id="nested-brand-one-tab"
                                                 data-bs-toggle="tab" data-bs-target="#nested-brand-one" type="button"
                                                 role="tab" aria-controls="nested-brand-one" aria-selected="false">
-                                                <div class="card p-0 border-0 shadow-none">
-                                                    <div class="card-body p-0 nested-refurbished-brand">
+                                                <div class="p-0 border-0 shadow-none card">
+                                                    <div class="p-0 card-body nested-refurbished-brand">
                                                         <img src="https://logos-world.net/wp-content/uploads/2021/02/Honeywell-Logo.png"
                                                             alt="">
                                                     </div>
@@ -75,11 +75,11 @@
                                         </li>
                                     </ul>
                                     <!-- Tab panes -->
-                                    <div class="tab-content mb-1 mt-4">
+                                    <div class="mt-4 mb-1 tab-content">
                                         <div class="tab-pane" id="nested-brand-all" role="tabpanel"
                                             aria-labelledby="nested-brand-all-tab">
                                             <p>Acronis Brands Products <i class="fa-solid fa-arrow-right-long"></i></p>
-                                            <div class="card p-0 border-0 shadow-none">
+                                            <div class="p-0 border-0 shadow-none card">
                                                 <div class="card-body row">
                                                     <div class="col-md-3 col-sm-12 ps-0">
                                                         <div class="custom-product-grid">
@@ -94,7 +94,7 @@
                                                                 <ul class="custom-product-links">
                                                                     <li>
                                                                         <a href="#" tabindex="0">
-                                                                            <i class="fa fa-random text-white"
+                                                                            <i class="text-white fa fa-random"
                                                                                 aria-hidden="true">
                                                                             </i>
                                                                         </a>
@@ -103,7 +103,7 @@
                                                                         <a href="#" data-bs-toggle="modal"
                                                                             data-bs-target="#productDetails669"
                                                                             tabindex="0">
-                                                                            <i class="fa fa-search text-white"
+                                                                            <i class="text-white fa fa-search"
                                                                                 aria-hidden="true">
                                                                             </i>
                                                                         </a>
@@ -119,12 +119,14 @@
                                                                     </h3>
                                                                 </a>
                                                                 <div>
-                                                                    <a href=""
+                                                                    <a href="{{ route('rfq') }}"
                                                                         class="d-flex justify-content-center align-items-center"
-                                                                        data-bs-toggle="modal" data-bs-target="#rfq669"
-                                                                        tabindex="0">
+                                                                        {{-- data-bs-toggle="modal" data-bs-target="#rfq669"
+                                                                        tabindex="0" --}}
+                                                                        >
                                                                         <button class="btn-color popular_product-button"
-                                                                            tabindex="0">
+                                                                            {{-- tabindex="0" --}}
+                                                                            >
                                                                             Ask For Price
                                                                         </button>
                                                                     </a>
@@ -145,7 +147,7 @@
                                                                 <ul class="custom-product-links">
                                                                     <li>
                                                                         <a href="#" tabindex="0">
-                                                                            <i class="fa fa-random text-white"
+                                                                            <i class="text-white fa fa-random"
                                                                                 aria-hidden="true">
                                                                             </i>
                                                                         </a>
@@ -154,7 +156,7 @@
                                                                         <a href="#" data-bs-toggle="modal"
                                                                             data-bs-target="#productDetails669"
                                                                             tabindex="0">
-                                                                            <i class="fa fa-search text-white"
+                                                                            <i class="text-white fa fa-search"
                                                                                 aria-hidden="true">
                                                                             </i>
                                                                         </a>
@@ -170,12 +172,14 @@
                                                                     </h3>
                                                                 </a>
                                                                 <div>
-                                                                    <a href=""
+                                                                    <a href="{{ route('rfq') }}"
                                                                         class="d-flex justify-content-center align-items-center"
-                                                                        data-bs-toggle="modal" data-bs-target="#rfq669"
-                                                                        tabindex="0">
+                                                                        {{-- data-bs-toggle="modal" data-bs-target="#rfq669"
+                                                                        tabindex="0" --}}
+                                                                        >
                                                                         <button class="btn-color popular_product-button"
-                                                                            tabindex="0">
+                                                                            {{-- tabindex="0" --}}
+                                                                            >
                                                                             Ask For Price
                                                                         </button>
                                                                     </a>
@@ -196,7 +200,7 @@
                                                                 <ul class="custom-product-links">
                                                                     <li>
                                                                         <a href="#" tabindex="0">
-                                                                            <i class="fa fa-random text-white"
+                                                                            <i class="text-white fa fa-random"
                                                                                 aria-hidden="true">
                                                                             </i>
                                                                         </a>
@@ -205,7 +209,7 @@
                                                                         <a href="#" data-bs-toggle="modal"
                                                                             data-bs-target="#productDetails669"
                                                                             tabindex="0">
-                                                                            <i class="fa fa-search text-white"
+                                                                            <i class="text-white fa fa-search"
                                                                                 aria-hidden="true">
                                                                             </i>
                                                                         </a>
@@ -221,12 +225,14 @@
                                                                     </h3>
                                                                 </a>
                                                                 <div>
-                                                                    <a href=""
+                                                                    <a href="{{ route('rfq') }}"
                                                                         class="d-flex justify-content-center align-items-center"
-                                                                        data-bs-toggle="modal" data-bs-target="#rfq669"
-                                                                        tabindex="0">
+                                                                        {{-- data-bs-toggle="modal" data-bs-target="#rfq669"
+                                                                        tabindex="0" --}}
+                                                                        >
                                                                         <button class="btn-color popular_product-button"
-                                                                            tabindex="0">
+                                                                            {{-- tabindex="0" --}}
+                                                                            >
                                                                             Ask For Price
                                                                         </button>
                                                                     </a>
@@ -247,7 +253,7 @@
                                                                 <ul class="custom-product-links">
                                                                     <li>
                                                                         <a href="#" tabindex="0">
-                                                                            <i class="fa fa-random text-white"
+                                                                            <i class="text-white fa fa-random"
                                                                                 aria-hidden="true">
                                                                             </i>
                                                                         </a>
@@ -256,7 +262,7 @@
                                                                         <a href="#" data-bs-toggle="modal"
                                                                             data-bs-target="#productDetails669"
                                                                             tabindex="0">
-                                                                            <i class="fa fa-search text-white"
+                                                                            <i class="text-white fa fa-search"
                                                                                 aria-hidden="true">
                                                                             </i>
                                                                         </a>
@@ -272,12 +278,14 @@
                                                                     </h3>
                                                                 </a>
                                                                 <div>
-                                                                    <a href=""
+                                                                    <a href="{{ route('rfq') }}"
                                                                         class="d-flex justify-content-center align-items-center"
-                                                                        data-bs-toggle="modal" data-bs-target="#rfq669"
-                                                                        tabindex="0">
+                                                                        {{-- data-bs-toggle="modal" data-bs-target="#rfq669"
+                                                                        tabindex="0" --}}
+                                                                        >
                                                                         <button class="btn-color popular_product-button"
-                                                                            tabindex="0">
+                                                                            {{-- tabindex="0" --}}
+                                                                            >
                                                                             Ask For Price
                                                                         </button>
                                                                     </a>
@@ -325,7 +333,7 @@
     <section>
         <div class="container p-0 my-4 mt-5">
             <div class="row gx-2">
-                <div class="mb-2 px-0">
+                <div class="px-0 mb-2">
                     <h4 class="mb-0 text-start main_color" style="border-bottom: 1px solid #ae0a46;">Refurbished Products
                     </h4>
                 </div>
@@ -339,10 +347,10 @@
                                     alt="NGEN IT">
                             </a>
                             <ul class="custom-product-links">
-                                <li><a href="#"><i class="fa fa-random text-white"></i></a>
+                                <li><a href="#"><i class="text-white fa fa-random"></i></a>
                                 </li>
                                 <li><a href="#" data-bs-toggle="modal" data-bs-target="#productDetails"><i
-                                            class="fa fa-search text-white"></i></a></li>
+                                            class="text-white fa fa-search"></i></a></li>
                             </ul>
                         </div>
                         <div class="custom-product-content">
@@ -351,12 +359,13 @@
                                     (1 Year)}</h3>
                             </a>
                             <div>
-                                <div class="price py-3">
+                                <div class="py-3 price">
                                     {{-- <small class="price-usd">USD</small>
                                             --.-- $ --}}
                                 </div>
-                                <a href="" class="d-flex justify-content-center align-items-center"
-                                    data-bs-toggle="modal" data-bs-target="#rfq">
+                                <a href="{{ route('rfq') }}" class="d-flex justify-content-center align-items-center"
+                                    {{-- data-bs-toggle="modal" data-bs-target="#rfq" --}}
+                                    >
                                     <button class="btn-color popular_product-button">
                                         Ask For Price
                                     </button>
@@ -375,10 +384,10 @@
                                     alt="NGEN IT">
                             </a>
                             <ul class="custom-product-links">
-                                <li><a href="#"><i class="fa fa-random text-white"></i></a>
+                                <li><a href="#"><i class="text-white fa fa-random"></i></a>
                                 </li>
                                 <li><a href="#" data-bs-toggle="modal" data-bs-target="#productDetails"><i
-                                            class="fa fa-search text-white"></i></a></li>
+                                            class="text-white fa fa-search"></i></a></li>
                             </ul>
                         </div>
                         <div class="custom-product-content">
@@ -387,12 +396,13 @@
                                     (1 Year)}</h3>
                             </a>
                             <div>
-                                <div class="price py-3">
+                                <div class="py-3 price">
                                     {{-- <small class="price-usd">USD</small>
                                             --.-- $ --}}
                                 </div>
-                                <a href="" class="d-flex justify-content-center align-items-center"
-                                    data-bs-toggle="modal" data-bs-target="#rfq">
+                                <a href="{{ route('rfq') }}" class="d-flex justify-content-center align-items-center"
+                                    {{-- data-bs-toggle="modal" data-bs-target="#rfq" --}}
+                                    >
                                     <button class="btn-color popular_product-button">
                                         Ask For Price
                                     </button>
@@ -411,10 +421,10 @@
                                     alt="NGEN IT">
                             </a>
                             <ul class="custom-product-links">
-                                <li><a href="#"><i class="fa fa-random text-white"></i></a>
+                                <li><a href="#"><i class="text-white fa fa-random"></i></a>
                                 </li>
                                 <li><a href="#" data-bs-toggle="modal" data-bs-target="#productDetails"><i
-                                            class="fa fa-search text-white"></i></a></li>
+                                            class="text-white fa fa-search"></i></a></li>
                             </ul>
                         </div>
                         <div class="custom-product-content">
@@ -423,12 +433,13 @@
                                     (1 Year)}</h3>
                             </a>
                             <div>
-                                <div class="price py-3">
+                                <div class="py-3 price">
                                     {{-- <small class="price-usd">USD</small>
                                             --.-- $ --}}
                                 </div>
-                                <a href="" class="d-flex justify-content-center align-items-center"
-                                    data-bs-toggle="modal" data-bs-target="#rfq">
+                                <a href="{{ route('rfq') }}" class="d-flex justify-content-center align-items-center"
+                                    {{-- data-bs-toggle="modal" data-bs-target="#rfq" --}}
+                                    >
                                     <button class="btn-color popular_product-button">
                                         Ask For Price
                                     </button>
@@ -447,10 +458,10 @@
                                     alt="NGEN IT">
                             </a>
                             <ul class="custom-product-links">
-                                <li><a href="#"><i class="fa fa-random text-white"></i></a>
+                                <li><a href="#"><i class="text-white fa fa-random"></i></a>
                                 </li>
                                 <li><a href="#" data-bs-toggle="modal" data-bs-target="#productDetails"><i
-                                            class="fa fa-search text-white"></i></a></li>
+                                            class="text-white fa fa-search"></i></a></li>
                             </ul>
                         </div>
                         <div class="custom-product-content">
@@ -459,12 +470,13 @@
                                     (1 Year)}</h3>
                             </a>
                             <div>
-                                <div class="price py-3">
+                                <div class="py-3 price">
                                     {{-- <small class="price-usd">USD</small>
                                             --.-- $ --}}
                                 </div>
-                                <a href="" class="d-flex justify-content-center align-items-center"
-                                    data-bs-toggle="modal" data-bs-target="#rfq">
+                                <a href="{{ route('rfq') }}" class="d-flex justify-content-center align-items-center"
+                                    {{-- data-bs-toggle="modal" data-bs-target="#rfq" --}}
+                                    >
                                     <button class="btn-color popular_product-button">
                                         Ask For Price
                                     </button>

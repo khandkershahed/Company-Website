@@ -8,20 +8,20 @@
     </style>
 
     <!-- banner single page start -->
-    <section class="banner_single_page py-3"
+    <section class="py-3 banner_single_page"
         style="background-image:url('{{ asset('storage/' . $category->banner_image) }}');background-color: black;background-repeat: no-repeat;background-size: cover;height:300px;">
 
         <div class="container">
             <div class="single_banner_content">
                 <!-- image -->
-                <div class="single_banner_image text-center">
+                <div class="text-center single_banner_image">
                     {{-- <img class="my-3" src="{{ asset('storage/' . $category->image) }}" alt="" height="100px" width="100px"> --}}
                 </div>
                 <!-- heading -->
-                <h1 class="single_banner_heading text-center text-white mb-4" style="margin-top: 4.5rem;">
+                <h1 class="mb-4 text-center text-white single_banner_heading" style="margin-top: 4.5rem;">
                     {{ $category->title }}</h1>
                 {{-- <p class="single_banner_text">{{ $data->h2 }}</p> --}}
-                <div class="single_buttton_wrapper text-center mb-2">
+                <div class="mb-2 text-center single_buttton_wrapper">
                     <a href="{{ route('custom.product', $category->slug) }}" class="btn-color">Shop all
                         {{ $category->title }}</a>
 
@@ -32,7 +32,7 @@
 
     <section class="mt-5">
         <div class="container my-3">
-            <ul class="breadcrumb text-left">
+            <ul class="text-left breadcrumb">
 
                 <a href="{{ route('homepage') }}">
                     <li class="breadcrumb__item breadcrumb__item-firstChild">
@@ -132,7 +132,7 @@
     <!-- Sub Category section-->
     @if (!empty($sub_cats) && count($sub_cats) > 0)
         <section>
-            <div class="ag-offer-block container">
+            <div class="container ag-offer-block">
                 <div class="common_product_item_title">
                     <h3>Display Sub Categories for {{ $category->title }}</h3>
                 </div>
@@ -142,7 +142,7 @@
                             <div class="ag-offer_item"
                                 style="border: 1px dotted rgb(179, 179, 179); margin: 0.15rem!important;">
                                 <div class="ag-offer_visible-item">
-                                    <div class="ag-offer_img-box px-2">
+                                    <div class="px-2 ag-offer_img-box">
                                         <img src="{{ asset('storage/' . $item->image) }}" class="ag-offer_img"
                                             alt="{{ $item->title }}"
                                             style="width:75px !important;height:75px !important;" />
@@ -167,7 +167,7 @@
                                 <div class="ag-offer_item"
                                     style="border: 1px dotted rgb(179, 179, 179); margin: 0.15rem!important;">
                                     <div class="ag-offer_visible-item">
-                                        <div class="ag-offer_img-box px-2">
+                                        <div class="px-2 ag-offer_img-box">
                                             <img src="{{ asset('storage/' . $item->image) }}"
                                                 class="ag-offer_img" alt="{{ $item->title }}"
                                                 style="width:75px !important;height:75px !important;" />
@@ -192,7 +192,7 @@
         </section>
         @else
         <section>
-            <div class="ag-offer-block container">
+            <div class="container ag-offer-block">
                 <div class="common_product_item_title">
                     <h3 class="text-danger">No Data Found</h3>
                 </div>
@@ -205,7 +205,7 @@
     <!--======// Top Brand //=====-->
     @if (!empty($brands) && count($brands) > 0)
         <section>
-            <div class="ag-offer-block container">
+            <div class="container ag-offer-block">
                 <div class="common_product_item_title">
                     <h3>Related Brands for {{ $category->title }}</h3>
                 </div>
@@ -215,7 +215,7 @@
                             <div class="ag-offer_item"
                                 style="border: 1px dotted rgb(179, 179, 179); margin: 0.15rem!important;">
                                 <div class="ag-offer_visible-item">
-                                    <div class="ag-offer_img-box d-felx justify-content-center mx-auto">
+                                    <div class="mx-auto ag-offer_img-box d-felx justify-content-center">
                                         <img src="{{ asset('storage/' . $item->image) }}" class="ag-offer_img"
                                             alt="{{ $item->title }}" width="150px" height="150px" />
                                     </div>
@@ -263,8 +263,8 @@
                 <div class="row">
                     <!-- product_item -->
                     @foreach ($products as $item)
-                        <div class="col-lg-3 col-md-4 col-sm-6 p-0 pb-1">
-                            <div class="ProductBlock mb-3 mt-3">
+                        <div class="p-0 pb-1 col-lg-3 col-md-4 col-sm-6">
+                            <div class="mt-3 mb-3 ProductBlock">
                                 <div class="Content">
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12">
@@ -277,11 +277,11 @@
                                                             alt="NGEN IT">
                                                     </a>
                                                     <ul class="custom-product-links">
-                                                        <li><a href="#"><i class="fa fa-random text-white"></i></a>
+                                                        <li><a href="#"><i class="text-white fa fa-random"></i></a>
                                                         </li>
                                                         <li><a href="#" data-bs-toggle="modal"
                                                                 data-bs-target="#productDetails{{ $item->id }}"><i
-                                                                    class="fa fa-search text-white"></i></a></li>
+                                                                    class="text-white fa fa-search"></i></a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="custom-product-content">
@@ -291,14 +291,15 @@
 
                                                     @if ($item->rfq == 1)
                                                         <div>
-                                                            <div class="price py-3">
+                                                            <div class="py-3 price">
                                                                 {{-- <small class="price-usd">USD</small>
                                                                 --.-- $ --}}
                                                             </div>
-                                                            <a href=""
+                                                            <a href="{{ route('rfq') }}"
                                                                 class="d-flex justify-content-center align-items-center"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}">
+                                                                {{-- data-bs-toggle="modal"
+                                                                data-bs-target="#rfq{{ $item->id }}" --}}
+                                                                >
                                                                 <button class="btn-color popular_product-button">
                                                                     Ask For Price
                                                                 </button>
@@ -306,14 +307,15 @@
                                                         </div>
                                                     @elseif ($item->price_status && $item->price_status == 'rfq')
                                                         <div>
-                                                            <div class="price py-3">
+                                                            <div class="py-3 price">
                                                                 {{-- <small class="price-usd">USD</small>
                                                             --.-- $ --}}
                                                             </div>
-                                                            <a href=""
+                                                            <a href="{{ route('rfq') }}"
                                                                 class="d-flex justify-content-center align-items-center"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}">
+                                                                {{-- data-bs-toggle="modal"
+                                                                data-bs-target="#rfq{{ $item->id }}" --}}
+                                                                >
                                                                 <button class="btn-color popular_product-button">
                                                                     Ask For Price
                                                                 </button>
@@ -321,7 +323,7 @@
                                                         </div>
                                                     @elseif ($item->price_status && $item->price_status == 'offer_price')
                                                         <div>
-                                                            <div class="price py-3">
+                                                            <div class="py-3 price">
                                                                 <small class="price-usd">USD</small>
                                                                 $ {{ number_format($item->price, 2) }}
                                                             </div>
@@ -337,7 +339,7 @@
                                                         </div>
                                                     @else
                                                         <div>
-                                                            <div class="price py-3">
+                                                            <div class="py-3 price">
                                                                 <small class="price-usd">USD</small>
                                                                 $ {{ number_format($item->price, 2) }}
                                                             </div>
