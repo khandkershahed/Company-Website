@@ -3,7 +3,7 @@
 
 
     @include('frontend.pages.product.partials.style')
-    <section class="banner_single_page mb-4"
+    <section class="mb-4 banner_single_page"
         style="background-image:url('{{ !empty($brand_logo->brand_logo) ? asset('storage/' . $bannerImage) : asset('storage/' . $cat->banner_image) }}');
                 background-color: black;
                 background-repeat: no-repeat;
@@ -13,7 +13,7 @@
         <div class="container">
             <div class="single_banner_content">
                 <!-- image -->
-                <div class="single_banner_image text-center">
+                <div class="text-center single_banner_image">
 
                     @if (!empty($brand_logo))
                         <img src="{{ asset('storage/' . $brand_logo->brand_logo) }}" alt="" height="80px"
@@ -24,7 +24,7 @@
                     @endif
                 </div>
                 <!-- heading -->
-                <h1 class="single_banner_heading text-center text-white">{{ $cat->title }}</h1>
+                <h1 class="text-center text-white single_banner_heading">{{ $cat->title }}</h1>
 
             </div>
         </div>
@@ -36,7 +36,7 @@
     <div class="container">
         <form action="{{ route('custom.product', $cat->slug) }}" method="POST">
             @csrf
-            <div class="wrapper my-4">
+            <div class="my-4 wrapper">
                 <div class="d-md-flex align-items-md-center">
                     {{-- <div>
                         <h5>
@@ -51,10 +51,10 @@
                     </div> --}}
                     <div class="ml-auto d-flex align-items-center views">
                         {{-- <span class="btn text-success">
-                            <span class="fas fa-th px-md-2 px-1"></span><span>Grid view</span> </span> <span class="btn">
+                            <span class="px-1 fas fa-th px-md-2"></span><span>Grid view</span> </span> <span class="btn">
                             <span class="fas fa-list-ul"></span>
-                            <span class="px-md-2 px-1">List view</span> </span> --}}
-                        {{-- <div class="form-inline d-flex align-items-center my-2 checkbox bg-light border mx-lg-2 rounded-0">
+                            <span class="px-1 px-md-2">List view</span> </span> --}}
+                        {{-- <div class="my-2 border form-inline d-flex align-items-center checkbox bg-light mx-lg-2 rounded-0">
                             <select name='sortBy' onchange="this.form.submit();" id="country" class="bg-light">
                                 <option value="">Sort By</option>
                                 <option value="titleASC" @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'titleASC') selected @endif>Ascending By Name
@@ -67,7 +67,7 @@
                                     Price</option>
                             </select>
                         </div>
-                        <div class="form-inline d-flex align-items-center my-2 checkbox bg-light border mx-lg-2 rounded-0">
+                        <div class="my-2 border form-inline d-flex align-items-center checkbox bg-light mx-lg-2 rounded-0">
                             <select name="show" onchange="this.form.submit();" id="page" class="bg-light">
                                 <option value="">Per Page</option>
                                 <option value="5" @if (!empty($_GET['show']) && $_GET['show'] == '5') selected @endif>5</option>
@@ -78,23 +78,23 @@
                         </div> --}}
                     </div>
                 </div>
-                {{-- <div class="d-lg-flex align-items-lg-center pt-2">
-                    <div class="form-inline d-flex align-items-center my-2 mr-lg-2 radio bg-light border"> <label
+                {{-- <div class="pt-2 d-lg-flex align-items-lg-center">
+                    <div class="my-2 border form-inline d-flex align-items-center mr-lg-2 radio bg-light"> <label
                             class="options">Most Popular <input type="radio" name="radio"> <span
                                 class="checkmark"></span>
                         </label> <label class="options">Cheapest <input type="radio" name="radio" checked> <span
                                 class="checkmark"></span> </label> </div>
-                    <div class="form-inline d-flex align-items-center my-2 checkbox bg-light border mx-lg-2"> <label
+                    <div class="my-2 border form-inline d-flex align-items-center checkbox bg-light mx-lg-2"> <label
                             class="tick">Farm <input type="checkbox" checked="checked"> <span class="check"></span>
                         </label>
-                        <span class="text-success px-2 count"> 328</span>
+                        <span class="px-2 text-success count"> 328</span>
                     </div>
-                    <div class="form-inline d-flex align-items-center my-2 checkbox bg-light border mx-lg-2"> <label
+                    <div class="my-2 border form-inline d-flex align-items-center checkbox bg-light mx-lg-2"> <label
                             class="tick">Bio <input type="checkbox"> <span class="check"></span> </label> <span
-                            class="text-success px-2 count"> 72</span> </div>
-                    <div class="form-inline d-flex align-items-center my-2 checkbox bg-light border mx-lg-2"> <label
+                            class="px-2 text-success count"> 72</span> </div>
+                    <div class="my-2 border form-inline d-flex align-items-center checkbox bg-light mx-lg-2"> <label
                             class="tick">Czech republic <input type="checkbox"> <span class="check"></span> </label>
-                        <span class="border px-1 mx-2 mr-3 font-weight-bold count"> 12</span> <select name="country"
+                        <span class="px-1 mx-2 mr-3 border font-weight-bold count"> 12</span> <select name="country"
                             id="country" class="bg-light">
                             <option value="" hidden>Country</option>
                             <option value="India">India</option>
@@ -103,58 +103,58 @@
                         </select>
                     </div>
                 </div> --}}
-                <div class="d-sm-flex align-items-sm-center pt-2 clear">
+                <div class="pt-2 d-sm-flex align-items-sm-center clear">
                     <div class="text-muted filter-label">Applied Filters:</div>
                     @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'titleASC')
-                        <div class="green-label font-weight-bold p-1 px-1 mx-sm-1 mx-0 my-sm-0 my-2" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
                             Ascending By Name
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'priceASC')
-                        <div class="green-label font-weight-bold p-1 px-1 mx-sm-1 mx-0 my-sm-0 my-2" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
                             Ascending By Price
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'titleDESC')
-                        <div class="green-label font-weight-bold p-1 px-1 mx-sm-1 mx-0 my-sm-0 my-2" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
                             Descending By Name
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'priceDESC')
-                        <div class="green-label font-weight-bold p-1 px-1 mx-sm-1 mx-0 my-sm-0 my-2" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
                             Descending By Price
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['show']) && $_GET['show'] == '5')
-                        <div class="green-label font-weight-bold p-1 px-1 mx-sm-1 mx-0 my-sm-0 my-2" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
                             Showing 5 Products
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['show']) && $_GET['show'] == '10')
-                        <div class="green-label font-weight-bold p-1 px-1 mx-sm-1 mx-0 my-sm-0 my-2" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
                             Showing 10 Products
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['show']) && $_GET['show'] == '20')
-                        <div class="green-label font-weight-bold p-1 px-1 mx-sm-1 mx-0 my-sm-0 my-2" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
                             Showing 20 Products
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['show']) && $_GET['show'] == '40')
-                        <div class="green-label font-weight-bold p-1 px-1 mx-sm-1 mx-0 my-sm-0 my-2" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
                             Showing 40 Products
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['price']))
-                        <div class="green-label font-weight-bold p-1 px-1 mx-sm-1 mx-0 my-sm-0 my-2" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
                             USD {{ $_GET['price'] }}
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
@@ -165,14 +165,14 @@
                         @endphp
                         @if (count($filterCats) > 1)
                             @foreach ($filterCats as $filterCat)
-                                <div class="green-label font-weight-bold p-1 px-1 mx-sm-1 mx-0 my-sm-0 my-2" style="cursor: pointer;">
+                                <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
                                     {{ App\Models\Admin\Category::where('slug', $filterCat)->value('title') }}
                                     <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                                 </div>
                             @endforeach
                         @endif
                         @if (count($filterCats) == 1)
-                            <div class="green-label font-weight-bold p-1 px-1 mx-sm-1 mx-0 my-sm-0 my-2" style="cursor: pointer;">
+                            <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
                                 {{ App\Models\Admin\Category::where('slug', $filterCats)->value('title') }}
                                 <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                             </div>
@@ -184,7 +184,7 @@
                         @endphp
 
                         @foreach ($filterBrands as $filterBrand)
-                            <div class="green-label font-weight-bold p-1 px-1 mx-sm-1 mx-0 my-sm-0 my-2" style="cursor: pointer;">
+                            <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
                                 {{ App\Models\Admin\Brand::where('slug', $filterBrand)->value('title') }}
                                 <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                             </div>
@@ -222,7 +222,7 @@
                                     </h2>
                                     <div id="flush-collapse{{ $cat->id }}" class="accordion-collapse collapse"
                                         aria-labelledby="flush-headingCategory" data-bs-parent="#accordionFlushCategory">
-                                        <div class="accordion-body p-1 ps-3 pl-3">
+                                        <div class="p-1 pl-3 accordion-body ps-3">
                                             {{-- Body --}}
                                             <div class="accordion accordion-flush" id="accordionFlushSubCategory">
                                                 <div class="accordion-item">
@@ -249,7 +249,7 @@
                                                             class="accordion-collapse collapse"
                                                             aria-labelledby="flush-heading{{ $sub_category->id }}"
                                                             data-bs-parent="#accordionFlushSubCategory">
-                                                            <div class="accordion-body p-1 ps-3 pl-3">
+                                                            <div class="p-1 pl-3 accordion-body ps-3">
                                                                 {{-- Body --}}
                                                                 <div class="accordion accordion-flush" id="inner_sub-2">
                                                                     <div class="accordion-item">
@@ -291,7 +291,7 @@
                         @endif
 
                         @foreach ($brands as $brand)
-                            <div class="form-inline d-flex align-items-center py-2 px-2"
+                            <div class="px-2 py-2 form-inline d-flex align-items-center"
                                 style="border-bottom: 1px solid #00000026;"> <label class="tick">{{ $brand->title }}
                                     <input type="checkbox" name="brand[]" value="{{ $brand->slug }}"
                                         @if (!empty($filterBrand) && in_array($brand->slug, $filterBrand)) checked @endif onchange="this.form.submit()">
@@ -303,48 +303,48 @@
                     <div class="py-3">
                         <h5 class="font-weight-bold">Rating</h5>
 
-                        <div class="form-inline d-flex align-items-center py-2"> <label class="tick"><span
+                        <div class="py-2 form-inline d-flex align-items-center"> <label class="tick"><span
                                     class="fas fa-star"></span> <span class="fas fa-star"></span> <span
                                     class="fas fa-star"></span> <span class="fas fa-star"></span> <span
                                     class="fas fa-star"></span> <input type="checkbox"> <span class="check"></span>
                             </label> </div>
-                        <div class="form-inline d-flex align-items-center py-2"> <label class="tick"> <span
+                        <div class="py-2 form-inline d-flex align-items-center"> <label class="tick"> <span
                                     class="fas fa-star"></span> <span class="fas fa-star"></span> <span
                                     class="fas fa-star"></span> <span class="fas fa-star"></span> <span
-                                    class="far fa-star px-1 text-muted"></span> <input type="checkbox"> <span
+                                    class="px-1 far fa-star text-muted"></span> <input type="checkbox"> <span
                                     class="check"></span> </label> </div>
-                        <div class="form-inline d-flex align-items-center py-2"> <label class="tick"><span
+                        <div class="py-2 form-inline d-flex align-items-center"> <label class="tick"><span
                                     class="fas fa-star"></span> <span class="fas fa-star"></span> <span
-                                    class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span>
-                                <span class="far fa-star px-1 text-muted"></span> <input type="checkbox"> <span
+                                    class="fas fa-star"></span> <span class="px-1 far fa-star text-muted"></span>
+                                <span class="px-1 far fa-star text-muted"></span> <input type="checkbox"> <span
                                     class="check"></span> </label> </div>
-                        <div class="form-inline d-flex align-items-center py-2"> <label class="tick"><span
+                        <div class="py-2 form-inline d-flex align-items-center"> <label class="tick"><span
                                     class="fas fa-star"></span> <span class="fas fa-star"></span> <span
-                                    class="far fa-star px-1 text-muted"></span> <span
-                                    class="far fa-star px-1 text-muted"></span> <span
-                                    class="far fa-star px-1 text-muted"></span> <input type="checkbox"> <span
+                                    class="px-1 far fa-star text-muted"></span> <span
+                                    class="px-1 far fa-star text-muted"></span> <span
+                                    class="px-1 far fa-star text-muted"></span> <input type="checkbox"> <span
                                     class="check"></span> </label> </div>
-                        <div class="form-inline d-flex align-items-center py-2"> <label class="tick"> <span
-                                    class="fas fa-star"></span> <span class="far fa-star px-1 text-muted"></span>
-                                <span class="far fa-star px-1 text-muted"></span> <span
-                                    class="far fa-star px-1 text-muted"></span> <span
-                                    class="far fa-star px-1 text-muted"></span> <input type="checkbox"> <span
+                        <div class="py-2 form-inline d-flex align-items-center"> <label class="tick"> <span
+                                    class="fas fa-star"></span> <span class="px-1 far fa-star text-muted"></span>
+                                <span class="px-1 far fa-star text-muted"></span> <span
+                                    class="px-1 far fa-star text-muted"></span> <span
+                                    class="px-1 far fa-star text-muted"></span> <input type="checkbox"> <span
                                     class="check"></span> </label> </div>
 
                     </div>
                 </div>
-                <div class="row gx-0 py-md-0 py-3">
+                <div class="py-3 row gx-0 py-md-0">
                     <section id="sidebar">
                         <div class="py-3">
                             @if (!empty($_GET['keyword']))
-                                <input class="p-1 form-control rounded-0  w-100" type="text" name="keyword"
+                                <input class="p-1 form-control rounded-0 w-100" type="text" name="keyword"
                                     value="{{ $_GET['keyword'] }}" onchange="this.form.submit()" style="padding: 25px">
                             @else
                                 <div class="input-group">
-                                    <input type="text" name="keyword" class="form-control  rounded-0"
+                                    <input type="text" name="keyword" class="form-control rounded-0"
                                         placeholder="Search BY KEYWORD..." onchange="this.form.submit()">
                                     <div class="input-group-append">
-                                        <button class="btn btn-secondary rounded-0 p-3 py-2" type="button">
+                                        <button class="p-3 py-2 btn btn-secondary rounded-0" type="button">
                                             <i class="fa fa-search"></i>
                                         </button>
                                     </div>
@@ -362,7 +362,7 @@
                                 </h2>
                                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
                                     aria-labelledby="panelsStayOpen-headingOne">
-                                    <div class="accordion-body p-3 py-0">
+                                    <div class="p-3 py-0 accordion-body">
                                         <div class="py-3">
                                             <div class="accordion accordion-flush" id="accordionFlushCategory">
                                                 <div class="accordion-item">
@@ -392,7 +392,7 @@
                                                             class="accordion-collapse collapse"
                                                             aria-labelledby="flush-headingCategory"
                                                             data-bs-parent="#accordionFlushCategory">
-                                                            <div class="accordion-body p-1 ps-3 pl-3">
+                                                            <div class="p-1 pl-3 accordion-body ps-3">
                                                                 {{-- Body --}}
 
                                                                 <div class="accordion accordion-flush"
@@ -435,7 +435,7 @@
                                                                                 class="accordion-collapse collapse"
                                                                                 aria-labelledby="flush-heading{{ $sub_category->id }}"
                                                                                 data-bs-parent="#accordionFlushSubCategory">
-                                                                                <div class="accordion-body p-1 ps-3 pl-3">
+                                                                                <div class="p-1 pl-3 accordion-body ps-3">
                                                                                     {{-- Body --}}
 
                                                                                     <div class="accordion accordion-flush"
@@ -504,9 +504,9 @@
                                             Manufacturers
                                         </button>
                                     </h2>
-                                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse shadow"
+                                    <div id="panelsStayOpen-collapseTwo" class="shadow accordion-collapse collapse"
                                         aria-labelledby="panelsStayOpen-headingTwo">
-                                        <div class="accordion-body p-3 py-0">
+                                        <div class="p-3 py-0 accordion-body">
                                             <div class="py-3">
                                                 @if (!empty($_GET['brand']))
                                                     @php
@@ -515,7 +515,7 @@
                                                 @endif
 
                                                 @foreach ($brands as $brand)
-                                                    <div class="form-inline d-flex align-items-center py-2 px-2"
+                                                    <div class="px-2 py-2 form-inline d-flex align-items-center"
                                                         style="border-bottom: 1px solid #00000026;"> <label
                                                             class="tick">{{ $brand->title }}
                                                             <input type="checkbox" name="brand[]"
@@ -539,9 +539,9 @@
                                         Price Range
                                     </button>
                                 </h2>
-                                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse shadow"
+                                <div id="panelsStayOpen-collapseThree" class="shadow accordion-collapse collapse"
                                     aria-labelledby="panelsStayOpen-headingThree">
-                                    <div class="accordion-body p-3 py-0">
+                                    <div class="p-3 py-0 accordion-body">
                                         <div class="py-3">
                                             <div class="product_list_price">
                                                 <div id="slider-range" class="price-filter-range text-success"
@@ -549,17 +549,17 @@
                                                 <input type="hidden" id="price_range" name="price_range"
                                                     value="">
                                                 @if (!empty($_GET['price']))
-                                                    <input class="form-control form-control-sm mb-2" type="text"
+                                                    <input class="mb-2 form-control form-control-sm" type="text"
                                                         id="amount" value="USD $ {{ $_GET['price'] }}" readonly>
                                                 @else
-                                                    <input class="form-control form-control-sm mb-2" type="text"
+                                                    <input class="mb-2 form-control form-control-sm" type="text"
                                                         id="amount" value="USD $0 - $20000" readonly>
                                                 @endif
                                             </div>
 
                                             <div id="sticker">
                                                 <div class="product_apply_filter_btn d-flex justify-content-center">
-                                                    <button class="common_button2 p-2 w-100" type="submit">Apply
+                                                    <button class="p-2 common_button2 w-100" type="submit">Apply
                                                         Filters</button>
                                                 </div>
                                             </div>
@@ -571,7 +571,7 @@
                     <!-- Products Section -->
                     <section id="products">
                         <div class="container py-3">
-                            <header class="product_showing px-2 py-2 mb-2">
+                            <header class="px-2 py-2 mb-2 product_showing">
                                 <div class="form-inline d-flex justify-content-between align-items-center">
                                     <span class="mr-md-auto">
                                         @if ($products)
@@ -582,7 +582,7 @@
                                         found
                                     </span>
                                     <div class="d-flex align-items-center">
-                                        <div class="me-2 ml-2">
+                                        <div class="ml-2 me-2">
                                             <select class="show form-select rounded-0 product_btn_dropdown" name="show"
                                                 onchange="this.form.submit();" data-placeholder="Results Per Page"
                                                 aria-label="Default select example">
@@ -597,7 +597,7 @@
                                                     Per Page: 40</option>
                                             </select>
                                         </div>
-                                        <div class="me-2 ml-2">
+                                        <div class="ml-2 me-2">
                                             <select class="show form-select rounded-0" name="show"
                                                 onchange="this.form.submit();" data-placeholder="Results Per Page"
                                                 aria-label="Default select example">
@@ -634,9 +634,9 @@
                                             <!-- First Product Start -->
                                             @foreach ($products as $product)
                                                 <div class="col-md-12 col-sm-12">
-                                                    <div class="row m-0 p-2  rounded-0  bg-white rounded-0 d-flex align-items-center"
+                                                    <div class="p-2 m-0 bg-white row rounded-0 d-flex align-items-center"
                                                         style="border-bottom: 2px solid #dee2e6;">
-                                                        <div class="col-md-3 mt-1 ">
+                                                        <div class="mt-1 col-md-3 ">
                                                             <img class="img-fluid img-responsive rounded-0 product-image"
                                                                 src="{{ asset($product->thumbnail) }}"
                                                                 alt="{{ $product->name }}">
@@ -666,7 +666,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="col-lg-6 mt-1 col-sm-12">
+                                                                <div class="mt-1 col-lg-6 col-sm-12">
                                                                     <div>
                                                                         <span style="font-size: 14px;">
                                                                             SKU #: {{ $product->sku_code }} |
@@ -679,7 +679,7 @@
                                                                         </p> --}}
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-lg-6 text-center mt-1 col-sm-12">
+                                                                <div class="mt-1 text-center col-lg-6 col-sm-12">
                                                                     <div class="text-end">
                                                                         @if ($product->rfq != 1)
                                                                             @if (!empty($product->discount))
@@ -736,11 +736,11 @@
                                                                                             <span
                                                                                                 class="d-flex flex-column">
                                                                                                 <button
-                                                                                                    class="qty-btn-plus btn rounded-0 text-white qty-btn"
+                                                                                                    class="text-white qty-btn-plus btn rounded-0 qty-btn"
                                                                                                     type="button"><i
                                                                                                         class="fa fa-chevron-up"></i></button>
                                                                                                 <button
-                                                                                                    class="qty-btn-minus btn rounded-0 text-white qty-btn mr-1"
+                                                                                                    class="mr-1 text-white qty-btn-minus btn rounded-0 qty-btn"
                                                                                                     type="button"><i
                                                                                                         class="fa fa-chevron-down"></i></button>
                                                                                             </span>
@@ -776,8 +776,8 @@
                                         @else
                                             <div class="col-md-12 col-sm-12">
                                                 <div
-                                                    class="row m-0 p-2 shadow-lg bg-white border rounded d-flex align-items-center">
-                                                    <h4 class="text-danger text-center">No Product Found. Search again.
+                                                    class="p-2 m-0 bg-white border rounded shadow-lg row d-flex align-items-center">
+                                                    <h4 class="text-center text-danger">No Product Found. Search again.
                                                     </h4>
                                                 </div>
                                             </div>
@@ -813,7 +813,7 @@
                 @if ($related_products)
                     @foreach ($related_products as $item)
                         <!-- Item -->
-                        <div class="ProductBlock mb-3 mt-3">
+                        <div class="mt-3 mb-3 ProductBlock">
                             <div class="Content">
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12">
@@ -826,11 +826,11 @@
                                                         alt="NGEN IT">
                                                 </a>
                                                 <ul class="custom-product-links">
-                                                    <li><a href="#"><i class="fa fa-random text-white"></i></a>
+                                                    <li><a href="#"><i class="text-white fa fa-random"></i></a>
                                                     </li>
                                                     <li><a href="#" data-bs-toggle="modal"
                                                             data-bs-target="#productDetails{{ $item->id }}"><i
-                                                                class="fa fa-search text-white"></i></a></li>
+                                                                class="text-white fa fa-search"></i></a></li>
                                                 </ul>
                                             </div>
                                             <div class="custom-product-content">
@@ -840,14 +840,15 @@
 
                                                 @if ($item->rfq == 1)
                                                     <div>
-                                                        <div class="price py-3">
+                                                        <div class="py-3 price">
                                                             {{-- <small class="price-usd">USD</small>
                                                             --.-- $ --}}
                                                         </div>
-                                                        <a href=""
+                                                        <a href="{{ route('rfq') }}"
                                                             class="d-flex justify-content-center align-items-center"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#rfq{{ $item->id }}">
+                                                            {{-- data-bs-toggle="modal"
+                                                            data-bs-target="#rfq{{ $item->id }}" --}}
+                                                            >
                                                             <button class="btn-color popular_product-button">
                                                                 Ask For Price
                                                             </button>
@@ -855,14 +856,15 @@
                                                     </div>
                                                 @elseif ($item->price_status && $item->price_status == 'rfq')
                                                     <div>
-                                                        <div class="price py-3">
+                                                        <div class="py-3 price">
                                                             {{-- <small class="price-usd">USD</small>
                                                         --.-- $ --}}
                                                         </div>
-                                                        <a href=""
+                                                        <a href="{{ route('rfq') }}"
                                                             class="d-flex justify-content-center align-items-center"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#rfq{{ $item->id }}">
+                                                            {{-- data-bs-toggle="modal"
+                                                            data-bs-target="#rfq{{ $item->id }}" --}}
+                                                            >
                                                             <button class="btn-color popular_product-button">
                                                                 Ask For Price
                                                             </button>
@@ -870,7 +872,7 @@
                                                     </div>
                                                 @elseif ($item->price_status && $item->price_status == 'offer_price')
                                                     <div>
-                                                        <div class="price py-3">
+                                                        <div class="py-3 price">
                                                             <small class="price-usd">USD</small>
                                                             $ {{ number_format($item->price, 2) }}
                                                         </div>
@@ -886,7 +888,7 @@
                                                     </div>
                                                 @else
                                                     <div>
-                                                        <div class="price py-3">
+                                                        <div class="py-3 price">
                                                             <small class="price-usd">USD</small>
                                                             $ {{ number_format($item->price, 2) }}
                                                         </div>

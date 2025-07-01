@@ -514,8 +514,9 @@
                                                         </div>
                                                         <a href=""
                                                             class="d-flex justify-content-center align-items-center"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#rfq{{ $product->id }}">
+                                                            {{-- data-bs-toggle="modal"
+                                                            data-bs-target="#rfq{{ $product->id }}" --}}
+                                                            >
                                                             <button class="btn-color popular_product-button">
                                                                 Ask For Price
                                                             </button>

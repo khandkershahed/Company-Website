@@ -23,11 +23,11 @@
         }
 
         /*
-        *
-        * ==========================================
-        * CUSTOM UTIL CLASSES
-        * ==========================================
-        */
+                *
+                * ==========================================
+                * CUSTOM UTIL CLASSES
+                * ==========================================
+                */
         .nav-pills-custom .nav-link {
             color: #aaa;
             background: #fff;
@@ -56,7 +56,8 @@
                 transform: translateY(-50%);
                 opacity: 0;
             }
-            .w-lg-80{
+
+            .w-lg-80 {
                 width: 80%;
             }
         }
@@ -86,7 +87,7 @@
             <div class="col-lg-4 col-sm-12 single_product_images">
                 <!-- gallery pic -->
                 <div class="mx-auto d-block">
-                    <img id="expand" class="geeks img-fluid rounded mx-auto d-block"
+                    <img id="expand" class="mx-auto rounded geeks img-fluid d-block"
                         src="{{ !empty($sproduct->thumbnail) && file_exists(public_path($sproduct->thumbnail)) ? asset($sproduct->thumbnail) : asset('frontend/images/random-no-img.png') }}">
                     {{-- src="{{ asset($sproduct->thumbnail) }}"> --}}
 
@@ -95,7 +96,7 @@
                     $imgs = App\Models\Admin\MultiImage::where('product_id', $sproduct->id)->get();
                 @endphp
 
-                <div class="img_gallery_wrapper row pt-1">
+                <div class="pt-1 img_gallery_wrapper row">
                     @foreach ($imgs as $data)
                         <div class="col-3">
                             {{-- <img class="img-fluid" src="{{ asset($data->photo) }}" onclick="gfg(this);"> --}}
@@ -107,7 +108,7 @@
                 </div>
             </div>
             <!-- content -->
-            <div class="col-lg-8 col-sm-12 pl-4">
+            <div class="pl-4 col-lg-8 col-sm-12">
                 <h3>{{ $sproduct->name }}</h3>
                 <h6 class="text-dark product_code">SKU #{{ $sproduct->sku_code }} | MF #{{ $sproduct->mf_code }} | NG
                     #{{ $sproduct->product_code }}
@@ -121,7 +122,8 @@
                     style="background-color: transparent !important;">
                     @if ($sproduct->rfq == 1)
                         <div class="bg-light d-flex justify-content-between align-items-center w-lg-80">
-                            <a href="javascript:void(0)" class="search-btn-price" data-bs-toggle="modal" data-bs-target="#rfqModal"
+                            <a href="{{ route('rfq') }}" class="search-btn-price" {{-- data-bs-toggle="modal"
+                                data-bs-target="#rfqModal"  --}}
                                 style="width: 14rem;">Ask For Price</a>
                             {{-- <a class="common_button" href="{{route('contact')}}">Call Ngen It for price</a> --}}
                             <div class="need_help col-lg-4 col-sm-12">
@@ -129,23 +131,23 @@
                                 <h6>Call <strong>{{ App\Models\Admin\Setting::first()->mobile }}</strong></h6>
                             </div>
                         </div>
-                        <div class="col-lg-12 col-sm-12 d-flex align-items-center justify-content-between py-2 mt-2 px-4 w-lg-80"
+                        <div class="px-4 py-2 mt-2 col-lg-12 col-sm-12 d-flex align-items-center justify-content-between w-lg-80"
                             style="background: #f9f6f0;">
                             <div class="stock-info">
-                                <p tabindex="0" class="prod-stock mb-0" id="product-avalialability-by-warehouse">
+                                <p tabindex="0" class="mb-0 prod-stock" id="product-avalialability-by-warehouse">
                                     <span aria-label="Stock Availability" class="js-prod-available"> <i
                                             class="fa fa-info-circle text-success"></i> Stock</span> <br>
                                     @if ($sproduct->qty > 0)
                                         <span class="text-success" style="font-size:17px">{{ $sproduct->qty }}
                                             in stock</span>
                                     @else
-                                        <span class="text-danger pb-2"
+                                        <span class="pb-2 text-danger"
                                             style="font-size:17px">{{ ucfirst($sproduct->stock) }}</span>
                                     @endif
                                 </p>
                             </div>
                             <div>
-                                <p class="list_price mb-0 me-3">Custom Pricing</p>
+                                <p class="mb-0 list_price me-3">Custom Pricing</p>
                                 <a href="" data-bs-toggle="modal" data-bs-target="#askProductPrice">
                                     <span class="fw-bold" style="color: #ae0a46;">Get A Quote</span>
                                 </a>
@@ -153,8 +155,13 @@
                         </div>
                     @elseif ($sproduct->price_status && $sproduct->price_status == 'rfq')
                         <div class="bg-light d-flex justify-content-between align-items-center w-lg-80">
-                            <button class="search-btn-price" id="modal_view_left" data-bs-toggle="modal"
-                                data-bs-target="#rfqModal" style="width: 35%;">Ask For Price</button>
+                            <a href="{{ route('rfq') }}">
+                                <button class="search-btn-price"
+                                id="modal_view_left"
+                                {{-- data-bs-toggle="modal"
+                                    data-bs-target="#rfqModal"  --}}
+                                    style="width: 35%;">Ask For Price</button>
+                            </a>
 
                             {{-- <a class="common_button" href="{{route('contact')}}">Call Ngen It for price</a> --}}
                             <div class="need_help col-lg-4 col-sm-12">
@@ -162,30 +169,31 @@
                                 <h6>Call <strong>{{ App\Models\Admin\Setting::first()->mobile }}</strong></h6>
                             </div>
                         </div>
-                        <div class="col-lg-12 col-sm-12 d-flex align-items-center justify-content-between py-2 mt-2 px-4 w-lg-80"
+                        <div class="px-4 py-2 mt-2 col-lg-12 col-sm-12 d-flex align-items-center justify-content-between w-lg-80"
                             style="background: #f9f6f0;">
                             <div class="stock-info">
-                                <p tabindex="0" class="prod-stock mb-0" id="product-avalialability-by-warehouse">
+                                <p tabindex="0" class="mb-0 prod-stock" id="product-avalialability-by-warehouse">
                                     <span aria-label="Stock Availability" class="js-prod-available"> <i
                                             class="fa fa-info-circle text-success"></i> Stock</span> <br>
                                     @if ($sproduct->qty > 0)
                                         <span class="text-success" style="font-size:17px">{{ $sproduct->qty }}
                                             in stock</span>
                                     @else
-                                        <span class="text-danger pb-2"
+                                        <span class="pb-2 text-danger"
                                             style="font-size:17px">{{ ucfirst($sproduct->stock) }}</span>
                                     @endif
                                 </p>
                             </div>
                             <div>
-                                <p class="list_price mb-0 me-3">Custom Pricing</p>
+                                <p class="mb-0 list_price me-3">Custom Pricing</p>
                                 <a href="" data-bs-toggle="modal" data-bs-target="#askProductPrice">
                                     <span class="fw-bold" style="color: #ae0a46;">Get A Quote</span>
                                 </a>
                             </div>
                         </div>
                     @else
-                        <div class="col-lg-12 col-sm-12 d-lg-flex align-items-center justify-content-between bg-light py-2 w-lg-80">
+                        <div
+                            class="py-2 col-lg-12 col-sm-12 d-lg-flex align-items-center justify-content-between bg-light w-lg-80">
                             <div class="pro-qty">
                                 <p class="mb-0" style="font-size: 14px !important; color: #ae0a46;">$
                                     <span class="number-font" style="font-size: 22px;">{{ $sproduct->sas_price }}</span> US
@@ -197,11 +205,11 @@
                             </div>
                             {{-- <button class="common_button2 ms-3" type="submit">Add to Basket</button> --}}
                         </div>
-                        <div class="col-lg-12 col-sm-12 d-flex align-items-center justify-content-between py-2 mt-2 px-5"
+                        <div class="px-5 py-2 mt-2 col-lg-12 col-sm-12 d-flex align-items-center justify-content-between"
                             style="width: 80%; background: #f9f6f0;">
                             <div>
                                 @if ($sproduct->rfq != 1)
-                                    <p class="list_price mb-0">List Price</p>
+                                    <p class="mb-0 list_price">List Price</p>
                                     <div class="product__details__price ">
                                         @if (!empty($sproduct->discount))
                                             <p class="mb-0" style="font-size: 14px !important; color: #ae0a46;">
@@ -227,7 +235,7 @@
                                     <div id="tpl-product-detail-order-target" class="prod-ordering-section"
                                         data-outofstock="Out of stock.">
                                         <div class="row js-add-to-cart-container">
-                                            <div class="columns small-12 ds-v1 text-center">
+                                            <div class="text-center columns small-12 ds-v1">
                                                 <a type="button" style="font-weight: 600" class="text-danger"
                                                     data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                                                     <h5>This product has sell requirements</h5>
@@ -238,20 +246,20 @@
                                 @endif
                             </div>
                             <div class="stock-info">
-                                <p tabindex="0" class="prod-stock mb-0" id="product-avalialability-by-warehouse">
+                                <p tabindex="0" class="mb-0 prod-stock" id="product-avalialability-by-warehouse">
                                     <span aria-label="Stock Availability" class="js-prod-available"> <i
                                             class="fa fa-info-circle text-success"></i> Stock</span> <br>
                                     @if ($sproduct->qty > 0)
                                         <span class="text-success" style="font-size:17px">{{ $sproduct->qty }}
                                             in stock</span>
                                     @else
-                                        <span class="text-danger pb-2"
+                                        <span class="pb-2 text-danger"
                                             style="font-size:17px">{{ ucfirst($sproduct->stock) }}</span>
                                     @endif
                                 </p>
                             </div>
                             <div>
-                                <p class="list_price mb-0">Custom Pricing</p>
+                                <p class="mb-0 list_price">Custom Pricing</p>
                                 {{-- <button class="btn-color brand-product-btn" id="modal_view_left"
                                                         data-bs-toggle="modal" data-bs-target="#rfq{{ $sproduct->id }}"
                                                         style="width: 100%;">Get Quote</button> --}}
@@ -268,92 +276,92 @@
     </section>
     <br>
     <!-------End-------->
-    <section class="py-5 header pt-0">
+    <section class="py-5 pt-0 header">
         <div class="container py-4">
             <div class="row">
-                <div class="col-md-3 p-0">
+                <div class="p-0 col-md-3">
                     <!-- Tabs nav -->
                     <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist"
                         aria-orientation="vertical">
-                        <a class="nav-link p-3 shadow-sm rounded-0 active" id="v-pills-overview-tab" data-bs-toggle="pill"
-                            href="#v-pills-overview" role="tab" aria-controls="v-pills-overview"
-                            aria-selected="true" style="margin-bottom: 1px;">
-                            <i class="fa-solid fa-circle-info mr-2" style="font-size: 15px !important;"></i>
+                        <a class="p-3 shadow-sm nav-link rounded-0 active" id="v-pills-overview-tab"
+                            data-bs-toggle="pill" href="#v-pills-overview" role="tab"
+                            aria-controls="v-pills-overview" aria-selected="true" style="margin-bottom: 1px;">
+                            <i class="mr-2 fa-solid fa-circle-info" style="font-size: 15px !important;"></i>
                             <span class="fw-bold fs-3">Overview</span></a>
 
-                        <a class="nav-link p-3 shadow-sm rounded-0" id="v-pills-specification-tab" data-bs-toggle="pill"
+                        <a class="p-3 shadow-sm nav-link rounded-0" id="v-pills-specification-tab" data-bs-toggle="pill"
                             href="#v-pills-specification" role="tab" aria-controls="v-pills-specification"
                             aria-selected="false" style="margin-bottom: 1px;">
-                            <i class="fa-solid fa-file mr-2" style="font-size: 15px !important;"></i>
+                            <i class="mr-2 fa-solid fa-file" style="font-size: 15px !important;"></i>
                             <span class="fw-bold fs-3">Specification</span></a>
 
-                        <a class="nav-link p-3 shadow-sm rounded-0" id="v-pills-accessories-tab" data-bs-toggle="pill"
+                        <a class="p-3 shadow-sm nav-link rounded-0" id="v-pills-accessories-tab" data-bs-toggle="pill"
                             href="#v-pills-accessories" role="tab" aria-controls="v-pills-accessories"
                             aria-selected="false" style="margin-bottom: 1px;">
-                            <i class="fa-solid fa-boxes-stacked mr-2" style="font-size: 15px !important;"></i>
+                            <i class="mr-2 fa-solid fa-boxes-stacked" style="font-size: 15px !important;"></i>
                             <span class="fw-bold fs-3">Accessories</span></a>
 
-                        <a class="nav-link p-3 shadow-sm rounded-0" id="v-pills-warranties-tab" data-bs-toggle="pill"
+                        <a class="p-3 shadow-sm nav-link rounded-0" id="v-pills-warranties-tab" data-bs-toggle="pill"
                             href="#v-pills-warranties" role="tab" aria-controls="v-pills-warranties"
                             aria-selected="false" style="margin-bottom: 1px;">
-                            <i class="fa-solid fa-shield-halved mr-2" style="font-size: 15px !important;"></i>
+                            <i class="mr-2 fa-solid fa-shield-halved" style="font-size: 15px !important;"></i>
                             <span class="fw-bold fs-3">Warranties</span></a>
                     </div>
                 </div>
 
 
-                <div class="col-md-9 px-0">
+                <div class="px-0 col-md-9">
                     <!-- Tabs content -->
-                    <div class="tab-content p-0" id="v-pills-tabContent">
-                        <div class="tab-pane fade shadow-sm rounded-0 bg-white show active" id="v-pills-overview"
+                    <div class="p-0 tab-content" id="v-pills-tabContent">
+                        <div class="bg-white shadow-sm tab-pane fade rounded-0 show active" id="v-pills-overview"
                             role="tabpanel" aria-labelledby="v-pills-overview-tab"
                             style="width: 100% !important;overflow: auto;">
-                            <h4 class="mb-2 text-center bg-light p-2 mt-0 pb-3">Product Overview</h4>
+                            <h4 class="p-2 pb-3 mt-0 mb-2 text-center bg-light">Product Overview</h4>
                             <div class="p-2">
                                 @if (!empty($sproduct->overview))
-                                    <p class="text-muted mb-2" style="width: 100% !important;overflow: auto;">
+                                    <p class="mb-2 text-muted" style="width: 100% !important;overflow: auto;">
                                         {!! $sproduct->overview !!}</p>
                                 @else
-                                    <p class="text-muted mb-2"> No overview Available</p>
+                                    <p class="mb-2 text-muted"> No overview Available</p>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="tab-pane fade shadow-sm rounded-0 bg-white" id="v-pills-specification"
+                        <div class="bg-white shadow-sm tab-pane fade rounded-0" id="v-pills-specification"
                             role="tabpanel" aria-labelledby="v-pills-specification-tab"
                             style="width: 100% !important;overflow: auto;">
-                            <h4 class="mb-2 text-center bg-light p-2 mt-0 pb-3">Product Specification</h4>
+                            <h4 class="p-2 pb-3 mt-0 mb-2 text-center bg-light">Product Specification</h4>
                             <div class="p-2">
                                 @if (!empty($sproduct->specification))
-                                    <p class="text-muted mb-2" style="width: 100% !important;overflow: auto;">
+                                    <p class="mb-2 text-muted" style="width: 100% !important;overflow: auto;">
                                         {!! $sproduct->specification !!}</p>
                                 @else
-                                    <p class="text-muted mb-2"> No Specification Available</p>
+                                    <p class="mb-2 text-muted"> No Specification Available</p>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="tab-pane fade shadow-sm rounded-0 bg-white" id="v-pills-accessories" role="tabpanel"
+                        <div class="bg-white shadow-sm tab-pane fade rounded-0" id="v-pills-accessories" role="tabpanel"
                             aria-labelledby="v-pills-accessories-tab" style="width: 100% !important;overflow: auto;">
-                            <h4 class="mb-2 text-center bg-light p-2 mt-0 pb-3">Product Accessories</h4>
+                            <h4 class="p-2 pb-3 mt-0 mb-2 text-center bg-light">Product Accessories</h4>
                             <div class="p-2">
                                 @if (!empty($sproduct->accessories))
-                                    <p class="text-muted mb-2" style="width: 100% !important;overflow: auto;">
+                                    <p class="mb-2 text-muted" style="width: 100% !important;overflow: auto;">
                                         {!! $sproduct->accessories !!} </p>
                                 @else
-                                    <p class="text-muted mb-2"> No Accessories Available</p>
+                                    <p class="mb-2 text-muted"> No Accessories Available</p>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="tab-pane fade shadow-sm rounded-0 bg-white" id="v-pills-warranties" role="tabpanel"
+                        <div class="bg-white shadow-sm tab-pane fade rounded-0" id="v-pills-warranties" role="tabpanel"
                             aria-labelledby="v-pills-warranties-tab" style="width: 100% !important;overflow: auto;">
-                            <h4 class="mb-2 text-center bg-light p-2 mt-0 pb-3">Product Warranties</h4>
+                            <h4 class="p-2 pb-3 mt-0 mb-2 text-center bg-light">Product Warranties</h4>
                             <div class="p-2">
                                 @if (!empty($sproduct->warranty))
-                                    <p class="text-muted mb-2"> {!! $sproduct->warranty !!} </p>
+                                    <p class="mb-2 text-muted"> {!! $sproduct->warranty !!} </p>
                                 @else
-                                    <p class="text-muted mb-2"> No Warranty Available</p>
+                                    <p class="mb-2 text-muted"> No Warranty Available</p>
                                 @endif
                             </div>
                         </div>
@@ -376,7 +384,7 @@
                     @if ($products)
                         @foreach ($products as $item)
                             <!-- Item -->
-                            <div class="ProductBlock mb-3 mt-3">
+                            <div class="mt-3 mb-3 ProductBlock">
                                 <div class="Content">
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12">
@@ -389,11 +397,11 @@
                                                             alt="NGEN IT">
                                                     </a>
                                                     <ul class="custom-product-links">
-                                                        <li><a href="#"><i class="fa fa-random text-white"></i></a>
+                                                        <li><a href="#"><i class="text-white fa fa-random"></i></a>
                                                         </li>
                                                         <li><a href="#" data-bs-toggle="modal"
                                                                 data-bs-target="#productDetails{{ $item->id }}"><i
-                                                                    class="fa fa-search text-white"></i></a></li>
+                                                                    class="text-white fa fa-search"></i></a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="custom-product-content">
@@ -403,14 +411,15 @@
 
                                                     @if ($item->rfq == 1)
                                                         <div>
-                                                            <div class="price py-3">
+                                                            <div class="py-3 price">
                                                                 {{-- <small class="price-usd">USD</small>
                                                             --.-- $ --}}
                                                             </div>
-                                                            <a href=""
+                                                            <a href="{{ route('rfq') }}"
                                                                 class="d-flex justify-content-center align-items-center"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}">
+                                                                {{-- data-bs-toggle="modal"
+                                                                data-bs-target="#rfq{{ $item->id }}" --}}
+                                                                >
                                                                 <button class="btn-color popular_product-button">
                                                                     Ask For Price
                                                                 </button>
@@ -418,14 +427,15 @@
                                                         </div>
                                                     @elseif ($item->price_status && $item->price_status == 'rfq')
                                                         <div>
-                                                            <div class="price py-3">
+                                                            <div class="py-3 price">
                                                                 {{-- <small class="price-usd">USD</small>
                                                         --.-- $ --}}
                                                             </div>
-                                                            <a href=""
+                                                            <a href="{{ route('rfq') }}"
                                                                 class="d-flex justify-content-center align-items-center"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}">
+                                                                {{-- data-bs-toggle="modal"
+                                                                data-bs-target="#rfq{{ $item->id }}" --}}
+                                                                >
                                                                 <button class="btn-color popular_product-button">
                                                                     Ask For Price
                                                                 </button>
@@ -433,7 +443,7 @@
                                                         </div>
                                                     @elseif ($item->price_status && $item->price_status == 'offer_price')
                                                         <div>
-                                                            <div class="price py-3">
+                                                            <div class="py-3 price">
                                                                 <small class="price-usd">USD</small>
                                                                 $ {{ number_format($item->price, 2) }}
                                                             </div>
@@ -449,7 +459,7 @@
                                                         </div>
                                                     @else
                                                         <div>
-                                                            <div class="price py-3">
+                                                            <div class="py-3 price">
                                                                 <small class="price-usd">USD</small>
                                                                 $ {{ number_format($item->price, 2) }}
                                                             </div>
@@ -488,16 +498,16 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="modal-header py-2" style="background: #ae0a46;">
-                    <h5 class="modal-title text-white" id="staticBackdropLabel">Your Price Form
+                <div class="py-2 modal-header" style="background: #ae0a46;">
+                    <h5 class="text-white modal-title" id="staticBackdropLabel">Your Price Form
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="container px-0" id="sign-up-container-area" style="display: block">
                         <form>
-                            <div class="py-2 px-2 bg-light rounded">
-                                <div class="row mb-1">
+                            <div class="px-2 py-2 rounded bg-light">
+                                <div class="mb-1 row">
                                     <div class="col">
                                         <div class="row">
                                             <div class="col-sm-4 d-flex justify-content-between align-items-center">
@@ -522,14 +532,14 @@
                                                     class="form-control form-control-sm rounded-0 w-100" maxlength="100"
                                                     placeholder="Enter Your Email" required>
 
-                                                <span class="text-danger text-start p-0 m-0 email_validation"
+                                                <span class="p-0 m-0 text-danger text-start email_validation"
                                                     style="display: none;">Please input
                                                     valid email</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row mb-1">
+                                <div class="mb-1 row">
                                     <div class="col">
                                         <div class="row">
                                             <div class="col-sm-4 d-flex justify-content-between align-items-center">
@@ -557,7 +567,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row mb-1">
+                                <div class="mb-1 row">
                                     <div class="col">
                                         <div class="row">
                                             <div class="col-sm-4 d-flex justify-content-between align-items-center">
@@ -612,8 +622,8 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="modal-header py-2" style="background: #ae0a46;">
-                    <h5 class="modal-title text-white" id="staticBackdropLabel">Get Quote
+                <div class="py-2 modal-header" style="background: #ae0a46;">
+                    <h5 class="text-white modal-title" id="staticBackdropLabel">Get Quote
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -621,7 +631,7 @@
                     <div class="container">
                         <form action="{{ route('rfq.add') }}" enctype="multipart/form-data" method="POST">
                             @csrf
-                            <div class="row mb-4">
+                            <div class="mb-4 row">
                                 <div class="col-lg-9">
                                     <label class="mb-2" for="product_name">Product Name <span
                                             class="text-danger">*</span></label>
@@ -634,42 +644,42 @@
                                         value="{{ old('qty') }}">
                                 </div>
                             </div>
-                            <div class="row mb-4">
-                                <div class="col-lg-4 mb-3 pe-0">
+                            <div class="mb-4 row">
+                                <div class="mb-3 col-lg-4 pe-0">
                                     <input type="text" class="form-control rounded-0" required id="name"
                                         name="name" placeholder="Your Name *"
                                         value="{{ Auth::guard('client')->check() ? Auth::guard('client')->user()->name : '' }}" />
                                 </div>
-                                <div class="col-lg-4 mb-3 pe-0">
+                                <div class="mb-3 col-lg-4 pe-0">
                                     <input type="number" class="form-control rounded-0" id="phone" name="phone"
                                         placeholder="Your Phone Number *" required
                                         value="{{ Auth::guard('client')->check() ? Auth::guard('client')->user()->phone : '' }}" />
                                 </div>
-                                <div class="col-lg-4 mb-3">
+                                <div class="mb-3 col-lg-4">
                                     <input type="text" class="form-control rounded-0" id="contact"
                                         name="company_name" placeholder="Your Company Name *" required
                                         value="{{ Auth::guard('client')->check() ? Auth::guard('client')->user()->company_name : '' }}" />
                                 </div>
-                                <div class="col-lg-5 mb-3 pe-0">
+                                <div class="mb-3 col-lg-5 pe-0">
                                     <input type="email" required class="form-control rounded-0" id="email"
                                         name="email" placeholder="Your Email *"
                                         value="{{ Auth::guard('client')->check() ? Auth::guard('client')->user()->email : '' }}" />
-                                    <span class="text-danger text-start p-0 m-0 email_validation"
+                                    <span class="p-0 m-0 text-danger text-start email_validation"
                                         style="display: none">Please input valid email</span>
                                 </div>
-                                <div class="col-lg-7 mb-3">
+                                <div class="mb-3 col-lg-7">
                                     <input type="file" name="image" class="form-control rounded-0" id="image"
                                         accept="image/*" placeholder="Your Custom Image" />
                                 </div>
-                                <div class="col-lg-12 mb-3">
+                                <div class="mb-3 col-lg-12">
                                     <textarea class="form-control rounded-0" id="message" name="message" rows="3" placeholder="Your Message"></textarea>
                                 </div>
                             </div>
 
 
                             <div class="row align-items-center">
-                                <div class="col-lg-3 mb-3">
-                                    <div class="form-check border-0">
+                                <div class="mb-3 col-lg-3">
+                                    <div class="border-0 form-check">
                                         <input class="form-check-input" type="checkbox" value="1"
                                             id="flexCheckDefault" name="call" placeholder="Call Me"
                                             style="left: 3rem;" />
@@ -677,13 +687,13 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 mb-3">
-                                    <div class="form-group px-3 mx-1 message g-recaptcha w-100"
+                                <div class="mb-3 col-lg-6">
+                                    <div class="px-3 mx-1 form-group message g-recaptcha w-100"
                                         data-sitekey="{{ config('app.recaptcha_site_key') }}">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 mb-3">
-                                    <button type="submit" class="btn rounded-0 p-2"
+                                <div class="mb-3 col-lg-3">
+                                    <button type="submit" class="p-2 btn rounded-0"
                                         style="background: #ae0a46; color: white; width:150px; font-size:20px"
                                         role="button">Submit</button>
                                 </div>
@@ -700,36 +710,37 @@
 
 
     <!-- left modal -->
-    <div class="modal fade" id="rfq{{ $sproduct->id }}" tabindex="-1" aria-labelledby="rfq{{ $sproduct->id }}" aria-hidden="true">
+    <div class="modal fade" id="rfq{{ $sproduct->id }}" tabindex="-1" aria-labelledby="rfq{{ $sproduct->id }}"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
-          <div class="modal-content">
-            <div class="modal-header" style="background: #ae0a46;">
-              <h5 class="modal-title" id="rfq{{ $sproduct->id }}">Get Quote</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-    {{-- <div class="modal fade" id="rfq{{ $sproduct->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
+            <div class="modal-content">
+                <div class="modal-header" style="background: #ae0a46;">
+                    <h5 class="modal-title" id="rfq{{ $sproduct->id }}">Get Quote</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                {{-- <div class="modal fade" id="rfq{{ $sproduct->id }}" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content rounded-0">
-                <div class="modal-header py-2 px-4 rounded-0" style="background: #ae0a46;">
-                    <h5 class="modal-title p-1 text-white" id="staticBackdropLabel">Get Quote
+                <div class="px-4 py-2 modal-header rounded-0" style="background: #ae0a46;">
+                    <h5 class="p-1 text-white modal-title" id="staticBackdropLabel">Get Quote
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div> --}}
-                <div class="modal-body rounded-0 p-0">
+                <div class="p-0 modal-body rounded-0">
                     <div class="container px-0">
                         @if (Auth::guard('client')->user())
                             <form action="{{ route('rfq.add') }}" method="post" id="get_quote_frm"
                                 class="get_quote_frm" enctype="multipart/form-data">
                                 @csrf
-                                <div class="card mx-4">
-                                    <div class="card-body px-4 py-2">
-                                        <div class="row border" style="font-size: 0.8rem;">
-                                            <div class="col-lg-3 mb-3 pl-2">{{ Auth::guard('client')->user()->name }}
+                                <div class="mx-4 card">
+                                    <div class="px-4 py-2 card-body">
+                                        <div class="border row" style="font-size: 0.8rem;">
+                                            <div class="pl-2 mb-3 col-lg-3">{{ Auth::guard('client')->user()->name }}
                                             </div>
-                                            <div class="col-lg-4 mb-3" style="margin: 5px 0px">
+                                            <div class="mb-3 col-lg-4" style="margin: 5px 0px">
                                                 {{ Auth::guard('client')->user()->email }}</div>
-                                            <div class="col-lg-4 mb-3" style="margin: 5px 0px">
+                                            <div class="mb-3 col-lg-4" style="margin: 5px 0px">
                                                 {{ Auth::guard('client')->user()->phone }}
                                                 <div class="form-group" id="Rfquser" style="display:none">
                                                     <input type="text" required
@@ -749,19 +760,19 @@
                                 <input type="hidden" name="client_type" value="client">
                                 <input type="hidden" name="name" value="{{ Auth::guard('client')->user()->name }}">
                                 <input type="hidden" name="email" value="{{ Auth::guard('client')->user()->email }}">
-                                <span class="text-danger text-start p-0 m-0 email_validation"
+                                <span class="p-0 m-0 text-danger text-start email_validation"
                                     style="display: none;">Please input
                                     valid email</span>
                                 <div class="modal-body get_quote_view_modal_body">
                                     <div class="form-row">
-                                        <div class="form-group col-sm-4 m-0">
-                                            <input type="text" class="form-control form-control-sm rounded-0 mt-4"
+                                        <div class="m-0 form-group col-sm-4">
+                                            <input type="text" class="mt-4 form-control form-control-sm rounded-0"
                                                 id="contact" name="company_name"
                                                 value="{{ Auth::guard('client')->user()->company_name }}"
                                                 placeholder="Company Name" style="font-size: 0.7rem;">
                                         </div>
-                                        <div class="form-group col-sm-4 m-0">
-                                            <input type="number" class="form-control form-control-sm rounded-0 mt-4"
+                                        <div class="m-0 form-group col-sm-4">
+                                            <input type="number" class="mt-4 form-control form-control-sm rounded-0"
                                                 id="contact" name="qty" placeholder="Quantity"
                                                 style="font-size: 0.7rem;">
                                         </div>
@@ -774,7 +785,7 @@
                                             <div class="form-text" style="font-size:11px;">Only png, jpg, jpeg images
                                             </div>
                                         </div>
-                                        <h6 class="text-start pt-1 main_color">Product Name :</h6>
+                                        <h6 class="pt-1 text-start main_color">Product Name :</h6>
                                         <div class="form-group col-sm-12">
                                             <div class="row">
                                                 <div class="col-lg-10">
@@ -795,17 +806,17 @@
                                             <textarea class="form-control form-control-sm rounded-0" id="message" name="message" rows="1"
                                                 placeholder="Additional Information..."></textarea>
                                         </div>
-                                        <div class="form-group  col-sm-12 px-3 mx-3">
+                                        <div class="px-3 mx-3 form-group col-sm-12">
                                             <input class="form-check-input" type="checkbox" value="1"
                                                 id="flexCheckDefault" name="call" style="left: 3rem;">
                                             <label class="form-check-label" for="flexCheckDefault">
                                                 Call Me
                                             </label>
                                         </div>
-                                        <div class="form-group col-sm-12 px-3 mx-3 message g-recaptcha"
+                                        <div class="px-3 mx-3 form-group col-sm-12 message g-recaptcha"
                                             data-sitekey="{{ config('app.recaptcha_site_key') }}"></div>
                                     </div>
-                                    <div class="modal-footer border-0">
+                                    <div class="border-0 modal-footer">
                                         <button type="submit" class="btn btn-primary col-lg-3" id="submit_btn">Submit
                                             &nbsp;<i class="fa fa-paper-plane"></i></button>
                                     </div>
@@ -816,61 +827,62 @@
                                 class="get_quote_frm" enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{ $sproduct->id }}">
-                                <input type="hidden" name="client_id" value="{{ optional(Auth::guard('client')->user())->id }}">
+                                <input type="hidden" name="client_id"
+                                    value="{{ optional(Auth::guard('client')->user())->id }}">
                                 <div class="modal-body get_quote_view_modal_body rounded-0">
                                     <div class="container">
-                                        <div class="row mb-4">
+                                        <div class="mb-4 row">
                                             <div class="col-lg-10">
                                                 <h6 class="text-start main_color fw-bold">Product Name :</h6>
                                                 <span class="text-black">{{ $sproduct->name }}</span>
                                             </div>
-                                            <div class="col-lg-2 p-0">
+                                            <div class="p-0 col-lg-2">
                                                 <label for="quantity"
-                                                    class="text-start main_color fw-bold mb-2">Quantity</label>
+                                                    class="mb-2 text-start main_color fw-bold">Quantity</label>
                                                 <input type="number" class="form-control form-control-sm rounded-0"
                                                     name="qty" value="1" id="quantity"
                                                     placeholder="Quantity" />
                                             </div>
                                         </div>
-                                        <div class="row mb-4">
-                                            <div class="col-lg-4 mb-4 pe-0">
+                                        <div class="mb-4 row">
+                                            <div class="mb-4 col-lg-4 pe-0">
                                                 {{-- <label for="name">Name <span class="text-danger">*</span> </label> --}}
                                                 <input type="text" class="form-control form-control-sm rounded-0"
                                                     required id="name" name="name" placeholder="Your Name *" />
                                             </div>
-                                            <div class="col-lg-4 mb-4 pe-0">
+                                            <div class="mb-4 col-lg-4 pe-0">
 
                                                 <input type="number" class="form-control form-control-sm rounded-0"
                                                     id="phone" name="phone" placeholder="Your Phone Number *"
                                                     required />
                                             </div>
-                                            <div class="col-lg-4 mb-4">
+                                            <div class="mb-4 col-lg-4">
                                                 {{-- <label for="contact">Company Name </label> --}}
                                                 <input type="text" class="form-control form-control-sm rounded-0"
                                                     id="contact" name="company_name" placeholder="Your Company Name *"
                                                     required />
                                             </div>
-                                            <div class="col-lg-5 mb-4 pe-0">
+                                            <div class="mb-4 col-lg-5 pe-0">
                                                 {{-- <label for="email">Email <span class="text-danger">*</span> </label> --}}
                                                 <input type="email" required
                                                     class="form-control form-control-sm rounded-0" id="email"
                                                     name="email" placeholder="Your Email *" required />
-                                                <span class="text-danger text-start p-0 m-0 email_validation"
+                                                <span class="p-0 m-0 text-danger text-start email_validation"
                                                     style="display: none">Please input valid email</span>
                                             </div>
-                                            <div class="col-lg-7 mb-4">
+                                            <div class="mb-4 col-lg-7">
                                                 {{-- <label for="contact">Custom Image </label> --}}
                                                 <input type="file" name="image"
                                                     class="form-control form-control-sm rounded-0" id="image"
                                                     accept="image/*" placeholder="Your Custom Image" />
                                             </div>
-                                            <div class="col-lg-12 mb-4">
+                                            <div class="mb-4 col-lg-12">
                                                 {{-- <label for="message">Type Message</label> --}}
                                                 <textarea class="form-control form-control-sm rounded-0" id="message" name="message" rows="3"
                                                     placeholder="Your Message"></textarea>
                                             </div>
-                                            <div class="col-lg-12 mb-4">
-                                                <div class="form-check border-0">
+                                            <div class="mb-4 col-lg-12">
+                                                <div class="border-0 form-check">
                                                     <input class="form-check-input" type="checkbox" value="1"
                                                         id="flexCheckDefault" name="call" placeholder="Call Me"
                                                         style="left:3rem;" />
@@ -880,20 +892,20 @@
                                             </div>
 
                                         </div>
-                                        <div class="row align-items-center mb-5">
-                                            <div class="col-lg-6 mb-4">
-                                                {{-- <div class="form-group px-3 mx-1 message g-recaptcha w-100"
+                                        <div class="mb-5 row align-items-center">
+                                            <div class="mb-4 col-lg-6">
+                                                {{-- <div class="px-3 mx-1 form-group message g-recaptcha w-100"
                                                     style="position: relative;right: 20px;"
                                                     data-sitekey="{{ config('app.recaptcha_site_key') }}">
                                                 </div> --}}
                                             </div>
-                                            <div class="col-lg-6 mb-4 text-end">
+                                            <div class="mb-4 col-lg-6 text-end">
                                                 <button type="submit" class="btn-color" id="submit_btn">Submit
                                                     &nbsp;<i class="fa fa-paper-plane"></i></button>
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- <div class="modal-footer border-0">
+                                    {{-- <div class="border-0 modal-footer">
 
                                     </div> --}}
                                 </div>

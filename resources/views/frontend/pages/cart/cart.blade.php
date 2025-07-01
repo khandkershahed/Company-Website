@@ -172,7 +172,7 @@
     </style>
 
     <!--======// Header Title //======-->
-    <section class="common_product_header p-0"
+    <section class="p-0 common_product_header"
         style="background-image: linear-gradient(
         rgba(0,0,0,0.8),
         rgba(0,0,0,0.8)
@@ -194,7 +194,7 @@
     </section>
     <!----------End--------->
     {{-- Cart Section Start --}}
-    <div class="card mt-4 mb-4">
+    <div class="mt-4 mb-4 card">
         <div class="row cart_product">
             <div class="col-md-8 cart">
                 <div class="title">
@@ -202,11 +202,11 @@
                         <div class="col">
                             <h4><b>Shopping Cart</b></h4>
                         </div>
-                        <div class="col align-self-center text-right text-white fw-bold"></div>
+                        <div class="text-right text-white col align-self-center fw-bold"></div>
                     </div>
                 </div>
                 {{-- Header Title --}}
-                <div class="row border-top px-3">
+                <div class="px-3 row border-top">
                     <div class="table-responsive main align-items-center">
                         <table class="table">
                             <thead>
@@ -246,7 +246,7 @@
                                             <form class="myForm">
                                                 <input type="hidden" id="price" name="price"
                                                     value="{{ $item->price }}">
-                                                <div class="pro-qty mb-2" style="width: 5.5rem">
+                                                <div class="mb-2 pro-qty" style="width: 5.5rem">
                                                     <div class="counter" style="width: 2rem">
                                                         <input name="rowID" type="hidden" id="rowID"
                                                             value="{{ $item->rowId }}">
@@ -258,7 +258,7 @@
                                                             onClick='increaseCount(event, this, this.id)'>+</span>
                                                     </div>
                                                 </div>
-                                                {{-- <a href="javascript:void(0);" class="btn-color p-1 mt-1" id="update">Update</a> --}}
+                                                {{-- <a href="javascript:void(0);" class="p-1 mt-1 btn-color" id="update">Update</a> --}}
                                             </form>
                                         </td>
                                         <td style="vertical-align: middle;">$
@@ -277,7 +277,7 @@
                     </div>
                 </div>
                 {{-- Header Title End --}}
-                <div class="d-flex justify-content-end  mb-2">
+                <div class="mb-2 d-flex justify-content-end">
                     <div class="back-to-shop">
                         <a href="{{ route('shop') }}">&leftarrow; <span class="text-danger fw-bold"
                                 style="font-size: 16px">Back to
@@ -292,22 +292,22 @@
                 <hr>
                 <div class="row">
                     <div class="col" style="padding-left:0;">Sub Total</div>
-                    <div class="col text-right">$ {{ number_format(Cart::subtotal(), 2) }}</div>
+                    <div class="text-right col">$ {{ number_format(Cart::subtotal(), 2) }}</div>
                 </div>
                 <div class="row">
                     <div class="col" style="padding-left:0;">Tax Estimate</div>
-                    <div class="col text-right">$ 0.00</div>
+                    <div class="text-right col">$ 0.00</div>
                 </div>
                 <div class="row">
                     <div class="col" style="padding-left:0;">Shipping Cost</div>
-                    <div class="col text-right">$ 0.00</div>
+                    <div class="text-right col">$ 0.00</div>
                 </div>
                 <hr>
                 <div class="row" style=" padding: 1vh 0;">
                     <div class="col">TOTAL PRICE</div>
-                    <div class="col text-right">$ {{ number_format(Cart::total(), 2) }}</div>
+                    <div class="text-right col">$ {{ number_format(Cart::total(), 2) }}</div>
                 </div>
-                <div class="d-flex justify-content-center pt-5">
+                <div class="pt-5 d-flex justify-content-center">
                     <a href="{{ route('checkout') }}" class="btn product_btn">CHECKOUT</a>
                 </div>
             </div>
@@ -319,14 +319,14 @@
     @if (count($products) > 0)
         <section>
             <div class="container">
-                <div class="Container mt-5 px-0">
+                <div class="px-0 mt-5 Container">
                     <h3 class="Head" style="font-size:30px;">Related Products <span class="Arrows"></span></h3>
                     <!-- Carousel Container -->
                     <div class="SlickCarousel">
                         @if ($products)
                             @foreach ($products as $item)
                                 <!-- Item -->
-                                <div class="ProductBlock mb-3 mt-3">
+                                <div class="mt-3 mb-3 ProductBlock">
                                     <div class="Content">
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12">
@@ -345,29 +345,30 @@
                                                             <li><a href="#" data-tip="Quick View"
                                                                     data-bs-toggle="modal"
                                                                     data-bs-target="#productDetails{{ $item->id }}"><i
-                                                                        class="fa fa-eye text-white"></i></a>
+                                                                        class="text-white fa fa-eye"></i></a>
                                                             </li>
                                                             <li><a href="#" data-tip="View Product"><i
-                                                                        class="fa fa-random text-white"></i></a></li>
+                                                                        class="text-white fa fa-random"></i></a></li>
                                                         </ul>
 
 
                                                     </div>
                                                     <div class="product-content">
-                                                        <h3 class="titles mb-2 ask_for_price website-color text-center"
+                                                        <h3 class="mb-2 text-center titles ask_for_price website-color"
                                                             style="height: 4.5rem;"><a
                                                                 href="{{ route('product.details', $item->slug) }}">{{ Str::limit($item->name, 85) }}</a>
                                                         </h3>
                                                         @if ($item->rfq == 1)
                                                             <div class="price">
-                                                                <p class="text-muted text-center">
+                                                                <p class="text-center text-muted">
                                                                     <small>USD</small>
                                                                     --.-- $
                                                                 </p>
-                                                                <a href=""
+                                                                <a href="{{ route('rfq') }}"
                                                                     class="d-flex justify-content-center align-items-center"
-                                                                    data-bs-toggle="modal"
-                                                                    data-bs-target="#rfq{{ $item->id }}">
+                                                                    {{-- data-bs-toggle="modal"
+                                                                    data-bs-target="#rfq{{ $item->id }}" --}}
+                                                                    >
                                                                     <button class="btn-color">
                                                                         Ask For Price
                                                                     </button>
@@ -375,7 +376,7 @@
                                                             </div>
                                                         @elseif ($item->price_status && $item->price_status == 'price')
                                                             <div class="price">
-                                                                <p class="text-muted text-center"><small>USD</small>
+                                                                <p class="text-center text-muted"><small>USD</small>
                                                                     {{ number_format($item->price, 2) }} $
                                                                 </p>
                                                                 <div
@@ -403,7 +404,7 @@
                                                             </div>
                                                         @else
                                                             <div class="price">
-                                                                <p class="text-muted text-center"
+                                                                <p class="text-center text-muted"
                                                                     style="text-decoration: line-through;text-decoration-thickness: 2px; text-decoration-color: #ae0a46;">
                                                                     USD
                                                                     {{ number_format($item->price, 2) }} $
@@ -443,8 +444,8 @@
                             aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
-                                    <div class="modal-header py-2" style="background: #ae0a46;">
-                                        <h5 class="modal-title text-white" id="staticBackdropLabel">Product Details
+                                    <div class="py-2 modal-header" style="background: #ae0a46;">
+                                        <h5 class="text-white modal-title" id="staticBackdropLabel">Product Details
                                         </h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
@@ -457,11 +458,11 @@
                                                     <!-- gallery pic -->
                                                     <div class="mx-auto d-block">
                                                         <img id="expand"
-                                                            class="geeks img-fluid rounded mx-auto d-block"
+                                                            class="mx-auto rounded geeks img-fluid d-block"
                                                             src="{{ asset($item->thumbnail) }}">
                                                     </div>
 
-                                                    {{-- <div class="img_gallery_wrapper row pt-1">
+                                                    {{-- <div class="pt-1 img_gallery_wrapper row">
                                                                 <div class="col-3">
                                                                     <img class="img-fluid"
                                                                         src="{{ asset($item->thumbnail) }}"
@@ -470,14 +471,14 @@
                                                             </div> --}}
                                                 </div>
                                                 <!-- content -->
-                                                <div class="col-lg-8 col-sm-12 pl-4">
+                                                <div class="pl-4 col-lg-8 col-sm-12">
                                                     <h3>{{ $item->name }}</h3>
                                                     {{-- <h6 class="text-dark product_code">SKU #00017-SW-JIR-002 | MF #00017-SW-JIR-002
                                                                 | NG #00017-SW-JIR-002
                                                             </h6> --}}
-                                                    <div class="row pt-3">
+                                                    <div class="pt-3 row">
                                                         <div class="col-lg-8">
-                                                            <p class="list_price mb-0">List
+                                                            <p class="mb-0 list_price">List
                                                                 Price</p>
                                                             <div class="product__details__price ">
                                                                 <p class="mb-0">US $
@@ -551,8 +552,8 @@
                             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
-                                    <div class="modal-header py-2" style="background: #ae0a46;">
-                                        <h5 class="modal-title text-white" id="staticBackdropLabel">Your Price Form
+                                    <div class="py-2 modal-header" style="background: #ae0a46;">
+                                        <h5 class="text-white modal-title" id="staticBackdropLabel">Your Price Form
                                         </h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
@@ -560,8 +561,8 @@
                                     <div class="modal-body">
                                         <div class="container px-0">
                                             <form>
-                                                <div class="py-2 px-2 bg-light rounded">
-                                                    <div class="row mb-1">
+                                                <div class="px-2 py-2 rounded bg-light">
+                                                    <div class="mb-1 row">
                                                         <div class="col">
                                                             <div class="row">
                                                                 <div
@@ -593,7 +594,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row mb-1">
+                                                    <div class="mb-1 row">
                                                         <div class="col">
                                                             <div class="row">
                                                                 <div
@@ -625,7 +626,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row mb-1">
+                                                    <div class="mb-1 row">
                                                         <div class="col">
                                                             <div class="row">
                                                                 <div
@@ -689,8 +690,8 @@
                             aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
-                                    <div class="modal-header py-2" style="background: #ae0a46;">
-                                        <h5 class="modal-title text-white" id="staticBackdropLabel">Ask For Price Form
+                                    <div class="py-2 modal-header" style="background: #ae0a46;">
+                                        <h5 class="text-white modal-title" id="staticBackdropLabel">Ask For Price Form
                                         </h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
@@ -698,14 +699,14 @@
                                     <div class="modal-body">
                                         <div class="container px-0">
                                             <form>
-                                                <div class="py-2 px-2 rounded">
-                                                    <div class="row mb-1">
+                                                <div class="px-2 py-2 rounded">
+                                                    <div class="mb-1 row">
                                                         <h6 class="mb-0"> {{ $item->name }}</h6>
                                                     </div>
                                                 </div>
-                                                <div class="py-2 px-2 bg-light rounded">
+                                                <div class="px-2 py-2 rounded bg-light">
 
-                                                    <div class="row mb-1">
+                                                    <div class="mb-1 row">
                                                         <div class="col">
                                                             <div class="row">
                                                                 <div
@@ -737,7 +738,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row mb-1">
+                                                    <div class="mb-1 row">
                                                         <div class="col">
                                                             <div class="row">
                                                                 <div
@@ -769,7 +770,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="row mb-1">
+                                                    <div class="mb-1 row">
                                                         <div class="col">
                                                             <div class="row">
                                                                 <div

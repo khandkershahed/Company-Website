@@ -107,14 +107,14 @@
                                     ? $multi_images->first()->photo
                                     : $sproduct->thumbnail;
                             @endphp
-                            <img id="expand" class="geeks img-fluid mx-auto d-block w-100"
+                            <img id="expand" class="mx-auto geeks img-fluid d-block w-100"
                                 src="{{ asset($sproduct->thumbnail) }}">
                         </div>
 
                         @if ($multi_images->isNotEmpty())
-                            <div class="img_gallery_wrapper row pt-1">
+                            <div class="pt-1 img_gallery_wrapper row">
                                 @foreach ($multi_images as $multi_image)
-                                    <div class="col-2 p-1">
+                                    <div class="p-1 col-2">
                                         <img class="img-fluid" src="{{ asset($multi_image->photo) }}" onclick="gfg(this);">
                                     </div>
                                 @endforeach
@@ -123,10 +123,10 @@
                     </div>
 
                     <div class="col-lg-6 col-sm-12 col-xs-12">
-                        <div class="single-product-details pt-2">
-                            <div class="row gx-0 px-2">
+                        <div class="pt-2 single-product-details">
+                            <div class="px-2 row gx-0">
                                 <h4>{{ $sproduct->name }}</h4>
-                                <ul class="d-flex align-items-center p-1">
+                                <ul class="p-1 d-flex align-items-center">
                                     @if (!empty($sproduct->sku_code))
                                         <li class="me-2">
                                             <p class="p-0 m-0" style="color: rgb(134, 134, 134);font-size: 13px;"><i
@@ -151,26 +151,26 @@
                                     @endif
                                 </ul>
                             </div>
-                            <div class="row gx-0 px-2">
+                            <div class="px-2 row gx-0">
                                 <p class="p-0">{!! $sproduct->short_desc !!}</p>
                             </div>
-                            <div class="d-flex align-items-center gx-0 px-2">
+                            <div class="px-2 d-flex align-items-center gx-0">
                                 <div>
-                                    <h6 class="me-3 p-0 m-0">Manufactured By :</h6>
+                                    <h6 class="p-0 m-0 me-3">Manufactured By :</h6>
                                 </div>
                                 <div>
-                                    <h6 class="fw-bold me-3 p-0 m-0">{{ $sproduct->getBrandName() }}</h6>
+                                    <h6 class="p-0 m-0 fw-bold me-3">{{ $sproduct->getBrandName() }}</h6>
                                     {{-- <p class="p-0 m-0"><i class="fa-solid fa-location-dot me-2 text-muted"></i></p> --}}
                                     {{-- <p class="p-0 m-0">Germany</p> --}}
                                 </div>
                             </div>
 
-                            {{-- <div class="row mt-5"> --}}
+                            {{-- <div class="mt-5 row"> --}}
                             <div class="row product_quantity_wraper justify-content-between gx-0"
                                 style="background-color: transparent !important;">
                                 @if ($sproduct->rfq == 1)
-                                    <div class="d-lg-block d-sm-none p-0">
-                                        <div class="row justify-content-between align-items-center p-0">
+                                    <div class="p-0 d-lg-block d-sm-none">
+                                        <div class="p-0 row justify-content-between align-items-center">
                                             {{-- <a class="btn-color" href="{{route('contact')}}">Call Ngen It for price</a> --}}
                                             <div class="need_help col-lg-8 col-sm-8">
                                                 <div class="d-flex align-items-center">
@@ -183,17 +183,17 @@
                                                             data-bs-target="#rfq_product{{ $sproduct->id }}">Ask
                                                             For Price</a>
                                                     </div>
-                                                    <div class="d-flex border">
+                                                    <div class="border d-flex">
                                                         <input data-min="1" data-max="0" type="text" name="quantity"
                                                             value="2" readonly="true"
-                                                            class="quantity-box border-0 bg-light">
+                                                            class="border-0 quantity-box bg-light">
                                                         <div class="quantity-selectors-container">
                                                             <div class="quantity-selectors">
-                                                                <button type="button" class="increment-quantity border-0"
+                                                                <button type="button" class="border-0 increment-quantity"
                                                                     aria-label="Add one" data-direction="1">
                                                                     <i class="fa-solid fa-plus" style="color: #7a7577"></i>
                                                                 </button>
-                                                                <button type="button" class="decrement-quantity border-0"
+                                                                <button type="button" class="border-0 decrement-quantity"
                                                                     aria-label="Subtract one" data-direction="-1"
                                                                     disabled="disabled">
                                                                     <i class="fa-solid fa-minus" style="color: #7a7577"></i>
@@ -205,7 +205,7 @@
                                             </div>
                                             <div class="need_help col-lg-4 col-sm-4">
                                                 <div class="stock-info">
-                                                    <p tabindex="0" class="prod-stock mb-0"
+                                                    <p tabindex="0" class="mb-0 prod-stock"
                                                         id="product-avalialability-by-warehouse">
                                                         <span aria-label="Stock Availability" class="js-prod-available"> <i
                                                                 class="fa fa-info-circle text-success"></i> Stock</span>
@@ -224,14 +224,14 @@
                                                             <span class="text-danger"
                                                                 style="font-size:17px; font-weight:500;">Stock Out</span>
                                                         @else
-                                                            <span class="text-danger pb-2"
+                                                            <span class="pb-2 text-danger"
                                                                 style="font-size:17px">{{ ucfirst($sproduct->stock) }}</span>
                                                         @endif
                                                     </p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12 col-sm-12 d-flex align-items-center justify-content-between py-2 mt-3 px-4"
+                                        <div class="px-4 py-2 mt-3 col-lg-12 col-sm-12 d-flex align-items-center justify-content-between"
                                             style="width:100%; background: #f4efe4;">
                                             <div>
                                                 <h6>Need Help Ordering?</h6>
@@ -239,7 +239,7 @@
                                                 </h6>
                                             </div>
                                             <div class="text-end">
-                                                <p class="list_price mb-0">Custom Pricing</p>
+                                                <p class="mb-0 list_price">Custom Pricing</p>
                                                 <a href="" data-bs-toggle="modal"
                                                     data-bs-target="#rfq_product{{ $sproduct->id }}">
                                                     <span class="fw-bold" style="color: #ae0a46;">Get A Quote</span>
@@ -247,26 +247,28 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="d-lg-none d-sm-block p-0">
+                                    <div class="p-0 d-lg-none d-sm-block">
                                         <div>
-                                            <div class="row justify-content-between align-items-center p-0">
+                                            <div class="p-0 row justify-content-between align-items-center">
                                                 {{-- <a class="btn-color" href="{{route('contact')}}">Call Ngen It for price</a> --}}
                                                 <div class="need_help col-6">
-                                                    <button class="btn-color brand-product-btn" id="modal_view_left"
-                                                        data-bs-toggle="modal" data-bs-target="#rfq_product{{ $sproduct->id }}"
-                                                        style="width: 100%;">Ask For Price</button>
+                                                    <a href="{{ route('rfq') }}">
+                                                        <button class="btn-color brand-product-btn" id="modal_view_left"
+                                                            {{-- data-bs-toggle="modal" data-bs-target="#rfq_product{{ $sproduct->id }}" --}}
+                                                            style="width: 100%;">Ask For Price</button>
+                                                    </a>
                                                 </div>
-                                                <div class="need_help col-6 p-0">
+                                                <div class="p-0 need_help col-6">
                                                     <h6>Need Help Ordering?</h6>
                                                     <h6>Call
                                                         <span>{{ App\Models\Admin\Setting::first()->mobile }}</span>
                                                     </h6>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-12 col-sm-12 d-flex align-items-center justify-content-between py-3 mt-3 px-4"
+                                            <div class="px-4 py-3 mt-3 col-lg-12 col-sm-12 d-flex align-items-center justify-content-between"
                                                 style="width:100%; background: #f4efe4;">
                                                 <div class="stock-info">
-                                                    <p tabindex="0" class="prod-stock mb-0"
+                                                    <p tabindex="0" class="mb-0 prod-stock"
                                                         id="product-avalialability-by-warehouse">
                                                         <span aria-label="Stock Availability" class="js-prod-available">
                                                             <i class="fa fa-info-circle text-success"></i> Stock</span>
@@ -285,13 +287,13 @@
                                                             <span class="text-danger"
                                                                 style="font-size:17px; font-weight:500;">Stock Out</span>
                                                         @else
-                                                            <span class="text-danger pb-2"
+                                                            <span class="pb-2 text-danger"
                                                                 style="font-size:17px">{{ ucfirst($sproduct->stock) }}</span>
                                                         @endif
                                                     </p>
                                                 </div>
                                                 <div class="text-end">
-                                                    <p class="list_price mb-0">Custom Pricing</p>
+                                                    <p class="mb-0 list_price">Custom Pricing</p>
                                                     <a href="" data-bs-toggle="modal"
                                                         data-bs-target="#rfq_product{{ $sproduct->id }}">
                                                         <span class="fw-bold" style="color: #ae0a46;">Get A Quote</span>
@@ -303,20 +305,20 @@
                                 @elseif ($sproduct->price_status && $sproduct->price_status == 'rfq')
                                     <div class="row justify-content-between align-items-center">
                                         {{-- <a class="btn-color" href="{{route('contact')}}">Call Ngen It for price</a> --}}
-                                        <div class="need_help col-lg-5 col-sm-12 p-0">
+                                        <div class="p-0 need_help col-lg-5 col-sm-12">
                                             <button class="search-btn-price" id="modal_view_left" data-bs-toggle="modal"
                                                 data-bs-target="#rfq_product{{ $sproduct->id }}" style="width: 100%;">Ask
                                                 For Price</button>
                                         </div>
-                                        <div class="need_help col-lg-7 col-sm-12 p-0">
+                                        <div class="p-0 need_help col-lg-7 col-sm-12">
                                             <h6 class="m-2">Need Help Ordering?</h6>
                                             <h6>Call <span>{{ App\Models\Admin\Setting::first()->mobile }}</span></h6>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 col-sm-12 d-flex align-items-center justify-content-between py-2 mt-2 px-4"
+                                    <div class="px-4 py-2 mt-2 col-lg-12 col-sm-12 d-flex align-items-center justify-content-between"
                                         style="width:100%; background: #f4efe4;">
                                         <div class="stock-info">
-                                            <p tabindex="0" class="prod-stock mb-0"
+                                            <p tabindex="0" class="mb-0 prod-stock"
                                                 id="product-avalialability-by-warehouse">
                                                 <span aria-label="Stock Availability" class="js-prod-available"> <i
                                                         class="fa fa-info-circle text-success"></i> Stock</span> <br>
@@ -334,13 +336,13 @@
                                                     <span class="text-danger"
                                                         style="font-size:17px; font-weight:500;">Stock Out</span>
                                                 @else
-                                                    <span class="text-danger pb-2"
+                                                    <span class="pb-2 text-danger"
                                                         style="font-size:17px">{{ ucfirst($sproduct->stock) }}</span>
                                                 @endif
                                             </p>
                                         </div>
                                         <div>
-                                            <p class="list_price mb-0 me-3">Custom Pricing</p>
+                                            <p class="mb-0 list_price me-3">Custom Pricing</p>
                                             <a href="" data-bs-toggle="modal"
                                                 data-bs-target="#rfq_product{{ $sproduct->id }}">
                                                 <span class="fw-bold" style="color: #ae0a46;">Get A Quote</span>
@@ -368,7 +370,7 @@
                                         <input type="hidden" name="name" id="name"
                                             value="{{ $sproduct->name }}">
                                         <div class="row ">
-                                            <div class="col-lg-12 col-sm-12 d-flex align-items-center justify-content-between bg-light py-2"
+                                            <div class="py-2 col-lg-12 col-sm-12 d-flex align-items-center justify-content-between bg-light"
                                                 style="width: 80%;">
                                                 <div class="pro-qty">
                                                     <input type="hidden" name="product_id" id="product_id"
@@ -392,11 +394,11 @@
                                         </div>
                                     </form> --}}
                                     @endif
-                                    <div class="col-lg-12 col-sm-12 d-flex align-items-center justify-content-between py-2 mt-2 px-lg-5 px-2"
+                                    <div class="px-2 py-2 mt-2 col-lg-12 col-sm-12 d-flex align-items-center justify-content-between px-lg-5"
                                         style="width: 100%; background: #f4efe4;">
                                         <div>
                                             @if ($sproduct->rfq != 1)
-                                                <p class="list_price mb-0">List Price</p>
+                                                <p class="mb-0 list_price">List Price</p>
                                                 <div class="product__details__price ">
                                                     @if (!empty($sproduct->discount))
                                                         <p class="mb-0 number-font"
@@ -427,7 +429,7 @@
                                                 <div id="tpl-product-detail-order-target" class="prod-ordering-section"
                                                     data-outofstock="Out of stock.">
                                                     <div class="row js-add-to-cart-container">
-                                                        <div class="columns small-12 ds-v1 text-center">
+                                                        <div class="text-center columns small-12 ds-v1">
                                                             <a type="button" style="font-weight: 600"
                                                                 class="text-danger" data-bs-toggle="modal"
                                                                 data-bs-target="#exampleModalCenter">
@@ -439,7 +441,7 @@
                                             @endif
                                         </div>
                                         <div class="stock-info">
-                                            <p tabindex="0" class="prod-stock mb-0"
+                                            <p tabindex="0" class="mb-0 prod-stock"
                                                 id="product-avalialability-by-warehouse">
                                                 <span aria-label="Stock Availability" class="js-prod-available"> <i
                                                         class="fa fa-info-circle text-success"></i> Stock</span> <br>
@@ -457,13 +459,13 @@
                                                     <span class="text-danger"
                                                         style="font-size:17px; font-weight:500;">Stock Out</span>
                                                 @else
-                                                    <span class="text-danger pb-2"
+                                                    <span class="pb-2 text-danger"
                                                         style="font-size:17px">{{ ucfirst($sproduct->stock) }}</span>
                                                 @endif
                                             </p>
                                         </div>
                                         <div>
-                                            <p class="list_price mb-0">Custom Pricing</p>
+                                            <p class="mb-0 list_price">Custom Pricing</p>
                                             <a href="javascript:void(0)" data-bs-toggle="modal"
                                                 data-bs-target="#rfq_product{{ $sproduct->id }}">
                                                 <span class="fw-bold" style="color: #ae0a46;">Get A Quote</span>
@@ -500,7 +502,7 @@
                             <h2 class="description-title fw-bold">Specification</h2>
                             <div class="container pb-3 specification-areas-brand">
                                 @if (!empty($sproduct->specification))
-                                    <div class="row gx-1 px-2">
+                                    <div class="px-2 row gx-1">
                                         {{-- <div class="col-lg-4">
                                         <div class="p-1 ps-2">Type</div>
                                     </div>
@@ -510,7 +512,7 @@
                                         {!! $sproduct->specification !!}
                                     </div>
                                 @else
-                                    <div class="row gx-1 px-2">
+                                    <div class="px-2 row gx-1">
                                         No Specification Available.
                                     </div>
                                 @endif
@@ -520,7 +522,7 @@
                     </div>
                 </div>
             @endif
-            <div class="row mb-5">
+            <div class="mb-5 row">
                 @if (!empty($sproduct->accessories))
                     <div class="col-lg-6">
                         <div class="single-product-description" style="font-size: 14px;">
@@ -531,11 +533,11 @@
                                         <div class="sc-3fi1by-1 chZLCL">
                                             <div class="description-areas-brand">
                                                 @if (!empty($sproduct->accessories))
-                                                    <p class="text-muted mb-2"
+                                                    <p class="mb-2 text-muted"
                                                         style="width: 100% !important;overflow: auto;">
                                                         {!! $sproduct->accessories !!} </p>
                                                 @else
-                                                    <p class="text-muted mb-2"> No Accessories Available</p>
+                                                    <p class="mb-2 text-muted"> No Accessories Available</p>
                                                 @endif
                                             </div>
                                         </div>
@@ -547,7 +549,7 @@
                 @endif
             </div>
             @if (count($documents) > 0)
-                <div class="row mb-5">
+                <div class="mb-5 row">
                     @if (count($documents) > 4)
                         <div class="col-lg-6">
                             <div class="single-product-description " style="font-size: 14px;">
@@ -564,7 +566,7 @@
                             <div class="single-product-description" style="font-size: 14px;">
                                 <h2 class="description-title fw-bold">CATALOGS</h2>
                                 <div class="container pb-3">
-                                    <div class="row mt-3">
+                                    <div class="mt-3 row">
                                         @foreach ($documents as $document)
                                             <div class="col-lg-6">
                                                 <div>
@@ -573,8 +575,8 @@
                                                         width="100%" height="175px" />
                                                     {{-- <img src=""
                                                     height="175px" width="100%" alt=""> --}}
-                                                    <div class="catalog-details text-center">
-                                                        <p class="m-0 p-1">{{ $document->title }}</p>
+                                                    <div class="text-center catalog-details">
+                                                        <p class="p-1 m-0">{{ $document->title }}</p>
                                                         {{-- <p class="p-1 m-0">2 Pages</p> --}}
                                                     </div>
                                                 </div>
@@ -587,10 +589,10 @@
                     @endif
                 </div>
             @endif
-            <div class="row mb-5">
+            <div class="mb-5 row">
                 <div class="col-lg-12">
                     {{-- <h4 class="text-muted">Other {{ $sproduct->getBrandName() }} Products</h4> --}}
-                    <h2 class="company-tab-title mb-5 ps-0">
+                    <h2 class="mb-5 company-tab-title ps-0">
                         <span style="font-size: 20px;">Other {{ $sproduct->getBrandName() }} Products</span>
                     </h2>
                 </div>
@@ -598,8 +600,8 @@
                     <div class="slick-slider brand-containers">
                         @if (count($brand_products) > 0)
                             @foreach ($brand_products as $brand_product)
-                                <div class="custom-col-5 col-sm-6 col-md-4 px-2">
-                                    <div class="card rounded-0 border-0 m-2">
+                                <div class="px-2 custom-col-5 col-sm-6 col-md-4">
+                                    <div class="m-2 border-0 card rounded-0">
                                         <div class="card-body"
                                             style="height:23rem;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
                                             {{-- <div class="new-video">
@@ -612,10 +614,10 @@
                                                 </div>
                                             </a>
 
-                                            <div class="content-section text-center py-3 px-2">
+                                            <div class="px-2 py-3 text-center content-section">
                                                 <a href="{{ route('product.details', $brand_product->slug) }}"
                                                     class="mb-2">
-                                                    <p class="pb-0 mb-0 text-muted brandpage_product_title mb-2">
+                                                    <p class="pb-0 mb-0 mb-2 text-muted brandpage_product_title">
                                                         {{ Str::words($brand_product->name, 35) }}</p>
                                                 </a>
                                                 <div>
@@ -682,7 +684,7 @@
     <section>
         <div class="container mb-5">
             <div class="row">
-                <h2 class="company-tab-title mb-5 ps-0">
+                <h2 class="mb-5 company-tab-title ps-0">
                     <span style="font-size: 20px;">BUYERS WHO LIKED THIS PRODUCT ALSO LIKED</span>
                 </h2>
                 <div class="col">
@@ -690,8 +692,8 @@
 
                         @if (count($products) > 0)
                             @foreach ($products as $product)
-                                <div class="custom-col-5 col-sm-6 col-md-4 px-2">
-                                    <div class="card rounded-0 border-0 m-2">
+                                <div class="px-2 custom-col-5 col-sm-6 col-md-4">
+                                    <div class="m-2 border-0 card rounded-0">
                                         <div class="card-body"
                                             style="height:23rem;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
                                             {{-- <div class="new-video">
@@ -704,9 +706,9 @@
                                                 </div>
                                             </a>
 
-                                            <div class="content-section text-center py-3 px-2">
+                                            <div class="px-2 py-3 text-center content-section">
                                                 <a href="{{ route('product.details', $product->slug) }}" class="mb-2">
-                                                    <p class="pb-0 mb-0 text-muted brandpage_product_title mb-2">
+                                                    <p class="pb-0 mb-0 mb-2 text-muted brandpage_product_title">
                                                         {{ Str::words($product->name, 15) }}</p>
                                                 </a>
                                                 <div>

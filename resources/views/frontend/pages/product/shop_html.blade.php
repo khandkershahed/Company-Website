@@ -33,7 +33,7 @@
                     @if ($products)
                         @foreach ($products as $item)
                             <!-- Item -->
-                            <div class="ProductBlock mb-3 mt-3">
+                            <div class="mt-3 mb-3 ProductBlock">
                                 <div class="Content">
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12">
@@ -46,11 +46,11 @@
                                                             alt="NGEN IT">
                                                     </a>
                                                     <ul class="custom-product-links">
-                                                        <li><a href="#"><i class="fa fa-random text-white"></i></a>
+                                                        <li><a href="#"><i class="text-white fa fa-random"></i></a>
                                                         </li>
                                                         <li><a href="#" data-bs-toggle="modal"
                                                                 data-bs-target="#productDetails{{ $item->id }}"><i
-                                                                    class="fa fa-search text-white"></i></a></li>
+                                                                    class="text-white fa fa-search"></i></a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="custom-product-content">
@@ -60,14 +60,15 @@
 
                                                     @if ($item->rfq == 1)
                                                         <div>
-                                                            <div class="price py-3">
+                                                            <div class="py-3 price">
                                                                 {{-- <small class="price-usd">USD</small>
                                                             --.-- $ --}}
                                                             </div>
-                                                            <a href=""
+                                                            <a href="{{ route('rfq') }}"
                                                                 class="d-flex justify-content-center align-items-center"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}">
+                                                                {{-- data-bs-toggle="modal"
+                                                                data-bs-target="#rfq{{ $item->id }}" --}}
+                                                                >
                                                                 <button class="btn-color popular_product-button">
                                                                     Ask For Price
                                                                 </button>
@@ -75,14 +76,15 @@
                                                         </div>
                                                     @elseif ($item->price_status && $item->price_status == 'rfq')
                                                         <div>
-                                                            <div class="price py-3">
+                                                            <div class="py-3 price">
                                                                 {{-- <small class="price-usd">USD</small>
                                                         --.-- $ --}}
                                                             </div>
-                                                            <a href=""
+                                                            <a href="{{ route('rfq') }}"
                                                                 class="d-flex justify-content-center align-items-center"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}">
+                                                                {{-- data-bs-toggle="modal"
+                                                                data-bs-target="#rfq{{ $item->id }}" --}}
+                                                                >
                                                                 <button class="btn-color popular_product-button">
                                                                     Ask For Price
                                                                 </button>
@@ -90,7 +92,7 @@
                                                         </div>
                                                     @elseif ($item->price_status && $item->price_status == 'offer_price')
                                                         <div>
-                                                            <div class="price py-3">
+                                                            <div class="py-3 price">
                                                                 <small class="price-usd">USD</small>
                                                                 $ {{ number_format($item->price, 2) }}
                                                             </div>
@@ -106,7 +108,7 @@
                                                         </div>
                                                     @else
                                                         <div>
-                                                            <div class="price py-3">
+                                                            <div class="py-3 price">
                                                                 <small class="price-usd">USD</small>
                                                                 $ {{ number_format($item->price, 2) }}
                                                             </div>
@@ -139,11 +141,11 @@
     <!---------End -------->
 
     <!--========Shop by category=======-->
-    <section class="clint_tab_section pb-4">
+    <section class="pb-4 clint_tab_section">
         <div class="container">
-            <div class="clint_tab_content pb-3">
+            <div class="pb-3 clint_tab_content">
                 <!-- home title -->
-                <div class="home_title mt-3 mb-3">
+                <div class="mt-3 mb-3 home_title">
                     <div class="software_feature_title">
                         <h1 class="text-center">By Categories</h1>
                     </div>
@@ -157,7 +159,7 @@
                 <div class="row">
                     <div class="col-xs-12 ">
                         {{-- <nav>
-                            <div class="nav nav-tabs nav-fill p-0" id="nav-tab" role="tablist" style="background: none;">
+                            <div class="p-0 nav nav-tabs nav-fill" id="nav-tab" role="tablist" style="background: none;">
                                 <a class="nav-item nav-link active" id="nav-healthcare" data-bs-toggle="tab" href="#all"
                                     role="tab" aria-controls="nav-home" aria-selected="true">All</a>
                                 <a class="nav-item nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#software"
@@ -169,7 +171,7 @@
                             </div>
                         </nav> --}}
                         <nav>
-                            <div class="nav nav-tabs nav-fill p-0" id="nav-tab" role="tablist" style="background: none;">
+                            <div class="p-0 nav nav-tabs nav-fill" id="nav-tab" role="tablist" style="background: none;">
                                 <a class="nav-item nav-link active" id="nav-all-tab" data-bs-toggle="tab" href="#all"
                                     role="tab" aria-controls="all" aria-selected="true">All</a>
                                 <a class="nav-item nav-link" id="nav-software-tab" data-bs-toggle="tab" href="#software"
@@ -180,13 +182,13 @@
                                     role="tab" aria-controls="training" aria-selected="false">Training & Books</a>
                             </div>
                         </nav>
-                        <div class="tab-content px-3 px-sm-0 shadow-sm" id="nav-tabContent">
+                        <div class="px-3 shadow-sm tab-content px-sm-0" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="nav-all-tab">
                                 <div class="row">
 
                                     @if ($all_categories)
                                         @foreach ($all_categories as $item)
-                                            <div class="col-md-3 col-sm-6 my-4 mb-2">
+                                            <div class="my-4 mb-2 col-md-3 col-sm-6">
                                                 <a href="{{ route('category.details', $item->slug) }}">
                                                     <div class="serviceBox">
                                                         <div class="service-icon">
@@ -209,7 +211,7 @@
 
                                     @if ($software_categories)
                                         @foreach ($software_categories as $item)
-                                            <div class="col-md-3 col-sm-6 my-4 mb-2">
+                                            <div class="my-4 mb-2 col-md-3 col-sm-6">
                                                 <a href="{{ route('category.details', $item->slug) }}">
                                                     <div class="serviceBox">
                                                         <div class="service-icon">
@@ -235,7 +237,7 @@
 
                                                 @if ($hardware_categories)
                                                     @foreach ($hardware_categories as $item)
-                                                        <div class="col-md-3 col-sm-6 my-4 mb-2">
+                                                        <div class="my-4 mb-2 col-md-3 col-sm-6">
                                                             <a href="{{ route('category.details', $item->slug) }}">
                                                                 <div class="serviceBox">
                                                                     <div class="service-icon">
@@ -258,12 +260,12 @@
                             </div>
                             <div class="tab-pane fade" id="training" role="tabpanel" aria-labelledby="nav-training-tab">
                                 <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 my-4">
+                                    <div class="my-4 col-lg-12 col-md-12 col-sm-12">
                                         <div class="container">
                                             <div class="row">
                                                 @if ($training_categories)
                                                     @foreach ($training_categories as $item)
-                                                        <div class="col-md-3 col-sm-6 my-4 mb-2">
+                                                        <div class="my-4 mb-2 col-md-3 col-sm-6">
                                                             <a href="{{ route('category.details', $item->slug) }}">
                                                                 <div class="serviceBox">
                                                                     <div class="service-icon">
@@ -292,7 +294,7 @@
     </section>
     <!---------End -------->
     <!--===== Technolgy Deals======-->
-    <section class="common_product_technolgy_deals_wrapper py-5">
+    <section class="py-5 common_product_technolgy_deals_wrapper">
         <div class="container">
             <div class="row align-content-center ">
                 <div class="col-lg-6 col-md-6 col-sm-12">
@@ -325,7 +327,7 @@
     <section>
         <div class="container">
             @if (!empty($techglossy))
-                <div class="row bg-white magazine_content my-5 mb-3">
+                <div class="my-5 mb-3 bg-white row magazine_content">
                     <div class="col-lg-12">
                         <div class="row align-items-center">
                             <div class="col-lg-6">
@@ -348,7 +350,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="col-lg-6 p-0 d-lg-block d-sm-none">
+                            <div class="p-0 col-lg-6 d-lg-block d-sm-none">
                                 <div class="showcase-industry-bottom" style="position: relative; overflow: hidden;">
                                     <!-- Add a pseudo-element for the overlay -->
                                     <div class="gradient-overlay"></div>
@@ -373,8 +375,8 @@
             <div class="container brand-container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h5 class="home_title_heading pt-lg-4 pt-2 pb-lg-2 pb-2"><span class="main_color fw-bold">By</span> Brands</h5>
-                        <p class="home_title_text pt-lg-2 pt-1 pb-lg-2 pb-1">See how we’ve helped organizations of all sizes
+                        <h5 class="pt-2 pb-2 home_title_heading pt-lg-4 pb-lg-2"><span class="main_color fw-bold">By</span> Brands</h5>
+                        <p class="pt-1 pb-1 home_title_text pt-lg-2 pb-lg-2">See how we’ve helped organizations of all sizes
                             <span class="font-weight-bold">across every industry</span>
                             <br> maximize the value of their IT solutions, leverage emerging technologies and create fresh
                             experiences.
@@ -383,7 +385,7 @@
                 </div>
                 <div class="row">
                     @foreach ($brands as $brand)
-                        <div class="col-lg-2 col-sm-12 mb-lg-4 mb-3">
+                        <div class="mb-3 col-lg-2 col-sm-12 mb-lg-4">
                             <div class="card rounded-0 brand_img_container">
                                 <div class="card-body image_box">
                                     <div class="brand-images">
@@ -392,19 +394,19 @@
                                                 alt=""> </a>
                                     </div>
                                 </div>
-                                <div class="card-footer border-0 p-0 m-0">
+                                <div class="p-0 m-0 border-0 card-footer">
                                     <div class="brand_btns"
                                         style="justify-content: center;
                                           background: #ae0a46;
                                           color: white;
                                           font-size: 13px;
                                           display: flex;">
-                                        <a class="text-white py-2"
+                                        <a class="py-2 text-white"
                                             href="{{ route('brand.overview', $brand->slug) }}">Details
                                             <i class="fa-solid fa-chevron-right ms-1"></i>
                                         </a>
                                         <span class="ms-3 me-3" style="background: #ffff;">||</span>
-                                        <a class="text-white py-2" href="{{ route('custom.product', $brand->slug) }}">Shop
+                                        <a class="py-2 text-white" href="{{ route('custom.product', $brand->slug) }}">Shop
                                             <i class="fa-solid fa-chevron-right ms-1"></i>
                                         </a>
                                     </div>
