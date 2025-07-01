@@ -109,10 +109,15 @@
                                                 </div>
                                             @elseif ($product->price_status && $product->price_status == 'rfq')
                                                 <div class="d-flex justify-content-center">
-                                                    <a href="{{ route('rfq') }}"
+                                                    {{-- <a href="{{ route('rfq') }}"
                                                         class="px-3 py-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button mt-2"
-                                                        data-bs-toggle="modal" data-bs-target="#rfq{{ $product->id }}">Ask
-                                                        For Price</a>
+                                                        data-bs-toggle="modal" data-bs-target="#rfq{{ $product->id }}">Add to RFQ</a> --}}
+
+                                                    <button class="header_cart_button search-btn-price"
+                                                        data-id="{{ $product->id }}" data-name="{{ $product->name }}"
+                                                        data-quantity="1">
+                                                        {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
+                                                    </button>
                                                 </div>
                                             @elseif ($product->price_status && $product->price_status == 'offer_price')
                                                 <div class="d-flex justify-content-center">
@@ -195,10 +200,15 @@
                                                 </div>
                                             @elseif ($product->price_status && $product->price_status == 'rfq')
                                                 <div class="d-flex justify-content-center">
-                                                    <button
+                                                    {{-- <button
                                                         class="px-3 py-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button mt-2"
                                                         data-bs-toggle="modal" data-bs-target="#rfq{{ $product->id }}">Ask
-                                                        For Price</button>
+                                                        For Price</button> --}}
+                                                    <button class="header_cart_button search-btn-price"
+                                                        data-id="{{ $product->id }}" data-name="{{ $product->name }}"
+                                                        data-quantity="1">
+                                                        {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
+                                                    </button>
                                                 </div>
                                             @elseif ($product->price_status && $product->price_status == 'offer_price')
                                                 <div class="d-flex justify-content-center">
