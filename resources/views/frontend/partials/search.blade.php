@@ -133,7 +133,7 @@
                     <div class="mt-2 mb-4 row">
                         <h5 class="pb-2 fw-bold border-bottom">Client storys</h5>
                         @foreach ($storys as $story)
-                            <h6><a class="search_titles" href="{{ route('story.details', $story->id) }}">
+                            <h6><a class="search_titles" href="{{ route('story.details', $story->slug) }}">
                                     {{-- {{ $story->title }} --}}
                                     {{ implode(' ', array_slice(str_word_count($story->title, 1), 0, 9)) }}...
                                 </a>
@@ -145,7 +145,7 @@
                     <div class="mt-2 mb-4 row">
                         <h5 class="pb-2 fw-bold border-bottom">Tech Glossary</h5>
                         @foreach ($tech_glossys as $tech_glossy)
-                            <h6><a class="search_titles" href="{{ route('techglossy.details', $tech_glossy) }}">
+                            <h6><a class="search_titles" href="{{ route('techglossy.details', $tech_glossy->id) }}">
                                     {{-- {{ $tech_glossy->title }} --}}
                                     {{ implode(' ', array_slice(str_word_count($tech_glossy->title, 1), 0, 9)) }}...
                                 </a>
@@ -405,90 +405,4 @@
 </script>
 
 
-{{-- <script>
-    $(document).ready(function() {
-        function addToCart(event, button) {
-            event.preventDefault(); // Prevent page reload if the button is inside a form
-            var id = $(button).data('id');
-            var name = $(button).data('name');
-            var quantity = $(button).data('quantity');
-            var button_text = $('.cart_button_text' + id);
-            var cart_header = $('.miniRFQQTY');
-            var offcanvasRFQ = $('.offcanvasRFQ');
 
-            var formData = {
-                product_id: id,
-                name: name,
-                qty: quantity
-            };
-
-            $.ajax({
-                url: "{{ route('add.cart') }}", // Update with your route
-                type: 'POST',
-                data: formData,
-                dataType: 'json',
-                success: function(response) {
-                    if (response.exists) {
-                        // Product is already in the cart
-                        Swal.fire({
-                            icon: 'info',
-                            title: 'Product Already in RFQ List',
-                            text: 'This product is already in your added RFQ List.',
-                        });
-                    } else {
-                        // Product added to the cart successfully
-                        cart_header.empty();
-                        cart_header.append(
-                            '<span class="miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
-                            response.cartHeader + '</span>');
-                        button_text.html('✓ Added'); // Update button text
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Added To RFQ Successfully!',
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-                        offcanvasRFQ.offcanvas('show');
-                        offcanvasRFQ.html(response.html);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        }
-
-        // Bind the click event for the "Add to Cart" buttons
-        $(".header_cart_button").on("click", function(event) {
-            addToCart(event, this);
-        });
-    });
-    $("button").on("click", function(ev) {
-        var currentQty = $('input[name="quantity"]').val();
-        var qtyDirection = $(this).data("direction");
-        var newQty = 0;
-
-        if (qtyDirection == "1") {
-            newQty = parseInt(currentQty) + 1;
-        } else if (qtyDirection == "-1") {
-            newQty = parseInt(currentQty) - 1;
-        }
-
-        // make decrement disabled at 1
-        if (newQty == 1) {
-            $(".decrement-quantity").attr("disabled", "disabled");
-        }
-
-        // remove disabled attribute on subtract
-        if (newQty > 1) {
-            $(".decrement-quantity").removeAttr("disabled");
-        }
-
-        if (newQty > 0) {
-            newQty = newQty.toString();
-            $('input[name="quantity"]').val(newQty);
-        } else {
-            $('input[name="quantity"]').val("1");
-        }
-    });
-</script> --}}
