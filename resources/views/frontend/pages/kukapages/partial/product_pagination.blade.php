@@ -41,17 +41,31 @@
                             <div class="d-flex justify-content-center">
                                 {{-- <button class="btn-color special_btn" data-bs-toggle="modal"
                                     data-bs-target="#rfq{{ $product->id }}">Ask For Price</button> --}}
-                                <a href="{{ route('rfq') }}"
-                                    class="px-3 py-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button mt-2">Ask
-                                    For Price</a>
+                                @php
+                                    $cart_items = Cart::content();
+                                    $productInCart = false;
+
+                                    foreach ($cart_items as $item) {
+                                        if ($item->id == $product->id) {
+                                            $productInCart = true;
+                                            break;
+                                        }
+                                    }
+                                @endphp
+
+                                <button class="px-3 py-2 btn-color popular_product-button add_to_cart"
+                                    data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1">
+                                    {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
+                                </button>
                             </div>
                         @elseif ($product->price_status && $product->price_status == 'rfq')
                             <div class="d-flex justify-content-center">
                                 {{-- <button class="btn-color special_btn" data-bs-toggle="modal"
                                     data-bs-target="#rfq{{ $product->id }}">Ask For Price</button> --}}
-                                <a href="{{ route('rfq') }}"
-                                    class="px-3 py-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button mt-2">Ask
-                                    For Price</a>
+                                <button class="px-3 py-2 btn-color popular_product-button add_to_cart"
+                                    data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1">
+                                    {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
+                                </button>
                             </div>
                         @elseif ($product->price_status && $product->price_status == 'offer_price')
                             <div class="d-flex justify-content-center">
