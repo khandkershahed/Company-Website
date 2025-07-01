@@ -142,12 +142,21 @@
                         term: request.term
                     },
                     success: function(data) {
-
                         if (searchContainer.hasClass('d-none')) {
                             searchContainer.removeClass('d-none');
                         }
                         searchContainer.html(data);
-
+                    },
+                    error: function(xhr) {
+                        if (searchContainer.hasClass('d-none')) {
+                            searchContainer.removeClass('d-none');
+                        }
+                        searchContainer.html(`
+                                <div class="alert alert-danger m-2 p-2">
+                                    <strong>Error:</strong> Could not load search results. Please try again later.
+                                </div>
+                            `);
+                        console.error("Search error:", xhr.responseText);
                     }
                 });
             },

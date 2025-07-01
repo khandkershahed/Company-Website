@@ -36,6 +36,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Admin\MultiIndustry;
 use App\Models\Admin\PortfolioPage;
 use App\Models\Admin\PortfolioTeam;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\OfficeLocation;
 use App\Models\Admin\SolutionDetail;
@@ -940,29 +941,89 @@ class HomeController extends Controller
 
 
     /// Advance Search Options
+    // public function globalSearch(Request $request)
+    // {
+    //     $query = $request->get('term', '');
+    //     $data['products'] = Product::join('brands', 'products.brand_id', '=', 'brands.id')
+    //         ->where('products.name', 'LIKE', '%' . $query . '%')
+    //         ->where('products.product_status', 'product')
+    //         ->where('brands.status', 'active')
+    //         ->limit(10)
+    //         ->get(['products.id', 'products.name', 'products.slug', 'products.thumbnail', 'products.price', 'products.discount', 'products.sku_code', 'products.rfq', 'products.qty', 'products.stock']);
+
+    //     $data['solutions'] = SolutionDetail::where('name', 'LIKE', '%' . $query . '%')->where('status', 'active')->limit(5)->get(['id', 'name', 'slug']);
+    //     $data['industries'] = Industry::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title', 'slug']);
+    //     $data['blogs'] = Blog::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title']);
+    //     $data['categorys'] = Category::where('title', 'LIKE', '%' . $query . '%')->limit(2)->get(['id', 'title', 'slug']);
+    //     $data['subcategorys'] = SubCategory::where('title', 'LIKE', '%' . $query . '%')->limit(2)->get(['id', 'title', 'slug']);
+    //     $data['subsubcategorys'] = SubSubCategory::where('title', 'LIKE', '%' . $query . '%')->limit(1)->get(['id', 'title', 'slug']);
+    //     $data['brands'] = Brand::where('title', 'LIKE', '%' . $query . '%')->where('status', 'active')->limit(5)->get(['id', 'title', 'slug']);
+    //     $data['storys'] = ClientStory::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title', 'slug']);
+    //     $data['tech_glossys'] = TechGlossy::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title']);
+    //     // dd($query);
+
+    //     return response()->json(view('frontend.partials.search', $data)->render());
+    // } // end method
+
     public function globalSearch(Request $request)
     {
-        $query = $request->get('term', '');
-        $data['products'] = Product::join('brands', 'products.brand_id', '=', 'brands.id')
-            ->where('products.name', 'LIKE', '%' . $query . '%')
-            ->where('products.product_status', 'product')
-            ->where('brands.status', 'active')
-            ->limit(10)
-            ->get(['products.id', 'products.name', 'products.slug', 'products.thumbnail', 'products.price', 'products.discount', 'products.sku_code', 'products.rfq', 'products.qty', 'products.stock']);
+        try {
+            $query = $request->get('term', '');
 
-        $data['solutions'] = SolutionDetail::where('name', 'LIKE', '%' . $query . '%')->where('status', 'active')->limit(5)->get(['id', 'name', 'slug']);
-        $data['industries'] = Industry::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title', 'slug']);
-        $data['blogs'] = Blog::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title']);
-        $data['categorys'] = Category::where('title', 'LIKE', '%' . $query . '%')->limit(2)->get(['id', 'title', 'slug']);
-        $data['subcategorys'] = SubCategory::where('title', 'LIKE', '%' . $query . '%')->limit(2)->get(['id', 'title', 'slug']);
-        $data['subsubcategorys'] = SubSubCategory::where('title', 'LIKE', '%' . $query . '%')->limit(1)->get(['id', 'title', 'slug']);
-        $data['brands'] = Brand::where('title', 'LIKE', '%' . $query . '%')->where('status', 'active')->limit(5)->get(['id', 'title', 'slug']);
-        $data['storys'] = ClientStory::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title', 'slug']);
-        $data['tech_glossys'] = TechGlossy::where('title', 'LIKE', '%' . $query . '%')->limit(5)->get(['id', 'title']);
-        // dd($query);
+            $data['products'] = Product::join('brands', 'products.brand_id', '=', 'brands.id')
+                ->where('products.name', 'LIKE', '%' . $query . '%')
+                ->where('products.product_status', 'product')
+                ->where('brands.status', 'active')
+                ->limit(10)
+                ->get(['products.id', 'products.name', 'products.slug', 'products.thumbnail', 'products.price', 'products.discount', 'products.sku_code', 'products.rfq', 'products.qty', 'products.stock']);
 
-        return response()->json(view('frontend.partials.search', $data)->render());
-    } // end method
+            $data['solutions'] = SolutionDetail::where('name', 'LIKE', '%' . $query . '%')
+                ->where('status', 'active')
+                ->limit(5)
+                ->get(['id', 'name', 'slug']);
+
+            $data['industries'] = Industry::where('title', 'LIKE', '%' . $query . '%')
+                ->limit(5)
+                ->get(['id', 'title', 'slug']);
+
+            $data['blogs'] = Blog::where('title', 'LIKE', '%' . $query . '%')
+                ->limit(5)
+                ->get(['id', 'title']);
+
+            $data['categorys'] = Category::where('title', 'LIKE', '%' . $query . '%')
+                ->limit(2)
+                ->get(['id', 'title', 'slug']);
+
+            $data['subcategorys'] = SubCategory::where('title', 'LIKE', '%' . $query . '%')
+                ->limit(2)
+                ->get(['id', 'title', 'slug']);
+
+            $data['subsubcategorys'] = SubSubCategory::where('title', 'LIKE', '%' . $query . '%')
+                ->limit(1)
+                ->get(['id', 'title', 'slug']);
+
+            $data['brands'] = Brand::where('title', 'LIKE', '%' . $query . '%')
+                ->where('status', 'active')
+                ->limit(5)
+                ->get(['id', 'title', 'slug']);
+
+            $data['storys'] = ClientStory::where('title', 'LIKE', '%' . $query . '%')
+                ->limit(5)
+                ->get(['id', 'title', 'slug']);
+
+            $data['tech_glossys'] = TechGlossy::where('title', 'LIKE', '%' . $query . '%')
+                ->limit(5)
+                ->get(['id', 'title']);
+
+            return response()->json(view('frontend.partials.search', $data)->render());
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            return response()->json([
+                'error' => 'Global search error: ' . $e->getMessage()
+            ], 500);
+        }
+    }
+
 
 
     //Terms & Policy
