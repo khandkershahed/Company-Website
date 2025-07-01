@@ -925,12 +925,15 @@
                                                                 <small class="price-usd">USD</small>
                                                                 $ {{ number_format($item->price, 2) }}
                                                             </div>
-                                                            <a href=""
+                                                            <a href="{{ route('rfq') }}"
                                                                 class="d-flex justify-content-center align-items-center"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}">
-                                                                <button class="btn-color" data-bs-toggle="modal"
-                                                                    data-bs-target="#askProductPrice">
+                                                                {{-- data-bs-toggle="modal"
+                                                                data-bs-target="#rfq{{ $item->id }}" --}}
+                                                                >
+                                                                <button class="btn-color"
+                                                                {{-- data-bs-toggle="modal"
+                                                                    data-bs-target="#askProductPrice" --}}
+                                                                    >
                                                                     Your Price
                                                                 </button>
                                                             </a>

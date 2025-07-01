@@ -528,10 +528,11 @@
                                                             <small class="price-usd">USD</small>
                                                             $ {{ number_format($product->price, 2) }}
                                                         </div>
-                                                        <a href=""
+                                                        <a href="{{ route('rfq') }}"
                                                             class="d-flex justify-content-center align-items-center"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#rfq{{ $product->id }}">
+                                                            {{-- data-bs-toggle="modal"
+                                                            data-bs-target="#rfq{{ $product->id }}" --}}
+                                                            >
                                                             <button class="btn-color" data-bs-toggle="modal"
                                                                 data-bs-target="#askProductPrice">
                                                                 Your Price

@@ -357,8 +357,9 @@
                                     {{-- <small class="price-usd">USD</small>
                                             --.-- $ --}}
                                 </div>
-                                <a href="" class="d-flex justify-content-center align-items-center"
-                                    data-bs-toggle="modal" data-bs-target="#rfq">
+                                <a href="{{ route('rfq') }}" class="d-flex justify-content-center align-items-center"
+                                    {{-- data-bs-toggle="modal" data-bs-target="#rfq" --}}
+                                    >
                                     <button class="btn-color popular_product-button">
                                         Ask For Price
                                     </button>
