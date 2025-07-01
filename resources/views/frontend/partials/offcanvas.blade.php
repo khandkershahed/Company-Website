@@ -1,8 +1,9 @@
 <div class="offcanvas-header rfq-head-bg">
     <h5 class="text-center text-white mb-0">All RFQ Product Added In Query!</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
-        style="background: #ae0a46;padding-bottom: 18px;padding-left: 12px;padding-right: 15px;">
-        <i class="fa-solid fa-xmark"></i>
+        style="color: #ae0a46;">
+        {{-- style="background: #ae0a46;padding-bottom: 18px;padding-left: 12px;padding-right: 15px;"> --}}
+        {{-- <i class="fa-solid fa-xmark"></i> --}}
     </button>
 </div>
 
