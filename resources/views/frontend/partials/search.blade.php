@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-10 col-sm-12 ps-lg-2 ps-4">
                                 <a class="search_titles"
-                                    href="{{ route('product.details', ['id' => $product->slug]) }}">
+                                    href="{{ route('product.details', ['slug' => $product->slug]) }}">
                                     <h6 class="my-1" style="color: #ae0a46;">
                                         {{ $product->name }}
                                     </h6>
@@ -170,7 +170,7 @@
                                 <div class="py-4 row d-flex align-items-center">
                                     <div class="col-lg-12 col-sm-12">
                                         <a class="search_titles"
-                                            href="{{ route('product.details', ['id' => $product->slug]) }}">
+                                            href="{{ route('product.details', ['slug' => $product->slug]) }}">
                                             <h6 style="color: #ae0a46;">
                                                 {{ $product->name }}</h6>
                                         </a>
@@ -194,7 +194,7 @@
                                         </div> --}}
                                         {{-- <div>
                                             <a class="search-details"
-                                                href="{{ route('product.details', ['id' => $product->slug]) }}"><i
+                                                href="{{ route('product.details', ['slug' => $product->slug]) }}"><i
                                                     class="pt-1 fa-solid fa-circle-info pe-1"></i>Details</a>
                                         </div> --}}
                                         <div>
@@ -221,7 +221,7 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="pe-2">
                                                     {{-- <a class="search-btn-price"
-                                                        href="{{ route('product.details', ['id' => $product->slug]) }}">Ask
+                                                        href="{{ route('product.details', ['slug' => $product->slug]) }}">Ask
                                                         For Price</a> --}}
                                                     <a href="{{ route('rfq') }}" class="px-3 py-2 text-black bg-transparent border btn-color cart_button_text{{ $product->id }} popular_product-button mt-2"
                                                         {{-- data-bs-toggle="modal"
@@ -276,7 +276,7 @@
                                                 </button>
                                                 {{-- <a class="pb-2 bg-transparent border-0 search-btns"
                                                     style="color: rgb(10 51 113);"
-                                                    href="{{ route('product.details', ['id' => $product->slug]) }}"><i
+                                                    href="{{ route('product.details', ['slug' => $product->slug]) }}"><i
                                                         class="fa-solid fa-plus pe-2"></i>Add RFQ
                                                 </a> --}}
                                             </div>
@@ -348,7 +348,7 @@
         // Add to cart function (modified to use the correct quantity for each product)
         function addToCart(event, button) {
             event.preventDefault(); // Prevent page reload if the button is inside a form
-            var id = $(button).data('id');
+            var id = $(button).data(slugd');
             var name = $(button).data('name');
             var quantity = $('#quantity-' + id).val(); // Get quantity based on product ID
             var button_text = $('.cart_button_text' + id);
