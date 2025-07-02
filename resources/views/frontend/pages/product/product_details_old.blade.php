@@ -157,7 +157,7 @@
                         <div class="bg-light d-flex justify-content-between align-items-center w-lg-80">
                             <a href="{{ route('rfq') }}">
                                 <button class="search-btn-price"
-                                id="modal_view_left"
+                                {{-- id="modal_view_left" --}}
                                 {{-- data-bs-toggle="modal"
                                     data-bs-target="#rfqModal"  --}}
                                     style="width: 35%;">Ask For Price</button>
@@ -200,8 +200,12 @@
                                 </p>
                             </div>
                             <div>
-                                <button class="btn-color brand-product-btn" id="modal_view_left" data-bs-toggle="modal"
-                                    data-bs-target="#rfq{{ $sproduct->id }}" style="width: ;">Get Quote</button>
+                                <a href="{{ route('rfq') }}">
+                                <button class="btn-color brand-product-btn"
+                                {{-- id="modal_view_left" data-bs-toggle="modal"
+                                    data-bs-target="#rfq{{ $sproduct->id }}"  --}}
+                                    style="width: ;">Get Quote</button>
+                                    </a>
                             </div>
                             {{-- <button class="common_button2 ms-3" type="submit">Add to Basket</button> --}}
                         </div>
@@ -263,7 +267,9 @@
                                 {{-- <button class="btn-color brand-product-btn" id="modal_view_left"
                                                         data-bs-toggle="modal" data-bs-target="#rfq{{ $sproduct->id }}"
                                                         style="width: 100%;">Get Quote</button> --}}
-                                <a href="" data-bs-toggle="modal" data-bs-target="#rfq{{ $sproduct->id }}">
+                                <a href="{{ route('rfq') }}"
+                                {{-- data-bs-toggle="modal" data-bs-target="#rfq{{ $sproduct->id }}" --}}
+                                >
                                     <span class="fw-bold" style="color: #ae0a46;">Get A Quote</span>
                                 </a>
                             </div>
@@ -447,12 +453,15 @@
                                                                 <small class="price-usd">USD</small>
                                                                 $ {{ number_format($item->price, 2) }}
                                                             </div>
-                                                            <a href=""
+                                                            <a href="{{ route('rfq') }}"
                                                                 class="d-flex justify-content-center align-items-center"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}">
-                                                                <button class="btn-color" data-bs-toggle="modal"
-                                                                    data-bs-target="#askProductPrice">
+                                                                {{-- data-bs-toggle="modal"
+                                                                data-bs-target="#rfq{{ $item->id }}" --}}
+                                                                >
+                                                                <button class="btn-color"
+                                                                {{-- data-bs-toggle="modal"
+                                                                    data-bs-target="#askProductPrice" --}}
+                                                                    >
                                                                     Your Price
                                                                 </button>
                                                             </a>

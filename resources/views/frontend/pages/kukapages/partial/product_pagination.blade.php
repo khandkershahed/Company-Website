@@ -4,10 +4,10 @@
         padding-top: 8px;
     }
 </style>
-<div class="row mt-2" id="products-container">
+<div class="mt-2 row" id="products-container">
     @foreach ($products as $product)
         <div class="custom-col-5 col-sm-6 col-md-4 brand_prduct">
-            <div class="card rounded-0 border-0" style="box-shadow: var(--custom-shadow)">
+            <div class="border-0 card rounded-0" style="box-shadow: var(--custom-shadow)">
                 <div class="card-body" style="height:23rem;">
                     {{-- <div class="new-video">
                         <div class="icon-small video"></div>
@@ -19,9 +19,9 @@
                         </div>
                     </a>
 
-                    <div class="content-section text-center py-3">
+                    <div class="py-3 text-center content-section">
                         <a href="{{ route('product.details', $product->slug) }}" class="mb-2">
-                            <p class="pb-0 text-muted brandpage_product_title mb-2">
+                            <p class="pb-0 mb-2 text-muted brandpage_product_title">
                                 {{ Str::words($product->name, 15) }}</p>
                         </a>
                         <div>
@@ -69,8 +69,12 @@
                             </div>
                         @elseif ($product->price_status && $product->price_status == 'offer_price')
                             <div class="d-flex justify-content-center">
-                                <button class="btn-color special_btn" data-bs-toggle="modal"
-                                    data-bs-target="#rfq{{ $product->id }}">Your Price</button>
+                                <a href="{{ route('rfq') }}">
+                                    <button class="btn-color special_btn"
+                                    {{-- data-bs-toggle="modal"
+                                        data-bs-target="#rfq{{ $product->id }}" --}}
+                                        >Your Price</button>
+                                </a>
                             </div>
                         @else
                             <div class="d-flex justify-content-center" class="cart_button{{ $product->id }}">
@@ -86,7 +90,7 @@
         </div>
     @endforeach
 </div>
-<div class="d-flex justify-content-center mt-3">
+<div class="mt-3 d-flex justify-content-center">
     <div id="pagination-links">
         {!! $products->render() !!}
         {{-- {{ $products->links() }} --}}

@@ -32,10 +32,10 @@
     @include('frontend.pages.kukapages.partial.page_header')
     <section class="header" id="myHeader">
         <div class="container">
-            <div class="row pt-3 pb-3 px-3">
-                <div class="col-lg-12 p-0">
-                    <h5 class="company-tab-title mb-2 border-bottom">
-                        <span class="rounded-pill text-black bg-white">
+            <div class="px-3 pt-3 pb-3 row">
+                <div class="p-0 col-lg-12">
+                    <h5 class="mb-2 company-tab-title border-bottom">
+                        <span class="text-black bg-white rounded-pill">
                             All <strong class="fw-normal" style="color: #A80B6E;">{{ ucfirst($brand->title) }}</strong>
                             Products
                         </span>
@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="allProducts">
-                <div class="row text-center" id="spinner" style="display: none; font">
+                <div class="text-center row" id="spinner" style="display: none; font">
                     <i class="fa fa-spinner fa-spin text-success"></i> Loading...
                 </div>
                 @include('frontend.pages.kukapages.partial.product_pagination')
@@ -57,7 +57,7 @@
             @if (count($industry->products) > 0)
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-12 p-0">
+                        <div class="p-0 col-lg-12">
                             <h2 class="company-tab-title-products">
                                 <span style="font-size: 20px;">{{ ucfirst($brand->title) }} Products for
                                     {{ ucfirst($industry->title) }} Industry</span>
@@ -67,7 +67,7 @@
                     <div class="row">
                         @foreach ($industry->products as $product)
                             <div class="custom-col-5 col-sm-6 col-md-4 brand_prduct">
-                                <div class="card rounded-0 border-0" style="box-shadow: var(--custom-shadow)">
+                                <div class="border-0 card rounded-0" style="box-shadow: var(--custom-shadow)">
                                     <div class="card-body" style="height:23rem;">
                                         {{-- <div class="new-video">
                                         <div class="icon-small video"></div>
@@ -79,9 +79,9 @@
                                             </div>
                                         </a>
 
-                                        <div class="content-section text-center py-3">
+                                        <div class="py-3 text-center content-section">
                                             <a href="{{ route('product.details', $product->slug) }}" class="mb-2">
-                                                <p class="pb-0 text-muted brandpage_product_title mb-2">
+                                                <p class="pb-0 mb-2 text-muted brandpage_product_title">
                                                     {{ Str::words($product->name, 15) }}</p>
                                             </a>
                                             <div>
@@ -100,7 +100,7 @@
                                             @if ($product->rfq == 1)
                                                 <div class="d-flex justify-content-center">
                                                     {{-- <button
-                                                        class="px-3 py-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button mt-2"
+                                                        class="px-3 py-2 mt-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button"
                                                         data-bs-toggle="modal" data-bs-target="#rfq{{ $product->id }}">Ask
                                                         For Price</button> --}}
                                                     @php
@@ -124,7 +124,7 @@
                                             @elseif ($product->price_status && $product->price_status == 'rfq')
                                                 <div class="d-flex justify-content-center">
                                                     {{-- <a href="{{ route('rfq') }}"
-                                                        class="px-3 py-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button mt-2"
+                                                        class="px-3 py-2 mt-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button"
                                                         data-bs-toggle="modal" data-bs-target="#rfq{{ $product->id }}">Add to RFQ</a> --}}
 
                                                     <button class="header_cart_button search-btn-price"
@@ -135,8 +135,12 @@
                                                 </div>
                                             @elseif ($product->price_status && $product->price_status == 'offer_price')
                                                 <div class="d-flex justify-content-center">
-                                                    <button class="btn-color special_btn" data-bs-toggle="modal"
-                                                        data-bs-target="#rfq{{ $product->id }}">Your Price</button>
+                                                    <a href="{{ route('rfq') }}">
+                                                        <button class="btn-color special_btn"
+                                                        {{-- data-bs-toggle="modal"
+                                                            data-bs-target="#rfq{{ $product->id }}" --}}
+                                                            >Your Price</button>
+                                                    </a>
                                                 </div>
                                             @else
                                                 <div class="d-flex justify-content-center"
@@ -172,10 +176,10 @@
                             </h2>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="mt-2 row">
                         @foreach ($solution->products as $product)
                             <div class="custom-col-5 col-sm-6 col-md-4 brand_prduct">
-                                <div class="card rounded-0 border-0" style="box-shadow: var(--custom-shadow)">
+                                <div class="border-0 card rounded-0" style="box-shadow: var(--custom-shadow)">
                                     <div class="card-body" style="height:23rem;">
                                         {{-- <div class="new-video">
                                         <div class="icon-small video"></div>
@@ -187,9 +191,9 @@
                                             </div>
                                         </a>
 
-                                        <div class="content-section text-center py-3">
+                                        <div class="py-3 text-center content-section">
                                             <a href="{{ route('product.details', $product->slug) }}" class="mb-2">
-                                                <p class="pb-0 mb-0 text-muted brandpage_product_title mb-2">
+                                                <p class="pb-0 mb-0 mb-2 text-muted brandpage_product_title">
                                                     {{ Str::words($product->name, 15) }}</p>
                                             </a>
                                             <div>
@@ -228,7 +232,7 @@
                                             @elseif ($product->price_status && $product->price_status == 'rfq')
                                                 <div class="d-flex justify-content-center">
                                                     {{-- <button
-                                                        class="px-3 py-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button mt-2"
+                                                        class="px-3 py-2 mt-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button"
                                                         data-bs-toggle="modal" data-bs-target="#rfq{{ $product->id }}">Ask
                                                         For Price</button> --}}
                                                     <button class="header_cart_button search-btn-price"
@@ -239,8 +243,12 @@
                                                 </div>
                                             @elseif ($product->price_status && $product->price_status == 'offer_price')
                                                 <div class="d-flex justify-content-center">
-                                                    <button class="btn-color special_btn" data-bs-toggle="modal"
-                                                        data-bs-target="#rfq{{ $product->id }}">Your Price</button>
+                                                    <a href="{{ route('rfq') }}">
+                                                        <button class="btn-color special_btn"
+                                                        {{-- data-bs-toggle="modal"
+                                                            data-bs-target="#rfq{{ $product->id }}" --}}
+                                                            >Your Price</button>
+                                                    </a>
                                                 </div>
                                             @else
                                                 <div class="d-flex justify-content-center"
@@ -277,9 +285,9 @@
                             </div>
                         </div>
                         <div class="container">
-                            <div class="row py-3">
+                            <div class="py-3 row">
                                 @foreach ($related_search['categories'] as $related_category)
-                                    <div class="col-sm-3 col-6 p-0">
+                                    <div class="p-0 col-sm-3 col-6">
                                         <a href="{{ route('category.details', $related_category->slug) }}"
                                             class="related_search_links"><i
                                                 class="fa-solid fa-angles-right text-danger"></i>
@@ -287,7 +295,7 @@
                                     </div>
                                 @endforeach
                                 @foreach ($related_search['brands'] as $related_brand)
-                                    <div class="col-sm-3 col-6 p-0">
+                                    <div class="p-0 col-sm-3 col-6">
                                         <a href="{{ route('brand.overview', $related_brand->slug) }}"
                                             class="related_search_links"><i
                                                 class="fa-solid fa-angles-right text-danger"></i>
@@ -296,7 +304,7 @@
                                 @endforeach
                                 @foreach ($related_search['solutions'] as $related_solution)
                                     @if (!empty($related_solution->slug))
-                                        <div class="col-sm-3 col-6 p-0">
+                                        <div class="p-0 col-sm-3 col-6">
                                             <a href="{{ route('solution.details', $related_solution->slug) }}"
                                                 class="related_search_links"><i
                                                     class="fa-solid fa-angles-right text-danger"></i>
@@ -307,7 +315,7 @@
                                 @endforeach
                                 @foreach ($related_search['industries'] as $related_industry)
                                     @if (!empty($related_industry->slug))
-                                        <div class="col-sm-3 col-6 p-0">
+                                        <div class="p-0 col-sm-3 col-6">
                                             <a href="{{ route('industry.details', $related_industry->slug) }}"
                                                 class="related_search_links"><i
                                                     class="fa-solid fa-angles-right text-danger"></i>
