@@ -49,6 +49,8 @@
         z-index: 1000;
         height: 50px;
         width: 200px;
+        border: 2px solid black;
+        text-align: center;
     }
 
     .feedback_upper_modal::after {
@@ -103,6 +105,7 @@
         height: 26px;
         border-radius: 100%;
         z-index: 1002;
+
     }
 
     .remove-rfq {
