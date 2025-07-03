@@ -93,7 +93,7 @@
         color: #212529;
         background-color: #f7f7f717;
         border-radius: 0px;
-        padding: 10px;
+        padding: 6px 10px;
         box-shadow: none !important;
         z-index: 10;
         transition-duration: 0.4s;
@@ -114,6 +114,7 @@
         -webkit-transition-duration: 0.4s;
         -o-transition-duration: 0.4s;
         font-size: 0.8rem !important;
+        font-weight: 500 !important;
     }
 
     .is-invalid {
@@ -123,7 +124,7 @@
 
     .form-control:focus {
         color: #212529;
-        background-color: #f7f7f717;
+        background-color: #f1f0f0cf;
         border-radius: 0px;
         padding: 10px;
         box-shadow: none !important;
