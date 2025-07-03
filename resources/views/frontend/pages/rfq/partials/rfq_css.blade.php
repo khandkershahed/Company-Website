@@ -104,7 +104,7 @@
 
     .form-control {
         color: #212529;
-        background-color: #f7f7f717;
+        background-color: #f1f0f0cf;
         border-radius: 0px;
         padding: 10px;
         box-shadow: none !important;
@@ -113,6 +113,12 @@
         -moz-transition-duration: 0.4s;
         -webkit-transition-duration: 0.4s;
         -o-transition-duration: 0.4s;
+        font-size: 0.8rem !important;
+    }
+
+    .is-invalid {
+        font-size: 0.8rem;
+        font-weight: 600;
     }
 
     .form-control:focus {
