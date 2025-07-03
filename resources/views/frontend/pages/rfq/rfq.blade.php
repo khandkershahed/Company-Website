@@ -184,7 +184,7 @@
                                                     <input class="form-check-input custom-form-check" type="checkbox"
                                                         value="1" name="is_reseller" id="resellerCheckbox"
                                                         autocomplete="" />
-                                                    <label class="form-check-label" for="resellerCheckbox">
+                                                    <label class="form-check-label fw-normal" for="resellerCheckbox">
                                                         I am a reseller (Check if you are a reseller
                                                         partner)
                                                     </label>
@@ -194,7 +194,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="name" class="form-control"
-                                                    placeholder="Client Name (e.g: Jhone Doe)" required autocomplete="" />
+                                                    placeholder="Contact Name (e.g: Jhone Doe)" required autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -292,7 +292,7 @@
                                         <div>
                                             <p class="mb-0 fw-semibold case-title">
                                                 "Please provide accurate and complete details so we
-                                                can reach out to you smoothly."
+                                                can quote & reach out to you smoothly."
                                             </p>
                                         </div>
                                         <button type="button" class="btn btn-primary next-step next-btn">
@@ -318,27 +318,27 @@
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_company_name" class="form-control"
-                                                    placeholder="Shipping Company Name (e.g: NGen It)" required
+                                                    placeholder="Shipping Company Name (e.g: NGen It)"
                                                     autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_name" class="form-control"
-                                                    placeholder="Client Name (e.g: Jhone Doe)" required autocomplete="" />
+                                                    placeholder="Contact Name (e.g: Jhone Doe)"  autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_address" class="form-control"
-                                                    placeholder="Address (e.g: House No, Road, Block)" required
+                                                    placeholder="Address (e.g: House No, Road, Block)"
                                                     autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_designation" class="form-control"
-                                                    placeholder="Designation (e.g: Sales Manager)" required
+                                                    placeholder="Designation (e.g: Sales Manager)"
                                                     autocomplete="" />
                                             </div>
                                         </div>
@@ -360,7 +360,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="email" name="shipping_email" class="form-control"
-                                                    placeholder="Email Address (e.g: jhone@mail.com)" required
+                                                    placeholder="Email Address (e.g: jhone@mail.com)"
                                                     autocomplete="" />
                                             </div>
                                         </div>
@@ -373,14 +373,14 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="number" name="shipping_phone" class="form-control"
-                                                    placeholder="Phone Number (e.g: 018687955852)" required
+                                                    placeholder="Phone Number (e.g: 018687955852)"
                                                     autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_zip_code" class="form-control"
-                                                    placeholder="ZIP Code (e.g: 1207)" required autocomplete="" />
+                                                    placeholder="ZIP Code (e.g: 1207)"  autocomplete="" />
                                             </div>
                                         </div>
                                     </div>
@@ -411,13 +411,13 @@
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <input type="text" name="end_user_company_name" class="form-control"
-                                                    placeholder="Company Name (e.g: NGen It)" required autocomplete="" />
+                                                    placeholder="Destination/Company Name (e.g: NGen It)" autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="end_user_name" class="form-control"
-                                                    placeholder="Client Name (e.g: Jhone Doe)" required autocomplete="" />
+                                                    placeholder="Contact Name (e.g: Jhone Doe)"  autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -430,7 +430,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="end_user_designation" class="form-control"
-                                                    placeholder="Designation (e.g: Sales Manager)" required
+                                                    placeholder="Designation (e.g: Sales Manager)"
                                                     autocomplete="" />
                                             </div>
                                         </div>
@@ -452,7 +452,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="email" name="end_user_email" class="form-control"
-                                                    placeholder="Email Address (e.g: jhone@mail.com)" required
+                                                    placeholder="Email Address (e.g: jhone@mail.com)"
                                                     autocomplete="" />
                                             </div>
                                         </div>
@@ -465,14 +465,14 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="number" name="end_user_phone" class="form-control"
-                                                    placeholder="Phone Number (e.g: 018687955852)" required
+                                                    placeholder="Phone Number (e.g: 018687955852)"
                                                     autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="end_user_zip_code" class="form-control"
-                                                    placeholder="ZIP Code (e.g: 1207)" required autocomplete="" />
+                                                    placeholder="ZIP Code (e.g: 1207)"  autocomplete="" />
                                             </div>
                                         </div>
                                     </div>
