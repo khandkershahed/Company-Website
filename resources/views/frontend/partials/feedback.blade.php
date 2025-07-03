@@ -38,6 +38,7 @@
         bottom: 45%;
         right: -77px;
         color: var(--primary-color);
+        background-color: #ffffff;
         border-top-right-radius: 8px;
         border-top-left-radius: 8px;
         z-index: 1;
@@ -49,7 +50,7 @@
         z-index: 1000;
         height: 50px;
         width: 200px;
-        border: 2px solid black;
+        border: 1px solid #00000040;
         text-align: center;
     }
 
@@ -143,7 +144,7 @@
         </button>
     @else
         <a href="{{ route('rfq') }}" class="feedback_upper_modal d-lg-block d-sm-none">
-            <span class="miniRFQQTY" style="line-height: 1.3; font-size:1.2rem; font-family: system-ui;">
+            <span class="miniRFQQTY" style="line-height: 1.3; font-size:1.2rem; font-family: system-ui;position: relative;top: 20%;">
                 Ask Query
             </span>
         </a>
