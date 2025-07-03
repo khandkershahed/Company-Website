@@ -130,6 +130,10 @@
 </style>
 
 <section>
+    {{-- <span class=" text-black text-center rounded-2 miniRFQQTY"
+    style="line-height: 0;font-family: 'PhpDebugbarFontAwesome';">
+    {{ Cart::count() }}
+</span> --}}
     @if (Cart::count() > 0)
         <button class="feedback_upper_modal d-lg-block d-sm-none" type="button" data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
@@ -139,7 +143,7 @@
             </span>
         </button>
     @else
-        <a href="{{ route('rfq') }}" class="feedback_upper_modal d-lg-block d-sm-none">
+        <a href="{{ route('rfq') }}" class="feedback_upper_modal d-lg-block d-sm-none" style="background: #ae0a46;">
             <span class="miniRFQQTY" style="line-height: 1.3; font-size:1.2rem; font-family: system-ui;">
                 Ask Query
             </span>
@@ -540,7 +544,8 @@
                 data-bs-toggle="modal" data-bs-target="#rfqModal" --}}
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115.84 110.29"
-                    style="height: 35px; padding-top: 8px;">
+                    style="height: 35px;
+            padding-top: 8px;">
                     <defs>
                         <style>
                             .cls-1 {
