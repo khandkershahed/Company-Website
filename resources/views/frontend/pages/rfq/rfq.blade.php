@@ -185,7 +185,7 @@
                                                         value="1" name="is_reseller" id="resellerCheckbox"
                                                         autocomplete="" />
                                                     <label class="form-check-label fw-normal" for="resellerCheckbox" style="color:#ae0a46;">
-                                                        <strong>I am a reseller</strong> <small>(Check if you are a reseller partner)</small>
+                                                        <span style="font-weight: 600;">I am a reseller</span> <small>(Check if you are a reseller partner)</small>
                                                     </label>
                                                 </div>
                                             </div>
