@@ -69,6 +69,9 @@
             $('input[name="shipping_zip_code"]').rules("add", {
                 customZip: true
             });
+            $('input[name="product_name"]').rules("add", {
+                customProuct: true
+            });
 
             function toggleNextButton() {
                 const $currentStepContent = $(`.step-content[data-step="${currentStep}"]`);

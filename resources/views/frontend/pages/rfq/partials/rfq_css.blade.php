@@ -91,7 +91,7 @@
 
     .form-select {
         color: #212529;
-        background-color: #f7f6f5;
+        background-color: #f7f7f717;
         border-radius: 0px;
         padding: 10px;
         box-shadow: none !important;
@@ -104,7 +104,7 @@
 
     .form-control {
         color: #212529;
-        background-color: #f7f6f5;
+        background-color: #f7f7f717;
         border-radius: 0px;
         padding: 10px;
         box-shadow: none !important;
@@ -117,7 +117,7 @@
 
     .form-control:focus {
         color: #212529;
-        background-color: #f7f6f5;
+        background-color: #f7f7f717;
         border-radius: 0px;
         padding: 10px;
         box-shadow: none !important;
@@ -286,7 +286,7 @@
         /* Or whatever fits your layout */
         background: none !important;
         background-image: none !important;
-        background: #f7f6f5 !important;
+        background: #f7f7f717 !important;
     }
 
 
