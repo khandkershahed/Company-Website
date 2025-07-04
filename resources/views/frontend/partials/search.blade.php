@@ -376,10 +376,21 @@
                         });
                     } else {
                         // Product added to the cart successfully
+                        // cart_header.empty();
+                        // cart_header.append(
+                        //     '<span class="miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
+                        //     response.cartHeader + '</span>');
                         cart_header.empty();
-                        cart_header.append(
-                            '<span class="miniRFQQTY" style="line-height: 0;font-family: PhpDebugbarFontAwesome;">' +
-                            response.cartHeader + '</span>');
+                        if (response.cartHeader > 0) {
+                            if (response.cartHeader > 1) {
+                                cart_header.append('' + response.cartHeader +
+                                    ' Item(s) Added');
+                            } else {
+                                cart_header.append('' + response.cartHeader + ' Item Added');
+                            }
+                        } else {
+                            cart_header.append('Ask Query');
+                        }
                         button_text.html('✓ Added'); // Update button text
                         Swal.fire({
                             icon: 'success',
