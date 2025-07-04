@@ -35,7 +35,7 @@
     <meta property="og:description"
         content="NGEN IT Ltd. is a System Integration, Software & Hardware based License Provider & Software development based company established in 2008. Our technical expertise, broad solutions portfolio, and supply chain capabilities give us the right resources and scale to achieve more for you. Cloud Services." />
     <meta property="og:image"
-        content="{{ !empty($brandpage->banner_image) && file_exists(public_path('storage/' . $brandpage->banner_image)) ? url('social-image/' . $brandpage->banner_image) : asset('frontend/images/no-banner(1920-330).png') }}" />
+        content="{{ !empty($brandpage->banner_image) && file_exists(public_path('storage/' . $brandpage->banner_image)) ? url('social-image/' . $brandpage->banner_image) : asset('storage/' . $setting->favicon)}}" />
     <meta property="og:image:width" content="1200" /> <!-- Standard size for social sharing -->
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content="{{ url()->current() }}" />
@@ -45,7 +45,7 @@
     <meta name="twitter:description"
         content="NGEN IT Ltd. is a System Integration, Software & Hardware based License Provider & Software development based company established in 2008. Our technical expertise, broad solutions portfolio, and supply chain capabilities give us the right resources and scale to achieve more for you. Cloud Services.">
     <meta name="twitter:image"
-        content="{{ !empty($brandpage->banner_image) && file_exists(public_path('storage/' . $brandpage->banner_image)) ? url('social-image/' . $brandpage->banner_image) : asset('frontend/images/no-banner(1920-330).png') }}">
+        content="{{ !empty($brandpage->banner_image) && file_exists(public_path('storage/' . $brandpage->banner_image)) ? url('social-image/' . $brandpage->banner_image) : asset('storage/' . $setting->favicon)}}">
     <meta name="twitter:site" content=""> <!-- Replace with your Twitter handle if available -->
     <meta name="keywords"
         content="software, hardware, training, books, license, Microsoft, Adobe, Software License, Acronis, Veeam, Industry, Solution, Health Industry, Financial Industry">
