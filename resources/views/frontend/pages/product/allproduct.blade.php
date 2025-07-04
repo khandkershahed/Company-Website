@@ -723,58 +723,22 @@
                                                                                     Cart</span>
                                                                             </div>
                                                                         @else
-                                                                            {{-- <form action="{{ route('add.cart') }}"
-                                                                                method="post">
-                                                                                @csrf
-                                                                                <input type="hidden" name="product_id"
-                                                                                    id="product_id"
-                                                                                    value="{{ $product->id }}">
-                                                                                <input type="hidden" name="name"
-                                                                                    id="name"
-                                                                                    value="{{ $product->name }}">
-                                                                                <input type="hidden" name="qty"
-                                                                                    id="qty" value="1">
-                                                                                <div
-                                                                                    class="row gx-0 d-flex align-items-center justify-content-end">
-                                                                                    <div class="col-lg-6">
-                                                                                        <div class="qty-container d-flex justify-content-end"
-                                                                                            style="margin-right: -0.5rem;
-                                                                                        position: relative;
-                                                                                        z-index: 999;">
-                                                                                            <input type="text"
-                                                                                                name="qty"
-                                                                                                value="0"
-                                                                                                class="input-qty" />
-                                                                                            <span
-                                                                                                class="d-flex flex-column">
-                                                                                                <button
-                                                                                                    class="text-white qty-btn-plus btn rounded-0 qty-btn"
-                                                                                                    type="button"><i
-                                                                                                        class="fa fa-chevron-up"></i></button>
-                                                                                                <button
-                                                                                                    class="mr-1 text-white qty-btn-minus btn rounded-0 qty-btn"
-                                                                                                    type="button"><i
-                                                                                                        class="fa fa-chevron-down"></i></button>
-                                                                                            </span>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="col-lg-6">
-                                                                                        <div
-                                                                                            class="d-flex justify-content-end">
-                                                                                            <button type="submit"
-                                                                                                class="common_button effect01"
-                                                                                                style="padding:10px 8px;">Add
-                                                                                                to Basket</button>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                            </form> --}}
                                                                         @endif
                                                                     @else
                                                                         <div class="text-end">
                                                                             {{-- <a href="{{ route('product.details', $product->slug) }}"
                                                                                 class="common_button effect01">Details</a> --}}
+                                                                            @php
+                                                                                $cart_items = Cart::content();
+                                                                                $productInCart = false;
+
+                                                                                foreach ($cart_items as $item) {
+                                                                                    if ($item->id == $product->id) {
+                                                                                        $productInCart = true;
+                                                                                        break;
+                                                                                    }
+                                                                                }
+                                                                            @endphp
                                                                             <button
                                                                                 class="header_cart_button search-btn-price add_to_cart cart_button_text{{ $product->id }}"
                                                                                 data-id="{{ $product->id }}"

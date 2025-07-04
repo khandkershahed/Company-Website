@@ -269,8 +269,7 @@
                                                 <div class="d-flex align-items-center ">
                                                     {{-- <a class="search-btn-price me-2" --}}
                                                     <a class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button mt-0 me-2"
-                                                        {{-- href="{{ route('product.details', ['slug' => $product->slug]) }}">Ask --}}
-                                                        href="{{ route('rfq') }}">Ask
+                                                        {{-- href="{{ route('product.details', ['slug' => $product->slug]) }}">Ask --}} href="{{ route('rfq') }}">Ask
                                                         For Price</a>
                                                 </div>
                                                 <div class="d-flex border">
@@ -296,6 +295,17 @@
                                             </div>
                                             <div>
                                                 {{-- <a class="pb-2 bg-transparent border-0 text-end" --}}
+                                                @php
+                                                    $cart_items = Cart::content();
+                                                    $productInCart = false;
+
+                                                    foreach ($cart_items as $item) {
+                                                        if ($item->id == $product->id) {
+                                                            $productInCart = true;
+                                                            break;
+                                                        }
+                                                    }
+                                                @endphp
                                                 <button
                                                     class="header_cart_button search-btn-price add_to_cart cart_button_text{{ $product->id }}"
                                                     data-id="{{ $product->id }}" data-name="{{ $product->name }}"
