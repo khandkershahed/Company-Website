@@ -106,55 +106,64 @@
                 <div class="pt-2 d-sm-flex align-items-sm-center clear">
                     <div class="text-muted filter-label">Applied Filters:</div>
                     @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'titleASC')
-                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0"
+                            style="cursor: pointer;">
                             Ascending By Name
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'priceASC')
-                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0"
+                            style="cursor: pointer;">
                             Ascending By Price
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'titleDESC')
-                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0"
+                            style="cursor: pointer;">
                             Descending By Name
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['sortBy']) && $_GET['sortBy'] == 'priceDESC')
-                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0"
+                            style="cursor: pointer;">
                             Descending By Price
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['show']) && $_GET['show'] == '5')
-                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0"
+                            style="cursor: pointer;">
                             Showing 5 Products
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['show']) && $_GET['show'] == '10')
-                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0"
+                            style="cursor: pointer;">
                             Showing 10 Products
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['show']) && $_GET['show'] == '20')
-                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0"
+                            style="cursor: pointer;">
                             Showing 20 Products
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['show']) && $_GET['show'] == '40')
-                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0"
+                            style="cursor: pointer;">
                             Showing 40 Products
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
                     @endif
                     @if (!empty($_GET['price']))
-                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
+                        <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0"
+                            style="cursor: pointer;">
                             USD {{ $_GET['price'] }}
                             <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                         </div>
@@ -165,14 +174,16 @@
                         @endphp
                         @if (count($filterCats) > 1)
                             @foreach ($filterCats as $filterCat)
-                                <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
+                                <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0"
+                                    style="cursor: pointer;">
                                     {{ App\Models\Admin\Category::where('slug', $filterCat)->value('title') }}
                                     <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                                 </div>
                             @endforeach
                         @endif
                         @if (count($filterCats) == 1)
-                            <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
+                            <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0"
+                                style="cursor: pointer;">
                                 {{ App\Models\Admin\Category::where('slug', $filterCats)->value('title') }}
                                 <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                             </div>
@@ -184,7 +195,8 @@
                         @endphp
 
                         @foreach ($filterBrands as $filterBrand)
-                            <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0" style="cursor: pointer;">
+                            <div class="p-1 px-1 mx-0 my-2 green-label font-weight-bold mx-sm-1 my-sm-0"
+                                style="cursor: pointer;">
                                 {{ App\Models\Admin\Brand::where('slug', $filterBrand)->value('title') }}
                                 <span class="px-1 close" onclick="parentNode.remove()">&times;</span>
                             </div>
@@ -213,9 +225,9 @@
                             <div class="accordion-item">
                                 @foreach ($categories as $key => $cat)
                                     <h2 class="accordion-header" id="flush-headingCategory">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#flush-collapse{{ $cat->id }}" aria-expanded="false"
-                                            aria-controls="flush-collapseOne">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $cat->id }}"
+                                            aria-expanded="false" aria-controls="flush-collapseOne">
                                             <label class="tick"><input type="checkbox"> <span class="check"
                                                     style="top: -1px;"></span>{{ $cat->title }} </label>
                                         </button>
@@ -761,8 +773,16 @@
                                                                         @endif
                                                                     @else
                                                                         <div class="text-end">
-                                                                            <a href="{{ route('product.details', $product->slug) }}"
-                                                                                class="common_button effect01">Details</a>
+                                                                            {{-- <a href="{{ route('product.details', $product->slug) }}"
+                                                                                class="common_button effect01">Details</a> --}}
+                                                                            <button
+                                                                                class="header_cart_button search-btn-price add_to_cart cart_button_text{{ $product->id }}"
+                                                                                data-id="{{ $product->id }}"
+                                                                                data-name="{{ $product->name }}"
+                                                                                data-quantity="1"
+                                                                                onclick="addToCart(event, this)">
+                                                                                {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
+                                                                            </button>
                                                                         </div>
                                                                     @endif
                                                                 </div>
@@ -804,125 +824,120 @@
 
 
     <!--=======// Popular products //======-->
-<section>
-    <div class="container p-0 my-4">
-        <div class="Container spacer">
-            <h3 class="Head main_color">Related Products <span class="Arrows"></span></h3>
-            <!-- Carousel Container -->
-            <div class="SlickCarousel">
-                @if ($related_products)
-                    @foreach ($related_products as $item)
-                        <!-- Item -->
-                        <div class="mt-3 mb-3 ProductBlock">
-                            <div class="Content">
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12">
-                                        <div class="custom-product-grid">
-                                            <div class="custom-product-image">
-                                                <a href="{{ route('product.details', $item->slug) }}" class="image">
-                                                    {{-- <img class="pic-1" src="{{ asset($item->thumbnail) }}"> --}}
-                                                    <img class="img-fluid"
-                                                        src="{{ !empty($item->thumbnail) && file_exists(public_path($item->thumbnail)) ? asset($item->thumbnail) : asset('frontend/images/random-no-img.png') }}"
-                                                        alt="NGEN IT">
-                                                </a>
-                                                <ul class="custom-product-links">
-                                                    <li><a href="#"><i class="text-white fa fa-random"></i></a>
-                                                    </li>
-                                                    <li><a href="#" data-bs-toggle="modal"
-                                                            data-bs-target="#productDetails{{ $item->id }}"><i
-                                                                class="text-white fa fa-search"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="custom-product-content">
-                                                <a href="{{ route('product.details', $item->slug) }}">
-                                                    <h3 class="custom-title"> {{ Str::words($item->name, 10) }}</h3>
-                                                </a>
+    <section>
+        <div class="container p-0 my-4">
+            <div class="Container spacer">
+                <h3 class="Head main_color">Related Products <span class="Arrows"></span></h3>
+                <!-- Carousel Container -->
+                <div class="SlickCarousel">
+                    @if ($related_products)
+                        @foreach ($related_products as $item)
+                            <!-- Item -->
+                            <div class="mt-3 mb-3 ProductBlock">
+                                <div class="Content">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <div class="custom-product-grid">
+                                                <div class="custom-product-image">
+                                                    <a href="{{ route('product.details', $item->slug) }}" class="image">
+                                                        {{-- <img class="pic-1" src="{{ asset($item->thumbnail) }}"> --}}
+                                                        <img class="img-fluid"
+                                                            src="{{ !empty($item->thumbnail) && file_exists(public_path($item->thumbnail)) ? asset($item->thumbnail) : asset('frontend/images/random-no-img.png') }}"
+                                                            alt="NGEN IT">
+                                                    </a>
+                                                    <ul class="custom-product-links">
+                                                        <li><a href="#"><i class="text-white fa fa-random"></i></a>
+                                                        </li>
+                                                        <li><a href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#productDetails{{ $item->id }}"><i
+                                                                    class="text-white fa fa-search"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="custom-product-content">
+                                                    <a href="{{ route('product.details', $item->slug) }}">
+                                                        <h3 class="custom-title"> {{ Str::words($item->name, 10) }}</h3>
+                                                    </a>
 
-                                                @if ($item->rfq == 1)
-                                                    <div>
-                                                        <div class="py-3 price">
-                                                            {{-- <small class="price-usd">USD</small>
+                                                    @if ($item->rfq == 1)
+                                                        <div>
+                                                            <div class="py-3 price">
+                                                                {{-- <small class="price-usd">USD</small>
                                                             --.-- $ --}}
+                                                            </div>
+                                                            <a href="{{ route('rfq') }}"
+                                                                class="d-flex justify-content-center align-items-center"
+                                                                {{-- data-bs-toggle="modal"
+                                                            data-bs-target="#rfq{{ $item->id }}" --}}>
+                                                                <button class="btn-color popular_product-button">
+                                                                    Ask For Price
+                                                                </button>
+                                                            </a>
                                                         </div>
-                                                        <a href="{{ route('rfq') }}"
-                                                            class="d-flex justify-content-center align-items-center"
-                                                            {{-- data-bs-toggle="modal"
-                                                            data-bs-target="#rfq{{ $item->id }}" --}}
-                                                            >
-                                                            <button class="btn-color popular_product-button">
-                                                                Ask For Price
-                                                            </button>
-                                                        </a>
-                                                    </div>
-                                                @elseif ($item->price_status && $item->price_status == 'rfq')
-                                                    <div>
-                                                        <div class="py-3 price">
-                                                            {{-- <small class="price-usd">USD</small>
+                                                    @elseif ($item->price_status && $item->price_status == 'rfq')
+                                                        <div>
+                                                            <div class="py-3 price">
+                                                                {{-- <small class="price-usd">USD</small>
                                                         --.-- $ --}}
+                                                            </div>
+                                                            <a href="{{ route('rfq') }}"
+                                                                class="d-flex justify-content-center align-items-center"
+                                                                {{-- data-bs-toggle="modal"
+                                                            data-bs-target="#rfq{{ $item->id }}" --}}>
+                                                                <button class="btn-color popular_product-button">
+                                                                    Ask For Price
+                                                                </button>
+                                                            </a>
                                                         </div>
-                                                        <a href="{{ route('rfq') }}"
-                                                            class="d-flex justify-content-center align-items-center"
-                                                            {{-- data-bs-toggle="modal"
-                                                            data-bs-target="#rfq{{ $item->id }}" --}}
-                                                            >
-                                                            <button class="btn-color popular_product-button">
-                                                                Ask For Price
-                                                            </button>
-                                                        </a>
-                                                    </div>
-                                                @elseif ($item->price_status && $item->price_status == 'offer_price')
-                                                    <div>
-                                                        <div class="py-3 price">
-                                                            <small class="price-usd">USD</small>
-                                                            $ {{ number_format($item->price, 2) }}
+                                                    @elseif ($item->price_status && $item->price_status == 'offer_price')
+                                                        <div>
+                                                            <div class="py-3 price">
+                                                                <small class="price-usd">USD</small>
+                                                                $ {{ number_format($item->price, 2) }}
+                                                            </div>
+                                                            <a href="{{ route('rfq') }}"
+                                                                class="d-flex justify-content-center align-items-center"
+                                                                {{-- data-bs-toggle="modal"
+                                                            data-bs-target="#rfq{{ $item->id }}" --}}>
+                                                                <button class="btn-color" {{-- data-bs-toggle="modal"
+                                                                data-bs-target="#askProductPrice" --}}>
+                                                                    Your Price
+                                                                </button>
+                                                            </a>
                                                         </div>
-                                                        <a href="{{ route('rfq') }}"
-                                                            class="d-flex justify-content-center align-items-center"
-                                                            {{-- data-bs-toggle="modal"
-                                                            data-bs-target="#rfq{{ $item->id }}" --}}
-                                                            >
-                                                            <button class="btn-color"
-                                                            {{-- data-bs-toggle="modal"
-                                                                data-bs-target="#askProductPrice" --}}
-                                                                >
-                                                                Your Price
-                                                            </button>
-                                                        </a>
-                                                    </div>
-                                                @else
-                                                    <div>
-                                                        <div class="py-3 price">
-                                                            <small class="price-usd">USD</small>
-                                                            $ {{ number_format($item->price, 2) }}
+                                                    @else
+                                                        <div>
+                                                            <div class="py-3 price">
+                                                                <small class="price-usd">USD</small>
+                                                                $ {{ number_format($item->price, 2) }}
+                                                            </div>
+                                                            <a href="" data-mdb-toggle="popover"
+                                                                title="Add To Cart Now"
+                                                                class="cart_button{{ $item->id }}"
+                                                                data-mdb-content="Add To Cart Now"
+                                                                data-mdb-trigger="hover">
+                                                                <button type="button" class="btn-color add_to_cart"
+                                                                    data-id="{{ $item->id }}"
+                                                                    data-name="{{ $item->name }}" data-quantity="1">
+                                                                    Add to Cart
+                                                                </button>
+                                                            </a>
                                                         </div>
-                                                        <a href="" data-mdb-toggle="popover"
-                                                            title="Add To Cart Now"
-                                                            class="cart_button{{ $item->id }}"
-                                                            data-mdb-content="Add To Cart Now"
-                                                            data-mdb-trigger="hover">
-                                                            <button type="button" class="btn-color add_to_cart"
-                                                                data-id="{{ $item->id }}"
-                                                                data-name="{{ $item->name }}" data-quantity="1">
-                                                                Add to Cart
-                                                            </button>
-                                                        </a>
-                                                    </div>
-                                                @endif
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                @endif
+                        @endforeach
+                    @endif
+                </div>
+                <!-- Carousel Container -->
+                @include('frontend.pages.home.rfq_modal')
             </div>
-            <!-- Carousel Container -->
-            @include('frontend.pages.home.rfq_modal')
         </div>
-    </div>
-</section>
-<!---------End -------->
+    </section>
+    <!---------End -------->
 
 
 

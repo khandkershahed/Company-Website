@@ -199,9 +199,9 @@
                                 <div>
                                     <span style="font-size: 12px;">
                                         SKU #: {{ $product->sku_code }} |
-                                        MF #: {{ $product->mf_code }} |
+                                        MF #: {{ $product->mf_code }}
                                         @if (!empty($product->product_code))
-                                            NG #: {{ $product->product_code }}
+                                            | NG #: {{ $product->product_code }}
                                         @endif
                                     </span>
                                     <br>
@@ -296,11 +296,12 @@
                                             </div>
                                             <div>
                                                 {{-- <a class="pb-2 bg-transparent border-0 text-end" --}}
-                                                <a class="header_cart_button search-btn-price text-white text-end"
-                                                    style="color: rgb(10 51 113);"
-                                                    href="{{ route('product.details', ['slug' => $product->slug]) }}"><i
-                                                        class="fa-solid fa-plus pe-2"></i> Add RFQ
-                                                </a>
+                                                <button
+                                                    class="header_cart_button search-btn-price add_to_cart cart_button_text{{ $product->id }}"
+                                                    data-id="{{ $product->id }}" data-name="{{ $product->name }}"
+                                                    data-quantity="1" onclick="addToCart(event, this)">
+                                                    {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
