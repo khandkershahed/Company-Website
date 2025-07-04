@@ -271,7 +271,7 @@
                                                 <button
                                                     class="header_cart_button search-btn-price add_to_cart cart_button_text{{ $product->id }}"
                                                     data-id="{{ $product->id }}" data-name="{{ $product->name }}"
-                                                    data-quantity="1">
+                                                    data-quantity="1" onclick="addToCart(event, this)">
                                                     {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
                                                 </button>
                                                 {{-- <a class="pb-2 bg-transparent border-0 search-btns"
@@ -348,7 +348,7 @@
         // Add to cart function (modified to use the correct quantity for each product)
         function addToCart(event, button) {
             event.preventDefault(); // Prevent page reload if the button is inside a form
-            var id = $(button).data(slugd');
+            var id = $(button).data('id');
             var name = $(button).data('name');
             var quantity = $('#quantity-' + id).val(); // Get quantity based on product ID
             var button_text = $('.cart_button_text' + id);
