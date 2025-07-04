@@ -53,7 +53,7 @@
                                     }
                                 @endphp
 
-                                <button class="px-3 py-2 btn-color popular_product-button add_to_cart"
+                                <button class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
                                     data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1">
                                     {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
                                 </button>
@@ -62,7 +62,7 @@
                             <div class="d-flex justify-content-center">
                                 {{-- <button class="btn-color special_btn" data-bs-toggle="modal"
                                     data-bs-target="#rfq{{ $product->id }}">Ask For Price</button> --}}
-                                <button class="px-3 py-2 btn-color popular_product-button add_to_cart"
+                                <button class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
                                     data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1">
                                     {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
                                 </button>

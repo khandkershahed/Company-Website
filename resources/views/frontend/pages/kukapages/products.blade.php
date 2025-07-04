@@ -127,7 +127,7 @@
                                                         class="px-3 py-2 mt-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button"
                                                         data-bs-toggle="modal" data-bs-target="#rfq{{ $product->id }}">Add to RFQ</a> --}}
 
-                                                    <button class="header_cart_button search-btn-price"
+                                                    <button class="header_cart_button cart_button_text{{ $product->id }} search-btn-price"
                                                         data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                         data-quantity="1">
                                                         {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
@@ -235,7 +235,7 @@
                                                         class="px-3 py-2 mt-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button"
                                                         data-bs-toggle="modal" data-bs-target="#rfq{{ $product->id }}">Ask
                                                         For Price</button> --}}
-                                                    <button class="header_cart_button search-btn-price"
+                                                    <button class="header_cart_button cart_button_text{{ $product->id }} search-btn-price"
                                                         data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                         data-quantity="1">
                                                         {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}

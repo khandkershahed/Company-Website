@@ -673,7 +673,7 @@
                                                         @endphp
 
                                                         <button
-                                                            class="px-3 py-2 btn-color popular_product-button add_to_cart"
+                                                            class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $brand_product->id }}"
                                                             data-id="{{ $brand_product->id }}"
                                                             data-name="{{ $brand_product->name }}" data-quantity="1">
                                                             {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
@@ -682,7 +682,7 @@
                                                 @elseif ($brand_product->price_status && $brand_product->price_status == 'rfq')
                                                     <div class="d-flex justify-content-center">
                                                         <button
-                                                            class="px-3 py-2 btn-color popular_product-button add_to_cart"
+                                                            class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $brand_product->id }}"
                                                             data-id="{{ $brand_product->id }}"
                                                             data-name="{{ $brand_product->name }}" data-quantity="1">
                                                             {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
@@ -701,7 +701,7 @@
                                                 @else
                                                     <div class="d-flex justify-content-center"
                                                         class="cart_button{{ $brand_product->id }}">
-                                                        <button class="btn-color special_btn add_to_cart"
+                                                        <button class="btn-color special_btn add_to_cart cart_button_text{{ $brand_product->id }}"
                                                             data-id="{{ $brand_product->id }}"
                                                             data-name="{{ $brand_product->name }}" data-quantity="1">Add
                                                             to
@@ -781,7 +781,7 @@
                                                         @endphp
 
                                                         <button
-                                                            class="px-3 py-2 btn-color popular_product-button add_to_cart"
+                                                            class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
                                                             data-id="{{ $product->id }}"
                                                             data-name="{{ $product->name }}" data-quantity="1">
                                                             {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
