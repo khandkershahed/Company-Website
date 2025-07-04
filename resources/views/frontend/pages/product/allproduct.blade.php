@@ -645,7 +645,7 @@
                                                             <div class="row d-flex align-items-center">
                                                                 <div class="col-lg-9 col-sm-12">
                                                                     <a
-                                                                        href="{{ route('product.details', ['id' => $product->slug]) }}">
+                                                                        href="{{ route('product.details', ['slug' => $product->slug]) }}">
                                                                         <h4 class="my-3" style="color: #ae0a46;">
                                                                             {{ $product->name }}</h4>
                                                                     </a>

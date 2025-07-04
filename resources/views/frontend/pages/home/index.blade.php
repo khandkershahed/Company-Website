@@ -476,7 +476,7 @@
                                                             {{-- data-bs-toggle="modal"
                                                             data-bs-target="#rfq{{ $product->id }}" --}}
                                                             >
-                                                            <button class="px-3 py-2 text-black bg-transparent border btn-color cart_button_text{{ $product->id }} popular_product-button">
+                                                            <button class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
                                                                 Ask For Price
                                                             </button>
                                                         </a>
@@ -498,7 +498,7 @@
                                                         @endphp
 
                                                         <button
-                                                            class="px-3 py-2 btn-color popular_product-button add_to_cart"
+                                                            class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
                                                             data-id="{{ $product->id }}"
                                                             data-name="{{ $product->name }}" data-quantity="1">
                                                             {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}

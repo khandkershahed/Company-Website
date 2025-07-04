@@ -175,7 +175,7 @@
                     <div class="col-md-9 col-sm-12 px-4">
                         <div class="row d-flex align-items-center">
                             <div class="col-lg-8 col-sm-12">
-                                <a href="{{ route('product.details', ['id' => $product->slug]) }}">
+                                <a href="{{ route('product.details', ['slug' => $product->slug]) }}">
                                     <h5 class="" style="color: #ae0a46;">
                                         {{ $product->name }}</h5>
                                 </a>
@@ -266,8 +266,8 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="d-flex align-items-center ">
                                                     {{-- <a class="search-btn-price me-2" --}}
-                                                    <a class="px-3 py-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button mt-0 me-2"
-                                                        {{-- href="{{ route('product.details', ['id' => $product->slug]) }}">Ask --}}
+                                                    <a class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button mt-0 me-2"
+                                                        {{-- href="{{ route('product.details', ['slug' => $product->slug]) }}">Ask --}}
                                                         href="{{ route('rfq') }}">Ask
                                                         For Price</a>
                                                 </div>
@@ -296,7 +296,7 @@
                                                 {{-- <a class="pb-2 bg-transparent border-0 text-end" --}}
                                                 <a class="header_cart_button search-btn-price text-white text-end"
                                                     style="color: rgb(10 51 113);"
-                                                    href="{{ route('product.details', ['id' => $product->slug]) }}"><i
+                                                    href="{{ route('product.details', ['slug' => $product->slug]) }}"><i
                                                         class="fa-solid fa-plus pe-2"></i> Add RFQ
                                                 </a>
                                             </div>

@@ -223,7 +223,7 @@
                                                     {{-- <a class="search-btn-price"
                                                         href="{{ route('product.details', ['slug' => $product->slug]) }}">Ask
                                                         For Price</a> --}}
-                                                    <a href="{{ route('rfq') }}" class="px-3 py-2 text-black bg-transparent border btn-color cart_button_text{{ $product->id }} popular_product-button mt-2"
+                                                    <a href="{{ route('rfq') }}" class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button mt-2"
                                                         {{-- data-bs-toggle="modal"
                                                         data-bs-target="#rfq{{ $product->id }}" --}}
                                                         >
@@ -269,7 +269,7 @@
                                                     }
                                                 @endphp
                                                 <button
-                                                    class="header_cart_button search-btn-price"
+                                                    class="header_cart_button search-btn-price add_to_cart cart_button_text{{ $product->id }}"
                                                     data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                     data-quantity="1">
                                                     {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
