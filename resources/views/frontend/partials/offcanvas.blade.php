@@ -1,7 +1,6 @@
 <div class="offcanvas-header rfq-head-bg">
     <h5 class="text-center text-white mb-0">All RFQ Product Added In Query!</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
-        style="color: #ae0a46;">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" style="color: #ae0a46;">
         {{-- style="background: #ae0a46;padding-bottom: 18px;padding-left: 12px;padding-right: 15px;"> --}}
         {{-- <i class="fa-solid fa-xmark"></i> --}}
     </button>
@@ -14,7 +13,6 @@
                 <div class="row mt-4 pb-5">
                     @if ($cart_items)
                         @foreach ($cart_items as $cart_item)
-
                             @php
                                 $productRFQ = App\Models\Admin\Product::where('id', $cart_item->id)->first([
                                     'id',
@@ -44,10 +42,15 @@
                                                     Qty: {{ $cart_item->qty ?? 'N/A' }}
                                                 </small>
                                                 <small>
-                                                    <a href="javascript:void(0);"
+                                                    {{-- <a href="javascript:void(0);"
                                                         class="remove-rfq rounded-0 text-danger"
                                                         id="{{ $cart_item->rowId }}"
                                                         onClick='deleteRFQRow(event, this, this.id)'>
+                                                        <i class="fas fa-trash-can"></i>
+                                                    </a> --}}
+                                                    <a href="#" class="remove-rfq rounded-0 text-danger"
+                                                        data-id="{{ $cart_item->rowId }}" title="Remove from cart"
+                                                        aria-label="Remove item">
                                                         <i class="fas fa-trash-can"></i>
                                                     </a>
                                                 </small>
