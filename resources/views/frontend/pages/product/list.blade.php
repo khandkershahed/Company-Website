@@ -200,7 +200,9 @@
                                     <span style="font-size: 12px;">
                                         SKU #: {{ $product->sku_code }} |
                                         MF #: {{ $product->mf_code }} |
-                                        <br> NG #: {{ $product->product_code }}
+                                        @if (!empty($product->product_code))
+                                            NG #: {{ $product->product_code }}
+                                        @endif
                                     </span>
                                     <br>
                                     {{-- <p>
