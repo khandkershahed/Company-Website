@@ -692,7 +692,7 @@
 
     <!--=======// Popular products //======-->
     <section>
-        <div class="container mb-5">
+        <div class="container mb-5 px-0">
             <div class="row">
                 <h2 class="mb-5 company-tab-title ps-0">
                     <span style="font-size: 20px;">BUYERS WHO LIKED THIS PRODUCT ALSO LIKED</span>

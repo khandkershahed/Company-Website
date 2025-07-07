@@ -108,7 +108,7 @@
         }
     </style>
     <section>
-        <div class="container my-5">
+        <div class="container my-5  px-0">
             <div class="single-product-container">
                 <div class="row g-3">
                     <div class="col-lg-6 col-sm-12 single_product_images">
@@ -622,8 +622,8 @@
                     <div class="slick-slider brand-containers">
                         @if (count($brand_products) > 0)
                             @foreach ($brand_products as $brand_product)
-                                <div class="px-2 custom-col-5 col-sm-6 col-md-4">
-                                    <div class="m-2 border-0 card rounded-0">
+                                <div class="px-0 m-2 custom-col-5 col-sm-6 col-md-4">
+                                    <div class="border-0 card rounded-0">
                                         <div class="card-body"
                                             style="height:23rem;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
                                             {{-- <div class="new-video">
@@ -726,14 +726,14 @@
                 <h2 class="mb-5 company-tab-title ps-0">
                     <span style="font-size: 20px;">BUYERS WHO LIKED THIS PRODUCT ALSO LIKED</span>
                 </h2>
-                <div class="col">
+                <div class="col px-0">
                     <div class="slick-slider brand-containers">
 
                         @if (count($products) > 0)
                             @foreach ($products as $product)
-                                <div class="px-2 custom-col-5 col-sm-6 col-md-4">
+                                <div class="custom-col-5 col-sm-6 col-md-4 px-0">
                                     <div class="m-2 border-0 card rounded-0">
-                                        <div class="card-body"
+                                        <div class="card-body px-0"
                                             style="height:23rem;box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
                                             {{-- <div class="new-video">
                                                 <div class="icon-small video"></div>
