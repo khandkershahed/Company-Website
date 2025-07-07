@@ -250,7 +250,7 @@
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
-                                                <input type="number" name="phone" class="form-control"
+                                                <input type="number" name="phone" class="form-control no-spinners"
                                                     placeholder="Phone Number (e.g: 018687955852)" required
                                                     autocomplete="" />
                                             </div>

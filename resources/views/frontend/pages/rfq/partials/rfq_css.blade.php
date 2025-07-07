@@ -93,20 +93,35 @@
         color: #212529;
         background-color: #f7f7f717;
         border-radius: 0px;
-        padding: 6px 10px;
+        padding: 11px 10px !important;
         box-shadow: none !important;
         z-index: 10;
         transition-duration: 0.4s;
         -moz-transition-duration: 0.4s;
         -webkit-transition-duration: 0.4s;
         -o-transition-duration: 0.4s;
+        border: 1px solid #f1f0f01f;
+    }
+
+    .form-select:focus {
+        color: #212529;
+        background-color: #f7f7f717;
+        border-radius: 0px;
+        padding: 11px 10px !important;
+        border: 1px solid #f1f0f01f;
+    }
+
+    .form-control:disabled {
+        background-color: #f1f0f01f;
+        border-radius: 0px;
+        padding: 15px;
     }
 
     .form-control {
         color: #212529;
-        background-color: #f1f0f0cf;
+        background-color: #f1f0f01f;
         border-radius: 0px;
-        padding: 10px;
+        padding: 15px;
         box-shadow: none !important;
         z-index: 10;
         transition-duration: 0.4s;
@@ -120,15 +135,24 @@
     .is-invalid {
         font-size: 0.8rem;
         font-weight: 600;
+
+    }
+
+    .form-control.is-valid:focus,
+    .was-validated .form-control:valid:focus {
+        border-color: #f1f0f01f;
     }
 
     .form-control:focus {
         color: #212529;
-        background-color: #f1f0f0cf;
+        background-color: #f1f0f01f;
+        border: 1px solid #f1f0f01f;
         border-radius: 0px;
-        padding: 10px;
+        padding: 15px;
         box-shadow: none !important;
         z-index: 10;
+        font-size: 0.8rem !important;
+        font-weight: 500 !important;
         transition-duration: 0.4s;
         -moz-transition-duration: 0.4s;
         -webkit-transition-duration: 0.4s;
@@ -140,7 +164,7 @@
         background-color: transparent;
         border: 0;
         padding: 10px;
-        border-radius: 5px;
+        border-radius: 0px;
         width: 150px;
         border: 1px solid #ae0a46;
     }
@@ -148,7 +172,7 @@
     .rfq-add-btns:hover {
         color: #fff;
         background-color: #ae0a46;
-        border-radius: 5px;
+        border-radius: 0px;
         transition: 0.5s all;
     }
 
@@ -156,7 +180,7 @@
         background-color: transparent;
         color: #ae0a46;
         border: 0;
-        border-radius: 5px;
+        border-radius: 0px;
         font-size: 20px;
     }
 
@@ -164,13 +188,13 @@
         background-color: red;
         color: white;
         border: 0;
-        border-radius: 5px;
+        border-radius: 0px;
         font-size: 20px;
     }
 
     .next-btn {
         padding: 10px 20px;
-        border-radius: 5px;
+        border-radius: 0px;
         width: 150px;
         background-color: #ae0a46;
         border: 1px solid #ae0a46;
@@ -179,14 +203,14 @@
     .next-btn:hover {
         padding: 10px 20px;
         width: 150px;
-        border-radius: 5px;
+        border-radius: 0px;
         background-color: #ae0a46;
         border: 1px solid #ae0a46;
     }
 
     .prev-btn {
         padding: 10px 20px;
-        border-radius: 5px;
+        border-radius: 0px;
         width: 150px;
         background-color: black;
         border: 1px solid black;
@@ -195,7 +219,7 @@
     .prev-btn:hover {
         padding: 10px 20px;
         width: 150px;
-        border-radius: 5px;
+        border-radius: 0px;
         background-color: black;
         border: 1px solid black;
     }
@@ -254,7 +278,7 @@
         font-size: 10px;
         padding: 0px;
         width: 21px !important;
-        height: 22px !important;
+        height: 24px !important;
     }
 
     .increment-quantity {
@@ -296,6 +320,29 @@
         background: #f7f7f717 !important;
     }
 
+    .form-control.is-valid,
+    .was-validated .form-control:valid {
+        background-image: none !important;
+        border: 0px solid #f1f1f1;
+    }
+
+    .form-select.is-valid,
+    .was-validated .form-select:valid {
+        background-image: none !important;
+        border: 0px solid #f1f1f1;
+    }
+
+    /* Hide spinners for number input on Chrome, Safari, Edge */
+    input.no-spinners::-webkit-outer-spin-button,
+    input.no-spinners::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Hide spinners for Firefox */
+    input.no-spinners[type=number] {
+        -moz-appearance: textfield;
+    }
 
     @media only screen and (max-width: 600px) {
         .rfq-title {

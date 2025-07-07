@@ -190,7 +190,7 @@
                                                             class="border-0 quantity-box bg-light">
                                                         <div class="quantity-selectors-container">
                                                             <div class="quantity-selectors">
-                                                                <button type="button" class="border-0 increment-quantity"
+                                                                <button type="button" class="border-0 increment-quantity pt-2"
                                                                     aria-label="Add one" data-direction="1">
                                                                     <i class="fa-solid fa-plus" style="color: #7a7577"></i>
                                                                 </button>
