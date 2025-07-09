@@ -185,7 +185,7 @@
                                                         value="1" name="is_reseller" id="resellerCheckbox"
                                                         autocomplete="" />
                                                     <label class="form-check-label fw-normal" for="resellerCheckbox" style="color:#ae0a46;">
-                                                        <span style="font-weight: 600;">I am a reseller</span> <small>(Check if you are a reseller partner)</small>
+                                                        <span style="font-weight: 600; font-size: 10px;">I am a reseller</span> <small>(Check if you are a reseller partner)</small>
                                                     </label>
                                                 </div>
                                             </div>
@@ -268,7 +268,7 @@
                                                     <input class="form-check-input custom-form-check deliveryAddress" type="checkbox"
                                                         value="1" id="deliveryAddress"
                                                         disabled required autocomplete="" />
-                                                    <label class="form-check-label" for="deliveryAddress">
+                                                    <label class="text-black form-check-label fw-normal" for="deliveryAddress" style="opacity: 1; font-size: 9px;">
                                                         My delivery address is the same as the company
                                                         address
                                                     </label>
@@ -278,7 +278,7 @@
                                                         <input class="form-check-input custom-form-check endUser" type="checkbox"
                                                             value="1" id="endUser" disabled required
                                                             autocomplete />
-                                                        <label class="form-check-label" for="endUser">
+                                                        <label class="text-black form-check-label fw-normal" for="endUser"  style="opacity: 1; font-size: 9px;">
                                                             I am the end user and my information is the same
                                                             as the company address
                                                         </label>
@@ -289,9 +289,9 @@
                                     </div>
                                     <div class="mt-5 d-flex justify-content-between align-items-center">
                                         <div>
-                                            <p class="mb-0 fw-semibold case-title">
-                                                "Please provide accurate and complete details so we
-                                                can quote & reach out to you smoothly."
+                                            <p class="mb-0 fw-semibold case-title" style="font-size: 8px;">
+                                                Please provide accurate and complete details so we
+                                                can quote & reach out to you smoothly.
                                             </p>
                                         </div>
                                         <button type="button" class="btn btn-primary next-step next-btn">

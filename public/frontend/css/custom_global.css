@@ -709,7 +709,7 @@ ul {
 
 ::placeholder {
     color: #ced4da;
-    font-size: 12px;
+    font-size: 10px;
 }
 
 .main_header_area {
@@ -2804,6 +2804,7 @@ select:focus-visible {
     -moz-transition-duration: 0.4s;
     -webkit-transition-duration: 0.4s;
     -o-transition-duration: 0.4s;
+    font-size: 10px;
 }
 
 .form-control:focus {
@@ -2819,6 +2820,7 @@ select:focus-visible {
     -moz-transition-duration: 0.4s;
     -webkit-transition-duration: 0.4s;
     -o-transition-duration: 0.4s;
+    font-size: 10px;
 }
 
 .search {
@@ -6981,7 +6983,7 @@ ul {
 
 .masthead .masthead-cards .card {
     opacity: 1;
-    font-size: 0.8rem;
+    font-size: 10px;
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 0.05rem;
@@ -7622,7 +7624,7 @@ button:focus {
 
 .input-search::placeholder {
     color: var(--white);
-    font-size: 14px;
+    font-size: 10px;
     letter-spacing: 2px;
     font-weight: 100;
 }
@@ -7637,8 +7639,6 @@ button:focus {
     cursor: pointer;
     border-radius: 50%;
     position: absolute;
-    /* right: 0px;
-    */
     color: var(--white);
     background-color: transparent;
     pointer-events: painted;
@@ -8795,7 +8795,7 @@ input.qtyminus {
     width: 100%;
     font-weight: 500;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 10px;
     line-height: 22px;
     letter-spacing: 0.5px;
     outline: none;

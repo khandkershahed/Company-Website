@@ -12,7 +12,7 @@
         align-items: center;
         padding: 10px 10px;
         border-radius: 0px;
-        background-color: #fcfbfb;
+        background-color: #fff;
         transition: background-color 0.3s;
     }
 
@@ -91,9 +91,9 @@
 
     .form-select {
         color: #212529;
-        background-color: #f7f7f717;
+        background-color: #f1f0f0cf;
         border-radius: 0px;
-        padding: 11px 10px !important;
+        padding: 13px 10px !important;
         box-shadow: none !important;
         z-index: 10;
         transition-duration: 0.4s;
@@ -101,35 +101,39 @@
         -webkit-transition-duration: 0.4s;
         -o-transition-duration: 0.4s;
         border: 1px solid #f1f0f01f;
+        font-size: 10px;
     }
 
     .form-select:focus {
         color: #212529;
-        background-color: #f7f7f717;
+        background-color: #f1f0f0cf;
         border-radius: 0px;
-        padding: 11px 10px !important;
+        padding: 13px;
         border: 1px solid #f1f0f01f;
+        font-size: 10px !important;
+        border: 1px solid #f1f0f0cf;
     }
 
     .form-control:disabled {
-        background-color: #f1f0f01f;
+        background-color: #f1f0f0cf;
         border-radius: 0px;
         padding: 15px;
     }
 
     .form-control {
         color: #212529;
-        background-color: #f1f0f01f;
+        background-color: #f1f0f0cf;
         border-radius: 0px;
-        padding: 15px;
+        padding: 13px;
         box-shadow: none !important;
         z-index: 10;
         transition-duration: 0.4s;
         -moz-transition-duration: 0.4s;
         -webkit-transition-duration: 0.4s;
         -o-transition-duration: 0.4s;
-        font-size: 0.8rem !important;
+        font-size: 10px !important;
         font-weight: 500 !important;
+        border: 1px solid #f1f0f0cf;
     }
 
     .is-invalid {
@@ -148,10 +152,10 @@
         background-color: #f1f0f01f;
         border: 1px solid #f1f0f01f;
         border-radius: 0px;
-        padding: 15px;
+        padding: 13px;
         box-shadow: none !important;
         z-index: 10;
-        font-size: 0.8rem !important;
+        font-size: 10px !important;
         font-weight: 500 !important;
         transition-duration: 0.4s;
         -moz-transition-duration: 0.4s;
@@ -231,11 +235,12 @@
         border: 1px solid #ae0a466c;
     }
 
+    /*
     .form-control::placeholder {
         color: #888888b2;
         opacity: 3;
         font-size: 16px;
-    }
+    } */
 
     .custom-form-check:checked {
         background-color: #ae0a46 !important;
@@ -278,7 +283,7 @@
         font-size: 10px;
         padding: 0px;
         width: 21px !important;
-        height: 24px !important;
+        height: 21.5px !important;
     }
 
     .increment-quantity {
@@ -291,7 +296,7 @@
     }
 
     .current-step-red {
-        background-color: transparent !important;
+        background-color: #f1f0f0cf !important;
         /* Bootstrap red */
         color: #ae0a46 !important;
         display: flex;
