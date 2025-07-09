@@ -89,6 +89,8 @@
         cursor: pointer;
     }
 
+    /* for inputs design */
+
     .form-select {
         color: #212529;
         background-color: #f1f0f0cf;
@@ -101,7 +103,7 @@
         -webkit-transition-duration: 0.4s;
         -o-transition-duration: 0.4s;
         border: 1px solid #f1f0f01f;
-        font-size: 10px;
+        font-size: 14px;
     }
 
     .form-select:focus {
@@ -110,7 +112,7 @@
         border-radius: 0px;
         padding: 13px;
         border: 1px solid #f1f0f01f;
-        font-size: 10px !important;
+        font-size: 14px !important;
         border: 1px solid #f1f0f0cf;
     }
 
@@ -131,13 +133,13 @@
         -moz-transition-duration: 0.4s;
         -webkit-transition-duration: 0.4s;
         -o-transition-duration: 0.4s;
-        font-size: 10px !important;
+        font-size: 14px !important;
         font-weight: 500 !important;
         border: 1px solid #f1f0f0cf;
     }
 
     .is-invalid {
-        font-size: 0.8rem;
+        font-size: 14px !important;
         font-weight: 600;
 
     }
@@ -155,7 +157,7 @@
         padding: 13px;
         box-shadow: none !important;
         z-index: 10;
-        font-size: 10px !important;
+        font-size: 14px !important;
         font-weight: 500 !important;
         transition-duration: 0.4s;
         -moz-transition-duration: 0.4s;
@@ -163,6 +165,57 @@
         -o-transition-duration: 0.4s;
     }
 
+
+    .form-control::placeholder {
+        color: #888888b2;
+        opacity: 3;
+        font-size: 14px !important;
+    }
+
+    .custom-form-check:checked {
+        background-color: #ae0a46 !important;
+        border-color: #ae0a46 !important;
+    }
+
+    .custom-form-check:focus {
+        border-color: #ae0a46;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem #ae0a4623;
+    }
+
+    .check-label {
+        font-size: 14px;
+        color: #ae0a46;
+        font-weight: 600;
+    }
+
+    .form-control.is-valid,
+    .was-validated .form-control:valid {
+        background-image: none !important;
+        border: 0px solid #f1f1f1;
+    }
+
+    .form-select.is-valid,
+    .was-validated .form-select:valid {
+        background-image: none !important;
+        border: 0px solid #f1f1f1;
+    }
+
+    /* Hide spinners for number input on Chrome, Safari, Edge */
+    input.no-spinners::-webkit-outer-spin-button,
+    input.no-spinners::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Hide spinners for Firefox */
+    input.no-spinners[type=number] {
+        -moz-appearance: textfield;
+    }
+
+
+
+    /* Form Inputs For RFQ Design End */
     .rfq-add-btns {
         color: #ae0a46;
         background-color: transparent;
@@ -235,29 +288,7 @@
         border: 1px solid #ae0a466c;
     }
 
-    /*
-    .form-control::placeholder {
-        color: #888888b2;
-        opacity: 3;
-        font-size: 16px;
-    } */
 
-    .custom-form-check:checked {
-        background-color: #ae0a46 !important;
-        border-color: #ae0a46 !important;
-    }
-
-    .custom-form-check:focus {
-        border-color: #ae0a46;
-        outline: 0;
-        box-shadow: 0 0 0 0.25rem #ae0a4623;
-    }
-
-    .check-label {
-        font-size: 18px;
-        color: #ae0a46;
-        font-weight: 600;
-    }
 
     /* Shine animation keyframes */
     @keyframes shine {
@@ -274,16 +305,11 @@
         }
     }
 
-    /* .counting-btn {
-  position: relative;
-  top: -51px;
-  left: 38px;
-} */
     .qty-btn {
-        font-size: 10px;
+        font-size: 14px;
         padding: 0px;
-        width: 21px !important;
-        height: 21.5px !important;
+        width: 30px !important;
+        height: 24.5px !important;
     }
 
     .increment-quantity {
@@ -325,28 +351,9 @@
         background: #f7f7f717 !important;
     }
 
-    .form-control.is-valid,
-    .was-validated .form-control:valid {
-        background-image: none !important;
-        border: 0px solid #f1f1f1;
-    }
-
-    .form-select.is-valid,
-    .was-validated .form-select:valid {
-        background-image: none !important;
-        border: 0px solid #f1f1f1;
-    }
-
-    /* Hide spinners for number input on Chrome, Safari, Edge */
-    input.no-spinners::-webkit-outer-spin-button,
-    input.no-spinners::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    /* Hide spinners for Firefox */
-    input.no-spinners[type=number] {
-        -moz-appearance: textfield;
+    .qty-btn:hover i,
+    .qty-btn:hover .btn-icons {
+        color: white !important;
     }
 
     @media only screen and (max-width: 600px) {
@@ -355,12 +362,12 @@
         }
 
         .case-title {
-            font-size: 12px;
+            font-size: 14px;
         }
 
         .step .step-label {
             font-weight: 600;
-            font-size: 11px;
+            font-size: 14px;
             color: #333;
             transition: color 0.3s;
         }

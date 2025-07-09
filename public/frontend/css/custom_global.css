@@ -476,8 +476,7 @@ ul {
 .top-bar-right-side {
     position: relative;
     z-index: 999;
-    /* padding-right: 6rem;
-    */
+    padding-top: 3px;
     padding-right: 4rem;
 }
 

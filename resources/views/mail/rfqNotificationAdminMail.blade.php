@@ -109,7 +109,7 @@
 
 
                         <div style="overflow-x: auto; margin-bottom:10px;">
-                            <hr class="m-0 p-0" style="padding-bottom:1rem; border: none; border-top: 1px solid #eee;">
+                            <hr class="p-0 m-0" style="padding-bottom:1rem; border: none; border-top: 1px solid #eee;">
                             <table id="u_body"
                                 style="border: 1px solid #eee;border-collapse: collapse;table-layout: fixed;border-spacing: 0;vertical-align: top;min-width: 320px;margin: 0 auto;width: 70%;"
                                 cellpadding="0" cellspacing="0">
@@ -123,27 +123,34 @@
                                                 <div style="width:68%; font-size:12px; border:1px solid #eee;padding:10px;">Product Name</div>
                                                 <div style="width:20%; font-size:12px; border:1px solid #eee;padding:10px;">Qty</div>
                                             </div>
-                                            @foreach ($data['product_names'] as $product_name)
-                                                <div style="display: flex; align-items:center;">
-                                                    <div style="width:12%; font-size:12px; border:1px solid #eee;padding:10px;">{{ $loop->iteration }}</div>
-                                                    <div style="width:68%; font-size:12px; border:1px solid #eee;padding:10px;">{{ $product_name->product_name }}</div>
-                                                    <div style="width:20%; font-size:12px; border:1px solid #eee;padding:10px;">{{ $product_name->qty }}</div>
-                                                </div>
+                                             @foreach ($data['product_names'] as
+                                            $product_name)
+                                            <div style="display: flex; align-items:center;">
+                                                <div
+                                                    style="width:12%; font-size:12px; border:1px solid #eee;padding:10px;">
+                                                    {{ $loop->iteration }}</div>
+                                                <div
+                                                    style="width:68%; font-size:12px; border:1px solid #eee;padding:10px;">
+                                                    {{ $product_name->product_name }}</div>
+                                                <div
+                                                    style="width:20%; font-size:12px; border:1px solid #eee;padding:10px;">
+                                                    {{ $product_name->qty }}</div>
+                                            </div>
                                             @endforeach
-                                        </th>
+                                            </th>
                                     </tr>
 
 
-                                     @if (!empty($data['message']))
-                                    <tr>
-                                        <th
-                                            style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;font-size:15px;text-align:left">
-                                            Inquiry Details</th>
-                                        <td
-                                            style="padding:10px 15px;border-top:1px solid #f1f1f1;border-bottom:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
-                                            {{ $data['message'] }}
-                                        </td>
-                                    </tr>
+                                    @if (!empty($data['message']))
+                                        <tr>
+                                            <th
+                                                style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;font-size:15px;text-align:left">
+                                                Inquiry Details</th>
+                                            <td
+                                                style="padding:10px 15px;border-top:1px solid #f1f1f1;border-bottom:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
+                                                {{ $data['message'] }}
+                                            </td>
+                                        </tr>
                                     @endif
 
                                     <tr>
@@ -203,7 +210,7 @@
                         </div>
                         <!-- Main Content End -->
                         <div style="overflow-x: auto">
-                            <hr class="m-0 p-0" style="border-top: 1px solid #eee;">
+                            <hr class="p-0 m-0" style="border-top: 1px solid #eee;">
                             <table id="u_body"
                                 style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;vertical-align: top;min-width: 320px;margin: 0 auto;width: 100%;"
                                 cellpadding="0" cellspacing="0">
@@ -245,7 +252,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <hr class="m-0 p-0" style="border:none; border-bottom: 1px solid #d3d3d3;">
+                            <hr class="p-0 m-0" style="border:none; border-bottom: 1px solid #d3d3d3;">
                         </div>
                         <!-- Column Area -->
                         <div style="overflow-x: auto">
