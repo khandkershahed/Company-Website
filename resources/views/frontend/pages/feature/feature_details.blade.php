@@ -198,7 +198,7 @@
 
     <!-------------End--------->
     <!--======// Call to action //======-->
-    <div class="my-5 call_to_action"
+    <div class="mt-5 call_to_action"
         style="background-image: linear-gradient(to right top, #ae0a46, #bf0248, #9a083e, #ad0441, #b31a52, #870736, #b70647, #b30243, #db0050, #b91c56, #a40942, #ae0a46)">
         <div class="container">
             <div class="mx-auto call_to_action_text">
@@ -214,35 +214,68 @@
     <!-------------End--------->
 
     <!--======// Business section //======-->
-    <section class="section_wp2">
+    <section class="py-5 section_wp2">
         <div class="container">
             <!-- home title -->
-            <div class="home_title">
-                <h5 class="pb-4 mb-4 home_title_heading callout" style="font-size: 27px;"> {!! $feature->footer !!}</h5>
-                <h4 class="py-3 mt-4 section_title"><span
+            <div class="mb-5 home_title">
+                {{-- <h5 class="pb-4 mb-4 home_title_heading callout" style="font-size: 27px;"> {!! $feature->footer !!}</h5> --}}
+                <h4 class="mx-auto mb-0 section_title w-75">
+                    <span
                         class="topLine">{{ \Illuminate\Support\Str::substr($feature->row_five_title, 0, 1) }}</span>{{ \Illuminate\Support\Str::substr($feature->row_five_title, 1) }}
                 </h4>
-                <h5 class="py-3 text-center">{!! $feature->row_five_header !!}</h5>
+                <p class="text-center">{!! $feature->row_five_header !!}</p>
             </div>
 
             <!-- business content -->
             <div class="business_content_wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="features-items">
+                            @if ($features)
+                                @foreach ($features as $item)
+                                    <div class="text-center border-0 card feature-box">
+                                        <div class="card-body">
+                                            <!-- image -->
+                                            <div class="business_item_icon">
+                                                <img src="{{ !empty($item->logo) && file_exists(public_path('storage/' . $item->logo)) ? asset('storage/' . $item->logo) : asset('https://www.ngenitltd.com/storage/UgXO4m888XZ3F4YC1678865856.png') }}"
+                                                    alt="">
+                                            </div>
+
+                                            <!-- content -->
+                                            <div class="business_item_content">
+                                                <p class="business_item_title">{{ $item->badge }}</p>
+                                                <p class="text-center business_item_text">
+                                                    {{ Str::limit($item->header, 55) }}
+                                                </p>
+                                                <a href="{{ route('feature.details', $item->slug) }}"
+                                                    class="text-center d-flex main_color align-items-center justify-content-center">
+                                                    <span>Learn More</span>
+                                                    <span class="business_item_button_icon">
+                                                        <i class="fa-solid fa-arrow-right-long ps-2"></i>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+                        </div>
+                    </div>
+                </div>
                 <!-- business item wrapper -->
-                <div class="row solution_business_item">
-                    <!-- item -->
+                {{-- <div class="row solution_business_item">
                     @if ($features)
                         @foreach ($features as $item)
                             <div class="mb-4 col-lg-3 col-sm-6 col-12">
-                                <!-- image -->
                                 <div class="business_item_icon">
-                                    <img src="{{ asset('storage/' . $item->logo) }}" alt="">
+                                    <img src="{{ !empty($item->logo) && file_exists(public_path('storage/' . $item->logo)) ? asset('storage/' . $item->logo) : asset('frontend/images/no-category-img.png') }}"
+                                        alt="">
                                 </div>
-
-                                <!-- content -->
                                 <div class="business_item_content">
                                     <p class="business_item_title">{{ $item->badge }}</p>
                                     <p class="text-center business_item_text">{{ Str::limit($item->header, 55) }}</p>
-                                    <a href="{{ route('feature.details', $item->slug) }}" class="text-center d-flex main_color align-items-center justify-content-center">
+                                    <a href="{{ route('feature.details', $item->slug) }}"
+                                        class="text-center d-flex main_color align-items-center justify-content-center">
                                         <span>Learn More</span>
                                         <span class="business_item_button_icon">
                                             <i class="fa-solid fa-arrow-right-long"></i>
@@ -252,9 +285,7 @@
                             </div>
                         @endforeach
                     @endif
-
-
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -263,5 +294,38 @@
 
     <!--=====// Pageform section //=====-->
     @include('frontend.partials.footer_contact')
+    <!-- Include jQuery and Slick JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.features-items').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: true,
+                dots: false,
+                responsive: [{
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 3
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 576,
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
     <!---------End -------->
 @endsection

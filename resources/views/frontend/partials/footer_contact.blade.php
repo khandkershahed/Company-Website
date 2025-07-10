@@ -48,14 +48,14 @@
                         and more by phone or over chat.</p>
                     <h5 style="color:rgb(0, 20, 48);">NGen IT Global Headquarters</h5>
                     <p class="text-black">{{ !empty($setting->address) ? $setting->address : '' }}</p>
-                    <p class="text-black">Billing & invoice: <span
-                            class="font-number">{{ !empty($setting->support_email) ? $setting->support_email : '' }}</span>
-                        <br> Information and sales: <span
-                            class="">{{ !empty($setting->sales_email) ? $setting->sales_email : '' }}</span>
-                        <br> OneCall support: <span
-                            class="font-number">{{ !empty($setting->phone_one) ? $setting->phone_one : '' }}</span>
-                        <br> Returns: <span
-                            class="font-number">{{ !empty($setting->whatsapp_number) ? $setting->whatsapp_number : '' }}</span>
+                    <p class="text-black">
+                        Singapore | Bangladesh | Portugal | UAE <br>
+                        <span>{{ !empty($setting->sales_email) ? $setting->sales_email : '' }} | {{ !empty($setting->phone_one) ? $setting->phone_one : '' }}</span> <br>
+                        <span>Whatsapp:: {{ !empty($setting->whatsapp_number) ? $setting->whatsapp_number : '' }}</span>
+                        {{-- <span class="font-number">{{ !empty($setting->support_email) ? $setting->support_email : '' }}</span> --}}
+                        {{-- <br> Information and sales: <span class="">{{ !empty($setting->sales_email) ? $setting->sales_email : '' }}</span>
+                        <br> OneCall support: <span class="font-number">{{ !empty($setting->phone_one) ? $setting->phone_one : '' }}</span>
+                        <br> Returns: <span class="font-number">{{ !empty($setting->whatsapp_number) ? $setting->whatsapp_number : '' }}</span> --}}
                     </p>
                     <!-- <h5><i class="fa-solid fa-phone"></i>NgenIT</h5> -->
                 </div>
@@ -79,7 +79,7 @@
                             </div>
                             <div class="screen-body">
                                 <div class="screen-body-item left">
-                                    <div class="app-title text-white">
+                                    <div class="text-white app-title">
                                         <span>CONTACT</span>
                                         <span>US</span>
                                     </div>
@@ -106,7 +106,7 @@
                                                 <textarea name="message" class="app-form-control" rows="3" placeholder="Your Message"></textarea>
 
                                             </div>
-                                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <div class="mt-3 d-flex justify-content-between align-items-center">
                                                 <div class="g-recaptcha"
                                                     data-sitekey="{{ config('app.recaptcha_site_key') }}"></div>
                                                 <div class="app-form-group buttons">

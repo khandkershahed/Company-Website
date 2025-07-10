@@ -751,7 +751,7 @@ class HomeController extends Controller
 
     public function AllCategory()
     {
-        $data['categorys'] = Category::orderBy('title', 'ASC')->limit(8)->get();
+        $data['categorys'] = Category::orderBy('title', 'ASC')->limit(12)->get();
         $data['others'] = Category::orderBy('title', 'ASC')->select('categories.id', 'categories.slug', 'categories.title')->get();
         $data['sub_cats'] = SubCategory::orderBy('title', 'ASC')->select('sub_categories.id', 'sub_categories.slug', 'sub_categories.title', 'sub_categories.image')->get();
         $data['sub_sub_cats'] = SubSubCategory::orderBy('title', 'ASC')->select('sub_sub_categories.id', 'sub_sub_categories.slug', 'sub_sub_categories.title', 'sub_sub_categories.image')->get();

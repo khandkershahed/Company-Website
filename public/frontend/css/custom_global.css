@@ -6,7 +6,7 @@
     font-style: normal;
     font-display: swap;
 } */
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
@@ -1445,27 +1445,32 @@ ul {
     font-family: var(--primary-font);
     text-transform: capitalize;
     text-align: justify;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 /* Individual effects */
 figure.effect-oscar:hover {
-    background: -webkit-linear-gradient(
+    /* background: -webkit-linear-gradient(
         45deg,
         #ae0a46 0%,
         #ae0a46d1 40%,
         #ae0a469c 100%
-    );
-    background: linear-gradient(
+    ); */
+    /* background: linear-gradient(
         45deg,
         #ae0a46 0%,
         #ae0a46d1 40%,
         #ae0a469c 100%
-    );
+    ); */
+background-color: rgb(75 67 70 / 72%) !important;
+
 }
 
 figure.effect-oscar figcaption {
     padding: 30px;
-    background-color: rgb(75 67 70 / 72%);
+    /* background-color: rgb(75 67 70 / 72%); */
+    background: -webkit-linear-gradient(90deg, #ae0a46 0%, #4e0721 100%);
     -webkit-transition: background-color 0.35s;
     transition: background-color 0.35s;
 }
@@ -1519,19 +1524,10 @@ figure.effect-oscar:hover p {
 }
 
 figure.effect-oscar:hover figcaption {
-    background: -webkit-linear-gradient(
-        45deg,
-        #ae0a46 0%,
-        #ae0a46d1 40%,
-        #ae0a469c 100%
-    );
-    background: linear-gradient(
-        45deg,
-        #ae0a46 0%,
-        #ae0a46d1 40%,
-        #ae0a469c 100%
-    );
+    background-color: black;
     padding: 30px;
+    -webkit-transition: background-color 0.35s;
+    transition: background-color 0.35s;
 }
 
 .details-titles {
@@ -16809,7 +16805,7 @@ nav > div a.nav-item.nav-link.active:after {
     background-color: var(--paragraph-color);
     padding: 75px;
     margin-left: -15px;
-    margin-top: 2.7rem;
+    /* margin-top: 2.7rem; */
 }
 
 .app-contact {
@@ -17244,4 +17240,28 @@ nav > div a.nav-item.nav-link.active {
     width: 30px;
     background: #eee;
     text-align: center;
+}
+.cta-box {
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
+}
+
+.features-items .slick-slide {
+    margin: 0 10px;
+}
+.features-items .slick-list {
+    margin: 0 -10px;
+}
+.feature-box .card-body{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: rgba(14, 63, 126, 0.04) 0px 0px 0px 1px, rgba(42, 51, 69, 0.04) 0px 1px 1px -0.5px, rgba(42, 51, 70, 0.04) 0px 3px 3px -1.5px, rgba(42, 51, 70, 0.04) 0px 6px 6px -3px, rgba(14, 63, 126, 0.04) 0px 12px 12px -6px, rgba(14, 63, 126, 0.04) 0px 24px 24px -12px;
 }

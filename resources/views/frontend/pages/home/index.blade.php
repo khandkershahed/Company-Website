@@ -328,10 +328,10 @@
                                             alt="">
                                         <figcaption>
                                             <h6> {{ Str::words($story->title, 6) }}</h6>
-                                            <p>{{ Str::words($story->header, 10) }}</p>
+                                            <p class="text-start">{{ Str::words($story->header, 10) }}</p>
                                             <h5 class="download-hover-btn">
                                                 <a class="text-white"
-                                                    href="{{ route('story.details', $story->slug) }}">Read Story
+                                                    href="{{ route('story.details', $story->slug) }}">Read More
                                                     <i class="fa-solid fa-chevron-right" style="font-size: 12px;"></i>
                                                 </a>
                                             </h5>

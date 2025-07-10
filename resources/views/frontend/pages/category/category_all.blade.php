@@ -1,11 +1,11 @@
 @extends('frontend.master')
 @section('content')
-<style>
-    .ag-offer_item{
-        padding: 5px 15px;
-        height: 7rem;
-    }
-</style>
+    <style>
+        .ag-offer_item {
+            padding: 5px 15px;
+            height: 7rem;
+        }
+    </style>
     <!--======// Header Title //======-->
     <section class="common_product_header" style="background-image:url('{{ asset('frontend/images/category.jpg') }}');">
         <div class="container ">
@@ -22,7 +22,7 @@
     </section>
     <section class="mt-5">
         <div class="container my-3">
-            <ul class="breadcrumb text-left">
+            <ul class="text-left breadcrumb">
 
                 <a href="{{ route('homepage') }}">
                     <li class="breadcrumb__item breadcrumb__item-firstChild">
@@ -49,12 +49,31 @@
     </section>
     <!----------End--------->
     <!--======// Top Brand //=====-->
+    {{-- src="{{ !empty($category->image) && file_exists(public_path('storage/' . $category->image)) ? asset('storage/' . $category->image) : asset('https://www.ngenitltd.com/storage/mmXaUgp98fRjqb6f1701068815.png') }}" --}}
     <section>
-        <div class="ag-offer-block container d-lg-block d-sm-none">
-            <h3 class="text-center py-3">All Categories</h3>
-            <div class="ag-format-container row gx-2">
+        <div class="container ag-offer-block d-lg-block d-sm-none">
+            <h3 class="py-3 text-center">All Categories</h3>
+            <div class="row gx-3 justify-content-center align-items-center">
                 @foreach ($categorys as $category)
-                    <div class="ag-offer_list col-lg-3 mb-3">
+                    <div class="col-lg-2">
+                        <div class="mb-3 text-center border-0 card cta-box">
+                            <a href="">
+                                <div class="px-3 card-body">
+                                    <div>
+                                        <img class="mb-2 img-fluid" width="70px" height="70px"
+                                            src="{{ !empty($category->image) && file_exists(public_path('storage/' . $category->image)) ? asset('storage/' . $category->image) : asset('frontend/images/no-category-img.png') }}"
+                                            alt="">
+                                        <p class="mb-0">{{ Str::limit($category->title, 30) }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            {{-- <div class="ag-format-container row gx-2">
+                @foreach ($categorys as $category)
+                    <div class="mb-3 ag-offer_list col-lg-3">
                         <div class="ag-offer_item"
                             style="border: 1px dotted rgb(179, 179, 179); margin: 0.15rem!important;">
                             <div class="ag-offer_visible-item">
@@ -77,18 +96,16 @@
                         </div>
                     </div>
                 @endforeach
-            </div>
+            </div> --}}
         </div>
-        <div class="container d-lg-none d-sm-block pb-5">
-            <div class="d-flex justify-content-center align-items-center px-3 mb-3 border-bottom">
+        <div class="container pb-5 d-lg-none d-sm-block">
+            <div class="px-3 mb-3 d-flex justify-content-center align-items-center border-bottom">
                 <div class="text-start w-75">
                     <h3 class="main_color">All Categories</h3>
                 </div>
                 <div class="text-end w-25">
-                    <a class="Arrows custom-responsive-slider-prev"><i
-                            class="fas fa-2x fa-arrow-alt-circle-left"></i></a>
-                    <a class="Arrows custom-responsive-slider-next"><i
-                            class="fas fa-2x fa-arrow-alt-circle-right"></i></a>
+                    <a class="Arrows custom-responsive-slider-prev"><i class="fas fa-2x fa-arrow-alt-circle-left"></i></a>
+                    <a class="Arrows custom-responsive-slider-next"><i class="fas fa-2x fa-arrow-alt-circle-right"></i></a>
                 </div>
             </div>
             <div class="ag-format-container row gx-2">
@@ -103,16 +120,16 @@
                                 </div>
                                 <div class="col-8">
                                     <div class="row gx-1">
-                                        <div class="col-12 text-center pb-2">
-                                            <div class="ag-offer_title pt-3">
+                                        <div class="pb-2 text-center col-12">
+                                            <div class="pt-3 ag-offer_title">
                                                 {{-- <p>{{ Str::limit($category->title, 30) }}</p> --}}
                                                 <p>{{ $category->title }}</p>
                                             </div>
                                         </div>
-                                        <div class="col-12 text-center">
+                                        <div class="text-center col-12">
                                             <div class="mx-auto">
                                                 <a href="{{ route('category.details', $category->slug) }}"
-                                                    class="btn-color p-2 px-4">
+                                                    class="p-2 px-4 btn-color">
                                                     Details
                                                 </a>
                                             </div>
@@ -129,14 +146,29 @@
     <!----------End--------->
     <!--======// Featured Sub Categories //=====-->
     <section>
-        <div class="ag-offer-block container d-lg-block d-sm-none">
-            <h3 class="text-center py-3">All Sub Categories</h3>
-            <div class="ag-format-container row gx-2">
+        <div class="container ag-offer-block d-lg-block d-sm-none">
+            <h3 class="py-3 text-center">All Sub Categories</h3>
+            <div class="row gx-3 justify-content-center align-items-center">
                 @foreach ($sub_cats as $sub_cat)
                     @php
                         $slug = App\Models\Admin\SubCategory::where('id', $sub_cat->id)->value('slug');
                     @endphp
-                    <div class="ag-offer_list col-lg-3 mb-3">
+                    <div class="col-lg-2">
+                        <div class="mb-3 text-center border-0 card cta-box">
+                            <a href="{{ route('category.details', $slug) }}">
+                                <div class="px-3 card-body">
+                                    <div>
+                                        <img class="mb-2 img-fluid" width="70px" height="70px"
+                                            src="{{ !empty($sub_cat->image) && file_exists(public_path('storage/' . $sub_cat->image)) ? asset('storage/' . $sub_cat->image) : asset('frontend/images/no-category-img.png') }}"
+                                            alt="">
+                                        <p class="mb-0">{{ Str::limit($sub_cat->title, 45) }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    {{-- <div class="mb-3 ag-offer_list col-lg-3">
                         <div class="ag-offer_item"
                             style="border: 1px dotted rgb(179, 179, 179); margin: 0.15rem!important;">
                             <div class="ag-offer_visible-item">
@@ -157,13 +189,29 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 @endforeach
                 @foreach ($sub_sub_cats as $sub_sub_cat)
                     @php
                         $slug = App\Models\Admin\SubSubCategory::where('id', $sub_sub_cat->id)->value('slug');
                     @endphp
-                    <div class="ag-offer_list col-lg-3 mb-3">
+                    <div class="col-lg-2">
+                        <div class="mb-3 text-center border-0 card cta-box">
+                            <a href="{{ route('custom.product', $slug) }}">
+                                <div class="px-3 card-body">
+                                    <div>
+                                        <img class="mb-2 img-fluid" width="70px" height="70px"
+                                            src="{{ !empty($sub_sub_cat->image) && file_exists(public_path('storage/' . $sub_sub_cat->image)) ? asset('storage/' . $sub_sub_cat->image) : asset('frontend/images/no-category-img.png') }}"
+                                            alt="">
+                                        <p class="mb-0">{{ Str::limit($sub_sub_cat->title, 45) }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    {{-- <div class="mb-3 ag-offer_list col-lg-3">
                         <div class="ag-offer_item"
                             style="border: 1px dotted rgb(179, 179, 179); margin: 0.15rem!important;">
                             <div class="ag-offer_visible-item">
@@ -184,20 +232,18 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 @endforeach
             </div>
         </div>
-        <div class="container d-lg-none d-sm-block pt-5">
-            <div class="d-flex justify-content-center align-items-center px-3 mb-3 border-bottom">
+        <div class="container pt-5 d-lg-none d-sm-block">
+            <div class="px-3 mb-3 d-flex justify-content-center align-items-center border-bottom">
                 <div class="text-start w-75">
                     <h3 class="main_color">All Sub Categories</h3>
                 </div>
                 <div class="text-end w-25">
-                    <a class="Arrows custom-responsive-slider-prev"><i
-                            class="fas fa-2x fa-arrow-alt-circle-left"></i></a>
-                    <a class="Arrows custom-responsive-slider-next"><i
-                            class="fas fa-2x fa-arrow-alt-circle-right"></i></a>
+                    <a class="Arrows custom-responsive-slider-prev"><i class="fas fa-2x fa-arrow-alt-circle-left"></i></a>
+                    <a class="Arrows custom-responsive-slider-next"><i class="fas fa-2x fa-arrow-alt-circle-right"></i></a>
                 </div>
             </div>
             <div class="ag-format-container row gx-2">
@@ -215,16 +261,16 @@
                                 </div>
                                 <div class="col-8">
                                     <div class="row gx-1">
-                                        <div class="col-12 text-center pb-2">
-                                            <div class="ag-offer_title pt-3">
+                                        <div class="pb-2 text-center col-12">
+                                            <div class="pt-3 ag-offer_title">
                                                 {{-- <p>{{ Str::limit($sub_cat->title, 30) }}</p> --}}
                                                 <p>{{ $sub_cat->title }}</p>
                                             </div>
                                         </div>
-                                        <div class="col-12 text-center">
+                                        <div class="text-center col-12">
                                             <div class="mx-auto">
                                                 <a href="{{ route('category.details', $sub_cat->slug) }}"
-                                                    class="btn-color p-2 px-4">
+                                                    class="p-2 px-4 btn-color">
                                                     Details
                                                 </a>
                                             </div>
@@ -235,9 +281,9 @@
                         @endif
                     @endforeach
                     @foreach ($sub_sub_cats as $sub_sub_cat)
-                    @php
-                        $slug = App\Models\Admin\SubSubCategory::where('id', $sub_sub_cat->id)->value('slug');
-                    @endphp
+                        @php
+                            $slug = App\Models\Admin\SubSubCategory::where('id', $sub_sub_cat->id)->value('slug');
+                        @endphp
                         @if (!empty($sub_sub_cat))
                             <div class="row gx-2">
                                 <div class="col-4">
@@ -247,16 +293,16 @@
                                 </div>
                                 <div class="col-8">
                                     <div class="row gx-1">
-                                        <div class="col-12 text-center pb-2">
-                                            <div class="ag-offer_title pt-3">
+                                        <div class="pb-2 text-center col-12">
+                                            <div class="pt-3 ag-offer_title">
                                                 {{-- <p>{{ Str::limit($sub_sub_cat->title, 30) }}</p> --}}
                                                 <p>{{ $sub_sub_cat->title }}</p>
                                             </div>
                                         </div>
-                                        <div class="col-12 text-center">
+                                        <div class="text-center col-12">
                                             <div class="mx-auto">
                                                 <a href="{{ route('category.details', $sub_sub_cat->slug) }}"
-                                                    class="btn-color p-2 px-4">
+                                                    class="p-2 px-4 btn-color">
                                                     Details
                                                 </a>
                                             </div>
@@ -320,7 +366,7 @@
                                         //dd($cart->where('image' , $item->thumbnail )->count());
                                     @endphp
                                     @if ($cart->where('id', $item->id)->count())
-                                        <a href="javascript:void(0);" class="btn-color p-0 py-2 px-1 pb-2"
+                                        <a href="javascript:void(0);" class="p-0 px-1 py-2 pb-2 btn-color"
                                             style="height: 2.5rem"> Already in Cart</a>
                                     @else
                                         <form action="{{ route('add.cart') }}" method="post">
@@ -354,15 +400,15 @@
     <section class="my-5">
         <div class="container">
             <div class="row">
-                <div class="text-center py-3">
+                <div class="py-3 text-center">
                     <h2>Explore all the <strong class="main_color">Categorys</strong> Ngen It has to offer.</h2>
                 </div>
                 <div class="col-lg-12 ">
-                    <div class="row mb-1">
+                    <div class="mb-1 row">
                         <div class="col-lg-10 offset-lg-1">
                             <nav>
                                 <div class="row">
-                                    <div class="nav nav-tabs nav-fill p-0" id="nav-tab" role="tablist">
+                                    <div class="p-0 nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                         <a class="nav-item nav-link active" id="nav-contact-tab" data-bs-toggle="tab"
                                             href="#all" role="tab" aria-controls="nav-contact"
                                             aria-selected="false">All</a>
@@ -415,7 +461,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-10 offset-lg-1">
-                                        <div class="nav nav-tabs nav-fill p-0" id="nav-tab" role="tablist">
+                                        <div class="p-0 nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                             <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                                 href="#o" role="tab" aria-controls="nav-contact"
                                                 aria-selected="false">O</a>
@@ -458,7 +504,7 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="tab-content py-3 bg-light border mt-3 rounded px-2 ps-4" id="nav-tabContent">
+                    <div class="px-2 py-3 mt-3 border rounded tab-content bg-light ps-4" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="all" role="tabpanel"
                             aria-labelledby="nav-healthcare">
                             <div class="multi_tab_content ">
