@@ -116,24 +116,30 @@
                                 <tbody style="min-width: 320px">
 
                                     <tr>
-
                                         <th colspan="2"
                                             style="padding:10px 15px;border-top:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
-
                                             <div style="display: flex; align-items:center;">
                                                 <div style="width:12%; font-size:12px; border:1px solid #eee;padding:10px;">Sl.</div>
                                                 <div style="width:68%; font-size:12px; border:1px solid #eee;padding:10px;">Product Name</div>
                                                 <div style="width:20%; font-size:12px; border:1px solid #eee;padding:10px;">Qty</div>
                                             </div>
-                                            @foreach ($data['product_names'] as $product_name)
-                                                <div style="display: flex; align-items:center;">
-                                                    <div style="width:12%; font-size:12px; border:1px solid #eee;padding:10px;">{{ $loop->iteration }}</div>
-                                                    <div style="width:68%; font-size:12px; border:1px solid #eee;padding:10px;">{{ $product_name->product_name }}</div>
-                                                    <div style="width:20%; font-size:12px; border:1px solid #eee;padding:10px;">{{ $product_name->qty }}</div>
-                                                </div>
+                                             @foreach ($data['product_names'] as
+                                            $product_name)
+                                            <div style="display: flex; align-items:center;">
+                                                <div
+                                                    style="width:12%; font-size:12px; border:1px solid #eee;padding:10px;">
+                                                    {{ $loop->iteration }}</div>
+                                                <div
+                                                    style="width:68%; font-size:12px; border:1px solid #eee;padding:10px;">
+                                                    {{ $product_name->product_name }}</div>
+                                                <div
+                                                    style="width:20%; font-size:12px; border:1px solid #eee;padding:10px;">
+                                                    {{ $product_name->qty }}</div>
+                                            </div>
                                             @endforeach
-                                        </th>
+                                            </th>
                                     </tr>
+
 
                                     @if (!empty($data['message']))
                                         <tr>
@@ -214,23 +220,7 @@
                                             <div
                                                 style="padding-bottom:5px;margin-bottom:10px;margin-top:15px;font-size:14px !important;">
                                                 <strong>
-                                                    <a href="{{ route('rfq.approve', $data['rfq_code']) }}"
-                                                        style="color: #FFF;
-                                                    border: 1px solid #069625;
-                                                    background-color: #069625;
-                                                    transition: all 0.8s ease-in-out;padding: 10px 40px;
-                                                    cursor: pointer;
-                                                    font-size: 18px;
-                                                    font-weight: 500;">
-                                                        Confirm</a>
-                                                </strong>
-                                            </div>
-                                        </td>
-                                        <td style="padding:15px;text-align:center;font-size:12px">
-                                            <div
-                                                style="padding-bottom:5px;margin-bottom:10px;margin-top:15px;font-size:14px !important;">
-                                                <strong>
-                                                    <a href="{{ route('rfq.reject', $data['rfq_code']) }}"
+                                                    <a href="{{ route('single-rfq.quoation_mail', $data['rfq_code']) }}"
                                                         style="color: #FFF;
                                                     border: 1px solid #ae0a46;
                                                     background-color: #ae0a46;
@@ -238,7 +228,24 @@
                                                     cursor: pointer;
                                                     font-size: 18px;
                                                     font-weight: 500;">
-                                                        Reject</a>
+                                                        Bypass Process</a>
+                                                </strong>
+                                            </div>
+                                        </td>
+                                        <td style="padding:15px;text-align:center;font-size:12px">
+                                            <div
+                                                style="padding-bottom:5px;margin-bottom:10px;margin-top:15px;font-size:14px !important;">
+                                                <strong>
+                                                    <a href="{{ route('admin.rfq.index', $data['rfq_code']) }}"
+                                                        {{-- <a href="{{ route('single-rfq.show', $data['rfq_code']) }}" --}}
+                                                        style="color: #FFF;
+                                                    border: 1px solid #ae0a46;
+                                                    background-color: #ae0a46;
+                                                    transition: all 0.8s ease-in-out;padding: 10px 40px;
+                                                    cursor: pointer;
+                                                    font-size: 18px;
+                                                    font-weight: 500;">
+                                                        Details Process</a>
                                                 </strong>
                                             </div>
                                         </td>

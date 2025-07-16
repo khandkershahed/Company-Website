@@ -18,15 +18,15 @@
         ];
     @endphp
     <div class="row gx-8 gx-xl-10">
-        <div class="row mb-5">
+        <div class="mb-5 row">
             <!-- Attendance -->
             <div class="col-xl-3">
-                <div class="card card-flush shadow-sm">
-                    <div class="card-body p-0">
+                <div class="shadow-sm card card-flush">
+                    <div class="p-0 card-body">
                         <div class="d-flex flex-stack justify-content-between align-items-center">
-                            <div class="d-flex align-items-center me-3 p-8 rounded-3">
+                            <div class="p-8 d-flex align-items-center me-3 rounded-3">
                                 <a href="">
-                                    <span class="bg-light-primary rounded-3 p-3 me-3"><i
+                                    <span class="p-3 bg-light-primary rounded-3 me-3"><i
                                             class="fa-solid text-primary fa-clipboard-user fs-3"
                                             aria-hidden="true"></i></span>
                                 </a>
@@ -34,7 +34,7 @@
 
                                     <a href="#allRFQ" class="text-gray-800 fs-5 fw-bold lh-0">Total RFQ
                                         <span
-                                            class="text-gray-500 fw-semibold d-block fs-6 pt-4">{{ date('d M , Y') }}</span>
+                                            class="pt-4 text-gray-500 fw-semibold d-block fs-6">{{ date('d M , Y') }}</span>
                                     </a>
                                 </div>
                             </div>
@@ -49,18 +49,18 @@
                 </div>
             </div>
             <div class="col-xl-3">
-                <div class="card card-flush shadow-sm">
-                    <div class="card-body p-0">
+                <div class="shadow-sm card card-flush">
+                    <div class="p-0 card-body">
                         <div class="d-flex flex-stack justify-content-between">
-                            <div class="d-flex align-items-center me-3 p-8 w-50 rounded-3">
+                            <div class="p-8 d-flex align-items-center me-3 w-50 rounded-3">
                                 <a href="">
-                                    <span class="bg-light-primary rounded-3 p-3 me-3"><i
+                                    <span class="p-3 bg-light-primary rounded-3 me-3"><i
                                             class="fa-solid text-primary fa-list-check fs-3"
                                             aria-hidden="true"></i></span>
                                 </a>
                                 <div class="flex-grow-1">
                                     <a href=""> </a><a href="#" class="text-gray-800 fs-5 fw-bold lh-0">RFQ
-                                        <span class="text-gray-500 fw-semibold d-block fs-6 pt-4">Status</span>
+                                        <span class="pt-4 text-gray-500 fw-semibold d-block fs-6">Status</span>
                                     </a>
                                 </div>
                             </div>
@@ -69,23 +69,23 @@
                                 <div class="d-flex align-items-center justify-content-between pe-3">
                                     <span class="text-gray-500 fw-semibold">
                                         Pending</span>
-                                    <span class="bg-warning fw-semibold ms-3 px-2 text-white rounded-2">
+                                    <span class="px-2 text-white bg-warning fw-semibold ms-3 rounded-2">
                                         {{ $rfqs->count() }}
                                     </span>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-between pe-3 pt-2">
+                                <div class="pt-2 d-flex align-items-center justify-content-between pe-3">
                                     <span class="text-gray-500 fw-semibold">
                                         Quoted
                                     </span>
-                                    <span class="bg-success fw-semibold ms-3 px-2 text-white rounded-2">
+                                    <span class="px-2 text-white bg-success fw-semibold ms-3 rounded-2">
                                         {{ $quoteds->count() }}
                                     </span>
                                 </div>
-                                <div class="d-flex align-items-center justify-content-between pe-3 pt-2">
+                                <div class="pt-2 d-flex align-items-center justify-content-between pe-3">
                                     <span class="text-gray-500 fw-semibold">
                                         Failed
                                     </span>
-                                    <span class="bg-danger fw-semibold ms-3 px-2 text-white rounded-2">
+                                    <span class="px-2 text-white bg-danger fw-semibold ms-3 rounded-2">
                                         {{ $losts->count() }}
                                     </span>
                                 </div>
@@ -95,18 +95,18 @@
                 </div>
             </div>
             <div class="col-xl-3">
-                <div class="card card-flush shadow-sm">
-                    <div class="card-body p-0">
+                <div class="shadow-sm card card-flush">
+                    <div class="p-0 card-body">
                         <div class="d-flex flex-stack justify-content-between">
-                            <div class="d-flex align-items-center me-3 p-8 w-50 rounded-3">
+                            <div class="p-8 d-flex align-items-center me-3 w-50 rounded-3">
                                 <a href="">
-                                    <span class="bg-light-primary rounded-3 p-3 me-3"><i
+                                    <span class="p-3 bg-light-primary rounded-3 me-3"><i
                                             class="fa-solid text-primary fa-bell fs-3" aria-hidden="true"></i></span>
                                 </a>
                                 <div class="flex-grow-1">
                                     <a href=""> </a><a href="#"
                                         class="text-gray-800 fs-5 fw-bold lh-0">Notification
-                                        <span class="text-gray-500 fw-semibold d-block fs-6 pt-4">Quick Status</span>
+                                        <span class="pt-4 text-gray-500 fw-semibold d-block fs-6">Quick Status</span>
                                     </a>
                                 </div>
                             </div>
@@ -116,19 +116,19 @@
                 </div>
             </div>
             <div class="col-xl-3">
-                <div class="card card-flush shadow-sm">
-                    <div class="card-body p-0">
+                <div class="shadow-sm card card-flush">
+                    <div class="p-0 card-body">
                         <div class="d-flex flex-stack justify-content-between align-items-center">
-                            <div class="d-flex align-items-center me-3 p-8 rounded-3">
+                            <div class="p-8 d-flex align-items-center me-3 rounded-3">
                                 <a href="">
-                                    <span class="bg-light-primary rounded-3 p-3 me-3"><i
+                                    <span class="p-3 bg-light-primary rounded-3 me-3"><i
                                             class="fa-solid text-primary fa-clipboard-user fs-3"
                                             aria-hidden="true"></i></span>
                                 </a>
                                 <div class="flex-grow-1">
 
                                     <a href="#allRFQ" class="text-gray-800 fs-5 fw-bold lh-0">New Customers Pending
-                                        {{-- <span class="text-gray-500 fw-semibold d-block fs-6 pt-4">Pending</span> --}}
+                                        {{-- <span class="pt-4 text-gray-500 fw-semibold d-block fs-6">Pending</span> --}}
                                     </a>
                                     <a href="{{ route('deal.create') }}" class="text-primary fs-5 fw-bold lh-0">
                                         Create Deal
@@ -160,13 +160,13 @@
                         <button type="button" class="btn-close text-danger" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body pt-0">
-                        <div class="card pt-0">
-                            <div class="card-body pt-0">
+                    <div class="pt-0 modal-body">
+                        <div class="pt-0 card">
+                            <div class="pt-0 card-body">
                                 <div class="table-responsive">
-                                    <table class="data_table text-center table table-striped table-row-bordered">
+                                    <table class="table text-center data_table table-striped table-row-bordered">
                                         <thead>
-                                            <tr class="fw-bold fs-6 text-gray-800 px-7">
+                                            <tr class="text-gray-800 fw-bold fs-6 px-7">
                                                 <th width="5%">Sl</th>
                                                 <th width="15%">RFQ Code</th>
                                                 <th width="25%">Client Name</th>
@@ -214,12 +214,12 @@
             </div>
         </div>
 
-        <div class="col-xl-12 mb-5 mb-xl-3 ps-3" data-select2-id="select2-data-127-jigx">
-            <div class="card card-flush h-xl-100 border shadow-sm" data-select2-id="select2-data-126-8c2i">
+        <div class="mb-5 col-xl-12 mb-xl-3 ps-3" data-select2-id="select2-data-127-jigx">
+            <div class="border shadow-sm card card-flush h-xl-100" data-select2-id="select2-data-126-8c2i">
                 <div class="card-header">
                     <h3 class="card-title align-items-start flex-column">
-                        <span class="card-label fw-bold text-gray-800">RFQ Filtered Details</span>
-                        <span class="text-gray-500 mt-1 fw-semibold fs-6">Check All RFQ History Here!</span>
+                        <span class="text-gray-800 card-label fw-bold">RFQ Filtered Detailsssssss</span>
+                        <span class="mt-1 text-gray-500 fw-semibold fs-6">Check All RFQ History Here!</span>
                     </h3>
                     <div class="card-toolbar">
                         <ul class="nav nav-tabs nav-line-tabs fs-6 rfq-tabs">
@@ -243,10 +243,10 @@
                     </div>
 
                     <div class="card-toolbar">
-                        <div class="d-flex flex-stack flex-wrap gap-4">
+                        <div class="flex-wrap gap-4 d-flex flex-stack">
                             <div class="d-flex align-items-center fw-bold">
                                 <select id="filterYear"
-                                    class="form-select form-select-transparent text-graY-800 fs-base lh-1 fw-bold py-0 ps-3 w-150px"
+                                    class="py-0 form-select form-select-transparent text-graY-800 fs-base lh-1 fw-bold ps-3 w-150px"
                                     data-control="select2" data-hide-search="true" data-allow-clear="true"
                                     data-placeholder="Year">
                                     <option></option>
@@ -259,7 +259,7 @@
                             </div>
                             <div class="d-flex align-items-center fw-bold">
                                 <select id="filterMonth"
-                                    class="form-select form-select-transparent text-gray-900 fs-7 lh-1 fw-bold py-0 ps-3 w-150px"
+                                    class="py-0 text-gray-900 form-select form-select-transparent fs-7 lh-1 fw-bold ps-3 w-150px"
                                     data-control="select2" data-hide-search="true" data-allow-clear="true"
                                     data-placeholder="Month">
                                     <option></option>
@@ -268,7 +268,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            {{-- <div class="position-relative my-1">
+                            {{-- <div class="my-1 position-relative">
                                 <i
                                     class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
                                 <input type="text" id="searchQuery" data-kt-table-widget-4="search"

@@ -3,11 +3,11 @@
 <div class="tab-pane fade {{ empty($tab_status) || $tab_status == 'pending' ? 'show active' : '' }}" id="pending"
     role="tabpanel">
     <div class="row">
-        <div class="shadow-sm card">
-            {{-- <div class="cursor-pointer card-header collapsible rotate" data-bs-toggle="collapse"
+        <div class="card shadow-sm">
+            {{-- <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse"
                 data-bs-target="#pending_rfq">
                 <h3 class="card-title">Pending RFQs</h3>
-                <div class="rotate-180 card-toolbar">
+                <div class="card-toolbar rotate-180">
                     <span class="svg-icon svg-icon-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none">
@@ -24,20 +24,20 @@
             <div id="pending_rfq" class="collapse show"> --}}
             <div class="card-body">
                 <div class="row g-4">
-                    <div class="overflow-scroll col-lg-5 h-lg-650px h-650px">
-                        <ul class="border-0 nav nav-tabs nav-pills">
+                    <div class="col-lg-5 h-lg-650px h-650px overflow-scroll">
+                        <ul class="nav nav-tabs nav-pills border-0">
                             <!-- Filter Bar -->
                             <li class="nav-item w-100 me-0 mb-md-2">
                                 <div class="d-flex align-items-center">
                                     <div
-                                        class="w-auto text-white rounded position-relative me-2 d-flex align-items-center">
+                                        class="position-relative text-white me-2 rounded d-flex align-items-center w-auto">
                                         <i
                                             class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
                                         <input type="text" id="searchQuery" data-kt-table-widget-4="search"
                                             class="form-control w-150px fs-7 ps-12" placeholder="Search" />
                                     </div>
                                     <div class="me-2">
-                                        <select class="w-auto form-select form-select-sm me-2" data-control="select2"
+                                        <select class="form-select form-select-sm w-auto me-2" data-control="select2"
                                             id="filterCountry" name="country">
                                             <option selected disabled>Country</option>
                                             @foreach ($countries as $country)
@@ -46,7 +46,7 @@
                                         </select>
                                     </div>
                                     <div class="me-2">
-                                        <select class="w-auto form-select form-select-sm me-2" data-control="select2">
+                                        <select class="form-select form-select-sm w-auto me-2" data-control="select2">
                                             <option selected disabled>
                                                 Sales Man
                                             </option>
@@ -56,7 +56,7 @@
                                         </select>
                                     </div>
                                     <div class="me-2">
-                                        <select class="w-auto form-select form-select-sm me-2" data-control="select2"
+                                        <select class="form-select form-select-sm w-auto me-2" data-control="select2"
                                             id="filterCompany" name="company">
                                             <option selected disabled>Company</option>
                                             @foreach ($companies as $company)
@@ -67,7 +67,7 @@
                                         </select>
                                     </div>
                                     {{-- <div class="me-2">
-                                            <select class="w-auto form-select form-select-sm" data-control="select2">
+                                            <select class="form-select form-select-sm w-auto" data-control="select2">
                                                 <option selected disabled>
                                                     RFQ Date & Time
                                                 </option>
@@ -90,7 +90,7 @@
 
                             <!-- RFQ Card -->
                             @foreach ($rfqs as $rfq)
-                                <li class="mt-2 nav-item w-100 me-0 mb-md-2">
+                                <li class="nav-item w-100 me-0 mb-md-2 mt-2">
                                     <a class="nav-link {{ $loop->first ? 'active btn-active-primary' : '' }} w-100 btn btn-flex border p-3"
                                         data-bs-toggle="tab" href="#pending_rfq_{{ $rfq->id }}">
                                         <div class="row w-100 align-items-center">
@@ -112,7 +112,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4 text-end">
-                                                <div class="gap-2 mb-1 d-flex justify-content-end">
+                                                <div class="d-flex gap-2 justify-content-end mb-1">
                                                     <button class="btn btn-sm w-50 btn-outline-primary"
                                                         onclick="window.location.href='{{ route('single-rfq.quoation_mail', $rfq->rfq_code) }}';">
                                                         Quote
@@ -133,8 +133,8 @@
 
                         </ul>
                     </div>
-                    <div class="overflow-scroll col-lg-7 h-lg-650px h-650px">
-                        <div class="border rounded tab-content" id="myTabContent">
+                    <div class="col-lg-7 h-lg-650px h-650px overflow-scroll">
+                        <div class="tab-content border rounded" id="myTabContent">
                             @include('metronic.pages.rfq.partials.pending_rfq')
                         </div>
                     </div>
@@ -147,24 +147,24 @@
 <div class="tab-pane fade {{ !empty($tab_status) && $tab_status == 'quoted' ? 'show active' : '' }}" id="quoted"
     role="tabpanel">
     <div class="row">
-        <div class="shadow-sm card">
+        <div class="card shadow-sm">
             <div class="card-body">
                 @if ($quoteds->count() > 0)
                     <div class="row g-4">
-                        <div class="overflow-scroll col-lg-5 h-lg-650px h-650px">
-                            <ul class="border-0 nav nav-tabs nav-pills">
+                        <div class="col-lg-5 h-lg-650px h-650px overflow-scroll">
+                            <ul class="nav nav-tabs nav-pills border-0">
                                 <!-- Filter Bar -->
                                 <li class="nav-item w-100 me-0 mb-md-2">
                                     <div class="d-flex align-items-center">
                                         <div
-                                            class="w-auto text-white rounded position-relative me-2 d-flex align-items-center">
+                                            class="position-relative text-white me-2 rounded d-flex align-items-center w-auto">
                                             <i
                                                 class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
                                             <input type="text" id="searchQuery" data-kt-table-widget-4="search"
                                                 class="form-control w-150px fs-7 ps-12" placeholder="Search" />
                                         </div>
                                         <div class="me-2">
-                                            <select class="w-auto form-select form-select-sm me-2"
+                                            <select class="form-select form-select-sm w-auto me-2"
                                                 data-control="select2" id="filterCountry" name="country">
                                                 <option selected disabled>Country</option>
                                                 @foreach ($countries as $country)
@@ -173,7 +173,7 @@
                                             </select>
                                         </div>
                                         <div class="me-2">
-                                            <select class="w-auto form-select form-select-sm me-2"
+                                            <select class="form-select form-select-sm w-auto me-2"
                                                 data-control="select2">
                                                 <option selected disabled>
                                                     Sales Man
@@ -184,7 +184,7 @@
                                             </select>
                                         </div>
                                         <div class="me-2">
-                                            <select class="w-auto form-select form-select-sm me-2"
+                                            <select class="form-select form-select-sm w-auto me-2"
                                                 data-control="select2" id="filterCompany" name="company">
                                                 <option selected disabled>Company</option>
                                                 @foreach ($companies as $company)
@@ -195,7 +195,7 @@
                                             </select>
                                         </div>
                                         {{-- <div class="me-2">
-                                                <select class="w-auto form-select form-select-sm" data-control="select2">
+                                                <select class="form-select form-select-sm w-auto" data-control="select2">
                                                     <option selected disabled>
                                                         RFQ Date & Time
                                                     </option>
@@ -218,7 +218,7 @@
 
                                 <!-- RFQ Card -->
                                 @foreach ($quoteds as $quoted_rfq)
-                                    <li class="mt-2 nav-item w-100 me-0 mb-md-2">
+                                    <li class="nav-item w-100 me-0 mb-md-2 mt-2">
                                         <a class="nav-link {{ $loop->first ? 'active btn-active-primary' : '' }} w-100 btn btn-flex border p-3"
                                             data-bs-toggle="tab" href="#quoted_rfq_{{ $quoted_rfq->id }}">
                                             <div class="row w-100 align-items-center">
@@ -240,7 +240,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 text-end">
-                                                    <div class="gap-2 mb-1 d-flex justify-content-end">
+                                                    <div class="d-flex gap-2 justify-content-end mb-1">
                                                         <button class="btn btn-sm w-50 btn-outline-primary"
                                                             onclick="window.location.href='{{ route('single-rfq.quoation_mail', $rfq->rfq_code) }}';">
                                                             Quote
@@ -261,15 +261,15 @@
 
                             </ul>
                         </div>
-                        <div class="overflow-scroll col-lg-7 h-lg-650px h-650px">
-                            <div class="border rounded tab-content" id="myTabContent">
+                        <div class="col-lg-7 h-lg-650px h-650px overflow-scroll">
+                            <div class="tab-content border rounded" id="myTabContent">
                                 @include('metronic.pages.rfq.partials.quoted_rfq')
                             </div>
                         </div>
                     </div>
                 @else
                     <div class="row">
-                        <div class="text-center col-12">
+                        <div class="col-12 text-center">
                             <div class="alert alert-info">
                                 <strong>No RFQs have been quoted yet.</strong>
                             </div>
@@ -283,25 +283,25 @@
 <div class="tab-pane fade {{ !empty($tab_status) && $tab_status == 'lost' ? 'show active' : '' }}" id="failed"
     role="tabpanel">
     <div class="row">
-        <div class="shadow-sm card">
+        <div class="card shadow-sm">
 
             <div class="card-body">
                 @if ($losts->count() > 0)
                     <div class="row g-4">
-                        <div class="overflow-scroll col-lg-5 h-lg-650px h-650px">
-                            <ul class="border-0 nav nav-tabs nav-pills">
+                        <div class="col-lg-5 h-lg-650px h-650px overflow-scroll">
+                            <ul class="nav nav-tabs nav-pills border-0">
                                 <!-- Filter Bar -->
                                 <li class="nav-item w-100 me-0 mb-md-2">
                                     <div class="d-flex align-items-center">
                                         <div
-                                            class="w-auto text-white rounded position-relative me-2 d-flex align-items-center">
+                                            class="position-relative text-white me-2 rounded d-flex align-items-center w-auto">
                                             <i
                                                 class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
                                             <input type="text" id="searchQuery" data-kt-table-widget-4="search"
                                                 class="form-control w-150px fs-7 ps-12" placeholder="Search" />
                                         </div>
                                         <div class="me-2">
-                                            <select class="w-auto form-select form-select-sm me-2"
+                                            <select class="form-select form-select-sm w-auto me-2"
                                                 data-control="select2" id="filterCountry" name="country">
                                                 <option selected disabled>Country</option>
                                                 @foreach ($countries as $country)
@@ -310,7 +310,7 @@
                                             </select>
                                         </div>
                                         <div class="me-2">
-                                            <select class="w-auto form-select form-select-sm me-2"
+                                            <select class="form-select form-select-sm w-auto me-2"
                                                 data-control="select2">
                                                 <option selected disabled>
                                                     Sales Man
@@ -321,7 +321,7 @@
                                             </select>
                                         </div>
                                         <div class="me-2">
-                                            <select class="w-auto form-select form-select-sm me-2"
+                                            <select class="form-select form-select-sm w-auto me-2"
                                                 data-control="select2" id="filterCompany" name="company">
                                                 <option selected disabled>Company</option>
                                                 @foreach ($companies as $company)
@@ -336,7 +336,7 @@
 
                                 <!-- RFQ Card -->
                                 @foreach ($losts as $lost_rfq)
-                                    <li class="mt-2 nav-item w-100 me-0 mb-md-2">
+                                    <li class="nav-item w-100 me-0 mb-md-2 mt-2">
                                         <a class="nav-link {{ $loop->first ? 'active btn-active-primary' : '' }} w-100 btn btn-flex border p-3"
                                             data-bs-toggle="tab" href="#lost_rfq_{{ $lost_rfq->id }}">
                                             <div class="row w-100 align-items-center">
@@ -358,7 +358,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4 text-end">
-                                                    <div class="gap-2 mb-1 d-flex justify-content-end">
+                                                    <div class="d-flex gap-2 justify-content-end mb-1">
                                                         <button class="btn btn-sm w-50 btn-outline-primary"
                                                             onclick="window.location.href='{{ route('single-rfq.quoation_mail', $rfq->rfq_code) }}';">
                                                             Quote
@@ -375,17 +375,19 @@
                                         </a>
                                     </li>
                                 @endforeach
+
+
                             </ul>
                         </div>
-                        <div class="overflow-scroll col-lg-7 h-lg-650px h-650px">
-                            <div class="border rounded tab-content" id="myTabContent">
+                        <div class="col-lg-7 h-lg-650px h-650px overflow-scroll">
+                            <div class="tab-content border rounded" id="myTabContent">
                                 @include('metronic.pages.rfq.partials.lost_rfq')
                             </div>
                         </div>
                     </div>
                 @else
                     <div class="row">
-                        <div class="text-center col-12">
+                        <div class="col-12 text-center">
                             <div class="alert alert-info">
                                 <strong>No RFQs have been lost yet.</strong>
                             </div>

@@ -1,26 +1,26 @@
 @extends('admin.master')
 @section('content')
     <div class="content-wrapper">
-        <div class="page-header page-header-light shadow">
+        <div class="shadow page-header page-header-light">
             <div class="page-header-content d-lg-flex border-top">
                 <div class="d-flex">
-                    <div class="breadcrumb py-2">
+                    <div class="py-2 breadcrumb">
                         <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
                         <span class="breadcrumb-item active">RFQ Management</span>
                     </div>
 
                     <a href="#breadcrumb_elements"
-                        class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
+                        class="p-0 border-transparent btn btn-light align-self-center collapsed d-lg-none rounded-pill ms-auto"
                         data-bs-toggle="collapse">
-                        <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
+                        <i class="m-1 ph-caret-down collapsible-indicator ph-sm"></i>
                     </a>
                 </div>
             </div>
         </div>
-        <div class="content container-fluid py-10 pt-5">
+        <div class="py-10 pt-5 content container-fluid">
             <div class="row gx-8 gx-xl-10">
-                <div class="row mb-5">
+                <div class="mb-5 row">
                     <div class="col-sm-6 col-xl-3">
                         <div class="card card-body">
                             <div class="d-flex align-items-center">
@@ -29,7 +29,7 @@
                                     <span class="text-muted">{{ date('d M , Y') }}</span>
                                 </div>
 
-                                <h1 class="ms-3 mb-0">{{ $rfq_count }}</h1>
+                                <h1 class="mb-0 ms-3">{{ $rfq_count }}</h1>
                             </div>
                         </div>
                     </div>
@@ -40,15 +40,15 @@
                                     <h4 class="mb-0 text-info">RFQ Status</h4>
                                 </div>
                                 <div class="flex-fill">
-                                    <p class="m-0 d-flex justify-content-between mb-2">
+                                    <p class="m-0 mb-2 d-flex justify-content-between">
                                         <span class="fw-bolder">Pending :</span>
                                         <span class="badge bg-warning ms-3 fs-6 text-end">{{ $rfqs->count() }}</span>
                                     </p>
-                                    <p class="m-0 d-flex justify-content-between mb-2">
+                                    <p class="m-0 mb-2 d-flex justify-content-between">
                                         <span class="fw-bolder">Quoted :</span>
                                         <span class="badge bg-success ms-3 fs-6 text-end">{{ $quoteds->count() }}</span>
                                     </p>
-                                    <p class="m-0 d-flex justify-content-between mb-2">
+                                    <p class="m-0 mb-2 d-flex justify-content-between">
                                         <span class="fw-bolder">Failed :</span>
                                         <span class="badge bg-danger ms-3 fs-6 text-end">{{ $losts->count() }}</span>
                                     </p>
@@ -59,15 +59,15 @@
 
                     <div class="col-sm-6 col-xl-3">
                         <div class="card">
-                            <div class="card-header py-2">
-                                <h6 class="card-title mb-0">Notifications</h6>
+                            <div class="py-2 card-header">
+                                <h6 class="mb-0 card-title">Notifications</h6>
                             </div>
                             <div class="card-body">
                                 <div class="">
                                     {{-- @if ($leave_applications->count() > 0)
                                         @foreach ($leave_applications as $leave_application)
                                             @if ($leave_application->status === 'pending')
-                                                <p class="mb-2 p-0">
+                                                <p class="p-0 mb-2">
                                                     <a
                                                         href="{{ route('leave-application.edit', $leave_application->id) }}">
                                                         <i class="fa-solid fa-bell ammount rounded-1 pe-2 me-2"></i>{{ $leave_application->name }}
@@ -78,7 +78,7 @@
                                         @endforeach
                                     @else --}}
                                     <div class="row">
-                                        <h5 class="text-center mb-0 fs-6">No RFQ Notification</h5>
+                                        <h5 class="mb-0 text-center fs-6">No RFQ Notification</h5>
                                     </div>
                                     {{-- @endif --}}
                                 </div>
@@ -87,30 +87,30 @@
                     </div>
 
                 </div>
-                <div class="row mb-2">
-                    <div class="card w-lg-75 m-auto">
+                <div class="mb-2 row">
+                    <div class="m-auto card w-lg-75">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-lg-5">
                                     <h3 class="card-title align-items-start flex-column">
-                                        <span class="card-label fw-bold text-gray-800">RFQ Filtered Details</span>
-                                        <span class="text-gray-500 mt-1 fw-semibold fs-6">Check All RFQ History Here!</span>
+                                        <span class="text-gray-800 card-label fw-bold">RFQ Filtered Details</span>
+                                        <span class="mt-1 text-gray-500 fw-semibold fs-6">Check All RFQ History Here!</span>
                                     </h3>
-                                </div> 
+                                </div>
                                 <div class="col-lg-7 text-end">
-                                    <ul class="nav nav-tabs nav-line-tabs fs-6 rfq-tabs border-0">
+                                    <ul class="border-0 nav nav-tabs nav-line-tabs fs-6 rfq-tabs">
                                         <li class="nav-item">
-                                            <a class="nav-link active px-4" data-bs-toggle="tab"
+                                            <a class="px-4 nav-link active" data-bs-toggle="tab"
                                                 href="#kt_tab_pane_1">Pending</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link px-4" data-bs-toggle="tab" href="#kt_tab_pane_2">Quoted</a>
+                                            <a class="px-4 nav-link" data-bs-toggle="tab" href="#kt_tab_pane_2">Quoted</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link px-4" data-bs-toggle="tab" href="#kt_tab_pane_3">Failed</a>
+                                            <a class="px-4 nav-link" data-bs-toggle="tab" href="#kt_tab_pane_3">Failed</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link px-4" data-bs-toggle="tab" href="#kt_tab_pane_4">Approved</a>
+                                            <a class="px-4 nav-link" data-bs-toggle="tab" href="#kt_tab_pane_4">Approved</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -127,10 +127,10 @@
                                         <div class="col-xl-12">
                                             <!--begin::Block-->
                                             <div class="py-5">
-                                                <div class="d-flex flex-column flex-md-row rounded">
-                                                    <ul class="nav nav-tabs nav-pills border-0">
+                                                <div class="rounded d-flex flex-column flex-md-row">
+                                                    <ul class="border-0 nav nav-tabs nav-pills">
                                                         <li class="nav-item w-100 me-0 mb-md-2">
-                                                            <a class="nav-link w-100 active btn btn-flex btn-active-primary border"
+                                                            <a class="border nav-link w-100 active btn btn-flex btn-active-primary"
                                                                 data-bs-toggle="tab" href="#kt_vtab_pane_4">
                                                                 <i class="fa-regular fa-file fs-2 text-primary pe-3"
                                                                     aria-hidden="true"></i>
@@ -150,14 +150,14 @@
                                                         </li>
                                                     </ul>
 
-                                                    <div class="tab-content w-100 border rounded" id="myTabContent">
+                                                    <div class="border rounded tab-content w-100" id="myTabContent">
                                                         <div class="tab-pane fade show active" id="kt_vtab_pane_4"
                                                             role="tabpanel">
                                                             <div class="d-flex flex-column justify-content-center align-items-center"
                                                                 style="height: 50vh;">
-                                                                <div class="text-center pb-5">
+                                                                <div class="pb-5 text-center">
                                                                     <h1 class="pb-5">View The RFQ</h1>
-                                                                    <p class="w-50 mx-auto">We invite you to submit a detailed
+                                                                    <p class="mx-auto w-50">We invite you to submit a detailed
                                                                         quote for the requested products/services. Please include
                                                                         comprehensive pricing, payment terms, delivery schedules,
                                                                         and any applicable discounts. Ensure that all relevant

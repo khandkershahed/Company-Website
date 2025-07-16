@@ -114,32 +114,32 @@
             }
         }
     </style>
-    <div class="p-0 card-body p-lg-4" style="overflow: auto">
+    <div class="card-body p-lg-4 p-0" style="overflow: auto">
         <!-- Nav tabs -->
         <div class="text-center">
-            <h3 class="py-2 mb-0">Bypass Process</h3>
+            <h3 class="mb-0 py-2">Bypass Process</h3>
         </div>
-        <ul class="border-0 nav nav-tabs d-flex justify-content-center align-items-center" id="myTab" role="tablist">
-            <li class="mb-0 nav-item" role="presentation">
+        <ul class="nav nav-tabs d-flex justify-content-center align-items-center border-0" id="myTab" role="tablist">
+            <li class="nav-item mb-0" role="presentation">
                 <button class="nav-link rfq-tabs-link" id="quotation-tab" data-bs-toggle="tab" data-bs-target="#quotation"
                     type="button" role="tab" aria-controls="quotation" aria-selected="true">
                     Quotation
                 </button>
             </li>
-            <li class="mb-0 nav-item" role="presentation">
+            <li class="nav-item mb-0" role="presentation">
                 <button class="nav-link rfq-tabs-link active" id="cog-tab" data-bs-toggle="tab" data-bs-target="#cog"
                     type="button" role="tab" aria-controls="cog" aria-selected="false">
                     Cost Of Goods
                 </button>
             </li>
-            <li class="mb-0 nav-item" role="presentation">
+            <li class="nav-item mb-0" role="presentation">
                 <button class="nav-link rfq-tabs-link" id="source-tab" data-bs-toggle="tab" data-bs-target="#source"
                     type="button" role="tab" aria-controls="source" aria-selected="false">
                     Source
                 </button>
             </li>
-            <li class="mb-0 nav-item ms-2" role="presentation">
-                <button class="bg-black nav-link rfq-tabs-link" id="setting">
+            <li class="nav-item mb-0 ms-2" role="presentation">
+                <button class="nav-link rfq-tabs-link bg-black" id="setting">
                     <i class="fa-solid fa-gear" style="font-size: 23.6px;"></i>
                 </button>
             </li>
@@ -225,9 +225,9 @@
                     <input type="hidden" name="rfq_id" value="{{ $rfq_details->id }}">
                     <div class="modal-body">
                         <div class="card">
-                            <div class="p-2 card-header">
-                                <p class="p-0 mb-0 d-flex align-items-center">Register as <span class="text-danger">*</span>
-                                    <label class="mx-3 form-check-label d-flex align-items-center" for="account_type_client">
+                            <div class="card-header p-2">
+                                <p class="mb-0 p-0 d-flex align-items-center">Register as <span class="text-danger">*</span>
+                                    <label class="form-check-label mx-3 d-flex align-items-center" for="account_type_client">
                                         <input class="form-check-input me-2" type="radio" value="client"
                                             id="account_type_client" name="account_type" checked>
                                         Client
@@ -300,7 +300,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="p-1 border modal-footer">
+                    <div class="modal-footer border p-1">
                         <div class="row">
                             <div class="col-3">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -683,32 +683,32 @@
 
                 newRow.innerHTML = `
                     <td>
-                        <a class="p-0 bg-transparent border-0 text-danger" onclick="deleteRfqCalculationRow(this)" title="Delete Row"><i class="fa-regular fa-trash-can"></i></a>
+                        <a class="border-0 p-0 text-danger bg-transparent" onclick="deleteRfqCalculationRow(this)" title="Delete Row"><i class="fa-regular fa-trash-can"></i></a>
                     </td>
                     <td></td>
                     <td><input type="hidden" name="product_id[]" value="">
-                        <input type="text" name="product_name[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" placeholder="Product Name" value=""></td>
-                    <td><input type="text" name="qty[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="principal_cost[]" class="bg-transparent form-control form-control-sm rfqcalculationinput principal_cost" value="0"></td>
-                    <td><input type="text" name="principal_unit_total_amount[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_office_cost[]" class="bg-transparent form-control form-control-sm rfqcalculationinput principal_discount_amount" value="0"></td>
-                    <td><input type="text" name="unit_profit[]" class="bg-transparent form-control form-control-sm rfqcalculationinput principal_unit_total_amount_taka" value="0"></td>
-                    <td><input type="text" name="unit_others_cost[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_remittance[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_packing[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_customs[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_tax_vat[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_subtotal[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td class="text-center"><input type="text" name="unit_final_price[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td class="text-center"><input type="text" name="unit_final_total_price[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
+                        <input type="text" name="product_name[]" class="form-control form-control-sm bg-transparent rfqcalculationinput" placeholder="Product Name" value=""></td>
+                    <td><input type="text" name="qty[]" class="form-control form-control-sm bg-transparent rfqcalculationinput" value="0"></td>
+                    <td><input type="text" name="principal_cost[]" class="form-control form-control-sm bg-transparent rfqcalculationinput principal_cost" value="0"></td>
+                    <td><input type="text" name="principal_unit_total_amount[]" class="form-control form-control-sm bg-transparent rfqcalculationinput" value="0"></td>
+                    <td><input type="text" name="unit_office_cost[]" class="form-control form-control-sm bg-transparent rfqcalculationinput principal_discount_amount" value="0"></td>
+                    <td><input type="text" name="unit_profit[]" class="form-control form-control-sm bg-transparent rfqcalculationinput principal_unit_total_amount_taka" value="0"></td>
+                    <td><input type="text" name="unit_others_cost[]" class="form-control form-control-sm bg-transparent rfqcalculationinput" value="0"></td>
+                    <td><input type="text" name="unit_remittance[]" class="form-control form-control-sm bg-transparent rfqcalculationinput" value="0"></td>
+                    <td><input type="text" name="unit_packing[]" class="form-control form-control-sm bg-transparent rfqcalculationinput" value="0"></td>
+                    <td><input type="text" name="unit_customs[]" class="form-control form-control-sm bg-transparent rfqcalculationinput" value="0"></td>
+                    <td><input type="text" name="unit_tax_vat[]" class="form-control form-control-sm bg-transparent rfqcalculationinput" value="0"></td>
+                    <td><input type="text" name="unit_subtotal[]" class="form-control form-control-sm bg-transparent rfqcalculationinput" value="0"></td>
+                    <td class="text-center"><input type="text" name="unit_final_price[]" class="form-control form-control-sm bg-transparent rfqcalculationinput" value="0"></td>
+                    <td class="text-center"><input type="text" name="unit_final_total_price[]" class="form-control form-control-sm bg-transparent rfqcalculationinput" value="0"></td>
                     `;
 
                 newRow2.innerHTML = `
                     <td></td>
-                    <td><input type="text" name="quotation_product_name[]" class="bg-transparent form-control form-control-sm text-start" placeholder="Product Name" value=""></td>
-                    <td><input type="text" name="quotation_qty[]" class="text-center bg-transparent form-control form-control-sm" value="0"></td>
-                    <td class="text-center"><input type="text" name="quotation_unit_final_price[]" class="text-center bg-transparent form-control form-control-sm" value="0"></td>
-                    <td class="text-center"><input type="text" name="quotation_unit_final_total_price[]" class="text-center bg-transparent form-control form-control-sm" value="0"></td>
+                    <td><input type="text" name="quotation_product_name[]" class="form-control form-control-sm bg-transparent text-start" placeholder="Product Name" value=""></td>
+                    <td><input type="text" name="quotation_qty[]" class="form-control form-control-sm bg-transparent text-center" value="0"></td>
+                    <td class="text-center"><input type="text" name="quotation_unit_final_price[]" class="form-control form-control-sm bg-transparent text-center" value="0"></td>
+                    <td class="text-center"><input type="text" name="quotation_unit_final_total_price[]" class="form-control form-control-sm bg-transparent text-center" value="0"></td>
                     `;
 
                 tableBody.appendChild(newRow);
@@ -764,16 +764,16 @@
                 let termsRow = `
                     <tr>
                         <td style="text-align: center;">
-                            <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row" onclick="deleteTermsRow(this)">
+                            <a class="text-danger rounded-0 btn-sm p-1 delete-terms-row" onclick="deleteTermsRow(this)">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </td>
                         <td style="width: 15%">
                             <input type="hidden" name="terms_id[]" value="">
-                            <input type="text" name="terms_title[]" class="bg-transparent form-control form-control-sm text-start" value="" placeholder="Terms title">
+                            <input type="text" name="terms_title[]" class="form-control form-control-sm bg-transparent text-start" value="" placeholder="Terms title">
                         </td>
                         <td>
-                            <input type="text" name="terms_description[]" class="bg-transparent form-control form-control-sm" value="" placeholder="Terms description">
+                            <input type="text" name="terms_description[]" class="form-control form-control-sm bg-transparent" value="" placeholder="Terms description">
                         </td>
                     </tr>`;
                 document.querySelector('.terms_tbody').insertAdjacentHTML('beforeend', termsRow);
