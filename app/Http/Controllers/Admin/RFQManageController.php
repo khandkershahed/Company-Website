@@ -61,21 +61,43 @@ class RFQManageController extends Controller
 
     public function quotationMail($id)
     {
-        $data['users']         = User::where(function ($query) {
-            $query->whereJsonContains('department', 'business');
-        })->select('id', 'name')->orderBy('id', 'DESC')->get();
+        // Retrieve RFQ details with related products
+        $rfq = Rfq::with('rfqProducts')->where('rfq_code', $id)->first();
 
-        $data['rfq_details']   = Rfq::with('quotationProducts')->where('rfq_code', $id)->first();
-        $data['countires']     = Country::all();
-        $data['rfq_country']   = Country::where('country_name', 'LIKE', '%' . $data['rfq_details']->country . '%')->first();
-        $data['sourcing']      = DealSas::where('rfq_code', $data['rfq_details']->rfq_code)->first();
-        $data['quotation']     = DB::table('rfq_quotations')->where('rfq_id', $data['rfq_details']->id)->first();  // Correct model reference
-        $data['singleproduct'] = QuotationProduct::where('rfq_id', $data['rfq_details']->id)->first();
-        $data['rfq_terms']     = QuotationTerm::where('rfq_id', $data['rfq_details']->id)->get();
+        if (!$rfq) {
+            Toastr::error('RFQ not found.');
+            return redirect()->back();
+        }
 
-        return view('metronic.pages.cog.index', $data);
-        // return view('admin.pages.singleRfq.quotation_mail', $data);
+        // Prepare base data
+        $users = User::whereJsonContains('department', 'business')
+            ->select('id', 'name')
+            ->orderByDesc('id')
+            ->get();
+
+        // For anonymous client type
+        if ($rfq->client_type === 'anonymous') {
+            return view('metronic.pages.cog.crm', [
+                'rfq' => $rfq,
+                'users'       => $users,
+            ]);
+        }
+
+        // For identified clients
+        $quotationData = [
+            'quotation'     => DB::table('rfq_quotations')->where('rfq_id', $rfq->id)->first(),
+            'singleproduct' => QuotationProduct::where('rfq_id', $rfq->id)->first(),
+            'rfq_terms'     => QuotationTerm::where('rfq_id', $rfq->id)->get(),
+            'countries'     => Country::all(),
+            'rfq_country'   => Country::where('country_name', 'LIKE', '%' . $rfq->country . '%')->first(),
+            'sourcing'      => DealSas::where('rfq_code', $rfq->rfq_code)->first(),
+            'rfq'   => $rfq,
+            'users'         => $users,
+        ];
+
+        return view('metronic.pages.cog.index', $quotationData);
     }
+
 
 
     public function store(Request $request)
