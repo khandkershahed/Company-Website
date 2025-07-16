@@ -73,7 +73,8 @@ class RFQManageController extends Controller
         $data['singleproduct'] = QuotationProduct::where('rfq_id', $data['rfq_details']->id)->first();
         $data['rfq_terms']     = QuotationTerm::where('rfq_id', $data['rfq_details']->id)->get();
 
-        return view('admin.pages.singleRfq.quotation_mail', $data);
+        return view('metronic.pages.cog.index', $data);
+        // return view('admin.pages.singleRfq.quotation_mail', $data);
     }
 
 

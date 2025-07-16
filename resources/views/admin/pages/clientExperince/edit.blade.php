@@ -62,7 +62,7 @@
                                             class="form-control" id="image" accept="image/*" />
                                         <div class="form-text">Accepts only png, jpg, jpeg images</div>
                                         <img id="showImage" height="100px" width="100px"
-                                            src="{{ asset('storage/thumb/' . $clientExperince->logo) }}"
+                                            src="{{ asset('storage/' . $clientExperince->logo) }}"
                                             alt="">
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
                                             class="form-control" id="image1" accept="image/*" />
                                         <div class="form-text">Accepts only png, jpg, jpeg images</div>
                                         <img id="showImage1" height="100px" width="100px"
-                                            src="{{ asset('storage/thumb/' . $clientExperince->image) }}"
+                                            src="{{ asset('storage/' . $clientExperince->image) }}"
                                             alt="">
                                     </div>
                                 </div>

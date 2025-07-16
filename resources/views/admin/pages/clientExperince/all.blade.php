@@ -54,7 +54,7 @@
                                             <tr>
                                                 <td>{{ ++$key }}</td>
                                                 <td class="text-center"><img
-                                                        src="{{ asset('storage/thumb/' . $clientExperinces->logo) }}"
+                                                        src="{{ asset('storage/' . $clientExperinces->logo) }}"
                                                         height="40" width="50" alt=""></td>
                                                 <td>{{ $clientExperinces->title }}</td>
                                                 <td>{!! $clientExperinces->short_desc !!}</td>

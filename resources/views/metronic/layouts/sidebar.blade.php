@@ -115,11 +115,17 @@
                                 'admin.rfq.index',
                                 'admin.rfq.create',
                                 'admin.rfq.edit',
+                                'single-rfq.quoation_mail',
                             ],
                             'subMenu' => [
                                 [
                                     'title' => 'RFQ List',
-                                    'routes' => ['admin.rfq.index', 'admin.rfq.create', 'admin.rfq.edit'],
+                                    'routes' => [
+                                        'admin.rfq.index',
+                                        'admin.rfq.create',
+                                        'admin.rfq.edit',
+                                        'single-rfq.quoation_mail',
+                                    ],
                                     'route' => 'admin.rfq.index',
                                 ],
                             ],
