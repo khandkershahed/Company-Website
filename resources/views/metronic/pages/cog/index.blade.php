@@ -1,4 +1,5 @@
-<x-admin-app-layout :title="'Quotation :-' . $rfq_details->rfq_code">
+{{-- <x-admin-app-layout :title="'Quotation :-' . $rfq_details->rfq_code"> --}}
+<x-admin-app-layout>
     <div class="bg-white d-flex align-items-center justify-content-center">
         <div class="px-0 container-fluid">
             <div class="row align-items-center">
