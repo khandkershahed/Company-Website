@@ -63,7 +63,7 @@
 
     <div class="d-flex flex-column flex-root">
 
-        <div class="page d-flex flex-row flex-column-fluid">
+        <div class="flex-row page d-flex flex-column-fluid">
 
             @include('metronic.layouts.sidebar')
 
@@ -71,7 +71,7 @@
             <div class="wrapper d-flex flex-column flex-row-fluid pt-lg-17" id="kt_wrapper">
 
                 @include('metronic.layouts.header')
-                <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <div class="bg-white content d-flex flex-column flex-column-fluid" id="kt_content">
                     <div class="post d-flex flex-column-fluid" id="kt_post">
                         <div id="kt_content_container" class="container-fluid">
                             {{-- @if (session('error'))

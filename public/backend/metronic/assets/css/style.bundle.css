@@ -55576,7 +55576,8 @@ body {
 
 .aside.aside-dark .btn-custom {
     color: #ffffff;
-    background-color: #500066;
+    /* background-color: #500066; */
+    background: linear-gradient(to right, #a80b6e 22%, #582873 100%);
 }
 
 .aside.aside-dark .btn-custom.active,
@@ -57376,7 +57377,8 @@ body {
 
 .aside-dark .menu .menu-item.show > .menu-link {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: #500066;
+    /* background-color: #500066; */
+    background: linear-gradient(to right, #a80b6e 22%, #582873 100%);
     color: #fff;
 }
 
@@ -57408,13 +57410,11 @@ body {
 
 .aside-dark .menu .menu-item .menu-link.active {
     transition: color 0.2s ease, background-color 0.2s ease;
-    background-color: #500066cc;
-    color: #fff;
+    background-color: #fff;
+    color: #0000 !important;
 }
 
-.aside-dark .menu .menu-item .menu-link.active .menu-title {
-    color: #fff;
-}
+
 
 .aside-dark .menu .menu-item .menu-link.active .menu-icon,
 .aside-dark .menu .menu-item .menu-link.active .menu-icon .svg-icon,
@@ -59043,14 +59043,14 @@ body {
 }
 
 /* Custom Style  */
-thead {
+/* thead {
     background-color: #dceaf0;
     font-weight: bold;
 }
 th {
     font-weight: 600 !important;
     color: #6c757d !important;
-}
+} */
 /* Custom Style  End */
 
 .default-avatar {

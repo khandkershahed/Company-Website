@@ -286,10 +286,10 @@
                                                 <div class="stock-info">
                                                     <p tabindex="0" class="mb-0 prod-stock"
                                                         id="product-avalialability-by-warehouse">
-                                                        <span aria-label="Stock Availability" class="js-prod-available">
+                                                        <span aria-label="Stock Availability" title="Stock availability depends on customer order." class="js-prod-available">
                                                             <i class="fa fa-info-circle text-success"></i> Stock</span>
                                                         <br>
-                                                        @if ($sproduct->stock == 'available')
+                                                        {{-- @if ($sproduct->stock == 'available')
                                                             <span class="text-success"
                                                                 style="font-size:17px">{{ $sproduct->qty }}
                                                                 in stock</span>
@@ -305,7 +305,7 @@
                                                         @else
                                                             <span class="pb-2 text-danger"
                                                                 style="font-size:17px">{{ ucfirst($sproduct->stock) }}</span>
-                                                        @endif
+                                                        @endif --}}
                                                     </p>
                                                 </div>
                                                 <div class="text-end">

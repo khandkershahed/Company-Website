@@ -8,11 +8,10 @@
 
 // Clock Start
 // The week days
-const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
 // The Clock Ticker
 function clockTicker() {
-
     // Clock units
     var date = new Date();
     var day = date.getDay();
@@ -22,13 +21,11 @@ function clockTicker() {
 
     // Update hours value if greater than 12
     if (hrs > 12) {
-
         hrs = hrs - 12;
 
-        document.querySelector('#clock .period').innerHTML = 'PM';
+        document.querySelector("#clock .period").innerHTML = "PM";
     } else {
-
-        document.querySelector('#clock .period').innerHTML = 'AM';
+        document.querySelector("#clock .period").innerHTML = "AM";
     }
 
     // Pad the single digit units by 0
@@ -37,10 +34,10 @@ function clockTicker() {
     secs = secs < 10 ? "0" + secs : secs;
 
     // Refresh the unit values
-    document.querySelector('#clock .day').innerHTML = weekDays[day];
-    document.querySelector('#clock .hours').innerHTML = hrs;
-    document.querySelector('#clock .minutes').innerHTML = mins;
-    document.querySelector('#clock .seconds').innerHTML = secs;
+    document.querySelector("#clock .day").innerHTML = weekDays[day];
+    document.querySelector("#clock .hours").innerHTML = hrs;
+    document.querySelector("#clock .minutes").innerHTML = mins;
+    document.querySelector("#clock .seconds").innerHTML = secs;
 
     // Refresh the clock every 1 second
     requestAnimationFrame(clockTicker);
@@ -50,22 +47,14 @@ function clockTicker() {
 clockTicker();
 // Clock End
 
-
-
-
-
-
-
 $(document).on("click", ".delete", function (e) {
     e.preventDefault();
     var deleteLinkUrl = $(this).attr("href");
-    var dataType = $(this).attr("href") ?
-        $(this).attr("href") :
-        "html";
+    var dataType = $(this).attr("href") ? $(this).attr("href") : "html";
     $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
     });
     swalInit.fire({
         title: "Are you sure?",
@@ -79,9 +68,9 @@ $(document).on("click", ".delete", function (e) {
                 url: deleteLinkUrl,
                 type: "POST",
                 data: {
-                    _method: "DELETE"
+                    _method: "DELETE",
                 },
-                dataType: 'html',
+                dataType: "html",
                 success: function (data) {
                     var dataError =
                         dataType == "html" ? data.trim() : data.error;
@@ -122,20 +111,15 @@ $(document).on("click", ".delete", function (e) {
 
 // ----------------------------------------------------------------------------------- end
 
-
-
-
 $(document).on("click", ".removeCart", function (e) {
     e.preventDefault();
     var deleteLinkUrl = $(this).attr("href");
-    var dataType = $(this).attr("href") ?
-        $(this).attr("href") :
-        "html";
+    var dataType = $(this).attr("href") ? $(this).attr("href") : "html";
     //alert(deleteLinkUrl);
     $.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
     });
     swalInit.fire({
         title: "Are you sure?",
@@ -149,9 +133,9 @@ $(document).on("click", ".removeCart", function (e) {
                 url: deleteLinkUrl,
                 type: "POST",
                 data: {
-                    _method: "DELETE"
+                    _method: "DELETE",
                 },
-                dataType: 'json',
+                dataType: "json",
                 success: function (data) {
                     var dataError =
                         dataType == "json" ? data.trim() : data.error;
@@ -190,7 +174,6 @@ $(document).on("click", ".removeCart", function (e) {
     });
 });
 
-
 // Defaults sweet alert js
 var swalInit = swal.mixin({
     buttonsStyling: false,
@@ -202,3 +185,36 @@ var swalInit = swal.mixin({
     },
 });
 // --------------------------------
+
+// Bypass Process
+$("#kt_docs_repeater_basic").repeater({
+    initEmpty: false,
+
+    defaultValues: {
+        "text-input": "foo",
+    },
+
+    show: function () {
+        $(this).slideDown();
+    },
+
+    hide: function (deleteElement) {
+        $(this).slideUp(deleteElement);
+    },
+});
+
+$("#terms").repeater({
+    initEmpty: false,
+
+    defaultValues: {
+        "text-input": "foo",
+    },
+
+    show: function () {
+        $(this).slideDown();
+    },
+
+    hide: function (deleteElement) {
+        $(this).slideUp(deleteElement);
+    },
+});

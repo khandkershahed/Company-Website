@@ -1,7 +1,6 @@
-<div id="kt_header" class="header align-items-stretch">
+<div id="kt_header" class="shadow-sm header align-items-stretch">
 
-    <div class="container-fluid d-flex align-items-stretch justify-content-between">
-
+    <div class="container-fluid d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show aside menu">
             <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
                 id="kt_aside_mobile_toggle">
@@ -19,33 +18,22 @@
 
             </div>
         </div>
-
-        {{-- <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            @if ($title ?? null)
-                <h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">{{ $title }}</h1>
-                <span class="h-20px border-gray-300 border-start mx-4"></span>
-            @endif
-            @if (isset($breadcrumbs))
-                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-5 my-1">
-                    @foreach ($breadcrumbs as $breadcrumb)
-                        <li class="breadcrumb-item">
-                            <a href="{{ $breadcrumb['url'] }}" class= "text-hover-primary">{{ $breadcrumb['name'] }}</a>
-                        </li>
-                        @unless ($loop->last)
-                            <li class="breadcrumb-item">
-                                <span class="bullet bg-gray-300 w-5px h-2px"></span>
-                            </li>
-                        @endunless
-                    @endforeach
-                </ul>
-            @endif
-        </div> --}}
-
-        {{-- <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <a href="{{ route('admin.dashboard') }}" class="d-lg-none">
-                <img alt="Logo" src="{{ asset('frontend/images/logo_black.png') }}" class="h-30px" />
+        {{-- Breadcrumb --}}
+        <div class="d-flex align-items-center">
+            <a href="{{ url()->previous() }}" class="px-3 btn btn-sm btn-secondary rounded-3 me-2">
+                <i class="fas fa-chevron-left"></i>
             </a>
-        </div> --}}
+
+            <nav aria-label="breadcrumb">
+                <ol class="mb-0 breadcrumb">
+                    <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        {{ ucfirst(Request::segment(2)) }}
+                    </li>
+                </ol>
+            </nav>
+        </div>
+
 
 
         <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1 flex-lg-grow-0">
@@ -83,7 +71,7 @@
                     </span>
                 </div>
             </div>
-            <div class="d-flex align-items-stretch flex-shrink-0">
+            <div class="flex-shrink-0 d-flex align-items-stretch">
                 <div class="d-flex align-items-center ms-1 ms-lg-3">
 
                     <div class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px"
@@ -114,14 +102,14 @@
                         <div class="d-flex flex-column bgi-no-repeat rounded-top"
                             style="background-image:url('{{ asset('admin/assets/media/misc/pattern-1.jpg') }}')">
 
-                            <h3 class="text-white fw-bold px-9 mt-10 mb-6">Notifications
-                                <span class="fs-8 opacity-75 ps-3">24 reports</span>
+                            <h3 class="mt-10 mb-6 text-white fw-bold px-9">Notifications
+                                <span class="opacity-75 fs-8 ps-3">24 reports</span>
                             </h3>
 
 
                             <ul class="nav nav-line-tabs nav-line-tabs-2x nav-stretch fw-bold px-9">
                                 <li class="nav-item">
-                                    <a class="nav-link text-white opacity-75 opacity-state-100 pb-4 active"
+                                    <a class="pb-4 text-white opacity-75 nav-link opacity-state-100 active"
                                         data-bs-toggle="tab" href="#kt_topbar_notifications_1">Alerts</a>
                                 </li>
                             </ul>
@@ -133,9 +121,9 @@
 
                             <div class="tab-pane fade show active" id="kt_topbar_notifications_1" role="tabpanel">
 
-                                <div class="scroll-y mh-325px my-5 px-8">
+                                <div class="px-8 my-5 scroll-y mh-325px">
 
-                                    <div class="d-flex flex-stack py-4">
+                                    <div class="py-4 d-flex flex-stack">
 
                                         <div class="d-flex align-items-center">
 
@@ -160,7 +148,7 @@
 
                                             <div class="mb-0 me-2">
                                                 <a href="#"
-                                                    class="fs-6 text-gray-800 text-hover-primary fw-bolder">Project
+                                                    class="text-gray-800 fs-6 text-hover-primary fw-bolder">Project
                                                     Alice</a>
                                                 <div class="text-gray-400 fs-7">Phase 1 development
                                                 </div>
@@ -210,10 +198,10 @@
                         <img src="{{ !empty(Auth::user()->photo) && file_exists(public_path('upload/Profile/admin/' . Auth::user()->photo)) ? asset('upload/Profile/admin/' . Auth::user()->photo) : asset('backend/assets/images/admin_profile.png') }}"
                             alt="">
                     </div>
-                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
+                    <div class="py-4 menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold fs-6 w-275px"
                         data-kt-menu="true">
-                        <div class="menu-item px-3">
-                            <div class="menu-content d-flex align-items-center px-3">
+                        <div class="px-3 menu-item">
+                            <div class="px-3 menu-content d-flex align-items-center">
                                 <div class="symbol symbol-50px me-5">
                                     <img src="{{ !empty(Auth::user()->photo) && file_exists(public_path('upload/Profile/admin/' . Auth::user()->photo)) ? asset('upload/Profile/admin/' . Auth::user()->photo) : asset('backend/assets/images/admin_profile.png') }}"
                                         alt="">
@@ -230,21 +218,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="separator my-2"></div>
-                        <div class="menu-item px-5">
-                            <a href="" class="menu-link px-5">My
+                        <div class="my-2 separator"></div>
+                        <div class="px-5 menu-item">
+                            <a href="" class="px-5 menu-link">My
                                 Profile</a>
                         </div>
-                        <div class="separator my-2"></div>
-                        {{-- <div class="menu-item px-5" data-kt-menu-trigger="hover" data-kt-menu-placement="left-start">
+                        <div class="my-2 separator"></div>
+                        {{-- <div class="px-5 menu-item" data-kt-menu-trigger="hover" data-kt-menu-placement="left-start">
                         </div> --}}
-                        <div class="menu-item px-5">
+                        <div class="px-5 menu-item">
                             <form method="POST" action="{{ route('admin.logout') }}">
                                 @csrf
                                 <a href="{{ route('admin.logout') }}"
                                     onclick="event.preventDefault();
                                         this.closest('form').submit();"
-                                    class="menu-link px-5"> {{ __('Sign Out') }}</a>
+                                    class="px-5 menu-link"> {{ __('Sign Out') }}</a>
                             </form>
                         </div>
                     </div>
