@@ -146,7 +146,7 @@
                             <tbody class="quotationTable_area text-center">
 
                                 @if ($rfq_details->quotationProducts->count() > 0)
-                                    @foreach ($rfq_details->quotationProducts as $quotationproduct)
+                                    
                                         <tr class="tdsp text-center">
                                             <td>{{ $loop->iteration }}</td>
                                             <td>

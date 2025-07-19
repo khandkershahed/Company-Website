@@ -70,7 +70,7 @@ class RFQManageController extends Controller
         }
 
         // Prepare base data
-        $users = User::whereJsonContains('department', 'business')
+        $users = User::whereJsonContains('department', 'business')->where('role', 'manager')
             ->select('id', 'name')
             ->orderByDesc('id')
             ->get();
@@ -78,8 +78,8 @@ class RFQManageController extends Controller
         // For anonymous client type
         if ($rfq->client_type === 'anonymous') {
             return view('metronic.pages.cog.crm', [
-                'rfq' => $rfq,
-                'users'       => $users,
+                'rfq'   => $rfq,
+                'users' => $users,
             ]);
         }
 
@@ -91,12 +91,13 @@ class RFQManageController extends Controller
             'countries'     => Country::all(),
             'rfq_country'   => Country::where('country_name', 'LIKE', '%' . $rfq->country . '%')->first(),
             'sourcing'      => DealSas::where('rfq_code', $rfq->rfq_code)->first(),
-            'rfq'   => $rfq,
+            'rfq'           => $rfq,
             'users'         => $users,
         ];
 
         return view('metronic.pages.cog.index', $quotationData);
     }
+
 
 
 

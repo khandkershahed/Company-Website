@@ -14,6 +14,7 @@ use App\Models\Admin\DealSas;
 use App\Models\Admin\Product;
 use App\Models\Client\Client;
 use App\Models\Admin\RfqTerms;
+use App\Mail\AccountCreateMail;
 use App\Models\Partner\Partner;
 use Illuminate\Validation\Rule;
 use App\Models\Admin\RfqProduct;
@@ -907,85 +908,132 @@ class RFQController extends Controller
 
     public function AssignSalesMan(Request $request, $id)
     {
-        $rfq = Rfq::where('rfq_code', $id)->first();
-        if (!empty($rfq->id)) {
-            $product_name = Product::where('id', $rfq->product_id)->value('name');
-        } else {
-            $product_name = RfqProduct::where('rfq_id', $rfq->id)->value('product_name');
+        // Validate input
+        $validator = Validator::make($request->all(), [
+            'account_type' => 'required|string',
+            'name'         => 'required|string|max:255',
+            'email'        => 'required|string|email|max:255|unique:clients',
+            'phone'        => 'required|string|max:20',
+            'company_name' => 'nullable|string|max:255',
+        ], [
+            'account_type.required' => 'The Register As field is required.',
+            'name.required'         => 'The name field is required.',
+            'email.required'        => 'The email field is required.',
+            'phone.required'        => 'The phone field is required.',
+            'name.string'           => 'The name must be a string.',
+            'email.email'           => 'The email must be a valid email.',
+            'name.max'              => 'The name may not be greater than :max characters.',
+            'email.unique'          => 'This email has already been taken.',
+        ]);
+
+        if ($validator->fails()) {
+            foreach ($validator->messages()->all() as $message) {
+                Toastr::error($message);
+            }
+            return redirect()->back()->withInput();
         }
+        // dd($request->all());
+        // Fetch the RFQ
+        $rfq = Rfq::where('rfq_code', $id)->firstOrFail();
 
+        // Determine product name
+        $product_name = $rfq->product_id
+            ? Product::where('id', $rfq->product_id)->value('name')
+            : RfqProduct::where('rfq_id', $rfq->id)->value('product_name');
 
-        $user = User::get();
-        if (!empty($rfq)) {
-
-            $user_emails = [];
-
-            if (!empty($request->sales_man_id_L1)) {
-                $name1 = User::where('id', $request->sales_man_id_L1)->value('name');
-                $user_email1 = User::where('id', $request->sales_man_id_L1)->value('email');
-                $user_emails[] = $user_email1;
-            } else {
-                $name1 = '';
-            }
-
-            if (!empty($request->sales_man_id_T1)) {
-                $name2 = User::where('id', $request->sales_man_id_T1)->value('name');
-                $user_email2 = User::where('id', $request->sales_man_id_T1)->value('email');
-                $user_emails[] = $user_email2;
-            } else {
-                $name2 = '';
-            }
-
-            if (!empty($request->sales_man_id_T2)) {
-                $name3 = User::where('id', $request->sales_man_id_T2)->value('name');
-                $user_email3 = User::where('id', $request->sales_man_id_T2)->value('email');
-                $user_emails[] = $user_email3;
-            } else {
-                $name3 = '';
-            }
-
-            // dd($user_emails);
-
-
-            $rfq->update([
-                'sales_man_id_L1'      => $request->sales_man_id_L1,
-                'sales_man_id_T1'      => $request->sales_man_id_T1,
-                'sales_man_id_T2'      => $request->sales_man_id_T2,
-                'status'               => 'assigned',
-            ]);
-        }
-
-
-        $rfq_code = $rfq->rfq_code;
-
-
-
-        Notification::send($user, new RfqAssign($name1, $name2, $name3, $rfq_code));
-        $data = [
-
-            'name'         => $rfq->name,
-            'product_name' => $product_name,
-            'phone'        => $rfq->phone,
-            'qty'          => $rfq->qty,
-            'company_name' => $rfq->company_name,
-            'address'      => $rfq->address,
-            'message'      => $rfq->message,
-            'rfq_code'     => $rfq->rfq_code,
-            'email'        => $rfq->email,
-
+        // Prepare sales manager data
+        $salesManagers = [
+            'sales_man_id_L1' => null,
+            'sales_man_id_T1' => null,
+            'sales_man_id_T2' => null,
         ];
-        $mail = Mail::to($user_emails);
-        if ($mail) {
-            $mail->send(new RfqAssigned($data));
-            Toastr::success('Mail has Sent Successfully');
-        } else {
-            Toastr::error('Email Failed to send', ['timeOut' => 30000]);
-            return redirect()->back();
-        }
-        Toastr::success('SalesMan has been Assigned');
+        $salesManagerNames = ['L1' => '', 'T1' => '', 'T2' => ''];
+        $userEmails = [];
 
-        return redirect()->back();
+        foreach ($salesManagers as $key => $value) {
+            if (!empty($request->$key)) {
+                $user = User::find($request->$key);
+                if ($user) {
+                    $salesManagers[$key] = $user->id;
+                    $salesManagerNames[substr($key, -2)] = $user->name;
+                    $userEmails[] = $user->email;
+                }
+            }
+        }
+
+        // Assign sales managers and update RFQ
+        $rfq->update([
+            'sales_man_id_L1' => $salesManagers['sales_man_id_L1'],
+            'sales_man_id_T1' => $salesManagers['sales_man_id_T1'],
+            'sales_man_id_T2' => $salesManagers['sales_man_id_T2'],
+            'status'          => 'assigned',
+        ]);
+
+        // Notify all users (you may filter by role if needed)
+        $allUsers = User::all();
+        Notification::send($allUsers, new RfqAssign(
+            $salesManagerNames['L1'],
+            $salesManagerNames['T1'],
+            $salesManagerNames['T2'],
+            $rfq->rfq_code
+        ));
+
+        // Send RFQ assignment email
+        try {
+            Mail::to($userEmails)->send(new RfqAssigned([
+                'name'         => $rfq->name,
+                'product_name' => $product_name,
+                'phone'        => $rfq->phone,
+                'qty'          => $rfq->qty,
+                'company_name' => $rfq->company_name,
+                'address'      => $rfq->address,
+                'message'      => $rfq->message,
+                'rfq_code'     => $rfq->rfq_code,
+                'email'        => $rfq->email,
+            ]));
+            Toastr::success('Mail has been sent successfully.');
+        } catch (\Exception $e) {
+            Toastr::error('Failed to send email. Please try again later.', 'Error', ['timeOut' => 30000]);
+        }
+
+        // Generate password (if not provided)
+        $firstName = explode(' ', trim($request->name))[0] ?? 'User';
+        $phone = $request->phone ?? rand(1000, 9999);
+        $password = $request->password ?? ($firstName . $phone);
+
+        // Create client
+        $client = Client::create([
+            'name'         => $request->name,
+            'email'        => $request->email,
+            'phone'        => $request->phone,
+            'company_name' => $request->company_name,
+            'password'     => Hash::make($password),
+            'user_type'    => $request->account_type,
+        ]);
+
+        // Update RFQ client type
+        $rfq->update([
+            'client_type' => $request->account_type,
+        ]);
+
+        // Send account creation email
+        try {
+            Mail::to($client->email)->send(new AccountCreateMail([
+                'name'      => $client->name,
+                'email'     => $client->email,
+                'phone'     => $client->phone,
+                'password'  => $password,
+                'user_type' => $client->user_type,
+            ]));
+            Toastr::success('Account creation mail has been sent successfully.');
+        } catch (\Exception $e) {
+            Toastr::error('Failed to send account creation mail.', 'Error', ['timeOut' => 30000]);
+        }
+
+        Toastr::success('Salesman assigned and account created successfully.');
+        return redirect()->route('single-rfq.quoation_mail', $rfq->rfq_code);
     }
+
 
     public function DealConvert($id)
     {
