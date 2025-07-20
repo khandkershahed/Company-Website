@@ -112,6 +112,8 @@
                                     </tr>
                                 @endforeach
 
+                            </tbody>
+                            <tfoot>
                                 <tr>
                                     <td colspan="4" style="text-align: end;font-weight: 400;font-size: 12px;">
                                         Sub Total
@@ -157,7 +159,7 @@
                                         {{ number_format(round((float) optional($singleproduct)->total_final_total_price), 2) }}
                                     </td>
                                 </tr>
-                            </tbody>
+                            </tfoot>
                         </table>
 
                         <div>
@@ -384,31 +386,21 @@
                                 <tr>
                                     <td colspan="6"
                                         style="padding: 0;border: 0;text-align: end;font-weight: 500;padding-bottom: 8px;">
-                                        <input readonly class="border-0 fw-bold w-100 text-end" name="authorized_brands"
-                                            type="text" value="Authorized Brands" />
+                                        <input readonly class="border-0 fw-bold w-100 text-end"
+                                            name="authorized_brands" type="text" value="Authorized Brands" />
                                     </td>
                                 </tr>
                             </tbody>
-                            @php
+                            {{-- @php
                                 $brandsCollection = collect($brands);
                                 $brandsPart1 = $brandsCollection->slice(0, 5);
                                 $brandsPart2 = $brandsCollection->slice(5, 5);
-                            @endphp
+                            @endphp --}}
                             <tbody style="background-color: #f0f0f0;">
                                 <tr style="padding: 7px">
-                                    @foreach ($brandsPart1 as $brand1)
+                                    @foreach ($brands as $brand1)
                                         <td class="table-two-th-qt">
-                                            <img class="p-2 img-fluid"
-                                                src="{{ asset('storage/' . $brand1->image) }}"
-                                                alt="" style="padding-left: 15px" />
-                                        </td>
-                                    @endforeach
-                                </tr>
-                                <tr style="padding: 7px">
-                                    @foreach ($brandsPart2 as $brand2)
-                                        <td class="table-two-th-qt">
-                                            <img class="p-2 img-fluid"
-                                                src="{{ asset('storage/' . $brand1->image) }}"
+                                            <img class="p-2 img-fluid" src="{{ asset('storage/' . $brand1->image) }}"
                                                 alt="" style="padding-left: 15px" />
                                         </td>
                                     @endforeach

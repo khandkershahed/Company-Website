@@ -18,7 +18,16 @@
                 @php
                     $sproduct = App\Models\Admin\Product::where('name', 'LIKE', '%' . $rfqProduct->product_name . '%')
                         ->where('product_status', 'product')
-                        ->select('id', 'name', 'source_one_price', 'source_two_price', 'source_one_name', 'source_two_name', 'source_one_link', 'source_two_link')
+                        ->select(
+                            'id',
+                            'name',
+                            'source_one_price',
+                            'source_two_price',
+                            'source_one_name',
+                            'source_two_name',
+                            'source_one_link',
+                            'source_two_link',
+                        )
                         ->first();
                 @endphp
                 @if (!empty($sproduct))
@@ -31,21 +40,41 @@
                             </a>
                         </td>
                         <td>
-                            <a href="{{ $sproduct->source_one_link }}" target="_blank" rel="noopener noreferrer">
-                                {{ $sproduct->source_one_name }}
-                            </a>
+                            @if ($sproduct->source_one_name)
+                                <a href="{{ $sproduct->source_one_link }}" target="_blank" rel="noopener noreferrer">
+                                    {{ $sproduct->source_one_name }}
+                                </a>
+                            @else
+                                <span class="text-danger">No Source Available</span>
+                            @endif
+
                         </td>
-                        <td>$ {{ $sproduct->source_one_price }}</td>
+                        <td>
+                            @if ($sproduct->source_one_price)
+                                $ {{ $sproduct->source_one_price }}
+                            @else
+                                <span class="text-danger">N/A</span>
+                            @endif
+                        </td>
                         {{-- <td>
                             $320
                             <i class="text-danger fas fa-arrow-down-short-wide"></i>
                         </td> --}}
                         <td>
-                            <a href="{{ $sproduct->source_two_link }}" target="_blank" rel="noopener noreferrer">
-                                {{ $sproduct->source_two_name }}
-                            </a>
+                            @if ($sproduct->source_two_name)
+                                <a href="{{ $sproduct->source_two_link }}" target="_blank" rel="noopener noreferrer">
+                                    {{ $sproduct->source_two_name }}
+                                </a>
+                            @else
+                                <span class="text-danger">No Source Available</span>
+                            @endif
                         </td>
-                        <td>$ {{ $sproduct->source_two_price }}</td>
+                        <td>@if ($sproduct->source_two_price)
+                                $ {{ $sproduct->source_two_price }}
+                            @else
+                                <span class="text-danger">N/A</span>
+                            @endif
+                        </td>
                         {{-- <td>
                             $320
                             <i class="text-success fas fa-arrow-up-short-wide"></i>
