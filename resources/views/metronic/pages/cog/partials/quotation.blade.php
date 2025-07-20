@@ -172,8 +172,8 @@
                                                 style="border: 0;padding: 0;text-align: center;font-weight: 500;padding-bottom: 10px;">
                                                 <div class="vat_display">
                                                     <input class="text-center border-0 w-100" name="vat_text"
-                                                        type="text"
-                                                        value="{{ !empty($quotation->vat_text) ? $quotation->vat_text : 'GST not included. It may apply.' }}" />
+                                                        type="text" placeholder="GST not included. It may apply."
+                                                        value="{{ !empty($quotation->vat_text) ? $quotation->vat_text }}" />
                                                 </div>
                                             </th>
                                         </tr>
