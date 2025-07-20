@@ -1,6 +1,17 @@
 <div class="col-lg-7">
     <div class="row g-2 rounded-3">
         <div class="mt-0 col-lg-3">
+            <select class="bg-white form-select form-select-sm" data-control="select2" data-placeholder="Select Region"
+                name="region" data-allow-clear="true" onchange="regionFunction()">
+                <option></option>
+                <option value="bangladesh" @selected(optional($quotation)->region == 'bangladesh')>Bangladesh</option>
+                <option value="singapore" @selected(optional($quotation)->region == 'singapore')>Singapore</option>
+                <option value="middle_east" @selected(optional($quotation)->region == 'middle_east')>Middle East</option>
+                <option value="portugal" @selected(optional($quotation)->region == 'portugal')>Portugal</option>
+
+            </select>
+        </div>
+        <div class="mt-0 col-lg-3">
             <select class="bg-white form-select form-select-sm" id="country_select" name="country" data-allow-clear="true"
                 data-control="select2" data-placeholder="Select Country" style="font-size: 12px"
                 onchange="countryFunction()">
@@ -18,17 +29,7 @@
                 @endif
             </select>
         </div>
-        <div class="mt-0 col-lg-3">
-            <select class="bg-white form-select form-select-sm" data-control="select2" data-placeholder="Select Region"
-                name="region" data-allow-clear="true" onchange="regionFunction()">
-                <option></option>
-                <option value="bangladesh" @selected(optional($quotation)->region == 'bangladesh')>Bangladesh</option>
-                <option value="singapore" @selected(optional($quotation)->region == 'singapore')>Singapore</option>
-                <option value="middle_east" @selected(optional($quotation)->region == 'middle_east')>Middle East</option>
-                <option value="portugal" @selected(optional($quotation)->region == 'portugal')>Portugal</option>
 
-            </select>
-        </div>
         <div class="mt-0 col-lg-3">
             <select class="bg-white form-select form-select-sm" data-control="select2" id="currency_select"
                 name="currency" onchange="currencyFunction()" data-placeholder="Select Currency">

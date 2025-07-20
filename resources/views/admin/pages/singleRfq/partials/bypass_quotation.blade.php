@@ -1,7 +1,7 @@
 <table cellpadding="0" cellspacing="0" class="qutatation-form"
     style="border-collapse: collapse;width: 58.3333%;margin: 0 auto;background-color: #f4f4f4;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
     <tr>
-        <td> 
+        <td>
             <section style="margin-top: 0rem;margin-bottom: 0rem;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                 <!-- Email Header Start -->
                 <div class="wrapper" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px">
@@ -290,7 +290,7 @@
                                             style="text-align: center;padding: 0.5rem;color: #3d3d3d;font-weight: 400;">
                                             <input type="text" name="vat_text"
                                                 class="form-control form-control-sm bg-transparent text-center"
-                                                value="{{ !empty($quotation->vat_text) ? $quotation->vat_text : 'GST not included. It may apply.' }}"
+                                                value="{{ !empty($quotation->vat_text) ? (optional($quotation)->vat_text : 'GST not included. It may apply.' }}"
                                                 style="font-size: 13px;font-family: 'Poppins', sans-serif;color: #3d3d3d;padding: 0px !important;">
                                         </th>
                                     </tr>

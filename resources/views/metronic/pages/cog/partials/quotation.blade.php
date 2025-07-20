@@ -173,7 +173,7 @@
                                                 <div class="vat_display">
                                                     <input class="text-center border-0 w-100" name="vat_text"
                                                         type="text" placeholder="GST not included. It may apply."
-                                                        value="{{ $quotation->vat_text }}" />
+                                                        value="{{ optional($quotation)->vat_text }}" />
                                                 </div>
                                             </th>
                                         </tr>

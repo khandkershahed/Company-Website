@@ -471,11 +471,8 @@
                                                 @if ($product->rfq == 1)
                                                     <div
                                                         class="mt-5 d-flex align-items-center justify-content-between">
-                                                        <a href="{{ route('rfq') }}"
-                                                            class="d-flex justify-content-center align-items-center"
-                                                            {{-- data-bs-toggle="modal"
-                                                            data-bs-target="#rfq{{ $product->id }}" --}}
-                                                            >
+                                                        <a href=""
+                                                            class="d-flex justify-content-center align-items-center">
                                                             <button class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
                                                                 Ask For Price
                                                             </button>
