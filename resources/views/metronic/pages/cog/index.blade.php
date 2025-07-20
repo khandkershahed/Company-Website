@@ -21,12 +21,12 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="my-10 mt-5 text-end">
-                            <h3 class="">Client Type : {{ ucfirst($rfq->client_type) ?? 'Unknown' }}
+                            <h5 class="mb-0 rfq-title fw-bold text-primary">Client Type : <span class="badge bg-primary"><i class="fas fa-user-shield pe-2"></i> {{ ucfirst($rfq->client_type) ?? 'Unknown' }}</span>
                                 {{-- <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#clientTYpe"
                                 class="p-2 text-center btn btn-secondary">
                                 <i class="fas fa-user-tie fs-3 ps-1"></i>
                             </a> --}}
-                            </h3>
+                            </h5>
                         </div>
                     </div>
                     <div class="my-4 col-lg-7">

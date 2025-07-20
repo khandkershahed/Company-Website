@@ -250,10 +250,10 @@
                             class="form-control form-control-sm bg-transparent rfqcalculationinput"
                             value="{{ optional($singleproduct)->sub_total_subtotal }}">
                     </th>
-                    <th class="text-center text-center" style="background-color: #e2e1e1; color: #fff">
+                    <th class="text-center" style="background-color: #e2e1e1; color: #fff">
                         ---
                     </th>
-                    <th class="text-center text-center" colspan="2"
+                    <th class="text-center" colspan="2"
                         style="background-color: #e2e1e1; color: #fff">
                         <input type="text" name="sub_total_final_total_price"
                             class="form-control form-control-sm bg-transparent rfqcalculationinput"
@@ -318,10 +318,10 @@
                             class="form-control form-control-sm bg-transparent rfqcalculationinput"
                             value="{{ optional($singleproduct)->special_discount_subtotal }}">
                     </th>
-                    <th class="text-center text-center" style="background-color: #e2e1e1; color: #fff">
+                    <th class="text-center" style="background-color: #e2e1e1; color: #fff">
                         ---
                     </th>
-                    <th class="text-center text-center" colspan="2"
+                    <th class="text-center" colspan="2"
                         style="background-color: #e2e1e1; color: #fff">
                         <input type="text" name="special_discount_final_total_price"
                             class="form-control form-control-sm bg-transparent rfqcalculationinput"
@@ -386,10 +386,10 @@
                             class="form-control form-control-sm bg-transparent rfqcalculationinput"
                             value="{{ optional($singleproduct)->vat_subtotal }}">
                     </th>
-                    <th class="text-center text-center" style="background-color: #e2e1e1; color: #fff">
+                    <th class="text-center" style="background-color: #e2e1e1; color: #fff">
                         ---
                     </th>
-                    <th class="text-center text-center" colspan="2"
+                    <th class="text-center" colspan="2"
                         style="background-color: #e2e1e1; color: #fff">
                         <input type="text" name="vat_final_total_price"
                             class="form-control form-control-sm bg-transparent rfqcalculationinput"
@@ -445,10 +445,10 @@
                             class="form-control form-control-sm bg-transparent rfqcalculationinput"
                             value="{{ optional($singleproduct)->total_subtotal }}">
                     </th>
-                    <th class="text-center text-center" style="background-color: #e2e1e1; color: #fff">
+                    <th class="text-center" style="background-color: #e2e1e1; color: #fff">
                         ----
                     </th>
-                    <th class="text-center text-center" colspan="2"
+                    <th class="text-center" colspan="2"
                         style="background-color: #e2e1e1; color: #fff">
                         <input type="text" name="total_final_total_price"
                             class="form-control form-control-sm bg-transparent rfqcalculationinput"

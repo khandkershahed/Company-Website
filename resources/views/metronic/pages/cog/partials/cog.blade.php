@@ -217,6 +217,190 @@
             </tbody>
 
             <tfoot>
+
+                {{-- Nothing break or edit just adding  those three tr in footer start --}}
+                <tr id="subtotalRow" style="display: none; background-color: #ebebeb;">
+                    <th colspan="2" class="p-1 py-1 text-center vm" style="border-right: 1px solid #0b64763d;">
+                        <!-- Empty Table Col -->
+                    </th>
+                    <th class="p-1 px-4 py-1 vm text-start" colspan="3">
+                        Subtotal:
+                    </th>
+                    <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
+                        <input type="text" name="total_principal_amount" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_office_cost" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_profit" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
+                        <input type="text" name="total_others_cost" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_remittance" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_packing" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_customs" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
+                        <input type="text" name="total_tax" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
+                        <input type="text" name="total_subtotal" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 text-center vm">
+                        <span class="text-center">-</span>
+                    </th>
+                    <th class="p-1 py-1 vm" colspan="2">
+                        <input type="text" name="total_final_total_price" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                </tr>
+                <!-- Special Discount Row -->
+                <tr id="discountRow"
+                    style="display: none; background-color: #ebebeb; border-bottom: 1px solid #0b64763d; border-top: 1px solid #0b64763d">
+                    <th colspan="2" class="p-1 py-1 text-center vm" style="border-right: 1px solid #0b64763d;">
+                        <!-- Empty Table Col -->
+                    </th>
+                    <th class="p-1 px-4 py-1 vm text-start" colspan="2">
+                        Special Discount:
+                    </th>
+                    <th class="p-1 py-1 text-center vm">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <input
+                                class="p-1 text-center bg-transparent border-0 form-control form-control-sm w-50 rfqcalculationinput"
+                                name="special_discount_percentage" type="text" step="0.01" value="10"
+                                placeholder="0" />
+                            <p class="m-0 ms-1">%</p>
+                        </div>
+                    </th>
+                    <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
+                        <input type="text" name="total_principal_amount" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_office_cost" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_profit" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
+                        <input type="text" name="total_others_cost" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_remittance" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_packing" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_customs" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
+                        <input type="text" name="total_tax" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
+                        <input type="text" name="total_subtotal" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 text-center vm">
+                        <span class="text-center">-</span>
+                    </th>
+                    <th class="p-1 py-1 vm" colspan="2">
+                        <input type="text" name="total_final_total_price" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                </tr>
+                <!-- VAT Row -->
+                <tr id="vatRow"
+                    style="display: none; background-color: #ebebeb; border-bottom: 1px solid #0b64763d; border-top: 1px solid #0b64763d">
+                    <th colspan="2" class="p-1 py-1 text-center vm" style="border-right: 1px solid #0b64763d;">
+                        <!-- Empty Table Col -->
+                    </th>
+                    <th class="p-1 px-4 py-1 vm text-start" colspan="2">
+                        VAT/GST:
+                    </th>
+                    <th class="p-1 py-1 text-center vm">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <input
+                                class="p-1 text-center bg-transparent border-0 form-control form-control-sm w-50 rfqcalculationinput"
+                                name="vat_percentage" type="text" step="0.01" value="10"
+                                placeholder="0" />
+                            <p class="m-0 ms-1">%</p>
+                        </div>
+                    </th>
+                    <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
+                        <input type="text" name="total_principal_amount" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="10" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_principal_amount" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_office_cost" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_profit" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm" style="border-left: 1px solid #0b64763d;">
+                        <input type="text" name="total_others_cost" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_remittance" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_packing" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="total_customs" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm" style="border-left: 1px solid #0b64763d;">
+                        <input type="text" name="total_tax" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 vm" style="border-left: 1px solid #0b64763d;">
+                        <input type="text" name="total_subtotal" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                    <th class="p-1 py-1 text-center vm">
+                        <span class="text-center">-</span>
+                    </th>
+                    <th class="p-1 py-1 vm" colspan="2">
+                        <input type="text" name="total_final_total_price" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                    </th>
+                </tr>
+                {{-- Nothing break or edit just adding  those three tr in footer End --}}
+
+
                 <tr style="background-color: #ebebeb" class="text-black">
                     <th colspan="2" class="p-1 py-1 text-center vm" style="border-right: 1px solid #0b64763d;">
                         <!-- Empty Table Col -->
