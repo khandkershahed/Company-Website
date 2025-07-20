@@ -574,4 +574,48 @@
             });
         }
     </script>
+
+
+{{-- For add and remove the checkbox on check  --}}
+{{-- <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const vatCheckbox = document.getElementById('flexCheckVAT');
+        const discountCheckbox = document.getElementById('flexCheckDiscount');
+        const vatRow = document.getElementById('vatRow');
+        const discountRow = document.getElementById('discountRow');
+
+        vatCheckbox.addEventListener('change', function () {
+            vatRow.style.display = this.checked ? 'table-row' : 'none';
+        });
+
+        discountCheckbox.addEventListener('change', function () {
+            discountRow.style.display = this.checked ? 'table-row' : 'none';
+        });
+    });
+</script> --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const vatCheckbox = document.getElementById('flexCheckVAT');
+        const discountCheckbox = document.getElementById('flexCheckDiscount');
+
+        const vatRow = document.getElementById('vatRow');
+        const discountRow = document.getElementById('discountRow');
+        const subtotalRow = document.getElementById('subtotalRow');
+
+        function updateRows() {
+            vatRow.style.display = vatCheckbox.checked ? 'table-row' : 'none';
+            discountRow.style.display = discountCheckbox.checked ? 'table-row' : 'none';
+
+            // Show subtotal if either checkbox is checked
+            if (vatCheckbox.checked || discountCheckbox.checked) {
+                subtotalRow.style.display = 'table-row';
+            } else {
+                subtotalRow.style.display = 'none';
+            }
+        }
+
+        vatCheckbox.addEventListener('change', updateRows);
+        discountCheckbox.addEventListener('change', updateRows);
+    });
+</script>
 @endpush
