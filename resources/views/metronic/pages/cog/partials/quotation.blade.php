@@ -96,14 +96,14 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
                                             <input class="border-0 w-100" name="" type="text"
-                                                value="{{ $quotationproduct->product_name }}" />
+                                                value="{{ $quotationproduct->product_name }}" readonly/>
                                         </td>
                                         <td style="text-align: center">
                                             <input class="text-center border-0 w-100" name="" type="text"
-                                                value="{{ $quotationproduct->qty }}" />
+                                                value="{{ $quotationproduct->qty }}" readonly/>
                                         </td>
                                         <td style="text-align: end">
-                                            <input class="border-0 w-100 text-end" name="" type="text"
+                                            <input class="border-0 w-100 text-end" name="" type="text" readonly
                                                 value="{{ number_format(round((float) optional($quotationproduct)->unit_final_price), 2) }}" />
                                         </td>
                                         <td style="text-align: end">

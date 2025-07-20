@@ -151,7 +151,7 @@
                             <td class="p-1 py-1 vm">
                                 <input type="hidden" name="product_id[]" value="{{ $product->id }}">
                                 <input type="text" name="product_name[]"
-                                    class="bg-white border-0 form-control form-control-sm text-start table-inp rfqcalculationinput"
+                                    class="bg-white border-0 form-control form-control-sm text-start table-inp"
                                     value="{{ $product->product_name }}" placeholder="0" />
                             </td>
                             <td class="p-1 py-1 vm">

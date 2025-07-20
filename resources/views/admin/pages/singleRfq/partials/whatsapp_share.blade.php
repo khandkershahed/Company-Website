@@ -1,5 +1,6 @@
 @php
-    $currentUrl = "https://www.ngenitltd.com/admin/single-rfq/" . $rfq->rfq_code . "/quotation";
+    // $currentUrl = "https://www.ngenitltd.com/admin/single-rfq/" . $rfq->rfq_code . "/quotation";
+    $currentUrl = url('admin/single-rfq/' . $rfq->rfq_code . '/quotation');
     $whatsappLink = 'https://wa.me/?text=' . urlencode('Check out this quotation: ' . $currentUrl);
 @endphp
 
