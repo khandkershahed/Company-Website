@@ -1,7 +1,7 @@
 <table cellpadding="0" cellspacing="0" class="qutatation-form"
     style="border-collapse: collapse;width: 58.3333%;margin: 0 auto;background-color: #f4f4f4;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
     <tr>
-        <td>
+        <td> 
             <section style="margin-top: 0rem;margin-bottom: 0rem;box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
                 <!-- Email Header Start -->
                 <div class="wrapper" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px">
@@ -10,7 +10,7 @@
                         <table id="u_body"
                             style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;vertical-align: top;min-width: 20rem;margin: 0 auto;width: 100%;background-color: #ae0a46;"
                             cellpadding="0" cellspacing="0">
-                            <tbody style="min-width: 20rem"> 
+                            <tbody style="min-width: 20rem">
                                 <tr
                                     style="vertical-align: top;display: flex;justify-content: space-between;align-items: center;padding: 15px;">
                                     <td style="border: 0">

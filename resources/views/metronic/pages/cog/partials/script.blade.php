@@ -1,4 +1,5 @@
 @push('scripts')
+    <script src="{{ asset('backend/assets/input-tags/js/tagsinput.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#quotationMailForm').on('submit', function() {
@@ -141,8 +142,10 @@
                 var packing_percentage = $("input[name='packing_percentage']").val();
                 var custom_percentage = $("input[name='custom_percentage']").val();
                 var tax_vat_percentage = $("input[name='tax_vat_percentage']").val() / 100 || 0;
-                var vat_percentage = $("input[name='vat_percentage']").val();
-                var special_discount_percentage = $("input[name='special_discount_percentage']").val();
+                var vat_percentage = $("input[name='vat_display']").is(':checked') ? $(
+                    "input[name='vat_percentage']").val() : 0;
+                var special_discount_percentage = $("input[name='special_discount_display']").is(':checked') ? $(
+                    "input[name='special_discount_percentage']").val() : 0;
 
                 var sub_total_principal_amount = 0;
                 var sub_total_office_cost = 0;
@@ -334,9 +337,10 @@
             }
 
             // Bind the event handler to the document and delegate to input fields
-            $(document).on('keyup change', '#quotationForm input', function(event) {
+            $(document).on('change', '#quotationForm input', function(event) {
                 calculateTotals();
             });
+
             document.querySelector('#quotationForm').addEventListener('keydown', function(event) {
                 if (event.keyCode === 13) {
                     event.preventDefault();
@@ -425,7 +429,7 @@
                 },
                 error: function(xhr, status, error) {
                     const row = element.closest('tr');
-                        row.remove();
+                    row.remove();
                     console.error('AJAX Error:', error);
                 }
             });
@@ -561,7 +565,9 @@
                             var newElement = document.getElementById(focusedElementId);
                             if (newElement) {
                                 newElement.focus();
-                                newElement.setSelectionRange(cursorPosition, cursorPosition);
+                                // border color set for new element
+                                newElement.style.border = '1px solid #0b6476';
+                                // newElement.setSelectionRange(cursorPosition, cursorPosition);
                             }
                         }, 0);
                     } else {
@@ -576,46 +582,30 @@
     </script>
 
 
-{{-- For add and remove the checkbox on check  --}}
-{{-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const vatCheckbox = document.getElementById('flexCheckVAT');
-        const discountCheckbox = document.getElementById('flexCheckDiscount');
-        const vatRow = document.getElementById('vatRow');
-        const discountRow = document.getElementById('discountRow');
 
-        vatCheckbox.addEventListener('change', function () {
-            vatRow.style.display = this.checked ? 'table-row' : 'none';
-        });
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const vatCheckbox = document.getElementById('flexCheckVAT');
+            const discountCheckbox = document.getElementById('flexCheckDiscount');
 
-        discountCheckbox.addEventListener('change', function () {
-            discountRow.style.display = this.checked ? 'table-row' : 'none';
-        });
-    });
-</script> --}}
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const vatCheckbox = document.getElementById('flexCheckVAT');
-        const discountCheckbox = document.getElementById('flexCheckDiscount');
+            const vatRow = document.getElementById('vatRow');
+            const discountRow = document.getElementById('discountRow');
+            const subtotalRow = document.getElementById('subtotalRow');
 
-        const vatRow = document.getElementById('vatRow');
-        const discountRow = document.getElementById('discountRow');
-        const subtotalRow = document.getElementById('subtotalRow');
+            function updateRows() {
+                vatRow.style.display = vatCheckbox.checked ? 'table-row' : 'none';
+                discountRow.style.display = discountCheckbox.checked ? 'table-row' : 'none';
 
-        function updateRows() {
-            vatRow.style.display = vatCheckbox.checked ? 'table-row' : 'none';
-            discountRow.style.display = discountCheckbox.checked ? 'table-row' : 'none';
-
-            // Show subtotal if either checkbox is checked
-            if (vatCheckbox.checked || discountCheckbox.checked) {
-                subtotalRow.style.display = 'table-row';
-            } else {
-                subtotalRow.style.display = 'none';
+                // Show subtotal if either checkbox is checked
+                if (vatCheckbox.checked || discountCheckbox.checked) {
+                    subtotalRow.style.display = 'table-row';
+                } else {
+                    subtotalRow.style.display = 'none';
+                }
             }
-        }
 
-        vatCheckbox.addEventListener('change', updateRows);
-        discountCheckbox.addEventListener('change', updateRows);
-    });
-</script>
+            vatCheckbox.addEventListener('change', updateRows);
+            discountCheckbox.addEventListener('change', updateRows);
+        });
+    </script>
 @endpush

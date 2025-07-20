@@ -136,90 +136,91 @@
             </thead>
 
             <tbody class="table_bottom_area">
-                 @if ($rfq->quotationProducts->count() > 0)
-                @foreach ($rfq->quotationProducts as $product)
-                    <tr class="text-center border-b thd">
-                        <td class="vm">
-                            <a href="javascript:void(0)" onclick="deleteRfqCalculationRow(this, {{ $product->id }})">
-                                <i class="fa-regular fa-trash-can text-danger"></i>
-                            </a>
-                        </td>
-                        <td class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
-                            <span>{{ $loop->iteration }}</span>
-                        </td>
-                        <td class="p-1 py-1 vm">
-                            <input type="hidden" name="product_id[]" value="{{ $product->id }}">
-                            <input type="text" name="product_name[]"
-                                class="bg-white border-0 form-control form-control-sm text-start table-inp rfqcalculationinput"
-                                value="{{ $product->product_name }}" placeholder="0" />
-                        </td>
-                        <td class="p-1 py-1 vm">
-                            <input type="text" name="qty[]"
-                                class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
-                                value="{{ $product->qty }}" placeholder="0" />
-                        </td>
-                        <td class="p-1 py-1 vm">
-                            <input type="text" name="principal_cost[]"
-                                class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput principal_cost"
-                                value="{{ $product->principal_cost ?? 0 }}" placeholder="0" />
-                        </td>
-                        <td class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
-                            <input type="text" name="principal_unit_total_amount[]"
-                                class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput principal_unit_total_amount"
-                                value="{{ $product->principal_unit_total_amount ?? 0 }}" placeholder="0" />
-                        </td>
-                        <td class="p-1 py-1 vm">
-                            <input type="text" name="unit_office_cost[]"
-                                class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
-                                value="{{ $product->unit_office_cost ?? 0 }}" placeholder="0" />
-                        </td>
-                        <td class="p-1 py-1 vm">
-                            <input type="text" name="unit_profit[]"
-                                class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
-                                value="{{ $product->unit_profit ?? 0 }}" placeholder="0" />
-                        </td>
-                        <td class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
-                            <input type="text" name="unit_others_cost[]"
-                                class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
-                                value="{{ $product->unit_others_cost ?? 0 }}" placeholder="0" />
-                        </td>
-                        <td class="p-1 py-1 vm">
-                            <input type="text" name="unit_remittance[]"
-                                class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
-                                value="{{ $product->unit_remittance ?? 0 }}"/>
-                        </td>
-                        <td class="p-1 py-1 vm">
-                            <input type="text" name="unit_packing[]"
-                                class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
-                                value="{{ $product->unit_packing ?? 0 }}" placeholder="0" />
-                        </td>
-                        <td class="p-1 py-1 vm">
-                            <input type="text" name="unit_customs[]"
-                                class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
-                                value="{{ $product->unit_customs ?? 0 }}" placeholder="0" />
-                        </td>
-                        <td class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
-                            <input type="text" name="unit_tax_vat[]"
-                                class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
-                                value="{{ $product->unit_tax_vat ?? 0 }}" placeholder="0" />
-                        </td>
-                        <td class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
-                            <input type="text" name="unit_subtotal[]"
-                                class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
-                                value="{{ $product->unit_subtotal ?? 0 }}" placeholder="0" />
-                        </td>
-                        <td class="p-1 py-1 vm">
-                            <input type="text" name="unit_final_price[]"
-                                class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
-                                value="{{ $product->unit_final_price ?? 0 }}" placeholder="0" />
-                        </td>
-                        <td class="p-1 py-1 vm">
-                            <input type="text" name="unit_final_total_price[]"
-                                class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
-                                value="{{ $product->unit_final_total_price ?? 0 }}" placeholder="0" />
-                        </td>
-                    </tr>
-                @endforeach
+                @if ($rfq->quotationProducts->count() > 0)
+                    @foreach ($rfq->quotationProducts as $product)
+                        <tr class="text-center border-b thd">
+                            <td class="vm">
+                                <a href="javascript:void(0)"
+                                    onclick="deleteRfqCalculationRow(this, {{ $product->id }})">
+                                    <i class="fa-regular fa-trash-can text-danger"></i>
+                                </a>
+                            </td>
+                            <td class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
+                                <span>{{ $loop->iteration }}</span>
+                            </td>
+                            <td class="p-1 py-1 vm">
+                                <input type="hidden" name="product_id[]" value="{{ $product->id }}">
+                                <input type="text" name="product_name[]"
+                                    class="bg-white border-0 form-control form-control-sm text-start table-inp rfqcalculationinput"
+                                    value="{{ $product->product_name }}" placeholder="0" />
+                            </td>
+                            <td class="p-1 py-1 vm">
+                                <input type="text" name="qty[]"
+                                    class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
+                                    value="{{ $product->qty }}" placeholder="0" />
+                            </td>
+                            <td class="p-1 py-1 vm">
+                                <input type="text" name="principal_cost[]"
+                                    class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput principal_cost"
+                                    value="{{ $product->principal_cost ?? 0 }}" placeholder="0" />
+                            </td>
+                            <td class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
+                                <input type="text" name="principal_unit_total_amount[]"
+                                    class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput principal_unit_total_amount"
+                                    value="{{ $product->principal_unit_total_amount ?? 0 }}" placeholder="0" />
+                            </td>
+                            <td class="p-1 py-1 vm">
+                                <input type="text" name="unit_office_cost[]"
+                                    class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
+                                    value="{{ $product->unit_office_cost ?? 0 }}" placeholder="0" />
+                            </td>
+                            <td class="p-1 py-1 vm">
+                                <input type="text" name="unit_profit[]"
+                                    class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
+                                    value="{{ $product->unit_profit ?? 0 }}" placeholder="0" />
+                            </td>
+                            <td class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
+                                <input type="text" name="unit_others_cost[]"
+                                    class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
+                                    value="{{ $product->unit_others_cost ?? 0 }}" placeholder="0" />
+                            </td>
+                            <td class="p-1 py-1 vm">
+                                <input type="text" name="unit_remittance[]"
+                                    class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
+                                    value="{{ $product->unit_remittance ?? 0 }}" />
+                            </td>
+                            <td class="p-1 py-1 vm">
+                                <input type="text" name="unit_packing[]"
+                                    class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
+                                    value="{{ $product->unit_packing ?? 0 }}" placeholder="0" />
+                            </td>
+                            <td class="p-1 py-1 vm">
+                                <input type="text" name="unit_customs[]"
+                                    class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
+                                    value="{{ $product->unit_customs ?? 0 }}" placeholder="0" />
+                            </td>
+                            <td class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
+                                <input type="text" name="unit_tax_vat[]"
+                                    class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
+                                    value="{{ $product->unit_tax_vat ?? 0 }}" placeholder="0" />
+                            </td>
+                            <td class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
+                                <input type="text" name="unit_subtotal[]"
+                                    class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
+                                    value="{{ $product->unit_subtotal ?? 0 }}" placeholder="0" />
+                            </td>
+                            <td class="p-1 py-1 vm">
+                                <input type="text" name="unit_final_price[]"
+                                    class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
+                                    value="{{ $product->unit_final_price ?? 0 }}" placeholder="0" />
+                            </td>
+                            <td class="p-1 py-1 vm">
+                                <input type="text" name="unit_final_total_price[]"
+                                    class="text-center bg-white border-0 form-control form-control-sm table-inp rfqcalculationinput"
+                                    value="{{ $product->unit_final_total_price ?? 0 }}" placeholder="0" />
+                            </td>
+                        </tr>
+                    @endforeach
                 @else
                     <tr> No Data Available</tr>
                 @endif
@@ -228,60 +229,61 @@
             <tfoot>
 
                 {{-- Nothing break or edit just adding  those three tr in footer start --}}
-                <tr id="subtotalRow" style="display: none; background-color: #ebebeb;">
+                <tr class="text-black vat_display special_discount w-100"
+                    style="background-color:#ebebeb;display:{{ optional($quotation)->special_discount_display == '1' || optional($quotation)->vat_display == '1' ? 'table-row' : 'none' }}">
                     <th colspan="2" class="p-1 py-1 text-center vm" style="border-right: 1px solid #0b64763d;">
                         <!-- Empty Table Col -->
                     </th>
                     <th class="p-1 px-4 py-1 vm text-start" colspan="3">
-                        Subtotal:
+                        Sub Total:
                     </th>
                     <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
-                        <input type="text" name="total_principal_amount" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="sub_total_principal_amount" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->sub_total_principal_amount }}" />
                     </th>
                     <th class="p-1 py-1 vm">
-                        <input type="text" name="total_office_cost" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="sub_total_office_cost" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->sub_total_office_cost }}" />
                     </th>
                     <th class="p-1 py-1 vm">
-                        <input type="text" name="total_profit" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="sub_total_profit" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->sub_total_profit }}" />
                     </th>
                     <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
-                        <input type="text" name="total_others_cost" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="sub_total_others_cost" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->sub_total_others_cost }}" />
                     </th>
                     <th class="p-1 py-1 vm">
-                        <input type="text" name="total_remittance" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="sub_total_remittance" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->sub_total_remittance }}" />
                     </th>
                     <th class="p-1 py-1 vm">
-                        <input type="text" name="total_packing" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="sub_total_packing" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->sub_total_packing }}" />
                     </th>
                     <th class="p-1 py-1 vm">
-                        <input type="text" name="total_customs" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="sub_total_customs" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->sub_total_customs }}" />
                     </th>
                     <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
-                        <input type="text" name="total_tax" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="sub_total_tax" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->sub_total_tax }}" />
                     </th>
                     <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
-                        <input type="text" name="total_subtotal" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="sub_total_subtotal" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->sub_total_subtotal }}" />
                     </th>
                     <th class="p-1 py-1 text-center vm">
                         <span class="text-center">-</span>
                     </th>
                     <th class="p-1 py-1 vm" colspan="2">
-                        <input type="text" name="total_final_total_price" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="sub_total_final_total_price" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->sub_total_final_total_price }}" />
                     </th>
                 </tr>
                 <!-- Special Discount Row -->
-                <tr id="discountRow"
-                    style="display: none; background-color: #ebebeb; border-bottom: 1px solid #0b64763d; border-top: 1px solid #0b64763d">
+                <tr class="special_discount"
+                    style="display:{{ optional($quotation)->special_discount_display == '1' ? 'table-row' : 'none' }}; background-color: #ebebeb; border-bottom: 1px solid #0b64763d; border-top: 1px solid #0b64763d">
                     <th colspan="2" class="p-1 py-1 text-center vm" style="border-right: 1px solid #0b64763d;">
                         <!-- Empty Table Col -->
                     </th>
@@ -292,58 +294,58 @@
                         <div class="d-flex align-items-center justify-content-center">
                             <input
                                 class="p-1 text-center bg-transparent border-0 form-control form-control-sm w-50 rfqcalculationinput"
-                                name="special_discount_percentage" type="text" step="0.01" value="10"
+                                name="special_discount_percentage" type="text" step="0.01" value="{{ optional($quotation)->special_discount_display == '1' ? optional($singleproduct)->special_discount_percentage : 0 }}"
                                 placeholder="0" />
                             <p class="m-0 ms-1">%</p>
                         </div>
                     </th>
                     <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
-                        <input type="text" name="total_principal_amount" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="special_discount_principal_amount" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->special_discount_principal_amount }}" />
                     </th>
                     <th class="p-1 py-1 vm">
-                        <input type="text" name="total_office_cost" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="special_discount_office_cost" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->special_discount_office_cost }}" />
                     </th>
                     <th class="p-1 py-1 vm">
-                        <input type="text" name="total_profit" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="special_discount_profit" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->special_discount_profit }}" />
                     </th>
                     <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
-                        <input type="text" name="total_others_cost" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="special_discount_others_cost" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->special_discount_others_cost }}" />
                     </th>
                     <th class="p-1 py-1 vm">
-                        <input type="text" name="total_remittance" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="special_discount_remittance" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->special_discount_remittance }}" />
                     </th>
                     <th class="p-1 py-1 vm">
-                        <input type="text" name="total_packing" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="special_discount_packing" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->special_discount_packing }}" />
                     </th>
                     <th class="p-1 py-1 vm">
-                        <input type="text" name="total_customs" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="special_discount_customs" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->special_discount_customs }}" />
                     </th>
                     <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
-                        <input type="text" name="total_tax" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="special_discount_tax" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->special_discount_tax }}" />
                     </th>
                     <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
-                        <input type="text" name="total_subtotal" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="special_discount_subtotal" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->special_discount_subtotal }}" />
                     </th>
                     <th class="p-1 py-1 text-center vm">
                         <span class="text-center">-</span>
                     </th>
                     <th class="p-1 py-1 vm" colspan="2">
-                        <input type="text" name="total_final_total_price" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="special_discount_final_total_price" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->special_discount_final_total_price }}" />
                     </th>
                 </tr>
                 <!-- VAT Row -->
-                <tr id="vatRow"
-                    style="display: none; background-color: #ebebeb; border-bottom: 1px solid #0b64763d; border-top: 1px solid #0b64763d">
+                <tr class="vat_display"
+                    style="display:{{ optional($quotation)->vat_display == '1' ? 'table-row' : 'none' }}; background-color: #ebebeb; border-bottom: 1px solid #0b64763d; border-top: 1px solid #0b64763d">
                     <th colspan="2" class="p-1 py-1 text-center vm" style="border-right: 1px solid #0b64763d;">
                         <!-- Empty Table Col -->
                     </th>
@@ -354,57 +356,53 @@
                         <div class="d-flex align-items-center justify-content-center">
                             <input
                                 class="p-1 text-center bg-transparent border-0 form-control form-control-sm w-50 rfqcalculationinput"
-                                name="vat_percentage" type="text" step="0.01" value="10"
+                                name="vat_percentage" type="text" step="0.01" value="{{ optional($quotation)->vat_display == '1' ? optional($singleproduct)->vat_percentage : 0 }}"
                                 placeholder="0" />
                             <p class="m-0 ms-1">%</p>
                         </div>
                     </th>
-                    <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
-                        <input type="text" name="total_principal_amount" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="10" />
-                    </th>
                     <th class="p-1 py-1 vm">
-                        <input type="text" name="total_principal_amount" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
-                    </th>
-                    <th class="p-1 py-1 vm">
-                        <input type="text" name="total_office_cost" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
-                    </th>
-                    <th class="p-1 py-1 vm">
-                        <input type="text" name="total_profit" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="vat_principal_amount" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->vat_principal_amount }}" />
                     </th>
                     <th class="p-1 py-1 vm" style="border-left: 1px solid #0b64763d;">
-                        <input type="text" name="total_others_cost" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="vat_office_cost" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->vat_office_cost }}" />
                     </th>
                     <th class="p-1 py-1 vm">
-                        <input type="text" name="total_remittance" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="vat_profit" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->vat_profit }}" />
                     </th>
                     <th class="p-1 py-1 vm">
-                        <input type="text" name="total_packing" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
-                    </th>
-                    <th class="p-1 py-1 vm">
-                        <input type="text" name="total_customs" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="vat_others_cost" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->vat_others_cost }}" />
                     </th>
                     <th class="p-1 py-1 vm" style="border-left: 1px solid #0b64763d;">
-                        <input type="text" name="total_tax" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="vat_remittance" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->vat_remittance }}" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="vat_packing" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->vat_packing }}" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="vat_customs" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->vat_customs }}" />
+                    </th>
+                    <th class="p-1 py-1 vm">
+                        <input type="text" name="vat_tax" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->vat_tax }}" />
                     </th>
                     <th class="p-1 py-1 vm" style="border-left: 1px solid #0b64763d;">
-                        <input type="text" name="total_subtotal" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="vat_subtotal" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->vat_subtotal }}" />
                     </th>
-                    <th class="p-1 py-1 text-center vm">
+                    <th class="p-1 py-1 text-center vm" style="border-left: 1px solid #0b64763d;">
                         <span class="text-center">-</span>
                     </th>
                     <th class="p-1 py-1 vm" colspan="2">
-                        <input type="text" name="total_final_total_price" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="0" />
+                        <input type="text" name="vat_final_total_price" style="background-color: #ebebeb"
+                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->vat_final_total_price }}" />
                     </th>
                 </tr>
                 {{-- Nothing break or edit just adding  those three tr in footer End --}}
@@ -419,46 +417,56 @@
                     </th>
                     <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
                         <input type="text" name="total_principal_amount" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->total_principal_amount }}" />
+                            class="text-center form-control form-control-sm rfqcalculationinput"
+                            value="{{ optional($singleproduct)->total_principal_amount }}" />
                     </th>
                     <th class="p-1 py-1 vm">
                         <input type="text" name="total_office_cost" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->total_office_cost }}" />
+                            class="text-center form-control form-control-sm rfqcalculationinput"
+                            value="{{ optional($singleproduct)->total_office_cost }}" />
                     </th>
                     <th class="p-1 py-1 vm">
                         <input type="text" name="total_profit" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->total_profit }}" />
+                            class="text-center form-control form-control-sm rfqcalculationinput"
+                            value="{{ optional($singleproduct)->total_profit }}" />
                     </th>
                     <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
                         <input type="text" name="total_others_cost" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->total_others_cost }}" />
+                            class="text-center form-control form-control-sm rfqcalculationinput"
+                            value="{{ optional($singleproduct)->total_others_cost }}" />
                     </th>
                     <th class="p-1 py-1 vm">
                         <input type="text" name="total_remittance" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->total_remittance }}" />
+                            class="text-center form-control form-control-sm rfqcalculationinput"
+                            value="{{ optional($singleproduct)->total_remittance }}" />
                     </th>
                     <th class="p-1 py-1 vm">
                         <input type="text" name="total_packing" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->total_packing }}" />
+                            class="text-center form-control form-control-sm rfqcalculationinput"
+                            value="{{ optional($singleproduct)->total_packing }}" />
                     </th>
                     <th class="p-1 py-1 vm">
                         <input type="text" name="total_customs" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->total_customs }}" />
+                            class="text-center form-control form-control-sm rfqcalculationinput"
+                            value="{{ optional($singleproduct)->total_customs }}" />
                     </th>
                     <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
                         <input type="text" name="total_tax" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->total_tax }}" />
+                            class="text-center form-control form-control-sm rfqcalculationinput"
+                            value="{{ optional($singleproduct)->total_tax }}" />
                     </th>
                     <th class="p-1 py-1 vm" style="border-right: 1px solid #0b64763d;">
                         <input type="text" name="total_subtotal" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->total_subtotal }}" />
+                            class="text-center form-control form-control-sm rfqcalculationinput"
+                            value="{{ optional($singleproduct)->total_subtotal }}" />
                     </th>
                     <th class="p-1 py-1 text-center vm">
                         <span class="text-center">-</span>
                     </th>
                     <th class="p-1 py-1 vm" colspan="2">
                         <input type="text" name="total_final_total_price" style="background-color: #ebebeb"
-                            class="text-center form-control form-control-sm rfqcalculationinput" value="{{ optional($singleproduct)->total_final_total_price }}" />
+                            class="text-center form-control form-control-sm rfqcalculationinput"
+                            value="{{ optional($singleproduct)->total_final_total_price }}" />
                     </th>
                 </tr>
             </tfoot>

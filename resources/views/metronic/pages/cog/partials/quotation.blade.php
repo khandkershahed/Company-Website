@@ -1,8 +1,8 @@
-<div class="mt-0">
+<div class="mt-0" class="qutatation-form">
     <div class="row align-items-center">
         <div class="col-lg-12">
             <div class="border d-flex justify-content-center">
-                <div class="pdf-container-qt">
+                <div class="pdf-container-qt mt-10">
                     <!-- Header-qt -->
                     <div class="header-qt">
                         <div class="header-qt-content">
@@ -10,9 +10,11 @@
                                 <img src="{{ asset('frontend/images/logo_black.png') }}" alt="Logo"
                                     style="height: 40px" />
                             </div>
-                            <div>
+                            <div class="text-center">
                                 <h1 class="text-white price_title">
-                                    Price Quotation
+                                    <input type="text" name="quotation_title"
+                                        class="text-center bg-transparent border-0 w-200px text-white"
+                                        value="{{ $quotation->quotation_title ?? 'Price Quotation' }}">
                                 </h1>
                             </div>
                         </div>
@@ -60,68 +62,99 @@
                                     <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
                                         {{-- C<input class="border-0 w-100" name="customer_type" type="text"
                                             value="Customer Type: Anonymous" /> --}}
-                                            <span>Customer Type: {{ $rfq->customer_type ?? 'Anonymous' }}</span>
+                                        <span>Customer Type: {{ $rfq->customer_type ?? 'Anonymous' }}</span>
                                     </th>
                                 </tr>
                             </thead>
                         </table>
                         <!-- Additional Content-qt Table -->
-                        <table class="content-qt-table table-two" id="quotationTable" style="margin-top: 40px;border: 1px solid #eee;">
+                        <table class="content-qt-table table-two" id="quotationTable"
+                            style="margin-top: 40px;border: 1px solid #eee;">
                             <thead style="background-color: #f0f0f0;">
                                 <tr>
-                                    <th class="table-two-th-qt">
+                                    <th width="4%" class="table-two-th-qt">
                                         Sl
                                     </th>
-                                    <th class="table-two-th-qt">
+                                    <th width="52%" class="table-two-th-qt">
                                         PRODUCT NAME
                                     </th>
-                                    <th class="table-two-th-qt" style="text-align: center">
+                                    <th width="13%" class="table-two-th-qt" style="text-align: center">
                                         QTY
                                     </th>
-                                    <th class="table-two-th-qt" style="text-align: end">
+                                    <th width="13%" class="table-two-th-qt" style="text-align: end">
                                         UNIT PRICE
                                     </th>
-                                    <th class="table-two-th-qt" style="text-align: end">
+                                    <th width="20%" class="table-two-th-qt" style="text-align: end">
                                         (TK) TOTAL
                                     </th>
                                 </tr>
                             </thead>
+
                             <tbody class="quotationTable_area">
                                 @foreach ($rfq->quotationProducts as $quotationproduct)
                                     <tr class="tdsp text-center">
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
-                                            <input class="border-0 w-100" name=""
-                                                type="text" value="{{ $quotationproduct->product_name }}" />
+                                            <input class="border-0 w-100" name="" type="text"
+                                                value="{{ $quotationproduct->product_name }}" />
                                         </td>
                                         <td style="text-align: center">
-                                            <input class="text-center border-0 w-100" name=""
-                                                type="text" value="{{ $quotationproduct->qty }}" />
+                                            <input class="text-center border-0 w-100" name="" type="text"
+                                                value="{{ $quotationproduct->qty }}" />
                                         </td>
                                         <td style="text-align: end">
-                                            <input class="border-0 w-100 text-end" name=""
-                                                type="text" value="{{ number_format(round((float) optional($quotationproduct)->unit_final_price), 2) }}" />
+                                            <input class="border-0 w-100 text-end" name="" type="text"
+                                                value="{{ number_format(round((float) optional($quotationproduct)->unit_final_price), 2) }}" />
                                         </td>
                                         <td style="text-align: end">
                                             {{ number_format(round((float) optional($quotationproduct)->unit_final_total_price), 2) }}
                                         </td>
                                     </tr>
                                 @endforeach
+
                                 <tr>
                                     <td colspan="4" style="text-align: end;font-weight: 400;font-size: 12px;">
-                                        SPECIAL DISCOUNT
+                                        Sub Total
                                     </td>
                                     <td style="text-align: end;font-weight: 400;font-size: 12px;">
-                                        Tk. 0.00
+                                        <span class="currency"></span>
+                                        {{ number_format(round((float) optional($quotation)->sub_total_final_total_price), 2) }}
                                     </td>
                                 </tr>
+                                @if (optional($quotation)->special_discount_display == '1')
+                                    <tr>
+                                        <td colspan="4" style="text-align: end;font-weight: 400;font-size: 12px;">
+                                            SPECIAL DISCOUNT (<span
+                                                class="special_discount_value">{{ optional($singleproduct)->special_discount_percentage }}</span>%)
+                                        </td>
+                                        <td style="text-align: end;font-weight: 400;font-size: 12px;">
+                                            <span class="currency"></span>
+                                            {{ round((float) optional($singleproduct)->special_discount_final_total_price) }}
+                                        </td>
+                                    </tr>
+                                @endif
+                                @if (optional($quotation)->vat_display == '1')
+                                    <tr>
+                                        <td colspan="4" style="text-align: end;font-weight: 400;font-size: 12px;">
+                                            VAT/GST (<span
+                                                class="vat_tax_value">{{ optional($singleproduct)->vat_percentage }}</span>
+                                            %)
+                                        </td>
+                                        <td style="text-align: end;font-weight: 400;font-size: 12px;">
+                                            <span class="currency"></span>
+                                            {{ round((float) optional($singleproduct)->vat_final_total_price) }}
+                                        </td>
+                                    </tr>
+                                @endif
+                                {{-- @dd($quotation) --}}
                                 {{-- Extra Row End --}}
                                 <tr style="background-color: #eee">
                                     <td colspan="4" style="text-align: end;font-weight: 500;">
                                         GRAND TOTAL
                                     </td>
                                     <td style="text-align: end;font-weight: 500;">
-                                        Tk. 0.00
+                                        <span class="currency"></span>
+                                        {{ number_format(round((float) optional($singleproduct)->total_final_total_price), 2) }}
                                     </td>
                                 </tr>
                             </tbody>
@@ -135,8 +168,11 @@
                                         <tr>
                                             <th
                                                 style="border: 0;padding: 0;text-align: center;font-weight: 500;padding-bottom: 10px;">
-                                                <input class="text-center border-0 w-100" name="gst"
-                                                    type="text" value="GST - 8% Not included. It may apply." />
+                                                <div class="vat_display">
+                                                    <input class="text-center border-0 w-100" name="vat_text"
+                                                        type="text"
+                                                        value="{{ !empty($quotation->vat_text) ? $quotation->vat_text : 'GST not included. It may apply.' }}" />
+                                                </div>
                                             </th>
                                         </tr>
                                         <tr>
@@ -253,24 +289,25 @@
                                 <thead>
                                     <tr>
                                         <th style="border: 0;padding: 0;font-weight: 600;padding-top: 5px;">
-                                            <input class="border-0 w-100 fw-bold" name="sales_manager" type="text"
-                                                value="Adan Mahmud | Sr. Manager" />
+                                            <input class="border-0 w-100 fw-bold" name="sender_name" type="text"
+                                                value="{{ $quotation->sender_name ?? 'Adan Mahmud | Sr. Manager' }}" />
                                         </th>
                                         <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
                                         </th>
                                     </tr>
                                     <tr>
                                         <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
-                                            <input class="border-0 w-100 fw-bold" name="sales_manager_email"
-                                                type="text" value="sales@ngenitltd.com, (Business)" />
+                                            <input class="border-0 w-100 fw-bold" name="ngen_email" type="text"
+                                                value="{{ $quotation->ngen_email ?? 'sales@ngenitltd.com' }}" />
                                         </th>
                                         <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
                                         </th>
                                     </tr>
                                     <tr>
                                         <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
-                                            <input class="border-0 w-100 fw-bold" name="sales_manager_email"
-                                                type="text" value="+10917-720-3065" />
+                                            <input class="border-0 w-100 fw-bold" name="ngen_number_two"
+                                                type="text"
+                                                value="{{ $quotation->ngen_number_two ?? ' +1 917-720-3055' }}" />
                                         </th>
                                         <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
                                             <!-- Empty Table Head -->
@@ -285,11 +322,13 @@
                                             <div style="text-align: center;">
                                                 <h3 style="margin-bottom: 0;padding-bottom: 0;">
                                                     <input class="border-0 w-100 fw-bold" style="color: #ae0a46;"
-                                                        name="company_name" type="text" value="NGEN PTE. LTd." />
+                                                        name="ngen_company_name" type="text"
+                                                        value="{{ $quotation->ngen_company_name ?? 'NGEN PTE. LTd.' }}" />
                                                 </h3>
                                                 <p style="margin: 0;padding-bottom: 0;">
-                                                    <input class="border-0 w-100 fw-bold" name="company_reg_no"
-                                                        type="text" value="Reg-No: 20434861K" />
+                                                    <input class="border-0 w-100 fw-bold"
+                                                        name="ngen_company_registration_number" type="text"
+                                                        value="{{ $quotation->ngen_company_registration_number ?? '20437861K' }}" />
                                                 </p>
                                             </div>
                                         </th>
@@ -309,21 +348,22 @@
                             </a>
                         </p>
                     </div>
-                    <div class="mt-10 d-flex justify-content-center">
+                    <div class="mt-10 mb-10 d-flex justify-content-center">
                         <div>
                             <div class="form-check d-flex justify-content-center">
-                                <input class="form-check-input" type="checkbox" value="" id="checkDefault" />
-                                <label class="form-check-label ps-3" for="checkDefault">
+                                <input class="form-check-input" type="checkbox" name="attachment" value="1"
+                                    id="attachment" @checked(optional($quotation)->attachment == '1') />
+                                <label class="form-check-label ps-3" for="attachment">
                                     Send Quotation With Attachment
                                 </label>
                             </div>
                             <div class="mt-5">
-                                <a href="" class="btn btn-sm fw-bold btn-primary"><i
-                                        class="fas fa-file-lines"></i>
-                                    Send Quotation</a>
-                                <a href="" class="btn btn-sm fw-bold btn-primary"><i
-                                        class="fab fa-whatsapp"></i>
-                                    Share On What's App</a>
+                                <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#quotationMail"
+                                    value="submit" name="action" class="btn btn-sm fw-bold btn-primary"><i
+                                        class="fa-regular fa-circle-check pe-2"></i>Send
+                                    Quotation</a>
+
+                                @include('admin.pages.singleRfq.partials.whatsapp_share')
                             </div>
                         </div>
                     </div>
