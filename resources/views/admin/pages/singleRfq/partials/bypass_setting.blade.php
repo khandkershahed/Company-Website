@@ -96,7 +96,7 @@
                                                     <i class="fa-solid fa-user-tie dash-icons me-3"></i>
                                                 </a>
                                             </div>
-                                        @endif
+                                        @endif 
                                     </div>
 
                                 </td>

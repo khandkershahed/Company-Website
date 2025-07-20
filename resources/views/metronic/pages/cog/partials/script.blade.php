@@ -366,25 +366,25 @@
             newRow2.classList.add('tdsp');
 
             newRow.innerHTML = `
-                    <td>
-                        <a class="p-0 bg-transparent border-0 text-danger" onclick="deleteRfqCalculationRow(this)" title="Delete Row"><i class="fa-regular fa-trash-can"></i></a>
+                    <td class="text-center vm">
+                        <a class="bg-transparent border-0" onclick="deleteRfqCalculationRow(this)" title="Delete Row"><i class="fa-regular fa-trash-can text-danger"></i></a>
                     </td>
-                    <td></td>
-                    <td><input type="hidden" name="product_id[]" value="">
-                        <input type="text" name="product_name[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" placeholder="Product Name" value=""></td>
-                    <td><input type="text" name="qty[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="principal_cost[]" class="bg-transparent form-control form-control-sm rfqcalculationinput principal_cost" value="0"></td>
-                    <td><input type="text" name="principal_unit_total_amount[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_office_cost[]" class="bg-transparent form-control form-control-sm rfqcalculationinput principal_discount_amount" value="0"></td>
-                    <td><input type="text" name="unit_profit[]" class="bg-transparent form-control form-control-sm rfqcalculationinput principal_unit_total_amount_taka" value="0"></td>
-                    <td><input type="text" name="unit_others_cost[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_remittance[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_packing[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_customs[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_tax_vat[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_subtotal[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td class="text-center"><input type="text" name="unit_final_price[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td class="text-center"><input type="text" name="unit_final_total_price[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
+                    <td class="text-center p-1 py-1 vm" style="border-right: 1px solid #0b64763d;"></td>
+                    <td class="p-1 py-1 vm"><input type="hidden" name="product_id[]" value="">
+                        <input type="text" name="product_name[]" class="bg-white border-0 form-control form-control-sm text-start table-inp rfqcalculationinput" placeholder="Product Name" value=""></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="qty[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="principal_cost[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput principal_cost" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="principal_unit_total_amount[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_office_cost[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput principal_discount_amount" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_profit[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput principal_unit_total_amount_taka" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_others_cost[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_remittance[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_packing[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_customs[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_tax_vat[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_subtotal[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="text-center p-1 py-1 vm"><input type="text" name="unit_final_price[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="text-center p-1 py-1 vm"><input type="text" name="unit_final_total_price[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
                     `;
 
             newRow2.innerHTML = `
@@ -395,10 +395,14 @@
                     <td class="text-center"><input type="text" name="quotation_unit_final_total_price[]" class="text-center bg-transparent form-control form-control-sm" value="0"></td>
                     `;
 
-            tableBody.appendChild(newRow);
-            tableBody2.appendChild(newRow2);
+            if (tableBody && tableBody2) {
+                tableBody.appendChild(newRow);
+                tableBody2.appendChild(newRow2);
+                updateSerialNumbers();
+            } else {
+                console.error("One or both table bodies not found in DOM.");
+            }
 
-            updateSerialNumbers();
         }
 
         function deleteRfqCalculationRow(element, productId) {
@@ -413,10 +417,15 @@
                         row.remove();
                         updateSerialNumbers();
                     } else {
+                        const row = element.closest('tr');
+                        row.remove();
+                        updateSerialNumbers();
                         console.error('Error: ' + response.message);
                     }
                 },
                 error: function(xhr, status, error) {
+                    const row = element.closest('tr');
+                        row.remove();
                     console.error('AJAX Error:', error);
                 }
             });

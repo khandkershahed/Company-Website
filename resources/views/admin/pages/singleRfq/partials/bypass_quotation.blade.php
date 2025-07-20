@@ -10,7 +10,7 @@
                         <table id="u_body"
                             style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;vertical-align: top;min-width: 20rem;margin: 0 auto;width: 100%;background-color: #ae0a46;"
                             cellpadding="0" cellspacing="0">
-                            <tbody style="min-width: 20rem">
+                            <tbody style="min-width: 20rem"> 
                                 <tr
                                     style="vertical-align: top;display: flex;justify-content: space-between;align-items: center;padding: 15px;">
                                     <td style="border: 0">
@@ -146,7 +146,7 @@
                             <tbody class="quotationTable_area text-center">
 
                                 @if ($rfq_details->quotationProducts->count() > 0)
-                                    
+
                                         <tr class="tdsp text-center">
                                             <td>{{ $loop->iteration }}</td>
                                             <td>

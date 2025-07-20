@@ -66,7 +66,7 @@
                             </thead>
                         </table>
                         <!-- Additional Content-qt Table -->
-                        <table class="content-qt-table table-two" style="margin-top: 40px;border: 1px solid #eee;">
+                        <table class="content-qt-table table-two" id="quotationTable" style="margin-top: 40px;border: 1px solid #eee;">
                             <thead style="background-color: #f0f0f0;">
                                 <tr>
                                     <th class="table-two-th-qt">

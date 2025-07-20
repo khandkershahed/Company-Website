@@ -242,20 +242,23 @@ class RFQManageController extends Controller
             $product->save();
         }
 
-        $data['rfq_details'] = Rfq::with('quotationProducts')->where('rfq_code', $rfq_code)->first();
-        $data['countires'] = Country::all();
-        $data['rfq_country'] = Country::where('country_name', 'LIKE', '%' . $data['rfq_details']->country . '%')->first();
+        $data['rfq'] = Rfq::with('quotationProducts')->where('rfq_code', $rfq_code)->first();
+        $data['countries'] = Country::all();
+        $data['rfq_country'] = Country::where('country_name', 'LIKE', '%' . $data['rfq']->country . '%')->first();
         $data['quotation']   = DB::table('rfq_quotations')->where('rfq_id', $rfq_id)->first();
         $data['singleproduct']   = QuotationProduct::where('rfq_id', $rfq_id)->first();
         $data['rfq_terms']   = QuotationTerm::where('rfq_id', $rfq_id)->get();
         Toastr::success('Quotation Saved.');
         return response()->json([
-            'mysetting' => view('admin.pages.singleRfq.partials.bypass_setting', $data)->render(),
-            'quotation' => view('admin.pages.singleRfq.partials.bypass_quotation', $data)->render(),
-            'cog' => view('admin.pages.singleRfq.partials.bypass_cog', $data)->render(),
+            // 'mysetting' => view('admin.pages.singleRfq.partials.bypass_setting', $data)->render(),
+            // 'quotation' => view('admin.pages.singleRfq.partials.bypass_quotation', $data)->render(),
+            // 'cog' => view('admin.pages.singleRfq.partials.bypass_cog', $data)->render(),
+            'mysetting'      => view('metronic.pages.cog.partials.setting', $data)->render(),
+            'quotation'      => view('metronic.pages.cog.partials.quotation', $data)->render(),
+            'cog'            => view('metronic.pages.cog.partials.cog', $data)->render(),
             'currency_value' => $data['quotation']->currency,
-            'country_value' => $data['quotation']->country,
-            'region_value' => $data['quotation']->region,
+            'country_value'  => $data['quotation']->country,
+            'region_value'   => $data['quotation']->region,
         ]);
     }
 
