@@ -6,10 +6,10 @@
                 <th class="text-start">Item</th>
                 <th>Source One</th>
                 <th>Source One Price</th>
-                <th>One Price Status</th>
+                {{-- <th>One Price Status</th> --}}
                 <th>Source Two</th>
                 <th>Source Two Price</th>
-                <th>Two Price Status</th>
+                {{-- <th>Two Price Status</th> --}}
                 <!-- New Column -->
             </tr>
         </thead>
@@ -18,16 +18,8 @@
                 @php
                     $sproduct = App\Models\Admin\Product::where('name', 'LIKE', '%' . $rfqProduct->product_name . '%')
                         ->where('product_status', 'product')
-                        ->first([
-                            'id',
-                            'name',
-                            'source_one_price',
-                            'source_two_price',
-                            'source_one_name',
-                            'source_two_name',
-                            'source_one_link',
-                            'source_two_link',
-                        ]);
+                        ->select('id', 'name', 'source_one_price', 'source_two_price', 'source_one_name', 'source_two_name', 'source_one_link', 'source_two_link')
+                        ->first();
                 @endphp
                 @if (!empty($sproduct))
                     <tr class="text-center tb-b-bottom">
@@ -44,20 +36,20 @@
                             </a>
                         </td>
                         <td>$ {{ $sproduct->source_one_price }}</td>
-                        <td>
+                        {{-- <td>
                             $320
                             <i class="text-danger fas fa-arrow-down-short-wide"></i>
-                        </td>
+                        </td> --}}
                         <td>
                             <a href="{{ $sproduct->source_two_link }}" target="_blank" rel="noopener noreferrer">
                                 {{ $sproduct->source_two_name }}
                             </a>
                         </td>
                         <td>$ {{ $sproduct->source_two_price }}</td>
-                        <td>
+                        {{-- <td>
                             $320
                             <i class="text-success fas fa-arrow-up-short-wide"></i>
-                        </td>
+                        </td> --}}
                         <!-- Difference -->
                     </tr>
                 @else
