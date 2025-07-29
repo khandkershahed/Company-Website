@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Image;
+// use Image;
 use DataTables;
 use Carbon\Carbon;
 use App\Models\User;
@@ -16,6 +16,7 @@ use App\Models\Admin\Category;
 use App\Models\Admin\Industry;
 use App\Models\Admin\MultiImage;
 use App\Models\Admin\SubCategory;
+use Illuminate\Support\Facades\DB;
 use App\Models\Admin\MultiIndustry;
 use App\Models\Admin\MultiSolution;
 use App\Http\Controllers\Controller;
@@ -25,6 +26,7 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
+use Intervention\Image\Facades\Image;
 use App\Models\Admin\SubSubSubCategory;
 use Illuminate\Support\Facades\Validator;
 use App\Notifications\SourcingNotification;
@@ -156,7 +158,7 @@ class SourcingController extends Controller
             $request->all(),
             [
                 'name'     => 'required|unique:products,name|max:200',
-                'thumbnail' => 'required|image|mimes:png,jpg,jpeg|max:5000',
+                'thumbnail' => 'required|image|mimes:webp,png,jpg,jpeg|max:5000',
 
             ],
             [
@@ -531,17 +533,20 @@ class SourcingController extends Controller
      */
     public function edit($id)
     {
-        $data['multiImgs']           = MultiImage::where('product_id', $id)->get();
-        $data['brands']              = Brand::latest('id', 'DESC')->get(['id', 'title']);
-        $data['categories']          = Category::orderBy('id', 'DESC')->get(['id', 'title']);
-        $data['sub_cats']            = SubCategory::orderBy('id', 'DESC')->get(['id', 'title']);
-        $data['sub_sub_cats']        = SubSubCategory::orderBy('id', 'DESC')->get(['id', 'title']);
-        $data['sub_sub_sub_cats']    = SubSubSubCategory::orderBy('id', 'DESC')->get(['id', 'title']);
-        $data['industrys']           = Industry::orderBy('id', 'DESC')->get(['id', 'title']);
-        $data['solutions']           = SolutionDetail::orderBy('id', 'DESC')->get(['id', 'name']);
-        $data['products']            = Product::findOrFail($id);
-        $data['selectedSolutions']   = $data['products']->solutions->pluck('id')->toArray();
-        $data['selectedIndustries']  = $data['products']->industries->pluck('id')->toArray();
+        $product = Product::with(['solutions:id', 'industries:id'])->findOrFail($id);
+
+        $data['products']            = $product;
+        $data['multiImgs']           = MultiImage::where('product_id', $id)->get(['id', 'product_id', 'photo']);
+        $data['brands']              = Brand::select('id', 'title')->latest('id')->get();
+        $data['categories']          = Category::select('id', 'title')->latest('id')->get();
+        $data['sub_cats']            = SubCategory::select('id', 'title')->latest('id')->get();
+        $data['sub_sub_cats']        = SubSubCategory::select('id', 'title')->latest('id')->get();
+        $data['sub_sub_sub_cats']    = SubSubSubCategory::select('id', 'title')->latest('id')->get();
+        $data['industrys']           = Industry::select('id', 'title')->latest('id')->get();
+        $data['solutions']           = SolutionDetail::select('id', 'name')->latest('id')->get();
+        $data['selectedSolutions']   = $product->solutions->pluck('id')->toArray();
+        $data['selectedIndustries']  = $product->industries->pluck('id')->toArray();
+
         return view('admin.pages.product_sourcing.edit', $data);
     }
 
@@ -552,158 +557,276 @@ class SourcingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function update(Request $request, $id)
+    // {
+    //     $product_id = $id;
+    //     $product = Product::where('id', $id)->first();
+    //     if ($request->source_one_price > $request->source_two_price) {
+    //         $source_one_approval = '0';
+    //         $source_two_approval = '1';
+    //     } else {
+    //         $source_one_approval = '1';
+    //         $source_two_approval = '0';
+    //     }
+
+    //     if (!empty($product->slug)) {
+    //         $data['slug'] = $product->slug;
+    //     } else {
+    //         $slug = Str::slug($request->name);
+    //         $count = Product::where('slug', $slug)->count();
+    //         if ($count > 0) {
+    //             $slug = $slug . '-' . date('ymdis') . '-' . rand(0, 999);
+    //         }
+    //         $data['slug'] = $slug;
+    //     }
+
+
+
+    //     if (($request->price_status) == 'rfq') {
+    //         $data['rfq'] = '1';
+    //     } else {
+    //         $data['rfq'] = '0';
+    //     }
+
+    //     Product::findOrFail($product_id)->update([
+    //         'name'                      => $request->name,
+    //         'ref_code'                  => $product->ref_code,
+    //         'slug'                      => $data['slug'],
+    //         'sku_code'                  => $request->sku_code,
+    //         'mf_code'                   => $request->mf_code,
+    //         'product_code'              => $request->product_code,
+    //         'tags'                      => $request->tags,
+    //         'size'                      => $request->size,
+    //         'color'                     => $request->color,
+    //         'short_desc'                => $request->short_desc,
+    //         'overview'                  => $request->overview,
+    //         'specification'             => $request->specification,
+    //         'accessories'               => $request->accessories,
+    //         'warranty'                  => $request->warranty,
+    //         'stock'                     => $request->stock,
+    //         'qty'                       => $request->qty,
+    //         'rfq'                       => $data['rfq'],
+    //         'price_status'              => $request->price_status,
+    //         'deal'                      => $request->deal,
+    //         'refurbished'               => $request->refurbished,
+    //         'product_type'              => $request->product_type,
+    //         'cat_id'                    => $request->cat_id,
+    //         'sub_cat_id'                => $request->sub_cat_id,
+    //         'sub_sub_cat_id'            => $request->sub_sub_cat_id,
+    //         'sub_sub_sub_cat_id'        => $request->sub_sub_sub_cat_id,
+    //         'brand_id'                  => $request->brand_id,
+    //         'source_one_price'          => $request->source_one_price,
+    //         'source_two_price'          => $request->source_two_price,
+    //         'source_one_name'           => $request->source_one_name,
+    //         'source_two_name'           => $request->source_two_name,
+    //         'source_one_link'           => $request->source_one_link,
+    //         'source_two_link'           => $request->source_two_link,
+    //         'competetor_one_price'      => $request->competetor_one_price,
+    //         'competetor_two_price'      => $request->competetor_two_price,
+    //         'competetor_one_name'       => $request->competetor_one_name,
+    //         'competetor_two_name'       => $request->competetor_two_name,
+    //         'competetor_one_link'       => $request->competetor_one_link,
+    //         'competetor_two_link'       => $request->competetor_two_link,
+    //         'source_one_approval'       => $source_one_approval,
+    //         'source_two_approval'       => $source_two_approval,
+    //         'source_one_estimate_time'  => $request->source_one_estimate_time,
+    //         'source_one_principal_time' => $request->source_one_principal_time,
+    //         'source_one_shipping_time'  => $request->source_one_shipping_time,
+    //         'source_one_location'       => $request->source_one_location,
+    //         'source_one_country'        => $request->source_one_country,
+    //         'source_two_estimate_time'  => $request->source_two_estimate_time,
+    //         'source_two_principal_time' => $request->source_two_principal_time,
+    //         'source_two_shipping_time'  => $request->source_two_shipping_time,
+    //         'source_two_location'       => $request->source_two_location,
+    //         'source_two_country'        => $request->source_two_country,
+    //         'notification_days'         => $request->notification_days,
+    //         'solid_source'              => $request->solid_source,
+    //         'direct_principal'          => $request->direct_principal,
+    //         'agreement'                 => $request->agreement,
+    //         'source_type'               => $request->source_type,
+    //         'source_contact'            => $request->source_contact,
+    //         'sas_price'                 => $request->sas_price,
+    //         'added_by'                  => Auth::user()->name,
+    //         'updated_at'                => Carbon::now(),
+
+    //     ]);
+
+
+    //     $images = $request->file('multi_img');
+    //     if (!empty($images)) {
+    //         foreach ($images as $img) {
+    //             $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+    //             $multi_path = public_path('upload/Products/multi-image/' . $make_name);
+    //             move_uploaded_file($img, $multi_path);
+
+    //             $uploadPath = 'upload/Products/multi-image/' . $make_name;
+
+    //             MultiImage::insert([
+    //                 'product_id' => $product_id,
+    //                 'photo' => $uploadPath,
+    //                 'created_at' => Carbon::now(),
+    //             ]);
+    //         }
+    //     }
+
+    //     if (!empty($request->industry_id)) {
+    //         $industry_destroys = MultiIndustry::where('product_id', $product_id)->get();
+
+    //         foreach ($industry_destroys as $industry_destroy) {
+    //             MultiIndustry::find($industry_destroy->id)->delete();
+    //         }
+
+    //         $industrys = $request->industry_id;
+    //         foreach ($industrys as $industry) {
+    //             MultiIndustry::insert([
+
+    //                 'product_id' => $product_id,
+    //                 'industry_id' => $industry,
+    //                 'created_at' => Carbon::now(),
+
+    //             ]);
+    //         }
+    //     }
+    //     if (!empty($request->solution_id)) {
+    //         $solution_destroys = MultiSolution::where('product_id', $product_id)->get();
+
+    //         foreach ($solution_destroys as $solution_destroy) {
+    //             MultiSolution::find($solution_destroy->id)->delete();
+    //         }
+    //         $solutions = $request->solution_id;
+    //         foreach ($solutions as $solution) {
+    //             MultiSolution::insert([
+
+    //                 'product_id' => $product_id,
+    //                 'solution_id' => $solution,
+    //                 'created_at' => Carbon::now(),
+
+    //             ]);
+    //         }
+    //     }
+
+    //     Toastr::success('Product Updated Without Image Successfully');
+
+    //     return redirect()->back();
+    // }
+
     public function update(Request $request, $id)
     {
-        $product_id = $id;
-        $product = Product::where('id', $id)->first();
-        //dd($product_id);
-        if ($request->source_one_price > $request->source_two_price) {
-            $source_one_approval = '0';
-            $source_two_approval = '1';
-        } else {
-            $source_one_approval = '1';
-            $source_two_approval = '0';
-        }
-
-        if (!empty($product->slug)) {
-            $data['slug'] = $product->slug;
-        } else {
-            $slug = Str::slug($request->name);
-            $count = Product::where('slug', $slug)->count();
-            if ($count > 0) {
-                $slug = $slug . '-' . date('ymdis') . '-' . rand(0, 999);
-            }
-            $data['slug'] = $slug;
-        }
-
-
-
-        if (($request->price_status) == 'rfq') {
-            $data['rfq'] = '1';
-        } else {
-            $data['rfq'] = '0';
-        }
-
-        Product::findOrFail($product_id)->update([
-            'name'                      => $request->name,
-            'ref_code'                  => $product->ref_code,
-            'slug'                      => $data['slug'],
-            'sku_code'                  => $request->sku_code,
-            'mf_code'                   => $request->mf_code,
-            'product_code'              => $request->product_code,
-            'tags'                      => $request->tags,
-            'size'                      => $request->size,
-            'color'                     => $request->color,
-            'short_desc'                => $request->short_desc,
-            'overview'                  => $request->overview,
-            'specification'             => $request->specification,
-            'accessories'               => $request->accessories,
-            'warranty'                  => $request->warranty,
-            'stock'                     => $request->stock,
-            'qty'                       => $request->qty,
-            'rfq'                       => $data['rfq'],
-            'price_status'              => $request->price_status,
-            'deal'                      => $request->deal,
-            'refurbished'               => $request->refurbished,
-            'product_type'              => $request->product_type,
-            'cat_id'                    => $request->cat_id,
-            'sub_cat_id'                => $request->sub_cat_id,
-            'sub_sub_cat_id'            => $request->sub_sub_cat_id,
-            'sub_sub_sub_cat_id'        => $request->sub_sub_sub_cat_id,
-            'brand_id'                  => $request->brand_id,
-            'source_one_price'          => $request->source_one_price,
-            'source_two_price'          => $request->source_two_price,
-            'source_one_name'           => $request->source_one_name,
-            'source_two_name'           => $request->source_two_name,
-            'source_one_link'           => $request->source_one_link,
-            'source_two_link'           => $request->source_two_link,
-            'competetor_one_price'      => $request->competetor_one_price,
-            'competetor_two_price'      => $request->competetor_two_price,
-            'competetor_one_name'       => $request->competetor_one_name,
-            'competetor_two_name'       => $request->competetor_two_name,
-            'competetor_one_link'       => $request->competetor_one_link,
-            'competetor_two_link'       => $request->competetor_two_link,
-            'source_one_approval'       => $source_one_approval,
-            'source_two_approval'       => $source_two_approval,
-            'source_one_estimate_time'  => $request->source_one_estimate_time,
-            'source_one_principal_time' => $request->source_one_principal_time,
-            'source_one_shipping_time'  => $request->source_one_shipping_time,
-            'source_one_location'       => $request->source_one_location,
-            'source_one_country'        => $request->source_one_country,
-            'source_two_estimate_time'  => $request->source_two_estimate_time,
-            'source_two_principal_time' => $request->source_two_principal_time,
-            'source_two_shipping_time'  => $request->source_two_shipping_time,
-            'source_two_location'       => $request->source_two_location,
-            'source_two_country'        => $request->source_two_country,
-            'notification_days'         => $request->notification_days,
-            'solid_source'              => $request->solid_source,
-            'direct_principal'          => $request->direct_principal,
-            'agreement'                 => $request->agreement,
-            'source_type'               => $request->source_type,
-            'source_contact'            => $request->source_contact,
-            'sas_price'                 => $request->sas_price,
-            'added_by'                  => Auth::user()->name,
-            'updated_at'                => Carbon::now(),
-
-        ]);
-
-
-        $images = $request->file('multi_img');
-        if (!empty($images)) {
-            foreach ($images as $img) {
-                $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
-                $multi_path = public_path('upload/Products/multi-image/' . $make_name);
-                move_uploaded_file($img, $multi_path);
-
-                $uploadPath = 'upload/Products/multi-image/' . $make_name;
-
-                MultiImage::insert([
-                    'product_id' => $product_id,
-                    'photo' => $uploadPath,
-                    'created_at' => Carbon::now(),
-                ]);
-            }
-        }
-
-        if (!empty($request->industry_id)) {
-            $industry_destroys = MultiIndustry::where('product_id', $product_id)->get();
-
-            foreach ($industry_destroys as $industry_destroy) {
-                MultiIndustry::find($industry_destroy->id)->delete();
+        DB::beginTransaction();
+        try {
+            $product = Product::with(['industries', 'solutions'])->findOrFail($id);
+            // Slug logic
+            if ($product->slug) {
+                $slug = $product->slug;
+            } else {
+                $slug = Str::slug($request->name);
+                if (Product::where('slug', $slug)->where('id', '!=', $id)->exists()) {
+                    $slug .= '-' . date('ymdis') . '-' . rand(0, 999);
+                }
             }
 
-            $industrys = $request->industry_id;
-            foreach ($industrys as $industry) {
-                MultiIndustry::insert([
+            // RFQ and Source Approval Logic
+            $rfq = $request->price_status === 'rfq' ? '1' : '0';
+            $source_one_approval = $request->source_one_price > $request->source_two_price ? '0' : '1';
+            $source_two_approval = $request->source_one_price > $request->source_two_price ? '1' : '0';
 
-                    'product_id' => $product_id,
-                    'industry_id' => $industry,
-                    'created_at' => Carbon::now(),
+            // Main product update
+            $product->update([
+                'name'                      => $request->name,
+                'ref_code'                  => $product->ref_code,
+                'slug'                      => $slug,
+                'sku_code'                  => $request->sku_code,
+                'mf_code'                   => $request->mf_code,
+                'product_code'              => $request->product_code,
+                'tags'                      => $request->tags,
+                'size'                      => $request->size,
+                'color'                     => $request->color,
+                'short_desc'                => $request->short_desc,
+                'overview'                  => $request->overview,
+                'specification'             => $request->specification,
+                'accessories'               => $request->accessories,
+                'warranty'                  => $request->warranty,
+                'stock'                     => $request->stock,
+                'qty'                       => $request->qty,
+                'rfq'                       => $rfq,
+                'price_status'              => $request->price_status,
+                'deal'                      => $request->deal,
+                'refurbished'               => $request->refurbished,
+                'product_type'              => $request->product_type,
+                'cat_id'                    => $request->cat_id,
+                'sub_cat_id'                => $request->sub_cat_id,
+                'sub_sub_cat_id'            => $request->sub_sub_cat_id,
+                'sub_sub_sub_cat_id'        => $request->sub_sub_sub_cat_id,
+                'brand_id'                  => $request->brand_id,
+                'source_one_price'          => $request->source_one_price,
+                'source_two_price'          => $request->source_two_price,
+                'source_one_name'           => $request->source_one_name,
+                'source_two_name'           => $request->source_two_name,
+                'source_one_link'           => $request->source_one_link,
+                'source_two_link'           => $request->source_two_link,
+                'competetor_one_price'      => $request->competetor_one_price,
+                'competetor_two_price'      => $request->competetor_two_price,
+                'competetor_one_name'       => $request->competetor_one_name,
+                'competetor_two_name'       => $request->competetor_two_name,
+                'competetor_one_link'       => $request->competetor_one_link,
+                'competetor_two_link'       => $request->competetor_two_link,
+                'source_one_approval'       => $source_one_approval,
+                'source_two_approval'       => $source_two_approval,
+                'source_one_estimate_time'  => $request->source_one_estimate_time,
+                'source_one_principal_time' => $request->source_one_principal_time,
+                'source_one_shipping_time'  => $request->source_one_shipping_time,
+                'source_one_location'       => $request->source_one_location,
+                'source_one_country'        => $request->source_one_country,
+                'source_two_estimate_time'  => $request->source_two_estimate_time,
+                'source_two_principal_time' => $request->source_two_principal_time,
+                'source_two_shipping_time'  => $request->source_two_shipping_time,
+                'source_two_location'       => $request->source_two_location,
+                'source_two_country'        => $request->source_two_country,
+                'notification_days'         => $request->notification_days,
+                'solid_source'              => $request->solid_source,
+                'direct_principal'          => $request->direct_principal,
+                'agreement'                 => $request->agreement,
+                'source_type'               => $request->source_type,
+                'source_contact'            => $request->source_contact,
+                'sas_price'                 => $request->sas_price,
+                'added_by'                  => auth()->user()->name,
+                'updated_at'                => now(),
+            ]);
 
-                ]);
+            // Handle Multi Images
+            if ($request->hasFile('multi_img')) {
+                foreach ($request->file('multi_img') as $img) {
+                    $fileName = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+                    $img->move(public_path('upload/Products/multi-image'), $fileName);
+
+                    MultiImage::create([
+                        'product_id' => $product->id,
+                        'photo' => 'upload/Products/multi-image/' . $fileName,
+                        'created_at' => now(),
+                    ]);
+                }
             }
+
+            // Sync industries
+            if ($request->filled('industry_id')) {
+                $product->industries()->sync($request->industry_id);
+            }
+
+            // Sync solutions
+            if ($request->filled('solution_id')) {
+                $product->solutions()->sync($request->solution_id);
+            }
+
+            DB::commit();
+
+            Toastr::success('Product Updated Successfully');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            \Log::error('Product update failed: ' . $e->getMessage());
+            Toastr::error('Update failed. Please try again.');
+            return redirect()->back()->withInput();
         }
-        if (!empty($request->solution_id)) {
-            $solution_destroys = MultiSolution::where('product_id', $product_id)->get();
-
-            foreach ($solution_destroys as $solution_destroy) {
-                MultiSolution::find($solution_destroy->id)->delete();
-            }
-            $solutions = $request->solution_id;
-            foreach ($solutions as $solution) {
-                MultiSolution::insert([
-
-                    'product_id' => $product_id,
-                    'solution_id' => $solution,
-                    'created_at' => Carbon::now(),
-
-                ]);
-            }
-        }
-
-        Toastr::success('Product Updated Without Image Successfully');
-
-        return redirect()->back();
     }
 
     /**
