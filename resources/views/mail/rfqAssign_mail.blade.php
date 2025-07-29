@@ -114,7 +114,7 @@
                     <td style="padding:15px;text-align:center;font-size:12px">
                         <div style="padding-bottom:5px;margin-bottom:10px;margin-top:15px;font-size:14px !important;">
                             <strong>
-                                <a href="{{route('single-rfq.show',$data['rfq_code'])}}" style="color: #FFF;
+                                <a href="{{ route('single-rfq.quoation_mail', $data['rfq_code']) }}" style="color: #FFF;
                                 border: 1px solid #ae0a46;
                                 background-color: #ae0a46;
                                 transition: all 0.8s ease-in-out;padding: 10px 40px;
