@@ -323,7 +323,7 @@
                                     <p class="pb-5">{{ $story->badge }}</p>
                                 </div>
                                 <div class="grid-river">
-                                    <figure class="effect-oscar">
+                                    <figure class="effect-oscar" style="height: 250px;">
                                         {{-- <img src="{{ isset($story->image) && file_exists(public_path('storage/' . $story->image)) ? asset('storage/' . $story->image) : asset('frontend/images/banner-demo.png') }} "
                                             alt=""> --}}
                                         <figcaption>
@@ -366,7 +366,7 @@
                                     <p class="pb-5">{{ $story->badge }}</p>
                                 </div>
                                 <div class="grid-river">
-                                    <figure class="effect-oscar">
+                                    <figure class="effect-oscar" style="height: 250px;">
                                         {{-- <img src="{{ isset($story->image) && file_exists(public_path('storage/' . $story->image)) ? asset('storage/' . $story->image) : asset('frontend/images/banner-demo.png') }} "
                                             alt=""> --}}
                                         <figcaption>
