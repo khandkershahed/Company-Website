@@ -46,82 +46,209 @@ class PageController extends Controller
             return redirect()->back();
         }
     }
+    // public function brandProducts($id, Request $request)
+    // {
+    //     $data['brand'] = Brand::where('slug', $id)->where('status', '!=', 'inactive')->select('id', 'slug', 'title', 'image')->first();
+    //     $data['brandpage'] = BrandPage::where('brand_id', $data['brand']->id)->where('status', '!=', 'inactive')->first(['id', 'banner_image', 'brand_logo', 'header']);
+
+    //     if (!empty($data['brandpage'])) {
+
+    //         $productIds = Product::where('brand_id', $data['brand']->id)
+    //             ->where('product_status', '=', 'product')
+    //             ->distinct()
+    //             ->pluck('id');
+    //         // $productIds = $data['products']->pluck('id')->all(); // Extracting product IDs
+    //         $data['products'] = Product::whereIn('id', $productIds)
+    //             ->select('id', 'brand_id', 'rfq', 'slug', 'name', 'thumbnail', 'price', 'discount', 'price_status', 'cat_id', 'sku_code', 'mf_code', 'product_code')
+    //             ->paginate(10);
+    //         // dd($data['products']);
+    //         $industryIds = MultiIndustry::whereIn('product_id', $productIds)
+    //             ->pluck('industry_id')
+    //             ->unique();
+
+    //         $data['industries'] = Industry::whereIn('id', $industryIds)->get();
+    //         foreach ($data['industries'] as $industry) {
+    //             // Fetch product IDs for the current industry
+    //             $productIdsForIndustry = MultiIndustry::where('industry_id', $industry->id)
+    //                 ->whereIn('product_id', $productIds)
+    //                 ->pluck('product_id')
+    //                 ->toArray();
+
+    //             // Filter products collection for the current industry
+    //             $productsForIndustry = $data['products']->whereIn('id', $productIdsForIndustry)->all();
+
+    //             // Assign the products to the industry
+    //             $industry->products = $productsForIndustry;
+    //         }
+
+    //         $solutionIds = MultiSolution::whereIn('product_id', $productIds)
+    //             ->pluck('solution_id')
+    //             ->unique();
+
+    //         $data['solutions'] = SolutionDetail::whereIn('id', $solutionIds)->get();
+    //         foreach ($data['solutions'] as $solution) {
+    //             // Fetch product IDs for the current industry
+    //             $productIdsForSolution = MultiSolution::where('solution_id', $solution->id)
+    //                 ->whereIn('product_id', $productIds)
+    //                 ->pluck('product_id')
+    //                 ->toArray();
+    //             $productsForSolution = $data['products']->whereIn('id', $productIdsForSolution)->all();
+    //             $solution->products = $productsForSolution;
+    //         }
+
+    //         $data['related_search'] = [
+    //             'categories' =>  Category::inRandomOrder()->limit(2)->get(),
+    //             'brands' =>  Brand::inRandomOrder()->limit(4)->get(),
+    //             'solutions' =>  SolutionDetail::inRandomOrder()->limit(4)->get('id', 'slug', 'name'),
+    //             'industries' =>  Industry::inRandomOrder()->limit(4)->get('id', 'slug', 'title'),
+    //         ];
+    //         // dd($data['related_search']['categories']);
+
+    //         if ($request->ajax()) {
+    //             return view('frontend.pages.kukapages.partial.product_pagination', $data);
+    //         }
+
+    //         // dd($data['industry_ids']);
+    //         return view('frontend.pages.kukapages.products', $data);
+    //     } else {
+    //         $productIds = Product::where('brand_id', $data['brand']->id)
+    //             ->where('product_status', '=', 'product')
+    //             ->distinct()
+    //             ->pluck('id');
+    //         // $productIds = $data['products']->pluck('id')->all(); // Extracting product IDs
+    //         $data['products'] = Product::whereIn('id', $productIds)
+    //             ->select('id', 'brand_id', 'rfq', 'slug', 'name', 'thumbnail', 'price', 'discount', 'price_status', 'cat_id', 'sku_code', 'mf_code', 'product_code')
+    //             ->paginate(10);
+    //         // dd($data['products']);
+    //         $industryIds = MultiIndustry::whereIn('product_id', $productIds)
+    //             ->pluck('industry_id')
+    //             ->unique();
+
+    //         $data['industries'] = Industry::whereIn('id', $industryIds)->get();
+    //         foreach ($data['industries'] as $industry) {
+    //             // Fetch product IDs for the current industry
+    //             $productIdsForIndustry = MultiIndustry::where('industry_id', $industry->id)
+    //                 ->whereIn('product_id', $productIds)
+    //                 ->pluck('product_id')
+    //                 ->toArray();
+
+    //             // Filter products collection for the current industry
+    //             $productsForIndustry = $data['products']->whereIn('id', $productIdsForIndustry)->all();
+
+    //             // Assign the products to the industry
+    //             $industry->products = $productsForIndustry;
+    //         }
+
+    //         $solutionIds = MultiSolution::whereIn('product_id', $productIds)
+    //             ->pluck('solution_id')
+    //             ->unique();
+
+    //         $data['solutions'] = SolutionDetail::whereIn('id', $solutionIds)->get();
+    //         foreach ($data['solutions'] as $solution) {
+    //             // Fetch product IDs for the current industry
+    //             $productIdsForSolution = MultiSolution::where('solution_id', $solution->id)
+    //                 ->whereIn('product_id', $productIds)
+    //                 ->pluck('product_id')
+    //                 ->toArray();
+
+    //             // Filter products collection for the current industry
+    //             $productsForSolution = $data['products']->whereIn('id', $productIdsForSolution)->all();
+
+    //             // Assign the products to the industry
+    //             $solution->products = $productsForSolution;
+    //         }
+
+    //         $data['related_search'] = [
+    //             'categories' =>  Category::inRandomOrder()->limit(2)->get(),
+    //             'brands' =>  Brand::inRandomOrder()->limit(4)->get(),
+    //             'solutions' =>  SolutionDetail::inRandomOrder()->limit(4)->get('id', 'slug', 'name'),
+    //             'industries' =>  Industry::inRandomOrder()->limit(4)->get('id', 'slug', 'title'),
+    //         ];
+
+    //         if ($request->ajax()) {
+    //             return view('frontend.pages.kukapages.partial.product_pagination', $data);
+    //         }
+    //         // dd($data['industry_ids']);
+    //         return view('frontend.pages.kukapages.products_no_brandpage', $data);
+    //     }
+    // }
+
     public function brandProducts($id, Request $request)
     {
-        $data['brand'] = Brand::where('slug', $id)->where('status', '!=', 'inactive')->select('id', 'slug', 'title', 'image')->first();
-        $data['brandpage'] = BrandPage::where('brand_id', $data['brand']->id)->where('status', '!=', 'inactive')->first(['id', 'banner_image', 'brand_logo', 'header']);
+        $brand = Brand::where('slug', $id)
+            ->where('status', '!=', 'inactive')
+            ->select('id', 'slug', 'title', 'image')
+            ->firstOrFail();
 
-        if (!empty($data['brandpage'])) {
+        $brandpage = BrandPage::where('brand_id', $brand->id)
+            ->where('status', '!=', 'inactive')
+            ->first(['id', 'banner_image', 'brand_logo', 'header']);
 
-            $productIds = Product::where('brand_id', $data['brand']->id)
-                ->where('product_status', '=', 'product')
-                ->distinct()
-                ->pluck('id');
-            // $productIds = $data['products']->pluck('id')->all(); // Extracting product IDs
-            $data['products'] = Product::whereIn('id', $productIds)
-                ->select('id', 'brand_id', 'rfq', 'slug', 'name', 'thumbnail', 'price', 'discount', 'price_status', 'cat_id', 'sku_code', 'mf_code', 'product_code')
-                ->paginate(10);
-            // dd($data['products']);
-            $industryIds = MultiIndustry::whereIn('product_id', $productIds)
-                ->pluck('industry_id')
-                ->unique();
+        $productIds = Product::where('brand_id', $brand->id)
+            ->where('product_status', 'product')
+            ->pluck('id');
 
-            $data['industries'] = Industry::whereIn('id', $industryIds)->get();
-            foreach ($data['industries'] as $industry) {
-                // Fetch product IDs for the current industry
-                $productIdsForIndustry = MultiIndustry::where('industry_id', $industry->id)
-                    ->whereIn('product_id', $productIds)
-                    ->pluck('product_id')
-                    ->toArray();
+        $products = Product::whereIn('id', $productIds)
+            ->select('id', 'brand_id', 'rfq', 'slug', 'name', 'thumbnail', 'price', 'discount', 'price_status', 'cat_id', 'sku_code', 'mf_code', 'product_code')
+            ->paginate(10);
 
-                // Filter products collection for the current industry
-                $productsForIndustry = $data['products']->whereIn('id', $productIdsForIndustry)->all();
+        // Fetch all industries once
+        $industryIds = MultiIndustry::whereIn('product_id', $productIds)
+            ->pluck('industry_id')
+            ->unique();
 
-                // Assign the products to the industry
-                $industry->products = $productsForIndustry;
-            }
+        $industries = Industry::whereIn('id', $industryIds)->get();
 
-            $solutionIds = MultiSolution::whereIn('product_id', $productIds)
-                ->pluck('solution_id')
-                ->unique();
+        // Group product_id by industry_id in one query
+        $industryProductMap = MultiIndustry::whereIn('industry_id', $industryIds)
+            ->whereIn('product_id', $productIds)
+            ->get()
+            ->groupBy('industry_id')
+            ->map(fn($items) => $items->pluck('product_id')->all());
 
-            $data['solutions'] = SolutionDetail::whereIn('id', $solutionIds)->get();
-            foreach ($data['solutions'] as $solution) {
-                // Fetch product IDs for the current industry
-                $productIdsForSolution = MultiSolution::where('solution_id', $solution->id)
-                    ->whereIn('product_id', $productIds)
-                    ->pluck('product_id')
-                    ->toArray();
-
-                // Filter products collection for the current industry
-                $productsForSolution = $data['products']->whereIn('id', $productIdsForSolution)->all();
-
-                // Assign the products to the industry
-                $solution->products = $productsForSolution;
-            }
-
-            $data['related_search'] = [
-                'categories' =>  Category::inRandomOrder()->limit(2)->get(),
-                'brands' =>  Brand::inRandomOrder()->limit(4)->get(),
-                'solutions' =>  SolutionDetail::inRandomOrder()->limit(4)->get('id', 'slug', 'name'),
-                'industries' =>  Industry::inRandomOrder()->limit(4)->get('id', 'slug', 'title'),
-            ];
-            // dd($data['related_search']['categories']);
-
-            if ($request->ajax()) {
-                return view('frontend.pages.kukapages.partial.product_pagination', $data);
-            }
-
-            // dd($data['industry_ids']);
-            return view('frontend.pages.kukapages.products', $data);
-        } else {
-            Toastr::error('No Details information found for this Brand.');
-            return redirect()->back();
+        foreach ($industries as $industry) {
+            $ids = $industryProductMap->get($industry->id, []);
+            $industry->products = $products->whereIn('id', $ids)->all();
         }
+
+        // Fetch all solutions once
+        $solutionIds = MultiSolution::whereIn('product_id', $productIds)
+            ->pluck('solution_id')
+            ->unique();
+
+        $solutions = SolutionDetail::whereIn('id', $solutionIds)->get();
+
+        // Group product_id by solution_id in one query
+        $solutionProductMap = MultiSolution::whereIn('solution_id', $solutionIds)
+            ->whereIn('product_id', $productIds)
+            ->get()
+            ->groupBy('solution_id')
+            ->map(fn($items) => $items->pluck('product_id')->all());
+
+        foreach ($solutions as $solution) {
+            $ids = $solutionProductMap->get($solution->id, []);
+            $solution->products = $products->whereIn('id', $ids)->all();
+        }
+
+        $related_search = [
+            'categories' => Category::inRandomOrder()->limit(2)->get(['id', 'slug', 'title']),
+            'brands' => Brand::inRandomOrder()->limit(4)->get(['id', 'slug', 'title']),
+            'solutions' => SolutionDetail::inRandomOrder()->limit(4)->get(['id', 'slug', 'name']),
+            'industries' => Industry::inRandomOrder()->limit(4)->get(['id', 'slug', 'title']),
+        ];
+
+        $data = compact('brand', 'brandpage', 'products', 'industries', 'solutions', 'related_search');
+
+        if ($request->ajax()) {
+            return view('frontend.pages.kukapages.partial.product_pagination', $data);
+        }
+
+        $view = $brandpage ? 'frontend.pages.kukapages.products' : 'frontend.pages.kukapages.products_no_brandpage';
+        return view($view, $data);
     }
+
     public function productDetails($id)
     {
-        //dd($id);
 
         $data['sproduct'] = Product::join('brands', 'products.brand_id', '=', 'brands.id')
             ->where('products.slug', $id)
@@ -158,7 +285,8 @@ class PageController extends Controller
         if (!empty($data['brandpage'])) {
             return view('frontend.pages.kukapages.product_details', $data);
         } else {
-            return view('frontend.pages.product.product_details', $data);
+            return view('frontend.pages.kukapages.product_details_single', $data);
+            // return view('frontend.pages.product.product_details', $data);
         }
     }
 
