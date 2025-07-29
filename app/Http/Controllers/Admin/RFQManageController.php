@@ -75,13 +75,22 @@ class RFQManageController extends Controller
             ->orderByDesc('id')
             ->get();
 
-        // For anonymous client type
-        if ($rfq->client_type === 'anonymous') {
+        $email = trim($rfq->email);
+
+        $client = Client::where('email', $email)->first();
+
+        if ($client && $client->user_type === 'job_seeker') {
+            $client->delete();
+            $client = null; // manually reset since it's now deleted
+        }
+
+        if ($rfq->client_type === 'anonymous' && !$client) {
             return view('metronic.pages.cog.crm', [
                 'rfq'   => $rfq,
                 'users' => $users,
             ]);
         }
+
 
         // For identified clients
         $quotationData = [
@@ -91,7 +100,7 @@ class RFQManageController extends Controller
             'countries'     => Country::all(),
             'rfq_country'   => Country::where('country_name', 'LIKE', '%' . $rfq->country . '%')->first(),
             'sourcing'      => DealSas::where('rfq_code', $rfq->rfq_code)->first(),
-            'brands'        => Brand::latest('id')->select('title','image')->limit(5)->get(),
+            'brands'        => Brand::latest('id')->select('title', 'image')->limit(5)->get(),
             'rfq'           => $rfq,
             'users'         => $users,
         ];
@@ -252,7 +261,7 @@ class RFQManageController extends Controller
         $data['quotation']   = DB::table('rfq_quotations')->where('rfq_id', $rfq_id)->first();
         $data['singleproduct']   = QuotationProduct::where('rfq_id', $rfq_id)->first();
         $data['rfq_terms']   = QuotationTerm::where('rfq_id', $rfq_id)->get();
-        $data['brands']   = Brand::latest('id')->select('title','image')->limit(5)->get();
+        $data['brands']   = Brand::latest('id')->select('title', 'image')->limit(5)->get();
         Toastr::success('Quotation Saved.');
         return response()->json([
             // 'mysetting' => view('admin.pages.singleRfq.partials.bypass_setting', $data)->render(),

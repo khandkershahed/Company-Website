@@ -223,7 +223,7 @@
                                         L1)</label>
                                     <select name="sales_man_id_L1" id="sales_man_id_L1" class="form-control select"
                                         data-control="select2" data-placeholder="Select Sales Manager"
-                                        data-allow-clear="true" data-minimum-results-for-search="0">
+                                        data-allow-clear="true" data-minimum-results-for-search="0" required>
                                         <option></option>
                                         @foreach ($users as $manager)
                                             <option value="{{ $manager->id }}">{{ $manager->name }}</option>

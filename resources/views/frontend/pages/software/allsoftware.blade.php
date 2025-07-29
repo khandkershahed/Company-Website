@@ -81,7 +81,8 @@
             <div class="container">
                 <div class="row gx-3">
                     <div class="col-lg-8">
-                        <div class="p-5 blocks-content block-image-content" style="background-color:#f7f6f5!important; height: 30rem;">
+                        <div class="p-5 blocks-content block-image-content"
+                            style="background-color:#f7f6f5!important; height: 30rem;">
                             <div class="row align-items-center">
                                 <div class="col-lg-6">
                                     <div class="animated-image parbase section">
@@ -216,7 +217,7 @@
                                         <div class="btn_group">
                                             <input type="text" class="form-control" placeholder="Search"
                                                 style="height: 38px; border: 1px solid #eee;">
-                                                <i class="fa-solid fa-search search-icons"></i>
+                                            <i class="fa-solid fa-search search-icons"></i>
                                         </div>
                                     </form>
                                 </div>
@@ -392,8 +393,14 @@
                                     <div class="p-0 tab-content" id="v-pills-tabContent">
                                         @foreach ($industrys as $indkey => $item)
                                             @php
-                                                $product_ids = App\Models\Admin\MultiIndustry::where('industry_id', $item->id)->pluck('product_id');
-                                                $industry_products = App\Models\Admin\Product::whereIn('id', $product_ids)
+                                                $product_ids = App\Models\Admin\MultiIndustry::where(
+                                                    'industry_id',
+                                                    $item->id,
+                                                )->pluck('product_id');
+                                                $industry_products = App\Models\Admin\Product::whereIn(
+                                                    'id',
+                                                    $product_ids,
+                                                )
                                                     ->where('product_status', 'product')
                                                     ->where('product_type', 'software')
                                                     ->limit(12)
@@ -893,14 +900,9 @@
                                                                 {{-- <small class="price-usd">USD</small>
                                                                 --.-- $ --}}
                                                             </div>
-                                                            <a href="{{ route('rfq') }}"
-                                                                class="d-flex justify-content-center align-items-center"
-                                                                {{-- data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}" --}}
-                                                                >
-                                                                <button class="btn-color popular_product-button">
-                                                                    Ask For Price
-                                                                </button>
+                                                            <a href="{{ route('askForPrice', $item->slug) }}"
+                                                                class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
+                                                                Ask For Price
                                                             </a>
                                                         </div>
                                                     @elseif ($item->price_status && $item->price_status == 'rfq')
@@ -909,14 +911,9 @@
                                                                 {{-- <small class="price-usd">USD</small>
                                                             --.-- $ --}}
                                                             </div>
-                                                            <a href="{{ route('rfq') }}"
-                                                                class="d-flex justify-content-center align-items-center"
-                                                                {{-- data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}" --}}
-                                                                >
-                                                                <button class="btn-color popular_product-button">
-                                                                    Ask For Price
-                                                                </button>
+                                                            <a href="{{ route('askForPrice', $item->slug) }}"
+                                                                class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
+                                                                Ask For Price
                                                             </a>
                                                         </div>
                                                     @elseif ($item->price_status && $item->price_status == 'offer_price')
@@ -928,12 +925,9 @@
                                                             <a href="{{ route('rfq') }}"
                                                                 class="d-flex justify-content-center align-items-center"
                                                                 {{-- data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}" --}}
-                                                                >
-                                                                <button class="btn-color"
-                                                                {{-- data-bs-toggle="modal"
-                                                                    data-bs-target="#askProductPrice" --}}
-                                                                    >
+                                                                data-bs-target="#rfq{{ $item->id }}" --}}>
+                                                                <button class="btn-color" {{-- data-bs-toggle="modal"
+                                                                    data-bs-target="#askProductPrice" --}}>
                                                                     Your Price
                                                                 </button>
                                                             </a>

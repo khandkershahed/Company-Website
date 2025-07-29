@@ -269,7 +269,7 @@
                                                 <div class="d-flex align-items-center ">
                                                     {{-- <a class="search-btn-price me-2" --}}
                                                     <a class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button mt-0 me-2"
-                                                        {{-- href="{{ route('product.details', ['slug' => $product->slug]) }}">Ask --}} href="{{ route('rfq') }}">Ask
+                                                         href="{{ route('askForPrice',$product->slug) }}">Ask
                                                         For Price</a>
                                                 </div>
                                                 <div class="d-flex border">

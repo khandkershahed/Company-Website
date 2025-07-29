@@ -448,8 +448,16 @@ class RFQController extends Controller
         $rfq_code = 'RFQ-' . $today . '-' . $newNumber;
 
         // Check for existing client
-        $client = Client::where('email', $request->email)->first();
-        $client_type = $client ? (in_array($client->user_type, ['client', 'partner']) ? $client->user_type : 'anonymous') : 'anonymous';
+        $client_type = 'anonymous';
+
+        if ($client = Client::where('email', trim($request->email))->first()) {
+            if ($client->user_type === 'job_seeker') {
+                $client->delete();
+            } elseif (in_array(trim(strtolower($client->user_type)), ['client', 'partner'])) {
+                $client_type = $client->user_type;
+            }
+        }
+
 
         // Save RFQ
         $rfq_id = RFQ::insertGetId([

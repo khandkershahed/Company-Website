@@ -64,14 +64,9 @@
                                                                 {{-- <small class="price-usd">USD</small>
                                                             --.-- $ --}}
                                                             </div>
-                                                            <a href="{{ route('rfq') }}"
-                                                                class="d-flex justify-content-center align-items-center"
-                                                                {{-- data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}" --}}
-                                                                >
-                                                                <button class="btn-color popular_product-button">
-                                                                    Ask For Price
-                                                                </button>
+                                                            <a href="{{ route('askForPrice', $item->slug) }}"
+                                                                class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
+                                                                Ask For Price
                                                             </a>
                                                         </div>
                                                     @elseif ($item->price_status && $item->price_status == 'rfq')
@@ -80,14 +75,9 @@
                                                                 {{-- <small class="price-usd">USD</small>
                                                         --.-- $ --}}
                                                             </div>
-                                                            <a href="{{ route('rfq') }}"
-                                                                class="d-flex justify-content-center align-items-center"
-                                                                {{-- data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}" --}}
-                                                                >
-                                                                <button class="btn-color popular_product-button">
-                                                                    Ask For Price
-                                                                </button>
+                                                            <a href="{{ route('askForPrice', $item->slug) }}"
+                                                                class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
+                                                                Ask For Price
                                                             </a>
                                                         </div>
                                                     @elseif ($item->price_status && $item->price_status == 'offer_price')
@@ -99,12 +89,9 @@
                                                             <a href="{{ route('rfq') }}"
                                                                 class="d-flex justify-content-center align-items-center"
                                                                 {{-- data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}" --}}
-                                                                >
-                                                                <button class="btn-color"
-                                                                {{-- data-bs-toggle="modal"
-                                                                    data-bs-target="#askProductPrice" --}}
-                                                                    >
+                                                                data-bs-target="#rfq{{ $item->id }}" --}}>
+                                                                <button class="btn-color" {{-- data-bs-toggle="modal"
+                                                                    data-bs-target="#askProductPrice" --}}>
                                                                     Your Price
                                                                 </button>
                                                             </a>
@@ -186,7 +173,8 @@
                             </div>
                         </nav>
                         <div class="px-3 shadow-sm tab-content px-sm-0" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="nav-all-tab">
+                            <div class="tab-pane fade show active" id="all" role="tabpanel"
+                                aria-labelledby="nav-all-tab">
                                 <div class="row">
 
                                     @if ($all_categories)
@@ -209,7 +197,8 @@
 
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="software" role="tabpanel" aria-labelledby="nav-software-tab">
+                            <div class="tab-pane fade" id="software" role="tabpanel"
+                                aria-labelledby="nav-software-tab">
                                 <div class="row">
 
                                     @if ($software_categories)
@@ -232,7 +221,8 @@
 
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="hardware" role="tabpanel" aria-labelledby="nav-hardware-tab">
+                            <div class="tab-pane fade" id="hardware" role="tabpanel"
+                                aria-labelledby="nav-hardware-tab">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="container">
@@ -261,7 +251,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="training" role="tabpanel" aria-labelledby="nav-training-tab">
+                            <div class="tab-pane fade" id="training" role="tabpanel"
+                                aria-labelledby="nav-training-tab">
                                 <div class="row">
                                     <div class="my-4 col-lg-12 col-md-12 col-sm-12">
                                         <div class="container">
@@ -372,61 +363,61 @@
     <!----Technolgy Deals End---->
 
     <!--========Shop by Brands=======-->
-        <!----------End--------->
-        <section>
-            {{-- Top Brands --}}
-            <div class="container brand-container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h5 class="pt-2 pb-2 home_title_heading pt-lg-4 pb-lg-2"><span class="main_color fw-bold">By</span> Brands</h5>
-                        <p class="pt-1 pb-1 home_title_text pt-lg-2 pb-lg-2">See how we’ve helped organizations of all sizes
-                            <span class="font-weight-bold">across every industry</span>
-                            <br> maximize the value of their IT solutions, leverage emerging technologies and create fresh
-                            experiences.
-                        </p>
-                    </div>
+    <!----------End--------->
+    <section>
+        {{-- Top Brands --}}
+        <div class="container brand-container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h5 class="pt-2 pb-2 home_title_heading pt-lg-4 pb-lg-2"><span class="main_color fw-bold">By</span>
+                        Brands</h5>
+                    <p class="pt-1 pb-1 home_title_text pt-lg-2 pb-lg-2">See how we’ve helped organizations of all sizes
+                        <span class="font-weight-bold">across every industry</span>
+                        <br> maximize the value of their IT solutions, leverage emerging technologies and create fresh
+                        experiences.
+                    </p>
                 </div>
-                <div class="row">
-                    @foreach ($brands as $brand)
-                        <div class="mb-3 col-lg-2 col-sm-12 mb-lg-4">
-                            <div class="card rounded-0 brand_img_container">
-                                <div class="card-body image_box">
-                                    <div class="brand-images">
-                                        <a href="{{ route('brand.overview', $brand->slug) }}">
-                                            <img src="{{ asset('storage/' . $brand->image) }}" class="img-fluid"
-                                                alt=""> </a>
-                                    </div>
+            </div>
+            <div class="row">
+                @foreach ($brands as $brand)
+                    <div class="mb-3 col-lg-2 col-sm-12 mb-lg-4">
+                        <div class="card rounded-0 brand_img_container">
+                            <div class="card-body image_box">
+                                <div class="brand-images">
+                                    <a href="{{ route('brand.overview', $brand->slug) }}">
+                                        <img src="{{ asset('storage/' . $brand->image) }}" class="img-fluid"
+                                            alt=""> </a>
                                 </div>
-                                <div class="p-0 m-0 border-0 card-footer">
-                                    <div class="brand_btns"
-                                        style="justify-content: center;
+                            </div>
+                            <div class="p-0 m-0 border-0 card-footer">
+                                <div class="brand_btns"
+                                    style="justify-content: center;
                                           background: #ae0a46;
                                           color: white;
                                           font-size: 13px;
                                           display: flex;">
-                                        <a class="py-2 text-white"
-                                            href="{{ route('brand.overview', $brand->slug) }}">Details
-                                            <i class="fa-solid fa-chevron-right ms-1"></i>
-                                        </a>
-                                        <span class="ms-3 me-3" style="background: #ffff;">||</span>
-                                        <a class="py-2 text-white" href="{{ route('custom.product', $brand->slug) }}">Shop
-                                            <i class="fa-solid fa-chevron-right ms-1"></i>
-                                        </a>
-                                    </div>
+                                    <a class="py-2 text-white" href="{{ route('brand.overview', $brand->slug) }}">Details
+                                        <i class="fa-solid fa-chevron-right ms-1"></i>
+                                    </a>
+                                    <span class="ms-3 me-3" style="background: #ffff;">||</span>
+                                    <a class="py-2 text-white" href="{{ route('custom.product', $brand->slug) }}">Shop
+                                        <i class="fa-solid fa-chevron-right ms-1"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                    <div class="d-flex justify-content-center">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                {{ $brands->links() }}
-                            </ul>
-                        </nav>
                     </div>
+                @endforeach
+                <div class="d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            {{ $brands->links() }}
+                        </ul>
+                    </nav>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
     <!--========Shop by Brands=======-->
 
