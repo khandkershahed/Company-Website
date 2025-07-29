@@ -1088,7 +1088,7 @@ class HomeController extends Controller
         $data['cart_products'] = $cart_items;
         return view('frontend.pages.rfq.rfq', $data);
     }
-    public function rfqProduct(Request $request, $slug)
+    public function rfqProduct(Request $request, $slug) 
     {
         $product = Product::select('id', 'name')->where('slug',$slug)->first();
         $id = $product->id;

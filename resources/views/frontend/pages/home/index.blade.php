@@ -324,8 +324,8 @@
                                 </div>
                                 <div class="grid-river">
                                     <figure class="effect-oscar">
-                                        <img src="{{ isset($story->image) && file_exists(public_path('storage/' . $story->image)) ? asset('storage/' . $story->image) : asset('frontend/images/banner-demo.png') }} "
-                                            alt="">
+                                        {{-- <img src="{{ isset($story->image) && file_exists(public_path('storage/' . $story->image)) ? asset('storage/' . $story->image) : asset('frontend/images/banner-demo.png') }} "
+                                            alt=""> --}}
                                         <figcaption>
                                             <h6> {{ Str::words($story->title, 6) }}</h6>
                                             <p class="text-start">{{ Str::words($story->header, 10) }}</p>
@@ -367,8 +367,8 @@
                                 </div>
                                 <div class="grid-river">
                                     <figure class="effect-oscar">
-                                        <img src="{{ isset($story->image) && file_exists(public_path('storage/' . $story->image)) ? asset('storage/' . $story->image) : asset('frontend/images/banner-demo.png') }} "
-                                            alt="">
+                                        {{-- <img src="{{ isset($story->image) && file_exists(public_path('storage/' . $story->image)) ? asset('storage/' . $story->image) : asset('frontend/images/banner-demo.png') }} "
+                                            alt=""> --}}
                                         <figcaption>
                                             <h6> {{ Str::words($story->title, 6) }}</h6>
                                             <p>{{ Str::words($story->header, 10) }}</p>
