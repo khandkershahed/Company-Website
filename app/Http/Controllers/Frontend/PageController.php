@@ -27,7 +27,8 @@ class PageController extends Controller
 {
     public function overview($id)
     {
-        $data['brand'] = Brand::where('slug', $id)->where('status', '!=', 'inactive')->select('id', 'slug', 'title', 'image')->first();
+        $brand = Brand::where('slug', $id)->where('status', '!=', 'inactive')->select('id', 'slug', 'title', 'image')->first();
+        $data['brand'] = $brand;
         $data['brandpage'] = BrandPage::where('brand_id', $data['brand']->id)->where('status', '!=', 'inactive')->first();
         if (!empty($data['brandpage'])) {
             if ($data['brandpage']) {
@@ -42,8 +43,13 @@ class PageController extends Controller
 
             return view('frontend.pages.kukapages.overview', $data);
         } else {
-            Toastr::error('No Details information found for this Brand.');
-            return redirect()->back();
+            $productIds = Product::where('brand_id', $brand->id)->where('product_status', 'product')->pluck('id');
+            if (!empty($productIds)) {
+                return redirect()->route('brand.products', $brand->slug);
+            } else {
+                Toastr::error('No Details information found for this Brand.');
+                return redirect()->back();
+            }
         }
     }
     // public function brandProducts($id, Request $request)

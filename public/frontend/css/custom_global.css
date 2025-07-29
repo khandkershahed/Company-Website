@@ -2799,7 +2799,7 @@ select:focus-visible {
     -moz-transition-duration: 0.4s;
     -webkit-transition-duration: 0.4s;
     -o-transition-duration: 0.4s;
-    font-size: 10px;
+    font-size: 15px;
 }
 
 .form-control:focus {
