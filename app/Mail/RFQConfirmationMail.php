@@ -30,7 +30,7 @@ class RFQConfirmationMail extends Mailable
     {
         return $this->from('support@ngenit.com', 'NGEN-Business')
                     ->view('mail.rfqNotificationConfirmMail', ['data' => $this->data])
-                    ->subject("[New Customer] - A RFQ ({$this->rfq_code}) has been received and needs confirmation.");
+                    ->subject("[New Customer] - A {$this->rfq_code} has been received and needs confirmation.");
     }
 
     /**
@@ -41,7 +41,7 @@ class RFQConfirmationMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: "[New Customer] - A RFQ ({$this->rfq_code}) has been received and needs confirmation.",
+            subject: "[New Customer] - A {$this->rfq_code} has been received and needs confirmation.",
         );
     }
 
