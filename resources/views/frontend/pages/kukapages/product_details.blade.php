@@ -191,7 +191,7 @@
                                                         {{-- <button class="search-btn-price" id="modal_view_left" data-bs-toggle="modal"
                                                             data-bs-target="#rfq_product{{ $sproduct->id }}">Ask For
                                                             Price</button> --}}
-                                                        <a href="{{ route('rfq') }}" class="search-btn-price"
+                                                        <a href="{{ route('askForPrice', $sproduct->slug) }}" class="search-btn-price"
                                                             {{-- id="modal_view_left" --}} {{-- data-bs-toggle="modal"
                                                             data-bs-target="#rfq_product{{ $sproduct->id }}" --}}>Ask
                                                             For Price</a>
@@ -202,7 +202,8 @@
                                                             class="border-0 quantity-box bg-light">
                                                         <div class="quantity-selectors-container">
                                                             <div class="quantity-selectors">
-                                                                <button type="button" class="border-0 increment-quantity pt-2"
+                                                                <button type="button"
+                                                                    class="border-0 increment-quantity pt-2"
                                                                     aria-label="Add one" data-direction="1">
                                                                     <i class="fa-solid fa-plus" style="color: #7a7577"></i>
                                                                 </button>
@@ -220,26 +221,11 @@
                                                 <div class="stock-info">
                                                     <p tabindex="0" class="mb-0 prod-stock"
                                                         id="product-avalialability-by-warehouse">
-                                                        <span aria-label="Stock Availability" title="Stock availability depends on customer order." class="js-prod-available"> <i
+                                                        <span aria-label="Stock Availability"
+                                                            title="Stock availability depends on customer order."
+                                                            class="js-prod-available"> <i
                                                                 class="fa fa-info-circle text-success"></i> Stock</span>
                                                         <br>
-                                                        {{-- @if ($sproduct->stock == 'available')
-                                                            <span class="text-success"
-                                                                style="font-size:17px">{{ $sproduct->qty }}
-                                                                in stock</span>
-                                                        @elseif ($sproduct->stock == 'limited')
-                                                            <span class="text-success"
-                                                                style="font-size:17px; font-weight:500;">Limited</span>
-                                                        @elseif ($sproduct->stock == 'unlimited')
-                                                            <span class="text-success"
-                                                                style="font-size:17px; font-weight:500;">Unlimited</span>
-                                                        @elseif ($sproduct->stock == 'stock_out')
-                                                            <span class="text-danger"
-                                                                style="font-size:17px; font-weight:500;">Stock Out</span>
-                                                        @else
-                                                            <span class="pb-2 text-danger"
-                                                                style="font-size:17px">{{ ucfirst($sproduct->stock) }}</span>
-                                                        @endif --}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -253,10 +239,8 @@
                                             </div>
                                             <div class="text-end">
                                                 <p class="mb-0 list_price">Custom Pricing</p>
-                                                <a href="{{ route('rfq') }}"
-                                                {{-- data-bs-toggle="modal"
-                                                    data-bs-target="#rfq_product{{ $sproduct->id }}" --}}
-                                                    >
+                                                <a href="{{ route('askForPrice', $sproduct->slug) }}" {{-- data-bs-toggle="modal"
+                                                    data-bs-target="#rfq_product{{ $sproduct->id }}" --}}>
                                                     <span class="fw-bold" style="color: #ae0a46;">Get A Quote</span>
                                                 </a>
                                             </div>
@@ -267,12 +251,10 @@
                                             <div class="p-0 row justify-content-between align-items-center">
                                                 {{-- <a class="btn-color" href="{{route('contact')}}">Call Ngen It for price</a> --}}
                                                 <div class="need_help col-6">
-                                                    <a href="{{ route('rfq') }}">
-                                                        <button class="btn-color brand-product-btn" {{-- id="modal_view_left" --}}
-                                                            {{-- data-bs-toggle="modal"
-                                                        data-bs-target="#rfq_product{{ $sproduct->id }}" --}} style="width: 100%;">Ask For
-                                                            Price</button>
-                                                    </a>>
+                                                    <a href="{{ route('askForPrice', $sproduct->slug) }}"
+                                                        class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
+                                                        Ask For Price
+                                                    </a>
                                                 </div>
                                                 <div class="p-0 need_help col-6">
                                                     <h6>Need Help Ordering?</h6>
@@ -286,7 +268,9 @@
                                                 <div class="stock-info">
                                                     <p tabindex="0" class="mb-0 prod-stock"
                                                         id="product-avalialability-by-warehouse">
-                                                        <span aria-label="Stock Availability" title="Stock availability depends on customer order." class="js-prod-available">
+                                                        <span aria-label="Stock Availability"
+                                                            title="Stock availability depends on customer order."
+                                                            class="js-prod-available">
                                                             <i class="fa fa-info-circle text-success"></i> Stock</span>
                                                         <br>
                                                         {{-- @if ($sproduct->stock == 'available')
@@ -310,10 +294,8 @@
                                                 </div>
                                                 <div class="text-end">
                                                     <p class="mb-0 list_price">Custom Pricing</p>
-                                                    <a href="{{ route('rfq') }}"
-                                                    {{-- data-bs-toggle="modal"
-                                                        data-bs-target="#rfq_product{{ $sproduct->id }}" --}}
-                                                        >
+                                                    <a href="{{ route('rfq') }}" {{-- data-bs-toggle="modal"
+                                                        data-bs-target="#rfq_product{{ $sproduct->id }}" --}}>
                                                         <span class="fw-bold" style="color: #ae0a46;">Get A Quote</span>
                                                     </a>
                                                 </div>
@@ -341,7 +323,9 @@
                                         <div class="stock-info">
                                             <p tabindex="0" class="mb-0 prod-stock"
                                                 id="product-avalialability-by-warehouse">
-                                                <span aria-label="Stock Availability" title="Stock availability depends on customer order." class="js-prod-available"> <i
+                                                <span aria-label="Stock Availability"
+                                                    title="Stock availability depends on customer order."
+                                                    class="js-prod-available"> <i
                                                         class="fa fa-info-circle text-success"></i> Stock</span> <br>
                                                 {{-- @if ($sproduct->stock == 'available')
                                                     <span class="text-success"
@@ -364,10 +348,8 @@
                                         </div>
                                         <div>
                                             <p class="mb-0 list_price me-3">Custom Pricing</p>
-                                            <a href="{{ route('rfq') }}"
-                                            {{-- data-bs-toggle="modal"
-                                                data-bs-target="#rfq_product{{ $sproduct->id }}" --}}
-                                                >
+                                            <a href="{{ route('rfq') }}" {{-- data-bs-toggle="modal"
+                                                data-bs-target="#rfq_product{{ $sproduct->id }}" --}}>
                                                 <span class="fw-bold" style="color: #ae0a46;">Get A Quote</span>
                                             </a>
                                         </div>
@@ -383,11 +365,11 @@
                                             </div>
                                         </div>
                                     @else
-                                    <a href="{{ route('rfq') }}">
-                                        <button class="btn-color brand-product-btn" {{-- id="modal_view_left"
+                                        <a href="{{ route('rfq') }}">
+                                            <button class="btn-color brand-product-btn" {{-- id="modal_view_left"
                                             data-bs-toggle="modal" data-bs-target="#rfq_product{{ $sproduct->id }}" --}}
-                                            style="width: 100%;">Get Quote</button>
-                                    </a>
+                                                style="width: 100%;">Get Quote</button>
+                                        </a>
                                         {{-- <form action="{{ route('add.cart') }}" method="post">
                                             @csrf
                                             <input type="hidden" name="product_id" id="product_id"
@@ -468,7 +450,9 @@
                                         <div class="stock-info">
                                             <p tabindex="0" class="mb-0 prod-stock"
                                                 id="product-avalialability-by-warehouse">
-                                                <span aria-label="Stock Availability" title="Stock availability depends on customer order." class="js-prod-available"> <i
+                                                <span aria-label="Stock Availability"
+                                                    title="Stock availability depends on customer order."
+                                                    class="js-prod-available"> <i
                                                         class="fa fa-info-circle text-success"></i> Stock</span> <br>
                                                 {{-- @if ($sproduct->stock == 'available')
                                                     <span class="text-success"
@@ -491,10 +475,8 @@
                                         </div>
                                         <div>
                                             <p class="mb-0 list_price">Custom Pricing</p>
-                                            <a href="{{ route('rfq') }}"
-                                            {{-- data-bs-toggle="modal"
-                                                data-bs-target="#rfq_product{{ $sproduct->id }}" --}}
-                                                >
+                                            <a href="{{ route('rfq') }}" {{-- data-bs-toggle="modal"
+                                                data-bs-target="#rfq_product{{ $sproduct->id }}" --}}>
                                                 <span class="fw-bold" style="color: #ae0a46;">Get A Quote</span>
                                             </a>
                                         </div>
@@ -690,18 +672,16 @@
                                                     </div>
                                                 @elseif ($brand_product->price_status && $brand_product->price_status == 'offer_price')
                                                     <div class="d-flex justify-content-center">
-                                                        <a href="{{ route('rfq') }}">
-                                                            <button class="btn-color special_btn"
-                                                            {{-- data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $brand_product->id }}" --}}
-                                                                >Your
-                                                                Price</button>
+                                                        <a href="{{ route('askForPrice', $brand_product->slug) }}"
+                                                            class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
+                                                            Your Price
                                                         </a>
                                                     </div>
                                                 @else
                                                     <div class="d-flex justify-content-center"
                                                         class="cart_button{{ $brand_product->id }}">
-                                                        <button class="btn-color special_btn add_to_cart cart_button_text{{ $brand_product->id }}"
+                                                        <button
+                                                            class="btn-color special_btn add_to_cart cart_button_text{{ $brand_product->id }}"
                                                             data-id="{{ $brand_product->id }}"
                                                             data-name="{{ $brand_product->name }}" data-quantity="1">Add
                                                             to
@@ -789,21 +769,17 @@
                                                     </div>
                                                 @elseif ($product->price_status && $product->price_status == 'rfq')
                                                     <div class="d-flex justify-content-center">
-                                                        <a href="{{ route('rfq') }}">
-                                                            <button class="btn-color special_btn"
-                                                            {{-- data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $product->id }}" --}}
-                                                                >Ask For
-                                                                Price</button>
+                                                        <a href="{{ route('askForPrice', $product->slug) }}"
+                                                            class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
+                                                            Ask For Price
                                                         </a>
                                                     </div>
                                                 @elseif ($product->price_status && $product->price_status == 'offer_price')
                                                     <div class="d-flex justify-content-center">
                                                         <a href="{{ route('rfq') }}">
                                                             <button class="btn-color special_btn"
-                                                            {{-- data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $product->id }}" --}}
-                                                                >Your Price</button>
+                                                                {{-- data-bs-toggle="modal"
+                                                                data-bs-target="#rfq{{ $product->id }}" --}}>Your Price</button>
                                                         </a>
                                                     </div>
                                                 @else
@@ -811,9 +787,8 @@
                                                         class="cart_button{{ $product->id }}">
                                                         <a href="{{ route('rfq') }}">
                                                             <button class="btn-color special_btn"
-                                                            {{-- data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $product->id }}" --}}
-                                                                >Get Quote</button>
+                                                                {{-- data-bs-toggle="modal"
+                                                                data-bs-target="#rfq{{ $product->id }}" --}}>Get Quote</button>
                                                         </a>
                                                         {{-- <button class="btn-color special_btn add_to_cart"
                                                             data-id="{{ $product->id }}"
@@ -904,8 +879,7 @@
                         @foreach ($related_search['brands'] as $brand_logo)
                             <div class="element-brands-logo">
                                 <a href="">
-                                    <img width="100px"
-                                    {{-- height="60px" --}}
+                                    <img width="100px" {{-- height="60px" --}}
                                         src="{{ !empty($brand_logo->image) && file_exists(public_path('storage/' . $brand_logo->image)) ? asset('storage/' . $brand_logo->image) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}"
                                         alt="{{ $brand_logo->title }}">
                                 </a>

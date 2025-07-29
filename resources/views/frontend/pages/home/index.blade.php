@@ -467,98 +467,40 @@
                                                     <h3 class="custom-title"> {{ Str::words($product->name, 10) }}
                                                     </h3>
                                                 </a>
+                                                <div class="mt-5 d-flex align-items-center justify-content-between">
 
-                                                @if ($product->rfq == 1)
-                                                    <div
-                                                        class="mt-5 d-flex align-items-center justify-content-between">
-                                                        <a href="{{ route('rfq') }}"
-                                                            class="d-flex justify-content-center align-items-center"
-                                                            {{-- data-bs-toggle="modal"
-                                                            data-bs-target="#rfq{{ $product->id }}" --}}
-                                                            >
-                                                            <button class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
-                                                                Ask For Price
-                                                            </button>
-                                                        </a>
-                                                        {{-- <a href=""
-                                                            class="d-flex justify-content-center align-items-center"> --}}
-                                                        {{-- @php
-                                                            $cart_items = in_array($product->id, $cartProductIds); // $cartProductIds = array of product IDs already in cart
-                                                        @endphp --}}
-                                                        @php
-                                                            $cart_items = Cart::content();
-                                                            $productInCart = false;
+                                                    {{-- <a href="javascript:void(0)" data-product_id="{{ $product->id }}"
+                                                        data-product_name="{{ $product->name }}" data-product_quantity="1"
+                                                        class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button askForPrice">
+                                                        Ask For Price
+                                                    </a> --}}
 
-                                                            foreach ($cart_items as $item) {
-                                                                if ($item->id == $product->id) {
-                                                                    $productInCart = true;
-                                                                    break;
-                                                                }
+                                                    <a href="{{ route('askForPrice',$product->slug) }}"
+                                                        class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
+                                                        Ask For Price
+                                                    </a>
+
+                                                    @php
+                                                        $cart_items = Cart::content();
+                                                        $productInCart = false;
+
+                                                        foreach ($cart_items as $item) {
+                                                            if ($item->id == $product->id) {
+                                                                $productInCart = true;
+                                                                break;
                                                             }
-                                                        @endphp
+                                                        }
+                                                    @endphp
 
-                                                        <button
-                                                            class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
-                                                            data-id="{{ $product->id }}"
-                                                            data-name="{{ $product->name }}" data-quantity="1">
-                                                            {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
-                                                        </button>
+                                                    <button
+                                                        class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
+                                                        data-id="{{ $product->id }}"
+                                                        data-name="{{ $product->name }}" data-quantity="1">
+                                                        {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
+                                                    </button>
 
-                                                        {{-- </a> --}}
-                                                    </div>
-                                                @elseif ($product->price_status && $product->price_status == 'rfq')
-                                                    <div>
-                                                        <div class="py-3 price">
-                                                            {{-- <small class="price-usd">USD</small>
-                                                        --.-- $ --}}
-                                                        </div>
-                                                        <a href=""
-                                                            class="d-flex justify-content-center align-items-center"
-                                                            {{-- data-bs-toggle="modal"
-                                                            data-bs-target="#rfq{{ $product->id }}" --}}
-                                                            >
-                                                            <button class="btn-color popular_product-button">
-                                                                Ask For Price
-                                                            </button>
-                                                        </a>
-                                                    </div>
-                                                @elseif ($product->price_status && $product->price_status == 'offer_price')
-                                                    <div>
-                                                        <div class="py-3 price">
-                                                            <small class="price-usd">USD</small>
-                                                            $ {{ number_format($product->price, 2) }}
-                                                        </div>
-                                                        <a href="{{ route('rfq') }}"
-                                                            class="d-flex justify-content-center align-items-center"
-                                                            {{-- data-bs-toggle="modal"
-                                                            data-bs-target="#rfq{{ $product->id }}" --}}
-                                                            >
-                                                            <button class="btn-color" data-bs-toggle="modal"
-                                                                data-bs-target="#askProductPrice">
-                                                                Your Price
-                                                            </button>
-                                                        </a>
-                                                    </div>
-                                                @else
-                                                    <div>
-                                                        <div class="py-3 price">
-                                                            <small class="price-usd">USD</small>
-                                                            $ {{ number_format($product->price, 2) }}
-                                                        </div>
-                                                        <a href="" data-mdb-toggle="popover"
-                                                            title="Add To Cart Now"
-                                                            class="cart_button{{ $product->id }}"
-                                                            data-mdb-content="Add To Cart Now"
-                                                            data-mdb-trigger="hover">
-                                                            <button type="button"
-                                                                class="btn-color cart_button_text{{ $product->id }} add_to_cart"
-                                                                data-id="{{ $product->id }}"
-                                                                data-name="{{ $product->name }}" data-quantity="1">
-                                                                Add to Cart
-                                                            </button>
-                                                        </a>
-                                                    </div>
-                                                @endif
+                                                    {{-- </a> --}}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -69,11 +69,11 @@
                             </div>
                         @elseif ($product->price_status && $product->price_status == 'offer_price')
                             <div class="d-flex justify-content-center">
-                                <a href="{{ route('rfq') }}">
+                                <a href="{{ route('askForPrice', $sproduct->slug) }}">
                                     <button class="btn-color special_btn"
                                     {{-- data-bs-toggle="modal"
                                         data-bs-target="#rfq{{ $product->id }}" --}}
-                                        >Your Price</button>
+                                        >Ask For Price</button>
                                 </a>
                             </div>
                         @else

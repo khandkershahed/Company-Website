@@ -29,7 +29,6 @@
                     <th width="7%" rowspan="2" class="text-center table-title-font" style="font-size: 13px;">
                         SubTotal
                         {{-- (<span class="currency">TK</span> ) --}}
-
                     </th>
                     {{-- EU Price --}}
                     <th width="12%" colspan="2" class="text-center table-title-font" style="font-size: 13px;">

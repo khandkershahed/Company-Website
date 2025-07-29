@@ -6,10 +6,10 @@
                 <th class="text-start">Item</th>
                 <th>Source One</th>
                 <th>Source One Price</th>
-                <th>One Price Status</th>
+                {{-- <th>One Price Status</th> --}}
                 <th>Source Two</th>
                 <th>Source Two Price</th>
-                <th>Two Price Status</th>
+                {{-- <th>Two Price Status</th> --}}
                 <!-- New Column -->
             </tr>
         </thead>
@@ -18,7 +18,7 @@
                 @php
                     $sproduct = App\Models\Admin\Product::where('name', 'LIKE', '%' . $rfqProduct->product_name . '%')
                         ->where('product_status', 'product')
-                        ->first([
+                        ->select(
                             'id',
                             'name',
                             'source_one_price',
@@ -27,7 +27,8 @@
                             'source_two_name',
                             'source_one_link',
                             'source_two_link',
-                        ]);
+                        )
+                        ->first();
                 @endphp
                 @if (!empty($sproduct))
                     <tr class="text-center tb-b-bottom">
@@ -39,25 +40,45 @@
                             </a>
                         </td>
                         <td>
-                            <a href="{{ $sproduct->source_one_link }}" target="_blank" rel="noopener noreferrer">
-                                {{ $sproduct->source_one_name }}
-                            </a>
+                            @if ($sproduct->source_one_name)
+                                <a href="{{ $sproduct->source_one_link }}" target="_blank" rel="noopener noreferrer">
+                                    {{ $sproduct->source_one_name }}
+                                </a>
+                            @else
+                                <span class="text-danger">No Source Available</span>
+                            @endif
+
                         </td>
-                        <td>$ {{ $sproduct->source_one_price }}</td>
                         <td>
+                            @if ($sproduct->source_one_price)
+                                $ {{ $sproduct->source_one_price }}
+                            @else
+                                <span class="text-danger">N/A</span>
+                            @endif
+                        </td>
+                        {{-- <td>
                             $320
                             <i class="text-danger fas fa-arrow-down-short-wide"></i>
-                        </td>
+                        </td> --}}
                         <td>
-                            <a href="{{ $sproduct->source_two_link }}" target="_blank" rel="noopener noreferrer">
-                                {{ $sproduct->source_two_name }}
-                            </a>
+                            @if ($sproduct->source_two_name)
+                                <a href="{{ $sproduct->source_two_link }}" target="_blank" rel="noopener noreferrer">
+                                    {{ $sproduct->source_two_name }}
+                                </a>
+                            @else
+                                <span class="text-danger">No Source Available</span>
+                            @endif
                         </td>
-                        <td>$ {{ $sproduct->source_two_price }}</td>
-                        <td>
+                        <td>@if ($sproduct->source_two_price)
+                                $ {{ $sproduct->source_two_price }}
+                            @else
+                                <span class="text-danger">N/A</span>
+                            @endif
+                        </td>
+                        {{-- <td>
                             $320
                             <i class="text-success fas fa-arrow-up-short-wide"></i>
-                        </td>
+                        </td> --}}
                         <!-- Difference -->
                     </tr>
                 @else

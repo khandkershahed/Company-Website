@@ -12,15 +12,13 @@ use Illuminate\Queue\SerializesModels;
 class RFQNotificationAdminMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $data;
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct(array $data)
+    public array $data;
+    public string $rfq_code;
+
+    public function __construct(array $data, string $rfq_code)
     {
         $this->data = $data;
+        $this->rfq_code = $rfq_code;
     }
     /**
      * Get the message envelope.
@@ -32,13 +30,13 @@ class RFQNotificationAdminMail extends Mailable
     {
         return $this->from('support@ngenit.com', 'NGEN-Business')
                     ->view('mail.rfqNotificationAdminMail', ['data' => $this->data])
-                    ->subject('A RFQ has been received and need to reply.');
+                    ->subject("A RFQ ({$this->rfq_code}) has been received and need to reply.");
     }
 
     public function envelope()
     {
         return new Envelope(
-            subject: 'A RFQ has been received and need to reply',
+            subject: "A RFQ ({$this->rfq_code}) has been received and need to reply.",
         );
     }
 

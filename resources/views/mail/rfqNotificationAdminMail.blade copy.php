@@ -150,7 +150,7 @@
                                                 style="padding:10px 15px;border-top:1px solid #f1f1f1;border-bottom:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
                                                 {{ $data['message'] }}
                                             </td>
-                                        </tr>
+                                        </tr> 
                                     @endif
 
                                     <tr>

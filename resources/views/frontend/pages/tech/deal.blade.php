@@ -119,11 +119,55 @@
                                                                     </h3>
                                                                 </a>
                                                                 <div>
+                                                                    <a href="{{ route('askForPrice', $product->slug) }}"
+                                                                        class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
+                                                                        Ask For Price
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-12">
+                                                        <div class="custom-product-grid">
+                                                            <div class="custom-product-image">
+                                                                <a href="http://127.0.0.1:8000/single/product/foxit-pdf-editor-v-12-subscription-license-1-year-1-license"
+                                                                    class="image" tabindex="0">
+                                                                    <img class="" style="object-fit: contain"
+                                                                        src="https://computermania-bd.b-cdn.net/wp-content/uploads/microsoft.jpg"
+                                                                        alt="NGEN IT">
+                                                                </a>
+                                                                <ul class="custom-product-links">
+                                                                    <li>
+                                                                        <a href="#" tabindex="0">
+                                                                            <i class="text-white fa fa-random"
+                                                                                aria-hidden="true">
+                                                                            </i>
+                                                                        </a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#" data-bs-toggle="modal"
+                                                                            data-bs-target="#productDetails669"
+                                                                            tabindex="0">
+                                                                            <i class="text-white fa fa-search"
+                                                                                aria-hidden="true">
+                                                                            </i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="custom-product-content">
+                                                                <a href="http://127.0.0.1:8000/single/product/foxit-pdf-editor-v-12-subscription-license-1-year-1-license"
+                                                                    tabindex="0">
+                                                                    <h3 class="custom-title">
+                                                                        Foxit PDF Editor (v. 12) -
+                                                                        subscription license (1 year)...
+                                                                    </h3>
+                                                                </a>
+                                                                <div>
                                                                     <a href="{{ route('rfq') }}"
                                                                         class="d-flex justify-content-center align-items-center"
                                                                         {{-- data-bs-toggle="modal" data-bs-target="#rfq669"
-                                                                        tabindex="0" --}}
-                                                                        >
+                                                                        tabindex="0" --}}>
                                                                         <button class="btn-color popular_product-button"
                                                                             tabindex="0">
                                                                             Ask For Price
@@ -173,59 +217,7 @@
                                                                     <a href="{{ route('rfq') }}"
                                                                         class="d-flex justify-content-center align-items-center"
                                                                         {{-- data-bs-toggle="modal" data-bs-target="#rfq669"
-                                                                        tabindex="0" --}}
-                                                                        >
-                                                                        <button class="btn-color popular_product-button"
-                                                                            tabindex="0">
-                                                                            Ask For Price
-                                                                        </button>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3 col-sm-12">
-                                                        <div class="custom-product-grid">
-                                                            <div class="custom-product-image">
-                                                                <a href="http://127.0.0.1:8000/single/product/foxit-pdf-editor-v-12-subscription-license-1-year-1-license"
-                                                                    class="image" tabindex="0">
-                                                                    <img class="" style="object-fit: contain"
-                                                                        src="https://computermania-bd.b-cdn.net/wp-content/uploads/microsoft.jpg"
-                                                                        alt="NGEN IT">
-                                                                </a>
-                                                                <ul class="custom-product-links">
-                                                                    <li>
-                                                                        <a href="#" tabindex="0">
-                                                                            <i class="text-white fa fa-random"
-                                                                                aria-hidden="true">
-                                                                            </i>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="#" data-bs-toggle="modal"
-                                                                            data-bs-target="#productDetails669"
-                                                                            tabindex="0">
-                                                                            <i class="text-white fa fa-search"
-                                                                                aria-hidden="true">
-                                                                            </i>
-                                                                        </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="custom-product-content">
-                                                                <a href="http://127.0.0.1:8000/single/product/foxit-pdf-editor-v-12-subscription-license-1-year-1-license"
-                                                                    tabindex="0">
-                                                                    <h3 class="custom-title">
-                                                                        Foxit PDF Editor (v. 12) -
-                                                                        subscription license (1 year)...
-                                                                    </h3>
-                                                                </a>
-                                                                <div>
-                                                                    <a href="{{ route('rfq') }}"
-                                                                        class="d-flex justify-content-center align-items-center"
-                                                                        {{-- data-bs-toggle="modal" data-bs-target="#rfq669"
-                                                                        tabindex="0" --}}
-                                                                        >
+                                                                        tabindex="0" --}}>
                                                                         <button class="btn-color popular_product-button"
                                                                             tabindex="0">
                                                                             Ask For Price
@@ -275,8 +267,7 @@
                                                                     <a href="{{ route('rfq') }}"
                                                                         class="d-flex justify-content-center align-items-center"
                                                                         {{-- data-bs-toggle="modal" data-bs-target="#rfq669"
-                                                                        tabindex="0" --}}
-                                                                        >
+                                                                        tabindex="0" --}}>
                                                                         <button class="btn-color popular_product-button"
                                                                             tabindex="0">
                                                                             Ask For Price
@@ -358,8 +349,7 @@
                                             --.-- $ --}}
                                 </div>
                                 <a href="{{ route('rfq') }}" class="d-flex justify-content-center align-items-center"
-                                    {{-- data-bs-toggle="modal" data-bs-target="#rfq" --}}
-                                    >
+                                    {{-- data-bs-toggle="modal" data-bs-target="#rfq" --}}>
                                     <button class="btn-color popular_product-button">
                                         Ask For Price
                                     </button>
@@ -395,8 +385,7 @@
                                             --.-- $ --}}
                                 </div>
                                 <a href="{{ route('rfq') }}" class="d-flex justify-content-center align-items-center"
-                                    {{-- data-bs-toggle="modal" data-bs-target="#rfq" --}}
-                                    >
+                                    {{-- data-bs-toggle="modal" data-bs-target="#rfq" --}}>
                                     <button class="btn-color popular_product-button">
                                         Ask For Price
                                     </button>
@@ -432,8 +421,7 @@
                                             --.-- $ --}}
                                 </div>
                                 <a href="{{ route('rfq') }}" class="d-flex justify-content-center align-items-center"
-                                    {{-- data-bs-toggle="modal" data-bs-target="#rfq" --}}
-                                    >
+                                    {{-- data-bs-toggle="modal" data-bs-target="#rfq" --}}>
                                     <button class="btn-color popular_product-button">
                                         Ask For Price
                                     </button>
@@ -469,8 +457,7 @@
                                             --.-- $ --}}
                                 </div>
                                 <a href="{{ route('rfq') }}" class="d-flex justify-content-center align-items-center"
-                                    {{-- data-bs-toggle="modal" data-bs-target="#rfq" --}}
-                                    >
+                                    {{-- data-bs-toggle="modal" data-bs-target="#rfq" --}}>
                                     <button class="btn-color popular_product-button">
                                         Ask For Price
                                     </button>

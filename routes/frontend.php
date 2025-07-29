@@ -346,6 +346,7 @@ Route::get('/portfolio/{slug}', [HomeController::class, 'portfolioDetails'])->na
 
 // RFQ
 Route::get('/rfq', [HomeController::class, 'rfqCreate'])->name('rfq');
+Route::get('/rfq/product/{slug}', [HomeController::class, 'rfqProduct'])->name('askForPrice');
 Route::post('rfq/add', [RFQController::class, 'rfqCreate'])->name('rfqCreate');
 Route::get('/rfq/{slug}/success', [HomeController::class, 'rfqSuccess'])->name('rfq.success');
 Route::post('rfq/store', [RFQController::class, 'store'])->name('rfq.add');
@@ -402,4 +403,6 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/{slug}/contents', 'brandContents')->name('brand.content');
     Route::get('/{slug}/products/paginate', 'ajaxBrandProductsPagination')->name('brand.products.paginate');
 });
+
+
 

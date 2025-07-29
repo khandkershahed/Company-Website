@@ -66,9 +66,11 @@
                                                         <div class="col-lg-1 col-2">
                                                             <button type="button" data-repeater-delete
                                                                 class="py-2 btn btn-danger btn-sm w-100 trash-btn delete-btn"
-                                                                onclick="deleteRow(this)">
+                                                                onclick="deleteRFQRow(event, this, '{{ $cart_product->rowId }}')"
+                                                                data-id="{{ $cart_product->rowId }}">
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
+
                                                         </div>
                                                     </div>
                                                 @endforeach
@@ -84,28 +86,25 @@
                                                             placeholder="Product Name" required autocomplete="off" />
                                                     </div>
                                                     <div class="col-lg-1 col-2">
-                                                         <div class="d-flex">
-                                                                <input type="text" name="qty" value="1"
-                                                                    class="text-center form-control qty-input"
-                                                                    style="width: 60px; margin-bottom: 6px" />
+                                                        <div class="d-flex">
+                                                            <input type="text" name="qty" value="1"
+                                                                class="text-center form-control qty-input"
+                                                                style="width: 60px; margin-bottom: 6px" />
 
-                                                                <div class="d-flex flex-column counting-btn">
-                                                                    <button type="button"
-                                                                        class="qty-btn increment-quantity"
-                                                                        onclick="increment(this)"
-                                                                        style="width: 32px; height: 32px">
-                                                                        <i class="fas fa-chevron-up"
-                                                                            style="color: #7a7577"></i>
-                                                                    </button>
-                                                                    <button type="button"
-                                                                        class="qty-btn decrement-quantity"
-                                                                        onclick="decrement(this)"
-                                                                        style="width: 32px; height: 32px">
-                                                                        <i class="fas fa-chevron-down"
-                                                                            style="color: #7a7577"></i>
-                                                                    </button>
-                                                                </div>
+                                                            <div class="d-flex flex-column counting-btn">
+                                                                <button type="button" class="qty-btn increment-quantity"
+                                                                    onclick="increment(this)"
+                                                                    style="width: 32px; height: 32px">
+                                                                    <i class="fas fa-chevron-up" style="color: #7a7577"></i>
+                                                                </button>
+                                                                <button type="button" class="qty-btn decrement-quantity"
+                                                                    onclick="decrement(this)"
+                                                                    style="width: 32px; height: 32px">
+                                                                    <i class="fas fa-chevron-down"
+                                                                        style="color: #7a7577"></i>
+                                                                </button>
                                                             </div>
+                                                        </div>
                                                     </div>
                                                     <div class="col-lg-1 col-2">
                                                         <button type="button" data-repeater-delete
@@ -182,8 +181,11 @@
                                                     <input class="form-check-input custom-form-check" type="checkbox"
                                                         value="1" name="is_reseller" id="resellerCheckbox"
                                                         autocomplete="" />
-                                                    <label class="form-check-label fw-normal" for="resellerCheckbox" style="color:#ae0a46;">
-                                                        <span style="font-weight: 600; font-size: 14px;">I am a reseller</span> <small>(Check if you are a reseller partner)</small>
+                                                    <label class="form-check-label fw-normal" for="resellerCheckbox"
+                                                        style="color:#ae0a46;">
+                                                        <span style="font-weight: 600; font-size: 14px;">I am a
+                                                            reseller</span> <small>(Check if you are a reseller
+                                                            partner)</small>
                                                     </label>
                                                 </div>
                                             </div>
@@ -191,7 +193,8 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="name" class="form-control"
-                                                    placeholder="Contact Name (e.g: Jhone Doe)" required autocomplete="" />
+                                                    placeholder="Contact Name (e.g: Jhone Doe)" required
+                                                    autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -263,20 +266,22 @@
                                             <div class="mt-4">
                                                 <!-- Delivery Address Checkbox -->
                                                 <div class="mt-2 form-check">
-                                                    <input class="form-check-input custom-form-check deliveryAddress" type="checkbox"
-                                                        value="1" id="deliveryAddress"
-                                                        disabled required autocomplete="" />
-                                                    <label class="text-black form-check-label fw-normal" for="deliveryAddress" style="opacity: 1; font-size: 13px;">
+                                                    <input class="form-check-input custom-form-check deliveryAddress"
+                                                        type="checkbox" value="1" id="deliveryAddress" disabled
+                                                        required autocomplete="" />
+                                                    <label class="text-black form-check-label fw-normal"
+                                                        for="deliveryAddress" style="opacity: 1; font-size: 13px;">
                                                         My delivery address is the same as the company
                                                         address
                                                     </label>
                                                 </div>
                                                 <div id="checkDefaultContainer">
                                                     <div class="mb-4 form-check">
-                                                        <input class="form-check-input custom-form-check endUser" type="checkbox"
-                                                            value="1" id="endUser" disabled required
-                                                            autocomplete />
-                                                        <label class="text-black form-check-label fw-normal" for="endUser"  style="opacity: 1; font-size: 13px;">
+                                                        <input class="form-check-input custom-form-check endUser"
+                                                            type="checkbox" value="1" id="endUser" disabled
+                                                            required autocomplete />
+                                                        <label class="text-black form-check-label fw-normal"
+                                                            for="endUser" style="opacity: 1; font-size: 13px;">
                                                             I am the end user and my information is the same
                                                             as the company address
                                                         </label>
@@ -303,8 +308,9 @@
                                         <!-- Delivery Address Checkbox -->
 
                                         <div class="mt-2 mb-4 form-check">
-                                            <input class="form-check-input custom-form-check deliveryAddress" type="checkbox"
-                                                value="1" name="is_contact_address" id="step2Address" autocomplete="" />
+                                            <input class="form-check-input custom-form-check deliveryAddress"
+                                                type="checkbox" value="1" name="is_contact_address"
+                                                id="step2Address" autocomplete="" />
                                             <label class="form-check-label" for="step2Address">
                                                 Delivery address is same as the company address
                                             </label>
@@ -315,28 +321,25 @@
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_company_name" class="form-control"
-                                                    placeholder="Shipping Company Name (e.g: NGen It)"
-                                                    autocomplete="" />
+                                                    placeholder="Shipping Company Name (e.g: NGen It)" autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_name" class="form-control"
-                                                    placeholder="Contact Name (e.g: Jhone Doe)"  autocomplete="" />
+                                                    placeholder="Contact Name (e.g: Jhone Doe)" autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_address" class="form-control"
-                                                    placeholder="Address (e.g: House No, Road, Block)"
-                                                    autocomplete="" />
+                                                    placeholder="Address (e.g: House No, Road, Block)" autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_designation" class="form-control"
-                                                    placeholder="Designation (e.g: Sales Manager)"
-                                                    autocomplete="" />
+                                                    placeholder="Designation (e.g: Sales Manager)" autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -357,8 +360,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="email" name="shipping_email" class="form-control"
-                                                    placeholder="Email Address (e.g: jhone@mail.com)"
-                                                    autocomplete="" />
+                                                    placeholder="Email Address (e.g: jhone@mail.com)" autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -370,14 +372,13 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="number" name="shipping_phone" class="form-control"
-                                                    placeholder="Phone Number (e.g: 018687955852)"
-                                                    autocomplete="" />
+                                                    placeholder="Phone Number (e.g: 018687955852)" autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="shipping_zip_code" class="form-control"
-                                                    placeholder="ZIP Code (e.g: 1207)"  autocomplete="" />
+                                                    placeholder="ZIP Code (e.g: 1207)" autocomplete="" />
                                             </div>
                                         </div>
                                     </div>
@@ -396,8 +397,9 @@
                                     <!-- End User Checkbox -->
                                     <div>
                                         <div class="mt-2 mb-4 form-check">
-                                            <input class="form-check-input custom-form-check" type="checkbox" name="end_user_is_contact_address"
-                                                value="1" id="stepThreeGotoStep4" autocomplete="" />
+                                            <input class="form-check-input custom-form-check" type="checkbox"
+                                                name="end_user_is_contact_address" value="1" id="stepThreeGotoStep4"
+                                                autocomplete="" />
                                             <label class="form-check-label" for="stepThreeGotoStep4">
                                                 I am the end user & same as the company address
                                             </label>
@@ -408,13 +410,14 @@
                                         <div class="col-lg-12">
                                             <div class="mb-3">
                                                 <input type="text" name="end_user_company_name" class="form-control"
-                                                    placeholder="Destination/Company Name (e.g: NGen It)" autocomplete="" />
+                                                    placeholder="Destination/Company Name (e.g: NGen It)"
+                                                    autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="end_user_name" class="form-control"
-                                                    placeholder="Contact Name (e.g: Jhone Doe)"  autocomplete="" />
+                                                    placeholder="Contact Name (e.g: Jhone Doe)" autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -427,8 +430,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="end_user_designation" class="form-control"
-                                                    placeholder="Designation (e.g: Sales Manager)"
-                                                    autocomplete="" />
+                                                    placeholder="Designation (e.g: Sales Manager)" autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -449,8 +451,7 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="email" name="end_user_email" class="form-control"
-                                                    placeholder="Email Address (e.g: jhone@mail.com)"
-                                                    autocomplete="" />
+                                                    placeholder="Email Address (e.g: jhone@mail.com)" autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -462,14 +463,13 @@
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="number" name="end_user_phone" class="form-control"
-                                                    placeholder="Phone Number (e.g: 018687955852)"
-                                                    autocomplete="" />
+                                                    placeholder="Phone Number (e.g: 018687955852)" autocomplete="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-3">
                                                 <input type="text" name="end_user_zip_code" class="form-control"
-                                                    placeholder="ZIP Code (e.g: 1207)"  autocomplete="" />
+                                                    placeholder="ZIP Code (e.g: 1207)" autocomplete="" />
                                             </div>
                                         </div>
                                     </div>

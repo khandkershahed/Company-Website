@@ -44,6 +44,7 @@ use App\Models\Admin\SubSubCategory;
 use App\Models\Admin\TechnologyData;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Admin\PortfolioClient;
+use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
 use App\Models\Admin\HardwareInfoPage;
 use App\Models\Admin\PortfolioDetails;
@@ -85,15 +86,10 @@ class HomeController extends Controller
 
     // public function index()
     // {
+    //     // Load the latest homepage with all relationships eager-loaded
+    //     $data['home'] = Homepage::with(['feature1', 'feature2', 'feature3', 'feature4', 'feature5', 'success1', 'success2', 'success3', 'story1', 'story2', 'story3', 'story4', 'techglossy'])->latest('id')->first();
 
-    //     $data['home'] = Homepage::latest('id', 'desc')->with([
-    //         'feature1', 'feature2', 'feature3', 'feature4', 'feature5',
-    //         'success1', 'success2', 'success3',
-    //         'story1', 'story2', 'story3', 'story4',
-    //         'techglossy'
-    //     ])->first();
-
-
+    //     // Prepare the features, stories, and successItems arrays directly from the loaded homepage
     //     $data['features'] = [
     //         'feature1' => $data['home']->feature1,
     //         'feature2' => $data['home']->feature2,
@@ -114,8 +110,10 @@ class HomeController extends Controller
     //     ];
     //     $data['techglossy'] = $data['home']->techglossy;
 
-    //     $productColumns = ['id', 'brand_id', 'rfq', 'slug', 'name', 'thumbnail', 'price', 'discount', 'price_status'];
+    //     // Fetch 10 random products (software + hardware) without using RAND() in the query
+    //     $productColumns = ['id', 'brand_id', 'rfq', 'slug', 'name', 'thumbnail', 'price', 'discount', 'price_status', 'product_type'];
 
+    //     // Fetch software and hardware products in one query
     //     $softwareProducts = DB::table('products')
     //         ->select($productColumns)
     //         ->where('product_status', 'product')
@@ -133,54 +131,99 @@ class HomeController extends Controller
     //         ->get();
 
     //     $data['products'] = $softwareProducts->merge($hardwareProducts)->shuffle()->take(10);
-
+    //     $data['productCount'] = Product::where('product_status', 'product')->count();
+    //     $data['brandCount'] = Brand::where('status', 'active')->count();
+    //     // Return the view with the optimized data
     //     return view('frontend.pages.home.index', $data);
     // }
 
     public function index()
     {
-        // Load the latest homepage with all relationships eager-loaded
-        $data['home'] = Homepage::with(['feature1', 'feature2', 'feature3', 'feature4', 'feature5', 'success1', 'success2', 'success3', 'story1', 'story2', 'story3', 'story4', 'techglossy'])->latest('id')->first();
+        // Attempt to load from cache first (for homepage content)
+        $home = Cache::remember('homepage.latest', 60, function () {
+            return Homepage::with([
+                'feature1',
+                'feature2',
+                'feature3',
+                'feature4',
+                'feature5',
+                'success1',
+                'success2',
+                'success3',
+                'story1',
+                'story2',
+                'story3',
+                'story4',
+                'techglossy'
+            ])->latest('id')->first();
+        });
 
-        // Prepare the features, stories, and successItems arrays directly from the loaded homepage
-        $data['features'] = [
-            'feature1' => $data['home']->feature1,
-            'feature2' => $data['home']->feature2,
-            'feature3' => $data['home']->feature3,
-            'feature4' => $data['home']->feature4,
-            'feature5' => $data['home']->feature5,
-        ];
-        $data['storys'] = [
-            'story1' => $data['home']->story1,
-            'story2' => $data['home']->story2,
-            'story3' => $data['home']->story3,
-            'story4' => $data['home']->story4,
-        ];
-        $data['successItems'] = [
-            '1' => $data['home']->success1,
-            '2' => $data['home']->success2,
-            '3' => $data['home']->success3,
-        ];
-        $data['techglossy'] = $data['home']->techglossy;
+        if (!$home) {
+            return view('frontend.pages.home.index', [
+                'home' => null,
+                'features' => [],
+                'storys' => [],
+                'successItems' => [],
+                'techglossy' => null,
+                'products' => collect(),
+                'productCount' => 0,
+                'brandCount' => 0,
+            ]);
+        }
 
-        // Fetch 10 random products (software + hardware) without using RAND() in the query
-        $productColumns = ['id', 'brand_id', 'rfq', 'slug', 'name', 'thumbnail', 'price', 'discount', 'price_status', 'product_type'];
+        // Use collection transformation
+        $features = collect(range(1, 5))->mapWithKeys(fn($i) => ["feature{$i}" => $home->{"feature{$i}"}]);
+        $storys = collect(range(1, 4))->mapWithKeys(fn($i) => ["story{$i}" => $home->{"story{$i}"}]);
+        $successItems = collect(range(1, 3))->mapWithKeys(fn($i) => ["$i" => $home->{"success{$i}"}]);
 
-        // Fetch software and hardware products in one query
-        $products = DB::table('products')
-            ->select($productColumns)
-            ->where('product_status', 'product')
-            ->whereIn('product_type', ['software', 'hardware'])
-            ->limit(20)  // Fetch 20 products to allow shuffling later
+        // Cache product IDs to avoid repeated random selects
+        $productIds = Cache::remember('homepage.random_products', 30, function () {
+            $softwareIds = Product::where('product_status', 'product')
+                ->where('product_type', 'software')
+                ->inRandomOrder()
+                ->limit(10)
+                ->pluck('id');
+
+            $hardwareIds = Product::where('product_status', 'product')
+                ->where('product_type', 'hardware')
+                ->inRandomOrder()
+                ->limit(10)
+                ->pluck('id');
+
+            return $softwareIds->merge($hardwareIds)->shuffle()->take(10);
+        });
+
+        $products = Product::select([
+            'id',
+            'brand_id',
+            'rfq',
+            'slug',
+            'name',
+            'thumbnail',
+            'price',
+            'discount',
+            'price_status',
+            'product_type'
+        ])
+            ->whereIn('id', $productIds)
             ->get();
 
-        // Randomize the products in PHP (if required) after fetching
-        $data['products'] = $products->random(10); // Randomize in PHP after fetching
-        $data['productCount'] = Product::where('product_status', 'product')->count();
-        $data['brandCount'] = Brand::where('status', 'active')->count();
-        // Return the view with the optimized data
-        return view('frontend.pages.home.index', $data);
+        // Cache counts as they're unlikely to change frequently
+        $productCount = Cache::remember('homepage.product_count', 60, fn() => Product::where('product_status', 'product')->count());
+        $brandCount = Cache::remember('homepage.brand_count', 60, fn() => Brand::where('status', 'active')->count());
+
+        return view('frontend.pages.home.index', [
+            'home' => $home,
+            'features' => $features,
+            'storys' => $storys,
+            'successItems' => $successItems,
+            'techglossy' => $home->techglossy,
+            'products' => $products,
+            'productCount' => $productCount,
+            'brandCount' => $brandCount,
+        ]);
     }
+
 
 
 
@@ -345,15 +388,7 @@ class HomeController extends Controller
         return view('frontend.pages.hardware.allhardware', $data);
     }
 
-
-
-
-
-
-
     //Learn More
-
-
     public function LearnMore()
     {
         $learnmore = LearnMore::with([
@@ -462,7 +497,6 @@ class HomeController extends Controller
 
 
     //Contact, Support, Location, RFQ
-
     public function location()
     {
         $data['setting'] = Site::latest()->first();
@@ -616,32 +650,6 @@ class HomeController extends Controller
     //Tech Deals
     public function TechDeal()
     {
-        // $data['products'] = Product::whereNotNull('deal')->where('product_status', 'product')->paginate(10);
-        // $data['brands'] = DB::table('brands')
-        //     ->join('products', 'brands.id', '=', 'products.brand_id')
-        //     ->whereNotNull('products.deal')
-        //     ->select('brands.id', 'brands.slug', 'brands.title', 'brands.image')
-        //     ->where('brands.status', 'active')->distinct()->get();
-        // $data['categories'] = DB::table('categories')
-        //     ->join('products', 'categories.id', '=', 'products.cat_id')
-        //     ->whereNotNull('products.deal')
-        //     ->select('categories.id', 'categories.slug', 'categories.title', 'categories.image')
-        //     ->distinct()->get();
-
-        // Saju Edited If No Need then Remove
-        // $data['products'] = Product::where('refurbished', '1')->where('product_status', 'product')->paginate(10);
-        // $data['brands'] = DB::table('brands')
-        //     ->join('products', 'brands.id', '=', 'products.brand_id')
-        //     ->where('products.refurbished', '=', '1')
-        //     ->select('brands.id', 'brands.slug', 'brands.title', 'brands.image')
-        //     ->where('brands.status', 'active')->distinct()->get();
-        // $data['categories'] = DB::table('categories')
-        //     ->join('products', 'categories.id', '=', 'products.cat_id')
-        //     ->where('products.refurbished', '=', '1')
-        //     ->select('categories.id', 'categories.slug', 'categories.title', 'categories.image')
-        //     ->distinct()->get();
-        // //dd($data['categories']);
-        // $data['refurbished_products'] = Product::where('refurbished', '1')->where('product_status', 'product')->get();
 
         $data['products'] = Product::where('refurbished', '1')->where('product_status', 'product')->paginate(10);
         $data['brands'] = DB::table('brands')
@@ -811,10 +819,6 @@ class HomeController extends Controller
         return view('frontend.pages.brand.brand', $data);
     }
 
-
-
-
-
     //Industry All Page
 
     public function AllIndustry()
@@ -875,10 +879,6 @@ class HomeController extends Controller
             return redirect()->back();
         }
     }
-
-
-
-
 
 
     //Search All Controller
@@ -1083,21 +1083,28 @@ class HomeController extends Controller
 
     public function rfqCreate(Request $request)
     {
-        $data['sales_mans'] = User::where('role', 'sales')->select('users.id', 'users.name')->get();
-        // $data['products'] = Product::where('product_status', 'product')->select('products.id', 'products.name')->get();
-        // $data['brands'] = Brand::where('status', 'active')->get(['id', 'title']);
-        // $data['categorys'] = Category::get(['id', 'title']);
-        // $data['industrys'] = Industry::get(['id', 'title']);
         $data['countries'] = Country::orderBy('country_name', 'ASC')->get(['id', 'country_name']);
         $cart_items = Cart::content();
-        // dd($cart_items);
-        // $cartItems = Cart::content();
-        //     if ($cartItems->isNotEmpty()) {
-        //         $cartProductIds = $cartItems->pluck('id')->toArray();
-        //         $cart_items = Product::whereIn('id', $cartProductIds)->get();
-        //     } else {
-        //         $cart_items = collect();  // Empty collection for no products in cart
-        //     }
+        $data['cart_products'] = $cart_items;
+        return view('frontend.pages.rfq.rfq', $data);
+    }
+    public function rfqProduct(Request $request, $slug)
+    {
+        $product = Product::select('id', 'name')->where('slug',$slug)->first();
+        $id = $product->id;
+        $quantity = 1;
+
+        // If the product doesn't exist, add it to the cart
+        Cart::add([
+            'id'      => $id,
+            'name'    => $product->name,
+            'qty'     => $quantity,
+            'price'   => 0,
+            'weight'  => 1,
+        ]);
+
+        $data['countries'] = Country::orderBy('country_name', 'ASC')->get(['id', 'country_name']);
+        $cart_items = Cart::content();
         $data['cart_products'] = $cart_items;
         return view('frontend.pages.rfq.rfq', $data);
     }

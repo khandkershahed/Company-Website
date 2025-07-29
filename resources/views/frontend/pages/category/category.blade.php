@@ -168,8 +168,8 @@
                                     style="border: 1px dotted rgb(179, 179, 179); margin: 0.15rem!important;">
                                     <div class="ag-offer_visible-item">
                                         <div class="px-2 ag-offer_img-box">
-                                            <img src="{{ asset('storage/' . $item->image) }}"
-                                                class="ag-offer_img" alt="{{ $item->title }}"
+                                            <img src="{{ asset('storage/' . $item->image) }}" class="ag-offer_img"
+                                                alt="{{ $item->title }}"
                                                 style="width:75px !important;height:75px !important;" />
                                         </div>
                                         <div class="ag-offer_title">
@@ -190,7 +190,7 @@
                 </div>
             </div>
         </section>
-        @else
+    @else
         <section>
             <div class="container ag-offer-block">
                 <div class="common_product_item_title">
@@ -295,14 +295,9 @@
                                                                 {{-- <small class="price-usd">USD</small>
                                                                 --.-- $ --}}
                                                             </div>
-                                                            <a href="{{ route('rfq') }}"
-                                                                class="d-flex justify-content-center align-items-center"
-                                                                {{-- data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}" --}}
-                                                                >
-                                                                <button class="btn-color popular_product-button">
-                                                                    Ask For Price
-                                                                </button>
+                                                            <a href="{{ route('askForPrice', $product->slug) }}"
+                                                                class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
+                                                                Ask For Price
                                                             </a>
                                                         </div>
                                                     @elseif ($item->price_status && $item->price_status == 'rfq')
@@ -311,14 +306,9 @@
                                                                 {{-- <small class="price-usd">USD</small>
                                                             --.-- $ --}}
                                                             </div>
-                                                            <a href="{{ route('rfq') }}"
-                                                                class="d-flex justify-content-center align-items-center"
-                                                                {{-- data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}" --}}
-                                                                >
-                                                                <button class="btn-color popular_product-button">
-                                                                    Ask For Price
-                                                                </button>
+                                                            <a href="{{ route('askForPrice', $product->slug) }}"
+                                                                class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
+                                                                Ask For Price
                                                             </a>
                                                         </div>
                                                     @elseif ($item->price_status && $item->price_status == 'offer_price')
@@ -330,12 +320,9 @@
                                                             <a href="{{ route('rfq') }}"
                                                                 class="d-flex justify-content-center align-items-center"
                                                                 {{-- data-bs-toggle="modal"
-                                                                data-bs-target="#rfq{{ $item->id }}" --}}
-                                                                >
-                                                                <button class="btn-color"
-                                                                {{-- data-bs-toggle="modal"
-                                                                    data-bs-target="#askProductPrice" --}}
-                                                                    >
+                                                                data-bs-target="#rfq{{ $item->id }}" --}}>
+                                                                <button class="btn-color" {{-- data-bs-toggle="modal"
+                                                                    data-bs-target="#askProductPrice" --}}>
                                                                     Your Price
                                                                 </button>
                                                             </a>

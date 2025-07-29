@@ -220,15 +220,16 @@
                                         <div class="mt-4 d-flex justify-content-between align-items-center">
                                             <div class="d-flex align-items-center">
                                                 <div class="pe-2">
-                                                    {{-- <a class="search-btn-price"
-                                                        href="{{ route('product.details', ['slug' => $product->slug]) }}">Ask
-                                                        For Price</a> --}}
-                                                    <a href="{{ route('rfq') }}" class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button mt-2"
-                                                        {{-- data-bs-toggle="modal"
-                                                        data-bs-target="#rfq{{ $product->id }}" --}}
-                                                        >
+                                                    <a href="{{ route('askForPrice',$product->slug) }}"
+                                                        class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
                                                         Ask For Price
                                                     </a>
+                                                    {{-- <a href="javascript:void(0)" data-product_id="{{ $product->id }}"
+                                                        data-product_name="{{ $product->name }}"
+                                                        data-product_quantity="1" onclick="askForPrice(event, this)"
+                                                        class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button askPricebtn">
+                                                        Ask For Price
+                                                    </a> --}}
                                                 </div>
                                             </div>
                                             <div class="border d-flex" style="height: 2.6rem;">
@@ -309,8 +310,6 @@
 
 
 <script>
-
-
     $(document).ready(function() {
 
         $('.increment-quantity').on('click', function() {
@@ -408,12 +407,48 @@
             });
         }
 
+        function askForPrice(event, element) {
+            event.preventDefault(); // Prevent default action
+            var id = $(element).data('product_id');
+            var name = $(element).data('product_name');
+            var quantity = $(element).data('product_quantity');
+
+            // Prepare the form data
+            var formData = {
+                product_id: id,
+                name: name,
+                qty: quantity
+            };
+
+            $.ajax({
+                url: "{{ route('add.cart') }}", // Update with your route
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.exists) {
+                        // Product is already in the cart
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Product Already in RFQ List',
+                            text: 'This product is already in your added RFQ List.',
+                        });
+                    } else {
+                        // redirect to the RFQ page
+                        window.location.href = "{{ route('rfq') }}";
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
         // Bind the click event for the "Add to Cart" buttons
         $(".header_cart_button").on("click", function(event) {
             addToCart(event, this);
         });
+        $(".askPricebtn").on("click", function(event) {
+            askForPrice(event, this);
+        });
     });
 </script>
-
-
-

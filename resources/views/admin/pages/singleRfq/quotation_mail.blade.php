@@ -2,7 +2,7 @@
 
 @section('content')
     <style>
-        .table>:not(caption)>*>* {
+        .table>:not(caption)>*>* { 
             padding: 5px;
         }
 

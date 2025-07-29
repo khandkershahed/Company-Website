@@ -15,17 +15,25 @@
             style="background:#fff;border-collapse:collapse;width:650px;margin:0px;border:1px solid rgb(224,224,224);padding:0px;color:#333;text-align:center;font-family:Arial,Helvetica,sans-serif;text-align:center">
             <tbody>
                 <tr>
-                    <td style="padding:5px 15px;border-bottom:1px solid #f1f1f1;text-align:left">
-                        <a href="https://www.ngenitltd.com/" target="_blank"
-                            data-saferedirecturl="https://www.google.com/url?q=https://www.ngenitltd.com/&amp;source=gmail&amp;ust=1683110822015000&amp;usg=AOvVaw1oh2knrZ8dutUp_6pTWSeQ">
-                            <img src="http://165.22.48.109/ngenit/upload/logoimage/1764773615798059.png" height="70px"
-                                width="130px" alt="NgenIt" border="0" class="CToWUd" data-bit="iit">
-                        </a>
+                    <td style="background-color:#ae0a46; padding:15px;">
+                        <table width="100%">
+                            <tr>
+                                <td align="left" style="vertical-align:top;">
+                                    <a href="https://ngenitltd.com" target="_blank">
+                                        <img src="{{ asset('images/NGen-Logo-white.png') }}" alt="NGen IT Logo"
+                                            style="display:block; max-width:110px; height:auto;">
+                                    </a>
+                                </td>
+                                <td align="right" style="color:#ffffff;">
+                                    <p style="font-size:2em; font-weight:600; margin:0;">RFQ Assigned</p>
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align:left;padding:15px 15px 5px 15px;font-size:18px">
-                        Dear
+                        Hello,
                     </td>
                 </tr>
                 <tr>
@@ -114,13 +122,15 @@
                     <td style="padding:15px;text-align:center;font-size:12px">
                         <div style="padding-bottom:5px;margin-bottom:10px;margin-top:15px;font-size:14px !important;">
                             <strong>
-                                <a href="{{route('single-rfq.show',$data['rfq_code'])}}" style="color: #FFF;
+                                <a href="{{ route('single-rfq.quoation_mail', $data['rfq_code']) }}"
+                                    style="color: #FFF;
                                 border: 1px solid #ae0a46;
                                 background-color: #ae0a46;
                                 transition: all 0.8s ease-in-out;padding: 10px 40px;
                                 cursor: pointer;
                                 font-size: 18px;
-                                font-weight: 500;"> Check the RFQ</a>
+                                font-weight: 500;">
+                                    Check the RFQ</a>
                             </strong>
                         </div>
 

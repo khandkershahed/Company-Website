@@ -113,6 +113,7 @@
                                             </div>
                                             <div class="col-md-4 text-end">
                                                 <div class="gap-2 mb-1 d-flex justify-content-end">
+                                                    
                                                     <button class="btn btn-sm w-50 btn-outline-primary"
                                                         onclick="window.location.href='{{ route('single-rfq.quoation_mail', $rfq->rfq_code) }}';">
                                                         Quote

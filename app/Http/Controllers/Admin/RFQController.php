@@ -379,7 +379,7 @@ class RFQController extends Controller
             // Mail::to($request->email)->send(new RFQNotificationClientMail($data));
             sleep(1); // Delay in seconds
             foreach ($user_emails as $email) {
-                Mail::to($email)->send(new RFQConfirmationMail($data));
+                Mail::to($email)->send(new RFQConfirmationMail($data,$rfq->rfq_code));
                 sleep(1);
             }
         } catch (\Exception $e) {
@@ -448,8 +448,16 @@ class RFQController extends Controller
         $rfq_code = 'RFQ-' . $today . '-' . $newNumber;
 
         // Check for existing client
-        $client = Client::where('email', $request->email)->first();
-        $client_type = $client ? (in_array($client->user_type, ['client', 'partner']) ? $client->user_type : 'anonymous') : 'anonymous';
+        $client_type = 'anonymous';
+
+        if ($client = Client::where('email', trim($request->email))->first()) {
+            if ($client->user_type === 'job_seeker') {
+                $client->delete();
+            } elseif (in_array(trim(strtolower($client->user_type)), ['client', 'partner'])) {
+                $client_type = $client->user_type;
+            }
+        }
+
 
         // Save RFQ
         $rfq_id = RFQ::insertGetId([
@@ -495,7 +503,8 @@ class RFQController extends Controller
             'end_user_city'         => ($request->end_user_is_contact_address == '1') ? $request->city :  $request->end_user_city,
             'end_user_zip_code'     => ($request->end_user_is_contact_address == '1') ? $request->zip_code :  $request->end_user_zip_code,
             'project_name'          => $request->project_name,
-
+            'project_status'            => $request->project_status,
+            'approximate_delivery_time' => $request->approximate_delivery_time,
             // 'image'             => $imagePath['status'] == 1 ? $imagePath['file_name']: null,
             'status'            => 'rfq_created',
             'deal_type'         => 'new',
@@ -564,10 +573,11 @@ class RFQController extends Controller
             'country'       => $rfq->country,
             'link'          => route('single-rfq.show', $rfq->rfq_code),
         ];
+        $rfq_code = $rfq->rfq_code;
         try {
             // Mail::to($request->email)->send(new RFQNotificationClientMail($data));
             foreach ($user_emails as $email) {
-                Mail::to($email)->send(new RFQConfirmationMail($data));
+                Mail::to($email)->send(new RFQConfirmationMail($data, $rfq_code));
             }
         } catch (\Exception $e) {
             Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
@@ -869,6 +879,8 @@ class RFQController extends Controller
                     'vat'                  => $request->vat,
                     'total_price'          => $request->total_price,
                     'price_text'           => $request->price_text,
+                    'project_status'            => $request->project_status,
+                    'approximate_delivery_time' => $request->approximate_delivery_time,
                     'status'               => 'pending',
                     'image' => $globalFunImg['status'] == 1 ? $globalFunImg['file_name'] : $rfq->image,
                 ]);
@@ -1375,17 +1387,39 @@ class RFQController extends Controller
         Notification::send($users, new RfqCreate($rfq->name, $rfq->rfq_code));
         // Email data
         $data = [
-            'name'          => $rfq->name,
-            'product_names' => $rfq->rfqProducts,
-            'phone'         => $rfq->phone,
-            'qty'           => $rfq->qty,
-            'company_name'  => $rfq->company_name,
-            'address'       => $rfq->address,
-            'message'       => $rfq->message,
-            'rfq_code'      => $rfq->rfq_code,
-            'email'         => $rfq->email,
-            'country'       => $rfq->country,
-            'link'          => route('single-rfq.show', $rfq->rfq_code),
+            'name'                  => $rfq->name,
+            'product_names'         => $rfq->rfqProducts,
+            'phone'                 => $rfq->phone,
+            'qty'                   => $rfq->qty,
+            'company_name'          => $rfq->company_name,
+            'address'               => $rfq->address,
+            'message'               => $rfq->message,
+            'rfq_code'              => $rfq->rfq_code,
+            'email'                 => $rfq->email,
+            'country'               => $rfq->country,
+            'shipping_name'         => $rfq->shipping_name,
+            'shipping_email'        => $rfq->shipping_email,
+            'shipping_phone'        => $rfq->shipping_phone,
+            'shipping_company_name' => $rfq->shipping_company_name,
+            'shipping_designation'  => $rfq->shipping_designation,
+            'shipping_address'      => $rfq->shipping_address,
+            'shipping_country'      => $rfq->shipping_country,
+            'shipping_city'         => $rfq->shipping_city,
+            'shipping_zip_code'     => $rfq->shipping_zip_code,
+            'end_user_name'         => $rfq->end_user_name,
+            'end_user_email'        => $rfq->end_user_email,
+            'end_user_phone'        => $rfq->end_user_phone,
+            'end_user_company_name' => $rfq->end_user_company_name,
+            'end_user_designation'  => $rfq->end_user_designation,
+            'end_user_address'      => $rfq->end_user_address,
+            'end_user_country'      => $rfq->end_user_country,
+            'end_user_city'         => $rfq->end_user_city,
+            'end_user_zip_code'     => $rfq->end_user_zip_code,
+            'project_name'          => $rfq->project_name,
+            'project_status'        => $rfq->project_status,
+            'approximate_delivery_time' => $rfq->approximate_delivery_time,
+            'budget'                => $rfq->budget,
+            'link'                  => route('single-rfq.show', $rfq->rfq_code),
         ];
         try {
             $rfq->update(['confirmation' => 'approved']);
@@ -1393,7 +1427,7 @@ class RFQController extends Controller
             Mail::to($rfq->email)->send(new RFQNotificationClientMail($data));
             // Email admins (you should ideally queue this)
             foreach ($user_emails as $email) {
-                Mail::to($email)->send(new RFQNotificationAdminMail($data));
+                Mail::to($email)->send(new RFQNotificationAdminMail($data,$rfq->rfq_code));
             }
             Session::flash('success', 'RFQ has been approved successfully.');
         } catch (\Exception $e) {

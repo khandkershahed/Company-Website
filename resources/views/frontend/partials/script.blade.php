@@ -318,8 +318,41 @@
             });
         });
 
+        $('.askForPrice').click(function(event) {
+            event.preventDefault(); // Prevent page reload if the button is inside a form
+            var id = $(this).data('product_id');
+            var name = $(this).data('product_name');
+            var quantity = $(this).data('product_quantity');
+            var formData = {
+                product_id: id,
+                name: name,
+                qty: quantity
+            };
 
+            $.ajax({
+                url: "{{ route('add.cart') }}", // Update with your route
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                success: function(response) {
+                    if (response.exists) {
+                        // Product is already in the cart
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Product Already in RFQ List',
+                            text: 'This product is already in your added RFQ List.',
+                        });
 
+                    } else {
+                        // redirect to the RFQ page
+                        window.location.href = "{{ route('rfq') }}";
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
 
     });
 
@@ -413,6 +446,47 @@
     //         }
     //     });
     // }
+    function deleteRow(event, element, rowId) {
+        event.preventDefault();
+
+        var cartHeader = $('.miniRFQQTY');
+        var offcanvasRFQ = $('.offcanvasRFQ');
+
+        $.ajax({
+            type: 'GET',
+            url: "rfq-remove/" + rowId,
+            dataType: 'json',
+            success: function(data) {
+                // Update the cart header
+                cartHeader.empty();
+                if (data.cartHeader > 0) {
+                    const label = data.cartHeader > 1 ? 'Item(s)' : 'Item';
+                    cartHeader.append(`${data.cartHeader} ${label} Added`);
+                } else {
+                    cartHeader.append('Ask Query');
+                }
+
+                // Replace RFQ content
+                offcanvasRFQ.html(data.html);
+
+                // Notification
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Successfully Removed from RFQ!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            },
+            error: function(xhr, status, error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error removing item',
+                    text: error,
+                    showConfirmButton: true
+                });
+            }
+        });
+    }
 
     function deleteRFQRow(event, element, rowId) {
         event.preventDefault();

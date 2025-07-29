@@ -1,10 +1,29 @@
 @push('scripts')
+    <script src="{{ asset('backend/assets/input-tags/js/tagsinput.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#quotationMailForm').on('submit', function() {
                 $('.from-prevent-multiple-submits').prop('disabled', true); // Disable the submit button
                 $('.loader').show(); // Show the loader
                 $('.submit_modal_container').hide(); // Hide the submit modal container
+            });
+        });
+        $(document).ready(function() {
+            $(document).on('keydown', '.rfqcalculationinput', function(e) {
+                if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                    (e.ctrlKey === true && [65, 67, 86, 88].includes(e.keyCode)) ||
+                    (e.keyCode >= 35 && e.keyCode <= 39)) {
+                    return;
+                }
+
+                if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) &&
+                    (e.keyCode < 96 || e.keyCode > 105)) {
+                    e.preventDefault();
+                }
+            });
+
+            $(document).on('input', '.rfqcalculationinput', function() {
+                this.value = this.value.replace(/[^0-9.]/g, ''); // or /[^0-9]/g for integers
             });
         });
     </script>
@@ -141,8 +160,10 @@
                 var packing_percentage = $("input[name='packing_percentage']").val();
                 var custom_percentage = $("input[name='custom_percentage']").val();
                 var tax_vat_percentage = $("input[name='tax_vat_percentage']").val() / 100 || 0;
-                var vat_percentage = $("input[name='vat_percentage']").val();
-                var special_discount_percentage = $("input[name='special_discount_percentage']").val();
+                var vat_percentage = $("input[name='vat_display']").is(':checked') ? $(
+                    "input[name='vat_percentage']").val() : 0;
+                var special_discount_percentage = $("input[name='special_discount_display']").is(':checked') ? $(
+                    "input[name='special_discount_percentage']").val() : 0;
 
                 var sub_total_principal_amount = 0;
                 var sub_total_office_cost = 0;
@@ -334,9 +355,10 @@
             }
 
             // Bind the event handler to the document and delegate to input fields
-            $(document).on('keyup change', '#quotationForm input', function(event) {
+            $(document).on('change', '#quotationForm input', function(event) {
                 calculateTotals();
             });
+
             document.querySelector('#quotationForm').addEventListener('keydown', function(event) {
                 if (event.keyCode === 13) {
                     event.preventDefault();
@@ -366,25 +388,25 @@
             newRow2.classList.add('tdsp');
 
             newRow.innerHTML = `
-                    <td>
-                        <a class="p-0 bg-transparent border-0 text-danger" onclick="deleteRfqCalculationRow(this)" title="Delete Row"><i class="fa-regular fa-trash-can"></i></a>
+                    <td class="text-center vm">
+                        <a class="bg-transparent border-0" onclick="deleteRfqCalculationRow(this)" title="Delete Row"><i class="fa-regular fa-trash-can text-danger"></i></a>
                     </td>
-                    <td></td>
-                    <td><input type="hidden" name="product_id[]" value="">
-                        <input type="text" name="product_name[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" placeholder="Product Name" value=""></td>
-                    <td><input type="text" name="qty[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="principal_cost[]" class="bg-transparent form-control form-control-sm rfqcalculationinput principal_cost" value="0"></td>
-                    <td><input type="text" name="principal_unit_total_amount[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_office_cost[]" class="bg-transparent form-control form-control-sm rfqcalculationinput principal_discount_amount" value="0"></td>
-                    <td><input type="text" name="unit_profit[]" class="bg-transparent form-control form-control-sm rfqcalculationinput principal_unit_total_amount_taka" value="0"></td>
-                    <td><input type="text" name="unit_others_cost[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_remittance[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_packing[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_customs[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_tax_vat[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td><input type="text" name="unit_subtotal[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td class="text-center"><input type="text" name="unit_final_price[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
-                    <td class="text-center"><input type="text" name="unit_final_total_price[]" class="bg-transparent form-control form-control-sm rfqcalculationinput" value="0"></td>
+                    <td class="text-center p-1 py-1 vm" style="border-right: 1px solid #0b64763d;"></td>
+                    <td class="p-1 py-1 vm"><input type="hidden" name="product_id[]" value="">
+                        <input type="text" name="product_name[]" class="bg-white border-0 form-control form-control-sm text-start table-inp rfqcalculationinput" placeholder="Product Name" value=""></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="qty[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="principal_cost[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput principal_cost" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="principal_unit_total_amount[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_office_cost[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput principal_discount_amount" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_profit[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput principal_unit_total_amount_taka" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_others_cost[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_remittance[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_packing[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_customs[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_tax_vat[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="p-1 py-1 vm"><input type="text" name="unit_subtotal[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="text-center p-1 py-1 vm"><input type="text" name="unit_final_price[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
+                    <td class="text-center p-1 py-1 vm"><input type="text" name="unit_final_total_price[]" class="bg-white border-0 form-control form-control-sm text-center table-inp rfqcalculationinput" value="0"></td>
                     `;
 
             newRow2.innerHTML = `
@@ -395,10 +417,14 @@
                     <td class="text-center"><input type="text" name="quotation_unit_final_total_price[]" class="text-center bg-transparent form-control form-control-sm" value="0"></td>
                     `;
 
-            tableBody.appendChild(newRow);
-            tableBody2.appendChild(newRow2);
+            if (tableBody && tableBody2) {
+                tableBody.appendChild(newRow);
+                tableBody2.appendChild(newRow2);
+                updateSerialNumbers();
+            } else {
+                console.error("One or both table bodies not found in DOM.");
+            }
 
-            updateSerialNumbers();
         }
 
         function deleteRfqCalculationRow(element, productId) {
@@ -413,10 +439,15 @@
                         row.remove();
                         updateSerialNumbers();
                     } else {
+                        const row = element.closest('tr');
+                        row.remove();
+                        updateSerialNumbers();
                         console.error('Error: ' + response.message);
                     }
                 },
                 error: function(xhr, status, error) {
+                    const row = element.closest('tr');
+                    row.remove();
                     console.error('AJAX Error:', error);
                 }
             });
@@ -552,7 +583,9 @@
                             var newElement = document.getElementById(focusedElementId);
                             if (newElement) {
                                 newElement.focus();
-                                newElement.setSelectionRange(cursorPosition, cursorPosition);
+                                // border color set for new element
+                                newElement.style.border = '1px solid #0b6476';
+                                // newElement.setSelectionRange(cursorPosition, cursorPosition);
                             }
                         }, 0);
                     } else {
@@ -567,46 +600,30 @@
     </script>
 
 
-{{-- For add and remove the checkbox on check  --}}
-{{-- <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const vatCheckbox = document.getElementById('flexCheckVAT');
-        const discountCheckbox = document.getElementById('flexCheckDiscount');
-        const vatRow = document.getElementById('vatRow');
-        const discountRow = document.getElementById('discountRow');
 
-        vatCheckbox.addEventListener('change', function () {
-            vatRow.style.display = this.checked ? 'table-row' : 'none';
-        });
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const vatCheckbox = document.getElementById('flexCheckVAT');
+            const discountCheckbox = document.getElementById('flexCheckDiscount');
 
-        discountCheckbox.addEventListener('change', function () {
-            discountRow.style.display = this.checked ? 'table-row' : 'none';
-        });
-    });
-</script> --}}
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const vatCheckbox = document.getElementById('flexCheckVAT');
-        const discountCheckbox = document.getElementById('flexCheckDiscount');
+            const vatRow = document.getElementById('vatRow');
+            const discountRow = document.getElementById('discountRow');
+            const subtotalRow = document.getElementById('subtotalRow');
 
-        const vatRow = document.getElementById('vatRow');
-        const discountRow = document.getElementById('discountRow');
-        const subtotalRow = document.getElementById('subtotalRow');
+            function updateRows() {
+                vatRow.style.display = vatCheckbox.checked ? 'table-row' : 'none';
+                discountRow.style.display = discountCheckbox.checked ? 'table-row' : 'none';
 
-        function updateRows() {
-            vatRow.style.display = vatCheckbox.checked ? 'table-row' : 'none';
-            discountRow.style.display = discountCheckbox.checked ? 'table-row' : 'none';
-
-            // Show subtotal if either checkbox is checked
-            if (vatCheckbox.checked || discountCheckbox.checked) {
-                subtotalRow.style.display = 'table-row';
-            } else {
-                subtotalRow.style.display = 'none';
+                // Show subtotal if either checkbox is checked
+                if (vatCheckbox.checked || discountCheckbox.checked) {
+                    subtotalRow.style.display = 'table-row';
+                } else {
+                    subtotalRow.style.display = 'none';
+                }
             }
-        }
 
-        vatCheckbox.addEventListener('change', updateRows);
-        discountCheckbox.addEventListener('change', updateRows);
-    });
-</script>
+            vatCheckbox.addEventListener('change', updateRows);
+            discountCheckbox.addEventListener('change', updateRows);
+        });
+    </script>
 @endpush
