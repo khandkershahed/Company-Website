@@ -573,10 +573,11 @@ class RFQController extends Controller
             'country'       => $rfq->country,
             'link'          => route('single-rfq.show', $rfq->rfq_code),
         ];
+        $rfq_code = $rfq->rfq_code;
         try {
             // Mail::to($request->email)->send(new RFQNotificationClientMail($data));
             foreach ($user_emails as $email) {
-                Mail::to($email)->send(new RFQConfirmationMail($data));
+                Mail::to($email)->send(new RFQConfirmationMail($data, $rfq_code));
             }
         } catch (\Exception $e) {
             Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
@@ -1426,7 +1427,7 @@ class RFQController extends Controller
             Mail::to($rfq->email)->send(new RFQNotificationClientMail($data));
             // Email admins (you should ideally queue this)
             foreach ($user_emails as $email) {
-                Mail::to($email)->send(new RFQNotificationAdminMail($data));
+                Mail::to($email)->send(new RFQNotificationAdminMail($data,$rfq->rfq_code));
             }
             Session::flash('success', 'RFQ has been approved successfully.');
         } catch (\Exception $e) {

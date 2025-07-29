@@ -12,16 +12,13 @@ use Illuminate\Queue\SerializesModels;
 class RFQConfirmationMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $data;
+    public array $data;
+    public string $rfq_code;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct(array $data)
+    public function __construct(array $data, string $rfq_code)
     {
         $this->data = $data;
+        $this->rfq_code = $rfq_code;
     }
     /**
      * Get the message envelope.
@@ -33,7 +30,7 @@ class RFQConfirmationMail extends Mailable
     {
         return $this->from('support@ngenit.com', 'NGEN-Business')
                     ->view('mail.rfqNotificationConfirmMail', ['data' => $this->data])
-                    ->subject('[New Customer] - A RFQ has been received and need to confirm.');
+                    ->subject("[New Customer] - A RFQ ({$this->rfq_code}) has been received and needs confirmation.");
     }
 
     /**
@@ -44,7 +41,7 @@ class RFQConfirmationMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: '[New Customer] - A RFQ has been received and need to confirm',
+            subject: "[New Customer] - A RFQ ({$this->rfq_code}) has been received and needs confirmation.",
         );
     }
 
