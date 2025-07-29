@@ -181,17 +181,32 @@ class HomeController extends Controller
             $softwareIds = Product::where('product_status', 'product')
                 ->where('product_type', 'software')
                 ->inRandomOrder()
-                ->limit(10)
-                ->pluck('id');
+                ->limit(8)
+                ->pluck('id')
+                ->values(); // Ensure indexing
 
             $hardwareIds = Product::where('product_status', 'product')
                 ->where('product_type', 'hardware')
                 ->inRandomOrder()
-                ->limit(10)
-                ->pluck('id');
+                ->limit(8)
+                ->pluck('id')
+                ->values();
 
-            return $softwareIds->merge($hardwareIds)->shuffle()->take(10);
+            $merged = collect();
+            $max = max($softwareIds->count(), $hardwareIds->count());
+
+            for ($i = 0; $i < $max; $i++) {
+                if (isset($softwareIds[$i])) {
+                    $merged->push($softwareIds[$i]);
+                }
+                if (isset($hardwareIds[$i])) {
+                    $merged->push($hardwareIds[$i]);
+                }
+            }
+
+            return $merged;
         });
+
 
         $products = Product::select([
             'id',
@@ -1088,9 +1103,9 @@ class HomeController extends Controller
         $data['cart_products'] = $cart_items;
         return view('frontend.pages.rfq.rfq', $data);
     }
-    public function rfqProduct(Request $request, $slug) 
+    public function rfqProduct(Request $request, $slug)
     {
-        $product = Product::select('id', 'name')->where('slug',$slug)->first();
+        $product = Product::select('id', 'name')->where('slug', $slug)->first();
         $id = $product->id;
         $quantity = 1;
 
