@@ -183,7 +183,7 @@ class HomeController extends Controller
                 ->inRandomOrder()
                 ->limit(8)
                 ->pluck('id')
-                ->values(); // Ensure indexing
+                ->values();
 
             $hardwareIds = Product::where('product_status', 'product')
                 ->where('product_type', 'hardware')
@@ -204,9 +204,8 @@ class HomeController extends Controller
                 }
             }
 
-            return $merged;
+            return $merged->take(10); // optional limit to 10
         });
-
 
         $products = Product::select([
             'id',
@@ -221,8 +220,11 @@ class HomeController extends Controller
             'product_type'
         ])
             ->whereIn('id', $productIds)
-            ->get();
+            ->get()
+            ->keyBy('id'); // key products by ID to preserve order
 
+        // Reorder the products based on the original interleaved ID sequence
+        $orderedProducts = $productIds->map(fn($id) => $products[$id])->filter();
         // Cache counts as they're unlikely to change frequently
         $productCount = Cache::remember('homepage.product_count', 60, fn() => Product::where('product_status', 'product')->count());
         $brandCount = Cache::remember('homepage.brand_count', 60, fn() => Brand::where('status', 'active')->count());
@@ -233,7 +235,7 @@ class HomeController extends Controller
             'storys' => $storys,
             'successItems' => $successItems,
             'techglossy' => $home->techglossy,
-            'products' => $products,
+            'products' => $orderedProducts,
             'productCount' => $productCount,
             'brandCount' => $brandCount,
         ]);
