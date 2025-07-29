@@ -346,7 +346,7 @@ Route::get('/portfolio/{slug}', [HomeController::class, 'portfolioDetails'])->na
 
 // RFQ
 Route::get('/rfq', [HomeController::class, 'rfqCreate'])->name('rfq');
-Route::get('/rfq/product/{id}', [HomeController::class, 'rfqProduct'])->name('rfq');
+// Route::get('/rfq/product/{id}', [HomeController::class, 'rfqProduct'])->name('rfq');
 Route::post('rfq/add', [RFQController::class, 'rfqCreate'])->name('rfqCreate');
 Route::get('/rfq/{slug}/success', [HomeController::class, 'rfqSuccess'])->name('rfq.success');
 Route::post('rfq/store', [RFQController::class, 'store'])->name('rfq.add');
