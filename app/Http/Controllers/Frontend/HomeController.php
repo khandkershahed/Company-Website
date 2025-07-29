@@ -1094,21 +1094,6 @@ class HomeController extends Controller
         $id = $product->id;
         $quantity = 1;
 
-        // Get the current cart items
-        $cartItems = Cart::content();
-
-        // Check if the product is already in the cart
-        $productInCart = $cartItems->firstWhere('id', $id);
-
-        if ($productInCart) {
-            // If the product already exists in the cart, return a response indicating this
-            return response()->json([
-                'exists' => true,
-                'cartHeader' => Cart::count(),  // Cart count can be returned if needed
-                'success' => false
-            ]);
-        }
-
         // If the product doesn't exist, add it to the cart
         Cart::add([
             'id'      => $id,
