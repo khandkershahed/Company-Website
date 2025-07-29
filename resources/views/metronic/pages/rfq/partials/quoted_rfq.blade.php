@@ -1,8 +1,8 @@
 @foreach ($quoteds as $quoted_rfq)
     <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="quoted_rfq_{{ $quoted_rfq->id }}"
         role="tabpanel">
-        <div class="card shadow-none">
-            <div class="bg-light rounded-3 d-flex justify-content-between align-items-center w-100 p-2">
+        <div class="shadow-none card">
+            <div class="p-2 bg-light rounded-3 d-flex justify-content-between align-items-center w-100">
                 <div>
                     <h3 class="mb-0 text-primary ps-3">
                         {{ $quoted_rfq->rfq_code }}
@@ -141,16 +141,16 @@
 
                     <div class="row">
                         <div class="col-lg-6">
-                            <div class="card shadow-none border">
-                                <div class="card-header py-0 bg-light">
-                                    <h5 class="card-title fw-semibold m-0">
+                            <div class="border shadow-none card">
+                                <div class="py-0 card-header bg-light">
+                                    <h5 class="m-0 card-title fw-semibold">
                                         Client Information
                                     </h5>
                                 </div>
-                                <div class="card-body p-2">
+                                <div class="p-2 card-body">
                                     <!-- Responsive Table -->
                                     <div class="table-responsive">
-                                        <table class="table table-bordered mb-0">
+                                        <table class="table mb-0 table-bordered">
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">Name</th>
@@ -204,16 +204,16 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="card shadow-none border">
-                                <div class="card-header py-0 bg-light">
-                                    <h5 class="card-title fw-semibold m-0">
+                            <div class="border shadow-none card">
+                                <div class="py-0 card-header bg-light">
+                                    <h5 class="m-0 card-title fw-semibold">
                                         Product Information
                                     </h5>
                                 </div>
-                                <div class="card-body p-2">
+                                <div class="p-2 card-body">
                                     <!-- Second table (products list) -->
                                     <div class="table-responsive">
-                                        <table class="table table-bordered mb-0">
+                                        <table class="table mb-0 table-bordered">
                                             <tbody>
                                                 @if ($quoted_rfq->rfqProducts->count() > 0)
                                                     @foreach ($quoted_rfq->rfqProducts as $product)
@@ -242,12 +242,12 @@
                 <div id="message_container_{{ $quoted_rfq->id }}" class="tab-hidden_{{ $quoted_rfq->id }}">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="card w-100 border-0 rounded-0" id="kt_drawer_chat_messenger">
+                            <div class="border-0 card w-100 rounded-0" id="kt_drawer_chat_messenger">
                                 <div class="card-header pe-5" id="kt_drawer_chat_messenger_header">
                                     <div class="card-title">
                                         <div class="d-flex justify-content-center flex-column me-3">
                                             <a href="#"
-                                                class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">{{ $quoted_rfq->name }}</a>
+                                                class="mb-2 text-gray-900 fs-4 fw-bold text-hover-primary me-1 lh-1">{{ $quoted_rfq->name }}</a>
 
                                             <div class="mb-0 lh-1">
                                                 <span
@@ -266,23 +266,23 @@
                                                         class="path4"></span></i>
                                             </button>
 
-                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3"
+                                            <div class="py-3 menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px"
                                                 data-kt-menu="true">
-                                                <div class="menu-item px-3">
-                                                    <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">
+                                                <div class="px-3 menu-item">
+                                                    <div class="px-3 pb-2 menu-content text-muted fs-7 text-uppercase">
                                                         Contacts
                                                     </div>
                                                 </div>
 
-                                                <div class="menu-item px-3">
-                                                    <a href="#" class="menu-link px-3" data-bs-toggle="modal"
+                                                <div class="px-3 menu-item">
+                                                    <a href="#" class="px-3 menu-link" data-bs-toggle="modal"
                                                         data-bs-target="#kt_modal_users_search">
                                                         Add Contact
                                                     </a>
                                                 </div>
 
-                                                <div class="menu-item px-3">
-                                                    <a href="#" class="menu-link flex-stack px-3"
+                                                <div class="px-3 menu-item">
+                                                    <a href="#" class="px-3 menu-link flex-stack"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#kt_modal_invite_friends">
                                                         Invite Contacts
@@ -299,16 +299,16 @@
                                                     </a>
                                                 </div>
 
-                                                <div class="menu-item px-3" data-kt-menu-trigger="hover"
+                                                <div class="px-3 menu-item" data-kt-menu-trigger="hover"
                                                     data-kt-menu-placement="right-start">
-                                                    <a href="#" class="menu-link px-3">
+                                                    <a href="#" class="px-3 menu-link">
                                                         <span class="menu-title">Groups</span>
                                                         <span class="menu-arrow"></span>
                                                     </a>
 
-                                                    <div class="menu-sub menu-sub-dropdown w-175px py-4">
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3"
+                                                    <div class="py-4 menu-sub menu-sub-dropdown w-175px">
+                                                        <div class="px-3 menu-item">
+                                                            <a href="#" class="px-3 menu-link"
                                                                 data-bs-toggle="tooltip"
                                                                 data-bs-original-title="Coming soon"
                                                                 data-kt-initialized="1">
@@ -316,8 +316,8 @@
                                                             </a>
                                                         </div>
 
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3"
+                                                        <div class="px-3 menu-item">
+                                                            <a href="#" class="px-3 menu-link"
                                                                 data-bs-toggle="tooltip"
                                                                 data-bs-original-title="Coming soon"
                                                                 data-kt-initialized="1">
@@ -325,8 +325,8 @@
                                                             </a>
                                                         </div>
 
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3"
+                                                        <div class="px-3 menu-item">
+                                                            <a href="#" class="px-3 menu-link"
                                                                 data-bs-toggle="tooltip"
                                                                 data-bs-original-title="Coming soon"
                                                                 data-kt-initialized="1">
@@ -336,8 +336,8 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="menu-item px-3 my-1">
-                                                    <a href="#" class="menu-link px-3" data-bs-toggle="tooltip"
+                                                <div class="px-3 my-1 menu-item">
+                                                    <a href="#" class="px-3 menu-link" data-bs-toggle="tooltip"
                                                         data-bs-original-title="Coming soon" data-kt-initialized="1">
                                                         Settings
                                                     </a>
@@ -359,23 +359,23 @@
                                         data-kt-scroll-dependencies="#kt_drawer_chat_messenger_header, #kt_drawer_chat_messenger_footer"
                                         data-kt-scroll-wrappers="#kt_drawer_chat_messenger_body"
                                         data-kt-scroll-offset="0px" style="height: 104px">
-                                        {{-- <div class="d-flex justify-content-start mb-10">
+                                        {{-- <div class="mb-10 d-flex justify-content-start">
                                             <div class="d-flex flex-column align-items-start">
-                                                <div class="d-flex align-items-center mb-2">
+                                                <div class="mb-2 d-flex align-items-center">
                                                     <div class="symbol symbol-35px symbol-circle">
                                                         <img alt="Pic"
                                                             src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
                                                     </div>
                                                     <div class="ms-3">
                                                         <a href="#"
-                                                            class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">Brian
+                                                            class="text-gray-900 fs-5 fw-bold text-hover-primary me-1">Brian
                                                             Cox</a>
-                                                        <span class="text-muted fs-7 mb-1">2
+                                                        <span class="mb-1 text-muted fs-7">2
                                                             mins</span>
                                                     </div>
                                                 </div>
 
-                                                <div class="p-5 rounded bg-light-info text-gray-900 fw-semibold mw-lg-400px text-start"
+                                                <div class="p-5 text-gray-900 rounded bg-light-info fw-semibold mw-lg-400px text-start"
                                                     data-kt-element="message-text">
                                                     How likely are you to
                                                     recommend our company to
@@ -384,14 +384,14 @@
                                             </div>
                                         </div>
 
-                                        <div class="d-flex justify-content-end mb-10">
+                                        <div class="mb-10 d-flex justify-content-end">
                                             <div class="d-flex flex-column align-items-end">
-                                                <div class="d-flex align-items-center mb-2">
+                                                <div class="mb-2 d-flex align-items-center">
                                                     <div class="me-3">
-                                                        <span class="text-muted fs-7 mb-1">5
+                                                        <span class="mb-1 text-muted fs-7">5
                                                             mins</span>
                                                         <a href="#"
-                                                            class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">You</a>
+                                                            class="text-gray-900 fs-5 fw-bold text-hover-primary ms-1">You</a>
                                                     </div>
 
                                                     <div class="symbol symbol-35px symbol-circle">
@@ -400,7 +400,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="p-5 rounded bg-light-primary text-gray-900 fw-semibold mw-lg-400px text-end"
+                                                <div class="p-5 text-gray-900 rounded bg-light-primary fw-semibold mw-lg-400px text-end"
                                                     data-kt-element="message-text">
                                                     Hey there, we’re just
                                                     writing to let you know
@@ -410,10 +410,10 @@
                                                 </div>
                                             </div>
                                         </div> --}}
-                                        <div class="d-flex justify-content-center mb-10">
+                                        <div class="mb-10 d-flex justify-content-center">
                                             <div class="d-flex flex-column align-items-center">
 
-                                                <div class="p-5 rounded bg-light-info text-gray-900 fw-semibold mw-lg-400px text-start"
+                                                <div class="p-5 text-gray-900 rounded bg-light-info fw-semibold mw-lg-400px text-start"
                                                     data-kt-element="message-text">
                                                     No Message Yet.
                                                 </div>
@@ -422,8 +422,8 @@
                                     </div>
                                 </div>
 
-                                <div class="card-footer pt-4" id="kt_drawer_chat_messenger_footer">
-                                    <textarea class="form-control form-control-flush mb-3 border" rows="1" data-kt-element="input"
+                                <div class="pt-4 card-footer" id="kt_drawer_chat_messenger_footer">
+                                    <textarea class="mb-3 border form-control form-control-flush" rows="1" data-kt-element="input"
                                         placeholder="Type a message"></textarea>
 
                                     <div class="d-flex flex-stack">

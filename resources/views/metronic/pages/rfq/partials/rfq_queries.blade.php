@@ -96,7 +96,7 @@
                                         <div class="row w-100 align-items-center">
                                             <div class="col-md-4 d-flex align-items-center">
                                                 <i class="fa-regular fa-file fs-2 text-primary pe-3"></i>
-                                                <div>
+                                                <div class="text-start">
                                                     <div class="fw-semibold">
                                                         {{ $rfq->name }}
                                                     </div>

@@ -228,6 +228,7 @@
 
             <tfoot>
 
+
                 {{-- Nothing break or edit just adding  those three tr in footer start --}}
                 <tr class="text-black vat_display special_discount w-100"
                     style="background-color:#ebebeb;display:{{ optional($quotation)->special_discount_display == '1' || optional($quotation)->vat_display == '1' ? 'table-row' : 'none' }}">
@@ -406,6 +407,8 @@
                     </th>
                 </tr>
                 {{-- Nothing break or edit just adding  those three tr in footer End --}}
+
+
 
 
                 <tr style="background-color: #ebebeb" class="text-black">
