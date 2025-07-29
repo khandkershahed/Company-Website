@@ -25,7 +25,7 @@
                                     </a>
                                 </td>
                                 <td align="right" style="color:#ffffff;">
-                                    {{-- <p style="font-size:2em; font-weight:600; margin:0;">Sales</p> --}}
+                                    <p style="font-size:2em; font-weight:600; margin:0;">RFQ Assigned</p>
                                 </td>
                             </tr>
                         </table>
