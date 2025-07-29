@@ -218,6 +218,7 @@
 
             <tfoot>
 
+
                 {{-- Nothing break or edit just adding  those three tr in footer start --}}
                 <tr id="subtotalRow" style="display: none; background-color: #ebebeb;">
                     <th colspan="2" class="p-1 py-1 text-center vm" style="border-right: 1px solid #0b64763d;">
@@ -399,6 +400,8 @@
                     </th>
                 </tr>
                 {{-- Nothing break or edit just adding  those three tr in footer End --}}
+
+
 
 
                 <tr style="background-color: #ebebeb" class="text-black">

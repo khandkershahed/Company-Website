@@ -218,7 +218,7 @@
             <div class="border shadow-sm card card-flush h-xl-100" data-select2-id="select2-data-126-8c2i">
                 <div class="card-header">
                     <h3 class="card-title align-items-start flex-column">
-                        <span class="text-gray-800 card-label fw-bold">RFQ Filtered Detailsssssss</span>
+                        <span class="text-gray-800 card-label fw-bold">RFQ Filtered Details</span>
                         <span class="mt-1 text-gray-500 fw-semibold fs-6">Check All RFQ History Here!</span>
                     </h3>
                     <div class="card-toolbar">
