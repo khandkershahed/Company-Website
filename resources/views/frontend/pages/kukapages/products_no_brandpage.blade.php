@@ -62,8 +62,7 @@
                 <div class="col-lg-8 col-sm-12">
                     <ul class="d-lg-flex justify-content-start stand-header-nav mb-0 d-lg-block d-sm-none">
                         <li class="px-3">
-                            <a class="p-2 disable-brands"
-                                href="javascript:void(0)">Overview</a>
+                            <span>Overview</span>
                         </li>
                         <li class="px-3">
                             <a class="p-2 active-brands"
@@ -72,13 +71,11 @@
 
 
                         <li class="px-3 disable-brands">
-                            <a class="p-2"
-                                href="javascript:void(0)">Catalogs</a>
+                            <span>Catalogs</span>
                         </li>
 
                         <li class="px-3 disable-brands">
-                            <a class="p-2"
-                                href="javascript:void(0)">Tech Contents</a>
+                            <span>Tech Contents</span>
                         </li>
 
                         <li class="px-3 disable-brands border-0">
@@ -232,11 +229,11 @@
                                                     {{ Str::words($product->name, 15) }}</p>
                                             </a>
                                             <div>
-                                                <span class="brand_product_span"><i class="fa-solid fa-tag"></i>
+                                                <span class="brandpage_product_span"><i class="fa-solid fa-tag"></i>
                                                     {{ $product->getCategoryName() }}</span>
-                                                <span class="brand_product_span"><i class="fa-solid fa-tag"></i>
+                                                <span class="brandpage_product_span"><i class="fa-solid fa-tag"></i>
                                                     {{ $product->sku_code }}</span>
-                                                {{-- <span class="brand_product_span"><i class="fa-solid fa-tag"></i>
+                                                {{-- <span class="brandpage_product_span"><i class="fa-solid fa-tag"></i>
                                                 {{ $product->product_code }}</span> --}}
                                                 @if ($product->price_status == 'price' && !empty($product->price))
                                                     <span style="font-size: 14px"><i class="fa-solid fa-tag ms-2"></i> USD
@@ -345,11 +342,11 @@
                                                     {{ Str::words($product->name, 15) }}</p>
                                             </a>
                                             <div>
-                                                <span class="brand_product_span"><i class="fa-solid fa-tag"></i>
+                                                <span class="brandpage_product_span"><i class="fa-solid fa-tag"></i>
                                                     {{ $product->getCategoryName() }}</span>
-                                                <span class="brand_product_span"><i class="fa-solid fa-tag"></i>
+                                                <span class="brandpage_product_span"><i class="fa-solid fa-tag"></i>
                                                     {{ $product->sku_code }}</span>
-                                                {{-- <span class="brand_product_span"><i class="fa-solid fa-tag"></i>
+                                                {{-- <span class="brandpage_product_span"><i class="fa-solid fa-tag"></i>
                                                 {{ $product->product_code }}</span> --}}
                                                 @if ($product->price_status == 'price' && !empty($product->price))
                                                     <span style="font-size: 14px"><i class="fa-solid fa-tag ms-2"></i> USD
