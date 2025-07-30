@@ -10,10 +10,10 @@
                                 <i class="fas fa-arrow-left-long pe-2"></i>Back to Resource Library
                             </a>
                         </div>
-                        <p class="mb-0 pt-5">Service providers</p>
+                        <p class="pt-5 mb-0">Service providers</p>
                         <h2 class="fw-semibold">Datasheets</h2>
                         <h1 class="pt-2">Acquire new business by implementing CIS Controls with Acronis for MSPs</h1>
-                        <div class="n-two-content pt-4">
+                        <div class="pt-4 n-two-content">
                             <p>
                                 <strong>Strengthen cybersecurity with CIS Controls and Acronis Cyber Protect Cloud</strong>
                                 Achieving compliance with CIS Controls doesn’t have to mean managing multiple, complex
@@ -43,8 +43,8 @@
                                         multi-layered cybersecurity approach.</li>
                                 </ul>
                                 <p class="mt-4"><strong>Download the CIS Controls data sheet today</strong></p>
-                                <div class="d-flex align-items-center mt-4">
-                                    <h4 class="me-3 mb-0">Share</h4>
+                                <div class="mt-4 d-flex align-items-center">
+                                    <h4 class="mb-0 me-3">Share</h4>
                                     <div>
                                         <a href="" class="me-3 site-text">
                                             <i class="fab fa-facebook-f"></i>
@@ -63,36 +63,36 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="mt-2">
-                        <div class="card border-0 shadow-lg">
+                        <div class="border-0 shadow-lg card">
                             <div>
                                 <img class="img-fluid"
                                     src="https://staticfiles.acronis.com/images/content/24111f8988abf331b00f381677167a49.webp"
                                     alt="">
                             </div>
-                            <div class="card-header p-0">
+                            <div class="p-0 card-header">
                             </div>
-                            <div class="card-body rounded-3 border bg-white" style="margin-top: -35px">
+                            <div class="bg-white border card-body rounded-3" style="margin-top: -35px">
                                 <div class="p-3">
                                     <h4>Download Acronis datasheets for free</h4>
                                     <div>
-                                        <div class="form-floating mb-3">
-                                            <input type="text" class="form-control border rounded-2 bg-transparent"
+                                        <div class="mb-3 form-floating">
+                                            <input type="text" class="bg-transparent border form-control rounded-2"
                                                 id="floatingInput" placeholder="">
                                             <label for="floatingInput">First Name</label>
                                         </div>
-                                        <div class="form-floating  mb-3">
-                                            <input type="text" class="form-control border rounded-2 bg-transparent"
+                                        <div class="mb-3 form-floating">
+                                            <input type="text" class="bg-transparent border form-control rounded-2"
                                                 id="floatingPassword" placeholder="">
                                             <label for="floatingPassword">Last Name</label>
                                         </div>
-                                        <div class="form-floating  mb-3">
-                                            <input type="email" class="form-control border rounded-2 bg-transparent"
+                                        <div class="mb-3 form-floating">
+                                            <input type="email" class="bg-transparent border form-control rounded-2"
                                                 id="floatingPassword" placeholder="">
                                             <label for="floatingPassword">Email</label>
                                         </div>
-                                        <div class="input-group mb-3">
+                                        <div class="mb-3 input-group">
                                             <div class="form-floating w-25">
-                                                <select class="form-select bg-transparent" id="floatingSelect"
+                                                <select class="bg-transparent form-select" id="floatingSelect"
                                                     aria-label="Floating label select example"
                                                     style="border-top-left-radius: 6px;border-bottom-left-radius: 6px">
                                                     <option selected>+880</option>
@@ -102,12 +102,12 @@
                                                 </select>
                                                 <label for="floatingSelect">Bangladesh</label>
                                             </div>
-                                            <input type="text" class="form-control border w-75 bg-transparent"
+                                            <input type="text" class="bg-transparent border form-control w-75"
                                                 style="border-top-right-radius: 6px;border-bottom-right-radius: 6px"
                                                 aria-label="Text input with dropdown button">
                                         </div>
-                                        <div class="form-floating mb-3">
-                                            <select class="form-select rounded-3 bg-transparent" id="floatingSelect"
+                                        <div class="mb-3 form-floating">
+                                            <select class="bg-transparent form-select rounded-3" id="floatingSelect"
                                                 aria-label="Floating label select example">
                                                 <option selected>Select</option>
                                                 <option value="1">One</option>
@@ -116,8 +116,8 @@
                                             </select>
                                             <label for="floatingSelect">Company Type</label>
                                         </div>
-                                        <div class="form-floating mb-3">
-                                            <select class="form-select rounded-3 bg-transparent" id="floatingSelect"
+                                        <div class="mb-3 form-floating">
+                                            <select class="bg-transparent form-select rounded-3" id="floatingSelect"
                                                 aria-label="Floating label select example">
                                                 <option selected>Select</option>
                                                 <option value="1">One</option>
