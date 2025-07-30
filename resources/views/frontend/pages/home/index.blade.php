@@ -323,9 +323,9 @@
                                     <p class="pb-5">{{ $story->badge }}</p>
                                 </div>
                                 <div class="grid-river">
-                                    <figure class="effect-oscar">
-                                        <img src="{{ isset($story->image) && file_exists(public_path('storage/' . $story->image)) ? asset('storage/' . $story->image) : asset('frontend/images/banner-demo.png') }} "
-                                            alt="">
+                                    <figure class="effect-oscar" style="height: 250px;">
+                                        {{-- <img src="{{ isset($story->image) && file_exists(public_path('storage/' . $story->image)) ? asset('storage/' . $story->image) : asset('frontend/images/banner-demo.png') }} "
+                                            alt=""> --}}
                                         <figcaption>
                                             <h6> {{ Str::words($story->title, 6) }}</h6>
                                             <p class="text-start">{{ Str::words($story->header, 10) }}</p>
@@ -366,9 +366,9 @@
                                     <p class="pb-5">{{ $story->badge }}</p>
                                 </div>
                                 <div class="grid-river">
-                                    <figure class="effect-oscar">
-                                        <img src="{{ isset($story->image) && file_exists(public_path('storage/' . $story->image)) ? asset('storage/' . $story->image) : asset('frontend/images/banner-demo.png') }} "
-                                            alt="">
+                                    <figure class="effect-oscar" style="height: 250px;">
+                                        {{-- <img src="{{ isset($story->image) && file_exists(public_path('storage/' . $story->image)) ? asset('storage/' . $story->image) : asset('frontend/images/banner-demo.png') }} "
+                                            alt=""> --}}
                                         <figcaption>
                                             <h6> {{ Str::words($story->title, 6) }}</h6>
                                             <p>{{ Str::words($story->header, 10) }}</p>
@@ -491,7 +491,6 @@
                                                             }
                                                         }
                                                     @endphp
-
                                                     <button
                                                         class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
                                                         data-id="{{ $product->id }}"

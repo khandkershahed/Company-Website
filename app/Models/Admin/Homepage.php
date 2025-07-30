@@ -70,28 +70,29 @@ class Homepage extends Model
     public function story1()
     {
         return $this->belongsTo(ClientStory::class, 'solution1_id')
-            ->select(['id', 'badge', 'image', 'title', 'header', 'slug'])
+            // ->select(['id', 'badge', 'image', 'title', 'header', 'slug'])
+            ->select(['id', 'badge', 'title', 'header', 'slug'])
             ->withDefault();
     }
 
     public function story2()
     {
         return $this->belongsTo(ClientStory::class, 'solution2_id')
-            ->select(['id', 'badge', 'image', 'title', 'header', 'slug'])
+            ->select(['id', 'badge', 'title', 'header', 'slug'])
             ->withDefault();
     }
 
     public function story3()
     {
         return $this->belongsTo(ClientStory::class, 'solution3_id')
-            ->select(['id', 'badge', 'image', 'title', 'header', 'slug'])
+            ->select(['id', 'badge', 'title', 'header', 'slug'])
             ->withDefault();
     }
 
     public function story4()
     {
         return $this->belongsTo(ClientStory::class, 'solution4_id')
-            ->select(['id', 'badge', 'image', 'title', 'header', 'slug'])
+            ->select(['id', 'badge', 'title', 'header', 'slug'])
             ->withDefault();
     }
 

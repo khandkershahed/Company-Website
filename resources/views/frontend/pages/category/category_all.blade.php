@@ -57,7 +57,7 @@
                 @foreach ($categorys as $category)
                     <div class="col-lg-2">
                         <div class="mb-3 text-center border-0 card cta-box">
-                            <a href="">
+                            <a href="{{ route('category.details', $category->slug) }}">
                                 <div class="px-3 card-body">
                                     <div>
                                         <img class="mb-2 img-fluid" width="70px" height="70px"

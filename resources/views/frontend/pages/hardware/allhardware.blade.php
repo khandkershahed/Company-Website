@@ -216,7 +216,7 @@
                                                                 {{-- <small class="price-usd">USD</small>
                                                                 --.-- $ --}}
                                                             </div>
-                                                            <a href="{{ route('askForPrice', $product->slug) }}"
+                                                            <a href="{{ route('askForPrice', $item->slug) }}"
                                                                 class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
                                                                 Ask For Price
                                                             </a>
@@ -227,7 +227,7 @@
                                                                 {{-- <small class="price-usd">USD</small>
                                                             --.-- $ --}}
                                                             </div>
-                                                            <a href="{{ route('askForPrice', $product->slug) }}"
+                                                            <a href="{{ route('askForPrice', $item->slug) }}"
                                                                 class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
                                                                 Ask For Price
                                                             </a>
@@ -1007,7 +1007,7 @@
                                                                 {{-- <small class="price-usd">USD</small>
                                                                 --.-- $ --}}
                                                             </div>
-                                                            <a href="{{ route('askForPrice', $product->slug) }}"
+                                                            <a href="{{ route('askForPrice', $item->slug) }}"
                                                                 class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
                                                                 Ask For Price
                                                             </a>
@@ -1018,7 +1018,7 @@
                                                                 {{-- <small class="price-usd">USD</small>
                                                             --.-- $ --}}
                                                             </div>
-                                                            <a href="{{ route('askForPrice', $product->slug) }}"
+                                                            <a href="{{ route('askForPrice', $item->slug) }}"
                                                                 class="px-3 py-2 text-black bg-transparent border btn-color popular_product-button">
                                                                 Ask For Price
                                                             </a>

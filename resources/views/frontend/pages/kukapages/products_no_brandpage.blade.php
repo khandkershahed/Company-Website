@@ -2,16 +2,16 @@
 @section('styles')
     <meta property="og:title" content="{{ ucfirst($brand->title) }} products in NGen IT">
     <meta property="og:image"
-        content="{{ !empty($brandpage->banner_image) && file_exists(public_path('storage/' . $brandpage->banner_image)) ? url('social-image/' . $brandpage->banner_image) : asset('frontend/images/no-banner(1920-330).png') }}" />
+        content="{{ !empty($brand->image) && file_exists(public_path('storage/' . $brand->image)) ? url('social-image/' . $brand->image) : asset('frontend/images/no-banner(1920-330).png') }}" />
     <meta name="twitter:image"
-        content="{{ !empty($brandpage->banner_image) && file_exists(public_path('storage/' . $brandpage->banner_image)) ? url('social-image/' . $brandpage->banner_image) : asset('frontend/images/no-banner(1920-330).png') }}">
+        content="{{ !empty($brand->image) && file_exists(public_path('storage/' . $brand->image)) ? url('social-image/' . $brand->image) : asset('frontend/images/no-banner(1920-330).png') }}">
     <script type="application/ld+json">
         {
           "@context": "https://schema.org",
           "@type": "Article",
           "headline": "{{ ucfirst($brand->title) }} in NGen IT",
           "description": "NGEN IT Ltd. is a System Integration, Software & Hardware based License Provider & Software development based company established in 2008.",
-          "image": "{{ !empty($brandpage->banner_image) && file_exists(public_path('storage/' . $brandpage->banner_image)) ? url('social-image/' . $brandpage->banner_image) : asset('frontend/images/no-banner(1920-330).png') }}",
+          "image": "{{ !empty($brand->banner_image) && file_exists(public_path('storage/' . $brand->banner_image)) ? url('social-image/' . $brand->banner_image) : asset('frontend/images/no-banner(1920-330).png') }}",
           "author": {
             "@type": "Organization",
             "name": "{{ !empty($setting->site_name) ? $setting->site_name : 'NGen IT Ltd.' }}"
@@ -29,7 +29,151 @@
     </script>
 @endsection
 @section('content')
-    @include('frontend.pages.kukapages.partial.page_header')
+    {{-- <section>
+        <div class="brand-page-banner page_top_banner">
+            <img src="{{ !empty($brand->banner_image) && file_exists(public_path('storage/' . $brand->banner_image)) ? asset('storage/' . $brand->banner_image) : asset('frontend/images/no-banner(1920-330).png') }}"
+                alt="">
+        </div>
+
+    </section> --}}
+    <section class="header d-lg-block d-sm-none" id="myHeader">
+        <div class="brand-page-header-container container">
+            <div class="row d-lg-flex align-items-center">
+                <div class="col-lg-2 col-sm-6 me-3 extra-d-flex">
+                    <div>
+                        <img id="stand-logo" class="img-fluid" height=""
+                            src="{{ !empty($brand->image) && file_exists(public_path('storage/' . $brand->image)) ? asset('storage/' . $brand->image) : asset('frontend/images/no-banner(1920-330).png') }}"
+                            alt="{{ $brand->title }} - logo">
+                    </div>
+                </div>
+                <div class="col-lg-1 col-sm-6 extra-d-flex">
+
+                    <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <?php
+                        if (isset($href) && !empty($href)) {
+                            echo '<img class="img-fluid custom-video-icon" src="' . asset('frontend/images/video-icon.png') . '" alt="">';
+                        } else {
+                            echo '<img class="img-fluid custom-video-icon" src="' . asset('frontend/images/no-video-icon.png') . '" alt="">';
+                        }
+                        ?>
+                    </a>
+
+                </div>
+                <div class="col-lg-8 col-sm-12">
+                    <ul class="d-lg-flex justify-content-start stand-header-nav mb-0 d-lg-block d-sm-none">
+                        <li class="px-3 disable-brands">
+                            <span>Overview</span>
+                        </li>
+                        <li class="px-3">
+                            <a class="p-2 active-brands"
+                                href="{{ route('brand.products', $brand->slug) }}">Products</a>
+                        </li>
+
+
+                        <li class="px-3 disable-brands">
+                            <span>Catalogs</span>
+                        </li>
+
+                        <li class="px-3 disable-brands">
+                            <span>Tech Contents</span>
+                        </li>
+
+                        <li class="px-3 disable-brands border-0">
+                            <span>Solution</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="header d-lg-none d-sm-block" id="mobileHeader">
+        <div class="mobile-brand-page-header-container container">
+            <div class="row d-lg-flex align-items-center">
+                <div class="col-lg-12">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <img id="stand-logo" class="img-fluid" height=""
+                                src="{{ !empty($brand->image) && file_exists(public_path('storage/' . $brand->image)) ? asset('storage/' . $brand->image) : asset('frontend/images/no-banner(1920-330).png') }}"
+                                alt="{{ $brand->title }} - logo">
+                        </div>
+                        <div>
+                            <a href="#" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <?php
+                                if (isset($href) && !empty($href)) {
+                                    echo '<img class="img-fluid custom-video-icon" src="' . asset('frontend/images/video-icon.png') . '" alt="">';
+                                } else {
+                                    echo '<img class="img-fluid custom-video-icon" src="' . asset('frontend/images/no-video-icon.png') . '" alt="">';
+                                }
+                                ?>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <ul class="d-flex align-items-center justify-content-center">
+                                <li class="px-1">
+                                    <a class="text-muted"
+                                        href="javascript:void(0)">Overview</a>
+                                </li>
+                                <li class="px-1">
+                                    <a class="{{ in_array(Route::currentRouteName(), ['brand.products', 'product.details']) ? 'active-brands' : '' }}"
+                                        href="{{ route('brand.products', $brand->slug) }}">Products</a>
+                                </li>
+
+
+                                <li class="px-1">
+                                    <a class="text-muted"
+                                        href="javascript:void(0)">Catalogs</a>
+                                </li>
+
+                                <li class="px-1">
+                                    <a class="text-muted"
+                                        href="javascript:void(0)">Contents</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var isMobile = window.innerWidth <= 768; // Adjust the threshold as needed
+
+            var header, container, sticky;
+
+            if (isMobile) {
+                header = document.getElementById("mobileHeader");
+                container = document.querySelector(".mobile-brand-page-header-container");
+                sticky = header.offsetTop;
+            } else {
+                header = document.getElementById("myHeader");
+                container = document.querySelector(".brand-page-header-container");
+                sticky = header.offsetTop;
+            }
+
+            window.onscroll = function() {
+                handleScroll(header, container, sticky);
+            };
+
+            function handleScroll(header, container, sticky) {
+                if (window.pageYOffset > sticky) {
+                    header.classList.add("sticky");
+                    container.classList.remove("container");
+                    container.classList.add("container-fluid");
+                } else {
+                    header.classList.remove("sticky");
+                    container.classList.remove("container-fluid");
+                    container.classList.add("container");
+                }
+            }
+        });
+    </script>
+
     <section class="header" id="myHeader">
         <div class="container">
             <div class="px-3 pt-3 pb-3 row">
@@ -81,7 +225,7 @@
 
                                         <div class="py-3 text-center content-section">
                                             <a href="{{ route('product.details', $product->slug) }}" class="mb-2">
-                                                <p class="pb-0 mb-2 text-muted brandpage_product_title">
+                                                <p class="pb-0 mb-2 text-muted brand_product_title">
                                                     {{ Str::words($product->name, 15) }}</p>
                                             </a>
                                             <div>
@@ -115,7 +259,8 @@
                                                         }
                                                     @endphp
 
-                                                    <button class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
+                                                    <button
+                                                        class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
                                                         data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                         data-quantity="1">
                                                         {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
@@ -127,7 +272,8 @@
                                                         class="px-3 py-2 mt-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button"
                                                         data-bs-toggle="modal" data-bs-target="#rfq{{ $product->id }}">Add to RFQ</a> --}}
 
-                                                    <button class="header_cart_button cart_button_text{{ $product->id }} search-btn-price cart_button_text{{ $product->id }}"
+                                                    <button
+                                                        class="header_cart_button cart_button_text{{ $product->id }} search-btn-price cart_button_text{{ $product->id }}"
                                                         data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                         data-quantity="1">
                                                         {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
@@ -136,10 +282,9 @@
                                             @elseif ($product->price_status && $product->price_status == 'offer_price')
                                                 <div class="d-flex justify-content-center">
                                                     <a href="{{ route('rfq') }}">
-                                                        <button class="btn-color special_btn"
-                                                        {{-- data-bs-toggle="modal"
-                                                            data-bs-target="#rfq{{ $product->id }}" --}}
-                                                            >Your Price</button>
+                                                        <button class="btn-color special_btn" {{-- data-bs-toggle="modal"
+                                                            data-bs-target="#rfq{{ $product->id }}" --}}>Your
+                                                            Price</button>
                                                     </a>
                                                 </div>
                                             @else
@@ -193,7 +338,7 @@
 
                                         <div class="py-3 text-center content-section">
                                             <a href="{{ route('product.details', $product->slug) }}" class="mb-2">
-                                                <p class="pb-0 mb-0 mb-2 text-muted brandpage_product_title">
+                                                <p class="pb-0 mb-0 mb-2 text-muted brand_product_title">
                                                     {{ Str::words($product->name, 15) }}</p>
                                             </a>
                                             <div>
@@ -223,7 +368,8 @@
                                                         }
                                                     @endphp
 
-                                                    <button class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
+                                                    <button
+                                                        class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
                                                         data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                         data-quantity="1">
                                                         {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
@@ -235,7 +381,8 @@
                                                         class="px-3 py-2 mt-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button"
                                                         data-bs-toggle="modal" data-bs-target="#rfq{{ $product->id }}">Ask
                                                         For Price</button> --}}
-                                                    <button class="header_cart_button cart_button_text{{ $product->id }} search-btn-price cart_button_text{{ $product->id }}"
+                                                    <button
+                                                        class="header_cart_button cart_button_text{{ $product->id }} search-btn-price cart_button_text{{ $product->id }}"
                                                         data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                         data-quantity="1">
                                                         {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
@@ -244,10 +391,9 @@
                                             @elseif ($product->price_status && $product->price_status == 'offer_price')
                                                 <div class="d-flex justify-content-center">
                                                     <a href="{{ route('rfq') }}">
-                                                        <button class="btn-color special_btn"
-                                                        {{-- data-bs-toggle="modal"
-                                                            data-bs-target="#rfq{{ $product->id }}" --}}
-                                                            >Your Price</button>
+                                                        <button class="btn-color special_btn" {{-- data-bs-toggle="modal"
+                                                            data-bs-target="#rfq{{ $product->id }}" --}}>Your
+                                                            Price</button>
                                                     </a>
                                                 </div>
                                             @else
@@ -334,7 +480,46 @@
     <!---------End -------->
 @endsection
 @section('scripts')
-    
+    {{-- <script>
+        $(window).on('hashchange', function() {
+            if (window.location.hash) {
+                var page = window.location.hash.replace('#', '');
+                if (page == Number.NaN || page <= 0) {
+                    return false;
+                } else {
+                    getData(page);
+                }
+            }
+        });
+
+        $(document).ready(function() {
+            $(document).on('click', '.pagination a', function(event) {
+                $('li').removeClass('active');
+                $(this).parent('li').addClass('active');
+                event.preventDefault();
+
+                var myurl = $(this).attr('href');
+                var page = $(this).attr('href').split('page=')[1];
+
+                getData(page);
+            });
+        });
+
+        function getData(page) {
+            $.ajax({
+                    url: '?page=' + page,
+                    type: "get",
+                    datatype: "html",
+                })
+                .done(function(data) {
+                    $(".allProducts").empty().html(data);
+                    location.hash = page;
+                })
+                .fail(function(jqXHR, ajaxOptions, thrownError) {
+                    alert('No response from server');
+                })
+            }
+    </script> --}}
     <script>
         $(window).on('hashchange', function() {
             if (window.location.hash) {
