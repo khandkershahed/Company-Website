@@ -491,7 +491,6 @@
                                                             }
                                                         }
                                                     @endphp
-
                                                     <button
                                                         class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
                                                         data-id="{{ $product->id }}"
