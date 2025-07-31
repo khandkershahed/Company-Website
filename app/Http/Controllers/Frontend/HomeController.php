@@ -331,7 +331,7 @@ class HomeController extends Controller
             ];
         }
 
-        
+
 
         $data['categories'] = SubCategory::with('subCatsoftwareProducts')
             ->whereHas('products', function ($query) {
@@ -385,7 +385,9 @@ class HomeController extends Controller
         ];
 
         // Categories with subcategories and products
-        $data['categories'] = Category::with('subCathardwareProducts')
+        $data['categories'] = Category::with(['subCathardwareProducts', 'products' => function ($query) {
+            $query->where('product_type', 'hardware');
+        }])
             ->whereHas('products', function ($query) {
                 $query->where('product_type', 'hardware');
             })
@@ -394,6 +396,7 @@ class HomeController extends Controller
             ->distinct()
             ->limit(12)
             ->get();
+
 
 
         // Products

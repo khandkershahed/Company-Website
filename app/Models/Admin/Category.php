@@ -34,6 +34,7 @@ class Category extends Model
         return $this->hasMany(Product::class, 'cat_id')
             ->where('product_status', 'product');
     }
+    
 
     public function subCathardwareProducts()
     {
