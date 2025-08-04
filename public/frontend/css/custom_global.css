@@ -431,7 +431,8 @@ ul {
     height: 18rem;
 } */
 .our-service-first-column {
-    background-color: #f7f6f5;
+    /* background-color: #f7f6f5; */
+    background: linear-gradient(#ae0a463b 0, #ffffff0f 320px);
     padding-top: 60px !important;
     padding-bottom: 60px !important;
     padding-left: 50px;

@@ -79,12 +79,11 @@
                     <tr>
                         <td style="padding:30px;">
                             <div>
-                                <p style="font-size:16px; margin-bottom:10px;">
+                                <!-- <p style="font-size:16px; margin-bottom:10px;">
                                     Dear <strong>Sales Manager</strong>,
-                                </p>
+                                </p> -->
                                 <p style="font-size:16px; margin-top:0;">
-                                    We have received a RFQ. Please respond immediately for best customer service and
-                                    reputation.
+                                    We have received a RFQ. Please respond immediately for best customer service and reputation.
                                 </p>
                             </div>
 
@@ -97,15 +96,17 @@
                                     <th style="padding:10px; text-align:center;">Qty</th>
                                 </tr>
                                 @foreach ($data['product_names'] as $product_name)
-                                    <tr>
-                                        <td style="padding:10px; border:1px solid #eee;text-align:center">
-                                            {{ $loop->iteration }}</td>
-                                        <td style="padding:10px; border:1px solid #eee;">
-                                            {{ $product_name->product_name }}
-                                        </td>
-                                        <td style="padding:10px; border:1px solid #eee; text-align:center">
-                                            {{ $product_name->qty }}</td>
-                                    </tr>
+                                <tr>
+                                    <td style="padding:10px; border:1px solid #eee;text-align:center">
+                                        {{ $loop->iteration }}
+                                    </td>
+                                    <td style="padding:10px; border:1px solid #eee;">
+                                        {{ $product_name->product_name }}
+                                    </td>
+                                    <td style="padding:10px; border:1px solid #eee; text-align:center">
+                                        {{ $product_name->qty }}
+                                    </td>
+                                </tr>
                                 @endforeach
                             </table>
 
@@ -125,24 +126,24 @@
                                                 </th>
                                             </tr>
                                             @if (!empty($data['company_name']))
-                                                <tr>
-                                                    <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
-                                                        class="mb-content">
-                                                        Company</th>
-                                                    <td style="padding:10px;border-bottom:1px solid #eee;">
-                                                        {{ $data['company_name'] }}
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
+                                                    class="mb-content">
+                                                    Company</th>
+                                                <td style="padding:10px;border-bottom:1px solid #eee;">
+                                                    {{ $data['company_name'] }}
+                                                </td>
+                                            </tr>
                                             @endif
                                             @if (!empty($data['phone']))
-                                                <tr>
-                                                    <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
-                                                        class="mb-content">
-                                                        Telephone</th>
-                                                    <td style="padding:10px;border-bottom:1px solid #eee;">
-                                                        {{ $data['phone'] }}
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
+                                                    class="mb-content">
+                                                    Telephone</th>
+                                                <td style="padding:10px;border-bottom:1px solid #eee;">
+                                                    {{ $data['phone'] }}
+                                                </td>
+                                            </tr>
                                             @endif
                                             <tr>
                                                 <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
@@ -172,40 +173,44 @@
                                                 </th>
                                             </tr>
                                             @if (isset($data['shipping_country']) && !empty($data['shipping_country']))
-                                                <tr>
-                                                    <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
-                                                        class="mb-content">
-                                                        Country</th>
-                                                    <td style="padding:10px;border-bottom:1px solid #eee;">
-                                                        {{ $data['shipping_country'] }}</td>
-                                                </tr>
+                                            <tr>
+                                                <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
+                                                    class="mb-content">
+                                                    Country</th>
+                                                <td style="padding:10px;border-bottom:1px solid #eee;">
+                                                    {{ $data['shipping_country'] }}
+                                                </td>
+                                            </tr>
                                             @endif
                                             @if (isset($data['shipping_city']) && !empty($data['shipping_city']))
-                                                <tr>
-                                                    <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
-                                                        class="mb-content">City
-                                                    </th>
-                                                    <td style="padding:10px;border-bottom:1px solid #eee;">
-                                                        {{ $data['shipping_city'] }}</td>
-                                                </tr>
+                                            <tr>
+                                                <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
+                                                    class="mb-content">City
+                                                </th>
+                                                <td style="padding:10px;border-bottom:1px solid #eee;">
+                                                    {{ $data['shipping_city'] }}
+                                                </td>
+                                            </tr>
                                             @endif
                                             @if (isset($data['shipping_zip_code']) && !empty($data['shipping_zip_code']))
-                                                <tr>
-                                                    <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
-                                                        class="mb-content">Zip
-                                                    </th>
-                                                    <td style="padding:10px;border-bottom:1px solid #eee;">
-                                                        {{ $data['shipping_zip_code'] }}</td>
-                                                </tr>
+                                            <tr>
+                                                <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
+                                                    class="mb-content">Zip
+                                                </th>
+                                                <td style="padding:10px;border-bottom:1px solid #eee;">
+                                                    {{ $data['shipping_zip_code'] }}
+                                                </td>
+                                            </tr>
                                             @endif
                                             @if (isset($data['shipping_address']) && !empty($data['shipping_address']))
-                                                <tr>
-                                                    <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
-                                                        class="mb-content">
-                                                        Address</th>
-                                                    <td style="padding:10px;border-bottom:1px solid #eee;">
-                                                        {{ $data['shipping_address'] }}</td>
-                                                </tr>
+                                            <tr>
+                                                <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
+                                                    class="mb-content">
+                                                    Address</th>
+                                                <td style="padding:10px;border-bottom:1px solid #eee;">
+                                                    {{ $data['shipping_address'] }}
+                                                </td>
+                                            </tr>
                                             @endif
                                         </table>
                                     </td>
@@ -236,14 +241,14 @@
                                                 </td>
                                             </tr>
                                             @if (!empty($data['end_user_phone']))
-                                                <tr>
-                                                    <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
-                                                        class="mb-content">
-                                                        Telephone</th>
-                                                    <td style="padding:10px;border-bottom:1px solid #eee;">
-                                                        {{ $data['end_user_phone'] }}
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
+                                                    class="mb-content">
+                                                    Telephone</th>
+                                                <td style="padding:10px;border-bottom:1px solid #eee;">
+                                                    {{ $data['end_user_phone'] }}
+                                                </td>
+                                            </tr>
                                             @endif
                                             <tr>
                                                 <th style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400;width:90px;"
@@ -308,7 +313,11 @@
 
                             <!-- Button -->
                             <div style="text-align:center; margin-top:30px;">
-                                <a href="{{ route('single-rfq.quoation_mail', $data['rfq_code']) }}"
+                                <a href="{{ route('rfq.approve', $data['rfq_code']) }}"
+                                    style="background-color:#ae0a46; color:#fff; padding:12px 35px; font-size:16px; display:inline-block; border-radius:4px; text-decoration:none;">
+                                    Quote
+                                </a>
+                                <a href="{{ route('rfq.reject', $data['rfq_code']) }}"
                                     style="background-color:#ae0a46; color:#fff; padding:12px 35px; font-size:16px; display:inline-block; border-radius:4px; text-decoration:none;">
                                     Quote
                                 </a>
