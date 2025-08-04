@@ -24,7 +24,7 @@ class DocumentPdfController extends Controller
      */
     public function index()
     {
-        $data['pdfs'] = DocumentPdf::latest()->get(); 
+        $data['pdfs'] = DocumentPdf::latest()->get();
 
         return view('admin.pages.document.index', $data);
     }
@@ -57,7 +57,7 @@ class DocumentPdfController extends Controller
                 'title'         => 'required',
                 'industry_id.*' => 'nullable|exists:industries,id',
                 'brand_id.*'    => 'nullable|exists:brands,id',
-                'document'      => 'required|mimes:pdf,doc,docs|max:2000',
+                'document'      => 'required|mimes:pdf,doc,docs|max:35000',
             ],
             [
                 'mimes'    => 'The :attribute must be a file of type: pdf - doc - docs',
