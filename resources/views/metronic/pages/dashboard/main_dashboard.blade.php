@@ -108,13 +108,21 @@
                 </div>
                 <div class="card-body">
                     <div class="row gx-3">
-                        <div class="col-6">
+                        <div class="col-6 mb-5">
                             <a class="w-100 px-5 py-2 border rounded-1 mb-2"
                                 href="{{ route('admin.rfq.index') }}">RFQ</a>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6 mb-5">
                             <a class="w-100 px-3 py-2 border rounded-1 mb-2"
                                 href="{{ route('admin.solution-cms.index') }}">Solution</a>
+                        </div>
+                        <div class="col-6 mb-5">
+                            <a class="w-100 px-3 py-2 border rounded-1 mb-2" href="{{ route('leaveDashboard') }}">Leave
+                                Dashboard</a>
+                        </div>
+                        <div class="col-6 mb-5">
+                            <a class="w-100 px-3 py-2 border rounded-1 mb-2" href="javascript:void(0)"
+                                data-bs-toggle="modal" data-bs-target="#makeleave">Make a Leave</a>
                         </div>
                         {{-- <div class="col-6">
                             <a href="">RFQ</a>
@@ -279,6 +287,7 @@
             </div>
         </div>
     </div>
+    @include('admin.partials.leave_modal')
     @push('scripts')
         <script>
             $(document).ready(function() {

@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('content')
-    <style> 
+    <style>
         .user-dash-bg {
             background-color: #f2f3ff;
             height: 20rem;
@@ -562,7 +562,7 @@
                 </div>
                 <div class="col-lg-4">
                     {{-- Attendance Info --}}
-                    <div class="card user-dash-bg">
+                    <div class="card user-dash-bg"> 
                         <div class="card-header py-0 px-2">
                             <p class="text-end pt-2"><a href="{{ route('leaveDashboard') }}"><i
                                         class="fa-solid fa-arrow-up-right-from-square main_color go-icon"></i></a></p>
