@@ -490,7 +490,7 @@ class AdminController extends Controller
         // Today's Attendance
         $todayAttendance = Attendance::where('user_id', $userId)
             ->whereDate('date', Carbon::today())
-            ->get();
+            ->first();
 
         /**
          * This Month Attendance
