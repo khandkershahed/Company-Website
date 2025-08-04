@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('content')
-    <style>
+    <style> 
         .user-dash-bg {
             background-color: #f2f3ff;
             height: 20rem;

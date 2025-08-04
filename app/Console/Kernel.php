@@ -16,9 +16,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new SyncZKAttendance())->dailyAt('23:00');
-        // $schedule->job(new SyncZKAttendance())->everyMinute();
-
+        // $schedule->command('zk:sync-attendance')->dailyAt('12:15');
+        $schedule->command('zk:sync-attendance')
+             ->hourly()
+             ->between('9:14', '22:00');
     }
 
 
@@ -35,7 +36,7 @@ class Kernel extends ConsoleKernel
         require base_path('routes/console.php');
     }
     protected $commands = [
-        Commands\RunZKAttendanceSync::class,
+        \App\Console\Commands\SyncZKTecoAttendance::class,
     ];
 
 

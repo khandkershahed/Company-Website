@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Mail\EmployeeAdd as MailEmployeeAdd;
 use Illuminate\Support\Facades\Notification;
 
-class AdminController extends Controller
+class AdminController_old extends Controller
 {
 
     public function device_ip()

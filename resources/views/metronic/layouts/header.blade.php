@@ -26,7 +26,7 @@
 
             <nav aria-label="breadcrumb">
                 <ol class="mb-0 breadcrumb">
-                    <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                     <li class="breadcrumb-item active" aria-current="page">
                         {{ ucfirst(Request::segment(2)) }}
                     </li>

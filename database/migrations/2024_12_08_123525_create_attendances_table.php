@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnUpdate()->cascadeOnDelete(); // Foreign key referencing the users table
+            $table->string('device_id')->nullable();
             $table->date('date')->nullable();
             $table->time('check_in')->nullable();
             $table->time('check_out')->nullable();
