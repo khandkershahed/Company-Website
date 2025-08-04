@@ -242,9 +242,9 @@
                                                 <div class="quantity-selectors-container">
                                                     <div class="quantity-selectors selectorbox-{{ $product->id }}"
                                                         style="display: inline-grid;">
-                                                        <button type="button" class="border-0 increment-quantity pt-2"
+                                                        <button type="button" class="border-0 increment-quantity"
                                                             aria-label="Add one" data-direction="1"
-                                                            data-product-id="{{ $product->id }}">
+                                                            data-product-id="{{ $product->id }}" style="padding-top: 2px;">
                                                             <i class="fa-solid fa-plus" style="color: #7a7577"></i>
                                                         </button>
                                                         <button type="button" class="border-0 decrement-quantity"

@@ -1,127 +1,74 @@
 @extends('frontend.master')
 @section('content')
-    <style>
-        thead{
-            display: contents;
-        }
-        thead>tr>th{
-            color: #ae0a46;
-        }
-        tr td:hover {
-            background-color: transparent;
-        }
-    </style>
-    <section class="container">
-        <div class="row my-5">
-            <div class="col-lg-12">
-                <div>
-                    <!-- Email Header Start -->
-                    <div class="wrapper" style="border: 1px solid #eee;">
-                        <!-- Email Header Start -->
-                        <div class="d-flex justify-content-between align-items-center px-5 py-2"
-                            style="background-color: #ae0a46;">
-                            <div>
-                                <a href="https://ngenitltd.com" target="_blank">
-                                    <img src="{{ asset('images/NGen-Logo-white.png') }}" alt="Ngen IT" title="Ngen IT"
-                                        style="text-decoration: none;" width="60" />
-                                </a>
-                            </div>
-                            <div>
-                                <p class="mb-0 text-right text-white" style="font-size: 2rem;font-weight: 600;">
-                                   RFQ
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Email Header End -->
-                        <!-- Main Content Start -->
-                        <div style="overflow-x: auto">
-                            <div style="text-align: left;padding: 15px;">
-                                <h4 style="text-align: left; font-size: 18px; color: #141414;">Dear
-                                    {{ $name }}</h4>
-                            </div>
+<div style="max-width:700px; margin:40px auto; background:#ffffff; border:1px solid #e1e1e1; box-shadow:0 4px 12px rgba(0,0,0,0.05); border-radius:8px; overflow:hidden; font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif; color:#141414;">
 
-                            <div style="text-align: left;padding: 15px;">
-                                <p style="text-align: left; font-size: 18px; color: #141414;">
-                                    We have received your query, Thank you for your interest! Our
-                                    dedicated
-                                    sales
-                                    manager/consultant will contact you soon.
-                                </p>
-                            </div>
-                        </div>
+    <!-- Header -->
+    <div style="background-color:#ae0a46; padding:20px 30px; display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center;">
+        <div style="flex:1; min-width:120px;">
+            <a href="https://ngenitltd.com" target="_blank">
+                <img src="{{ asset('images/NGen-Logo-white.png') }}" alt="Ngen IT" title="Ngen IT" width="60" style="display:block;" />
+            </a>
+        </div>
+        <div style="flex:1; min-width:120px; text-align:right;">
+            <p style="font-size:24px; font-weight:600; color:#ffffff; margin:0;">RFQ</p>
+        </div>
+    </div>
 
-                        <div class="row">
-                            <div class="col-lg-8 offset-lg-2">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" style="width: 100%;">
-                                        <thead>
-                                            <tr>
-                                                <th width="85%">Product Name</th>
-                                                <th width="15%">Quantity</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @if (!empty($rq_products))
-                                                @foreach ($rq_products as $rq_product)
-                                                    <tr>
-                                                        <td>{{ $rq_product->product_name }}</td>
-                                                        <td>{{ $rq_product->qty }}</td>
-                                                    </tr>
-                                                @endforeach
-                                            @endif
-                                            {{-- @if (!empty($message))
-                                                <tr>
-                                                    <td colspan="2">
-                                                        {{ $message }}
-                                                    </td>
-                                                </tr>
-                                            @endif --}}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Main Content End -->
-                        <!-- Column Area -->
-                        <div style="overflow-x: auto">
-                            <div class="row"
-                                style="padding: 15px; padding-left: 30px; padding-right: 30px; background-image: url(https://img.freepik.com/free-photo/white-painted-wall-texture-background_53876-138197.jpg); background-size: cover;">
-                                <div class="col-6" style="text-align: start;color: #ffffff;">
-                                    <p
-                                        style="font-size: 15px;font-weight: 600;padding-bottom: 0.5rem;margin: 0;color: #000;">
-                                        Thank You
-                                    </p>
-                                    <p style="color: #ae0a46; margin: 0">
-                                        NGEN IT SALES TEAM
-                                    </p>
-                                    <p style="color: #ae0a46;font-size: 15px;margin: 0;">
-                                        Manager, Business
-                                    </p>
-                                </div>
-                                <div class="col-6" style="text-align: end;color: #ffffff;">
-                                    <div style="font-size: 15px;margin-bottom: 0.5rem;">
-                                        <p style="margin: 0; color: #ae0a46">
-                                            sales@ngenitltd.com
-                                            <i class="fa-solid fa-paper-plane"></i>
-                                        </p>
-                                    </div>
-                                    <div style="font-size: 15px;margin-bottom: 0.5rem;">
-                                        <p style="margin: 0; padding: 0; color: #ae0a46">
-                                            (skype) +1 917-720-3055
-                                        </p>
-                                    </div>
-                                    <div style="font-size: 15px">
-                                        <p style="margin: 0; padding: 0; color: #ae0a46">
-                                            (whats app) +880 1714 243446
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Column Area End -->
-                    </div>
-                </div>
+    <!-- Greeting -->
+    <div style="padding:20px 30px;">
+        <h4 style="font-size:20px; margin:0 0 12px;">Dear {{ $customerName ?? 'Customer' }},</h4>
+        <p style="font-size:16px; line-height:1.6; margin:0 0 10px;">
+            We have received your query. Thank you for your interest! Our dedicated sales manager/consultant will contact you soon.
+        </p>
+    </div>
+
+    <!-- Table (Responsive Wrapper) -->
+    <div style="padding:0 30px 30px;">
+        <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; font-size:16px; min-width:400px;">
+                <thead>
+                    <tr>
+                        <th style="padding:12px; background-color:#f6f6f6; border:1px solid #ddd; text-align:left; color:#333;" width="85%">Product Name</th>
+                        <th style="padding:12px; background-color:#f6f6f6; border:1px solid #ddd; text-align:left; color:#333;" width="15%">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!empty($rq_products) && count($rq_products))
+                    @foreach ($rq_products as $rq_product)
+                    <tr>
+                        <td style="padding:12px; border:1px solid #eee;">{{ $rq_product->product_name }}</td>
+                        <td style="padding:12px; border:1px solid #eee;">{{ $rq_product->qty }}</td>
+                    </tr>
+                    @endforeach
+                    @else
+                    <tr>
+                        <td colspan="2" style="padding:12px; border:1px solid #eee; text-align:center; color:#999;">
+                            No products submitted.
+                        </td>
+                    </tr>
+                    @endif
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div style="padding:25px 30px; background-image:url('https://img.freepik.com/free-photo/white-painted-wall-texture-background_53876-138197.jpg'); background-size:cover; background-position:center;">
+        <div style="display:flex; flex-wrap:wrap; gap:20px; justify-content:space-between;">
+            <!-- Left -->
+            <div style="flex:1; min-width:200px;">
+                <p style="font-size:15px; font-weight:600; margin:0 0 6px; color:#000;">Thank You</p>
+                <p style="font-size:15px; margin:0 0 4px; color:#ae0a46;">NGEN IT SALES TEAM</p>
+                <p style="font-size:15px; margin:0; color:#ae0a46;">Manager, Business</p>
+            </div>
+            <!-- Right -->
+            <div style="flex:1; min-width:200px; text-align:right;">
+                <p style="font-size:15px; margin:0 0 5px; color:#ae0a46;">sales@ngenitltd.com</p>
+                <p style="font-size:15px; margin:0 0 5px; color:#ae0a46;">(Skype) +1 917-720-3055</p>
+                <p style="font-size:15px; margin:0; color:#ae0a46;">(WhatsApp) +880 1714 243446</p>
             </div>
         </div>
-    </section>
+    </div>
+
+</div>
 @endsection

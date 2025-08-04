@@ -51,7 +51,7 @@
                     <p class="text-black">
                         Singapore | Bangladesh | Portugal | UAE <br>
                         <span>{{ !empty($setting->sales_email) ? $setting->sales_email : '' }} | {{ !empty($setting->phone_one) ? $setting->phone_one : '' }}</span> <br>
-                        <span>Whatsapp:: {{ !empty($setting->whatsapp_number) ? $setting->whatsapp_number : '' }}</span>
+                        <span>Whatsapp | {{ !empty($setting->whatsapp_number) ? $setting->whatsapp_number : '' }}</span>
                         {{-- <span class="font-number">{{ !empty($setting->support_email) ? $setting->support_email : '' }}</span> --}}
                         {{-- <br> Information and sales: <span class="">{{ !empty($setting->sales_email) ? $setting->sales_email : '' }}</span>
                         <br> OneCall support: <span class="font-number">{{ !empty($setting->phone_one) ? $setting->phone_one : '' }}</span>
