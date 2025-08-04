@@ -1,6 +1,6 @@
 @extends('frontend.master')
 @section('content')
-    <style>
+    <!-- <style>
         .global_call_section::after {
             background: url('{{ asset('storage/' . $learnmore->background_image) }}');
             content: "";
@@ -16,7 +16,7 @@
             left: 0px;
             z-index: -1;
         }
-    </style>
+    </style> -->
 
     <!--======// Guidance and support {1} //======-->
     <section class="mt-3">
