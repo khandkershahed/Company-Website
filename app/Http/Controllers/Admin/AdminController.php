@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\EmployeeAdd as MailEmployeeAdd;
+use App\Models\KPI\Attendance;
 use Illuminate\Support\Facades\Notification;
 use MehediJaman\LaravelZkteco\LaravelZkteco;
 
@@ -484,16 +485,112 @@ class AdminController extends Controller
 
     public function AdminDashboard()
     {
-        $deviceip = $this->device_ip();
-        $zk = new ZKTeco($deviceip, 4370);
-        $zk->connect();
-        $zk->enableDevice();
-        $id = Auth::user()->id;
-        dd($zk->getThisMonthAttendance($id));
-        // dd($zk->getThisMonthAttendance($id));
-        //         // Retrieve attendances and user data from the device
-        //         $attendances_all = $zk->getEmployeeAttendance(2, $id);
-        return view('metronic.pages.dashboard.main_dashboard');
+        $userId = Auth::id();
+
+        // Today's Attendance
+        $todayAttendance = Attendance::where('user_id', $userId)
+            ->whereDate('date', Carbon::today())
+            ->get();
+
+        /**
+         * This Month Attendance
+         */
+        $attendanceThisMonthsRaw = Attendance::where('user_id', $userId)
+            ->whereMonth('date', Carbon::now()->month)
+            ->whereYear('date', Carbon::now()->year)
+            ->get()
+            ->keyBy('date');
+
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+        $attendanceThisMonths = [];
+
+        for ($date = $startOfMonth->copy(); $date->lte($endOfMonth); $date->addDay()) {
+            $dateString = $date->toDateString();
+            $dayOfWeek = $date->format('l');
+
+            if ($dayOfWeek === 'Friday') {
+                $attendanceThisMonths[$dateString] = [
+                    'date' => $dateString,
+                    'check_in' => null,
+                    'check_out' => null,
+                    'status' => 'Friday',
+                ];
+            } elseif ($attendanceThisMonthsRaw->has($dateString)) {
+                $record = $attendanceThisMonthsRaw[$dateString];
+                $attendanceThisMonths[$dateString] = [
+                    'date' => $dateString,
+                    'check_in' => $record->check_in,
+                    'check_out' => $record->check_out,
+                    'status' => $record->status ?? 'Present',
+                ];
+            } else {
+                $attendanceThisMonths[$dateString] = [
+                    'date' => $dateString,
+                    'check_in' => null,
+                    'check_out' => null,
+                    'status' => 'Absent',
+                ];
+            }
+        }
+
+        /**
+         * Last Month Attendance
+         */
+        $lastMonth = Carbon::now()->subMonth();
+        $attendanceLastMonthsRaw = Attendance::where('user_id', $userId)
+            ->whereMonth('date', $lastMonth->month)
+            ->whereYear('date', $lastMonth->year)
+            ->get()
+            ->keyBy('date');
+
+        $startOfLastMonth = $lastMonth->copy()->startOfMonth();
+        $endOfLastMonth = $lastMonth->copy()->endOfMonth();
+        $attendanceLastMonths = [];
+
+        for ($date = $startOfLastMonth->copy(); $date->lte($endOfLastMonth); $date->addDay()) {
+            $dateString = $date->toDateString();
+            $dayOfWeek = $date->format('l');
+
+            if ($dayOfWeek === 'Friday') {
+                $attendanceLastMonths[$dateString] = [
+                    'date' => $dateString,
+                    'check_in' => null,
+                    'check_out' => null,
+                    'status' => 'Friday',
+                ];
+            } elseif ($attendanceLastMonthsRaw->has($dateString)) {
+                $record = $attendanceLastMonthsRaw[$dateString];
+                $attendanceLastMonths[$dateString] = [
+                    'date' => $dateString,
+                    'check_in' => $record->check_in,
+                    'check_out' => $record->check_out,
+                    'status' => $record->status ?? 'Present',
+                ];
+            } else {
+                $attendanceLastMonths[$dateString] = [
+                    'date' => $dateString,
+                    'check_in' => null,
+                    'check_out' => null,
+                    'status' => 'Absent',
+                ];
+            }
+        }
+
+        // Late check-in records for this month (after 09:06)
+        $lateCounts = Attendance::where('user_id', $userId)
+            ->whereMonth('date', Carbon::now()->month)
+            ->whereYear('date', Carbon::now()->year)
+            ->whereTime('check_in', '>', '09:06:00')
+            ->orderBy('date', 'ASC')
+            ->get();
+
+        return view('metronic.pages.dashboard.main_dashboard', compact(
+            'todayAttendance',
+            'attendanceThisMonths',
+            'attendanceLastMonths',
+            'lateCounts'
+        ));
     }
 
     // public function getTodayAttendance($id)

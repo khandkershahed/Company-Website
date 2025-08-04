@@ -25,7 +25,7 @@ class BackfillZKTecoAttendance extends Command
             $zk->enableDevice();
 
             // Fetch logs for last 3 months
-            $logs = $zk->getAttendance(9); // Assuming this fetches last 3 months logs
+            $logs = $zk->getAttendance(8); // Assuming this fetches last 3 months logs
 
             if (empty($logs)) {
                 $this->info('No logs found for last 3 months.');
@@ -60,7 +60,8 @@ class BackfillZKTecoAttendance extends Command
                 $checkOut = collect($data['times'])->max();
 
                 // Attendance status logic (basic: Present)
-                $status = 'Present';
+                $status = $this->determineAttendanceStatus($checkIn, $checkOut);
+
 
                 Attendance::updateOrCreate(
                     [
@@ -80,9 +81,8 @@ class BackfillZKTecoAttendance extends Command
             }
 
             $this->info("✅ Backfill complete. $processedCount records processed.");
-
         } catch (\Exception $e) {
-             Log::error("❌ ZKTeco Sync failed: " . $e->getMessage());
+            Log::error("❌ ZKTeco Sync failed: " . $e->getMessage());
         } finally {
             $zk->disconnect();
         }
@@ -91,5 +91,29 @@ class BackfillZKTecoAttendance extends Command
     private function getDeviceIp()
     {
         return '203.17.65.230'; // Change to your device IP or config variable
+    }
+
+    private function determineAttendanceStatus(string $checkIn, string $checkOut): string
+    {
+        $checkInTime = Carbon::parse($checkIn);
+        $checkOutTime = Carbon::parse($checkOut);
+
+        $status = [];
+
+        if ($checkInTime->gt(Carbon::createFromTime(9, 6))) {
+            $status[] = 'L'; // Late
+        }
+
+        if ($checkInTime->gt(Carbon::createFromTime(10, 0))) {
+            // Remove 'L' if already marked and add 'LL' for Half Day
+            $status = array_diff($status, ['L']);
+            $status[] = 'LL';
+        }
+
+        if ($checkOutTime->lt(Carbon::createFromTime(17, 45))) {
+            $status[] = 'Early Leave';
+        }
+
+        return empty($status) ? 'Present' : implode(' + ', $status);
     }
 }

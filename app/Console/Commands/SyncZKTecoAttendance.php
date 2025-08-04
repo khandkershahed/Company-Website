@@ -144,6 +144,7 @@ class SyncZKTecoAttendance extends Command
                 $checkOut = collect($data['times'])->max();
 
                 // Your late/early logic here (optional)
+                $status = $this->determineAttendanceStatus($checkIn, $checkOut);
 
                 Attendance::updateOrCreate(
                     [
@@ -152,9 +153,9 @@ class SyncZKTecoAttendance extends Command
                         'date' => $data['date'],
                     ],
                     [
-                        'check_in' => $checkIn,
-                        'check_out' => $checkOut,
-                        'status' => 'Present', // Or your custom logic
+                        'check_in'    => $checkIn,
+                        'check_out'   => $checkOut,
+                        'status'      => $status, // Or your custom logic
                         'absent_note' => null,
                     ]
                 );
@@ -176,5 +177,29 @@ class SyncZKTecoAttendance extends Command
     {
         // You can also move this to config or .env
         return '203.17.65.230';
+    }
+
+    private function determineAttendanceStatus(string $checkIn, string $checkOut): string
+    {
+        $checkInTime = Carbon::parse($checkIn);
+        $checkOutTime = Carbon::parse($checkOut);
+
+        $status = [];
+
+        if ($checkInTime->gt(Carbon::createFromTime(9, 6))) {
+            $status[] = 'L'; // Late
+        }
+
+        if ($checkInTime->gt(Carbon::createFromTime(10, 0))) {
+            // Remove 'L' if already marked and add 'LL' for Half Day
+            $status = array_diff($status, ['L']);
+            $status[] = 'LL';
+        }
+
+        if ($checkOutTime->lt(Carbon::createFromTime(17, 45))) {
+            $status[] = 'Early Leave';
+        }
+
+        return empty($status) ? 'Present' : implode(' + ', $status);
     }
 }
