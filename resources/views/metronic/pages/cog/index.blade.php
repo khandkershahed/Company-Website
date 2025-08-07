@@ -51,7 +51,21 @@
                                     <a class="nav-link bypass-nav" data-bs-toggle="tab" href="#source">Source</a>
                                 </li>
                             </ul>
+                            <div class="d-flex align-items-center">
+                                <div class="form-check d-flex justify-content-end align-items-center">
+                                    <label class="form-check-label me-10 text-danger" for="vat_display">
+                                        VAT/GST
+                                    </label>
+                                    <input class="form-check-input" type="checkbox" name="vat_display" value="1" @checked(optional($quotation)->vat_display == '1') id="vat_display" />
+                                </div>
 
+                                <div class="form-check d-flex justify-content-end align-items-center">
+                                    <label class="form-check-label me-10 pe-2 text-danger" for="special_discount_display">
+                                        <span title="Special Discount">Special Discount</span>
+                                    </label>
+                                    <input class="form-check-input" type="checkbox" name="special_discount_display" value="1" id="special_discount_display" @checked(optional($quotation)->special_discount_display == '1')/>
+                                </div>
+                            </div>
                         </div>
                         <div class="border-0 shadow-none card rounded-0">
                             <div class="p-0 card-body">
