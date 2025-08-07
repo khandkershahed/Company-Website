@@ -10,6 +10,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Libre+Franklin&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 :root {
     --primary-color: #ae0a46;
     --secondary-color: #880736;
@@ -23,7 +24,7 @@
     --border-color: #eee;
     --secoandaryborder-color: #bbbbbb;
     --custom-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    --primary-font: "Rajdhani", sans-serif;
+    --primary-font: "DM Sans", sans-serif;
     --number-font: "Poppins", sans-serif;
     --section-title-font-size: 1.75rem;
     /*28px*/

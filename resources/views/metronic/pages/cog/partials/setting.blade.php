@@ -51,7 +51,7 @@
     </div>
 </div>
 <div class="col-lg-5 text-end d-flex align-items-center justify-content-end">
-    <div class="form-check d-flex justify-content-end align-items-center">
+    <!-- <div class="form-check d-flex justify-content-end align-items-center">
         <label class="form-check-label me-10 text-danger" for="vat_display">
             VAT/GST
         </label>
@@ -63,5 +63,5 @@
             <span title="Special Discount">Special Discount</span>
         </label>
         <input class="form-check-input" type="checkbox" name="special_discount_display" value="1" id="special_discount_display" @checked(optional($quotation)->special_discount_display == '1')/>
-    </div>
+    </div> -->
 </div>
