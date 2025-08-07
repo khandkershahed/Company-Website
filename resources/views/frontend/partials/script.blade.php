@@ -526,7 +526,7 @@
             error: function(xhr, status, error) {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Error removing item',
+                    title: 'Something happened. Try again.',
                     text: error,
                     showConfirmButton: true
                 });
