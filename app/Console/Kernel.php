@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('zk:sync-attendance')->dailyAt('12:15');
         $schedule->command('zk:sync-attendance')
              ->hourly()
-             ->between('8.09', '22:09');
+             ->between('3.09', '22:09');
     }
 
 
