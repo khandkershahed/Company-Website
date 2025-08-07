@@ -345,16 +345,16 @@
 
                                         <p style="margin:0;">
                                             <a href="tel:+19177203055" target="_blank"
-                                                style="color:#ae0a46; text-decoration: none">+1917-720-3055</a>
+                                                style="color:#ae0a46; text-decoration: none">(Skype) +1917-720-3055</a>
                                         </p>
                                         <p style="margin:0;">
                                             <a href="tel:+8801714243446" target="_blank"
-                                                style="color:#ae0a46; text-decoration: none">+8801714243446</a>
+                                                style="color:#ae0a46; text-decoration: none">(WhatsApp) +8801714243446</a>
                                         </p>
                                         <p style="margin:0;">
                                             <a href="mailto:sales@ngenitltd.com" target="_blank"
                                                 style="color:#ae0a46 !important; text-decoration: none">
-                                                sales@ngenitltd.com
+                                                (Email) sales@ngenitltd.com
                                             </a>
                                         </p>
                                     </td>
