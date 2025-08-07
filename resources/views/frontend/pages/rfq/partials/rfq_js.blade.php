@@ -2,7 +2,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
     <script>
         $(document).ready(function() {
-            let currentStep = 1;
+            let currentStep = 1; 
             const totalSteps = 4;
 
             // Custom validation rules
