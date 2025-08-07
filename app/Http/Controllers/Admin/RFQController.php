@@ -614,7 +614,7 @@ class RFQController extends Controller
             foreach ($user_emails as $email) {
                 Mail::to($email)->send(new RFQConfirmationMail($data, $rfq_code));
             }
-        } catch (\Exception $e) {
+        } catch (\Exception $e) { 
             Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
             Toastr::error('There was an error sending the email.', 'Error');
         }
