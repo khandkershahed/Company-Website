@@ -2,7 +2,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
     <script>
         $(document).ready(function() {
-            let currentStep = 1; 
+            let currentStep = 1;
             const totalSteps = 4;
 
             // Custom validation rules
@@ -282,13 +282,55 @@
             }
         }
     </script>
-    <script>
+    {{-- <script>
         function updateSerials() {
             $('[data-repeater-list] [data-repeater-item]').each(function(i) {
                 $(this).find('.sl-input').val(i + 1);
             });
         }
 
+        function deleteRFQRow(event, element, rowId) {
+            event.preventDefault();
+
+            var cartContainer = $('.cart_product');
+            var cartHeader = $('.miniRFQQTY');
+            var offcanvasRFQ = $('.offcanvasRFQ');
+
+            $.ajax({
+                type: 'GET',
+                url: "rfq-remove/" + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    // Update the cart header
+                    cartHeader.empty();
+                    if (data.cartHeader > 0) {
+                        const label = data.cartHeader > 1 ? 'Item(s)' : 'Item';
+                        cartHeader.append(`${data.cartHeader} ${label} Added`);
+                    } else {
+                        cartHeader.append('Ask Query');
+                    }
+
+                    // Update RFQ contents
+                    offcanvasRFQ.html(data.html);
+
+                    // Show success message
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Successfully Removed from RFQ!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Something happened. Try again.',
+                        text: error,
+                        showConfirmButton: true
+                    });
+                }
+            });
+        }
         $(document).ready(function() {
             $('.repeater').repeater({
                 show: function() {
@@ -301,14 +343,137 @@
                     const itemCount = $list.find('[data-repeater-item]').length;
 
                     if (itemCount > 1) {
-                        if (confirm('Are you sure?')) {
-                            $(this).slideUp('fast', function() {
-                                $(this).remove();
-                                updateSerials();
-                            });
-                        }
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "This item will be removed.",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Yes, remove it!',
+                            cancelButtonText: 'Cancel'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $(this).slideUp('fast', () => {
+                                    $(this).remove();
+                                    updateSerials();
+                                });
+                            }
+                        });
                     } else {
-                        alert('At least one item must remain.');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'At least one item must remain.',
+                            showConfirmButton: true
+                        });
+                    }
+                }
+
+                isFirstItemUndeletable: false
+            });
+
+            updateSerials(); // Initial run
+        });
+    </script> --}}
+    <script>
+        function updateSerials() {
+            $('[data-repeater-list] [data-repeater-item]').each(function(i) {
+                $(this).find('.sl-input').val(i + 1);
+            });
+        }
+
+        function deleteRFQFromServer(rowId, onSuccess) {
+            var cartHeader = $('.miniRFQQTY');
+            var offcanvasRFQ = $('.offcanvasRFQ');
+
+            $.ajax({
+                type: 'GET',
+                url: "rfq-remove/" + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    // Update cart header
+                    cartHeader.empty();
+                    if (data.cartHeader > 0) {
+                        const label = data.cartHeader > 1 ? 'Item(s)' : 'Item';
+                        cartHeader.append(`${data.cartHeader} ${label} Added`);
+                    } else {
+                        cartHeader.append('Ask Query');
+                    }
+
+                    // Update RFQ contents
+                    offcanvasRFQ.html(data.html);
+
+                    // Show success message
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'Successfully Removed from RFQ!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    if (typeof onSuccess === 'function') {
+                        onSuccess();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Something happened. Try again.',
+                        text: error,
+                        showConfirmButton: true
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            $('.repeater').repeater({
+                show: function() {
+                    $(this).slideDown('fast', function() {
+                        updateSerials();
+                    });
+                },
+                hide: function(deleteElement) {
+                    const $item = $(this);
+                    const $list = $item.closest('[data-repeater-list]');
+                    const itemCount = $list.find('[data-repeater-item]').length;
+
+                    if (itemCount > 1) {
+                        const rowId = $item.find('.delete-btn').data('id');
+                        alert(rowId);
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "This item will be removed.",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Yes, remove it!',
+                            cancelButtonText: 'Cancel'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                if (rowId && rowId !== 'new') {
+                                    deleteRFQFromServer(rowId, function() {
+                                        $item.slideUp('fast', function() {
+                                            $item.remove();
+                                            updateSerials();
+                                        });
+                                    });
+                                } else {
+                                    // It's a new row, just remove it from the DOM
+                                    $item.slideUp('fast', function() {
+                                        $item.remove();
+                                        updateSerials();
+                                    });
+                                }
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'At least one item must remain.',
+                            showConfirmButton: true
+                        });
                     }
                 },
                 isFirstItemUndeletable: false

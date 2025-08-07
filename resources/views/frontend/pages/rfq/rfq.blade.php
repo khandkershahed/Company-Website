@@ -64,13 +64,19 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-1 col-2">
-                                                            <button type="button" data-repeater-delete
+                                                            {{-- <button type="button" data-repeater-delete
                                                                 class="py-2 btn btn-danger btn-sm w-100 trash-btn delete-btn"
                                                                 onclick="deleteRFQRow(event, this, '{{ $cart_product->rowId }}')"
                                                                 data-id="{{ $cart_product->rowId }}">
                                                                 <i class="fas fa-trash"></i>
+                                                            </button> --}}
+                                                            <button type="button" data-repeater-delete
+                                                                class="py-2 btn btn-danger btn-sm w-100 trash-btn delete-btn"
+                                                                @isset($cart_product)
+                                                                data-id="{{ $cart_product->rowId }}"
+                                                                @endisset>
+                                                                <i class="fas fa-trash"></i>
                                                             </button>
-
                                                         </div>
                                                     </div>
                                                 @endforeach
@@ -107,11 +113,17 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-1 col-2">
-                                                        <button type="button" data-repeater-delete
+                                                        {{-- <button type="button" data-repeater-delete
                                                             class="py-2 btn btn-danger btn-sm w-100 trash-btn delete-btn"
                                                             onclick="deleteRow(this)">
                                                             <i class="fas fa-trash"></i>
+                                                        </button> --}}
+                                                        <button type="button" data-repeater-delete
+                                                            class="py-2 btn btn-danger btn-sm w-100 trash-btn delete-btn"
+                                                            data-id="new">
+                                                            <i class="fas fa-trash"></i>
                                                         </button>
+
                                                     </div>
                                                 </div>
                                             @endif
