@@ -52,20 +52,23 @@
                                 </li>
                             </ul>
                             <div class="d-flex align-items-center">
-                                <div class="form-check d-flex justify-content-end align-items-center">
-                                    <label class="form-check-label me-10 text-danger" for="vat_display">
-                                        VAT/GST
-                                    </label>
-                                    <input class="form-check-input" type="checkbox" name="vat_display" value="1" @checked(optional($quotation)->vat_display == '1') id="vat_display" />
-                                </div>
+                                <!-- VAT/GST as Button -->
+                                <label class="border btn btn-outline-danger bg-light rounded-1 d-flex align-items-center">
+                                    <input type="checkbox" class="form-check-input me-2 rounded-circle" name="vat_display" value="1"
+                                        id="vat_display" autocomplete="off"
+                                        @checked(optional($quotation)->vat_display == '1') />
+                                    VAT/GST
+                                </label>
 
-                                <div class="form-check d-flex justify-content-end align-items-center">
-                                    <label class="form-check-label me-10 pe-2 text-danger" for="special_discount_display">
-                                        <span title="Special Discount">Special Discount</span>
-                                    </label>
-                                    <input class="form-check-input" type="checkbox" name="special_discount_display" value="1" id="special_discount_display" @checked(optional($quotation)->special_discount_display == '1')/>
-                                </div>
+                                <!-- Special Discount as Button -->
+                                <label class="border btn btn-outline-danger bg-light rounded-1 d-flex align-items-center">
+                                    <input type="checkbox" class="form-check-input me-2 rounded-circle" name="special_discount_display"
+                                        value="1" id="special_discount_display" autocomplete="off"
+                                        @checked(optional($quotation)->special_discount_display == '1') />
+                                    Special Discount
+                                </label>
                             </div>
+
                         </div>
                         <div class="border-0 shadow-none card rounded-0">
                             <div class="p-0 card-body">
@@ -108,8 +111,10 @@
                     @csrf
                     <div class="modal-body">
                         <div class="loader" style="display: none;">
-                            <img class="preloader-spinner" src="{{ asset('frontend/images/backend_loader.gif') }}"
-                                alt="Loading..." style="width: 600px;">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <img class="preloader-spinner" src="{{ asset('/images/simple.gif') }}"
+                                    alt="Loading..." style="width: 200px; padding-top: 150px; padding-bottom: 150px;">
+                            </div>
                         </div>
                         <div class="container p-2 mx-2 submit_modal_container">
                             <div class="row">
