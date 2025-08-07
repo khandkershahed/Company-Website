@@ -351,7 +351,7 @@
                                             <a href="tel:+8801714243446" target="_blank"
                                                 style="color:#ae0a46; text-decoration: none">+8801714243446</a>
                                         </p>
-                                        <p style="margin:0;display:flex; align-items:center;">
+                                        <p style="margin:0;">
                                             <a href="mailto:sales@ngenitltd.com" target="_blank"
                                                 style="color:#ae0a46 !important; text-decoration: none">
                                                 sales@ngenitltd.com
