@@ -90,7 +90,7 @@
 
                             <!-- Product Table -->
                             <table class="u-full-width" width="100%" cellpadding="0" cellspacing="0" border="0"
-                                style="margin-top:30px; box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px; font-size: 12px;">
+                                style="margin-top:30px; margin-bottom:30px; box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px; font-size: 12px;">
                                 <tr style="background-color:#d3d3d3;">
                                     <th style="padding:10px; text-align:center;">Sl.</th>
                                     <th style="padding:10px; text-align:left;">Product Name</th>
