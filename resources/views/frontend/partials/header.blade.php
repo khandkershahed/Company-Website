@@ -250,10 +250,10 @@
                     </div>
                     {{-- @endif --}}
                     <!---Category--->
-                    <form method="post" action="{{ route('product.search') }}"
+                    {{-- <form method="post" action="{{ route('product.search') }}"
                         class="d-flex upper-content-menu justify-content-center align-items-center d-lg-none"
                         role="search">
-                        @csrf
+                        @csrf --}}
                         <div class="input-group flex-nowrap search-input-container">
                             <span class="input-group-text search-box-areas" id="addon-wrapping"><i
                                     class="fa-solid fa-magnifying-glass"></i></span>
@@ -261,16 +261,16 @@
                                 name="search" type="search" placeholder="Search From Here..."
                                 aria-describedby="addon-wrapping">
                         </div>
-                    </form>
+                    {{-- </form> --}}
                     <a href="javascript:void(0)" class="nvabar-toggler tab_btn_icon upper-content-menu d-lg-none"
                         type="button" data-bs-toggle="offcanvas" data-bs-target="#rightOffcanvas"
                         aria-controls="rightOffcanvas">
                         <i class="fa-solid fa-bars main_color" style="font-size: 18px !important;"></i>
                     </a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <form class="d-flex ms-auto upper-content-menu" method="post"
+                        {{-- <form class="d-flex ms-auto upper-content-menu" method="post"
                             action="{{ route('product.search') }}" role="search">
-                            @csrf
+                            @csrf --}}
                             <div class="input-group flex-nowrap search-input-container">
                                 <span class="input-group-text search-box-areas" id="addon-wrapping"><i
                                         class="fa-solid fa-magnifying-glass"></i></span>
@@ -278,7 +278,7 @@
                                     type="search" placeholder="Search for products, solutions & more..."
                                     aria-describedby="addon-wrapping">
                             </div>
-                        </form>
+                        {{-- </form> --}}
                         <ul class="mb-2 navbar-nav ms-auto mb-lg-0">
                             <hr>
                             <li class="nav-item dropdown position-static main-menu-spacing">
@@ -986,9 +986,9 @@
     </div>
     <div class="offcanvas-body">
         <div>
-            <form method="post" action="{{ route('product.search') }}"
+            {{-- <form method="post" action="{{ route('product.search') }}"
                 class="d-flex ms-auto upper-content-menu justify-content-center align-items-center" role="search">
-                @csrf
+                @csrf --}}
                 <div class="input-group flex-nowrap search-input-container">
                     <span class="input-group-text search-box-areas" id="addon-wrapping"><i
                             class="fa-solid fa-magnifying-glass"></i></span>
@@ -996,7 +996,7 @@
                         type="search" placeholder="Search for products, solutions & more..."
                         aria-describedby="addon-wrapping">
                 </div>
-            </form>
+            {{-- </form> --}}
             <hr>
             <ul class="mt-3 navbar-nav justify-content-end flex-grow-1">
                 <li class="nav-item dropdown cool-link">
