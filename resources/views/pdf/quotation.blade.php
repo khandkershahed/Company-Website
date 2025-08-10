@@ -3,380 +3,310 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Price Quotation</title>
     <style>
+        /* Basic reset for Dompdf */
         body,
         html {
             margin: 0;
             padding: 0;
-            height: 100%;
-            /* font-family: "Sora", sans-serif; */
-            /* font-family: "Roboto", sans-serif; */
-            font-family: "Montserrat", sans-serif;
-            font-size: 12px;
-        }
-
-        .footer-link {
-            font-family: Sora;
+            font-family: Montserrat, sans-serif;
             font-size: 14px;
-            font-weight: 500;
-            line-height: 22.68px;
-            letter-spacing: 0.1em;
-            text-align: left;
-            color: white;
-            text-decoration: none;
-        }
-
-        .pdf-container {
+            height: 100%;
             width: 210mm;
-            /* A4 width */
-            height: 297mm;
-            /* A4 height */
-            margin: auto;
-            display: flex;
-            flex-direction: column;
             box-sizing: border-box;
-        }
-
-        .header {
-            height: 61px;
-            background-color: #ae0a46;
-            text-align: center;
-            vertical-align: middle;
-        }
-
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            width: 100%;
-            padding: 0 30px;
-            color: white;
-            height: 100%;
-            box-sizing: border-box;
-        }
-
-        .content {
-            padding: 30px;
-            padding-top: 30px;
-            flex: 1;
-            border-left: 1px solid #eee;
-            border-right: 1px solid #eee;
-        }
-
-        table {
-            border: 0;
-        }
-
-        th {
-            border-right: 0;
-        }
-
-        table.content-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table.content-table th,
-        table.content-table td {
-            border-bottom: 1px solid #eee;
-            padding: 10px;
-            text-align: left;
-        }
-
-        .footer {
-            height: 45px;
-            background-color: #ae0a46;
-            text-align: center;
-            color: white;
-        }
-
-        .table-two-th {
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 17.64px;
-            text-align: left;
-        }
-
-        .table-two-td {
-            font-family: Sora;
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 17.64px;
-            text-align: left;
-        }
-
-        .bottom-section {
-            padding: 30px;
-            margin-top: auto;
-            border-top: 1px solid #eee;
-        }
-
-        th {
-            vertical-align: bottom;
-        }
-
-        @media print {
-            .pdf-container {
-                background-color: white;
-                box-shadow: none;
-                border: none;
-                width: 100%;
-                height: 100%;
-            }
-
-            .header,
-            .footer,
-            .bottom-section {
-                page-break-inside: avoid;
-            }
         }
     </style>
 </head>
 
-<body>
-    <div class="pdf-container">
+<body style="margin:0; padding:0; width:210mm; font-family: Montserrat, sans-serif; font-size: 14px;">
+
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
+        style="border-collapse: collapse; width: 210mm; height: 297mm;">
         <!-- Header -->
-        <table style="width: 100%; border: 0; overflow-x: auto; background: #ae0a46; align-content: center;">
-            <thead>
-                <tr style="align-content: center; height: 100px;">
-                    <th
-                        style="border: 0; padding: 0; width: 64%; font-weight: 500; text-align: left; margin: 0px; vertical-align: middle;">
-                        <img src="https://www.ngenitltd.com/frontend/images/white_logo.png" alt="Ngen IT" title="Ngen IT"
-                            style="padding-left: 20px; width: 95px;" />
-                    </th>
-                    <th style="border: 0; padding: 0; vertical-align: middle;">
-                        <div style="text-align: left;">
-                            <p
-                                style="font-size: 25px; padding: 0px; font-weight: 600; margin: 0px; margin-bottom: 0px; margin-top: 3px; color: #fff; text-align: left;">
-                                {{ $quotation->quotation_title }}
-                            </p>
-                        </div>
-                    </th>
-                </tr>
-            </thead>
-        </table>
+        <tr>
+            <td style="background-color: #ae0a46; height: 61px; padding: 0 30px;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
+                    style="border-collapse: collapse;">
+                    <tr>
+                        <td style="vertical-align: middle;">
+                            <img src="https://www.ngenitltd.com/frontend/images/white_logo.png" alt="Logo"
+                                style="height: 40px; display: block;" />
+                        </td>
+                        <td
+                            style="color: white; font-weight: 700; font-size: 24px; text-align: center; vertical-align: middle; position: relative; left: -65px;">
+                            Price Quotation
+                        </td>
+                        <td style="width: 40px;"></td> <!-- Empty cell for spacing -->
+                    </tr>
+                </table>
+            </td>
+        </tr>
 
         <!-- Content -->
-        <div class="pb-0 content">
-            <table class="content-table">
-                <thead>
-                    <tr>
-                        <th style="border: 0; padding: 0; width: 65%; font-weight: 500">
-                            {{ $quotation->company_name ?? 'N/A' }}
-                        </th>
-                        <th style="border: 0; padding: 0; font-weight: 500">
-                            PQ: {{ $quotation->pq_code ?? 'N/A' }}
-                        </th>
-                    </tr>
-                    <tr>
-                        <th style="border: 0; padding: 0; padding-top: 5px; font-weight: normal;">
-                            {{ $quotation->name ?? 'N/A' }} | {{ $quotation->designation ?? 'Sr. Manager' }}
-                        </th>
-                        <th style="border: 0; padding: 0; font-weight: normal; padding-top: 5px;">
-                            Date: {{ $quotation->quotation_date ?? 'N/A' }}
-                        </th>
-                    </tr>
-                    <tr>
-                        <th style="border: 0; padding: 0; font-weight: normal; padding-top: 5px;">
-                            {{ $quotation->email ?? 'N/A' }} | {{ $quotation->phone ?? 'N/A' }}
-                        </th>
-                        <th style="border: 0; padding: 0; font-weight: normal; padding-top: 5px;">
-                            PQR: {{ $quotation->pqr_code ?? 'N/A' }}
-                        </th>
-                    </tr>
-                    <tr>
-                        <th style="border: 0; padding: 0; font-weight: normal; padding-top: 5px;">
-                            {{ $quotation->address }}
-                        </th>
-                        <th style="border: 0; padding: 0; font-weight: normal; padding-top: 5px;">
-                            Customer Type: {{ $rfq->client_type ?? 'N/A' }}
-                        </th>
-                    </tr>
-                </thead>
-            </table>
+        <tr>
+            <td
+                style="padding: 30px 30px 0 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; vertical-align: top;">
 
-            <!-- Additional Content Table -->
-            <table class="content-table table-two" style="margin-top: 40px; border: 1px solid #eee">
-                <thead style="background-color: #f0f0f0">
+                <!-- Company Info Table -->
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
+                    style="border-collapse: collapse;">
                     <tr>
-                        <th class="table-two-th">Sl</th>
-                        <th class="table-two-th">PRODUCT DESCRIPTION</th>
-                        <th class="table-two-th" style="text-align: center">QTY</th>
-                        <th class="table-two-th" style="text-align: right">UNIT PRICE</th>
-                        <th class="table-two-th" style="text-align: right">TOTAL ({{ $currency }})</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if ($products->count() > 0)
-                        @foreach ($products as $quotationproduct)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $quotationproduct->product_name }}</td>
-                                <td style="text-align: center">{{ $quotationproduct->qty }}</td>
-                                <td style="text-align: right">
-                                    {{ number_format(round((float) optional($quotationproduct)->unit_final_price), 2) }}
-                                </td>
-                                <td style="text-align: right">
-                                    {{ number_format(round((float) optional($quotationproduct)->unit_final_total_price), 2) }}
-                                </td>
-                            </tr>
-                        @endforeach
-                    @endif
-                    <tr style="background-color: #eeeeee3d">
-                        <td colspan="4" style="text-align: right; font-weight: 500">
-                            SUBTOTAL
-                        </td>
-                        <td style="text-align: right; font-weight: 500">
-                            {{ number_format(round((float) optional($singleproduct)->sub_total_final_total_price), 2) }}
-                        </td>
-                    </tr>
-                    <tr style="display: {{ optional($quotation)->vat_display == '1' ? 'table-row' : 'none' }};">
-                        <td colspan="4" style="text-align: right; font-weight: 400; font-size: 12px">
-                            VAT / TAX {{ optional($singleproduct)->vat_percentage }}%
-                        </td>
-                        <td style="text-align: right; font-weight: 400; font-size: 12px">
-                            {{ number_format(round((float) optional($singleproduct)->vat_final_total_price), 2) }}
-                        </td>
+                        <td style="font-weight: 500; width: 65%; border: none; padding: 0;">Acme Corporation</td>
+                        <td style="font-weight: 500; border: none; padding: 0;">PQ: NG-BD/Genexis/RV/231021</td>
                     </tr>
                     <tr>
-                        <td colspan="4" style="text-align: right; font-weight: 400; font-size: 12px">
-                            SPECIAL DISCOUNT({{ optional($singleproduct)->special_discount_percentage }}%)
-                        </td>
-                        <td style="text-align: right; font-weight: 400; font-size: 12px">
-                            {{ number_format(round((float) optional($singleproduct)->special_discount_final_total_price), 2) }}
-                        </td>
+                        <td style="font-weight: normal; padding-top: 5px; border: none;">John Doe | Designation</td>
+                        <td style="font-weight: normal; padding-top: 5px; border: none;">Date: 16 / 08 / 24</td>
                     </tr>
-                    <tr style="background-color: #eee">
-                        <td colspan="4" style="text-align: right; font-weight: 500">
-                            GRANDTOTAL
-                        </td>
-                        <td style="text-align: right; font-weight: 500">
-                            {{ number_format(round((float) optional($singleproduct)->total_final_total_price), 2) }}
-                        </td>
+                    <tr>
+                        <td style="font-weight: normal; padding-top: 5px; border: none;">john.doe@example.com |
+                            123456789</td>
+                        <td style="font-weight: normal; padding-top: 5px; border: none;">PQR: MEO-P021(T10)-W(L1)</td>
                     </tr>
-                </tbody>
-            </table>
+                    <tr>
+                        <td style="font-weight: normal; padding-top: 5px; border: none;">123 Main Street, City, Country
+                        </td>
+                        <td style="font-weight: normal; padding-top: 5px; border: none;">Customer Type: Regular</td>
+                    </tr>
+                </table>
 
-            <div class="content"
-                style="border: 0; padding-top: 10px; padding-bottom: 0px !important; padding-left: 0; padding-right: 0;">
-                <table class="content-table">
+                <!-- Products Table -->
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="10"
+                    style="border-collapse: collapse; margin-top: 40px; border: 1px solid #eee; font-size: 14px;">
                     <thead>
-                        <tr style="display: {{ optional($quotation)->vat_display == '1' ? 'table-row' : 'none' }};">
-                            <th
-                                style="border: 0; padding: 0; text-align: center; font-weight: 500; padding-bottom: 10px;">
-                                {{ 'GST included. It may apply.' }}
+                        <tr style="background-color: #f0f0f0;">
+                            <th style="font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">Sl</th>
+                            <th style="font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">PRODUCT
+                                DESCRIPTION</th>
+                            <th style="font-weight: 500; text-align: center; border-bottom: 1px solid #eee;">QTY</th>
+                            <th style="font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">UNIT PRICE
                             </th>
-                        </tr>
-                        <tr>
-                            <th
-                                style="background-color: #f0f0f0; border: 0; padding: 0; text-align: start; font-weight: 500; padding: 5px;">
-                                Terms & Conditions
+                            <th style="font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">TOTAL (USD)
                             </th>
                         </tr>
                     </thead>
-                </table>
-            </div>
-
-            <table class="content-table table-two" style="margin-top: 5px; border: 0px solid #eee">
-                <tbody>
-                    @foreach ($rfq_terms as $term)
+                    <tbody>
                         <tr>
-                            <td style="font-size: 12px; padding: 5px; border: 0; font-weight: 500;">
-                                {{ $term->title ?? 'N/A' }}</td>
-                            <td style="font-size: 12px; padding: 5px; border: 0; font-weight: 500;">:</td>
-                            <td style="font-size: 12px; padding: 5px; border: 0;">{{ $term->description ?? 'N/A' }}
+                            <td style="text-align: left; border-bottom: 1px solid #eee;">1</td>
+                            <td style="text-align: left; border-bottom: 1px solid #eee;">Product A</td>
+                            <td style="text-align: center; border-bottom: 1px solid #eee;">10</td>
+                            <td style="text-align: right; border-bottom: 1px solid #eee;">15.00</td>
+                            <td style="text-align: right; border-bottom: 1px solid #eee;">150.00</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; border-bottom: 1px solid #eee;">2</td>
+                            <td style="text-align: left; border-bottom: 1px solid #eee;">Product B</td>
+                            <td style="text-align: center; border-bottom: 1px solid #eee;">5</td>
+                            <td style="text-align: right; border-bottom: 1px solid #eee;">20.00</td>
+                            <td style="text-align: right; border-bottom: 1px solid #eee;">100.00</td>
+                        </tr>
+                        <tr style="background-color: #eeeeee3d;">
+                            <td colspan="4"
+                                style="text-align: right; font-weight: 700; border-bottom: 1px solid #eee;">SUBTOTAL
+                            </td>
+                            <td style="text-align: right; font-weight: 700; border-bottom: 1px solid #eee;">250.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"
+                                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">
+                                VAT / TAX
+                                5%</td>
+                            <td
+                                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">
+                                12.50
                             </td>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                        <tr>
+                            <td colspan="4"
+                                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">
+                                SPECIAL
+                                DISCOUNT(10%)</td>
+                            <td
+                                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">
+                                -25.00
+                            </td>
+                        </tr>
+                        <tr style="background-color: #eee;">
+                            <td colspan="4" style="text-align: right; font-weight: 700;">GRANDTOTAL</td>
+                            <td style="text-align: right; font-weight: 700;">237.50</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <!-- Additional Content Table -->
-            <table class="content-table table-two" style="margin-top: 15px">
-                <tbody>
+                <!-- GST & Terms -->
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
+                    style="border-collapse: collapse; margin-top: 10px;">
                     <tr>
-                        <td colspan="6"
-                            style="padding: 0; border: 0; text-align: right; font-weight: 500; padding-bottom: 8px;">
-                            Authorized Brands
+                        <td style="text-align: center; font-weight: 700; padding-bottom: 10px; border: none;">
+                            GST - Not included. It may apply.
                         </td>
                     </tr>
-                </tbody>
-                <tbody style="background-color: #f0f0f0">
-                    <tr style="padding: 10px">
-                        @foreach ($brands as $brand)
-                            <td class="table-two-th" style="padding: 0">
-                                <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->title }}"
-                                    style="padding-left: 15px; width: 100px;" />
-                            </td>
-                        @endforeach
+                    <tr>
+                        <td
+                            style="background-color: #f0f0f0; font-weight: 700; padding: 5px; border: none; text-align: left;">
+                            Terms & Conditions
+                        </td>
                     </tr>
-                </tbody>
-            </table>
+                </table>
 
-            <!-- Additional Content Table -->
-            <div style="display: flex; align-items: center;">
-                <table class="content-table" style="margin-top: 20px; width: 70%">
-                    <thead>
+                <!-- Terms & Conditions Table -->
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
+                    style="border-collapse: collapse; margin-top: 5px; font-size: 12px;">
+                    <tbody>
                         <tr>
-                            <th style="border: 0; padding: 0; font-weight: 600; padding-top: 5px;">
-                                {{ $quotation->sender_name ?? 'Adan Mahmud' }}
-                            </th>
-                            <th style="border: 0; padding: 0; font-weight: normal; padding-top: 5px;">
-                                {{ $quotation->ngen_email ?? 'sales@ngenitltd.com' }}
-                            </th>
+                            <td style="font-weight: 700; padding: 5px; border: none; width: 150px;">Payment Terms</td>
+                            <td style="font-weight: 700; padding: 5px; border: none; width: 10px;">:</td>
+                            <td style="padding: 5px; border: none;">Payment to be made within 30 days.</td>
                         </tr>
                         <tr>
-                            <th style="border: 0; padding: 0; font-weight: normal; padding-top: 5px;">
-                                {{ $quotation->sender_designation ?? 'Sr. Manager' }}
-                            </th>
-                            <th style="border: 0; padding: 0; font-weight: normal; padding-top: 5px;">
-                                {{ $quotation->ngen_whatsapp_number ?? '+8801714243446' }} (What’s App)
-                            </th>
+                            <td style="font-weight: 700; padding: 5px; border: none;">Delivery Time</td>
+                            <td style="font-weight: 700; padding: 5px; border: none;">:</td>
+                            <td style="padding: 5px; border: none;">Delivery within 2 weeks.</td>
                         </tr>
                         <tr>
-                            <th style="border: 0; padding: 0; font-weight: normal; padding-top: 5px;">
-                                Partner & Business Development
-                            </th>
-                            <th style="border: 0; padding: 0; font-weight: normal; padding-top: 5px;">
-                                {{ $quotation->ngen_number_two ?? '+1 917-720-3055' }} (Skype)
-                            </th>
+                            <td style="font-weight: 700; padding: 5px; border: none;">Warranty</td>
+                            <td style="font-weight: 700; padding: 5px; border: none;">:</td>
+                            <td style="padding: 5px; border: none;">One year warranty on all products.</td>
                         </tr>
-                    </thead>
+                        <tr>
+                            <td style="font-weight: 700; padding: 5px; border: none;">Warranty</td>
+                            <td style="font-weight: 700; padding: 5px; border: none;">:</td>
+                            <td style="padding: 5px; border: none;">One year warranty on all products.</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; padding: 5px; border: none;">Warranty</td>
+                            <td style="font-weight: 700; padding: 5px; border: none;">:</td>
+                            <td style="padding: 5px; border: none;">One year warranty on all products.</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; padding: 5px; border: none;">Warranty</td>
+                            <td style="font-weight: 700; padding: 5px; border: none;">:</td>
+                            <td style="padding: 5px; border: none;">One year warranty on all products.</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; padding: 5px; border: none;">Warranty</td>
+                            <td style="font-weight: 700; padding: 5px; border: none;">:</td>
+                            <td style="padding: 5px; border: none;">One year warranty on all products.</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; padding: 5px; border: none;">Warranty</td>
+                            <td style="font-weight: 700; padding: 5px; border: none;">:</td>
+                            <td style="padding: 5px; border: none;">One year warranty on all products.</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; padding: 5px; border: none;">Warranty</td>
+                            <td style="font-weight: 700; padding: 5px; border: none;">:</td>
+                            <td style="padding: 5px; border: none;">One year warranty on all products.</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; padding: 5px; border: none;">Warranty</td>
+                            <td style="font-weight: 700; padding: 5px; border: none;">:</td>
+                            <td style="padding: 5px; border: none;">One year warranty on all products.</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; padding: 5px; border: none;">Warranty</td>
+                            <td style="font-weight: 700; padding: 5px; border: none;">:</td>
+                            <td style="padding: 5px; border: none;">One year warranty on all products.</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 700; padding: 5px; border: none;">Warranty</td>
+                            <td style="font-weight: 700; padding: 5px; border: none;">:</td>
+                            <td style="padding: 5px; border: none;">One year warranty on all products.</td>
+                        </tr>
+                    </tbody>
                 </table>
-                <table class="content-table" style="margin-top: 15px; width: 20%">
-                    <thead>
+
+                <!-- Authorized Brands -->
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
+                    style="border-collapse: collapse; margin-top: 15px;">
+                    <tbody>
                         <tr>
-                            <th style="border: 0; padding: 0; font-weight: 500; padding-top: 5px;">
-                                <div style="text-align: center">
-                                    <h3 style="margin-bottom: 0; padding-bottom: 0; color: #ae0a46;">
-                                        {{ $quotation->ngen_company_name ?? 'NGEN PTE. LTd.' }}
-                                    </h3>
-                                    <p style="margin: 0; padding-bottom: 0">
-                                        Reg-no: {{ $quotation->ngen_company_registration_number ?? 'N/A' }}
-                                    </p>
-                                </div>
-                            </th>
+                            <td colspan="6"
+                                style="text-align: right; font-weight: 700; padding-bottom: 8px; border: none;">
+                                Authorized
+                                Brands</td>
                         </tr>
-                    </thead>
+                    </tbody>
+                    <tbody style="background-color: #f0f0f0;">
+                        <tr>
+                            <td style="padding: 0;">
+                                <img src="https://download.logo.wine/logo/Acronis/Acronis-Logo.wine.png"
+                                    alt="Acronis Logo" style="padding-left: 15px; width: 100px; display: block;" />
+                            </td>
+                            <td style="padding: 0;">
+                                <img src="https://download.logo.wine/logo/Acronis/Acronis-Logo.wine.png"
+                                    alt="Acronis Logo" style="padding-left: 15px; width: 100px; display: block;" />
+                            </td>
+                            <td style="padding: 0; text-align: center;">
+                                <img src="https://download.logo.wine/logo/Acronis/Acronis-Logo.wine.png"
+                                    alt="Acronis Logo" style="padding-left: 15px; width: 100px; display: block;" />
+                            </td>
+                            <td style="padding: 0; text-align: right;">
+                                <img src="https://www.ngenitltd.com/storage/6Zf41FFqUVa1Cjs51744536698.png"
+                                    alt="Logo" style="padding-left: 15px; width: 100px; display: block;" />
+                            </td>
+                            <td style="padding: 0; text-align: right;">
+                                <img src="https://download.logo.wine/logo/Acronis/Acronis-Logo.wine.png"
+                                    alt="Acronis Logo" style="padding-left: 15px; width: 100px; display: block;" />
+                            </td>
+                            <td style="padding: 0; text-align: right;">
+                                <img src="https://download.logo.wine/logo/Acronis/Acronis-Logo.wine.png"
+                                    alt="Acronis Logo" style="padding-left: 15px; width: 100px; display: block;" />
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
-            </div>
-        </div>
+
+                <!-- Footer Content Info -->
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
+                    style="border-collapse: collapse; margin-top: 20px;">
+                    <tr>
+                        <td style="width: 75%; vertical-align: top; padding-right: 10px;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
+                                style="border-collapse: collapse;">
+                                <tr>
+                                    <td style="font-weight: 600; padding: 0;">Adam Mahmud</td>
+                                    <td style="font-weight: normal; padding: 0;">sales@ngenitltd.com</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: normal; padding: 0;">Sr. Manager</td>
+                                    <td style="font-weight: normal; padding: 0;">+880123456789 (What’s App)</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: normal; padding: 0;">Partner & Business Development</td>
+                                    <td style="font-weight: normal; padding: 0;">skype_id_here (Skype)</td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="width: 25%; vertical-align: top;">
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
+                                style="border-collapse: collapse; text-align: center;">
+                                <tr>
+                                    <td style="font-weight: 500; padding: 0;">
+                                        <h3 style="margin: 0; padding: 0; color: #ae0a46;">NGEN PTE. Ltd.</h3>
+                                        <p style="margin: 0; padding: 0;">Reg-no: 123456789</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
 
         <!-- Footer -->
-        <table style="width: 100%;padding: 0px;margin: 0px;background-color: #ae0a46;text-align: center;">
-            <tr>
-                <td>
-                    <p style="padding: 10px; margin: 0;">
-                        <a class="footer-link" style="font-size:20px;"
-                            href="https://www.ngenitltd.com">www.ngenitltd.com</a>
-                    </p>
-                </td>
-            </tr>
-        </table>
-    </div>
+        <tr>
+            <td style="background-color: #ae0a46; height: 45px; text-align: center; color: white;">
+                <a href="https://www.ngenitltd.com"
+                    style="font-family: Sora, sans-serif; font-size: 14px; font-weight: 500; line-height: 22.68px; letter-spacing: 0.1em; color: white; text-decoration: none;">
+                    www.ngenitltd.com
+                </a>
+            </td>
+        </tr>
+    </table>
+
 </body>
 
 </html>
