@@ -168,7 +168,7 @@
                             {{ $quotation->name ?? 'N/A'}}
                         </th>
                         <th style="border: 0; padding: 0; font-weight: 500">
-                            PQ#: NG-BD/Genexis/RV/231021
+                            {{-- PQ#: NG-BD/Genexis/RV/231021 --}}
                             {{ $quotation->pq_code ?? 'N/A'}}
                         </th>
                     </tr>
