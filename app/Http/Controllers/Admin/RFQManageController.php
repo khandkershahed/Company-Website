@@ -100,7 +100,7 @@ class RFQManageController extends Controller
             'countries'     => Country::all(),
             'rfq_country'   => Country::where('country_name', 'LIKE', '%' . $rfq->country . '%')->first(),
             'sourcing'      => DealSas::where('rfq_code', $rfq->rfq_code)->first(),
-            'brands'        => Brand::latest('id')->select('title', 'image')->limit(5)->get(),
+            'brands'        => Brand::latest('id')->select('title', 'image')->inRandomOrder()->limit(5)->get(),
             'rfq'           => $rfq,
             'users'         => $users,
         ];
@@ -261,7 +261,7 @@ class RFQManageController extends Controller
         $data['quotation']   = DB::table('rfq_quotations')->where('rfq_id', $rfq_id)->first();
         $data['singleproduct']   = QuotationProduct::where('rfq_id', $rfq_id)->first();
         $data['rfq_terms']   = QuotationTerm::where('rfq_id', $rfq_id)->get();
-        $data['brands']   = Brand::latest('id')->select('title', 'image')->limit(5)->get();
+        $data['brands']   = Brand::latest('id')->select('title', 'image')->inRandomOrder()->limit(5)->get();
         Toastr::success('Quotation Saved.');
         return response()->json([
             // 'mysetting' => view('admin.pages.singleRfq.partials.bypass_setting', $data)->render(),

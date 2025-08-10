@@ -41,7 +41,10 @@
                                 <tr>
                                     <th style="border: 0;padding: 0;padding-top: 5px;font-weight: normal;">
                                         <input class="border-0 w-100" name="name" type="text"
-                                            value="{{ $quotation->name ?? $rfq->name }} | {{ $quotation->designation ?? $rfq->designation }}" />
+                                            value="{{ $quotation->name ?? $rfq->name }}" /> | <input
+                                            class="border-0 w-100" name="designation" type="text"
+                                            value="{{ $quotation->designation ?? $rfq->designation }}" />
+
                                     </th>
                                     <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
                                         <div class="d-flex align-items-center">
@@ -54,7 +57,9 @@
                                 <tr>
                                     <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
                                         <input class="border-0 w-100" name="email" type="text"
-                                            value="{{ $quotation->email ?? $rfq->email }} | {{ $quotation->phone ?? $rfq->phone }}" />
+                                            value="{{ $quotation->email ?? $rfq->email }}" /> | <input
+                                            class="border-0 w-100" name="phone" type="text"
+                                            value="{{ $quotation->phone ?? $rfq->phone }}" />
                                     </th>
                                     <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
                                         <div class="d-flex align-items-center">
@@ -102,24 +107,25 @@
 
                             <tbody class="quotationTable_area">
                                 @foreach ($rfq->quotationProducts as $quotationproduct)
-                                <tr class="text-center tdsp">
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>
-                                        <input class="border-0 w-100" name="" type="text"
-                                            value="{{ $quotationproduct->product_name }}" readonly />
-                                    </td>
-                                    <td style="text-align: center">
-                                        <input class="text-center border-0 w-100" name="" type="text"
-                                            value="{{ $quotationproduct->qty }}" readonly />
-                                    </td>
-                                    <td style="text-align: end">
-                                        <input class="border-0 w-100 text-end" name="" type="text" readonly
-                                            value="{{ number_format(round((float) optional($quotationproduct)->unit_final_price), 2) }}" />
-                                    </td>
-                                    <td style="text-align: end">
-                                        {{ number_format(round((float) optional($quotationproduct)->unit_final_total_price), 2) }}
-                                    </td>
-                                </tr>
+                                    <tr class="text-center tdsp">
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>
+                                            <input class="border-0 w-100" name="" type="text"
+                                                value="{{ $quotationproduct->product_name }}" readonly />
+                                        </td>
+                                        <td style="text-align: center">
+                                            <input class="text-center border-0 w-100" name="" type="text"
+                                                value="{{ $quotationproduct->qty }}" readonly />
+                                        </td>
+                                        <td style="text-align: end">
+                                            <input class="border-0 w-100 text-end" name="" type="text"
+                                                readonly
+                                                value="{{ number_format(round((float) optional($quotationproduct)->unit_final_price), 2) }}" />
+                                        </td>
+                                        <td style="text-align: end">
+                                            {{ number_format(round((float) optional($quotationproduct)->unit_final_total_price), 2) }}
+                                        </td>
+                                    </tr>
                                 @endforeach
 
                             </tbody>
@@ -134,29 +140,29 @@
                                     </td>
                                 </tr>
                                 @if (optional($quotation)->special_discount_display == '1')
-                                <tr>
-                                    <td colspan="4" style="text-align: end;font-weight: 400;font-size: 12px;">
-                                        SPECIAL DISCOUNT (<span
-                                            class="special_discount_value">{{ optional($singleproduct)->special_discount_percentage }}</span>%)
-                                    </td>
-                                    <td style="text-align: end;font-weight: 400;font-size: 12px;">
-                                        {{ round((float) optional($singleproduct)->special_discount_final_total_price) }}
-                                        <span class="currency"></span>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="4" style="text-align: end;font-weight: 400;font-size: 12px;">
+                                            SPECIAL DISCOUNT (<span
+                                                class="special_discount_value">{{ optional($singleproduct)->special_discount_percentage }}</span>%)
+                                        </td>
+                                        <td style="text-align: end;font-weight: 400;font-size: 12px;">
+                                            {{ round((float) optional($singleproduct)->special_discount_final_total_price) }}
+                                            <span class="currency"></span>
+                                        </td>
+                                    </tr>
                                 @endif
                                 @if (optional($quotation)->vat_display == '1')
-                                <tr>
-                                    <td colspan="4" style="text-align: end;font-weight: 400;font-size: 12px;">
-                                        VAT/GST (<span
-                                            class="vat_tax_value">{{ optional($singleproduct)->vat_percentage }}</span>
-                                        %)
-                                    </td>
-                                    <td style="text-align: end;font-weight: 400;font-size: 12px;">
-                                        {{ round((float) optional($singleproduct)->vat_final_total_price) }}
-                                        <span class="currency"></span>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="4" style="text-align: end;font-weight: 400;font-size: 12px;">
+                                            VAT/GST (<span
+                                                class="vat_tax_value">{{ optional($singleproduct)->vat_percentage }}</span>
+                                            %)
+                                        </td>
+                                        <td style="text-align: end;font-weight: 400;font-size: 12px;">
+                                            {{ round((float) optional($singleproduct)->vat_final_total_price) }}
+                                            <span class="currency"></span>
+                                        </td>
+                                    </tr>
                                 @endif
                                 {{-- @dd($quotation) --}}
                                 {{-- Extra Row End --}}
@@ -208,183 +214,183 @@
                                     </thead>
                                     <tbody class="terms_tbody">
                                         @if ($rfq_terms->isEmpty())
-                                        <!-- Default rows -->
-                                        <tr>
-                                            <td style="text-align: center;">
-                                                <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
-                                                    onclick="deleteTermsRow(this)">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                            <td style="width: 15%">
-                                                <input type="hidden" name="terms_id[]" value="">
-                                                <input type="text" name="terms_title[]"
-                                                    class="bg-transparent form-control form-control-sm text-start"
-                                                    value="Validity :">
-                                            </td>
-                                            <td>
-                                                <input type="text" name="terms_description[]"
-                                                    class="bg-transparent form-control form-control-sm"
-                                                    value="Valid till 7 days from PQ. Offer may change on the bank forex rate or stock availability">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: center;">
-                                                <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
-                                                    onclick="deleteTermsRow(this)">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                            <td style="width: 15%">
-                                                <input type="hidden" name="terms_id[]" value="">
-                                                <input type="text" name="terms_title[]"
-                                                    class="bg-transparent form-control form-control-sm text-start"
-                                                    value="Payment :">
-                                            </td>
-                                            <td>
-                                                <input type="text" name="terms_description[]"
-                                                    class="bg-transparent form-control form-control-sm"
-                                                    value="100% payment through EFTN/WT & hit in the NGen IT Limited account within 30 days of Delivery">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: center;">
-                                                <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
-                                                    onclick="deleteTermsRow(this)">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                            <td style="width: 15%">
-                                                <input type="hidden" name="terms_id[]" value="">
-                                                <input type="text" name="terms_title[]"
-                                                    class="bg-transparent form-control form-control-sm text-start"
-                                                    value="Product Mode :">
-                                            </td>
-                                            <td>
-                                                <input type="text" name="terms_description[]"
-                                                    class="bg-transparent form-control form-control-sm"
-                                                    value="Product may take a certain time for Payment, Shipment, Delivery. In exception it may differ">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: center;">
-                                                <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
-                                                    onclick="deleteTermsRow(this)">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                            <td style="width: 15%">
-                                                <input type="hidden" name="terms_id[]" value="">
-                                                <input type="text" name="terms_title[]"
-                                                    class="bg-transparent form-control form-control-sm text-start"
-                                                    value="Delivery :">
-                                            </td>
-                                            <td>
-                                                <input type="text" name="terms_description[]"
-                                                    class="bg-transparent form-control form-control-sm"
-                                                    value="4 business weeks upon receiving of WO. Extended time may require in any disaster issues">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: center;">
-                                                <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
-                                                    onclick="deleteTermsRow(this)">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                            <td style="width: 15%">
-                                                <input type="hidden" name="terms_id[]" value="">
-                                                <input type="text" name="terms_title[]"
-                                                    class="bg-transparent form-control form-control-sm text-start"
-                                                    value="Delivery Location :">
-                                            </td>
-                                            <td>
-                                                <input type="text" name="terms_description[]"
-                                                    class="bg-transparent form-control form-control-sm"
-                                                    value="Via Email / Console Panel">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: center;">
-                                                <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
-                                                    onclick="deleteTermsRow(this)">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                            <td style="width: 15%">
-                                                <input type="hidden" name="terms_id[]" value="">
-                                                <input type="text" name="terms_title[]"
-                                                    class="bg-transparent form-control form-control-sm text-start"
-                                                    value="Product & Order :">
-                                            </td>
-                                            <td>
-                                                <input type="text" name="terms_description[]"
-                                                    class="bg-transparent form-control form-control-sm"
-                                                    value="No Partial or Less volume Order is accepted. Order may reject or ask for alternative / changes if not available from mnfg.">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: center;">
-                                                <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
-                                                    onclick="deleteTermsRow(this)">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                            <td style="width: 15%">
-                                                <input type="hidden" name="terms_id[]" value="">
-                                                <input type="text" name="terms_title[]"
-                                                    class="bg-transparent form-control form-control-sm text-start"
-                                                    value="Warranty :">
-                                            </td>
-                                            <td>
-                                                <input type="text" name="terms_description[]"
-                                                    class="bg-transparent form-control form-control-sm"
-                                                    value="Principal Standard Warranty for respective product">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: center;">
-                                                <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
-                                                    onclick="deleteTermsRow(this)">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                            <td style="width: 15%">
-                                                <input type="hidden" name="terms_id[]" value="">
-                                                <input type="text" name="terms_title[]"
-                                                    class="bg-transparent form-control form-control-sm text-start"
-                                                    value="Installation :">
-                                            </td>
-                                            <td>
-                                                <input type="text" name="terms_description[]"
-                                                    class="bg-transparent form-control form-control-sm"
-                                                    value="No Installation or Maintenance is applicable with this price quote.">
-                                            </td>
-                                        </tr>
+                                            <!-- Default rows -->
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
+                                                        onclick="deleteTermsRow(this)">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                                <td style="width: 15%">
+                                                    <input type="hidden" name="terms_id[]" value="">
+                                                    <input type="text" name="terms_title[]"
+                                                        class="bg-transparent form-control form-control-sm text-start"
+                                                        value="Validity :">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="terms_description[]"
+                                                        class="bg-transparent form-control form-control-sm"
+                                                        value="Valid till 7 days from PQ. Offer may change on the bank forex rate or stock availability">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
+                                                        onclick="deleteTermsRow(this)">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                                <td style="width: 15%">
+                                                    <input type="hidden" name="terms_id[]" value="">
+                                                    <input type="text" name="terms_title[]"
+                                                        class="bg-transparent form-control form-control-sm text-start"
+                                                        value="Payment :">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="terms_description[]"
+                                                        class="bg-transparent form-control form-control-sm"
+                                                        value="100% payment through EFTN/WT & hit in the NGen IT Limited account within 30 days of Delivery">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
+                                                        onclick="deleteTermsRow(this)">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                                <td style="width: 15%">
+                                                    <input type="hidden" name="terms_id[]" value="">
+                                                    <input type="text" name="terms_title[]"
+                                                        class="bg-transparent form-control form-control-sm text-start"
+                                                        value="Product Mode :">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="terms_description[]"
+                                                        class="bg-transparent form-control form-control-sm"
+                                                        value="Product may take a certain time for Payment, Shipment, Delivery. In exception it may differ">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
+                                                        onclick="deleteTermsRow(this)">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                                <td style="width: 15%">
+                                                    <input type="hidden" name="terms_id[]" value="">
+                                                    <input type="text" name="terms_title[]"
+                                                        class="bg-transparent form-control form-control-sm text-start"
+                                                        value="Delivery :">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="terms_description[]"
+                                                        class="bg-transparent form-control form-control-sm"
+                                                        value="4 business weeks upon receiving of WO. Extended time may require in any disaster issues">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
+                                                        onclick="deleteTermsRow(this)">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                                <td style="width: 15%">
+                                                    <input type="hidden" name="terms_id[]" value="">
+                                                    <input type="text" name="terms_title[]"
+                                                        class="bg-transparent form-control form-control-sm text-start"
+                                                        value="Delivery Location :">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="terms_description[]"
+                                                        class="bg-transparent form-control form-control-sm"
+                                                        value="Via Email / Console Panel">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
+                                                        onclick="deleteTermsRow(this)">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                                <td style="width: 15%">
+                                                    <input type="hidden" name="terms_id[]" value="">
+                                                    <input type="text" name="terms_title[]"
+                                                        class="bg-transparent form-control form-control-sm text-start"
+                                                        value="Product & Order :">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="terms_description[]"
+                                                        class="bg-transparent form-control form-control-sm"
+                                                        value="No Partial or Less volume Order is accepted. Order may reject or ask for alternative / changes if not available from mnfg.">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
+                                                        onclick="deleteTermsRow(this)">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                                <td style="width: 15%">
+                                                    <input type="hidden" name="terms_id[]" value="">
+                                                    <input type="text" name="terms_title[]"
+                                                        class="bg-transparent form-control form-control-sm text-start"
+                                                        value="Warranty :">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="terms_description[]"
+                                                        class="bg-transparent form-control form-control-sm"
+                                                        value="Principal Standard Warranty for respective product">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
+                                                        onclick="deleteTermsRow(this)">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                                <td style="width: 15%">
+                                                    <input type="hidden" name="terms_id[]" value="">
+                                                    <input type="text" name="terms_title[]"
+                                                        class="bg-transparent form-control form-control-sm text-start"
+                                                        value="Installation :">
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="terms_description[]"
+                                                        class="bg-transparent form-control form-control-sm"
+                                                        value="No Installation or Maintenance is applicable with this price quote.">
+                                                </td>
+                                            </tr>
                                         @else
-                                        @foreach ($rfq_terms as $term)
-                                        <tr>
-                                            <td style="text-align: center;">
-                                                <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
-                                                    data-id="{{ $term->id }}"
-                                                    onclick="deleteTermsRow(this)">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
-                                            </td>
-                                            <td style="width: 15%">
-                                                <input type="hidden" name="terms_id[]"
-                                                    value="{{ $term->id }}">
-                                                <input type="text" name="terms_title[]"
-                                                    class="bg-transparent form-control form-control-sm text-start"
-                                                    value="{{ $term->title }}">
-                                            </td>
-                                            <td>
-                                                <input type="text" name="terms_description[]"
-                                                    class="bg-transparent form-control form-control-sm"
-                                                    value="{{ $term->description }}">
-                                            </td>
-                                        </tr>
-                                        @endforeach
+                                            @foreach ($rfq_terms as $term)
+                                                <tr>
+                                                    <td style="text-align: center;">
+                                                        <a class="p-1 text-danger rounded-0 btn-sm delete-terms-row"
+                                                            data-id="{{ $term->id }}"
+                                                            onclick="deleteTermsRow(this)">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td style="width: 15%">
+                                                        <input type="hidden" name="terms_id[]"
+                                                            value="{{ $term->id }}">
+                                                        <input type="text" name="terms_title[]"
+                                                            class="bg-transparent form-control form-control-sm text-start"
+                                                            value="{{ $term->title }}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="terms_description[]"
+                                                            class="bg-transparent form-control form-control-sm"
+                                                            value="{{ $term->description }}">
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         @endif
                                     </tbody>
                                     <tfoot>
@@ -394,7 +400,7 @@
                                                     onclick="addTermsRow()" style="cursor: pointer;"></a>
                                             </th>
                                             <th colspan="2" style="text-align: center;">
-                                               
+
                                             </th>
                                         </tr>
                                     </tfoot>
@@ -420,10 +426,11 @@
                             <tbody style="background-color: #f0f0f0;">
                                 <tr style="padding: 7px">
                                     @foreach ($brands as $brand1)
-                                    <td class="table-two-th-qt">
-                                        <img class="p-2 img-fluid" src="{{ asset('storage/' . $brand1->image) }}"
-                                            alt="" style="padding-left: 15px" onerror="this.onerror=null;this.src='{{ asset('https://ngenitltd.com/storage/LHhL5VKR2aoXEl2umO4UyKqj95qkKzvIPgZNfRNh.png') }}';" />
-                                    </td>
+                                        <td class="table-two-th-qt">
+                                            <img class="p-2 img-fluid" src="{{ asset('storage/' . $brand1->image) }}"
+                                                alt="" style="padding-left: 15px; width: 100px !important;"
+                                                onerror="this.onerror=null;this.src='{{ asset('https://ngenitltd.com/storage/LHhL5VKR2aoXEl2umO4UyKqj95qkKzvIPgZNfRNh.png') }}';" />
+                                        </td>
                                     @endforeach
                                 </tr>
                             </tbody>
