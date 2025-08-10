@@ -58,7 +58,7 @@
                                 <tr>
                                     <th
                                         style="border: 0;padding: 0;font-weight: normal;padding-top: 5px; display: flex; align-items: center; justify-content: start;">
-                                        <input class="border-0" name="email" type="text" style="width: 75px;"
+                                        <input class="border-0" name="email" type="text" style="width: 165px;"
                                             value="{{ $quotation->email ?? $rfq->email }}" /> | <input
                                             class="border-0 w-100" name="phone" type="text"
                                             value="{{ $quotation->phone ?? $rfq->phone }}" />
