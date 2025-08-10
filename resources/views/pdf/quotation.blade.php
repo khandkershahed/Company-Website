@@ -30,7 +30,7 @@
 <body style="margin:0; padding:0; width:210mm; font-family: 'Montserrat', sans-serif; font-size: 14px;">
 
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
-    style="border-collapse: collapse; width: 210mm; height: 250mm;">
+    style="border-collapse: collapse; width: 210mm; height: 270mm;">
     <!-- Header -->
     <tr>
       <td style="background-color: #ae0a46; height: 61px; padding: 0 30px;">
@@ -172,7 +172,7 @@
 
         <!-- Authorized Brands -->
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
-          style="border-collapse: collapse; margin-top: 15px;">
+          style="border-collapse: collapse; margin-top: 15px; width:100%">
           <tbody>
             <tr>
               <td colspan="6" style="text-align: right; font-weight: 700; padding-bottom: 8px; border: none;">Authorized
@@ -183,7 +183,7 @@
             <tr>
               @foreach ($brands as $brand)
               <td style="padding: 0;">
-                <img src="{{ asset('storage/' . $brand->image) }}" alt="Acronis Logo" style="padding-left: 15px; width: 100px; display: block;" />
+                <img src="{{ asset('storage/' . $brand->image) }}" alt="Acronis Logo" style="padding-left: 15px; width: 80px; display: block;" />
               </td>
               @endforeach
             </tr>
