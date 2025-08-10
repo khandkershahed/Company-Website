@@ -373,7 +373,7 @@ class RFQManageController extends Controller
         ini_set('memory_limit', '256M');
         $pdf = PDF::loadView('pdf.quotation', $data);
         $pdf->setPaper('a4', 'portrait');
-        $pdf_output = $pdf->output();
+        $pdf_output = $pdf->output(); 
         Storage::put($filePath, $pdf_output);
 
         // Validate email addresses
