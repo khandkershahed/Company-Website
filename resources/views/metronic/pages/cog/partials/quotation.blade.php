@@ -102,7 +102,7 @@
                                         UNIT PRICE
                                     </th>
                                     <th width="20%" class="table-two-th-qt" style="text-align: end">
-                                        TOTAL (TK)
+                                        TOTAL (<span class="currency"></span>)
                                     </th>
                                 </tr>
                             </thead>
