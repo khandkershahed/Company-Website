@@ -39,10 +39,11 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th style="border: 0;padding: 0;padding-top: 5px;font-weight: normal;">
-                                        <input class="border-0 w-100" name="name" type="text"
-                                            value="{{ $quotation->name ?? $rfq->name }}" /> | <input
-                                            class="border-0 w-100" name="designation" type="text"
+                                    <th
+                                        style="border: 0;padding: 0;padding-top: 5px;font-weight: normal;display: flex; align-items: center; justify-content: start;">
+                                        <input class="border-0" name="name" type="text" style="width: 75px;"
+                                            value="{{ $quotation->name ?? $rfq->name }}" /> | <input class="border-0"
+                                            name="designation" type="text"
                                             value="{{ $quotation->designation ?? $rfq->designation }}" />
 
                                     </th>
@@ -55,8 +56,9 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
-                                        <input class="border-0 w-100" name="email" type="text"
+                                    <th
+                                        style="border: 0;padding: 0;font-weight: normal;padding-top: 5px; display: flex; align-items: center; justify-content: start;">
+                                        <input class="border-0" name="email" type="text" style="width: 75px;"
                                             value="{{ $quotation->email ?? $rfq->email }}" /> | <input
                                             class="border-0 w-100" name="phone" type="text"
                                             value="{{ $quotation->phone ?? $rfq->phone }}" />
