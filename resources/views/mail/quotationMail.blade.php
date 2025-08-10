@@ -88,8 +88,7 @@
                                     <tr>
                                         <div style="text-align: left;padding: 15px;">
                                             <p style="text-align: left; font-size: 18px; color: #141414;">
-                                                We have generated a Quotation against your ({{$data['rfq_code']}}). Please click the price quotation from here.
-                                                Thanks for being attached with us.
+                                                We have generated a Quotation ({{$data['rfq_code']}}) against your query. To see the price quotation click here.
                                             </p>
                                         </div>
                                     </tr>
@@ -103,13 +102,13 @@
                                 style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;vertical-align: top;min-width: 320px;margin: 0 auto;width: 100%;"
                                 cellpadding="0" cellspacing="0">
                                 <tbody style="min-width: 320px">
-                                    <tr>
+                                    {{-- <tr>
                                         <div style="text-align: center;padding: 15px; padding-bottom: 5px;">
                                             <p style="text-align: center; font-size: 16px; color: #141414;">
                                                 See Price Quotation.
                                             </p>
                                         </div>
-                                    </tr>
+                                    </tr> --}}
                                     <tr>
                                         <div
                                             style="text-align: center;padding: 15px; padding-bottom: 5px; padding-top: 30px">
@@ -122,7 +121,7 @@
                                     </tr>
                                     <tr>
                                         <div style="text-align: center;padding: 30px; width: 70%; margin: auto">
-                                            <strong>NB:</strong> Your Quotation link will expire within 14 days.
+                                            <strong>NB:</strong> Your Quotation link will expire within 14 days. Thanks for being attached with us.
                                         </div>
                                     </tr>
                                     {{-- <tr>
@@ -180,22 +179,26 @@
                                                                                     <i class="fa-solid fa-paper-plane"></i>
                                                                                 </p>
                                                                             </div>
-                                                                            <div
-                                                                                style="font-size: 15px;margin-bottom: 0.5rem;">
-                                                                                <p
-                                                                                    style="margin: 0; padding: 0; color: #ae0a46">
-                                                                                    (skype) {{ $data['quotation']->ngen_number_two }}
-                                                                                </p>
-                                                                            </div>
-                                                                            <div style="font-size: 15px">
-                                                                                <p
-                                                                                    style="margin: 0; padding: 0; color: #ae0a46">
-                                                                                    <a href="https://wa.me/{{ $data['quotation']->ngen_whatsapp_number }}"
-                                                                                        style="color: inherit; text-decoration: none;">
-                                                                                        (whats app) {{ $data['quotation']->ngen_whatsapp_number }}
-                                                                                    </a>
-                                                                                </p>
-                                                                            </div>
+                                                                            @if (!empty($data['quotation']->ngen_number_two))
+                                                                                <div
+                                                                                    style="font-size: 15px;margin-bottom: 0.5rem;">
+                                                                                    <p
+                                                                                        style="margin: 0; padding: 0; color: #ae0a46">
+                                                                                         {{ $data['quotation']->ngen_number_two }}
+                                                                                    </p>
+                                                                                </div>
+                                                                            @endif
+                                                                            @if (!empty($data['quotation']->ngen_whatsapp_number))
+                                                                                <div style="font-size: 15px">
+                                                                                    <p
+                                                                                        style="margin: 0; padding: 0; color: #ae0a46">
+                                                                                        <a href="https://wa.me/{{ $data['quotation']->ngen_whatsapp_number }}"
+                                                                                            style="color: inherit; text-decoration: none;">
+                                                                                             {{ $data['quotation']->ngen_whatsapp_number }}
+                                                                                        </a>
+                                                                                    </p>
+                                                                                </div>
+                                                                            @endif
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
