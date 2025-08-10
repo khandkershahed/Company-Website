@@ -347,7 +347,7 @@ class RFQManageController extends Controller
         $data['quotation'] = DB::table('rfq_quotations')->where('rfq_id', $rfq_id)->first();
         $data['rfq_terms'] = QuotationTerm::where('rfq_id', $rfq_id)->get();
         $data['products'] = QuotationProduct::where('rfq_id', $rfq_id)->get();
-        $data['brands'] = Brand::select('title', 'image')->inRandomOrder()->limit(5)->get();
+        $data['brands'] = Brand::select('title', 'image')->inRandomOrder()->limit(6)->get();
         $data['singleproduct'] = $data['products']->first();
         $data['rfq_code'] = $data['rfq']->rfq_code;
         $data['name'] = $data['rfq']->name;
