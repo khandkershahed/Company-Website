@@ -326,62 +326,22 @@
                 <tbody style="background-color: #f0f0f0">
                     <tr style="padding: 10px">
                         <td class="table-two-th" style="padding: 0">
-                            <img src="./img/logo1.png" alt="" style="padding-left: 15px" />
+                            <img src="https://download.logo.wine/logo/Acronis/Acronis-Logo.wine.png" alt="" style="padding-left: 15px; width: 100px" />
                         </td>
                         <td class="table-two-th" style="padding: 0">
-                            <img src="./img/logo2.png" alt="" />
+                            <img src="https://download.logo.wine/logo/Acronis/Acronis-Logo.wine.png" alt="" style="padding-left: 15px; width: 100px" />
                         </td>
                         <td class="table-two-th" style="text-align: center; padding: 0">
-                            <img src="./img/logo3.png" alt="" />
+                            <img src="https://download.logo.wine/logo/Acronis/Acronis-Logo.wine.png" alt="" style="padding-left: 15px; width: 100px" />
                         </td>
                         <td class="table-two-th" style="text-align: end; padding: 0">
-                            <img src="./img/logo4.png" alt="" />
+                            <img src="https://download.logo.wine/logo/Acronis/Acronis-Logo.wine.png" alt="" style="padding-left: 15px; width: 100px" />
                         </td>
                         <td class="table-two-th" style="text-align: end; padding: 0">
-                            <img src="./img/logo2.png" alt="" />
+                            <img src="https://download.logo.wine/logo/Acronis/Acronis-Logo.wine.png" alt="" style="padding-left: 15px; width: 100px" />
                         </td>
                         <td class="table-two-th" style="text-align: end; padding: 0">
-                            <img src="./img/logo3.png" alt="" style="padding-right: 15px" />
-                        </td>
-                    </tr>
-                    <tr style="padding: 10px">
-                        <td class="table-two-th" style="padding: 0">
-                            <img src="./img/logo1.png" alt="" style="padding-left: 15px" />
-                        </td>
-                        <td class="table-two-th" style="padding: 0">
-                            <img src="./img/logo2.png" alt="" />
-                        </td>
-                        <td class="table-two-th" style="text-align: center; padding: 0">
-                            <img src="./img/logo3.png" alt="" />
-                        </td>
-                        <td class="table-two-th" style="text-align: end; padding: 0">
-                            <img src="./img/logo4.png" alt="" />
-                        </td>
-                        <td class="table-two-th" style="text-align: end; padding: 0">
-                            <img src="./img/logo2.png" alt="" />
-                        </td>
-                        <td class="table-two-th" style="text-align: end; padding: 0">
-                            <img src="./img/logo3.png" alt="" style="padding-right: 15px" />
-                        </td>
-                    </tr>
-                    <tr style="padding: 10px">
-                        <td class="table-two-th" style="padding: 0">
-                            <img src="https://download.logo.wine/logo/Acronis/Acronis-Logo.wine.png" alt="" style="padding-left: 15px" />
-                        </td>
-                        <td class="table-two-th" style="padding: 0">
-                            <img src="https://www.logo.wine/a/logo/KUKA/KUKA-Logo.wine.svg" alt="" />
-                        </td>
-                        <td class="table-two-th" style="text-align: center; padding: 0">
-                            <img src="https://brand.autodesk.com/wp-content/uploads/2025/02/logo-02-variations-primary-421x237@2x.png" alt="" />
-                        </td>
-                        <td class="table-two-th" style="text-align: end; padding: 0">
-                            <img src="https://1000logos.net/wp-content/uploads/2020/09/Red-Hat-Logo-2019.png" alt="" />
-                        </td>
-                        <td class="table-two-th" style="text-align: end; padding: 0">
-                            <img src="https://download.logo.wine/logo/Acronis/Acronis-Logo.wine.png" alt="" />
-                        </td>
-                        <td class="table-two-th" style="text-align: end; padding: 0">
-                            <img src="https://www.logo.wine/a/logo/KUKA/KUKA-Logo.wine.svg" alt="" style="padding-right: 15px" />
+                            <img src="https://download.logo.wine/logo/Acronis/Acronis-Logo.wine.png" alt="" style="padding-left: 15px; width: 100px" />
                         </td>
                     </tr>
                 </tbody>
