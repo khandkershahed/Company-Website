@@ -52,7 +52,7 @@
     <!-- Content -->
     <tr>
       <td
-        style="padding: 30px 30px 0 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; vertical-align: top;">
+        style="padding: 20px 30px 0 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; vertical-align: top;">
 
         <!-- Company Info Table -->
         <table role="presentation" width="100%" cellspacing="0" cellpadding="5" style="border-collapse: collapse;">
@@ -155,7 +155,6 @@
         </table>
 
         <!-- Terms & Conditions Table -->
-        <!-- Terms & Conditions Table -->
         <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
           style="border-collapse: collapse; margin-top: 5px; font-size: 12px;">
           <tbody>
@@ -171,8 +170,8 @@
 
 
         <!-- Authorized Brands -->
-        <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
-          style="border-collapse: collapse; margin-top: 15px; width:100%">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
+          style="border-collapse: collapse; margin-top: 10px;">
           <tbody>
             <tr>
               <td colspan="6" style="text-align: right; font-weight: 700; padding-bottom: 8px; border: none;">Authorized
@@ -232,8 +231,8 @@
       </td>
     </tr>
   </table>
-  <table
-    style="border-collapse: collapse; background:#f9f9f9; padding:30px 30px;width: 218mm;border-right: 1px solid #eeeeee;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
+    style="border-collapse: collapse; width: 210mm;">
     <tr>
       <td style="background-color: #ae0a46; height: 45px; text-align: center; color: white;">
         <a href="https://www.ngenitltd.com"
