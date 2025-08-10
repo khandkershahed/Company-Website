@@ -228,7 +228,7 @@
                                                     <input type="hidden" name="terms_id[]" value="">
                                                     <input type="text" name="terms_title[]"
                                                         class="bg-transparent form-control form-control-sm text-start"
-                                                        value="Validity :">
+                                                        value="Validity">
                                                 </td>
                                                 <td>
                                                     <input type="text" name="terms_description[]"
@@ -247,7 +247,7 @@
                                                     <input type="hidden" name="terms_id[]" value="">
                                                     <input type="text" name="terms_title[]"
                                                         class="bg-transparent form-control form-control-sm text-start"
-                                                        value="Payment :">
+                                                        value="Payment">
                                                 </td>
                                                 <td>
                                                     <input type="text" name="terms_description[]"
@@ -266,7 +266,7 @@
                                                     <input type="hidden" name="terms_id[]" value="">
                                                     <input type="text" name="terms_title[]"
                                                         class="bg-transparent form-control form-control-sm text-start"
-                                                        value="Product Mode :">
+                                                        value="Product Mode">
                                                 </td>
                                                 <td>
                                                     <input type="text" name="terms_description[]"
@@ -285,7 +285,7 @@
                                                     <input type="hidden" name="terms_id[]" value="">
                                                     <input type="text" name="terms_title[]"
                                                         class="bg-transparent form-control form-control-sm text-start"
-                                                        value="Delivery :">
+                                                        value="Delivery">
                                                 </td>
                                                 <td>
                                                     <input type="text" name="terms_description[]"
@@ -304,7 +304,7 @@
                                                     <input type="hidden" name="terms_id[]" value="">
                                                     <input type="text" name="terms_title[]"
                                                         class="bg-transparent form-control form-control-sm text-start"
-                                                        value="Delivery Location :">
+                                                        value="Delivery Location">
                                                 </td>
                                                 <td>
                                                     <input type="text" name="terms_description[]"
@@ -323,7 +323,7 @@
                                                     <input type="hidden" name="terms_id[]" value="">
                                                     <input type="text" name="terms_title[]"
                                                         class="bg-transparent form-control form-control-sm text-start"
-                                                        value="Product & Order :">
+                                                        value="Product & Order">
                                                 </td>
                                                 <td>
                                                     <input type="text" name="terms_description[]"
@@ -342,7 +342,7 @@
                                                     <input type="hidden" name="terms_id[]" value="">
                                                     <input type="text" name="terms_title[]"
                                                         class="bg-transparent form-control form-control-sm text-start"
-                                                        value="Warranty :">
+                                                        value="Warranty">
                                                 </td>
                                                 <td>
                                                     <input type="text" name="terms_description[]"
@@ -361,7 +361,7 @@
                                                     <input type="hidden" name="terms_id[]" value="">
                                                     <input type="text" name="terms_title[]"
                                                         class="bg-transparent form-control form-control-sm text-start"
-                                                        value="Installation :">
+                                                        value="Installation">
                                                 </td>
                                                 <td>
                                                     <input type="text" name="terms_description[]"

@@ -347,7 +347,7 @@ class RFQManageController extends Controller
         $data['quotation'] = DB::table('rfq_quotations')->where('rfq_id', $rfq_id)->first();
         $data['rfq_terms'] = QuotationTerm::where('rfq_id', $rfq_id)->get();
         $data['products'] = QuotationProduct::where('rfq_id', $rfq_id)->get();
-        $data['brands'] = Brand::inRandomOrder()->limit(48)->get();
+        $data['brands'] = Brand::select('title', 'image')->inRandomOrder()->limit(5)->get();
         $data['singleproduct'] = $data['products']->first();
         $data['rfq_code'] = $data['rfq']->rfq_code;
         $data['name'] = $data['rfq']->name;
@@ -373,7 +373,7 @@ class RFQManageController extends Controller
         ini_set('memory_limit', '256M');
         $pdf = PDF::loadView('pdf.quotation', $data);
         $pdf->setPaper('a4', 'portrait');
-        $pdf_output = $pdf->output(); 
+        $pdf_output = $pdf->output();
         Storage::put($filePath, $pdf_output);
 
         // Validate email addresses
