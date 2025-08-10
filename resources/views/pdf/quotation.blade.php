@@ -19,7 +19,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
+      font-size: 12px;
       height: 100%;
       width: 210mm;
       box-sizing: border-box;
@@ -27,10 +27,10 @@
   </style>
 </head>
 
-<body style="margin:0; padding:0; width:210mm; font-family: 'Montserrat', sans-serif; font-size: 14px;">
+<body style="margin:0; padding:0; width:210mm; font-family: 'Montserrat', sans-serif; font-size: 12px;">
 
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
-    style="border-collapse: collapse; width: 210mm; height: 270mm;">
+    style="border-collapse: collapse; width: 210mm; height: 260mm;">
     <!-- Header -->
     <tr>
       <td style="background-color: #ae0a46; height: 61px; padding: 0 30px;">
@@ -84,7 +84,7 @@
 
         <!-- Products Table -->
         <table role="presentation" width="100%" cellspacing="0" cellpadding="10"
-          style="border-collapse: collapse; margin-top: 40px; border: 1px solid #eee; font-size: 14px;">
+          style="border-collapse: collapse; margin-top: 40px; border: 1px solid #eee; font-size: 12px;">
           <thead>
             <tr style="background-color: #f0f0f0;">
               <th style="font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">Sl</th>
@@ -236,7 +236,7 @@
     <tr>
       <td style="background-color: #ae0a46; height: 45px; text-align: center; color: white;">
         <a href="https://www.ngenitltd.com"
-          style="font-family: Sora, sans-serif; font-size: 14px; font-weight: 500; line-height: 22.68px; letter-spacing: 0.1em; color: white; text-decoration: none;">
+          style="font-family: 'Montserrat' font-size: 12px; font-weight: 500; line-height: 22.68px; letter-spacing: 0.1em; color: white; text-decoration: none;">
           www.ngenitltd.com
         </a>
       </td>
