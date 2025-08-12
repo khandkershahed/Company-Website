@@ -3675,7 +3675,7 @@ select:focus-visible {
 .brand-logo-area {
     background-color: white;
     height: 100%;
-    padding: 30px;
+    padding: 10px;
     max-height: 100%;
     overflow: hidden;
     width: 100%;
@@ -3687,6 +3687,12 @@ select:focus-visible {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.element-brands-logo img{
+    display: block;
+    height: 150px;
+    width: 150px;
+    object-fit: contain;
 }
 
 .brand-sub-image {
@@ -15259,6 +15265,7 @@ switch input:checked + .slider {
     justify-content: end;
     margin-top: 0.8rem;
     margin-bottom: 0.8rem;
+    font-size: 16px;
 }
 
 /*------------------------*/

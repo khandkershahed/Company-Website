@@ -30,7 +30,7 @@
 <body style="margin:0; padding:0; width:210mm; font-family: 'Montserrat', sans-serif; font-size: 12px;">
 
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
-    style="border-collapse: collapse; width: 210mm; height: 260mm;">
+    style="border-collapse: collapse; width: 210mm; height: 250mm;">
     <!-- Header -->
     <tr>
       <td style="background-color: #ae0a46; height: 61px; padding: 0 30px;">
@@ -40,10 +40,10 @@
               <img src="https://www.ngenitltd.com/frontend/images/white_logo.png" alt="Logo" style="height: 40px; display: block;" />
             </td>
             <td
-              style="color: white; font-weight: 700; font-size: 24px; text-align: center; vertical-align: middle; position: relative; left: -65px;">
+              style="color: white; font-weight: 700; font-size: 24px; text-align: center; vertical-align: middle; position: relative;">
               {{ $quotation->quotation_title }}
             </td>
-            <td style="width: 40px;"></td> <!-- Empty cell for spacing -->
+            <!-- <td style="width: 40px;"></td> -->
           </tr>
         </table>
       </td>
@@ -87,11 +87,11 @@
           style="border-collapse: collapse; margin-top: 40px; border: 1px solid #eee; font-size: 12px;">
           <thead>
             <tr style="background-color: #f0f0f0;">
-              <th style="font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">Sl</th>
-              <th style="font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">PRODUCT DESCRIPTION</th>
-              <th style="font-weight: 500; text-align: center; border-bottom: 1px solid #eee;">QTY</th>
-              <th style="font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">UNIT PRICE</th>
-              <th style="font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">TOTAL ({{ $currency }})
+              <th style="width:5%; font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">Sl</th>
+              <th style="width:50%; font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">PRODUCT DESCRIPTION</th>
+              <th style="width:10%; font-weight: 500; text-align: center; border-bottom: 1px solid #eee;">QTY</th>
+              <th style="width:20%; font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">UNIT PRICE</th>
+              <th style="width:15%; font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">TOTAL ({{ $currency }})
               </th>
             </tr>
           </thead>
