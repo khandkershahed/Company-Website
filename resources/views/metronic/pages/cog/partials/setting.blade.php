@@ -41,7 +41,7 @@
         </div>
         <div class="mt-0 col-lg-3">
             <div>
-                <input type="number" step="0.01" class="bg-white border form-control form-control-sm"
+                <input type="number" step="0.01" class="bg-white border form-control form-control-sm w-50"
                     name="currency_rate" placeholder="Currency Ratio"
                     value="{{ optional($quotation)->currency_rate ?? 1 }}"
                     style="font-size: 12px;border: 1px solid #e4e6ef !important;" />
