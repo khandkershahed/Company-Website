@@ -29,7 +29,7 @@
 <body style="margin:0; padding:0; width:100%; font-family: 'Montserrat', sans-serif; font-size: 12px;">
 
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
-    style="border-collapse: collapse; width: 100%;margin-bottom: 70px;">
+    style="border-collapse: collapse; width: 100%;margin-bottom: 73px;">
     <!-- Header -->
     <tr>
       <td style="background-color: #ae0a46; height: 61px; padding: 0 30px;">
@@ -126,8 +126,7 @@
             </tr>
             <tr>
               <td colspan="4"
-                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">SPECIAL
-                DISCOUNT({{ optional($singleproduct)->special_discount_percentage }}%)</td>
+                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">Special Discount({{ optional($singleproduct)->special_discount_percentage }}%)</td>
               <td style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">{{
                 number_format(round((float) optional($singleproduct)->special_discount_final_total_price ?? "0.00"), 2) }}
               </td>
