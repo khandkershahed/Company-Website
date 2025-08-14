@@ -29,7 +29,7 @@
 <body style="margin:0; padding:0; width:100%; font-family: 'Montserrat', sans-serif; font-size: 12px;">
 
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
-    style="border-collapse: collapse; width: 100%;margin-bottom: 70px;">
+    style="border-collapse: collapse; width: 100%;margin-bottom: 72px;">
     <!-- Header -->
     <tr>
       <td style="background-color: #ae0a46; height: 61px; padding: 0 30px;">
@@ -39,7 +39,7 @@
               <img src="https://www.ngenitltd.com/frontend/images/white_logo.png" alt="Logo" style="height: 40px; display: block;" />
             </td>
             <td
-              style="color: white; font-weight: 700; font-size: 24px; text-align: right; vertical-align: middle; position: relative; left: 127px;">
+              style="color: white; font-weight: 700; font-size: 24px; text-align: right; vertical-align: middle; margin-left: 127px;">
               {{ $quotation->quotation_title }}
             </td>
             <!-- <td style="width: 40px;"></td> -->
