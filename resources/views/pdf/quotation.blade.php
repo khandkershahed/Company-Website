@@ -39,7 +39,7 @@
               <img src="https://www.ngenitltd.com/frontend/images/white_logo.png" alt="Logo" style="height: 40px; display: block;" />
             </td>
             <td
-              style="color: white; font-weight: 700; font-size: 24px; text-align: right; vertical-align: middle; padding-left: 127px;">
+              style="color: white; font-weight: 700; font-size: 24px; text-align: right; vertical-align: middle; margin-left: 127px;">
               {{ $quotation->quotation_title }}
             </td>
             <!-- <td style="width: 40px;"></td> -->
@@ -111,13 +111,13 @@
             @endforeach
             @endif
             <tr style="background-color: #eeeeee3d;">
-              <td colspan="4" style="text-align: right; font-weight: 600; border-bottom: 1px solid #eee;">SUBTOTAL</td>
+              <td colspan="4" style="text-align: right; font-weight: 600; border-bottom: 1px solid #eee;">Sub-total</td>
               <td style="text-align: right; font-weight: 700; border-bottom: 1px solid #eee;">{{
                 number_format(round((float) optional($singleproduct)->sub_total_final_total_price), 2) }}</td>
             </tr>
             <tr style="display: {{ optional($quotation)->vat_display == '1' ? 'table-row' : 'none' }};">
               <td colspan="4"
-                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">VAT / TAX
+                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">VAT / GST
                 {{ optional($singleproduct)->vat_percentage }}%
               </td>
               <td style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">{{
@@ -133,7 +133,7 @@
               </td>
             </tr>
             <tr style="background-color: #eee;">
-              <td colspan="4" style="text-align: right; font-weight: 600;">GRANDTOTAL</td>
+              <td colspan="4" style="text-align: right; font-weight: 600;">Grand-total</td>
               <td style="text-align: right; font-weight: 600;">{{ number_format(round((float)
                 optional($singleproduct)->total_final_total_price), 2) }}</td>
             </tr>
@@ -150,7 +150,7 @@
           </tr>
           <tr>
             <td style="background-color: #f0f0f0; font-weight: 600; padding: 5px; border: none; text-align: left;">
-              Terms & Conditions
+              Terms & Conditions :
             </td>
           </tr>
         </table>
