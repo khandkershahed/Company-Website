@@ -29,7 +29,7 @@
 <body style="margin:0; padding:0; width:100%; font-family: 'Montserrat', sans-serif; font-size: 12px;">
 
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
-    style="border-collapse: collapse; width: 100%;margin-bottom: 72px;">
+    style="border-collapse: collapse; width: 100%;margin-bottom: 70px;">
     <!-- Header -->
     <tr>
       <td style="background-color: #ae0a46; height: 61px; padding: 0 30px;">
@@ -39,7 +39,7 @@
               <img src="https://www.ngenitltd.com/frontend/images/white_logo.png" alt="Logo" style="height: 40px; display: block;" />
             </td>
             <td
-              style="color: white; font-weight: 700; font-size: 24px; text-align: right; vertical-align: middle; margin-left: 127px;">
+              style="color: white; font-weight: 700; font-size: 24px; text-align: right; vertical-align: middle; padding-left: 127px;">
               {{ $quotation->quotation_title }}
             </td>
             <!-- <td style="width: 40px;"></td> -->
@@ -121,7 +121,7 @@
                 {{ optional($singleproduct)->vat_percentage }}%
               </td>
               <td style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">{{
-                number_format(round((float) optional($singleproduct)->vat_final_total_price), 2) }}
+                number_format(round((float) optional($singleproduct)->vat_final_total_price ?? "0.00"), 2) }}
               </td>
             </tr>
             <tr>
@@ -129,7 +129,7 @@
                 style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">SPECIAL
                 DISCOUNT({{ optional($singleproduct)->special_discount_percentage }}%)</td>
               <td style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">{{
-                number_format(round((float) optional($singleproduct)->special_discount_final_total_price), 2) }}
+                number_format(round((float) optional($singleproduct)->special_discount_final_total_price ?? "0.00"), 2) }}
               </td>
             </tr>
             <tr style="background-color: #eee;">
@@ -235,9 +235,9 @@
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
     style="border-collapse: collapse; width: 100%;">
     <tr>
-      <td style="background-color: #ae0a46; height: 45px; text-align: center; color: white;">
+      <td style="background-color: #ae0a46; height: 45px; text-align: center; color: white;font-size: 16px;">
         <a href="https://www.ngenitltd.com"
-          style="font-family: 'Montserrat' font-size: 14px; font-weight: 500; line-height: 22.68px; letter-spacing: 0.1em; color: white; text-decoration: none;">
+          style="font-family: 'Montserrat' font-size: 16px; font-weight: 500; line-height: 22.68px; letter-spacing: 0.1em; color: white; text-decoration: none;">
           www.ngenitltd.com
         </a>
       </td>
