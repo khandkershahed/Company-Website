@@ -171,7 +171,7 @@
 
 
         <!-- Authorized Brands -->
-        <!-- <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
           style="border-collapse: collapse; margin-top: 10px;">
           <tbody>
             <tr>
@@ -188,7 +188,7 @@
               @endforeach
             </tr>
           </tbody>
-        </table> -->
+        </table>
 
       </td>
     </tr>
