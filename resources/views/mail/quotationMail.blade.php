@@ -25,7 +25,6 @@
                 </table>
             </td>
         </tr>
-
         <!-- Content -->
         <tr>
             <td style="padding:20px;font-size:16px;color:#141414;">
@@ -39,19 +38,18 @@
                 </p>
             </td>
         </tr>
-
         <!-- Footer Contact -->
         <tr>
             <td style="background-image:url(https://img.freepik.com/free-photo/white-painted-wall-texture-background_53876-138197.jpg);background-size:cover;padding:20px;font-size:14px;color:#000;">
                 <table width="100%" style="border-collapse:collapse;">
                     <tr>
-                        <td style="vertical-align:top;">
+                        <td style="vertical-align:middle;">
                             <p style="font-weight:600;margin:5px 0;">{{ $data['quotation']->sender_name ?? 'Adan Mahmud' }}</p>
                             <p style="color:#000;margin:5px 0;">{{ $data['quotation']->sender_designation ?? 'Sr. Manager'}}</p>
                             <p style="color:#000;margin:5px 0;">Partner &amp; Business Development</p>
                         </td>
-                        <td style="vertical-align:top;">
-                            <p style="margin:5px 0;">sales@ngenitltd.com</p>
+                        <td style="vertical-align:middle;">
+                            <p style="margin:5px 0;color:#000">sales@ngenitltd.com</p>
                             @if (!empty($data['quotation']->ngen_whatsapp_number))
                             <p style="margin:5px 0;">
                                 <a href="https://wa.me/{{ $data['quotation']->ngen_whatsapp_number }}" style="text-decoration:none;color:#000;">
@@ -62,7 +60,7 @@
                             <p style="margin:5px 0;">{{ $data['quotation']->ngen_number_two }} (Skype)</p>
                             @endif
                         </td>
-                        <td style="color:#ae0a46;vertical-align:top;">
+                        <td style="color:#ae0a46;vertical-align:middle;">
                             <p style="font-weight:600;margin:5px 0;">NGEN PTE. Ltd.</p>
                             <p style="margin:5px 0;">Reg-no: 20434861K</p>
                         </td>

@@ -27,10 +27,10 @@
   </style>
 </head>
 
-<body style="margin:0; padding:0; width:210mm; font-family: 'Montserrat', sans-serif; font-size: 12px;">
+<body style="margin:0; padding:0; width:100%; font-family: 'Montserrat', sans-serif; font-size: 12px;">
 
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
-    style="border-collapse: collapse; width: 210mm; height: 250mm;">
+    style="border-collapse: collapse; width: 100%; height: 100%;">
     <!-- Header -->
     <tr>
       <td style="background-color: #ae0a46; height: 61px; padding: 0 30px;">
@@ -40,7 +40,7 @@
               <img src="https://www.ngenitltd.com/frontend/images/white_logo.png" alt="Logo" style="height: 40px; display: block;" />
             </td>
             <td
-              style="color: white; font-weight: 700; font-size: 24px; text-align: center; vertical-align: middle; position: relative; left: 110px;">
+              style="color: white; font-weight: 700; font-size: 24px; text-align: right; vertical-align: middle; position: relative; left: 85px;">
               {{ $quotation->quotation_title }}
             </td>
             <!-- <td style="width: 40px;"></td> -->
@@ -88,10 +88,12 @@
           <thead>
             <tr style="background-color: #f0f0f0;">
               <th style="width:5%; font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">Sl</th>
-              <th style="width:50%; font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">PRODUCT DESCRIPTION</th>
+              <th style="width:50%; font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">PRODUCT
+                DESCRIPTION</th>
               <th style="width:10%; font-weight: 500; text-align: center; border-bottom: 1px solid #eee;">QTY</th>
               <th style="width:20%; font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">UNIT PRICE</th>
-              <th style="width:15%; font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">TOTAL ({{ $currency }})
+              <th style="width:15%; font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">TOTAL ({{
+                $currency }})
               </th>
             </tr>
           </thead>
@@ -195,7 +197,7 @@
 
   <!-- Footer Content Info -->
   <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
-    style="border-collapse: collapse; background:#f9f9f9; padding:30px 30px;width: 218mm;border-right: 1px solid #eeeeee;">
+    style="border-collapse: collapse; background:#f9f9f9; padding:30px 30px;width: 100%;border-right: 1px solid #eeeeee;">
     <tr style="padding-left: 20px; padding-right:20px">
       <td style="width: 75%; vertical-align: top; padding-right: 10px;">
         <table role="presentation" width="100%" cellspacing="0" cellpadding="5" style="border-collapse: collapse;">
@@ -232,7 +234,7 @@
     </tr>
   </table>
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
-    style="border-collapse: collapse; width: 210mm;">
+    style="border-collapse: collapse; width: 100%;">
     <tr>
       <td style="background-color: #ae0a46; height: 45px; text-align: center; color: white;">
         <a href="https://www.ngenitltd.com"
