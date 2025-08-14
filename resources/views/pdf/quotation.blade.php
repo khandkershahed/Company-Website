@@ -29,7 +29,7 @@
 <body style="margin:0; padding:0; width:100%; font-family: 'Montserrat', sans-serif; font-size: 12px;">
 
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
-    style="border-collapse: collapse; width: 100%;margin-bottom: 73px;">
+    style="border-collapse: collapse; width: 100%;margin-bottom: 71px;">
     <!-- Header -->
     <tr>
       <td style="background-color: #ae0a46; height: 61px; padding: 0 30px;">
@@ -132,7 +132,7 @@
               </td>
             </tr>
             <tr style="background-color: #eee;">
-              <td colspan="4" style="text-align: right; font-weight: 600;">Grand-total</td>
+              <td colspan="4" style="text-align: right; font-weight: 600;">Grand Total</td>
               <td style="text-align: right; font-weight: 600;">{{ number_format(round((float)
                 optional($singleproduct)->total_final_total_price), 2) }}</td>
             </tr>
