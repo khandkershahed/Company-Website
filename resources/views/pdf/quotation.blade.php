@@ -39,7 +39,7 @@
               <img src="https://www.ngenitltd.com/frontend/images/white_logo.png" alt="Logo" style="height: 40px; display: block;" />
             </td>
             <td
-              style="color: white; font-weight: 700; font-size: 24px; text-align: right; vertical-align: middle; position: relative; left: 40px;">
+              style="color: white; font-weight: 700; font-size: 24px; text-align: right; vertical-align: middle; position: relative; left: 125px;">
               {{ $quotation->quotation_title }}
             </td>
             <!-- <td style="width: 40px;"></td> -->
