@@ -49,7 +49,7 @@
                             <p style="color:#000;margin:5px 0;">Partner &amp; Business Development</p>
                         </td>
                         <td style="vertical-align:middle;">
-                            <p style="margin:5px 0;color:#000">sales@ngenitltd.com</p>
+                            <p style="margin:5px 0;color:#000 !important">sales@ngenitltd.com</p>
                             @if (!empty($data['quotation']->ngen_whatsapp_number))
                             <p style="margin:5px 0;">
                                 <a href="https://wa.me/{{ $data['quotation']->ngen_whatsapp_number }}" style="text-decoration:none;color:#000;">
