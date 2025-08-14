@@ -39,7 +39,7 @@
               <img src="https://www.ngenitltd.com/frontend/images/white_logo.png" alt="Logo" style="height: 40px; display: block;" />
             </td>
             <td
-              style="color: white; font-weight: 700; font-size: 24px; text-align: right; vertical-align: middle; position: relative; left: 125px;">
+              style="color: white; font-weight: 700; font-size: 24px; text-align: right; vertical-align: middle; position: relative; left: 127px;">
               {{ $quotation->quotation_title }}
             </td>
             <!-- <td style="width: 40px;"></td> -->
@@ -237,7 +237,7 @@
     <tr>
       <td style="background-color: #ae0a46; height: 45px; text-align: center; color: white;">
         <a href="https://www.ngenitltd.com"
-          style="font-family: 'Montserrat' font-size: 12px; font-weight: 500; line-height: 22.68px; letter-spacing: 0.1em; color: white; text-decoration: none;">
+          style="font-family: 'Montserrat' font-size: 14px; font-weight: 500; line-height: 22.68px; letter-spacing: 0.1em; color: white; text-decoration: none;">
           www.ngenitltd.com
         </a>
       </td>
