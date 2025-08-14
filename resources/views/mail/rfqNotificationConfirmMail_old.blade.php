@@ -279,7 +279,7 @@
                                                                         <td style="text-align: end;color: #ffffff;">
                                                                             <div
                                                                                 style="font-size: 15px;margin-bottom: 0.5rem;">
-                                                                                <p style="margin: 0; color: #ae0a46">
+                                                                                <p style="margin: 0; color: #ae0a46 !important">
                                                                                     sales@ngenitltd.com
                                                                                     <i
                                                                                         class="fa-solid fa-paper-plane"></i>
