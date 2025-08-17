@@ -20,17 +20,16 @@
       padding: 0;
       font-family: 'Montserrat', sans-serif;
       font-size: 12px;
-      height: 100%;
       width: 210mm;
       box-sizing: border-box;
     }
   </style>
 </head>
 
-<body style="margin:0; padding:0; width:210mm; font-family: 'Montserrat', sans-serif; font-size: 12px;">
+<body style="margin:0; padding:0; width:100%; font-family: 'Montserrat', sans-serif; font-size: 12px;">
 
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
-    style="border-collapse: collapse; width: 210mm; height: 250mm;">
+    style="border-collapse: collapse; width: 100%;margin-bottom: 71px;">
     <!-- Header -->
     <tr>
       <td style="background-color: #ae0a46; height: 61px; padding: 0 30px;">
@@ -40,7 +39,7 @@
               <img src="https://www.ngenitltd.com/frontend/images/white_logo.png" alt="Logo" style="height: 40px; display: block;" />
             </td>
             <td
-              style="color: white; font-weight: 700; font-size: 24px; text-align: center; vertical-align: middle; position: relative; left: 110px;">
+              style="color: white; font-weight: 700; font-size: 24px; text-align: right; vertical-align: middle; margin-left: 127px;">
               {{ $quotation->quotation_title }}
             </td>
             <!-- <td style="width: 40px;"></td> -->
@@ -88,10 +87,12 @@
           <thead>
             <tr style="background-color: #f0f0f0;">
               <th style="width:5%; font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">Sl</th>
-              <th style="width:50%; font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">PRODUCT DESCRIPTION</th>
+              <th style="width:50%; font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">PRODUCT
+                DESCRIPTION</th>
               <th style="width:10%; font-weight: 500; text-align: center; border-bottom: 1px solid #eee;">QTY</th>
               <th style="width:20%; font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">UNIT PRICE</th>
-              <th style="width:15%; font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">TOTAL ({{ $currency }})
+              <th style="width:15%; font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">TOTAL ({{
+                $currency }})
               </th>
             </tr>
           </thead>
@@ -110,29 +111,28 @@
             @endforeach
             @endif
             <tr style="background-color: #eeeeee3d;">
-              <td colspan="4" style="text-align: right; font-weight: 600; border-bottom: 1px solid #eee;">SUBTOTAL</td>
+              <td colspan="4" style="text-align: right; font-weight: 600; border-bottom: 1px solid #eee;">Sub-total</td>
               <td style="text-align: right; font-weight: 700; border-bottom: 1px solid #eee;">{{
                 number_format(round((float) optional($singleproduct)->sub_total_final_total_price), 2) }}</td>
             </tr>
             <tr style="display: {{ optional($quotation)->vat_display == '1' ? 'table-row' : 'none' }};">
               <td colspan="4"
-                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">VAT / TAX
+                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">VAT / GST
                 {{ optional($singleproduct)->vat_percentage }}%
               </td>
               <td style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">{{
-                number_format(round((float) optional($singleproduct)->vat_final_total_price), 2) }}
+                number_format(round((float) optional($singleproduct)->vat_final_total_price ?? "0.00"), 2) }}
               </td>
             </tr>
             <tr>
               <td colspan="4"
-                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">SPECIAL
-                DISCOUNT({{ optional($singleproduct)->special_discount_percentage }}%)</td>
+                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">Special Discount({{ optional($singleproduct)->special_discount_percentage }}%)</td>
               <td style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">{{
-                number_format(round((float) optional($singleproduct)->special_discount_final_total_price), 2) }}
+                number_format(round((float) optional($singleproduct)->special_discount_final_total_price ?? "0.00"), 2) }}
               </td>
             </tr>
             <tr style="background-color: #eee;">
-              <td colspan="4" style="text-align: right; font-weight: 600;">GRANDTOTAL</td>
+              <td colspan="4" style="text-align: right; font-weight: 600;">Grand Total</td>
               <td style="text-align: right; font-weight: 600;">{{ number_format(round((float)
                 optional($singleproduct)->total_final_total_price), 2) }}</td>
             </tr>
@@ -149,7 +149,7 @@
           </tr>
           <tr>
             <td style="background-color: #f0f0f0; font-weight: 600; padding: 5px; border: none; text-align: left;">
-              Terms & Conditions
+              Terms & Conditions :
             </td>
           </tr>
         </table>
@@ -195,7 +195,7 @@
 
   <!-- Footer Content Info -->
   <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
-    style="border-collapse: collapse; background:#f9f9f9; padding:30px 30px;width: 218mm;border-right: 1px solid #eeeeee;">
+    style="border-collapse: collapse; background:#f9f9f9; padding:30px 30px;width: 100%;border-right: 1px solid #eeeeee;">
     <tr style="padding-left: 20px; padding-right:20px">
       <td style="width: 75%; vertical-align: top; padding-right: 10px;">
         <table role="presentation" width="100%" cellspacing="0" cellpadding="5" style="border-collapse: collapse;">
@@ -232,11 +232,11 @@
     </tr>
   </table>
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0"
-    style="border-collapse: collapse; width: 210mm;">
+    style="border-collapse: collapse; width: 100%;">
     <tr>
-      <td style="background-color: #ae0a46; height: 45px; text-align: center; color: white;">
+      <td style="background-color: #ae0a46; height: 45px; text-align: center; color: white;font-size: 16px;">
         <a href="https://www.ngenitltd.com"
-          style="font-family: 'Montserrat' font-size: 12px; font-weight: 500; line-height: 22.68px; letter-spacing: 0.1em; color: white; text-decoration: none;">
+          style="font-family: 'Montserrat' font-size: 16px; font-weight: 500; line-height: 22.68px; letter-spacing: 0.1em; color: white; text-decoration: none;">
           www.ngenitltd.com
         </a>
       </td>
