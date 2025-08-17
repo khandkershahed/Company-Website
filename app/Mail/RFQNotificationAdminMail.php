@@ -30,13 +30,13 @@ class RFQNotificationAdminMail extends Mailable
     {
         return $this->from('support@ngenit.com', 'NGEN-Business')
                     ->view('mail.rfqNotificationAdminMail', ['data' => $this->data])
-                    ->subject("A {$this->rfq_code} has been received and need to reply.");
+                    ->subject("A RFQ#{$this->rfq_code} has been received and need to reply.");
     }
 
     public function envelope()
     {
         return new Envelope(
-            subject: "A {$this->rfq_code} has been received and need to reply.",
+            subject: "A RFQ#{$this->rfq_code} has been received and need to reply.",
         );
     }
 

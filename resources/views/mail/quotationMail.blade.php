@@ -30,7 +30,7 @@
         <tr>
             <td style="padding:20px;font-size:16px;color:#141414;">
                 <h4 style="margin-top:0;">Hello {{$data['name']}},</h4>
-                <p> We have generated a Quotation ({{$data['rfq_code']}}) against your query. To see the price quotation click here.</p>
+                <p> We have generated a Quotation (RFQ#{{$data['rfq_code']}}) against your query. To see the price quotation click here.</p>
                 <p style="text-align:center;">
                     <a href="{{ route('quotation.link', $data['rfq_code']) }}" style="display:inline-block;padding:12px 30px;background-color:#ae0a46;color:#fff !important;text-decoration:none;font-weight:500;margin:20px 0;">Price Quotation</a>
                 </p>

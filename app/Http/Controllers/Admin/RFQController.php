@@ -86,11 +86,77 @@ class RFQController extends Controller
         // Apply filters dynamically
         if ($request->filled('year')) {
             $baseQuery->whereYear('created_at', $request->year);
+        } elseif (!$request->filled('month')) {
+            $baseQuery->where('created_at', '>=', '2025-08-17');
         }
 
         if ($request->filled('month')) {
             $monthNumber = date('m', strtotime($request->month));
             $baseQuery->whereMonth('created_at', $monthNumber);
+            if (!$request->filled('year')) {
+                $baseQuery->where('created_at', '>=', '2025-08-17');
+            }
+        }
+
+        if ($request->filled('status')) {
+            $baseQuery->where('status', $request->status);
+        }
+
+        // Fetch filtered RFQs
+        $rfqs = $baseQuery->latest()->get();
+
+        // Separate RFQs by status
+        $pendings = $rfqs->where('status', 'rfq_created');
+        $quoteds  = $rfqs->where('status', 'quoted');
+        $losts    = $rfqs->where('status', 'lost');
+
+        // Return data to the view
+        return view('metronic.pages.rfq.index', [
+            'rfqs'          => $rfqs,
+            'pendings'      => $pendings,
+            'quoteds'       => $quoteds,
+            'losts'         => $losts,
+            'users'         => $users,
+            'rfq_count'     => $rfq_count,
+            'new_customers' => $new_customers,
+            'companies'     => $companies,
+            'countries'     => $countries,
+            'tab_status'    => '',
+        ]);
+    }
+
+    public function archivedRFQ(Request $request)
+    {
+        // Fetch users with 'business' department and 'manager' role
+        $users = User::whereJsonContains('department', 'business')
+            ->where('role', 'manager')
+            ->select('id', 'name')
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        // Base RFQ query
+        $baseQuery = Rfq::where('rfq_type', 'rfq');
+
+        // Count total RFQs
+        $rfq_count = (clone $baseQuery)->count();
+        $companies = (clone $baseQuery)->whereNotNull('company_name')->distinct('company_name')->pluck('company_name');
+        $countries = (clone $baseQuery)->whereNotNull('country')->distinct('country')->pluck('country');
+        // Get new customers where 'confirmation' is null
+        $new_customers = (clone $baseQuery)->whereNull('confirmation')->where('created_at', '>=', Carbon::now()->subMonths(1))->latest()->get();
+
+        // Apply filters dynamically
+        if ($request->filled('year')) {
+            $baseQuery->whereYear('created_at', $request->year);
+        } elseif (!$request->filled('month')) {
+            $baseQuery->where('created_at', '<=', '2025-08-17');
+        }
+
+        if ($request->filled('month')) {
+            $monthNumber = date('m', strtotime($request->month));
+            $baseQuery->whereMonth('created_at', $monthNumber);
+            if (!$request->filled('year')) {
+                $baseQuery->where('created_at', '<=', '2025-08-17');
+            }
         }
 
         if ($request->filled('status')) {
@@ -281,21 +347,26 @@ class RFQController extends Controller
 
 
         $data['deal_type'] = 'new';
-        $today = now()->format('dmy');
+        // $today = now()->format('dmy');
 
-        $lastCode = RFQ::where('rfq_code', 'like', "RFQ-$today-%")->latest('id')->first();
+        // $lastCode = RFQ::where('rfq_code', 'like', "RFQ-$today-%")->latest('id')->first();
 
-        if ($lastCode) {
-            $lastNumber = (int)explode('-', $lastCode->rfq_code)[2];
-            $newNumber = $lastNumber + 1;
-        } else {
-            $newNumber = 1;
-        }
+        // if ($lastCode) {
+        //     $lastNumber = (int)explode('-', $lastCode->rfq_code)[2];
+        //     $newNumber = $lastNumber + 1;
+        // } else {
+        //     $newNumber = 1;
+        // }
+        $today = now()->format('ymd');
+        $lastCode = RFQ::where('rfq_code', 'like', "$today-%")->latest('id')->first();
+        $newNumber = $lastCode ? (int)explode('-', $lastCode->rfq_code)[2] + 1 : 1;
+        $rfq_code = $today . '-' . $newNumber;
 
         $client = Client::where('email', $request->input('email'))->first();
         $client_type = $client ? (in_array($client->user_type, ['client', 'partner']) ? $client->user_type : 'anonymous') : 'anonymous';
 
-        $data['rfq_code'] = "RFQ-$today-$newNumber";
+        // $data['rfq_code'] = "RFQ-$today-$newNumber";
+        $data['rfq_code'] = $rfq_code;
 
         $product = Product::find($request->input('product_id'));
         $product_name = $request->input('product_name') ?? $product->name;
@@ -442,10 +513,10 @@ class RFQController extends Controller
             return redirect()->back(); // Block further submissions within the 5-minute window
         }
         // Generate RFQ Code
-        $today = now()->format('dmY');
-        $lastCode = RFQ::where('rfq_code', 'like', "RFQ-$today-%")->latest('id')->first();
+        $today = now()->format('ymd');
+        $lastCode = RFQ::where('rfq_code', 'like', "$today-%")->latest('id')->first();
         $newNumber = $lastCode ? (int)explode('-', $lastCode->rfq_code)[2] + 1 : 1;
-        $rfq_code = 'RFQ-' . $today . '-' . $newNumber;
+        $rfq_code = $today . '-' . $newNumber;
 
         // Check for existing client
         $client_type = 'anonymous';
@@ -614,7 +685,7 @@ class RFQController extends Controller
             foreach ($user_emails as $email) {
                 Mail::to($email)->send(new RFQConfirmationMail($data, $rfq_code));
             }
-        } catch (\Exception $e) { 
+        } catch (\Exception $e) {
             Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
             Toastr::error('There was an error sending the email.', 'Error');
         }
@@ -1229,11 +1300,6 @@ class RFQController extends Controller
 
                 RfqTerms::insert($rfqTerms);
             }
-
-
-
-
-
 
             for ($i = 0; $i < count($item_name); $i++) {
                 $datasave = [

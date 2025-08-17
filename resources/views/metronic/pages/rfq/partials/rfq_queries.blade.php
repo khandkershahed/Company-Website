@@ -106,14 +106,19 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <div class="fs-7">{{ $rfq->rfq_code }}</div>
+                                                <div class="fs-7">
+                                                    @if (!Route::is('admin.archived.rfq'))
+                                                        RFQ#
+                                                    @endif
+                                                    {{ $rfq->rfq_code }}
+                                                </div>
                                                 <div class="fs-7">
                                                     {{ optional($rfq->created_at)->format('d M Y | h:i A') }}
                                                 </div>
                                             </div>
                                             <div class="col-md-4 text-end">
                                                 <div class="gap-2 mb-1 d-flex justify-content-end">
-                                                    
+
                                                     <button class="btn btn-sm w-50 btn-outline-primary"
                                                         onclick="window.location.href='{{ route('single-rfq.quoation_mail', $rfq->rfq_code) }}';">
                                                         Quote
@@ -235,7 +240,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <div class="fs-7">{{ $quoted_rfq->rfq_code }}</div>
+                                                    <div class="fs-7">@if (!Route::is('admin.archived.rfq'))
+                                                        RFQ#
+                                                    @endif{{ $quoted_rfq->rfq_code }}</div>
                                                     <div class="fs-7">
                                                         {{ optional($quoted_rfq->created_at)->format('d M Y | h:i A') }}
                                                     </div>
@@ -353,7 +360,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <div class="fs-7">{{ $lost_rfq->rfq_code }}</div>
+                                                    <div class="fs-7">@if (!Route::is('admin.archived.rfq'))
+                                                        RFQ#
+                                                    @endif{{ $lost_rfq->rfq_code }}</div>
                                                     <div class="fs-7">
                                                         {{ optional($lost_rfq->created_at)->format('d M Y | h:i A') }}
                                                     </div>

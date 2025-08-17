@@ -155,6 +155,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         ['except' => ['show', 'create']]
     );
 
+    Route::get('archived/rfq', [RfqController::class, 'archivedRFQ'])->name('archived.rfq');
     Route::post('template/store', [SolutionCMSController::class, 'templateStore'])->name('solution.template.add');
     Route::get('/rfqFilter', [RfqController::class, 'filterRFQ'])->name('rfq.filter');
     Route::get('web-setting', [WebSettingController::class, 'index'])->name('setting.index');

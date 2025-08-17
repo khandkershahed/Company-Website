@@ -12,7 +12,7 @@
             <div class="p-2 bg-light rounded-3 d-flex justify-content-between align-items-center w-100">
                 <div>
                     <h3 class="mb-0 text-primary ps-3">
-                        {{ $rfq->rfq_code }}
+                        @if (!Route::is('admin.archived.rfq')) RFQ# @endif{{ $rfq->rfq_code }}
                     </h3>
                 </div>
                 <div>{{ $rfq->company_name }} @if (!empty($rfq->country))
@@ -24,7 +24,7 @@
                     <div>
                         <select class="form-select form-select-sm pendingRFQ" id="tabSelector">
                             <option value="track_tab_{{ $rfq->id }}">Track</option>
-                            <option value="message_tab_{{ $rfq->id }}">Messages</option>
+                            {{-- <option value="message_tab_{{ $rfq->id }}">Messages</option> --}}
                             <option value="delete_{{ $rfq->id }}">Delete</option>
                         </select>
                     </div>
@@ -126,7 +126,7 @@
 
                                             <li
                                                 class="nav-item {{ $isDisabled ? 'inactive' : ($isActive ? 'active' : '') }}">
-                                                <a
+                                                <a href="{{ $isDisabled ? '#' : $step['route'] }}"
                                                     class="nav-link {{ $isDisabled ? 'disabled' : 'ripple' }} {{ $isActive ? 'active' : '' }}">
                                                     <i class="{{ $icon }} {{ $isActive ? 'jump' : '' }}">
                                                         <span
@@ -268,7 +268,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="message_container_{{ $rfq->id }}" class="container-hidden_{{ $rfq->id }}">
+                {{-- <div id="message_container_{{ $rfq->id }}" class="container-hidden_{{ $rfq->id }}">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="border-0 card w-100 rounded-0" id="kt_drawer_chat_messenger">
@@ -388,57 +388,7 @@
                                         data-kt-scroll-dependencies="#kt_drawer_chat_messenger_header, #kt_drawer_chat_messenger_footer"
                                         data-kt-scroll-wrappers="#kt_drawer_chat_messenger_body"
                                         data-kt-scroll-offset="0px" style="height: 104px">
-                                        {{-- <div class="mb-10 d-flex justify-content-start">
-                                            <div class="d-flex flex-column align-items-start">
-                                                <div class="mb-2 d-flex align-items-center">
-                                                    <div class="symbol symbol-35px symbol-circle">
-                                                        <img alt="Pic"
-                                                            src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
-                                                    </div>
-                                                    <div class="ms-3">
-                                                        <a href="#"
-                                                            class="text-gray-900 fs-5 fw-bold text-hover-primary me-1">Brian
-                                                            Cox</a>
-                                                        <span class="mb-1 text-muted fs-7">2
-                                                            mins</span>
-                                                    </div>
-                                                </div>
 
-                                                <div class="p-5 text-gray-900 rounded bg-light-info fw-semibold mw-lg-400px text-start"
-                                                    data-kt-element="message-text">
-                                                    How likely are you to
-                                                    recommend our company to
-                                                    your friends and family ?
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-10 d-flex justify-content-end">
-                                            <div class="d-flex flex-column align-items-end">
-                                                <div class="mb-2 d-flex align-items-center">
-                                                    <div class="me-3">
-                                                        <span class="mb-1 text-muted fs-7">5
-                                                            mins</span>
-                                                        <a href="#"
-                                                            class="text-gray-900 fs-5 fw-bold text-hover-primary ms-1">You</a>
-                                                    </div>
-
-                                                    <div class="symbol symbol-35px symbol-circle">
-                                                        <img alt="Pic"
-                                                            src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-25.jpg" />
-                                                    </div>
-                                                </div>
-
-                                                <div class="p-5 text-gray-900 rounded bg-light-primary fw-semibold mw-lg-400px text-end"
-                                                    data-kt-element="message-text">
-                                                    Hey there, we’re just
-                                                    writing to let you know
-                                                    that you’ve been
-                                                    subscribed to a repository
-                                                    on GitHub.
-                                                </div>
-                                            </div>
-                                        </div> --}}
                                         <div class="mb-10 d-flex justify-content-center">
                                             <div class="d-flex flex-column align-items-center">
 
@@ -477,7 +427,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

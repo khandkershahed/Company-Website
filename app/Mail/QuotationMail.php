@@ -31,7 +31,7 @@ class QuotationMail extends Mailable
     {
         $email = $this->from('support@ngenit.com', 'NGEN-Sales')
                       ->view('mail.quotationMail', ['data' => $this->data])
-                      ->subject('A Quotation (' . $this->data['rfq_code'] . ') has been received from NGenIT.');
+                      ->subject('A Quotation (RFQ#' . $this->data['rfq_code'] . ') has been received from NGenIT.');
 
         if ($this->pdfAttachment) {
             $email->attachData($this->pdfAttachment, "Quotation-Ngenit-{$this->data['rfq_code']}.pdf");
@@ -48,7 +48,7 @@ class QuotationMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'A Quotation (' . $this->data['rfq_code'] . ') has been received from NGenIT.',
+            subject: 'A Quotation (RFQ#' . $this->data['rfq_code'] . ') has been received from NGenIT.',
         );
     }
 

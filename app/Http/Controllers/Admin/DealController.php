@@ -137,12 +137,16 @@ class DealController extends Controller
         // }
         $data['pq_code'] = 'NG' . '-' . date('dmy');
 
-        $rfq_code = 'RFQ-' . date('dmy') . Rfq::latest()->value('id');
-        $count = RFQ::where('rfq_code', $rfq_code)->count();
-        if ($count > 0) {
-            $rfq_code = $rfq_code . Str::random(3);
-        }
-        $data['rfq_code'] = $rfq_code;
+        // $rfq_code = 'RFQ-' . date('dmy') . Rfq::latest()->value('id');
+        // $count = RFQ::where('rfq_code', $rfq_code)->count();
+        // if ($count > 0) {
+        //     $rfq_code = $rfq_code . Str::random(3);
+        // }
+        // $data['rfq_code'] = $rfq_code;
+        $today = now()->format('ymd');
+        $lastCode = RFQ::where('rfq_code', 'like', "$today-%")->latest('id')->first();
+        $newNumber = $lastCode ? (int)explode('-', $lastCode->rfq_code)[2] + 1 : 1;
+        $data['rfq_code'] = $today . '-' . $newNumber;
         //dd($rfq_code);
 
         if (!empty($request->image)) {

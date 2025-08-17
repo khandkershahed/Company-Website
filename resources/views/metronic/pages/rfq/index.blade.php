@@ -104,9 +104,7 @@
                                             class="fa-solid text-primary fa-bell fs-3" aria-hidden="true"></i></span>
                                 </a>
                                 <div class="flex-grow-1">
-                                    <a href=""> </a><a href="#"
-                                        class="text-gray-800 fs-5 fw-bold lh-0">Notification
-                                        <span class="pt-4 text-gray-500 fw-semibold d-block fs-6">Quick Status</span>
+                                    <a href="{{ route('admin.archived.rfq') }}" class="text-gray-800 fs-5 fw-bold lh-0">Archived RFQ
                                     </a>
                                 </div>
                             </div>
@@ -127,7 +125,7 @@
                                 </a>
                                 <div class="flex-grow-1">
 
-                                    <a href="#allRFQ" class="text-gray-800 fs-5 fw-bold lh-0">New Customers Pending
+                                    <a href="#new_customers" class="text-gray-800 fs-5 fw-bold lh-0">New Customers Pending
                                         {{-- <span class="pt-4 text-gray-500 fw-semibold d-block fs-6">Pending</span> --}}
                                     </a>
                                     <a href="{{ route('deal.create') }}" class="text-primary fs-5 fw-bold lh-0">

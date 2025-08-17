@@ -4,7 +4,7 @@
             <div class="bg-light rounded-3 d-flex justify-content-between align-items-center w-100 p-2">
                 <div>
                     <h3 class="mb-0 text-primary ps-3">
-                        {{ $lost_rfq->rfq_code }}
+                        @if (!Route::is('admin.archived.rfq')) RFQ# @endif{{ $lost_rfq->rfq_code }}
                     </h3>
                 </div>
                 <div>{{ $lost_rfq->company_name }} @if (!empty($lost_rfq->country))
