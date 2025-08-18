@@ -19,7 +19,9 @@
     @endphp
     <div class="row gx-8 gx-xl-10">
         <div class="mb-5 row">
-            <!-- Attendance -->
+            <div class="col-lg-3">
+                adsasd
+            </div>
             <div class="col-xl-3">
                 <div class="shadow-sm card card-flush">
                     <div class="p-0 card-body">

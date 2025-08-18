@@ -39,9 +39,10 @@
         document.getElementById('submitCaptcha').addEventListener('click', function() {
             // Verify the reCAPTCHA response
             grecaptcha.ready(function() {
-                grecaptcha.execute('{{ config('app.recaptcha_site_key') }}', {
-                        action: 'submit'
-                    })
+                grecaptcha.execute('{{ config('
+                        app.recaptcha_site_key ') }}', {
+                            action: 'submit'
+                        })
                     .then(function(token) {
                         // Append the reCAPTCHA response to the form and submit it
                         document.getElementById('captchaModal').querySelector('.modal-body')
@@ -901,6 +902,16 @@
             ],
         });
     });
+</script>
+
+<script>
+    $(document).ready(function () {
+  $("#sidebarCollapse").on("click", function () {
+    $("#sidebar").toggleClass("active");
+    $(this).toggleClass("active");
+  });
+});
+
 </script>
 
 @yield('scripts')

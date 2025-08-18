@@ -540,5 +540,5 @@ $(function () {
     });
 });
 
+// Slick version 1.5.8
 
-  // Slick version 1.5.8

@@ -2825,7 +2825,7 @@ select:focus-visible {
     background-color: #f7f6f5;
     outline: none;
     border: none;
-    padding: 18px 12px 13px;
+    padding: 6px !important;
     padding-top: 10px;
     width: 0;
     height: 100%;
