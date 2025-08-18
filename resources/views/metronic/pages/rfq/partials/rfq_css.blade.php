@@ -1,4 +1,166 @@
 <style>
+    .rfq-box {
+        width: 100%;
+        height: 300px;
+        flex-shrink: 0;
+        border-radius: 24px;
+        background: #FFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .rfq-status-card {
+        padding-right: 42px;
+        padding-left: 42px;
+    }
+
+    .rfq-status {
+        height: 300px;
+        border-radius: 24px;
+        background: #FFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .total-rfq {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .rfq-icon {
+        display: flex;
+        width: 80px;
+        height: 80px;
+        padding: 24px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+        aspect-ratio: 1/1;
+        border-radius: 50px;
+        background: #EFF4FF;
+    }
+
+    .total-rfq h1 {
+        color: #000;
+        font-family: Poppins;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .total-rfq p {
+        color: #8F8F8F;
+        font-family: Poppins;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .rfq-amount h1 {
+        display: inline-flex;
+        padding: 36px 32px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 100px;
+        background: #F2F4F6;
+    }
+
+    .rfq-amount .value {
+        color: #296088;
+
+        /* SubHeading 1/Regular */
+        font-family: Poppins;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .cl-badge {
+        display: flex;
+        width: 125px;
+        padding: 6px 10px;
+        justify-content: center;
+        align-items: center;
+        gap: 2px;
+        border-radius: 4px;
+        background: #EFF4FF;
+    }
+
+
+
+    .rfq-title {
+        color: #000;
+        font-family: Poppins;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .rfq-para {
+        color: #8F8F8F;
+        font-family: Poppins;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .rfq-pending {
+        border-radius: 8px;
+        background: #EFF4FF;
+        display: flex;
+        padding: 10px 16px;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+        margin-bottom: 12px;
+    }
+
+    .rfq-quoted {
+        border-radius: 8px;
+        background: #E8E9FF;
+        display: flex;
+        padding: 10px 16px;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+        margin-bottom: 12px;
+    }
+
+    .rfq-failed {
+        border-radius: 8px;
+        background: #FFDBDB;
+        display: flex;
+        padding: 10px 16px;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+        margin-bottom: 12px;
+    }
+
+    .rfq-closed {
+        border-radius: 8px;
+        background: #FFEDD9;
+        display: flex;
+        padding: 10px 16px;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+    }
+</style>
+
+
+<style>
     .table td,
     .table th,
     .table tr {

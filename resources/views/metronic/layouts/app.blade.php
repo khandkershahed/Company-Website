@@ -71,7 +71,7 @@
             <div class="wrapper d-flex flex-column flex-row-fluid pt-lg-17" id="kt_wrapper">
 
                 @include('metronic.layouts.header')
-                <div class="bg-white content d-flex flex-column flex-column-fluid" id="kt_content">
+                <div class="content d-flex flex-column flex-column-fluid" id="kt_content" style="background-color: #F6F8FA;">
                     <div class="post d-flex flex-column-fluid" id="kt_post">
                         <div id="kt_content_container" class="container-fluid">
                             {{-- @if (session('error'))
