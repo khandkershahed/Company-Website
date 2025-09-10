@@ -74,18 +74,18 @@ class HomepageController extends Controller
             $bannerthreeMainFile = $request->branner3;
             $uploadPath = storage_path('app/public/');
             if (isset($bannerOneMainFile)) {
-                $globalFunImgBannerOne = Helper::singleImageUpload($bannerOneMainFile, $uploadPath, 1502, 480);
+                $globalFunImgBannerOne = Helper::singleImageUpload($bannerOneMainFile, $uploadPath);
             } else {
                 $globalFunImgBannerOne = ['status' => 0];
             }
 
             if (isset($bannertwoMainFile)) {
-                $globalFunBannerTwo = Helper::singleImageUpload($bannertwoMainFile, $uploadPath, 1502, 480);
+                $globalFunBannerTwo = Helper::singleImageUpload($bannertwoMainFile, $uploadPath);
             } else {
                 $globalFunBannerTwo = ['status' => 0];
             }
             if (isset($bannerthreeMainFile)) {
-                $globalFunBannerThree = Helper::singleImageUpload($bannerthreeMainFile, $uploadPath, 1502, 480);
+                $globalFunBannerThree = Helper::singleImageUpload($bannerthreeMainFile, $uploadPath);
             } else {
                 $globalFunBannerThree = ['status' => 0];
             }
@@ -207,18 +207,18 @@ class HomepageController extends Controller
             $bannerthreeMainFile = $request->branner3;
             $uploadPath = storage_path('app/public/');
             if (isset($bannerOneMainFile)) {
-                $globalFunImgBannerOne = Helper::singleImageUpload($bannerOneMainFile, $uploadPath, 1502, 480);
+                $globalFunImgBannerOne = Helper::singleImageUpload($bannerOneMainFile, $uploadPath);
             } else {
                 $globalFunImgBannerOne = ['status' => 0];
             }
 
             if (isset($bannertwoMainFile)) {
-                $globalFunBannerTwo = Helper::singleImageUpload($bannertwoMainFile, $uploadPath, 1502, 480);
+                $globalFunBannerTwo = Helper::singleImageUpload($bannertwoMainFile, $uploadPath);
             } else {
                 $globalFunBannerTwo = ['status' => 0];
             }
             if (isset($bannerthreeMainFile)) {
-                $globalFunBannerThree = Helper::singleImageUpload($bannerthreeMainFile, $uploadPath, 1502, 480);
+                $globalFunBannerThree = Helper::singleImageUpload($bannerthreeMainFile, $uploadPath);
             } else {
                 $globalFunBannerThree = ['status' => 0];
             }
