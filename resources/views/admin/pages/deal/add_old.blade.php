@@ -9,44 +9,44 @@
     <div class="content-wrapper">
         <!-- Inner content -->
         <!-- Page header -->
-        <div class="page-header page-header-light shadow">
+        <div class="shadow page-header page-header-light">
             <div class="page-header-content d-lg-flex border-top">
                 <div class="d-flex">
-                    <div class="breadcrumb py-2">
+                    <div class="py-2 breadcrumb">
                         <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
                         <a href="{{ route('product-sourcing.index') }}" class="breadcrumb-item">Deal</a>
                         <span class="breadcrumb-item active">Deal Add</span>
                     </div>
                     <a href="#breadcrumb_elements"
-                        class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
+                        class="p-0 border-transparent btn btn-light align-self-center collapsed d-lg-none rounded-pill ms-auto"
                         data-bs-toggle="collapse">
-                        <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
+                        <i class="m-1 ph-caret-down collapsible-indicator ph-sm"></i>
                     </a>
                 </div>
             </div>
         </div>
         <!-- /page header -->
         <!-- Content area -->
-        <div class="content pt-1">
-            <div class="row my-2">
+        <div class="pt-1 content">
+            <div class="my-2 row">
                 <div class="col-lg-8 offset-lg-2">
                     @include('admin.pages.rfq-manage.partial.rfq_sidebar')
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <div class="card px-0">
+                    <div class="px-0 card">
                         <div class="text-start">
-                            <div class="row main_bg py-1 rounded-1 d-flex align-items-center justify-content-center gx-0 px-2">
+                            <div class="px-2 py-1 row main_bg rounded-1 d-flex align-items-center justify-content-center gx-0">
                                 <div class="col-lg-5 col-sm-12 d-flex justify-content-center">
-                                    <h5 class="text-white p-0 m-0 fw-bold">Deal Create</h5>
+                                    <h5 class="p-0 m-0 text-white fw-bold">Deal Create</h5>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body px-0 py-0">
+                        <div class="px-0 py-0 card-body">
                             <div class="row gx-0">
-                                <div class="col-lg-2 bg-light pt-1">
+                                <div class="pt-1 col-lg-2 bg-light">
                                     <ul class="nav nav-tabs flex-column" id="myTabs" role="tablist" style="border-bottom: 0px;">
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link active" id="tab1-tab" data-bs-toggle="tab"
@@ -73,16 +73,16 @@
                                 <div class="col-lg-10">
                                     <form method="post" action="{{ route('deal.store') }}" enctype="multipart/form-data">
                                         @csrf
-                                        <div class="tab-content bg-white p-2 pt-0" id="myTabContent">
+                                        <div class="p-2 pt-0 bg-white tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" id="tab1" role="tabpanel"
                                                 aria-labelledby="tab1-tab">
                                                 <h6 class="mb-0 text-info">Assigned Sales Manager</h6>
-                                                <div class="row mb-3 gx-0 border border-secondary bg-light">
-                                                    <div class="col-lg-12 p-2">
+                                                <div class="mb-3 border row gx-0 border-secondary bg-light">
+                                                    <div class="p-2 col-lg-12">
                                                         <div class="row">
-                                                            <div class="col-lg-4 mb-2">
+                                                            <div class="mb-2 col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label for="sales_man_id_L1" class="form-label mb-0">Sales
+                                                                    <label for="sales_man_id_L1" class="mb-0 form-label">Sales
                                                                         Manager Name(Leader - L1) <span
                                                                             class="text-danger">*</span></label>
                                                                     <select name="sales_man_id_L1"
@@ -98,9 +98,9 @@
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-4 mb-2">
+                                                            <div class="mb-2 col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label for="sales_man_id_T1" class="form-label mb-0">Sales
+                                                                    <label for="sales_man_id_T1" class="mb-0 form-label">Sales
                                                                         Manager Name (Team - T1)</label>
                                                                     <select class="form-select w-100 select-wizard"
                                                                         name="sales_man_id_T1" data-allow-clear="true"
@@ -114,9 +114,9 @@
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-4 mb-2">
+                                                            <div class="mb-2 col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label for="sales_man_id_T2" class="form-label mb-0">Sales
+                                                                    <label for="sales_man_id_T2" class="mb-0 form-label">Sales
                                                                         Manager Name (Team - T2)</label>
                                                                     <select class="form-select w-100 select-wizard"
                                                                         name="sales_man_id_T2" data-allow-clear="true"
@@ -130,18 +130,18 @@
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-4 mb-2">
+                                                            <div class="mb-2 col-lg-4">
                                                                 <div class="form-group">
                                                                     <label for="close_date"
-                                                                        class="form-label form-label-sm mb-0">Closed
+                                                                        class="mb-0 form-label form-label-sm">Closed
                                                                         date</label>
                                                                     <input type="date" name="close_date"
                                                                         class="form-control" />
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-4 mb-2">
+                                                            <div class="mb-2 col-lg-4">
                                                                 <div class="form-group">
-                                                                    <label for="deal_type" class="form-label mb-0">Deal Type
+                                                                    <label for="deal_type" class="mb-0 form-label">Deal Type
                                                                     </label>
                                                                     <select name="deal_type" data-allow-clear="true"
                                                                         class="form-select w-100 select-wizard "
@@ -164,7 +164,7 @@
                                                         <button type="submit" class="btn btn-success" name="action"
                                                             id="submitbtn" value="save">Save<i
                                                                 class="ph-paper-plane-tilt "></i></button>
-                                                        <a href="javascript:void(0);" class="btn btn-info rounded-0 p-2 px-2"
+                                                        <a href="javascript:void(0);" class="p-2 px-2 btn btn-info rounded-0"
                                                             id="nextTabButton">Next
                                                             <i class="ph-arrow-circle-right "></i>
                                                         </a>
@@ -173,13 +173,13 @@
                                             </div>
                                             <div class="tab-pane fade" id="tab2" role="tabpanel"
                                                 aria-labelledby="tab2-tab">
-                                                <h6 class="ms-1 mb-0 text-info">Client Details</h6>
+                                                <h6 class="mb-0 ms-1 text-info">Client Details</h6>
 
-                                                <div class="row mb-3 p-3 mx-1 border border-secondary bg-light">
+                                                <div class="p-3 mx-1 mb-3 border row border-secondary bg-light">
                                                     <div class="row offset-lg-2">
                                                         <div class="col-lg-8 d-flex justify-content-end align-items-center">
                                                             <div
-                                                                class="center bg-gray p-1 text-center d-flex align-items-baseline">
+                                                                class="p-1 text-center center bg-gray d-flex align-items-baseline">
                                                                 <div class="form-check form-check-inline">
                                                                     <input class="form-check-input" type="checkbox"
                                                                         value="1" name="regular" id="flexRadioDefault1">
@@ -206,9 +206,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-lg-3 mb-2">
+                                                        <div class="mb-2 col-lg-3">
                                                             <div class="form-group">
-                                                                <label for="sales_man_id_L1" class="form-label mb-0">Client
+                                                                <label for="sales_man_id_L1" class="mb-0 form-label">Client
                                                                     Type<span class="text-danger">*</span></label>
                                                                 <select name="client_type"
                                                                     class="form-select w-100 select-wizard client_select"
@@ -224,8 +224,8 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-3 mb-2 partner_display d-none">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">Partner
+                                                        <div class="mb-2 col-lg-3 partner_display d-none">
+                                                            <label for="sales_man_id_L1" class="mb-0 form-label">Partner
                                                                 Type<span class="text-danger">*</span></label>
                                                             <select name="partner_id"
                                                                 class="form-select w-100 select-wizard partnerID"
@@ -238,8 +238,8 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        <div class="col-lg-3 mb-2 client_display d-none">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">Search Client<span class="text-danger">*</span></label>
+                                                        <div class="mb-2 col-lg-3 client_display d-none">
+                                                            <label for="sales_man_id_L1" class="mb-0 form-label">Search Client<span class="text-danger">*</span></label>
                                                             <select name="client_id"
                                                                 class="form-select w-100 select-wizard clientID"
                                                                 data-allow-clear="true" data-placeholder="Choose Client">
@@ -251,7 +251,7 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                        <div class="col-lg-4 mt-3 partner_account d-none text-warning">
+                                                        <div class="mt-3 col-lg-4 partner_account d-none text-warning">
                                                             <div class="form-check">
                                                                 <input class="form-check-input account" type="checkbox"
                                                                     value="partner" name="account" id="flexCheckDefault">
@@ -260,7 +260,7 @@
                                                                 </label>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-4 mt-3 client_account d-none text-warning">
+                                                        <div class="mt-3 col-lg-4 client_account d-none text-warning">
                                                             <div class="form-check">
                                                                 <input class="form-check-input account" type="checkbox"
                                                                     value="client" name="account" id="flexCheckDefault">
@@ -272,64 +272,64 @@
                                                     </div>
 
 
-                                                    <div class="col-lg-3 mb-2">
+                                                    <div class="mb-2 col-lg-3">
                                                         <div class="form-group">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">Name<span
+                                                            <label for="sales_man_id_L1" class="mb-0 form-label">Name<span
                                                                     class="text-danger">*</span></label>
                                                             <input type="text" name="name"
                                                                 class="form-control form-control-sm maxlength"
                                                                 maxlength="100" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-3 mb-2">
+                                                    <div class="mb-2 col-lg-3">
                                                         <div class="form-group">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">Email<span
+                                                            <label for="sales_man_id_L1" class="mb-0 form-label">Email<span
                                                                     class="text-danger">*</span></label>
                                                             <input type="email" name="email"
                                                                 class="form-control form-control-sm maxlength"
                                                                 maxlength="100" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-3 mb-2">
+                                                    <div class="mb-2 col-lg-3">
                                                         <div class="form-group">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">Phone<span
+                                                            <label for="sales_man_id_L1" class="mb-0 form-label">Phone<span
                                                                     class="text-danger">*</span></label>
                                                             <input type="text" name="phone"
                                                                 class="form-control form-control-sm maxlength" maxlength="100"
                                                                 required />
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-3 mb-2">
+                                                    <div class="mb-2 col-lg-3">
                                                         <div class="form-group">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">Company
+                                                            <label for="sales_man_id_L1" class="mb-0 form-label">Company
                                                                 Name<span class="text-danger">*</span></label>
                                                             <input type="text" name="company_name"
                                                                 class="form-control form-control-sm maxlength"
                                                                 maxlength="200" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-4 mb-2">
+                                                    <div class="mb-2 col-lg-4">
                                                         <div class="form-group">
                                                             <label for="sales_man_id_L1"
-                                                                class="form-label mb-0">Designation<span
+                                                                class="mb-0 form-label">Designation<span
                                                                     class="text-danger">*</span></label>
                                                             <input type="text" name="designation"
                                                                 class="form-control form-control-sm maxlength"
                                                                 maxlength="100" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-4 mb-2">
+                                                    <div class="mb-2 col-lg-4">
                                                         <div class="form-group">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">Address<span
+                                                            <label for="sales_man_id_L1" class="mb-0 form-label">Address<span
                                                                     class="text-danger">*</span></label>
                                                             <input type="text" name="address"
                                                                 class="form-control form-control-sm maxlength"
                                                                 maxlength="200" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-4 mb-2 user_password d-none">
+                                                    <div class="mb-2 col-lg-4 user_password d-none">
                                                         <div class="form-group">
-                                                            <label for="sales_man_id_L1" class="form-label mb-0">User
+                                                            <label for="sales_man_id_L1" class="mb-0 form-label">User
                                                                 Password<span class="text-danger">*</span></label>
                                                             <input type="password" name="password"
                                                                 class="form-control form-control-sm maxlength"
@@ -342,7 +342,7 @@
                                                         <button type="submit" class="btn btn-success" name="action"
                                                             id="submitbtn" value="save">Save<i
                                                                 class="ph-paper-plane-tilt"></i></button>
-                                                        <a href="javascript:void(0);" class="btn btn-info rounded-0 p-2 px-2"
+                                                        <a href="javascript:void(0);" class="p-2 px-2 btn btn-info rounded-0"
                                                             id="nextTabButton2">Next
                                                             <i class="ph-arrow-circle-right"></i>
                                                         </a>
@@ -352,8 +352,8 @@
                                             <div class="tab-pane fade" id="tab3" role="tabpanel"
                                                 aria-labelledby="tab3-tab">
                                                 <h6 class="mb-0 text-info">Product Description</h6>
-                                                <div class="row  gx-0 pt-2 border border-secondary bg-light">
-                                                    <div class="col-lg-12 p-2">
+                                                <div class="pt-2 border row gx-0 border-secondary bg-light">
+                                                    <div class="p-2 col-lg-12">
                                                         <div class="table-responsive col-md-12">
                                                             <table class="table table-bordered col-md-12" style="width:100%">
 
@@ -396,18 +396,18 @@
 
                                                                 </tbody>
                                                             </table>
-                                                            {{-- <div class="col-md-11 mt-3">
-                                                                <button type="submit" class="btn btn-primary text-right">Submit</button>
+                                                            {{-- <div class="mt-3 col-md-11">
+                                                                <button type="submit" class="text-right btn btn-primary">Submit</button>
                                                             </div> --}}
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-lg-12 text-end mt-3">
+                                                    <div class="mt-3 col-lg-12 text-end">
                                                         <button type="submit" class="btn btn-success" name="action"
                                                             id="submitbtn" value="save">Save<i
                                                                 class="ph-paper-plane-tilt"></i></button>
-                                                        <a href="javascript:void(0);" class="btn btn-info rounded-0 p-2 px-2"
+                                                        <a href="javascript:void(0);" class="p-2 px-2 btn btn-info rounded-0"
                                                             id="nextTabButton3">Next
                                                             <i class="ph-arrow-circle-right"></i>
                                                         </a>
@@ -417,8 +417,8 @@
                                             <div class="tab-pane fade" id="tab4" role="tabpanel"
                                                 aria-labelledby="tab4-tab">
                                                 {{-- <h5>Tab 3 Content</h5> --}}
-                                                <h6 class="ms-1 mb-0 text-info">Source Details</h6>
-                                                <div class="row mb-3 gx-0 border border-secondary bg-light">
+                                                <h6 class="mb-0 ms-1 text-info">Source Details</h6>
+                                                <div class="mb-3 border row gx-0 border-secondary bg-light">
                                                     <table class="table table-bordered table-striped">
                                                         <thead>
                                                             <tr>
@@ -506,7 +506,7 @@
                                                         </thead>
                                                     </table>
                                                 </div>
-                                                <div class="row mt-5 text-end">
+                                                <div class="mt-5 row text-end">
                                                     <div class="col-lg-4"></div>
                                                     <div class="col-lg-8">
                                                         <button type="submit" class="btn btn-success" name="action"
