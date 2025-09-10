@@ -1,7 +1,7 @@
 <x-admin-app-layout :title="'RFQ'">
     @include('metronic.pages.rfq.partials.rfq_css')
     <!-- Main Content Start -->
-    {{-- @php
+    @php
     $months = [
     'January',
     'February',
@@ -17,7 +17,7 @@
     'December',
     ];
     @endphp
-    <div class="row mb-5">
+    {{-- <div class="row mb-5">
         <div class="col-lg-4">
             <div class="card rfq-box shadow-none">
                 <div class="w-100 rfq-status-card">
