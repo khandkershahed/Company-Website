@@ -357,9 +357,15 @@ class RFQController extends Controller
         // } else {
         //     $newNumber = 1;
         // }
-        $today = now()->format('ymd');
+        $today = now()->format('ymd'); // e.g., "250910"
         $lastCode = RFQ::where('rfq_code', 'like', "$today-%")->latest('id')->first();
-        $newNumber = $lastCode ? (int)explode('-', $lastCode->rfq_code)[2] + 1 : 1;
+        if ($lastCode) {
+            $parts = explode('-', $lastCode->rfq_code);
+            $lastNumber = isset($parts[1]) ? (int)$parts[1] : 0;
+            $newNumber = $lastNumber + 1;
+        } else {
+            $newNumber = 1;
+        }
         $rfq_code = $today . '-' . $newNumber;
 
         $client = Client::where('email', $request->input('email'))->first();
@@ -513,10 +519,17 @@ class RFQController extends Controller
             return redirect()->back(); // Block further submissions within the 5-minute window
         }
         // Generate RFQ Code
-        $today = now()->format('ymd');
+        $today = now()->format('ymd'); // e.g., "250910"
         $lastCode = RFQ::where('rfq_code', 'like', "$today-%")->latest('id')->first();
-        $newNumber = $lastCode ? (int)explode('-', $lastCode->rfq_code)[2] + 1 : 1;
+        if ($lastCode) {
+            $parts = explode('-', $lastCode->rfq_code);
+            $lastNumber = isset($parts[1]) ? (int)$parts[1] : 0;
+            $newNumber = $lastNumber + 1;
+        } else {
+            $newNumber = 1;
+        }
         $rfq_code = $today . '-' . $newNumber;
+
 
         // Check for existing client
         $client_type = 'anonymous';
