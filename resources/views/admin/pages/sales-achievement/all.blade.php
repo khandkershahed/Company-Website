@@ -7,21 +7,21 @@
 
 
         <!-- Page header -->
-        <div class="page-header page-header-light shadow">
+        <div class="shadow page-header page-header-light">
 
 
             <div class="page-header-content d-lg-flex border-top">
                 <div class="d-flex">
-                    <div class="breadcrumb py-2">
+                    <div class="py-2 breadcrumb">
                         <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
                         <span class="breadcrumb-item active">Sales Manager Achievement</span>
                     </div>
 
                     <a href="#breadcrumb_elements"
-                        class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
+                        class="p-0 border-transparent btn btn-light align-self-center collapsed d-lg-none rounded-pill ms-auto"
                         data-bs-toggle="collapse">
-                        <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
+                        <i class="m-1 ph-caret-down collapsible-indicator ph-sm"></i>
                     </a>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                                 <div class="col-lg-4">
                                     <a href="{{ route('sales-achievement.create') }}" type="button"
                                         class="btn btn-sm btn-success btn-labeled btn-labeled-start float-end">
-                                        <span class="btn-labeled-icon bg-black bg-opacity-20">
+                                        <span class="bg-black btn-labeled-icon bg-opacity-20">
                                             <i class="icon-plus2"></i>
                                         </span>
                                         Add New
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="card-body">
-                            <table class="rfqDT table table-bordered table-hover">
+                            <table class="table rfqDT table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         <th width="25%">RFQ Code</th>
@@ -80,7 +80,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="javascript:void(0);" class="text-info mx-2" title="Show Deal"
+                                                <a href="javascript:void(0);" class="mx-2 text-info" title="Show Deal"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#show-deals-{{ $rfq->rfq_code }}">
                                                     <i class="icon-eye"></i>
@@ -99,14 +99,14 @@
                                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                                 </div>
 
-                                                                <div class="modal-body border br-7">
+                                                                <div class="border modal-body br-7">
 
 
-                                                                        <div class="row mb-3">
+                                                                        <div class="mb-3 row">
                                                                             <div class="card">
 
                                                                                 <div class="row">
-                                                                                    <table class="table table-bordered table-striped p-1">
+                                                                                    <table class="table p-1 table-bordered table-striped">
                                                                                         <thead>
                                                                                             <tr>
                                                                                                 <th>
@@ -144,7 +144,7 @@
 
                                                                                                 </th>
                                                                                                 <th>
-                                                                                                    Status : <span class="badge bg-success p-1">{{ucfirst(($rfq_details->status))}}</span>
+                                                                                                    Status : <span class="p-1 badge bg-success">{{ucfirst(($rfq_details->status))}}</span>
 
 
                                                                                                 </th>
@@ -155,7 +155,7 @@
                                                                                     </table>
                                                                                 </div>
                                                                                 <div class="row">
-                                                                                    <table class="table table-bordered table-striped p-1">
+                                                                                    <table class="table p-1 table-bordered table-striped">
                                                                                         <thead>
                                                                                             @if (count($deal_products) > 0)
                                                                                                 <tr>
@@ -165,7 +165,7 @@
                                                                                                 </tr>
 
                                                                                                 @foreach ($deal_products as $item)
-                                                                                                <tr class="bg-gray text-white">
+                                                                                                <tr class="text-white bg-gray">
                                                                                                     <th>{{$item->item_name}}</th>
                                                                                                     <th>{{$item->qty}}</th>
                                                                                                     <th>{{$item->sub_total_cost}}</th>
@@ -195,10 +195,10 @@
 
 
                                             </td>
-                                            <td><span class="badge bg-success p-1">{{ucfirst(($rfq->status))}}</span></td>
+                                            <td><span class="p-1 badge bg-success">{{ucfirst(($rfq->status))}}</span></td>
                                             <td class="text-center">
                                                 <a href="{{ route('sales-achievement.show', [$rfq->rfq_code]) }}"
-                                                    class="text-success mx-3 mx-3" title="Set Target Vs Achievement">
+                                                    class="mx-3 text-success" title="Set Target Vs Achievement">
                                                     <i class="icon-pen-plus icon-1x"></i>
                                                 </a>
 
