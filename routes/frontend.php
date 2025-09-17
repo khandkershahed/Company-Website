@@ -311,6 +311,10 @@ Route::prefix('categories')->group(function () {
 Route::get('/client-stories', [HomeController::class, 'AllStory'])->name('all.story');
 Route::get('/client-stories/{slug}', [HomeController::class, 'StoryDetails'])->name('story.details');
 
+// Test Email
+Route::get('/test-email', [HomeController::class, 'testEmail'])->name('email.test');
+Route::post('/test-email', [HomeController::class, 'emailSend'])->name('email.send');
+
 // Blogs
 Route::get('/blogs', [HomeController::class, 'AllBlog'])->name('all.blog');
 Route::get('/blogs/{slug}', [HomeController::class, 'BlogDetails'])->name('blog.details');

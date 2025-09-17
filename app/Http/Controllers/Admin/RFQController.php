@@ -1492,7 +1492,7 @@ class RFQController extends Controller
 
         // Get users and emails
         $users = User::whereJsonContains('department', ['business', 'logistics'])->get();
-        $user_emails = User::whereJsonContains('department', ['business'])
+        $user_emails = User::whereJsonContains('department', ['business', 'logistics'])
             ->whereIn('role', ['manager', 'admin'])
             ->pluck('email')
             ->toArray();

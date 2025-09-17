@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Site;
 use App\Models\User;
+use App\Mail\TestMail;
 use App\Models\Admin\Faq;
 use App\Models\Admin\Rfq;
 use App\Models\Admin\Row;
@@ -43,6 +44,7 @@ use App\Models\Admin\SolutionDetail;
 use App\Models\Admin\SubSubCategory;
 use App\Models\Admin\TechnologyData;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Admin\PortfolioClient;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
@@ -1230,5 +1232,23 @@ class HomeController extends Controller
             ->resizeCanvas(1200, 630, 'center', false, 'ffffff'); // Optional: Add padding color if needed
 
         return $img->response('jpg');
+    }
+
+    public function testEmail()
+    {
+        return view('frontend.pages.testEmail');
+    }
+
+    public function emailSend(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        $message = "This is a test email sent to " . $request->email;
+
+        Mail::to($request->email)->send(new TestMail($message));
+
+        return back()->with('success', 'Test email sent successfully to ' . $request->email);
     }
 }
