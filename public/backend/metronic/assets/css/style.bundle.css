@@ -337,7 +337,7 @@ th {
     text-align: inherit;
     text-align: -webkit-match-parent;
 }
-td{
+td {
     vertical-align: middle !important;
 }
 
@@ -4868,9 +4868,10 @@ fieldset:disabled .btn {
 }
 
 .nav-link {
+    font-weight: 400;
     display: block;
     padding: 0.5rem 1rem;
-    color: #500066;
+    color: #000;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
         border-color 0.15s ease-in-out;
 }
@@ -5555,7 +5556,6 @@ fieldset:disabled .btn {
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid #eff2f5;
     border-radius: 0.625rem;
     box-shadow: 0 0 20px 0 rgba(76, 87, 125, 0.02);
 }
@@ -34607,10 +34607,6 @@ a:hover {
     border-bottom-color: #eff2f5;
 }
 
-.nav-line-tabs .nav-item {
-    margin-bottom: -1px;
-}
-
 .nav-line-tabs .nav-item .nav-link {
     color: #a1a5b7;
     border: 0;
@@ -34718,8 +34714,9 @@ a:hover {
 
 .nav.nav-pills.nav-pills-custom .nav-link,
 .nav.nav-pills.nav-pills-custom .show > .nav-link {
-    border: 1px dashed #e4e6ef;
-    border-radius: 12px;
+    border: 1px solid #e4e6ef;
+    border-radius: 8px;
+    padding: 12px 16px;
 }
 
 .nav.nav-pills.nav-pills-custom .nav-link .nav-icon img,
@@ -34740,10 +34737,10 @@ a:hover {
 
 .nav.nav-pills.nav-pills-custom .nav-link.active,
 .nav.nav-pills.nav-pills-custom .show > .nav-link.active {
-    background-color: transparent;
-    border: 1px solid #e4e6ef;
-    transition-duration: 1ms;
-    position: relative;
+    border-radius: 8px;
+    border: 1px solid #b7defa;
+    background: #f0f9ff;
+    padding: 12px 16px;
 }
 
 .nav.nav-pills.nav-pills-custom .nav-link.active .nav-text,
@@ -40444,7 +40441,7 @@ a:hover {
     justify-content: space-between;
     align-items: stretch;
     flex-wrap: wrap;
-    min-height: 70px;
+    min-height: 50px;
     padding: 0 2.25rem;
     background-color: transparent;
     border-bottom: 1px solid #eff2f5;
@@ -41392,7 +41389,7 @@ a:hover {
 .show > .btn.btn-active-primary {
     color: #fff;
     border-color: #500066;
-    background-color: #500066 !important;
+    background-color: #296088 !important;
 }
 
 .btn-check:active + .btn.btn-active-primary .svg-icon,
@@ -45491,7 +45488,7 @@ code:not([class*="language-"]) {
 
 .form-check.form-check-solid .form-check-input:checked {
     /* background-color: #500066; */
-    background-color: #007c00;
+    background-color: #296088;
 }
 
 .form-check.form-check-success .form-check-input:checked {
@@ -57414,8 +57411,6 @@ body {
     color: #0000 !important;
 }
 
-
-
 .aside-dark .menu .menu-item .menu-link.active .menu-icon,
 .aside-dark .menu .menu-item .menu-link.active .menu-icon .svg-icon,
 .aside-dark .menu .menu-item .menu-link.active .menu-icon i {
@@ -59063,7 +59058,9 @@ th {
     font-weight: bold;
 }
 
-.nav-line-tabs .nav-item .nav-link.active, .nav-line-tabs .nav-item .nav-link:hover:not(.disabled), .nav-line-tabs .nav-item.show .nav-link {
+.nav-line-tabs .nav-item .nav-link.active,
+.nav-line-tabs .nav-item .nav-link:hover:not(.disabled),
+.nav-line-tabs .nav-item.show .nav-link {
     background-color: #9d9b9c;
     /* background-color: #1f212a; */
     border: 0;
@@ -59073,7 +59070,7 @@ th {
     padding: 13px;
     color: white !important;
 }
-.nav-line-tabs .nav-item .nav-link{
+.nav-line-tabs .nav-item .nav-link {
     background-color: transparent;
     border: 0;
     border-bottom: 1px solid transparent;
@@ -59081,7 +59078,6 @@ th {
     padding: 13px;
     color: #a1a5b7 !important;
 }
-
 
 /*== RFQ Manage css start== */
 

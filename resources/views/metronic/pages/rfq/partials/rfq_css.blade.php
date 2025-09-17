@@ -170,12 +170,12 @@
     .nav-line-tabs .nav-item .nav-link.active,
     .nav-line-tabs .nav-item .nav-link:hover:not(.disabled),
     .nav-line-tabs .nav-item.show .nav-link {
-        background-color: transparent !important;
+        background-color: #F2F4F6 !important;
+        border-radius: 8px;
+        border: 1px solid #F2F4F6 !important;
         border: 0;
-        border-bottom: 2px solid #237075;
-        transition: color 0.2s ease, background-color 0.2s ease;
-        padding: 13px;
-        color: rgb(0, 0, 0) !important;
+        padding: 11px !important;
+        color: #000000 !important;
     }
 
     .btn-outline-primary {
@@ -192,15 +192,15 @@
     .btn.btn-active-primary:focus:not(.btn-active),
     .btn.btn-active-primary:hover:not(.btn-active),
     .show>.btn.btn-active-primary {
-        color: #0b6476;
-        border-color: #0b6476;
+        color: #769E2D;
+        border-color: #769E2D;
         background-color: #f1faff !important;
     }
 
     .nav-pills .nav-link.active,
     .nav-pills .show>.nav-link {
-        color: #0b6476;
-        border-color: #0b6476;
+        color: #769E2D;
+        border-color: #769E2D;
         background-color: #f1faff !important;
     }
 </style>
@@ -221,7 +221,7 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
-        background-color: #e4e6ef;
+        background-color: #769E2D;
         height: 5px;
     }
 
@@ -246,14 +246,14 @@
         height: 5px;
         border-radius: 50%;
         margin: auto;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 4px #4a82b5;
-        background: #4a82b5;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 4px #769E2D;
+        background: #769E2D;
         transition: box-shadow 0.3s cubic-bezier(0.75, 0, 0.24, 1);
     }
 
     .trackNavbar ul li.active a i,
     .trackNavbar ul li.active a span {
-        color: #0b6476;
+        color: #769E2D;
     }
 
     .trackNavbar ul li.active .ripple {
@@ -270,7 +270,7 @@
         display: flex;
         flex-direction: column;
         text-decoration: none;
-        color: #4a82b5;
+        color: #769E2D;
         text-align: center;
     }
 
@@ -287,7 +287,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 2px solid #0b6476;
+        border: 2px solid #769E2D;
         transform: translateX(-50%);
         transition: opacity 0.3s ease-out, bottom 0.5s ease;
         animation-direction: alternate;
@@ -295,7 +295,7 @@
 
     .trackNavbar ul li a.active>i {
         color: #ffffff;
-        background: #0b6476;
+        background: #769E2D;
         border-radius: 100%;
         height: 40px;
         width: 40px;
@@ -329,13 +329,13 @@
         height: 5px;
         border-radius: 50%;
         margin: auto;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 4px #0b6476;
-        background: #0b6476;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 0 4px #769E2D;
+        background: #769E2D;
         transition: box-shadow 0.3s cubic-bezier(0.75, 0, 0.24, 1);
     }
 
     .trackNavbar ul li a.active:before {
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 0 10px #0b6476;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2), 0 0 0 10px #769E2D;
     }
 
     @keyframes ripple {
@@ -361,8 +361,8 @@
     }
 
     .btn-outlines {
-        color: #0b6476 !important;
-        border: 1px solid #0b6476 !important;
+        color: #769E2D !important;
+        border: 1px solid #769E2D !important;
         background-color: transparent !important;
     }
 
@@ -380,7 +380,7 @@
         align-items: center;
         padding: 10px 10px;
         border-radius: 0px;
-        background-color: #fcfbfb;
+        background-color: #769E2D;
         transition: background-color 0.3s;
     }
 
@@ -397,7 +397,7 @@
     /* Style the icon inside the step circle */
     .step .circle i {
         font-size: 16px;
-        color: #0b6476;
+        color: #769E2D;
         transition: color 0.3s, background-color 0.3s;
     }
 
@@ -418,12 +418,12 @@
     .step.completed .step-label,
     .step.completed .circle i {
         background-color: #eee !important;
-        color: #0b6476 !important;
+        color: #769E2D !important;
     }
 
     /* ✅ Active/current step style - red background */
     .step.active {
-        background-color: #0b6476;
+        background-color: #769E2D;
         color: white;
     }
 

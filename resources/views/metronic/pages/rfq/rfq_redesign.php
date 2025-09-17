@@ -17,9 +17,9 @@
     'December',
     ];
     @endphp
-    <div class="row mb-5">
-        <div class="col-lg-4">
-            <div class="card rfq-box shadow-none">
+    <div class="mb-5 row">
+        <div class="col-lg-4 ps-0">
+            <div class="shadow-none card rfq-box">
                 <div class="w-100 rfq-status-card">
                     <div class="row align-items-center">
                         <div class="col-lg-8">
@@ -27,8 +27,8 @@
                                 <img src="{{ asset('backend/assets/images/rfq/Total_RFQ.svg') }}" alt="">
                             </div>
                             <div class="mt-4">
-                                <h1>Total RFQ</h1>
-                                <p>{{ date('d M , Y') }}</p>
+                                <h1 class="m-title mb-0">Total RFQ</h1>
+                                <p class="m-p-title">{{ date('d M , Y') }}</p>
                                 <div class="d-flex align-items-center">
                                     <span class="d-flex align-items-center cl-badge ">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
@@ -65,30 +65,30 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="card shadow-none rfq-status">
+            <div class="shadow-none card rfq-status">
                 <div class="w-100 rfq-status-card">
-                    <div class="row align-items-center">
+                    <div class="row">
                         <div class="col-lg-6">
                             <div class="rfq-icon">
-                                <img src="{{ asset('backend/assets/images/rfq/Total_RFQ.svg') }}" alt="">
+                                <img src="{{ asset('/images/Group.svg') }}" alt="">
                             </div>
                             <div class="mt-4">
-                                <h1 class="rfq-title mb-0">RFQ</h1>
-                                <p class="rfq-para">Status</p>
+                                <h1 class="m-title mb-0">RFQ</h1>
+                                <p class="m-p-title">Status</p>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="d-flex justify-content-between align-items-center rfq-pending">
                                 <span>Pending</span>
-                                <span>15</span>
+                                <span>{{ $rfqs->count() }}</span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center rfq-quoted">
                                 <span>Quoted</span>
-                                <span>15</span>
+                                <span>{{ $quoteds->count() }}</span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center rfq-failed">
                                 <span>Failed</span>
-                                <span>15</span>
+                                <span>{{ $losts->count() }}</span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center rfq-closed">
                                 <span>Closed</span>
@@ -99,18 +99,52 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="card shadow-none rfq-status">
-                <div class="card-header">
-                    <div>
-                        <input type="text" class="form-control form-control-solid" placeholder="name@example.com" />
-                    </div>
+        <div class="col-lg-4 pe-0">
+            <div class="px-10 mt-4">
+                <div
+                    class="text-white rounded position-relative me-2 d-flex align-items-center" style="width: 100%; position: relative; z-index: 5;">
+                    <i
+                        class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
+                    <input type="text" id="searchQuery" data-kt-table-widget-4="search"
+                        class="form-control form-control-solid w-100 fs-7 ps-12" placeholder="RFQ By Country" />
                 </div>
-                <div class="w-100 rfq-status-card">
+            </div>
+            <div class="p-3 shadow-none card rfq-status" style="margin-top: -55px;">
+                <div class="px-8 mt-14 w-100 rfq-status-card">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
                             <img src="{{ asset('backend/assets/images/rfq/Rectangle_13.svg') }}" alt="">
-                            <h5 class="mb-0 fw-normal">India</h5>
+                            <h5 class="mb-0 fw-normal ps-3">India</h5>
+                        </div>
+                        <div>
+                            <span>08</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <img src="{{ asset('backend/assets/images/rfq/Rectangle_13.svg') }}" alt="">
+                            <h5 class="mb-0 fw-normal ps-3">India</h5>
+                        </div>
+                        <div>
+                            <span>08</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <img src="{{ asset('backend/assets/images/rfq/Rectangle_13.svg') }}" alt="">
+                            <h5 class="mb-0 fw-normal ps-3">India</h5>
+                        </div>
+                        <div>
+                            <span>08</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <img src="{{ asset('backend/assets/images/rfq/Rectangle_13.svg') }}" alt="">
+                            <h5 class="mb-0 fw-normal ps-3">India</h5>
                         </div>
                         <div>
                             <span>08</span>
@@ -120,145 +154,84 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-    <div class="row gx-8 gx-xl-10">
-        <div class="mb-5 row">
-            <!-- Attendance -->
-            <div class="col-xl-3">
-                <div class="shadow-sm card card-flush">
-                    <div class="p-0 card-body">
-                        <div class="d-flex flex-stack justify-content-between align-items-center">
-                            <div class="p-8 d-flex align-items-center me-3 rounded-3">
-                                <a href="">
-                                    <span class="p-3 bg-light-primary rounded-3 me-3"><i
-                                            class="fa-solid text-primary fa-clipboard-user fs-3"
-                                            aria-hidden="true"></i></span>
+    <div class="mb-5 row">
+        <div class="col-8 ps-0">
+            <div class="shadow-none card card-flush" style="border-radius: 24px;">
+                <div class="p-0 card-body">
+                    <div class="d-flex flex-stack justify-content-between align-items-center">
+                        <div class="px-10 p-10 d-flex align-items-center me-3 rounded-4">
+                            <div class="flex-grow-1">
+                                <a href="#allRFQ">
+                                    <span class="rfq-e-title">RFQ Filtered Details</span> <br/>
+                                    <span class="rfq-p-title">Check all RFQ history here</span>
                                 </a>
-                                <div class="flex-grow-1">
-
-                                    <a href="#allRFQ" class="text-gray-800 fs-5 fw-bold lh-0">Total RFQ
-                                        <span
-                                            class="pt-4 text-gray-500 fw-semibold d-block fs-6">{{ date('d M , Y') }}</span>
-                                    </a>
-                                </div>
                             </div>
+                        </div>
 
-                            <div class="d-flex flex-column align-items-center pe-4">
-                                <span class="main_text_color fw-bold fs-1 pe-4">
-                                    {{ $rfq_count }}
-                                </span>
-                            </div>
+                        <div class="d-flex flex-column align-items-center pe-10">
+                            <ul class="gap-3 border-0 nav nav-tabs nav-line-tabs fs-6 rfq-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link {{ empty($tab_status) || $tab_status == 'pending' ? 'active' : '' }}"
+                                        data-bs-toggle="tab" href="#pending" data-status="pending">Pending
+                                        ({{ $rfqs->count() }})</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ !empty($tab_status) && $tab_status == 'quoted' ? 'active' : '' }}"
+                                        data-bs-toggle="tab" href="#quoted" data-status="quoted">Quoted
+                                        ({{ $quoteds->count() }})</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ !empty($tab_status) && $tab_status == 'lost' ? 'active' : '' }}"
+                                        data-bs-toggle="tab" href="#failed" data-status="lost">Failed
+                                        ({{ $losts->count() }})</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3">
-                <div class="shadow-sm card card-flush">
-                    <div class="p-0 card-body">
-                        <div class="d-flex flex-stack justify-content-between">
-                            <div class="p-8 d-flex align-items-center me-3 w-50 rounded-3">
-                                <a href="">
-                                    <span class="p-3 bg-light-primary rounded-3 me-3"><i
-                                            class="fa-solid text-primary fa-list-check fs-3"
-                                            aria-hidden="true"></i></span>
-                                </a>
-                                <div class="flex-grow-1">
-                                    <a href=""> </a><a href="#" class="text-gray-800 fs-5 fw-bold lh-0">RFQ
-                                        <span class="pt-4 text-gray-500 fw-semibold d-block fs-6">Status</span>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="flex-column d-flex w-50">
-                                <div class="d-flex align-items-center justify-content-between pe-3">
-                                    <span class="text-gray-500 fw-semibold">
-                                        Pending</span>
-                                    <span class="px-2 text-white bg-warning fw-semibold ms-3 rounded-2">
-                                        {{ $rfqs->count() }}
-                                    </span>
-                                </div>
-                                <div class="pt-2 d-flex align-items-center justify-content-between pe-3">
-                                    <span class="text-gray-500 fw-semibold">
-                                        Quoted
-                                    </span>
-                                    <span class="px-2 text-white bg-success fw-semibold ms-3 rounded-2">
-                                        {{ $quoteds->count() }}
-                                    </span>
-                                </div>
-                                <div class="pt-2 d-flex align-items-center justify-content-between pe-3">
-                                    <span class="text-gray-500 fw-semibold">
-                                        Failed
-                                    </span>
-                                    <span class="px-2 text-white bg-danger fw-semibold ms-3 rounded-2">
-                                        {{ $losts->count() }}
-                                    </span>
-                                </div>
-                            </div>
+        </div>
+        <div class="col-4 pe-0">
+            <div class="shadow-none card card-flush" style="border-radius: 24px;">
+                <div class="p-0 card-body">
+                    <div class="px-10 p-13 d-flex flex-stack justify-content-between align-items-center">
+                        <div class="me-3 rounded-4">
+                            <select class="form-select" data-hide-search="true" data-allow-clear="true"
+                                data-placeholder="Year">
+                                <option></option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                            </select>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3">
-                <div class="shadow-sm card card-flush">
-                    <div class="p-0 card-body">
-                        <div class="d-flex flex-stack justify-content-between">
-                            <div class="p-8 d-flex align-items-center me-3 w-50 rounded-3">
-                                <a href="">
-                                    <span class="p-3 bg-light-primary rounded-3 me-3"><i
-                                            class="fa-solid text-primary fa-bell fs-3" aria-hidden="true"></i></span>
-                                </a>
-                                <div class="flex-grow-1">
-                                    <a href="{{ route('admin.archived.rfq') }}" class="text-gray-800 fs-5 fw-bold lh-0">Archived RFQ
-                                    </a>
-                                </div>
-                            </div>
-
+                        <div class="me-3 rounded-4">
+                            <select  class="form-select" data-control="select2" data-placeholder="Month">
+                                <option></option>
+                                @foreach ($months as $month)
+                                <option value="{{ $month }}">{{ $month }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3">
-                <div class="shadow-sm card card-flush">
-                    <div class="p-0 card-body">
-                        <div class="d-flex flex-stack justify-content-between align-items-center">
-                            <div class="p-8 d-flex align-items-center me-3 rounded-3">
-                                <a href="">
-                                    <span class="p-3 bg-light-primary rounded-3 me-3"><i
-                                            class="fa-solid text-primary fa-clipboard-user fs-3"
-                                            aria-hidden="true"></i></span>
-                                </a>
-                                <div class="flex-grow-1">
-
-                                    <a href="#new_customers" class="text-gray-800 fs-5 fw-bold lh-0">New Customers Pending
-                                        {{-- <span class="pt-4 text-gray-500 fw-semibold d-block fs-6">Pending</span> --}}
-                                    </a>
-                                    <a href="{{ route('deal.create') }}" class="text-primary fs-5 fw-bold lh-0">
-                                        Create Deal
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="d-flex flex-column align-items-center pe-4">
-                                <span class="main_text_color fw-bold fs-1 pe-4">
-                                    <!-- Modal trigger button -->
-                                    <a href="javascript:void(0)" data-bs-toggle="modal"
-                                        data-bs-target="#new_customers">{{ $new_customers->count() }}</a>
-                                </span>
+                        <div class="me-3 rounded-4">
+                            <select class="form-select" data-control="select2" data-placeholder="Week">
+                                <option></option>
+                                <option value="1">Option 1</option>
+                                <option value="2">Option 2</option>
+                            </select>
+                        </div>
+                        <div class="me-3 rounded-4">
+                            <div>
+                                <button class="form-select form-select-solid">All RFQ</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+    </div>
+    <div class="row">
         <div class="modal fade" id="new_customers" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
             role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
@@ -323,85 +296,12 @@
                 </div>
             </div>
         </div>
-
-        <div class="mb-5 col-xl-12 mb-xl-3 ps-3" data-select2-id="select2-data-127-jigx">
-            <div class="border shadow-sm card card-flush h-xl-100" data-select2-id="select2-data-126-8c2i">
-                <div class="card-header">
-                    <h3 class="card-title align-items-start flex-column">
-                        <span class="text-gray-800 card-label fw-bold">RFQ Filtered Details</span>
-                        <span class="mt-1 text-gray-500 fw-semibold fs-6">Check All RFQ History Here!</span>
-                    </h3>
-                    <div class="card-toolbar">
-                        <ul class="nav nav-tabs nav-line-tabs fs-6 rfq-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link {{ empty($tab_status) || $tab_status == 'pending' ? 'active' : '' }}"
-                                    data-bs-toggle="tab" href="#pending" data-status="pending">Pending
-                                    ({{ $rfqs->count() }})</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ !empty($tab_status) && $tab_status == 'quoted' ? 'active' : '' }}"
-                                    data-bs-toggle="tab" href="#quoted" data-status="quoted">Quoted
-                                    ({{ $quoteds->count() }})</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ !empty($tab_status) && $tab_status == 'lost' ? 'active' : '' }}"
-                                    data-bs-toggle="tab" href="#failed" data-status="lost">Failed
-                                    ({{ $losts->count() }})</a>
-                            </li>
-                        </ul>
-
-                    </div>
-
-                    <div class="card-toolbar">
-                        <div class="flex-wrap gap-4 d-flex flex-stack">
-                            <div class="d-flex align-items-center fw-bold">
-                                <select id="filterYear"
-                                    class="py-0 form-select form-select-transparent text-graY-800 fs-base lh-1 fw-bold ps-3 w-150px"
-                                    data-control="select2" data-hide-search="true" data-allow-clear="true"
-                                    data-placeholder="Year">
-                                    <option></option>
-                                    <option value="2022">2022</option>
-                                    <option value="2023">2023</option>
-                                    <option value="2024">2024</option>
-                                    <option value="2025">2025</option>
-                                    <option value="2026">2026</option>
-                                </select>
-                            </div>
-                            <div class="d-flex align-items-center fw-bold">
-                                <select id="filterMonth"
-                                    class="py-0 text-gray-900 form-select form-select-transparent fs-7 lh-1 fw-bold ps-3 w-150px"
-                                    data-control="select2" data-hide-search="true" data-allow-clear="true"
-                                    data-placeholder="Month">
-                                    <option></option>
-                                    @foreach ($months as $month)
-                                    <option value="{{ $month }}">{{ $month }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            {{-- <div class="my-1 position-relative">
-                                <i
-                                    class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
-                                <input type="text" id="searchQuery" data-kt-table-widget-4="search"
-                                    class="form-control w-150px fs-7 ps-12" placeholder="Search" />
-                            </div> --}}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Container for the filtered RFQ queries -->
         <div class="tab-content" id="myTabContent">
             @include('metronic.pages.rfq.partials.rfq_queries')
         </div>
-
     </div>
-    <!-- Main Content End -->
-
-
-
-
+    
     @push('scripts')
     <script>
         $(".data_table").DataTable({
@@ -419,13 +319,6 @@
                 ">",
         });
     </script>
-
-
-
-
-
-
-
     <script>
         $(document).ready(function() {
             function fetchRfqData() {
@@ -495,7 +388,6 @@
             bindFilterEvents();
         });
     </script>
-
     <script>
         $(document).ready(function() {
             $(document).on('change', '.pendingRFQ, .quotedRFQ, .lostRFQ', function() {
