@@ -218,12 +218,7 @@
                                             </div>
                                             <div class="gap-2 mb-1 d-flex justify-content-end">
                                                 <div>
-                                                    <select class="w-100px form-select " style="background-color: #296088 !important;" data-control="select2" data-placeholder="Assign">
-                                                        <option></option>
-                                                        <option value="1">Akramul</option>
-                                                        <option value="2">Arefin</option>
-                                                        <option value="2">Arefin</option>
-                                                    </select>
+                                                    
                                                 </div>
                                                 <button class="btn btn-sm btn-primary" style="background-color: #296088;"
                                                     onclick="window.location.href='{{ route('single-rfq.quoation_mail', $rfq->rfq_code) }}';">

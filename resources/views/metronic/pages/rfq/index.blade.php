@@ -121,7 +121,7 @@
                 <div class="px-8 mt-14 w-100 rfq-status-card">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
-                            <img src="{{ asset('backend/assets/images/rfq/Rectangle_13.svg') }}" alt="">
+                            {{-- <img src="{{ asset('backend/assets/images/rfq/Rectangle_13.svg') }}" alt=""> --}}
                             <h5 class="mb-0 fw-normal ps-3">India</h5>
                         </div>
                         <div>

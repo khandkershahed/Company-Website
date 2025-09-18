@@ -1,146 +1,155 @@
 @foreach ($quoteds as $quoted_rfq)
-<div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="quoted_rfq_{{ $quoted_rfq->id }}"
-    role="tabpanel">
-    <div class="shadow-none card">
-        <div class="p-2 bg-light rounded-3 d-flex justify-content-between align-items-center w-100">
-            <div class="d-flex align-items-center">
-                <p class="mb-0 text-black ps-3">
-                    @if (!Route::is('admin.archived.rfq')) RFQ# @endif{{ $quoted_rfq->rfq_code }}
-                </p><span class="px-1">|</span>
-                <p class="mb-0 text-muted ps-1">{{ $quoted_rfq->company_name }} @if (!empty($quoted_rfq->country))
-                    |{{ $quoted_rfq->country }}</p>
-                @endif
-            </div>
-            <div>
-                <!-- Dropdown Selector -->
+    <style>
+        .nav-line-tabs .nav-item .nav-link.active,
+        .nav-line-tabs .nav-item .nav-link:hover:not(.disabled),
+        .nav-line-tabs .nav-item.show .nav-link {
+            padding: 10px;
+        }
+    </style>
+    <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="pending_rfq_{{ $quoted_rfq->id }}"
+        role="tabpanel">
+        <div class="shadow-none card">
+            <div class="p-2 bg-light rounded-3 d-flex justify-content-between align-items-center w-100">
                 <div>
-                    <select class="form-select form-select-sm quotedRFQ" id="tabSelector">
-                        <option value="track_tab_{{ $quoted_rfq->id }}">Track</option>
-                        <option value="message_tab_{{ $quoted_rfq->id }}">Messages</option>
-                        <option value="delete_{{ $quoted_rfq->id }}">Delete</option>
-                    </select>
+                    <h3 class="mb-0 text-primary ps-3">
+                        @if (!Route::is('admin.archived.rfq'))
+                            RFQ#
+                        @endif{{ $quoted_rfq->rfq_code }}
+                    </h3>
+                </div>
+                <div>{{ $quoted_rfq->company_name }} @if (!empty($quoted_rfq->country))
+                        | {{ $quoted_rfq->country }}
+                    @endif
+                </div>
+                <div>
+                    <!-- Dropdown Selector -->
+                    <div>
+                        <select class="form-select form-select-sm pendingRFQ" id="tabSelector">
+                            <option value="track_tab_{{ $quoted_rfq->id }}">Track</option>
+                            {{-- <option value="message_tab_{{ $quoted_rfq->id }}">Messages</option> --}}
+                            <option value="delete_{{ $quoted_rfq->id }}">Delete</option>
+                        </select>
+                    </div>
+
                 </div>
             </div>
-        </div>
-        <!-- Tab Content -->
-        <div>
-            <div id="track_container_{{ $quoted_rfq->id }}" class="tab-visible_{{ $quoted_rfq->id }}">
-                @if ($quoted_rfq->rfq_type == 'rfq')
-                @php
-                $steps = [
-                [
-                'status' => 'rfq_created',
-                'label' => 'RFQ Created',
-                'icon' => 'fa fa-user-check',
-                'route' => '#assign-manager-' . $quoted_rfq->rfq_code,
-                'condition' => $quoted_rfq->status == 'rfq_created',
-                ],
-                [
-                'status' => 'assigned',
-                'label' => 'Salesman Assigned',
-                'icon' => 'fa fa-user-tie',
-                'route' => route('deal.convert', $quoted_rfq->id),
-                'condition' => $quoted_rfq->status == 'assigned',
-                ],
-                [
-                'status' => 'deal_created',
-                'label' => 'Deal Created',
-                'icon' => 'fa fa-file-alt',
-                'route' => route('deal-sas.show', $quoted_rfq->rfq_code),
-                'condition' => $quoted_rfq->status == 'deal_created',
-                ],
-                [
-                'status' => 'sas_created',
-                'label' => 'SAS Created',
-                'icon' => 'fa fa-edit',
-                'route' => route('deal-sas.edit', $quoted_rfq->rfq_code),
-                'condition' => $quoted_rfq->status == 'sas_created',
-                ],
-                [
-                'status' => 'sas_approved',
-                'label' => 'SAS Approved',
-                'icon' => 'fa fa-thumbs-up',
-                'route' => route('dealsasapprove', $quoted_rfq->rfq_code),
-                'condition' => $quoted_rfq->status == 'sas_created',
-                ],
-                [
-                'status' => 'quoted',
-                'label' => 'Quotation Sent',
-                'icon' => 'fa fa-paper-plane',
-                'route' => '#quotation-send-' . $quoted_rfq->rfq_code,
-                'condition' => $quoted_rfq->status == 'sas_approved',
-                ],
-                [
-                'status' => 'workorder_uploaded',
-                'label' => 'Work Order Uploaded',
-                'icon' => 'fa fa-file-upload',
-                'route' => '#Work-order-' . $quoted_rfq->rfq_code,
-                'condition' => $quoted_rfq->status == 'quoted',
-                ],
-                [
-                'status' => 'invoice_sent',
-                'label' => 'Invoice Sent',
-                'icon' => 'fa fa-file-invoice',
-                'route' => '#invoice-send-' . $quoted_rfq->rfq_code,
-                'condition' => $quoted_rfq->status == 'workorder_uploaded',
-                ],
-                [
-                'status' => 'proof_of_payment_uploaded',
-                'label' => 'Proof of Payment Uploaded',
-                'icon' => 'fa fa-receipt',
-                'route' => '#proofpayment-' . $quoted_rfq->rfq_code,
-                'condition' => $quoted_rfq->status == 'invoice_sent',
-                ],
-                ];
-                // Find current step index
-                $currentIndex = array_search($quoted_rfq->status, array_column($steps, 'status'));
-                @endphp
+            <!-- Tab Content -->
+            <div>
+                <div id="track_container_{{ $quoted_rfq->id }}" class="container-visible_{{ $quoted_rfq->id }}">
+                    @if ($quoted_rfq->rfq_type == 'rfq')
+                        @php
+                            $steps = [
+                                [
+                                    'status' => 'rfq_created',
+                                    'label' => 'RFQ Created',
+                                    'icon' => 'fa fa-user-check',
+                                    'route' => '#assign-manager-' . $quoted_rfq->rfq_code,
+                                    'condition' => $quoted_rfq->status == 'rfq_created',
+                                ],
+                                [
+                                    'status' => 'assigned',
+                                    'label' => 'Salesman Assigned',
+                                    'icon' => 'fa fa-user-tie',
+                                    'route' => route('deal.convert', $quoted_rfq->id),
+                                    'condition' => $quoted_rfq->status == 'assigned',
+                                ],
+                                [
+                                    'status' => 'deal_created',
+                                    'label' => 'Deal Created',
+                                    'icon' => 'fa fa-file-alt',
+                                    'route' => route('deal-sas.show', $quoted_rfq->rfq_code),
+                                    'condition' => $quoted_rfq->status == 'deal_created',
+                                ],
+                                [
+                                    'status' => 'sas_created',
+                                    'label' => 'SAS Created',
+                                    'icon' => 'fa fa-edit',
+                                    'route' => route('deal-sas.edit', $quoted_rfq->rfq_code),
+                                    'condition' => $quoted_rfq->status == 'sas_created',
+                                ],
+                                [
+                                    'status' => 'sas_approved',
+                                    'label' => 'SAS Approved',
+                                    'icon' => 'fa fa-thumbs-up',
+                                    'route' => route('dealsasapprove', $quoted_rfq->rfq_code),
+                                    'condition' => $quoted_rfq->status == 'sas_created',
+                                ],
+                                [
+                                    'status' => 'quoted',
+                                    'label' => 'Quotation Sent',
+                                    'icon' => 'fa fa-paper-plane',
+                                    'route' => '#quotation-send-' . $quoted_rfq->rfq_code,
+                                    'condition' => $quoted_rfq->status == 'sas_approved',
+                                ],
+                                [
+                                    'status' => 'workorder_uploaded',
+                                    'label' => 'Work Order Uploaded',
+                                    'icon' => 'fa fa-file-upload',
+                                    'route' => '#Work-order-' . $quoted_rfq->rfq_code,
+                                    'condition' => $quoted_rfq->status == 'quoted',
+                                ],
+                                [
+                                    'status' => 'invoice_sent',
+                                    'label' => 'Invoice Sent',
+                                    'icon' => 'fa fa-file-invoice',
+                                    'route' => '#invoice-send-' . $quoted_rfq->rfq_code,
+                                    'condition' => $quoted_rfq->status == 'workorder_uploaded',
+                                ],
+                                [
+                                    'status' => 'proof_of_payment_uploaded',
+                                    'label' => 'Proof of Payment Uploaded',
+                                    'icon' => 'fa fa-receipt',
+                                    'route' => '#proofpayment-' . $quoted_rfq->rfq_code,
+                                    'condition' => $quoted_rfq->status == 'invoice_sent',
+                                ],
+                            ];
+                            // Find current step index
+                            $currentIndex = array_search($quoted_rfq->status, array_column($steps, 'status'));
+                        @endphp
 
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-lg-12">
-                        <div class="trackNavbar">
-                            <ul class="nav nav-tabs justify-content-between" role="tablist">
-                                @php
-                                // Find current step index
-                                $currentIndex = array_search($quoted_rfq->status, array_column($steps, 'status'));
-                                @endphp
+                        <div class="row justify-content-center align-items-center">
+                            <div class="col-lg-12">
+                                <div class="trackNavbar">
+                                    <ul class="nav nav-tabs justify-content-between" role="tablist">
+                                        @php
+                                            // Find current step index
+                                            $currentIndex = array_search($quoted_rfq->status, array_column($steps, 'status'));
+                                        @endphp
 
-                                @foreach ($steps as $index => $step)
-                                @php
-                                $isActive = $index === $currentIndex;
-                                $isCompleted = $index < $currentIndex;
-                                    $isDisabled=$index> $currentIndex;
+                                        @foreach ($steps as $index => $step)
+                                            @php
+                                                $isActive = $index === $currentIndex;
+                                                $isCompleted = $index < $currentIndex;
+                                                $isDisabled = $index > $currentIndex;
 
-                                    // Set icon fallback
-                                    $icon = $step['icon'] ?? 'fas fa-truck-moving';
-                                    @endphp
+                                                // Set icon fallback
+                                                $icon = $step['icon'] ?? 'fas fa-truck-moving';
+                                            @endphp
 
-                                    <li
-                                        class="nav-item {{ $isDisabled ? 'inactive' : ($isActive ? 'active' : '') }}">
-                                        <a
-                                            class="nav-link {{ $isDisabled ? 'disabled' : 'ripple' }} {{ $isActive ? 'active' : '' }}">
-                                            <i class="{{ $icon }} {{ $isActive ? 'jump' : '' }}">
-                                                <span
-                                                    class="text-capitalize word-wrap">{{ strtolower($step['label']) }}</span>
-                                            </i>
-                                        </a>
-                                        <div class="line"></div>
-                                    </li>
-                                    @endforeach
-                            </ul>
+                                            <li
+                                                class="nav-item {{ $isDisabled ? 'inactive' : ($isActive ? 'active' : '') }}">
+                                                <a href="{{ $isDisabled ? '#' : $step['route'] }}"
+                                                    class="nav-link {{ $isDisabled ? 'disabled' : 'ripple' }} {{ $isActive ? 'active' : '' }}">
+                                                    <i class="{{ $icon }} {{ $isActive ? 'jump' : '' }}">
+                                                        <span
+                                                            class="text-capitalize word-wrap">{{ strtolower($step['label']) }}</span>
+                                                    </i>
+                                                </a>
+                                                <div class="line"></div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                @endif
+                    @endif
 
 
-                <hr class="mx-3">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="p-3 mx-auto">
-                            <!-- Client Information -->
+                    <div class="row">
+                        <div class="col-lg-12">
                             <div class="shadow-none card mb-8 border">
-                                <div class="py-0 card-header bg-light d-flex justify-content-between align-items-center">
+                                <div
+                                    class="py-0 card-header bg-light d-flex justify-content-between align-items-center">
                                     <h5 class="m-0 card-title fw-semibold">
                                         Client Information
                                     </h5>
@@ -186,22 +195,27 @@
                                                 <table class="table mb-0 table-bordered">
                                                     <tbody>
                                                         <tr>
-                                                            <th class="py-1 text-muted" scope="row">Tentative Budget</th>
+                                                            <th class="py-1 text-muted" scope="row">Tentative Budget
+                                                            </th>
                                                             <td class="py-1">:</td>
                                                             <td class="py-1">{{ $quoted_rfq->budget }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th class="py-1 text-muted" scope="row">Purchase Date</th>
+                                                            <th class="py-1 text-muted" scope="row">Purchase Date
+                                                            </th>
                                                             <td class="py-1">:</td>
-                                                            <td class="py-1">{{ $quoted_rfq->approximate_delivery_time }}</td>
+                                                            <td class="py-1">{{ $quoted_rfq->approximate_delivery_time }}
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                            <th class="py-1 text-muted" scope="row">Delivery Country</th>
+                                                            <th class="py-1 text-muted" scope="row">Delivery Country
+                                                            </th>
                                                             <td class="py-1">:</td>
                                                             <td class="py-1">{{ $quoted_rfq->shipping_country }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <th class="py-1 text-muted" scope="row">Delivery Zip Code</th>
+                                                            <th class="py-1 text-muted" scope="row">Delivery Zip Code
+                                                            </th>
                                                             <td class="py-1">:</td>
                                                             <td class="py-1">{{ $quoted_rfq->shipping_zip_code }}</td>
                                                         </tr>
@@ -233,17 +247,17 @@
                                             </thead>
                                             <tbody>
                                                 @if ($quoted_rfq->rfqProducts->count() > 0)
-                                                @foreach ($quoted_rfq->rfqProducts as $product)
-                                                <tr>
-                                                    <td class="ps-3">{{ $loop->iteration }}</td>
-                                                    <td>{{ $product->product_name }}</td>
-                                                    <td class="pe-3">{{ $product->qty }}</td>
-                                                </tr>
-                                                @endforeach
+                                                    @foreach ($quoted_rfq->rfqProducts as $product)
+                                                        <tr>
+                                                            <td class="ps-3">{{ $loop->iteration }}</td>
+                                                            <td>{{ $product->product_name }}</td>
+                                                            <td class="pe-3">{{ $product->qty }}</td>
+                                                        </tr>
+                                                    @endforeach
                                                 @else
-                                                <tr>
-                                                    <td colspan="3" class="text-center">No Data Available</td>
-                                                </tr>
+                                                    <tr>
+                                                        <td colspan="3" class="text-center">No Data Available</td>
+                                                    </tr>
                                                 @endif
                                             </tbody>
                                         </table>
@@ -252,34 +266,116 @@
                                 </div>
                             </div>
 
-                            <!-- Future Sections -->
-                            <div class="border shadow-none card mb-8">
-                                <div class="py-0 card-header bg-light">
-                                    <h5 class="m-0 card-title fw-semibold">
-                                        End User Information
-                                    </h5>
-                                </div>
-                                <div class="p-2 card-body px-4">
-                                    Upcoming
-                                </div>
-                            </div>
-
                             <div class="border shadow-none card">
-                                <div class="py-0 card-header bg-light">
-                                    <h5 class="m-0 card-title fw-semibold">
-                                        Additional Information
-                                    </h5>
-                                </div>
-                                <div class="p-2 card-body px-4">
-                                    Coming Soon
+                                <div class="table-responsive">
+                                    @php
+                                        $infoTables = [];
+
+                                        // Shipping Info
+                                        if (!empty($quoted_rfq->shipping_name)) {
+                                            $infoTables[] = [
+                                                'title' => 'Shipping Info',
+                                                'rows' => [
+                                                    ['Name', $quoted_rfq->shipping_name],
+                                                    [
+                                                        'Email',
+                                                        '<a href="mailto:' .
+                                                        $quoted_rfq->shipping_email .
+                                                        '" style="color:#ae0a46;">' .
+                                                        $quoted_rfq->shipping_email .
+                                                        '</a>',
+                                                    ],
+                                                    ['Phone', $quoted_rfq->shipping_phone],
+                                                    ['Company Name', $quoted_rfq->shipping_company_name],
+                                                    ['Designation', $quoted_rfq->shipping_designation],
+                                                    ['Address', $quoted_rfq->shipping_address],
+                                                    ['Country', $quoted_rfq->shipping_country],
+                                                    ['City', $quoted_rfq->shipping_city],
+                                                    ['Zip Code', $quoted_rfq->shipping_zip_code],
+                                                ],
+                                            ];
+                                        }
+
+                                        // End-User Info
+                                        if (!empty($quoted_rfq->end_user_name)) {
+                                            $infoTables[] = [
+                                                'title' => 'End-User Info',
+                                                'rows' => [
+                                                    ['Name', $quoted_rfq->end_user_name],
+                                                    [
+                                                        'Email',
+                                                        '<a href="mailto:' .
+                                                        $quoted_rfq->end_user_email .
+                                                        '" style="color:#ae0a46;">' .
+                                                        $quoted_rfq->end_user_email .
+                                                        '</a>',
+                                                    ],
+                                                    ['Phone', $quoted_rfq->end_user_phone],
+                                                    ['Company Name', $quoted_rfq->end_user_company_name],
+                                                    ['Designation', $quoted_rfq->end_user_designation],
+                                                    ['Address', $quoted_rfq->end_user_address],
+                                                    ['Country', $quoted_rfq->end_user_country],
+                                                    ['City', $quoted_rfq->end_user_city],
+                                                    ['Zip Code', $quoted_rfq->end_user_zip_code],
+                                                ],
+                                            ];
+                                        }
+
+                                        // Project Info
+                                        if (!empty($quoted_rfq->project_name)) {
+                                            $infoTables[] = [
+                                                'title' => 'Project Info',
+                                                'rows' => [
+                                                    ['Project', $quoted_rfq->project_name],
+                                                    ['Status', $quoted_rfq->project_status],
+                                                    ['Budget', $quoted_rfq->budget],
+                                                    ['Purchase Date', $quoted_rfq->approximate_delivery_time],
+                                                ],
+                                            ];
+                                        }
+                                    @endphp
+
+                                    @foreach (array_chunk($infoTables, 2) as $tablePair)
+                                        <table class="stack-table" width="100%" cellpadding="0" cellspacing="0"
+                                            border="0" style="margin-top:10px; table-layout:fixed;">
+                                            <tr>
+                                                @foreach ($tablePair as $table)
+                                                    <td class="u-col" valign="top" width="50%"
+                                                        style="padding: 0 10px; font-size: 12px;">
+                                                        <table width="100%" cellpadding="0" cellspacing="0"
+                                                            border="0"
+                                                            style="box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px;">
+                                                            <tr>
+                                                                <th colspan="2"
+                                                                    style="background-color:#d3d3d3; padding:10px; font-size:14px; text-align:center;">
+                                                                    {{ $table['title'] }}
+                                                                </th>
+                                                            </tr>
+                                                            @foreach ($table['rows'] as [$label, $value])
+                                                                <tr>
+                                                                    <th
+                                                                        style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400; width:130px;">
+                                                                        {{ $label }}
+                                                                    </th>
+                                                                    <td
+                                                                        style="padding:10px; border-bottom:1px solid #eee;">
+                                                                        {!! $value !!}
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </table>
+                                                    </td>
+                                                @endforeach
+                                            </tr>
+                                        </table>
+                                    @endforeach
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endforeach
