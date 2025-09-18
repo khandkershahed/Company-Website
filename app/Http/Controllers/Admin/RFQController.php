@@ -77,7 +77,7 @@ class RFQController extends Controller
         $baseQuery = Rfq::where('rfq_type', 'rfq');
 
         // Count total RFQs
-        $rfq_count = (clone $baseQuery)->count();
+
         $companies = (clone $baseQuery)->whereNotNull('company_name')->distinct('company_name')->pluck('company_name');
         $countries = (clone $baseQuery)->whereNotNull('country')->distinct('country')->pluck('country');
         // Get new customers where 'confirmation' is null
@@ -103,8 +103,8 @@ class RFQController extends Controller
         }
 
         // Fetch filtered RFQs
+        $rfq_count = (clone $baseQuery)->count();
         $rfqs = $baseQuery->latest()->get();
-
         // Separate RFQs by status
         $pendings = $rfqs->where('status', 'rfq_created');
         $quoteds  = $rfqs->where('status', 'quoted');
@@ -1492,7 +1492,7 @@ class RFQController extends Controller
 
         // Get users and emails
         $users = User::whereJsonContains('department', ['business', 'logistics'])->get();
-        $user_emails = User::whereJsonContains('department', ['business'])
+        $user_emails = User::whereJsonContains('department', ['business', 'logistics'])
             ->whereIn('role', ['manager', 'admin'])
             ->pluck('email')
             ->toArray();

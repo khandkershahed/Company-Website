@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Site;
 use App\Models\User;
+use App\Mail\TestMail;
 use App\Models\Admin\Faq;
 use App\Models\Admin\Rfq;
 use App\Models\Admin\Row;
@@ -43,6 +44,7 @@ use App\Models\Admin\SolutionDetail;
 use App\Models\Admin\SubSubCategory;
 use App\Models\Admin\TechnologyData;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Admin\PortfolioClient;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
@@ -279,6 +281,7 @@ class HomeController extends Controller
     public function hardwareInfo()
     {
         $data['hardware_info'] = HardwareInfoPage::where('type', 'info')->latest()->firstOrFail();
+
         $data['tab_one'] = Row::where('id', $data['hardware_info']->row_five_tab_one_id)->first();
         if (!empty($data['hardware_info'])) {
             $data['tabIds'] = [
@@ -287,12 +290,17 @@ class HomeController extends Controller
                 'tab_four' => Row::where('id', $data['hardware_info']->row_five_tab_four_id)->first(),
             ];
         }
-        $data['learnmore'] = LearnMore::orderBy('id', 'DESC')->select('learn_mores.industry_header', 'learn_mores.consult_title', 'learn_mores.consult_short_des', 'learn_mores.background_image')->first();
-        $data['categories'] = Category::with('subCathardwareProducts')
-            ->join('products', 'categories.id', '=', 'products.cat_id')
+
+        // $data['categories'] = Category::with('subCathardwareProducts')
+        //     ->join('products', 'categories.id', '=', 'products.cat_id')
+        //     ->where('products.product_type', '=', 'hardware')
+        //     ->select('categories.id', 'categories.slug', 'categories.title', 'categories.image')
+        //     ->distinct()->inRandomOrder()->limit(12)->get();
+        $data['categories'] = DB::table('categories')->join('products', 'categories.id', '=', 'products.cat_id')
             ->where('products.product_type', '=', 'hardware')
             ->select('categories.id', 'categories.slug', 'categories.title', 'categories.image')
             ->distinct()->inRandomOrder()->limit(12)->get();
+
         $data['products'] = Product::where('product_type', 'hardware')->where('product_status', 'product')
             ->select('products.id', 'products.rfq', 'products.slug', 'products.name', 'products.thumbnail', 'products.price', 'products.discount')
             ->inRandomOrder()
@@ -384,20 +392,33 @@ class HomeController extends Controller
             'tab_four' => Row::find($hardwareInfo->row_five_tab_four_id),
         ];
 
-        // Categories with subcategories and products
-        $data['categories'] = Category::with(['subCathardwareProducts', 'products' => function ($query) {
-            $query->where('product_type', 'hardware');
-        }])
-            ->whereHas('products', function ($query) {
-                $query->where('product_type', 'hardware');
-            })
-            ->select('id', 'slug', 'title', 'image')
-            ->inRandomOrder()
-            ->distinct()
-            ->limit(12)
-            ->get();
+
+        // $data['categories']  = DB::table('categories')
+        //     ->join('products', 'categories.id', '=', 'products.cat_id')
+        //     ->where('products.product_type', 'hardware')
+        //     ->select('id', 'slug', 'title', 'image')
+        //     ->distinct()
+        //     ->inRandomOrder()
+        //     ->limit(12)
+        //     ->get();
+
+        $data['categories'] = DB::table('categories')->join('products', 'categories.id', '=', 'products.cat_id')
+            ->where('products.product_type', '=', 'hardware')
+            ->select('categories.id', 'categories.slug', 'categories.title', 'categories.image')
+            ->distinct()->inRandomOrder()->limit(12)->get();
 
 
+
+
+        // $data['categories'] = Category::with(['catHardwareProducts' => function ($query) {
+        //     $query->where('product_type', 'hardware')
+        //         ->where('product_status', 'product');
+        // }])->whereHas('catHardwareProducts', function ($query) {
+        //     $query->where('product_type', 'hardware')
+        //         ->where('product_status', 'product');
+        // })->get();
+
+        // dd($data['categories']);
 
         // Products
         $data['products'] = Product::where([
@@ -1230,5 +1251,23 @@ class HomeController extends Controller
             ->resizeCanvas(1200, 630, 'center', false, 'ffffff'); // Optional: Add padding color if needed
 
         return $img->response('jpg');
+    }
+
+    public function testEmail()
+    {
+        return view('frontend.pages.testEmail');
+    }
+
+    public function emailSend(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        $message = "This is a test email sent to " . $request->email;
+
+        Mail::to($request->email)->send(new TestMail($message));
+
+        return back()->with('success', 'Test email sent successfully to ' . $request->email);
     }
 }

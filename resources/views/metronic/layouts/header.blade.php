@@ -1,10 +1,8 @@
 <div id="kt_header" class="shadow-sm header align-items-stretch">
-
     <div class="container-fluid d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show aside menu">
             <div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px"
                 id="kt_aside_mobile_toggle">
-
                 <span class="svg-icon svg-icon-1">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none">
@@ -15,7 +13,6 @@
                             fill="currentColor" />
                     </svg>
                 </span>
-
             </div>
         </div>
         {{-- Breadcrumb --}}

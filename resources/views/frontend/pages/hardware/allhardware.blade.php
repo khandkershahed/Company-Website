@@ -297,13 +297,13 @@
                         <div class="nav-tabs-navigation">
                             <div class="nav-tabs-wrapper">
                                 <ul class="nav nav-tabs row gx-0" data-tabs="tabs">
-                                    <li class="nav-item col">
+                                    {{-- <li class="nav-item col">
                                         <a class="py-3 nav-link active" href="#categories" data-bs-toggle="tab">
                                             Categories
                                         </a>
-                                    </li>
+                                    </li> --}}
                                     <li class="col nav-item">
-                                        <a class="py-3 nav-link" href="#brand" data-bs-toggle="tab"> Brand </a>
+                                        <a class="py-3 nav-link active" href="#brand" data-bs-toggle="tab"> Brand </a>
                                     </li>
                                     <li class="col nav-item">
                                         <a class="py-3 nav-link" href="#industry" data-bs-toggle="tab"> Industry </a>
@@ -348,16 +348,16 @@
                     </div>
                 </div>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="categories">
+                    {{-- <div class="tab-pane active" id="categories"> --}}
                         {{-- Categories Sub Tab --}}
-                        <div class="container p-0">
+                        {{-- <div class="container p-0">
                             <div class="row gx-0">
                                 <div class="col-md-3" style="background-color: #f7f7f7;border-right: 1px solid #d7d6d6;">
                                     <!-- Tabs nav -->
                                     <div class="bg-white nav flex-column nav-pills nav-pills-custom active"
                                         id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                         @foreach ($categories as $key => $item)
-                                            @if (count($item->subCathardwareProducts) > 0)
+                                            @if (count($item->products) > 0)
                                                 <a class="nav-link discover_tab_sub rounded-0 {{ $key == 0 ? 'active' : '' }}"
                                                     id="v-pills-home-tab" data-bs-toggle="pill"
                                                     href="#category-{{ $item->id }}" role="tab"
@@ -373,7 +373,7 @@
                                     <!-- Tabs content -->
                                     <div class="p-0 tab-content" id="v-pills-tabContent">
                                         @foreach ($categories as $key => $item)
-                                            @if (count($item->subCathardwareProducts) > 0)
+                                            @if (count($item->products) > 0)
                                                 <div class="tab-pane fade rounded-0 bg-white {{ $key == 0 ? 'active show' : '' }}"
                                                     id="category-{{ $item->id }}" role="tabpanel"
                                                     aria-labelledby="v-pills-profile-tab">
@@ -382,7 +382,7 @@
                                                             <div class="table-responsive">
                                                                 <table class="table productDT2">
                                                                     <tbody>
-                                                                        @foreach ($item->subCathardwareProducts as $key => $product)
+                                                                        @foreach ($item->products as $key => $product)
                                                                             @if ($key <= 12)
                                                                                 <tr>
                                                                                     <td>{{ ++$key }}</td>
@@ -410,8 +410,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane" id="brand">
+                    </div> --}}
+                    <div class="tab-pane active" id="brand">
                         {{-- Brand Sub Tab --}}
                         <div class="container p-0">
                             <div class="row gx-0">

@@ -1,7 +1,7 @@
 <style>
     .rfq-box {
         width: 100%;
-        height: 300px;
+        height: 243px;
         flex-shrink: 0;
         border-radius: 24px;
         background: #FFF;
@@ -16,7 +16,8 @@
     }
 
     .rfq-status {
-        height: 300px;
+        height: 245px;
+        /* height: 300px; */
         border-radius: 24px;
         background: #FFF;
         display: flex;
@@ -32,8 +33,8 @@
 
     .rfq-icon {
         display: flex;
-        width: 80px;
-        height: 80px;
+        width: 50px;
+        height: 50px;
         padding: 24px;
         justify-content: center;
         align-items: center;
@@ -167,6 +168,10 @@
         font-size: 14px;
     }
 
+    .nav-line-tabs .nav-item .nav-link {
+        padding: 5px 12px !important;
+    }
+
     .nav-line-tabs .nav-item .nav-link.active,
     .nav-line-tabs .nav-item .nav-link:hover:not(.disabled),
     .nav-line-tabs .nav-item.show .nav-link {
@@ -174,7 +179,8 @@
         border-radius: 8px;
         border: 1px solid #F2F4F6 !important;
         border: 0;
-        padding: 11px !important;
+        padding: 5px 12px !important;
+        /* padding: 11px !important; */
         color: #000000 !important;
     }
 
@@ -456,4 +462,5 @@
         line-height: 30px;
         cursor: pointer;
     }
+
 </style>

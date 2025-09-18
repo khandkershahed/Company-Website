@@ -17,9 +17,13 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('zk:sync-attendance')->dailyAt('12:15');
+        // $schedule->command('zk:sync-attendance')
+        //      ->hourly()
+        //      ->between('3.09', '22:09');
         $schedule->command('zk:sync-attendance')
-             ->hourly()
-             ->between('3.09', '22:09');
+            ->everyFiveMinutes()
+            ->between('08:40', '12:25')
+            ->withoutOverlapping();
     }
 
 
@@ -38,6 +42,4 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\SyncZKTecoAttendance::class,
     ];
-
-
 }
