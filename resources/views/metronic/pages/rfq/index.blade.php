@@ -122,10 +122,30 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
                             {{-- <img src="{{ asset('backend/assets/images/rfq/Rectangle_13.svg') }}" alt=""> --}}
-                            <h5 class="mb-0 fw-normal ps-3">India</h5>
+                            <h5 class="mb-0 fw-normal ps-3">United States</h5>
+                        </div>
+                        <div>
+                            <span>12</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            {{-- <img src="{{ asset('backend/assets/images/rfq/Rectangle_13.svg') }}" alt=""> --}}
+                            <h5 class="mb-0 fw-normal ps-3">Bangladesh</h5>
                         </div>
                         <div>
                             <span>08</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            {{-- <img src="{{ asset('backend/assets/images/rfq/Rectangle_13.svg') }}" alt=""> --}}
+                            <h5 class="mb-0 fw-normal ps-3">India</h5>
+                        </div>
+                        <div>
+                            <span>15</span>
                         </div>
                     </div>
                     <hr>

@@ -23,7 +23,7 @@
                 </div>
                 <div>
                     <!-- Dropdown Selector -->
-                    <div> 
+                    <div>
                         <select class="form-select form-select-sm pendingRFQ" id="tabSelector">
                             <option value="track_tab_{{ $quoted_rfq->id }}">Track</option>
                             {{-- <option value="message_tab_{{ $quoted_rfq->id }}">Messages</option> --}}
@@ -53,27 +53,7 @@
                                     'route' => route('deal.convert', $quoted_rfq->id),
                                     'condition' => $quoted_rfq->status == 'assigned',
                                 ],
-                                [
-                                    'status' => 'deal_created',
-                                    'label' => 'Deal Created',
-                                    'icon' => 'fa fa-file-alt',
-                                    'route' => route('deal-sas.show', $quoted_rfq->rfq_code),
-                                    'condition' => $quoted_rfq->status == 'deal_created',
-                                ],
-                                [
-                                    'status' => 'sas_created',
-                                    'label' => 'SAS Created',
-                                    'icon' => 'fa fa-edit',
-                                    'route' => route('deal-sas.edit', $quoted_rfq->rfq_code),
-                                    'condition' => $quoted_rfq->status == 'sas_created',
-                                ],
-                                [
-                                    'status' => 'sas_approved',
-                                    'label' => 'SAS Approved',
-                                    'icon' => 'fa fa-thumbs-up',
-                                    'route' => route('dealsasapprove', $quoted_rfq->rfq_code),
-                                    'condition' => $quoted_rfq->status == 'sas_created',
-                                ],
+
                                 [
                                     'status' => 'quoted',
                                     'label' => 'Quotation Sent',
@@ -81,27 +61,27 @@
                                     'route' => '#quotation-send-' . $quoted_rfq->rfq_code,
                                     'condition' => $quoted_rfq->status == 'sas_approved',
                                 ],
-                                [
-                                    'status' => 'workorder_uploaded',
-                                    'label' => 'Work Order Uploaded',
-                                    'icon' => 'fa fa-file-upload',
-                                    'route' => '#Work-order-' . $quoted_rfq->rfq_code,
-                                    'condition' => $quoted_rfq->status == 'quoted',
-                                ],
-                                [
-                                    'status' => 'invoice_sent',
-                                    'label' => 'Invoice Sent',
-                                    'icon' => 'fa fa-file-invoice',
-                                    'route' => '#invoice-send-' . $quoted_rfq->rfq_code,
-                                    'condition' => $quoted_rfq->status == 'workorder_uploaded',
-                                ],
-                                [
-                                    'status' => 'proof_of_payment_uploaded',
-                                    'label' => 'Proof of Payment Uploaded',
-                                    'icon' => 'fa fa-receipt',
-                                    'route' => '#proofpayment-' . $quoted_rfq->rfq_code,
-                                    'condition' => $quoted_rfq->status == 'invoice_sent',
-                                ],
+                                // [
+                                //     'status' => 'workorder_uploaded',
+                                //     'label' => 'Work Order Uploaded',
+                                //     'icon' => 'fa fa-file-upload',
+                                //     'route' => '#Work-order-' . $quoted_rfq->rfq_code,
+                                //     'condition' => $quoted_rfq->status == 'quoted',
+                                // ],
+                                // [
+                                //     'status' => 'invoice_sent',
+                                //     'label' => 'Invoice Sent',
+                                //     'icon' => 'fa fa-file-invoice',
+                                //     'route' => '#invoice-send-' . $quoted_rfq->rfq_code,
+                                //     'condition' => $quoted_rfq->status == 'workorder_uploaded',
+                                // ],
+                                // [
+                                //     'status' => 'proof_of_payment_uploaded',
+                                //     'label' => 'Proof of Payment Uploaded',
+                                //     'icon' => 'fa fa-receipt',
+                                //     'route' => '#proofpayment-' . $quoted_rfq->rfq_code,
+                                //     'condition' => $quoted_rfq->status == 'invoice_sent',
+                                // ],
                             ];
                             // Find current step index
                             $currentIndex = array_search($quoted_rfq->status, array_column($steps, 'status'));
@@ -110,32 +90,31 @@
                         <div class="row justify-content-center align-items-center">
                             <div class="col-lg-12">
                                 <div class="trackNavbar">
-                                    <ul class="nav nav-tabs justify-content-between" role="tablist">
-                                        @php
-                                            // Find current step index
-                                            $currentIndex = array_search($quoted_rfq->status, array_column($steps, 'status'));
-                                        @endphp
-
+                                    <ul class="nav nav-tabs justify-content-between position-relative" role="tablist">
                                         @foreach ($steps as $index => $step)
                                             @php
                                                 $isActive = $index === $currentIndex;
                                                 $isCompleted = $index < $currentIndex;
                                                 $isDisabled = $index > $currentIndex;
-
-                                                // Set icon fallback
                                                 $icon = $step['icon'] ?? 'fas fa-truck-moving';
                                             @endphp
 
                                             <li
-                                                class="nav-item {{ $isDisabled ? 'inactive' : ($isActive ? 'active' : '') }}">
+                                                class="nav-item step-item position-relative {{ $isDisabled ? 'inactive' : ($isActive ? 'active' : 'completed') }}">
                                                 <a href="{{ $isDisabled ? '#' : $step['route'] }}"
-                                                    class="nav-link {{ $isDisabled ? 'disabled' : 'ripple' }} {{ $isActive ? 'active' : '' }}">
-                                                    <i class="{{ $icon }} {{ $isActive ? 'jump' : '' }}">
-                                                        <span
-                                                            class="text-capitalize word-wrap">{{ strtolower($step['label']) }}</span>
-                                                    </i>
+                                                    class="nav-link {{ $isDisabled ? 'disabled' : ($isActive ? 'active' : '') }}">
+                                                    <i class="{{ $icon }} {{ $isActive ? 'jump' : '' }}"></i>
+                                                    <span
+                                                        class="step-label text-capitalize word-wrap">{{ strtolower($step['label']) }}</span>
                                                 </a>
-                                                <div class="line"></div>
+
+                                                @if ($index < count($steps) - 1)
+                                                    {{-- Progress line to next step --}}
+                                                    <div
+                                                        class="progress-line
+                                {{ $index < $currentIndex ? 'progress-full' : ($index == $currentIndex ? 'progress-half' : '') }}">
+                                                    </div>
+                                                @endif
                                             </li>
                                         @endforeach
                                     </ul>
@@ -153,9 +132,7 @@
                                     <h5 class="m-0 card-title fw-semibold">
                                         Client Information
                                     </h5>
-                                    <div>
-                                        <button class="btn btn-light bg-white py-2">Details</button>
-                                    </div>
+
                                 </div>
                                 <div class="p-2 card-body">
                                     <div class="row px-7">
@@ -204,7 +181,8 @@
                                                             <th class="py-1 text-muted" scope="row">Purchase Date
                                                             </th>
                                                             <td class="py-1">:</td>
-                                                            <td class="py-1">{{ $quoted_rfq->approximate_delivery_time }}
+                                                            <td class="py-1">
+                                                                {{ $quoted_rfq->approximate_delivery_time }}
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -217,7 +195,8 @@
                                                             <th class="py-1 text-muted" scope="row">Delivery Zip Code
                                                             </th>
                                                             <td class="py-1">:</td>
-                                                            <td class="py-1">{{ $quoted_rfq->shipping_zip_code }}</td>
+                                                            <td class="py-1">{{ $quoted_rfq->shipping_zip_code }}
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

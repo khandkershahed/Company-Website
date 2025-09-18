@@ -52,55 +52,28 @@
                                     'route' => route('deal.convert', $rfq->id),
                                     'condition' => $rfq->status == 'assigned',
                                 ],
-                                [
-                                    'status' => 'deal_created',
-                                    'label' => 'Deal Created',
-                                    'icon' => 'fa fa-file-alt',
-                                    'route' => route('deal-sas.show', $rfq->rfq_code),
-                                    'condition' => $rfq->status == 'deal_created',
-                                ],
-                                [
-                                    'status' => 'sas_created',
-                                    'label' => 'SAS Created',
-                                    'icon' => 'fa fa-edit',
-                                    'route' => route('deal-sas.edit', $rfq->rfq_code),
-                                    'condition' => $rfq->status == 'sas_created',
-                                ],
-                                [
-                                    'status' => 'sas_approved',
-                                    'label' => 'SAS Approved',
-                                    'icon' => 'fa fa-thumbs-up',
-                                    'route' => route('dealsasapprove', $rfq->rfq_code),
-                                    'condition' => $rfq->status == 'sas_created',
-                                ],
-                                [
-                                    'status' => 'quoted',
-                                    'label' => 'Quotation Sent',
-                                    'icon' => 'fa fa-paper-plane',
-                                    'route' => '#quotation-send-' . $rfq->rfq_code,
-                                    'condition' => $rfq->status == 'sas_approved',
-                                ],
-                                [
-                                    'status' => 'workorder_uploaded',
-                                    'label' => 'Work Order Uploaded',
-                                    'icon' => 'fa fa-file-upload',
-                                    'route' => '#Work-order-' . $rfq->rfq_code,
-                                    'condition' => $rfq->status == 'quoted',
-                                ],
-                                [
-                                    'status' => 'invoice_sent',
-                                    'label' => 'Invoice Sent',
-                                    'icon' => 'fa fa-file-invoice',
-                                    'route' => '#invoice-send-' . $rfq->rfq_code,
-                                    'condition' => $rfq->status == 'workorder_uploaded',
-                                ],
-                                [
-                                    'status' => 'proof_of_payment_uploaded',
-                                    'label' => 'Proof of Payment Uploaded',
-                                    'icon' => 'fa fa-receipt',
-                                    'route' => '#proofpayment-' . $rfq->rfq_code,
-                                    'condition' => $rfq->status == 'invoice_sent',
-                                ],
+                                // [
+                                //     'status' => 'deal_created',
+                                //     'label' => 'Deal Created',
+                                //     'icon' => 'fa fa-file-alt',
+                                //     'route' => route('deal-sas.show', $rfq->rfq_code),
+                                //     'condition' => $rfq->status == 'deal_created',
+                                // ],
+                                // [
+                                //     'status' => 'sas_created',
+                                //     'label' => 'SAS Created',
+                                //     'icon' => 'fa fa-edit',
+                                //     'route' => route('deal-sas.edit', $rfq->rfq_code),
+                                //     'condition' => $rfq->status == 'sas_created',
+                                // ],
+                                // [
+                                //     'status' => 'sas_approved',
+                                //     'label' => 'SAS Approved',
+                                //     'icon' => 'fa fa-thumbs-up',
+                                //     'route' => route('dealsasapprove', $rfq->rfq_code),
+                                //     'condition' => $rfq->status == 'sas_created',
+                                // ],
+
                             ];
                             // Find current step index
                             $currentIndex = array_search($rfq->status, array_column($steps, 'status'));
