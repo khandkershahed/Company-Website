@@ -26,7 +26,6 @@
                     <div>
                         <select class="form-select form-select-sm pendingRFQ" id="tabSelector">
                             <option value="track_tab_{{ $rfq->id }}">Track</option>
-                            {{-- <option value="message_tab_{{ $rfq->id }}">Messages</option> --}}
                             <option value="delete_{{ $rfq->id }}">Delete</option>
                         </select>
                     </div>
@@ -153,9 +152,9 @@
                                     <h5 class="m-0 card-title fw-semibold">
                                         Client Information
                                     </h5>
-                                    <div>
+                                    {{-- <div>
                                         <button class="btn btn-light bg-white py-2">Details</button>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="p-2 card-body">
                                     <div class="row px-7">

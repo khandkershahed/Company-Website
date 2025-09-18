@@ -401,12 +401,7 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: '{{ route(
-                                        'admin.rfq.destroy',
-                                        '
-                                                                                                        ',
-                                    ) }}/' +
-                                        rfqId,
+                                    url: '{{ route('admin.rfq.destroy', ['rfq' => '__rfq_id__']) }}'.replace('__rfq_id__', rfqId),
                                     type: 'DELETE',
                                     data: {
                                         _token: '{{ csrf_token() }}'

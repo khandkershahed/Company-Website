@@ -168,6 +168,10 @@
         font-size: 14px;
     }
 
+    .nav-line-tabs .nav-item .nav-link {
+        padding: 5px 12px !important;
+    }
+
     .nav-line-tabs .nav-item .nav-link.active,
     .nav-line-tabs .nav-item .nav-link:hover:not(.disabled),
     .nav-line-tabs .nav-item.show .nav-link {
@@ -175,7 +179,8 @@
         border-radius: 8px;
         border: 1px solid #F2F4F6 !important;
         border: 0;
-        padding: 11px !important;
+        padding: 5px 12px !important;
+        /* padding: 11px !important; */
         color: #000000 !important;
     }
 

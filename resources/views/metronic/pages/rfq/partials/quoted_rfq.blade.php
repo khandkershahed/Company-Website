@@ -23,7 +23,7 @@
                 </div>
                 <div>
                     <!-- Dropdown Selector -->
-                    <div>
+                    <div> 
                         <select class="form-select form-select-sm pendingRFQ" id="tabSelector">
                             <option value="track_tab_{{ $quoted_rfq->id }}">Track</option>
                             {{-- <option value="message_tab_{{ $quoted_rfq->id }}">Messages</option> --}}
