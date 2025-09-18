@@ -281,6 +281,7 @@ class HomeController extends Controller
     public function hardwareInfo()
     {
         $data['hardware_info'] = HardwareInfoPage::where('type', 'info')->latest()->firstOrFail();
+
         $data['tab_one'] = Row::where('id', $data['hardware_info']->row_five_tab_one_id)->first();
         if (!empty($data['hardware_info'])) {
             $data['tabIds'] = [
@@ -289,12 +290,17 @@ class HomeController extends Controller
                 'tab_four' => Row::where('id', $data['hardware_info']->row_five_tab_four_id)->first(),
             ];
         }
-        $data['learnmore'] = LearnMore::orderBy('id', 'DESC')->select('learn_mores.industry_header', 'learn_mores.consult_title', 'learn_mores.consult_short_des', 'learn_mores.background_image')->first();
-        $data['categories'] = Category::with('subCathardwareProducts')
-            ->join('products', 'categories.id', '=', 'products.cat_id')
+
+        // $data['categories'] = Category::with('subCathardwareProducts')
+        //     ->join('products', 'categories.id', '=', 'products.cat_id')
+        //     ->where('products.product_type', '=', 'hardware')
+        //     ->select('categories.id', 'categories.slug', 'categories.title', 'categories.image')
+        //     ->distinct()->inRandomOrder()->limit(12)->get();
+        $data['categories'] = DB::table('categories')->join('products', 'categories.id', '=', 'products.cat_id')
             ->where('products.product_type', '=', 'hardware')
             ->select('categories.id', 'categories.slug', 'categories.title', 'categories.image')
             ->distinct()->inRandomOrder()->limit(12)->get();
+
         $data['products'] = Product::where('product_type', 'hardware')->where('product_status', 'product')
             ->select('products.id', 'products.rfq', 'products.slug', 'products.name', 'products.thumbnail', 'products.price', 'products.discount')
             ->inRandomOrder()
@@ -387,19 +393,25 @@ class HomeController extends Controller
         ];
 
         // Categories with subcategories and products
-        $data['categories'] = Category::with(['subCathardwareProducts', 'products' => function ($query) {
-            $query->where('product_type', 'hardware');
-        }])
-            ->whereHas('products', function ($query) {
-                $query->where('product_type', 'hardware');
-            })
-            ->select('id', 'slug', 'title', 'image')
-            ->inRandomOrder()
+        // Step 1: Get 12 unique category IDs that have hardware products
+        $categoryIds = DB::table('categories')
+            ->join('products', 'categories.id', '=', 'products.cat_id')
+            ->where('products.product_type', '=', 'hardware')
             ->distinct()
+            ->inRandomOrder()
             ->limit(12)
+            ->pluck('categories.id');
+
+        // Step 2: Load categories with their subCathardwareProducts and filtered products
+        $data['categories'] = Category::with([
+            'subCathardwareProducts', // assuming this returns hardware-type products in subcategories
+            'products' => function ($query) {
+                $query->where('product_type', 'hardware');
+            }
+        ])
+            ->whereIn('id', $categoryIds)
+            ->select('id', 'slug', 'title', 'image')
             ->get();
-
-
 
         // Products
         $data['products'] = Product::where([
