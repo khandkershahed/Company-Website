@@ -28,7 +28,7 @@
                                 <img src="{{ asset('backend/assets/images/rfq/Total_RFQ.svg') }}" alt="" >
                             </div>
                             <div class="mt-4">
-                                <h1 class="m-title mb-0">Total RFQ</h1>
+                                <h1 class="mb-0 m-title">Total RFQ</h1>
                                 <p class="m-p-title">{{ date('d M , Y') }}</p>
                                 <div class="d-flex align-items-center">
                                     <span class="d-flex align-items-center cl-badge ">
@@ -82,7 +82,7 @@
                                 <img src="{{ asset('/images/Group.svg') }}" alt="">
                             </div>
                             <div class="mt-4">
-                                <h1 class="m-title mb-0">RFQ</h1>
+                                <h1 class="mb-0 m-title">RFQ</h1>
                                 <p class="m-p-title">Status</p>
                             </div>
                         </div>
@@ -158,7 +158,7 @@
             <div class="shadow-none card card-flush" style="border-radius: 24px;">
                 <div class="p-0 card-body">
                     <div class="d-flex flex-stack justify-content-between align-items-center">
-                        <div class="px-10 p-4 d-flex align-items-center me-3 rounded-4">
+                        <div class="p-4 px-10 d-flex align-items-center me-3 rounded-4">
                             <div class="flex-grow-1">
                                 <a href="#allRFQ">
                                     <span class="rfq-e-title">RFQ Filtered Details</span> <br />
@@ -193,7 +193,7 @@
         <div class="col-4 pe-0">
             <div class="shadow-none card card-flush" style="border-radius: 24px;">
                 <div class="p-0 card-body">
-                    <div class="px-10 p-6 d-flex flex-stack justify-content-between align-items-center">
+                    <div class="p-6 px-10 d-flex flex-stack justify-content-between align-items-center">
                         <div class="me-3 rounded-4">
                             <select class="form-select" data-hide-search="true" data-allow-clear="true"
                                 data-placeholder="Year">

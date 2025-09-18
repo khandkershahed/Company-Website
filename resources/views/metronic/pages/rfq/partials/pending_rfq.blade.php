@@ -119,14 +119,14 @@
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="shadow-none card mb-8 border">
+                            <div class="mb-8 border shadow-none card">
                                 <div
                                     class="py-0 card-header bg-light d-flex justify-content-between align-items-center">
                                     <h5 class="m-0 card-title fw-semibold">
                                         Client Information
                                     </h5>
                                     {{-- <div>
-                                        <button class="btn btn-light bg-white py-2">Details</button>
+                                        <button class="py-2 bg-white btn btn-light">Details</button>
                                     </div> --}}
                                 </div>
                                 <div class="p-2 card-body">
@@ -201,14 +201,14 @@
                             </div>
 
                             <!-- Product Information -->
-                            <div class="border shadow-none card mb-8">
+                            <div class="mb-8 border shadow-none card">
                                 <div class="py-0 card-header bg-light">
                                     <h5 class="m-0 card-title fw-semibold">
                                         Product Information
                                     </h5>
                                 </div>
-                                <div class="p-2 card-body px-4">
-                                    <div class="table-responsive px-4 table-border">
+                                <div class="p-2 px-4 card-body">
+                                    <div class="px-4 table-responsive table-border">
                                         <table class="table mb-0 table-bordered">
                                             <thead style="border-bottom: 1px solid #E2E2E2;">
                                                 <tr>
@@ -235,6 +235,18 @@
                                         </table>
 
                                     </div>
+                                </div>
+                            </div>
+
+                            <!-- Future Sections -->
+                            <div class="mb-8 border shadow-none card">
+                                <div class="py-0 card-header bg-light">
+                                    <h5 class="m-0 card-title fw-semibold">
+                                        End User Information
+                                    </h5>
+                                </div>
+                                <div class="p-2 px-4 card-body">
+                                    Upcoming
                                 </div>
                             </div>
 

@@ -69,7 +69,7 @@
                                                 <th class="text-center">Total</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody style="background-color: #fff;">
                                             <tr class="border-bottom">
                                                 <td class="ps-3">Banks</td>
                                                 <td class="text-center">0</td>
@@ -99,7 +99,7 @@
                                                 <th class="text-center">Total</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody style="background-color: #fff;">
                                             <tr class="border-bottom">
                                                 <td class="ps-3">Banks</td>
                                                 <td class="text-center">0</td>
@@ -129,7 +129,7 @@
                                                 <th class="text-center">Total</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody style="background-color: #fff;">
                                             <tr class="border-bottom">
                                                 <td class="ps-3">Banks</td>
                                                 <td class="text-center">0</td>
@@ -155,10 +155,10 @@
                 </div>
             </div>
             <div class="col-lg-12">
-                <div class="mt-10 bg-transparent shadow-none card card-rounded">
+                <div class="mt-10 shadow-none card card-rounded">
                     <div class="px-0 card-body">
                         <div class="table-responsive">
-                            <table id="clientInfo" class="table border rounded table-striped table-row-bordered gy-5 gs-7 dataTable no-footer" aria-describedby="clientInfo_info">
+                            <table id="clientInfo" class="table border rounded table-row-bordered gy-5 gs-7 dataTable no-footer" aria-describedby="clientInfo_info">
                                 <thead>
                                     <tr>
                                         <th class="fw-bold">Sl</th>
@@ -178,7 +178,7 @@
                                     </tr>
 
                                 </thead>
-                                <tbody>
+                                <tbody style="background-color: #fff;">
                                     <tr class="odd">
                                         <td class="sorting_1">01</td>
                                         <td>EPG</td>
