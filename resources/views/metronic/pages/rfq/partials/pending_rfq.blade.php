@@ -1,7 +1,7 @@
 @foreach ($rfqs as $rfq)
 <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="pending_rfq_{{ $rfq->id }}"
     role="tabpanel">
-    <div class="shadow-none card border-0">
+    <div class="border-0 shadow-none card">
         <div class="p-4 bg-light rounded-3 d-flex justify-content-between align-items-center w-100">
             <div class="d-flex align-items-center">
                 <p class="mb-0 text-black ps-3">
@@ -132,17 +132,17 @@
                 </div>
                 @endif
                 <hr class="mx-3">
-                <div class="row mt-5">
+                <div class="mt-5 row">
                     <div class="col-lg-12">
                         <div class="p-3 mx-auto">
                             <!-- Client Information -->
-                            <div class="shadow-none card mb-8 border">
+                            <div class="mb-8 border shadow-none card">
                                 <div class="py-0 card-header bg-light d-flex justify-content-between align-items-center">
                                     <h5 class="m-0 card-title fw-semibold">
                                         Client Information
                                     </h5>
                                     <div>
-                                        <button class="btn btn-light bg-white py-2">Details</button>
+                                        <button class="py-2 bg-white btn btn-light">Details</button>
                                     </div>
                                 </div>
                                 <div class="p-2 card-body">
@@ -212,14 +212,14 @@
                             </div>
 
                             <!-- Product Information -->
-                            <div class="border shadow-none card mb-8">
+                            <div class="mb-8 border shadow-none card">
                                 <div class="py-0 card-header bg-light">
                                     <h5 class="m-0 card-title fw-semibold">
                                         Product Information
                                     </h5>
                                 </div>
-                                <div class="p-2 card-body px-4">
-                                    <div class="table-responsive px-4 table-border">
+                                <div class="p-2 px-4 card-body">
+                                    <div class="px-4 table-responsive table-border">
                                         <table class="table mb-0 table-bordered">
                                             <thead style="border-bottom: 1px solid #E2E2E2;">
                                                 <tr>
@@ -250,13 +250,13 @@
                             </div>
 
                             <!-- Future Sections -->
-                            <div class="border shadow-none card mb-8">
+                            <div class="mb-8 border shadow-none card">
                                 <div class="py-0 card-header bg-light">
                                     <h5 class="m-0 card-title fw-semibold">
                                         End User Information
                                     </h5>
                                 </div>
-                                <div class="p-2 card-body px-4">
+                                <div class="p-2 px-4 card-body">
                                     Upcoming
                                 </div>
                             </div>
@@ -267,7 +267,7 @@
                                         Additional Information
                                     </h5>
                                 </div>
-                                <div class="p-2 card-body px-4">
+                                <div class="p-2 px-4 card-body">
                                     Coming Soon
                                 </div>
                             </div>
