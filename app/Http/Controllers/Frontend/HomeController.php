@@ -392,26 +392,33 @@ class HomeController extends Controller
             'tab_four' => Row::find($hardwareInfo->row_five_tab_four_id),
         ];
 
-        // Categories with subcategories and products
-        // Step 1: Get 12 unique category IDs that have hardware products
-        $categoryIds = DB::table('categories')
-            ->join('products', 'categories.id', '=', 'products.cat_id')
-            ->where('products.product_type', '=', 'hardware')
-            ->distinct()
-            ->inRandomOrder()
-            ->limit(12)
-            ->pluck('categories.id');
 
-        // Step 2: Load categories with their subCathardwareProducts and filtered products
-        $data['categories'] = Category::with([
-            'subCathardwareProducts', // assuming this returns hardware-type products in subcategories
-            'products' => function ($query) {
-                $query->where('product_type', 'hardware');
-            }
-        ])
-            ->whereIn('id', $categoryIds)
-            ->select('id', 'slug', 'title', 'image')
-            ->get();
+        // $data['categories']  = DB::table('categories')
+        //     ->join('products', 'categories.id', '=', 'products.cat_id')
+        //     ->where('products.product_type', 'hardware')
+        //     ->select('id', 'slug', 'title', 'image')
+        //     ->distinct()
+        //     ->inRandomOrder()
+        //     ->limit(12)
+        //     ->get();
+
+        $data['categories'] = DB::table('categories')->join('products', 'categories.id', '=', 'products.cat_id')
+            ->where('products.product_type', '=', 'hardware')
+            ->select('categories.id', 'categories.slug', 'categories.title', 'categories.image')
+            ->distinct()->inRandomOrder()->limit(12)->get();
+
+
+
+
+        // $data['categories'] = Category::with(['catHardwareProducts' => function ($query) {
+        //     $query->where('product_type', 'hardware')
+        //         ->where('product_status', 'product');
+        // }])->whereHas('catHardwareProducts', function ($query) {
+        //     $query->where('product_type', 'hardware')
+        //         ->where('product_status', 'product');
+        // })->get();
+
+        // dd($data['categories']);
 
         // Products
         $data['products'] = Product::where([

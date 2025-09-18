@@ -34,11 +34,15 @@ class Category extends Model
         return $this->hasMany(Product::class, 'cat_id')
             ->where('product_status', 'product');
     }
-    
+
 
     public function subCathardwareProducts()
     {
         return $this->products()->where('product_type', 'hardware')->inRandomOrder(11);
+    }
+    public function catHardwareProducts()
+    {
+        return $this->hasMany(Product::class, 'cat_id');
     }
 
     public function Catproducts()

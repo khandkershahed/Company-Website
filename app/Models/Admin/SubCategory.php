@@ -25,7 +25,7 @@ class SubCategory extends Model
     }
 
     public function subCatsoftwareProducts()
-    {
+    { 
         return $this->products()->where('product_type', 'software')->inRandomOrder(11);
     }
 
