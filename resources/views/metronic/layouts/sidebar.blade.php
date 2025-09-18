@@ -111,10 +111,11 @@
                                 'admin.rfq.create',
                                 'admin.rfq.edit',
                                 'single-rfq.quoation_mail',
+                                'admin.sales.forecast',
                             ],
                             'subMenu' => [
                                 [
-                                    'title' => 'RFQ List',
+                                    'title' => 'RFQ Dashboard',
                                     'routes' => [
                                         'admin.rfq.index',
                                         'admin.rfq.create',
@@ -122,6 +123,13 @@
                                         'single-rfq.quoation_mail',
                                     ],
                                     'route' => 'admin.rfq.index',
+                                ],
+                                [
+                                    'title' => 'Sales Forecast',
+                                    'routes' => [
+                                        'admin.sales.forecast',
+                                    ],
+                                    'route' => 'admin.sales.forecast',
                                 ],
                             ],
                         ],

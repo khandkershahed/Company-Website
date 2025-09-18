@@ -37,17 +37,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="me-2">
-                            <select class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select"
-                                data-control="select2" id="filterCompany" name="company">
-                                <option selected disabled>RFQ (Date & Time)</option>
-                                @foreach ($companies as $company)
-                                    <option value="{{ $company }}">
-                                        {{ $company }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
+                        
                         <div class="me-2">
                             <button type="button" class="btn btn-sm btn-light rounded-circle p-4">
                                 <i class="fas fa-search" style="position: relative; left: 2px;"></i>
@@ -115,7 +105,6 @@
                                         </div>
                                     </a>
                                 </li>
-
 
                                 <div class="modal fade" tabindex="-1" id="assignRfqModal-{{ $rfq->id }}">
                                     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl"
@@ -206,17 +195,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="me-2">
-                                <select class="py-4 form-select form-select-sm me-2 rounded-3" data-control="select2"
-                                    id="filterCompany" name="company">
-                                    <option selected disabled>RFQ (Date & Time)</option>
-                                    @foreach ($companies as $company)
-                                        <option value="{{ $company }}">
-                                            {{ $company }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
+
                         </div>
                     </div>
                     <hr class="mx-5">

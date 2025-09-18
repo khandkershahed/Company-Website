@@ -13,9 +13,9 @@
                 <div class="shadow-none card card-flush card-rounded" style="background-color: #296088;">
                     <div class="p-0 card-body">
                         <div class="p-5 text-center me-3">
-                            <h4 class="text-white" style="font-size: 57.801px;">Sales
-                                Forecast</h4>
-                            <p class="mb-0 text-white">Year 2025</p>
+                            <h2 class="text-white" style="font-size: 57.801px;">Sales
+                                Forecast</h2>
+                            <p class="mb-0 text-white">Year {{ date('Y') }}</p>
                         </div>
                     </div>
                 </div>

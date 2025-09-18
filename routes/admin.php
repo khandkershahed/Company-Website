@@ -83,11 +83,13 @@ use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\PresentationController;
 use App\Http\Controllers\Admin\SalesForcastController;
 use App\Http\Controllers\Admin\SolutionCardController;
+use App\Http\Controllers\Admin\TrainingPageController;
 use App\Http\Controllers\Admin\WhatWeDoPageController;
 use App\Http\Controllers\Client\SupportCaseController;
 use App\Http\Controllers\Sales\SalesAccountController;
 use App\Http\Controllers\Admin\PortfolioPageController;
 use App\Http\Controllers\Admin\PortfolioTeamController;
+use App\Http\Controllers\Admin\SalesForecastController;
 use App\Http\Controllers\Admin\ShowCaseVideoController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Event\EventCategoryController;
@@ -102,6 +104,7 @@ use App\Http\Controllers\Admin\SoftwareCommonController;
 use App\Http\Controllers\Admin\TechnologyDataController;
 use App\Http\Controllers\Attendance\BioMetricController;
 use App\Http\Controllers\Client\ClientSupportController;
+use App\Http\Controllers\Solution\SolutionCMSController;
 use App\Http\Controllers\Admin\DealTypeSettingController;
 use App\Http\Controllers\Admin\ExpenseCategoryController;
 use App\Http\Controllers\Admin\PortfolioClientController;
@@ -131,10 +134,8 @@ use App\Http\Controllers\Admin\PolicyAcknowledgmentsController;
 use App\Http\Controllers\Client\ClientSupportMessageController;
 use App\Http\Controllers\Admin\FrontendNavbarMenuItemController;
 use App\Http\Controllers\Admin\PortfolioClientFeedbackController;
-use App\Http\Controllers\Admin\TrainingPageController;
 use App\Http\Controllers\Marketing\MarketingTeamTargetController;
 use App\Http\Controllers\Marketing\MarketingManagerRoleController;
-use App\Http\Controllers\Solution\SolutionCMSController;
 
 // Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
@@ -154,6 +155,8 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         ],
         ['except' => ['show', 'create']]
     );
+
+    Route::get('sales-forecast', [SalesForecastController::class, 'salesForecast'])->name('sales.forecast');
 
     Route::get('archived/rfq', [RfqController::class, 'archivedRFQ'])->name('archived.rfq');
     Route::post('template/store', [SolutionCMSController::class, 'templateStore'])->name('solution.template.add');
