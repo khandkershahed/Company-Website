@@ -25,7 +25,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-8">
                             <div class="rfq-icon">
-                                <img src="{{ asset('backend/assets/images/rfq/Total_RFQ.svg') }}" alt="" >
+                                <img src="{{ asset('backend/assets/images/rfq/Total_RFQ.svg') }}" alt="">
                             </div>
                             <div class="mt-4">
                                 <h1 class="mb-0 m-title">Total RFQ</h1>
@@ -300,7 +300,7 @@
             @include('metronic.pages.rfq.partials.rfq_queries')
         </div>
     </div>
-
+    @include('metronic.pages.rfq.partials.assign-modal')
     @push('scripts')
         <script>
             $(".data_table").DataTable({
@@ -321,7 +321,6 @@
         <script>
             $(document).ready(function() {
                 function fetchRfqData() {
-                    // Store current filter values
                     var year = $('#filterYear').val();
                     var month = $('#filterMonth').val();
                     var company = $('#filterCompany').val();
@@ -329,6 +328,15 @@
                     var search = $('#searchQuery').val();
                     var activeTab = $('.rfq-tabs .nav-link.active');
                     var status = activeTab.data('status');
+
+                    // Show loading spinner
+                    $('#myTabContent').html(`
+                <div class="text-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            `);
 
                     $.ajax({
                         url: '{{ route('admin.rfq.filter') }}',
@@ -363,20 +371,23 @@
                             }
                         },
                         error: function() {
-                            alert('Error fetching data.');
+                            $('#myTabContent').html(`
+                        <div class="alert alert-danger text-center my-4">
+                            Error fetching data. Please try again.
+                        </div>
+                    `);
                         }
                     });
                 }
 
                 function bindFilterEvents() {
                     $('#filterYear, #filterMonth, #filterCompany, #filterCountry')
-                        .off('input change') // Prevent multiple bindings
+                        .off('input change')
                         .on('input change', function() {
                             fetchRfqData();
                         });
 
-                    // Optional: trigger on Enter keypress in search box
-                    $('#searchQuery').off('keypress').on('keypress', function(e) {
+                    $('#searchQuery, .searchQuery').off('keypress').on('keypress', function(e) {
                         if (e.which === 13) {
                             fetchRfqData();
                         }
@@ -387,6 +398,7 @@
                 bindFilterEvents();
             });
         </script>
+
         <script>
             $(document).ready(function() {
                 $(document).on('change', '.pendingRFQ, .quotedRFQ, .lostRFQ', function() {
@@ -421,7 +433,8 @@
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 $.ajax({
-                                    url: '{{ route('admin.rfq.destroy', ['rfq' => '__rfq_id__']) }}'.replace('__rfq_id__', rfqId),
+                                    url: '{{ route('admin.rfq.destroy', ['rfq' => '__rfq_id__']) }}'
+                                        .replace('__rfq_id__', rfqId),
                                     type: 'DELETE',
                                     data: {
                                         _token: '{{ csrf_token() }}'

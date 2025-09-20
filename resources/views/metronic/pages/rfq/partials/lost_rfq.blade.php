@@ -4,7 +4,9 @@
             <div class="bg-light rounded-3 d-flex justify-content-between align-items-center w-100 p-2">
                 <div>
                     <h3 class="mb-0 text-primary ps-3">
-                        @if (!Route::is('admin.archived.rfq')) RFQ# @endif{{ $lost_rfq->rfq_code }}
+                        @if (!Route::is('admin.archived.rfq'))
+                            RFQ#
+                        @endif{{ $lost_rfq->rfq_code }}
                     </h3>
                 </div>
                 <div>{{ $lost_rfq->company_name }} @if (!empty($lost_rfq->country))
@@ -149,7 +151,146 @@
                                     </h5>
                                     <div>
                                         <button class="btn btn-light bg-white py-2" data-bs-toggle="modal"
-                                            data-bs-target="#rfqDetails-{{ $lost_rfq->id }}">Details</button>
+                                            data-bs-target="#lostRfqDetails-{{ $lost_rfq->id }}">Details</button>
+                                    </div>
+                                </div>
+                                <div class="modal fade" tabindex="-1" id="lostRfqDetails-{{ $lost_rfq->id }}">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl"
+                                        role="document">
+                                        <div class="modal-content">
+                                            <div class="py-3 modal-header">
+                                                <!--begin::Modal title-->
+                                                <h2>
+                                                    RFQ Details (@if (!Route::is('admin.archived.rfq'))
+                                                        RFQ#
+                                                    @endif{{ $lost_rfq->rfq_code }})
+                                                </h2>
+                                                <div class="btn btn-sm btn-icon btn-active-color-primary"
+                                                    data-bs-dismiss="modal">
+                                                    <i class="fas fa-xmark fs-1"></i>
+                                                </div>
+                                                <!--end::Close-->
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="shadow-none card">
+                                                    <div class="p-0 card-body">
+                                                        <div class="table-responsive">
+                                                            @php
+                                                                $infoTables = [];
+
+                                                                // Shipping Info
+                                                                if (!empty($lost_rfq->shipping_name)) {
+                                                                    $infoTables[] = [
+                                                                        'title' => 'Shipping Info',
+                                                                        'rows' => [
+                                                                            ['Name', $lost_rfq->shipping_name],
+                                                                            [
+                                                                                'Email',
+                                                                                '<a href="mailto:' .
+                                                                                $lost_rfq->shipping_email .
+                                                                                '" style="color:#ae0a46;">' .
+                                                                                $lost_rfq->shipping_email .
+                                                                                '</a>',
+                                                                            ],
+                                                                            ['Phone', $lost_rfq->shipping_phone],
+                                                                            [
+                                                                                'Company Name',
+                                                                                $lost_rfq->shipping_company_name,
+                                                                            ],
+                                                                            ['Designation', $lost_rfq->shipping_designation],
+                                                                            ['Address', $lost_rfq->shipping_address],
+                                                                            ['Country', $lost_rfq->shipping_country],
+                                                                            ['City', $lost_rfq->shipping_city],
+                                                                            ['Zip Code', $lost_rfq->shipping_zip_code],
+                                                                        ],
+                                                                    ];
+                                                                }
+
+                                                                // End-User Info
+                                                                if (!empty($lost_rfq->end_user_name)) {
+                                                                    $infoTables[] = [
+                                                                        'title' => 'End-User Info',
+                                                                        'rows' => [
+                                                                            ['Name', $lost_rfq->end_user_name],
+                                                                            [
+                                                                                'Email',
+                                                                                '<a href="mailto:' .
+                                                                                $lost_rfq->end_user_email .
+                                                                                '" style="color:#ae0a46;">' .
+                                                                                $lost_rfq->end_user_email .
+                                                                                '</a>',
+                                                                            ],
+                                                                            ['Phone', $lost_rfq->end_user_phone],
+                                                                            [
+                                                                                'Company Name',
+                                                                                $lost_rfq->end_user_company_name,
+                                                                            ],
+                                                                            ['Designation', $lost_rfq->end_user_designation],
+                                                                            ['Address', $lost_rfq->end_user_address],
+                                                                            ['Country', $lost_rfq->end_user_country],
+                                                                            ['City', $lost_rfq->end_user_city],
+                                                                            ['Zip Code', $lost_rfq->end_user_zip_code],
+                                                                        ],
+                                                                    ];
+                                                                }
+
+                                                                // Project Info
+                                                                if (!empty($lost_rfq->project_name)) {
+                                                                    $infoTables[] = [
+                                                                        'title' => 'Project Info',
+                                                                        'rows' => [
+                                                                            ['Project', $lost_rfq->project_name],
+                                                                            ['Status', $lost_rfq->project_status],
+                                                                            ['Budget', $lost_rfq->budget],
+                                                                            [
+                                                                                'Purchase Date',
+                                                                                $lost_rfq->approximate_delivery_time,
+                                                                            ],
+                                                                        ],
+                                                                    ];
+                                                                }
+                                                            @endphp
+
+                                                            @foreach (array_chunk($infoTables, 2) as $tablePair)
+                                                                <table width="100%" cellpadding="0" cellspacing="0"
+                                                                    border="0" style="table-layout:fixed;">
+                                                                    <tr>
+                                                                        @foreach ($tablePair as $table)
+                                                                            <td class="u-col" valign="top"
+                                                                                width="50%"
+                                                                                style="padding: 0 10px; font-size: 12px;">
+                                                                                <table width="100%" cellpadding="0"
+                                                                                    cellspacing="0" border="0"
+                                                                                    style="box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px;">
+                                                                                    <tr>
+                                                                                        <th colspan="2"
+                                                                                            style="background-color:#d3d3d3; padding:10px; font-size:14px; text-align:center;">
+                                                                                            {{ $table['title'] }}
+                                                                                        </th>
+                                                                                    </tr>
+                                                                                    @foreach ($table['rows'] as [$label, $value])
+                                                                                        <tr>
+                                                                                            <th
+                                                                                                style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400; width:130px;">
+                                                                                                {{ $label }}
+                                                                                            </th>
+                                                                                            <td
+                                                                                                style="padding:10px; border-bottom:1px solid #eee;">
+                                                                                                {!! $value !!}
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    @endforeach
+                                                                                </table>
+                                                                            </td>
+                                                                        @endforeach
+                                                                    </tr>
+                                                                </table>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="card-body p-2">
