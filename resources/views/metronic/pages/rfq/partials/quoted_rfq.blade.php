@@ -110,8 +110,7 @@
 
                                                 @if ($index < count($steps) - 1)
                                                     {{-- Progress line to next step --}}
-                                                    <div
-                                                        class="progress-line
+                                                    <div class="progress-line
                                 {{ $index < $currentIndex ? 'progress-full' : ($index == $currentIndex ? 'progress-half' : '') }}">
                                                     </div>
                                                 @endif
@@ -132,7 +131,9 @@
                                     <h5 class="m-0 card-title fw-semibold">
                                         Client Information
                                     </h5>
-
+                                    <div>
+                                        <button class="btn btn-light bg-white py-2" data-bs-toggle="modal" data-bs-target="#rfqDetails-{{ $quoted_rfq->id }}">Details</button>
+                                    </div>
                                 </div>
                                 <div class="p-2 card-body">
                                     <div class="row px-7">

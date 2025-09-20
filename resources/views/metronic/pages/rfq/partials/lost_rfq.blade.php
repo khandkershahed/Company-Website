@@ -147,6 +147,10 @@
                                     <h5 class="card-title fw-semibold m-0">
                                         Client Information
                                     </h5>
+                                    <div>
+                                        <button class="btn btn-light bg-white py-2" data-bs-toggle="modal"
+                                            data-bs-target="#rfqDetails-{{ $lost_rfq->id }}">Details</button>
+                                    </div>
                                 </div>
                                 <div class="card-body p-2">
                                     <!-- Responsive Table -->
@@ -240,7 +244,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
