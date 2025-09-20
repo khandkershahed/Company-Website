@@ -65,7 +65,7 @@
 
     .rfq-amount h1 {
         display: inline-flex;
-        padding: 36px 32px;
+        padding: 30px 32px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
