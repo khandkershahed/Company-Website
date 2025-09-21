@@ -22,8 +22,12 @@ class Kernel extends ConsoleKernel
         //      ->between('3.09', '22:09');
         $schedule->command('zk:sync-attendance')
             ->everyFiveMinutes()
-            ->between('08:40', '12:25')
+            ->between('08:40', '22:15')
             ->withoutOverlapping();
+        // $schedule->command('zk:sync-attendance')
+        //     ->everyFiveMinutes()
+        //     ->between('16:40', '22.09')
+        //     ->withoutOverlapping();
     }
 
 
