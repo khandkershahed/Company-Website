@@ -150,6 +150,8 @@ class SyncZKTecoAttendance extends Command
                     [
                         'user_id' => $user->id,
                         // 'device_id' => $data['device_id'],
+                        // 'name'         => $user->name,
+                        // 'employee_id'  => $user->employee_id,
                         'date' => $data['date'],
                     ],
                     [

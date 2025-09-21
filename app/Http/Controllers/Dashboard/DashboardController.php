@@ -4,21 +4,23 @@ namespace App\Http\Controllers\Dashboard;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Admin\Brand;
 use App\Models\Admin\Event;
 use Rats\Zkteco\Lib\ZKTeco;
 use App\Models\Admin\Notice;
 use Illuminate\Http\Request;
+use App\Models\Admin\Feature;
+use App\Models\Admin\Product;
 use App\Models\Admin\Category;
 use App\Models\Admin\SubCategory;
 use App\Models\Admin\EventCategory;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Brand;
-use App\Models\Admin\Feature;
+use App\Models\Admin\SolutionDetail;
 use App\Models\Admin\SubSubCategory;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Admin\LeaveApplication;
-use App\Models\Admin\Product;
-use App\Models\Admin\SolutionDetail;
+use App\Models\KPI\Attendance;
 
 class DashboardController extends Controller
 {
@@ -66,58 +68,105 @@ class DashboardController extends Controller
         return view('admin.pages.siteSetting.all');
     }
 
-    public function hrAdmin()
-    {
-        set_time_limit(120);
-        $deviceip = $this->device_ip();
-        $zk = new ZKTeco($deviceip, 4370);
-        $zk->connect();
-        $zk->enableDevice();
-        $attendances = $zk->getAttendance(2);
-        $users = $zk->getUser(); // Retrieve user data from the device
-        $currentMonthAttendances = array_filter($attendances, function ($attendance) {
-            return date('Y-m-d', strtotime($attendance['timestamp'])) === date('Y-m-d');
-        });
-        $userLookup = [];
-        foreach ($users as $user) {
-            $userLookup[$user['userid']] = $user['name'];
-        }
+    // public function hrAdmin()
+    // {
+    //     set_time_limit(120);
 
-        $attendanceData = [];
+    //     $deviceip = $this->device_ip(); // Get device IP
 
-        foreach ($currentMonthAttendances as $attendance) {
-            $userId = $attendance['id'];
-            $date = date('Y-m-d', strtotime($attendance['timestamp']));
-            $checkTime = date('H:i:s', strtotime($attendance['timestamp']));
+    //     // Initialize empty fallback data
+    //     $attendances = [];
+    //     $users = [];
+    //     $attendanceData = [];
 
-            $userName = $userLookup[$userId] ?? '';
+    //     // Try connecting to the ZKTeco device
+    //     try {
+    //         $zk = new ZKTeco($deviceip, 4370);
+    //         if ($zk->connect()) {
+    //             $zk->enableDevice();
+    //             $attendances = $zk->getAttendance(2);
+    //             $users = $zk->getUser();
+    //         } else {
+    //             Log::warning("ZKTeco device at {$deviceip} could not be connected.");
+    //         }
+    //     } catch (\Exception $e) {
+    //         Log::error("ZKTeco connection failed: " . $e->getMessage());
+    //     }
 
-            if (!isset($attendanceData[$userId])) {
-                $attendanceData[$userId] = [
-                    'user_id' => $userId,
-                    'user_name' => $userName,
-                    'check_in' => $checkTime,
-                    'check_out' => $checkTime,
-                ];
-            } else {
-                if (strtotime($checkTime) > strtotime($attendanceData[$userId]['check_out'])) {
-                    $attendanceData[$userId]['check_out'] = $checkTime;
-                }
-            }
-        }
+    //     // Filter today's attendance
+    //     $currentDay = date('Y-m-d');
+    //     $currentDayAttendances = array_filter($attendances, function ($attendance) use ($currentDay) {
+    //         return isset($attendance['timestamp']) &&
+    //             date('Y-m-d', strtotime($attendance['timestamp'])) === $currentDay;
+    //     });
 
-        $usercount = User::count();
-        $notices = Notice::latest('id')->get();
-        $data['leave_applications'] = LeaveApplication::latest('id')->get(['name', 'id', 'status']);
-        // return view('admin.pages.HrandAdmin.all', $data);
-        return view('metronic.pages.dashboard.hrDashboard', [
-            'attendanceData'     => $attendanceData,
-            'usercount'          => $usercount,
-            'deviceip'           => $deviceip,
-            'leave_applications' => $data['leave_applications'],
-            'notices'            => $notices,
-        ]);
+    //     // Create lookup for user names
+    //     $userLookup = [];
+    //     foreach ($users as $user) {
+    //         if (isset($user['userid'], $user['name'])) {
+    //             $userLookup[$user['userid']] = $user['name'];
+    //         }
+    //     }
+
+    //     // Process attendance data
+    //     foreach ($currentDayAttendances as $attendance) {
+    //         if (!isset($attendance['id'], $attendance['timestamp'])) {
+    //             continue; // Skip malformed entries
+    //         }
+
+    //         $userId = $attendance['id'];
+    //         $checkTime = date('H:i:s', strtotime($attendance['timestamp']));
+    //         $userName = $userLookup[$userId] ?? 'Unknown';
+
+    //         if (!isset($attendanceData[$userId])) {
+    //             $attendanceData[$userId] = [
+    //                 'user_id'   => $userId,
+    //                 'user_name' => $userName,
+    //                 'check_in'  => $checkTime,
+    //                 'check_out' => $checkTime,
+    //             ];
+    //         } else {
+    //             // Update latest checkout time
+    //             if (strtotime($checkTime) > strtotime($attendanceData[$userId]['check_out'])) {
+    //                 $attendanceData[$userId]['check_out'] = $checkTime;
+    //             }
+    //         }
+    //     }
+    //     dd($attendanceData);
+    //     // Other dashboard data
+    //     $usercount = User::count();
+    //     $notices = Notice::latest('id')->get();
+
+    //     // Handle missing or failed queries safely
+    //     try {
+    //         $leaveApplications = LeaveApplication::latest('id')->get(['name', 'id', 'status']);
+    //     } catch (\Exception $e) {
+    //         Log::error("Error fetching leave applications: " . $e->getMessage());
+    //         $leaveApplications = collect(); // fallback to empty collection
+    //     }
+
+    //     // Return view with safe data
+    //     return view('metronic.pages.dashboard.hrDashboard', [
+    //         'attendanceData'     => $attendanceData,
+    //         'usercount'          => $usercount,
+    //         'deviceip'           => $deviceip,
+    //         'leave_applications' => $leaveApplications,
+    //         'notices'            => $notices,
+    //     ]);
+    // }
+
+    public function hrDashboard() {
+        $data = [
+            'attendances' => Attendance::whereDate('date', Carbon::today())->get(),
+            'usercount' => User::count(),
+            'notices' => Notice::latest('id')->get(),
+            'leave_applications' => LeaveApplication::latest('id')->get(['name', 'id', 'status']),
+        ];
+        // dd(Carbon::today());
+        // dd($data['attendances']);
+        return view('metronic.pages.dashboard.hrDashboard', $data);
     }
+
 
     public function accountsFinance()
     {

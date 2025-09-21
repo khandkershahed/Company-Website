@@ -134,6 +134,7 @@ use App\Http\Controllers\Admin\PolicyAcknowledgmentsController;
 use App\Http\Controllers\Client\ClientSupportMessageController;
 use App\Http\Controllers\Admin\FrontendNavbarMenuItemController;
 use App\Http\Controllers\Admin\PortfolioClientFeedbackController;
+use App\Http\Controllers\Attendance\AttendanceController;
 use App\Http\Controllers\Marketing\MarketingTeamTargetController;
 use App\Http\Controllers\Marketing\MarketingManagerRoleController;
 
@@ -165,7 +166,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::put('seo/setting', [WebSettingController::class, 'seo'])->name('seo.setting');
     Route::put('smtp/setting', [WebSettingController::class, 'smtp'])->name('smtp.setting');
     Route::put('site/setting', [WebSettingController::class, 'site'])->name('site.setting');
-    Route::get('hr/dashboard', [DashboardController::class, 'hrAdmin'])->name('hrDashboard.index');
+    Route::get('hr/dashboard', [DashboardController::class, 'hrDashboard'])->name('hrDashboard.index');
     // Toggle Status
     Route::post('brands/toggle-status/{id}', [BrandController::class, 'toggleStatus'])->name('brands.toggle-status');
     // Route::controller(RFQController::class)->group(function () {
@@ -180,7 +181,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('sales-dashboard', 'salesDashboard')->name('sales-dashboard.index');
         Route::get('marketing-dashboard', 'marketingDashboard')->name('marketing-dashboard.index');
     });
-
 });
 
 
@@ -240,6 +240,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     });
 
     Route::put('assign_salesmanager/{id}', [RFQController::class, 'AssignSalesMan'])->name('assign.salesman');
+    Route::put('assign-salesman/{id}', [RFQController::class, 'AssignSalesManager'])->name('assign.salesmanager');
+    
     Route::controller(RFQController::class)->group(function () {
         Route::get('/edit/{id}/rfq-to-deal', 'DealConvert')->name('deal.convert');
         Route::put('convert-deal/store/{id}', 'ConvertDealStore')->name('convert.deal');
@@ -260,6 +262,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/deal_sas_approve/{id}', [DealSasController::class, 'DealSasApprove'])->name('dealsasapprove');
     Route::put('/deal_sas/product_unitprice/update/{id}/', [DealSasController::class, 'UnitPriceUpdate'])->name('update.unitprice');
     Route::put('/deal-sas/approve/{id}/store/', [DealSasController::class, 'DealSasApproveStore'])->name('approve.deal-sas');
+
+
+    // Route::get('/attendance-data/single/{id}', [AttendanceController::class, 'attendanceDataSingle'])->name('attendance.single');
+    Route::get('/attendance-data/single/{id}/current-month', [AttendanceController::class, 'attendanceDataCurrentMonth'])->name('attendance.single.currentMonth');
+    Route::get('/attendance-data/single/{id}/last-month', [AttendanceController::class, 'attendanceDataLastMonth'])->name('attendance.single.lastMonth');
 
     Route::resources(
         [
@@ -642,8 +649,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/hr-admin', [BioMetricController::class, 'index'])->name('attendance.dashboard');
     // Route::get('/hr-admin', [BioMetricController::class, 'index'])->name('machine.home');
-    Route::get('/attendance-data/single/{id}', [BioMetricController::class, 'attendanceDataSingle'])->name('attendance.single');
-    Route::get('/attendance-data/single/{id}/current-month', [BioMetricController::class, 'attendanceDataCurrentMonth'])->name('attendance.single.currentMonth');
     Route::post('/device-setip', [BioMetricController::class, 'device_setip'])->name('machine.devicesetip');
     // Route::post('/device-setip', [BioMetricController::class, 'device_setip'])->name('attendance.dashboard');
     Route::get('/device-information', [BioMetricController::class, 'device_information'])->name('machine.deviceinformation');

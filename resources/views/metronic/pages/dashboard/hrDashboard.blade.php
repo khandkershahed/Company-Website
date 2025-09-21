@@ -27,60 +27,14 @@
 
                                 <div class="d-flex flex-column align-items-center pe-4">
                                     <span class="main_text_color fw-bold fs-1 pe-4">
-
+                                        {{ $usercount }}
                                     </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                {{-- <div class="col-xl-3">
-                    <div class="card card-flush shadow-sm">
-                        <div class="card-body p-0">
-                            <div class="d-flex flex-stack justify-content-between">
-                                <div class="d-flex align-items-center me-3 p-8 w-50 rounded-3">
-                                    <a href="">
-                                        <span class="bg-light-primary rounded-3 p-3 me-3"><i
-                                                class="fa-solid text-primary fa-list-check fs-3"
-                                                aria-hidden="true"></i></span>
-                                    </a>
-                                    <div class="flex-grow-1">
-                                        <a href=""> </a><a href="#"
-                                            class="text-gray-800 fs-5 fw-bold lh-0">RFQ
-                                            <span class="text-gray-500 fw-semibold d-block fs-6 pt-4">Status</span>
-                                        </a>
-                                    </div>
-                                </div>
 
-                                <div class="flex-column d-flex w-50">
-                                    <div class="d-flex align-items-center justify-content-between pe-3">
-                                        <span class="text-gray-500 fw-semibold">
-                                            Pending</span>
-                                        <span class="bg-warning fw-semibold ms-3 px-2 text-white rounded-2">
-                                            {{ $rfqs->count() }}
-                                        </span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between pe-3 pt-2">
-                                        <span class="text-gray-500 fw-semibold">
-                                            Quoted
-                                        </span>
-                                        <span class="bg-success fw-semibold ms-3 px-2 text-white rounded-2">
-                                            {{ $quoteds->count() }}
-                                        </span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between pe-3 pt-2">
-                                        <span class="text-gray-500 fw-semibold">
-                                            Failed
-                                        </span>
-                                        <span class="bg-danger fw-semibold ms-3 px-2 text-white rounded-2">
-                                            {{ $losts->count() }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
             <div class="row">
                 <div class="col-xl-4">
@@ -102,25 +56,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($attendanceData as $userId => $times)
+                                        @foreach ($attendances as $attendance)
                                             <tr class="">
                                                 {{-- <td scope="row">{{ $loop->iteration }}</td> --}}
                                                 <td>
                                                     {{-- <a href="{{ route('attendance.single', $userId) }}"
                                                             style="text-decoration: underline;">{{ $times['user_name'] }}</a> --}}
-                                                    {{ $times['user_name'] }}
+                                                    {{ optional($attendance->user)->name }}
                                                 </td>
                                                 <td>
-                                                    @if (Carbon\Carbon::parse($times['check_in']) > Carbon\Carbon::parse('09:06:00'))
+                                                    @if (Carbon\Carbon::parse($attendance->check_in) > Carbon\Carbon::parse('09:06:00'))
                                                         <div class="d-flex align-items-center justify-content-center">
                                                             <p class="text-danger me-1 m-0 p-0">
-                                                                {{ $times['check_in'] }}</p>
-                                                            @if (Carbon\Carbon::parse($times['check_in']) > Carbon\Carbon::parse('09:06:00') &&
-                                                                    Carbon\Carbon::parse($times['check_in']) < Carbon\Carbon::parse('10:01:00'))
+                                                                {{ $attendance->check_in }}</p>
+                                                            @if (Carbon\Carbon::parse($attendance->check_in) > Carbon\Carbon::parse('09:06:00') &&
+                                                                    Carbon\Carbon::parse($attendance->check_in) < Carbon\Carbon::parse('10:01:00'))
                                                                 <p class="text-danger m-0 p-0">L</p>
                                                             @endif
 
-                                                            @if (Carbon\Carbon::parse($times['check_in']) > Carbon\Carbon::parse('10:01:00'))
+                                                            @if (Carbon\Carbon::parse($attendance->check_in) > Carbon\Carbon::parse('10:01:00'))
                                                                 <p class="text-danger m-0 p-0">Half Day
                                                                     (LL)
                                                                 </p>
@@ -128,19 +82,20 @@
                                                         </div>
                                                     @else
                                                         {{-- <a href="{{ route('attendance.single', $userId) }}"
-                                                                class="border-bottom-link">{{ $times['check_in'] }}</a> --}}
-                                                        {{ $times['check_in'] }}
+                                                                class="border-bottom-link">{{ $attendance->check_in }}</a> --}}
+                                                        {{ $attendance->check_in }}
                                                     @endif
                                                 </td>
-                                                <td>{{ $times['check_out'] }}</td>
+                                                <td>{{ $attendance->check_out }}</td>
+
                                                 <td class="d-flex align-items-center justify-content-center">
-                                                    <a href="{{ route('attendance.single', $userId) }}"
+                                                    <a href="{{ route('attendance.single.lastMonth', $attendance->user_id) }}"
                                                         hover-tooltip="Last month Attendance" tooltip-position="top"
                                                         class="border-bottom-link me-4">
                                                         <i
                                                             class="fa-solid fa-arrow-up-right-from-square main_color go-icon"></i>
                                                     </a>
-                                                    <a href="{{ route('attendance.single.currentMonth', $userId) }}"
+                                                    <a href="{{ route('attendance.single.currentMonth', $attendance->user_id) }}"
                                                         hover-tooltip="Current month Attendance" tooltip-position="top"
                                                         class="border-bottom-link">
                                                         <i

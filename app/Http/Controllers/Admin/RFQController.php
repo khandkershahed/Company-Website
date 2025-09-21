@@ -1165,6 +1165,79 @@ class RFQController extends Controller
         return redirect()->route('single-rfq.quoation_mail', $rfq->rfq_code);
     }
 
+    public function AssignSalesManager(Request $request, $id)
+    {
+
+
+        // dd($request->all());
+        // Fetch the RFQ
+        $rfq = Rfq::where('rfq_code', $id)->firstOrFail();
+
+        // Determine product name
+        $product_name = $rfq->product_id
+            ? Product::where('id', $rfq->product_id)->value('name')
+            : RfqProduct::where('rfq_id', $rfq->id)->value('product_name');
+
+        // Prepare sales manager data
+        $salesManagers = [
+            'sales_man_id_L1' => null,
+            'sales_man_id_T1' => null,
+            'sales_man_id_T2' => null,
+        ];
+        $salesManagerNames = ['L1' => '', 'T1' => '', 'T2' => ''];
+        $userEmails = [];
+
+        foreach ($salesManagers as $key => $value) {
+            if (!empty($request->$key)) {
+                $user = User::find($request->$key);
+                if ($user) {
+                    $salesManagers[$key] = $user->id;
+                    $salesManagerNames[substr($key, -2)] = $user->name;
+                    $userEmails[] = $user->email;
+                }
+            }
+        }
+
+        // Assign sales managers and update RFQ
+        $rfq->update([
+            'sales_man_id_L1' => $salesManagers['sales_man_id_L1'],
+            'sales_man_id_T1' => $salesManagers['sales_man_id_T1'],
+            'sales_man_id_T2' => $salesManagers['sales_man_id_T2'],
+            'status'          => 'assigned',
+        ]);
+
+        // Notify all users (you may filter by role if needed)
+        $allUsers = User::all();
+        Notification::send($allUsers, new RfqAssign(
+            $salesManagerNames['L1'],
+            $salesManagerNames['T1'],
+            $salesManagerNames['T2'],
+            $rfq->rfq_code
+        ));
+
+        // Send RFQ assignment email
+        try {
+            Mail::to($userEmails)->send(new RfqAssigned([
+                'name'         => $rfq->name,
+                'product_name' => $product_name,
+                'phone'        => $rfq->phone,
+                'qty'          => $rfq->qty,
+                'company_name' => $rfq->company_name,
+                'address'      => $rfq->address,
+                'message'      => $rfq->message,
+                'rfq_code'     => $rfq->rfq_code,
+                'email'        => $rfq->email,
+            ]));
+            Toastr::success('Mail has been sent successfully.');
+        } catch (\Exception $e) {
+            Toastr::error('Failed to send email. Please try again later.', 'Error', ['timeOut' => 30000]);
+        }
+
+
+        Toastr::success('Salesman assigned successfully.');
+        return redirect()->route('single-rfq.quoation_mail', $rfq->rfq_code);
+    }
+
 
     public function DealConvert($id)
     {
