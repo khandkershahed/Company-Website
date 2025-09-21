@@ -318,7 +318,8 @@
                     ">",
             });
         </script>
-        <script>
+        {{-- <script>
+
             $(document).ready(function() {
                 function fetchRfqData() {
                     var year = $('#filterYear').val();
@@ -395,6 +396,99 @@
                 }
 
                 // Initial event bindings
+                bindFilterEvents();
+            });
+        </script> --}}
+
+        <script>
+            $(document).ready(function() {
+                function initSelect2() {
+                    $('.fixed-width-select').select2({
+                        placeholder: 'Select an option',
+                        allowClear: true,
+                        width: 'resolve'
+                    });
+                }
+
+                function fetchRfqData() {
+                    var year = $('.filterYear').val();
+                    var month = $('.filterMonth').val();
+                    var company = $('.filterCompany').val();
+                    var country = $('.filterCountry').val();
+                    var search = $('.searchQuery').val();
+                    var activeTab = $('.rfq-tabs .nav-link.active');
+                    var status = activeTab.data('status');
+
+                    // Show loading spinner
+                    $('#myTabContent').html(`
+                            <div class="text-center py-5">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        `);
+
+                    $.ajax({
+                        url: '{{ route('admin.rfq.filter') }}',
+                        type: 'GET',
+                        data: {
+                            year: year,
+                            month: month,
+                            status: status,
+                            country: country,
+                            company: company,
+                            search: search
+                        },
+                        success: function(response) {
+                            if (response.view) {
+                                $('#myTabContent').html(response.view);
+
+                                // Re-init select2 on new elements
+                                initSelect2();
+
+                                // Restore values
+                                $('#filterYear').val(year);
+                                $('#filterMonth').val(month);
+                                $('#filterCompany').val(company).trigger('change');
+                                $('#filterCountry').val(country).trigger('change');
+                                $('#searchQuery').val(search);
+
+                                // Rebind filter change events
+                                bindFilterEvents();
+
+                                // Restore active tab
+                                $('.rfq-tabs .nav-link').removeClass('active');
+                                activeTab.addClass('active');
+                            } else {
+                                console.error('No view content returned');
+                            }
+                        },
+                        error: function() {
+                            $('#myTabContent').html(`
+                    <div class="alert alert-danger text-center my-4">
+                        Error fetching data. Please try again.
+                    </div>
+                `);
+                        }
+                    });
+                }
+
+                function bindFilterEvents() {
+                    $('#filterYear, #filterMonth, #filterCompany, #filterCountry')
+                        .off('input change')
+                        .on('input change', function() {
+                            fetchRfqData();
+                        });
+
+                    $('#searchQuery, .searchQuery').off('keypress').on('keypress', function(e) {
+                        if (e.which === 13) {
+                            fetchRfqData();
+                        }
+                    });
+                }
+
+                // Init on page load
+                initSelect2();
                 bindFilterEvents();
             });
         </script>

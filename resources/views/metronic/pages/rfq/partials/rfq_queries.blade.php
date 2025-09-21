@@ -6,30 +6,29 @@
                 <div class="px-4 pt-5 border-0 card-header">
                     <div class="d-flex align-items-center">
                         <div class="me-2">
-                            <select
-                                class="py-4 form-select form-select-solid form-select-sm me-2 rounded-3 fixed-width-select"
-                                data-control="select2" id="filterCountry" name="country">
-                                <option selected disabled>Country</option>
+                            <select class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select filterCountry"
+                                data-control="select2" data-allow-clear="true" data-enable-filtering="true"
+                                id="filterCountry" name="country">
+                                <option value="">All Country</option>
                                 @foreach ($countries as $country)
                                     <option value="{{ $country }}">{{ $country }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="me-2">
-                            <select class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select"
-                                data-control="select2">
-                                <option selected disabled>
-                                    Sales Man
-                                </option>
+                            <select class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select filterSalesman"
+                                data-control="select2" data-allow-clear="true" data-enable-filtering="true">
+                                <option value="">All Salesman</option>
                                 @foreach ($users as $user)
                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="me-2">
-                            <select class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select"
-                                data-control="select2" id="filterCompany" name="company">
-                                <option selected disabled>Company</option>
+                            <select class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select filterCompany"
+                                data-control="select2" data-allow-clear="true" data-enable-filtering="true"
+                                id="filterCompany" name="company">
+                                <option value="">All Company</option>
                                 @foreach ($companies as $company)
                                     <option value="{{ $company }}">
                                         {{ $company }}
@@ -139,28 +138,29 @@
                     <div class="px-4 pt-5 border-0 card-header">
                         <div class="d-flex align-items-center">
                             <div class="me-2">
-                                <select class="py-4 form-select form-select-solid form-select-sm me-2 rounded-3"
-                                    data-control="select2" id="filterCountry" name="country">
-                                    <option selected disabled>Country</option>
+                                <select class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select filterCountry"
+                                    data-control="select2" data-allow-clear="true" data-enable-filtering="true"
+                                    id="filterCountry" name="country">
+                                    <option value="">All Country</option>
                                     @foreach ($countries as $country)
                                         <option value="{{ $country }}">{{ $country }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="me-2">
-                                <select class="py-4 form-select form-select-sm me-2 rounded-3" data-control="select2">
-                                    <option selected disabled>
-                                        Sales Man
-                                    </option>
+                                <select class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select filterSalesman"
+                                    data-control="select2" data-allow-clear="true" data-enable-filtering="true">
+                                    <option value="">All Salesman</option>
                                     @foreach ($users as $user)
                                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="me-2">
-                                <select class="py-4 form-select form-select-sm me-2 rounded-3" data-control="select2"
+                                <select class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select filterCompany"
+                                    data-control="select2" data-allow-clear="true" data-enable-filtering="true"
                                     id="filterCompany" name="company">
-                                    <option selected disabled>Company</option>
+                                    <option value="">All Company</option>
                                     @foreach ($companies as $company)
                                         <option value="{{ $company }}">
                                             {{ $company }}
@@ -168,6 +168,7 @@
                                     @endforeach
                                 </select>
                             </div>
+
                             <div class="me-2">
                                 <div class="text-white rounded position-relative me-2 d-flex align-items-center">
                                     <i
@@ -272,18 +273,12 @@
                                     <!-- Filter Bar -->
                                     <li class="nav-item w-100 me-0 mb-md-2">
                                         <div class="d-flex align-items-center">
-                                            <div
-                                                class="text-white rounded position-relative me-2 d-flex align-items-center">
-                                                <i
-                                                    class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
-                                                <input type="text" id="searchQuery"
-                                                    data-kt-table-widget-4="search"
-                                                    class="form-control w-150px fs-7 ps-12" placeholder="Search" />
-                                            </div>
                                             <div class="me-2">
-                                                <select class="form-select form-select-sm me-2" data-control="select2"
-                                                    id="filterCountry" name="country">
-                                                    <option selected disabled>Country</option>
+                                                <select
+                                                    class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select filterCountry"
+                                                    data-control="select2" data-allow-clear="true"
+                                                    data-enable-filtering="true" id="filterCountry" name="country">
+                                                    <option value="">All Country</option>
                                                     @foreach ($countries as $country)
                                                         <option value="{{ $country }}">{{ $country }}
                                                         </option>
@@ -291,11 +286,11 @@
                                                 </select>
                                             </div>
                                             <div class="me-2">
-                                                <select class="form-select form-select-sm me-2"
-                                                    data-control="select2">
-                                                    <option selected disabled>
-                                                        Sales Man
-                                                    </option>
+                                                <select
+                                                    class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select filterSalesman"
+                                                    data-control="select2" data-allow-clear="true"
+                                                    data-enable-filtering="true">
+                                                    <option value="">All Salesman</option>
                                                     @foreach ($users as $user)
                                                         <option value="{{ $user->id }}">{{ $user->name }}
                                                         </option>
@@ -303,9 +298,11 @@
                                                 </select>
                                             </div>
                                             <div class="me-2">
-                                                <select class="form-select form-select-sm me-2" data-control="select2"
-                                                    id="filterCompany" name="company">
-                                                    <option selected disabled>Company</option>
+                                                <select
+                                                    class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select filterCompany"
+                                                    data-control="select2" data-allow-clear="true"
+                                                    data-enable-filtering="true" id="filterCompany" name="company">
+                                                    <option value="">All Company</option>
                                                     @foreach ($companies as $company)
                                                         <option value="{{ $company }}">
                                                             {{ $company }}
@@ -313,6 +310,7 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+
                                             <div class="me-2">
                                                 <div
                                                     class="text-white rounded position-relative me-2 d-flex align-items-center">
