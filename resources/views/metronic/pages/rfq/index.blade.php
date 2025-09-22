@@ -419,11 +419,11 @@
                 }
 
                 function fetchRfqData() {
-                    var year = $('.filterYear').$(this)val();
-                    var month = $('.filterMonth').$(this)val();
-                    var company = $('.filterCompany').$(this)val();
-                    var country = $('.filterCountry').$(this)val();
-                    var search = $('.searchQuery').$(this)val();
+                    var year = $('#filterYear').val();
+                    var month = $('#filterMonth').val();
+                    var company = $('#filterCompany').val();
+                    var country = $('#filterCountry').val();
+                    var search = $('#searchQuery').val();
                     var activeTab = $('.rfq-tabs .nav-link.active');
                     var status = activeTab.data('status');
 
@@ -455,11 +455,11 @@
                                 initSelect2();
 
                                 // Restore values
-                                $('.filterYear').val(year);
-                                $('.filterMonth').val(month);
-                                $('.filterCompany').val(company).trigger('change');
-                                $('.filterCountry').val(country).trigger('change');
-                                $('.searchQuery').val(search);
+                                $('#filterYear').val(year);
+                                $('#filterMonth').val(month);
+                                $('#filterCompany').val(company).trigger('change');
+                                $('#filterCountry').val(country).trigger('change');
+                                $('#searchQuery').val(search);
 
                                 // Rebind filter change events
                                 bindFilterEvents();
@@ -482,7 +482,7 @@
                 }
 
                 function bindFilterEvents() {
-                    $('.filterYear, .filterMonth, .filterCompany, .filterCountry')
+                    $('#filterYear, #filterMonth, #filterCompany, #filterCountry')
                         .off('input change')
                         .on('input change', function() {
                             fetchRfqData();

@@ -174,15 +174,16 @@
                             'routes' => ['admin.contact.index', 'admin.contact.create', 'admin.contact.edit','client-database.index'],
                             'subMenu' => [
                                 [
-                                    'title' => 'Contact Messages',
-                                    'routes' => ['admin.contact.index', 'admin.contact.create', 'admin.contact.edit'],
-                                    'route' => 'admin.contact.index',
-                                ],
-                                [
                                     'title' => 'Client List',
                                     'routes' => ['client-database.index'],
                                     'route' => 'client-database.index',
                                 ],
+                                [
+                                    'title' => 'Contact Messages',
+                                    'routes' => ['admin.contact.index', 'admin.contact.create', 'admin.contact.edit'],
+                                    'route' => 'admin.contact.index',
+                                ],
+
                             ],
                         ],
                         [

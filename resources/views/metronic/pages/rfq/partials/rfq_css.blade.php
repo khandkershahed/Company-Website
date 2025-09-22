@@ -4,6 +4,11 @@
         overflow-y: auto;
     }
 
+    .nav-line-tabs .nav-item .nav-link {
+        border: 1px solid #eee;
+        margin: 0px 5px;
+    }
+
     .rfq-box {
         width: 100%;
         height: 243px;
