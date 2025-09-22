@@ -22,8 +22,7 @@
     }
 
     .rfq-status {
-        height: 222px;
-        /* height: 300px; */
+        height: 232px !important;
         border-radius: 0.625rem;
         background: #FFF;
         display: flex;
@@ -183,7 +182,7 @@
     }
 
     .nav-line-tabs .nav-item .nav-link {
-        padding: 5px 12px !important;
+        padding: 12px !important;
     }
 
     .nav-line-tabs .nav-item .nav-link.active,
@@ -193,7 +192,7 @@
         border-radius: 8px;
         border: 1px solid #F2F4F6 !important;
         border: 0;
-        padding: 5px 12px !important;
+        padding: 12px !important;
         /* padding: 11px !important; */
         color: #000000 !important;
     }
