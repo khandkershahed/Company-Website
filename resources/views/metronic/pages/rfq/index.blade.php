@@ -202,34 +202,45 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 pe-0">
+        <div class="col-lg-3 pe-0">
+            {{-- Search Input --}}
             <div class="px-10 mt-4">
                 <div class="text-white rounded position-relative me-2 d-flex align-items-center"
                     style="width: 100%; position: relative; z-index: 5;">
                     <i class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
-                    <input type="text" id="searchCountryQuery" data-kt-table-widget-4="search"
+                    <input type="text" id="searchCountryQuery"
                         class="form-control form-control-solid w-100 fs-7 ps-12 searchQuery"
                         placeholder="RFQ By Country" />
                 </div>
             </div>
+
+            {{-- Country List Card --}}
             <div class="p-3 shadow-none card rfq-status" style="margin-top: -55px;">
                 <div class="px-8 mt-14 w-100 rfq-status-card">
                     <div id="countryList">
-                        @foreach ($countryWiseRfqs as $country)
-                            <div class="d-flex align-items-center justify-content-between country-item">
-                                <div class="d-flex align-items-center">
-                                    <h5 class="mb-0 fw-normal ps-3">{{ $country->country }}</h5>
+                        @forelse ($countryWiseRfqs as $country)
+                            <div class="country-wrapper">
+                                <div class="d-flex align-items-center justify-content-between country-item">
+                                    <div class="d-flex align-items-center">
+                                        <h5 class="mb-0 fw-normal ps-3">{{ $country->country }}</h5>
+                                    </div>
+                                    <div>
+                                        <span>{{ $country->total }}</span>
+                                    </div>
                                 </div>
-                                <div>
-                                    <span>{{ $country->total }}</span>
-                                </div>
+                                <hr>
                             </div>
-                            <hr>
-                        @endforeach
+                        @empty
+                            <p class="text-muted text-center">No countries found.</p>
+                        @endforelse
                     </div>
+                    {{-- Hidden message for "No results found" --}}
+                    <p id="noResults" class="text-muted text-center mt-4" style="display: none;">No countries match your
+                        search.</p>
                 </div>
             </div>
         </div>
+
     </div>
     <div class="mb-5 row">
         <div class="col-8 ps-0">
@@ -489,11 +500,11 @@
                 }
 
                 function fetchRfqData() {
-                    var year = $('.filterYear').val();
-                    var month = $('.filterMonth').val();
-                    var company = $('.filterCompany').val();
-                    var country = $('.filterCountry').val();
-                    var search = $('.searchQuery').val();
+                    var year = $('.filterYear').$(this)val();
+                    var month = $('.filterMonth').$(this)val();
+                    var company = $('.filterCompany').$(this)val();
+                    var country = $('.filterCountry').$(this)val();
+                    var search = $('.searchQuery').$(this)val();
                     var activeTab = $('.rfq-tabs .nav-link.active');
                     var status = activeTab.data('status');
 
@@ -644,37 +655,21 @@
             $(document).ready(function() {
                 $('#searchCountryQuery').on('input', function() {
                     const query = $(this).val().toLowerCase();
-                    alert(query);
-                    $('.country-item').each(function() {
-                        const countryName = $(this).find('h5').text().toLowerCase();
+                    let anyVisible = false;
+
+                    $('.country-wrapper').each(function() {
+                        const countryName = $(this).find('.country-item h5').text().toLowerCase();
+
                         if (countryName.includes(query)) {
                             $(this).show();
-                            $(this).next('hr').show(); // Show <hr>
+                            anyVisible = true;
                         } else {
                             $(this).hide();
-                            $(this).next('hr').hide(); // Hide <hr>
                         }
                     });
-                });
-            });
-            document.addEventListener("DOMContentLoaded", function() {
-                const searchInput = document.getElementById('searchCountryQuery');
-                const countryItems = document.querySelectorAll('.country-item');
 
-                searchInput.addEventListener('input', function() {
-                    const query = this.value.toLowerCase();
-                    alert(query);
-
-                    countryItems.forEach(item => {
-                        const countryName = item.querySelector('h5').textContent.toLowerCase();
-                        if (countryName.includes(query)) {
-                            item.style.display = 'flex';
-                            // item.nextElementSibling?.style.display = 'block'; // Show <hr>
-                        } else {
-                            item.style.display = 'none';
-                            // item.nextElementSibling?.style.display = 'none'; // Hide <hr>
-                        }
-                    });
+                    // Show or hide "No results" message
+                    $('#noResults').toggle(!anyVisible);
                 });
             });
         </script>
