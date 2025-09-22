@@ -171,24 +171,34 @@
                         [
                             'title' => 'CRM',
                             'icon' => 'fa-duotone fa-headphones-simple fs-3',
-                            'routes' => ['admin.contact.index', 'admin.contact.create', 'admin.contact.edit'],
+                            'routes' => ['admin.contact.index', 'admin.contact.create', 'admin.contact.edit','client-database.index'],
                             'subMenu' => [
                                 [
                                     'title' => 'Contact Messages',
                                     'routes' => ['admin.contact.index', 'admin.contact.create', 'admin.contact.edit'],
                                     'route' => 'admin.contact.index',
                                 ],
+                                [
+                                    'title' => 'Client List',
+                                    'routes' => ['client-database.index'],
+                                    'route' => 'client-database.index',
+                                ],
                             ],
                         ],
                         [
                             'title' => 'HR & Admin',
                             'icon' => 'fa-duotone fa-user-tie fs-3',
-                            'routes' => ['admin.hrDashboard.index'],
+                            'routes' => ['admin.hrDashboard.index', 'employee.index'],
                             'subMenu' => [
                                 [
                                     'title' => 'Dashboard',
                                     'routes' => ['admin.hrDashboard.index'],
                                     'route' => 'admin.hrDashboard.index',
+                                ],
+                                [
+                                    'title' => 'Employee List',
+                                    'routes' => ['employee.index'],
+                                    'route' => 'employee.index',
                                 ],
                             ],
                         ],

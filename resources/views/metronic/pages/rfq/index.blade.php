@@ -126,18 +126,25 @@
                 </div>
                 <div class="px-3 pt-2 rfq-status-card w-100">
                     <div id="countryList">
-                        @foreach ($countryWiseRfqs as $country)
-                        <div class="d-flex align-items-center justify-content-between country-item">
-                            <div class="d-flex align-items-center">
-                                <h5 class="mb-0 fw-normal ps-3">{{ $country->country }}</h5>
+                        @forelse ($countryWiseRfqs as $country)
+                            <div class="country-wrapper">
+                                <div class="d-flex align-items-center justify-content-between country-item">
+                                    <div class="d-flex align-items-center">
+                                        <h5 class="mb-0 fw-normal ps-3">{{ $country->country }}</h5>
+                                    </div>
+                                    <div>
+                                        <span>{{ $country->total }}</span>
+                                    </div>
+                                </div>
+                                <hr>
                             </div>
-                            <div>
-                                <span>{{ $country->total }}</span>
-                            </div>
-                        </div>
-                        <hr>
-                        @endforeach
+                        @empty
+                            <p class="text-muted text-center">No countries found.</p>
+                        @endforelse
                     </div>
+                    {{-- Hidden message for "No results found" --}}
+                    <p id="noResults" class="text-muted text-center mt-4" style="display: none;">No countries match your
+                        search.</p>
                 </div>
             </div>
         </div>
@@ -330,7 +337,7 @@
 
                     // Show loading spinner
                     $('#myTabContent').html(`
-                <div class="py-5 text-center">
+                <div class="text-center py-5">
                     <div class="spinner-border text-primary" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
@@ -371,7 +378,7 @@
                         },
                         error: function() {
                             $('#myTabContent').html(`
-                        <div class="my-4 text-center alert alert-danger">
+                        <div class="alert alert-danger text-center my-4">
                             Error fetching data. Please try again.
                         </div>
                     `);
@@ -409,17 +416,17 @@
                 }
 
                 function fetchRfqData() {
-                    var year = $('.filterYear').val();
-                    var month = $('.filterMonth').val();
-                    var company = $('.filterCompany').val();
-                    var country = $('.filterCountry').val();
-                    var search = $('.searchQuery').val();
+                    var year = $('.filterYear').$(this)val();
+                    var month = $('.filterMonth').$(this)val();
+                    var company = $('.filterCompany').$(this)val();
+                    var country = $('.filterCountry').$(this)val();
+                    var search = $('.searchQuery').$(this)val();
                     var activeTab = $('.rfq-tabs .nav-link.active');
                     var status = activeTab.data('status');
 
                     // Show loading spinner
                     $('#myTabContent').html(`
-                            <div class="py-5 text-center">
+                            <div class="text-center py-5">
                                 <div class="spinner-border text-primary" role="status">
                                     <span class="visually-hidden">Loading...</span>
                                 </div>
@@ -463,7 +470,7 @@
                         },
                         error: function() {
                             $('#myTabContent').html(`
-                    <div class="my-4 text-center alert alert-danger">
+                    <div class="alert alert-danger text-center my-4">
                         Error fetching data. Please try again.
                     </div>
                 `);
@@ -564,37 +571,21 @@
             $(document).ready(function() {
                 $('#searchCountryQuery').on('input', function() {
                     const query = $(this).val().toLowerCase();
-                    alert(query);
-                    $('.country-item').each(function() {
-                        const countryName = $(this).find('h5').text().toLowerCase();
+                    let anyVisible = false;
+
+                    $('.country-wrapper').each(function() {
+                        const countryName = $(this).find('.country-item h5').text().toLowerCase();
+
                         if (countryName.includes(query)) {
                             $(this).show();
-                            $(this).next('hr').show(); // Show <hr>
+                            anyVisible = true;
                         } else {
                             $(this).hide();
-                            $(this).next('hr').hide(); // Hide <hr>
                         }
                     });
-                });
-            });
-            document.addEventListener("DOMContentLoaded", function() {
-                const searchInput = document.getElementById('searchCountryQuery');
-                const countryItems = document.querySelectorAll('.country-item');
 
-                searchInput.addEventListener('input', function() {
-                    const query = this.value.toLowerCase();
-                    alert(query);
-
-                    countryItems.forEach(item => {
-                        const countryName = item.querySelector('h5').textContent.toLowerCase();
-                        if (countryName.includes(query)) {
-                            item.style.display = 'flex';
-                            // item.nextElementSibling?.style.display = 'block'; // Show <hr>
-                        } else {
-                            item.style.display = 'none';
-                            // item.nextElementSibling?.style.display = 'none'; // Hide <hr>
-                        }
-                    });
+                    // Show or hide "No results" message
+                    $('#noResults').toggle(!anyVisible);
                 });
             });
         </script>

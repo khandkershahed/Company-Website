@@ -29,7 +29,8 @@ class ClientDatabaseController extends Controller
     public function index()
     {
         $data['clientDatabases'] = Client::latest()->get();
-        return view('admin.pages.clientDatabase.all', $data);
+        // return view('admin.pages.clientDatabase.all', $data);
+        return view('metronic.pages.clientDatabase.index', $data);
     }
 
     /**
