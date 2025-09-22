@@ -21,51 +21,48 @@
         <div class="mb-5 col-lg-3 mb-lg-0 ps-0">
             <div class="row">
                 <div class="mb-5 col-12">
-                    <div class="shadow-sm card card-flush">
-                        <div class="p-0 card-body">
-                            <div class="d-flex flex-stack justify-content-between align-items-center">
-                                <div class="p-8 d-flex align-items-center me-3 rounded-3">
-                                    <a href="javascript:void(0)">
-                                        <span
-                                            class="p-3 text-black bg-light-primary rounded-3 me-3 fs-1 d-flex align-items-center justify-content-center">
-                                            {{ $rfq_count }}
-                                        </span>
+                <div class="shadow-sm card card-flush">
+                    <div class="p-0 card-body">
+                        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                            <!-- Total RFQ -->
+                            <div class="p-3 mb-3 d-flex align-items-center mb-md-0 rounded-3">
+                                <a href="javascript:void(0)">
+                                    <span class="p-3 text-black bg-light-primary rounded-3 me-3 fs-1 d-flex align-items-center justify-content-center">
+                                        {{ $rfq_count }}
+                                    </span>
+                                </a>
+                                <div class="flex-grow-1">
+                                    <a href="javascript:void(0)" class="text-gray-800 fs-5 fw-bold lh-1">
+                                        Total RFQ
+                                        <span class="pt-2 text-gray-500 fw-semibold d-block fs-6">{{ date('d M , Y') }}</span>
                                     </a>
-                                    <div class="flex-grow-1">
-                                        <a href="javascript:void" class="text-gray-800 fs-5 fw-bold lh-0">Total RFQ
-                                            <span
-                                                class="pt-4 text-gray-500 fw-semibold d-block fs-6">{{ date('d M , Y') }}</span>
-                                        </a>
-                                    </div>
                                 </div>
+                            </div>
 
-                                <div class="text-center flex-grow-1">
-                                    <a href="javascript:void" class="text-gray-800 fs-1 fw-bold lh-0">
-                                        <span class="pt-4 mb-2 text-gray-500 fw-semibold d-block fs-6 text-start">
-                                            This Month: {{ $this_month }}
-                                            @if ($last_month > 0)
+                            <!-- Month Stats -->
+                            <div class="text-end flex-grow-1 ps-5">
+                                <a href="javascript:void(0)" class="text-gray-800 fs-1 fw-bold lh-1">
+                                    <span class="pt-2 mb-1 text-gray-500 fw-semibold d-block text-start fs-6">
+                                        This Month: {{ $this_month }}
+                                        @if ($last_month > 0)
                                             @if ($percentage_change > 0)
-                                            <span class="text-success ms-2">
-                                                ▲ {{ $percentage_change }}%
-                                            </span>
+                                                <span class="text-success ms-2">▲ {{ $percentage_change }}%</span>
                                             @elseif ($percentage_change < 0)
-                                                <span class="text-danger ms-2">
-                                                ▼ {{ abs($percentage_change) }}%
-                                        </span>
-                                        @else
-                                        <span class="text-muted ms-2">—</span>
+                                                <span class="text-danger ms-2">▼ {{ abs($percentage_change) }}%</span>
+                                            @else
+                                                <span class="text-muted ms-2">—</span>
+                                            @endif
                                         @endif
-                                        @endif
-                                        </span>
-                                        <span class="pt-4 text-gray-500 fw-semibold d-block fs-6 text-start">
-                                            Last Month: {{ $last_month }}
-                                        </span>
-                                    </a>
-                                </div>
-
+                                    </span>
+                                    <span class="pt-2 text-gray-500 fw-semibold d-block text-start fs-6">
+                                        Last Month: {{ $last_month }}
+                                    </span>
+                                </a>
                             </div>
                         </div>
                     </div>
+                </div>
+
                 </div>
                 <div class="col-12">
                     <div class="shadow-sm card card-flush">
