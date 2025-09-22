@@ -8,7 +8,7 @@
                     Assign RFQ #{{ $rfq->rfq_code }} to Sales Manager
                 </h5>
                 <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                    <i class="fas fa-xmark fs-1"></i>
+                    <i class="fas fa-xmark" style="font-size: 400;"></i>
                 </div>
             </div>
 
@@ -71,7 +71,7 @@
                     Assign RFQ #{{ $quoted_rfq->rfq_code }}
                 </h5>
                 <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                    <i class="fas fa-xmark fs-1"></i>
+                    <i class="fas fa-xmark" style="font-size: 400;"></i>
                 </div>
             </div>
             <div class="pt-0 modal-body">
@@ -132,7 +132,7 @@
                     Assign RFQ #{{ $lost_rfq->rfq_code }}
                 </h5>
                 <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                    <i class="fas fa-xmark fs-1"></i>
+                    <i class="fas fa-xmark" style="font-size: 400;"></i>
                 </div>
             </div>
             <div class="pt-0 modal-body">
@@ -179,11 +179,6 @@
                         <button type="submit" class="btn btn-primary">Assign</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                    Close
-                </button>
             </div>
         </div>
     </div>
