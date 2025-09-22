@@ -1,6 +1,6 @@
 @foreach ($rfqs as $rfq)
 <div class="modal fade" id="assignRfqModal-{{ $rfq->id }}" tabindex="-1" aria-labelledby="assignRfqModalLabel-{{ $rfq->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="py-3 modal-header">
@@ -14,56 +14,49 @@
 
             <!-- Modal Body -->
             <div class="modal-body">
-                <div class="border shadow-none card">
-                    <div class="py-2 card-header bg-light align-items-center">
-                        <h6 class="m-0 fw-semibold">Assign Sales Manager</h6>
+                <form method="POST" action="{{ route('assign.salesmanager-role', $rfq->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="row g-3">
+                        <!-- Leader L1 -->
+                        <div class="col-lg-12">
+                            <label for="sales_man_id_L1-{{ $rfq->id }}" class="form-label">Sales Manager Name (Leader - L1) <span class="text-danger">*</span></label>
+                            <select name="sales_man_id_L1" id="sales_man_id_L1-{{ $rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true" required>
+                                <option></option>
+                                @foreach ($users as $manager)
+                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Team T1 -->
+                        <div class="col-lg-12">
+                            <label for="sales_man_id_T1-{{ $rfq->id }}" class="form-label">Sales Manager Name (Team - T1)</label>
+                            <select name="sales_man_id_T1" id="sales_man_id_T1-{{ $rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
+                                <option></option>
+                                @foreach ($users as $manager)
+                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Team T2 -->
+                        <div class="col-lg-12">
+                            <label for="sales_man_id_T2-{{ $rfq->id }}" class="form-label">Sales Manager Name (Team - T2)</label>
+                            <select name="sales_man_id_T2" id="sales_man_id_T2-{{ $rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
+                                <option></option>
+                                @foreach ($users as $manager)
+                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                    <div class="p-3 card-body">
-                        <form method="POST" action="{{ route('assign.salesmanager-role', $rfq->id) }}" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-
-                            <div class="row g-3">
-                                <!-- Leader L1 -->
-                                <div class="col-lg-4">
-                                    <label for="sales_man_id_L1-{{ $rfq->id }}" class="form-label">Sales Manager Name (Leader - L1) <span class="text-danger">*</span></label>
-                                    <select name="sales_man_id_L1" id="sales_man_id_L1-{{ $rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true" required>
-                                        <option></option>
-                                        @foreach ($users as $manager)
-                                        <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <!-- Team T1 -->
-                                <div class="col-lg-4">
-                                    <label for="sales_man_id_T1-{{ $rfq->id }}" class="form-label">Sales Manager Name (Team - T1)</label>
-                                    <select name="sales_man_id_T1" id="sales_man_id_T1-{{ $rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
-                                        <option></option>
-                                        @foreach ($users as $manager)
-                                        <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <!-- Team T2 -->
-                                <div class="col-lg-4">
-                                    <label for="sales_man_id_T2-{{ $rfq->id }}" class="form-label">Sales Manager Name (Team - T2)</label>
-                                    <select name="sales_man_id_T2" id="sales_man_id_T2-{{ $rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
-                                        <option></option>
-                                        @foreach ($users as $manager)
-                                        <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- Submit Button -->
-                            <div class="mt-4 text-end">
-                                <button type="submit" class="btn btn-primary">Assign Sales Manager</button>
-                            </div>
-                        </form>
+                    <!-- Submit Button -->
+                    <div class="mt-4 text-end">
+                        <button type="submit" class="btn btn-primary">Assign</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -71,7 +64,7 @@
 @endforeach
 @foreach ($quoteds as $quoted_rfq)
 <div class="modal fade" tabindex="-1" id="assignRfqModal-{{ $quoted_rfq->id }}">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="py-3 modal-header">
                 <h5 class="modal-title" id="modalTitleId">
@@ -82,58 +75,49 @@
                 </div>
             </div>
             <div class="pt-0 modal-body">
-                <div class="border shadow-none card">
-                    <div class="py-2 card-header bg-light align-items-center">
-                        <h5 class="m-0 card-title fw-semibold">
-                            Assign Sales Manager
-                        </h5>
+                <form method="POST" action="{{ route('assign.salesmanager-role', $quoted_rfq->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="row g-3">
+                        <!-- Leader L1 -->
+                        <div class="col-lg-12">
+                            <label for="sales_man_id_L1-{{ $quoted_rfq->id }}" class="form-label">Sales Manager Name (Leader - L1) <span class="text-danger">*</span></label>
+                            <select name="sales_man_id_L1" id="sales_man_id_L1-{{ $quoted_rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true" required>
+                                <option></option>
+                                @foreach ($users as $manager)
+                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Team T1 -->
+                        <div class="col-lg-12">
+                            <label for="sales_man_id_T1-{{ $quoted_rfq->id }}" class="form-label">Sales Manager Name (Team - T1)</label>
+                            <select name="sales_man_id_T1" id="sales_man_id_T1-{{ $quoted_rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
+                                <option></option>
+                                @foreach ($users as $manager)
+                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Team T2 -->
+                        <div class="col-lg-12">
+                            <label for="sales_man_id_T2-{{ $quoted_rfq->id }}" class="form-label">Sales Manager Name (Team - T2)</label>
+                            <select name="sales_man_id_T2" id="sales_man_id_T2-{{ $quoted_rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
+                                <option></option>
+                                @foreach ($users as $manager)
+                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                    <div class="p-2 card-body">
-                        <form method="POST" action="{{ route('assign.salesmanager-role', $quoted_rfq->id) }}" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-
-                            <div class="row g-3">
-                                <!-- Leader L1 -->
-                                <div class="col-lg-4">
-                                    <label for="sales_man_id_L1-{{ $quoted_rfq->id }}" class="form-label">Sales Manager Name (Leader - L1) <span class="text-danger">*</span></label>
-                                    <select name="sales_man_id_L1" id="sales_man_id_L1-{{ $quoted_rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true" required>
-                                        <option></option>
-                                        @foreach ($users as $manager)
-                                        <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <!-- Team T1 -->
-                                <div class="col-lg-4">
-                                    <label for="sales_man_id_T1-{{ $quoted_rfq->id }}" class="form-label">Sales Manager Name (Team - T1)</label>
-                                    <select name="sales_man_id_T1" id="sales_man_id_T1-{{ $quoted_rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
-                                        <option></option>
-                                        @foreach ($users as $manager)
-                                        <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <!-- Team T2 -->
-                                <div class="col-lg-4">
-                                    <label for="sales_man_id_T2-{{ $quoted_rfq->id }}" class="form-label">Sales Manager Name (Team - T2)</label>
-                                    <select name="sales_man_id_T2" id="sales_man_id_T2-{{ $quoted_rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
-                                        <option></option>
-                                        @foreach ($users as $manager)
-                                        <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- Submit Button -->
-                            <div class="mt-4 text-end">
-                                <button type="submit" class="btn btn-primary">Assign Sales Manager</button>
-                            </div>
-                        </form>
+                    <!-- Submit Button -->
+                    <div class="mt-4 text-end">
+                        <button type="submit" class="btn btn-primary">Assign</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -141,7 +125,7 @@
 @endforeach
 @foreach ($losts as $lost_rfq)
 <div class="modal fade" tabindex="-1" id="assignRfqModal-{{ $lost_rfq->id }}">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="py-3 modal-header">
                 <h5 class="modal-title" id="modalTitleId">
@@ -152,58 +136,49 @@
                 </div>
             </div>
             <div class="pt-0 modal-body">
-                <div class="border shadow-none card">
-                    <div class="py-2 card-header bg-light align-items-center">
-                        <h5 class="m-0 card-title fw-semibold">
-                            Assign Sales Manager
-                        </h5>
+                <form method="POST" action="{{ route('assign.salesmanager-role', $lost_rfq->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="row g-3">
+                        <!-- Leader L1 -->
+                        <div class="col-lg-12">
+                            <label for="sales_man_id_L1-{{ $lost_rfq->id }}" class="form-label">Sales Manager Name (Leader - L1) <span class="text-danger">*</span></label>
+                            <select name="sales_man_id_L1" id="sales_man_id_L1-{{ $lost_rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true" required>
+                                <option></option>
+                                @foreach ($users as $manager)
+                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Team T1 -->
+                        <div class="col-lg-12">
+                            <label for="sales_man_id_T1-{{ $lost_rfq->id }}" class="form-label">Sales Manager Name (Team - T1)</label>
+                            <select name="sales_man_id_T1" id="sales_man_id_T1-{{ $lost_rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
+                                <option></option>
+                                @foreach ($users as $manager)
+                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Team T2 -->
+                        <div class="col-lg-12">
+                            <label for="sales_man_id_T2-{{ $lost_rfq->id }}" class="form-label">Sales Manager Name (Team - T2)</label>
+                            <select name="sales_man_id_T2" id="sales_man_id_T2-{{ $lost_rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
+                                <option></option>
+                                @foreach ($users as $manager)
+                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                    <div class="p-2 card-body">
-                    <form method="POST" action="{{ route('assign.salesmanager-role', $lost_rfq->id) }}" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-
-                            <div class="row g-3">
-                                <!-- Leader L1 -->
-                                <div class="col-lg-4">
-                                    <label for="sales_man_id_L1-{{ $lost_rfq->id }}" class="form-label">Sales Manager Name (Leader - L1) <span class="text-danger">*</span></label>
-                                    <select name="sales_man_id_L1" id="sales_man_id_L1-{{ $lost_rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true" required>
-                                        <option></option>
-                                        @foreach ($users as $manager)
-                                        <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <!-- Team T1 -->
-                                <div class="col-lg-4">
-                                    <label for="sales_man_id_T1-{{ $lost_rfq->id }}" class="form-label">Sales Manager Name (Team - T1)</label>
-                                    <select name="sales_man_id_T1" id="sales_man_id_T1-{{ $lost_rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
-                                        <option></option>
-                                        @foreach ($users as $manager)
-                                        <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <!-- Team T2 -->
-                                <div class="col-lg-4">
-                                    <label for="sales_man_id_T2-{{ $lost_rfq->id }}" class="form-label">Sales Manager Name (Team - T2)</label>
-                                    <select name="sales_man_id_T2" id="sales_man_id_T2-{{ $lost_rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
-                                        <option></option>
-                                        @foreach ($users as $manager)
-                                        <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <!-- Submit Button -->
-                            <div class="mt-4 text-end">
-                                <button type="submit" class="btn btn-primary">Assign Sales Manager</button>
-                            </div>
-                        </form>
+                    <!-- Submit Button -->
+                    <div class="mt-4 text-end">
+                        <button type="submit" class="btn btn-primary">Assign</button>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
