@@ -152,7 +152,7 @@ class RFQController extends Controller
             'rfq_count'         => $rfq_count,
             'new_customers'     => $new_customers,
             'companies'         => $companies,
-            'countries'         => $countries,
+            // 'countries'         => $countries,
             'this_month'        => $this_month,
             'last_month'        => $last_month,
             'percentage_change' => $percentage_change,

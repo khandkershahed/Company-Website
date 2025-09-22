@@ -641,21 +641,38 @@
             });
         </script>
         <script>
+            $(document).ready(function() {
+                $('#searchCountryQuery').on('input', function() {
+                    const query = $(this).val().toLowerCase();
+                    alert(query);
+                    $('.country-item').each(function() {
+                        const countryName = $(this).find('h5').text().toLowerCase();
+                        if (countryName.includes(query)) {
+                            $(this).show();
+                            $(this).next('hr').show(); // Show <hr>
+                        } else {
+                            $(this).hide();
+                            $(this).next('hr').hide(); // Hide <hr>
+                        }
+                    });
+                });
+            });
             document.addEventListener("DOMContentLoaded", function() {
                 const searchInput = document.getElementById('searchCountryQuery');
                 const countryItems = document.querySelectorAll('.country-item');
 
                 searchInput.addEventListener('input', function() {
                     const query = this.value.toLowerCase();
+                    alert(query);
 
                     countryItems.forEach(item => {
                         const countryName = item.querySelector('h5').textContent.toLowerCase();
                         if (countryName.includes(query)) {
                             item.style.display = 'flex';
-                            item.nextElementSibling?.style.display = 'block'; // Show <hr>
+                            // item.nextElementSibling?.style.display = 'block'; // Show <hr>
                         } else {
                             item.style.display = 'none';
-                            item.nextElementSibling?.style.display = 'none'; // Hide <hr>
+                            // item.nextElementSibling?.style.display = 'none'; // Hide <hr>
                         }
                     });
                 });
