@@ -183,12 +183,17 @@
                         [
                             'title' => 'HR & Admin',
                             'icon' => 'fa-duotone fa-user-tie fs-3',
-                            'routes' => ['admin.hrDashboard.index'],
+                            'routes' => ['admin.hrDashboard.index', 'employee.index'],
                             'subMenu' => [
                                 [
                                     'title' => 'Dashboard',
                                     'routes' => ['admin.hrDashboard.index'],
                                     'route' => 'admin.hrDashboard.index',
+                                ],
+                                [
+                                    'title' => 'Employee List',
+                                    'routes' => ['employee.index'],
+                                    'route' => 'employee.index',
                                 ],
                             ],
                         ],

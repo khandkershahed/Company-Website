@@ -32,7 +32,8 @@ class EmployeeController extends Controller
             'employees' => User::with('employeeStatus')->get(),
             'employeeCategories' => EmployeeCategory::with('employee')->get(['id', 'name']),
         ];
-        return view('admin.pages.employee.all', $data);
+        // return view('admin.pages.employee.all', $data);
+        return view('metronic.pages.employee.index', $data);
     }
 
     /**
