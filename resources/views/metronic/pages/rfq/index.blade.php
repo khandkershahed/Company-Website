@@ -302,5 +302,304 @@
         </div>
     </div>
     @include('metronic.pages.rfq.partials.assign-modal')
+    @push('scripts')
+        <script>
+            $(".data_table").DataTable({
+                language: {
+                    lengthMenu: "Show _MENU_",
+                },
+                dom: "<'row mb-2'" +
+                    "<'col-sm-6 d-flex align-items-center justify-conten-start dt-toolbar'l>" +
+                    "<'col-sm-6 d-flex align-items-center justify-content-end dt-toolbar'f>" +
+                    ">" +
+                    "<'table-responsive'tr>" +
+                    "<'row'" +
+                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                    ">",
+            });
+        </script>
+        {{-- <script>
 
+            $(document).ready(function() {
+                function fetchRfqData() {
+                    var year = $('#filterYear').val();
+                    var month = $('#filterMonth').val();
+                    var company = $('#filterCompany').val();
+                    var country = $('#filterCountry').val();
+                    var search = $('#searchQuery').val();
+                    var activeTab = $('.rfq-tabs .nav-link.active');
+                    var status = activeTab.data('status');
+
+                    // Show loading spinner
+                    $('#myTabContent').html(`
+                <div class="py-5 text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            `);
+
+                    $.ajax({
+                        url: '{{ route('admin.rfq.filter') }}',
+                        type: 'GET',
+                        data: {
+                            year: year,
+                            month: month,
+                            status: status,
+                            country: country,
+                            company: company,
+                            search: search
+                        },
+                        success: function(response) {
+                            if (response.view) {
+                                $('#myTabContent').html(response.view);
+
+                                // Restore filter values
+                                $('#filterYear').val(year);
+                                $('#filterMonth').val(month);
+                                $('#filterCompany').val(company).trigger('change');
+                                $('#filterCountry').val(country).trigger('change');
+                                $('#searchQuery').val(search);
+
+                                // Rebind events after DOM update
+                                bindFilterEvents();
+
+                                // Restore active tab state
+                                $('.rfq-tabs .nav-link').removeClass('active');
+                                activeTab.addClass('active');
+                            } else {
+                                console.error('No view content returned');
+                            }
+                        },
+                        error: function() {
+                            $('#myTabContent').html(`
+                        <div class="my-4 text-center alert alert-danger">
+                            Error fetching data. Please try again.
+                        </div>
+                    `);
+                        }
+                    });
+                }
+
+                function bindFilterEvents() {
+                    $('#filterYear, #filterMonth, #filterCompany, #filterCountry')
+                        .off('input change')
+                        .on('input change', function() {
+                            fetchRfqData();
+                        });
+
+                    $('#searchQuery, .searchQuery').off('keypress').on('keypress', function(e) {
+                        if (e.which === 13) {
+                            fetchRfqData();
+                        }
+                    });
+                }
+
+                // Initial event bindings
+                bindFilterEvents();
+            });
+        </script> --}}
+
+        <script>
+            $(document).ready(function() {
+                function initSelect2() {
+                    $('.fixed-width-select').select2({
+                        placeholder: 'Select an option',
+                        allowClear: true,
+                        width: 'resolve'
+                    });
+                }
+
+                function fetchRfqData() {
+                    var year = $('.filterYear').val();
+                    var month = $('.filterMonth').val();
+                    var company = $('.filterCompany').val();
+                    var country = $('.filterCountry').val();
+                    var search = $('.searchQuery').val();
+                    var activeTab = $('.rfq-tabs .nav-link.active');
+                    var status = activeTab.data('status');
+
+                    // Show loading spinner
+                    $('#myTabContent').html(`
+                            <div class="py-5 text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        `);
+
+                    $.ajax({
+                        url: '{{ route('admin.rfq.filter') }}',
+                        type: 'GET',
+                        data: {
+                            year: year,
+                            month: month,
+                            status: status,
+                            country: country,
+                            company: company,
+                            search: search
+                        },
+                        success: function(response) {
+                            if (response.view) {
+                                $('#myTabContent').html(response.view);
+
+                                // Re-init select2 on new elements
+                                initSelect2();
+
+                                // Restore values
+                                $('.filterYear').val(year);
+                                $('.filterMonth').val(month);
+                                $('.filterCompany').val(company).trigger('change');
+                                $('.filterCountry').val(country).trigger('change');
+                                $('.searchQuery').val(search);
+
+                                // Rebind filter change events
+                                bindFilterEvents();
+
+                                // Restore active tab
+                                $('.rfq-tabs .nav-link').removeClass('active');
+                                activeTab.addClass('active');
+                            } else {
+                                console.error('No view content returned');
+                            }
+                        },
+                        error: function() {
+                            $('#myTabContent').html(`
+                    <div class="my-4 text-center alert alert-danger">
+                        Error fetching data. Please try again.
+                    </div>
+                `);
+                        }
+                    });
+                }
+
+                function bindFilterEvents() {
+                    $('.filterYear, .filterMonth, .filterCompany, .filterCountry')
+                        .off('input change')
+                        .on('input change', function() {
+                            fetchRfqData();
+                        });
+
+                    $('#searchQuery, .searchQuery').off('keypress').on('keypress', function(e) {
+                        if (e.which === 13) {
+                            fetchRfqData();
+                        }
+                    });
+                }
+
+                // Init on page load
+                initSelect2();
+                bindFilterEvents();
+            });
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                $(document).on('change', '.pendingRFQ, .quotedRFQ, .lostRFQ', function() {
+                    const selectedValue = $(this).val();
+                    const selectElement = $(this);
+                    const rfqId = selectedValue.split('_').pop(); // Get ID at the end
+
+                    // Handle "track_tab" or "message_tab"
+                    const trackContainer = document.getElementById(`track_container_${rfqId}`);
+                    const messageContainer = document.getElementById(`message_container_${rfqId}`);
+
+                    if (trackContainer && messageContainer) {
+                        if (selectedValue.startsWith('track_tab')) {
+                            trackContainer.style.display = 'block';
+                            messageContainer.style.display = 'none';
+                        } else if (selectedValue.startsWith('message_tab')) {
+                            trackContainer.style.display = 'none';
+                            messageContainer.style.display = 'block';
+                        }
+                    }
+
+                    // Handle "delete"
+                    if (selectedValue.startsWith('delete_')) {
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: 'This will permanently delete the RFQ.',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Yes, delete it!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: '{{ route('admin.rfq.destroy', ['rfq' => '__rfq_id__']) }}'
+                                        .replace('__rfq_id__', rfqId),
+                                    type: 'DELETE',
+                                    data: {
+                                        _token: '{{ csrf_token() }}'
+                                    },
+                                    success: function(response) {
+                                        Swal.fire({
+                                            title: 'Deleted!',
+                                            text: 'The RFQ has been deleted.',
+                                            icon: 'success',
+                                            timer: 2000,
+                                            showConfirmButton: false
+                                        }).then(() => {
+                                            location.reload();
+                                        });
+                                    },
+                                    error: function(xhr) {
+                                        Swal.fire({
+                                            title: 'Error!',
+                                            text: 'Failed to delete RFQ: ' + xhr
+                                                .responseText,
+                                            icon: 'error'
+                                        });
+                                    }
+                                });
+                            } else {
+                                // Reset dropdown if user cancels deletion
+                                selectElement.val('');
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('#searchCountryQuery').on('input', function() {
+                    const query = $(this).val().toLowerCase();
+                    alert(query);
+                    $('.country-item').each(function() {
+                        const countryName = $(this).find('h5').text().toLowerCase();
+                        if (countryName.includes(query)) {
+                            $(this).show();
+                            $(this).next('hr').show(); // Show <hr>
+                        } else {
+                            $(this).hide();
+                            $(this).next('hr').hide(); // Hide <hr>
+                        }
+                    });
+                });
+            });
+            document.addEventListener("DOMContentLoaded", function() {
+                const searchInput = document.getElementById('searchCountryQuery');
+                const countryItems = document.querySelectorAll('.country-item');
+
+                searchInput.addEventListener('input', function() {
+                    const query = this.value.toLowerCase();
+                    alert(query);
+
+                    countryItems.forEach(item => {
+                        const countryName = item.querySelector('h5').textContent.toLowerCase();
+                        if (countryName.includes(query)) {
+                            item.style.display = 'flex';
+                            // item.nextElementSibling?.style.display = 'block'; // Show <hr>
+                        } else {
+                            item.style.display = 'none';
+                            // item.nextElementSibling?.style.display = 'none'; // Hide <hr>
+                        }
+                    });
+                });
+            });
+        </script>
+    @endpush
 </x-admin-app-layout>
