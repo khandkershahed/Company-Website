@@ -1,14 +1,20 @@
 <style>
+    .rfq-status-card {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
     .rfq-box {
         width: 100%;
         height: 243px;
         flex-shrink: 0;
-        border-radius: 24px;
+        border-radius: 0.625rem;
         background: #FFF;
         display: flex;
         justify-content: center;
         align-items: center;
     }
+
 
     .rfq-status-card {
         padding-right: 42px;
@@ -16,10 +22,18 @@
     }
 
     .rfq-status {
-        height: 245px;
+        height: 222px;
         /* height: 300px; */
-        border-radius: 24px;
+        border-radius: 0.625rem;
         background: #FFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .rfq-badge {
+        width: 2.5rem;
+        height: 1.8rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -462,5 +476,4 @@
         line-height: 30px;
         cursor: pointer;
     }
-
 </style>

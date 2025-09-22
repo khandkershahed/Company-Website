@@ -10,8 +10,8 @@
                                 data-control="select2" data-allow-clear="true" data-enable-filtering="true"
                                 id="filterCountry" name="country">
                                 <option value="">All Country</option>
-                                @foreach ($countries as $country)
-                                    <option value="{{ $country }}">{{ $country }}</option>
+                                @foreach ($countryWiseRfqs as $country)
+                                    <option value="{{ $country->country }}">{{ $country->country }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -142,8 +142,8 @@
                                     data-control="select2" data-allow-clear="true" data-enable-filtering="true"
                                     id="filterCountry" name="country">
                                     <option value="">All Country</option>
-                                    @foreach ($countries as $country)
-                                        <option value="{{ $country }}">{{ $country }}</option>
+                                    @foreach ($countryWiseRfqs as $country)
+                                        <option value="{{ $country->country }}">{{ $country->country }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -279,8 +279,8 @@
                                                     data-control="select2" data-allow-clear="true"
                                                     data-enable-filtering="true" id="filterCountry" name="country">
                                                     <option value="">All Country</option>
-                                                    @foreach ($countries as $country)
-                                                        <option value="{{ $country }}">{{ $country }}
+                                                    @foreach ($countryWiseRfqs as $country)
+                                                        <option value="{{ $country->country }}">{{ $country->country }}
                                                         </option>
                                                     @endforeach
                                                 </select>

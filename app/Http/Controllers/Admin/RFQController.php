@@ -79,7 +79,18 @@ class RFQController extends Controller
         // Count total RFQs
 
         $companies = (clone $baseQuery)->whereNotNull('company_name')->distinct('company_name')->pluck('company_name');
-        $countries = (clone $baseQuery)->whereNotNull('country')->distinct('country')->pluck('country');
+        $companyWiseRfqs = (clone $baseQuery)->whereNotNull('company_name')->selectRaw('company_name, COUNT(*) as total')
+            ->groupBy('company_name')
+            ->orderBy('total', 'DESC')
+            ->get();;
+        // $countries = (clone $baseQuery)->whereNotNull('country')->distinct('country')->pluck('country');
+        $countryWiseRfqs = (clone $baseQuery)
+            ->whereNotNull('country')
+            ->selectRaw('country, COUNT(*) as total')
+            ->groupBy('country')
+            ->orderBy('total', 'DESC')
+            ->get();
+
         // Get new customers where 'confirmation' is null
         $new_customers = (clone $baseQuery)->whereNull('confirmation')->where('created_at', '>=', Carbon::now()->subMonths(1))->latest()->get();
 
@@ -109,19 +120,44 @@ class RFQController extends Controller
         $pendings = $rfqs->where('status', 'rfq_created');
         $quoteds  = $rfqs->where('status', 'quoted');
         $losts    = $rfqs->where('status', 'lost');
+        // This month (September 2025)
+        $this_month = $rfqs->whereBetween('created_at', [
+            Carbon::now()->startOfMonth(),
+            Carbon::now()->endOfMonth()
+        ])->count();
+
+        // Last month (August 2025)
+        $last_month = $rfqs->whereBetween('created_at', [
+            Carbon::now()->subMonth()->startOfMonth(),
+            Carbon::now()->subMonth()->endOfMonth()
+        ])->count();
+        // Avoid division by zero
+        if ($last_month > 0) {
+            $percentage_change = (($this_month - $last_month) / $last_month) * 100;
+        } else {
+            // If last month is 0 and this month > 0, it's a full increase
+            $percentage_change = $this_month > 0 ? 100 : 0;
+        }
+
+        // Round for cleaner display
+        $percentage_change = round($percentage_change, 1);
 
         // Return data to the view
         return view('metronic.pages.rfq.index', [
-            'rfqs'          => $rfqs,
-            'pendings'      => $pendings,
-            'quoteds'       => $quoteds,
-            'losts'         => $losts,
-            'users'         => $users,
-            'rfq_count'     => $rfq_count,
-            'new_customers' => $new_customers,
-            'companies'     => $companies,
-            'countries'     => $countries,
-            'tab_status'    => '',
+            'rfqs'              => $rfqs,
+            'pendings'          => $pendings,
+            'quoteds'           => $quoteds,
+            'losts'             => $losts,
+            'users'             => $users,
+            'rfq_count'         => $rfq_count,
+            'new_customers'     => $new_customers,
+            'companies'         => $companies,
+            'countries'         => $countries,
+            'this_month'        => $this_month,
+            'last_month'        => $last_month,
+            'percentage_change' => $percentage_change,
+            'countryWiseRfqs'   => $countryWiseRfqs,
+            'tab_status'        => '',
         ]);
     }
 
