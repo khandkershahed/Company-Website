@@ -236,16 +236,19 @@ class RFQController extends Controller
 
         // Return data to the view
         return view('metronic.pages.rfq.index', [
-            'rfqs'            => $rfqs,
-            'pendings'        => $pendings,
-            'quoteds'         => $quoteds,
-            'losts'           => $losts,
-            'users'           => $users,
-            'rfq_count'       => $rfq_count,
-            'new_customers'   => $new_customers,
-            'companies'       => $companies,
-            'countryWiseRfqs' => $countryWiseRfqs,
-            'tab_status'      => '',
+            'rfqs'              => $rfqs,
+            'pendings'          => $pendings,
+            'quoteds'           => $quoteds,
+            'losts'             => $losts,
+            'users'             => $users,
+            'rfq_count'         => $rfq_count,
+            'new_customers'     => $new_customers,
+            'companies'         => $companies,
+            'this_month'        => $this_month,
+            'last_month'        => $last_month,
+            'percentage_change' => $percentage_change,
+            'countryWiseRfqs'   => $countryWiseRfqs,
+            'tab_status'        => '',
         ]);
     }
 
@@ -253,45 +256,34 @@ class RFQController extends Controller
     public function filterRFQ(Request $request)
     {
         try {
-            $users = User::whereJsonContains('department', 'business')
-                ->where('role', 'manager')
-                ->select('id', 'name')
-                ->orderBy('id', 'DESC')
-                ->get();
-
-            // dd($request->search);
             $query = Rfq::where('rfq_type', 'rfq');
-            $companies = (clone $query)->whereNotNull('company_name')->distinct('company_name')->pluck('company_name');
-            $countries = (clone $query)->whereNotNull('country')->distinct('country')->pluck('country');
 
-            // Apply year filter if provided
-            if ($request->has('year') && $request->year != '') {
+            if ($request->filled('year')) {
                 $query->whereYear('create_date', $request->year);
             }
 
-            // Apply month filter if provided
-            if ($request->has('month') && $request->month != '') {
-                $monthNumber = date('m', strtotime($request->month)); // Convert month name to number
+            if ($request->filled('month')) {
+                $monthNumber = date('m', strtotime($request->month));
                 $query->whereMonth('create_date', $monthNumber);
             }
-            if ($request->has('company') && $request->company != '') {
+
+            if ($request->filled('company')) {
                 $query->where('company_name', $request->company);
             }
-            if ($request->has('country') && $request->country != '') {
+
+            if ($request->filled('country')) {
                 $query->where('country', $request->country);
             }
 
-            // Apply status filter if provided
-            if ($request->has('status') && $request->status != '') {
-                // $query->where('status', $request->status);
-                $tab_status = $request->status;
-            } else {
-                $tab_status = '';
+            if ($request->filled('salesman')) {
+                $query->where(function ($q) use ($request) {
+                    $q->where('sales_man_id_L1', $request->salesman)
+                        ->orWhere('sales_man_id_T1', $request->salesman)
+                        ->orWhere('sales_man_id_T2', $request->salesman);
+                });
             }
 
-            // Apply search filter if provided
-            if ($request->has('search') && $request->search != '') {
-                // Search by specific fields, like name or RFQ ID
+            if ($request->filled('search')) {
                 $search = $request->search;
                 $query->where(function ($q) use ($search) {
                     $q->where('rfq_code', 'like', "%$search%")
@@ -299,29 +291,42 @@ class RFQController extends Controller
                         ->orWhere('company_name', 'like', "%$search%")
                         ->orWhere('country', 'like', "%$search%")
                         ->orWhere('create_date', 'like', "%$search%")
-                        ->orWhere('email', 'like', "%$search%"); // Add more fields to search as necessary
+                        ->orWhere('email', 'like', "%$search%");
                 });
             }
 
-            // Fetch filtered RFQs
             $rfqs = $query->latest()->get();
 
-            // Separate RFQs by their status
+            // Now get distinct companies and countries from filtered data
+            $companies = $rfqs->pluck('company_name')->filter()->unique()->values();
+            $countries = $rfqs->pluck('country')->filter()->unique()->values();
+
             $pendings = $rfqs->where('status', 'rfq_created');
             $quoteds = $rfqs->where('status', 'quoted');
             $losts = $rfqs->where('status', 'lost');
 
-            // Return the partial view for updated data as JSON
+            $users = User::whereJsonContains('department', 'business')
+                ->where('role', 'manager')
+                ->select('id', 'name')
+                ->orderByDesc('id')
+                ->get();
+            if($rfqs->isEmpty()){
+                return response()->json([
+                    'view' => '<div class="my-4 text-center text-white alert bg-danger">
+                                    No RFQ Found. Please try again.
+                                </div>',
+                ]);
+            }
             return response()->json([
                 'view' => view('metronic.pages.rfq.partials.rfq_queries', [
                     'rfqs'       => $rfqs,
                     'pendings'   => $pendings,
                     'quoteds'    => $quoteds,
                     'losts'      => $losts,
-                    'users'         => $users,
-                    'companies'     => $companies,
-                    'countries'     => $countries,
-                    'tab_status' => $tab_status,
+                    'users'      => $users,
+                    'companies'  => $companies,
+                    'countries'  => $countries,
+                    'tab_status' => $request->status ?? '',
                 ])->render(),
             ]);
         } catch (\Exception $e) {
@@ -329,8 +334,9 @@ class RFQController extends Controller
                 'status'  => 'error',
                 'message' => $e->getMessage(),
             ], 500);
-        };
+        }
     }
+
 
 
 

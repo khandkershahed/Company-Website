@@ -1,4 +1,14 @@
 <style>
+    .clear-search {
+        background: transparent;
+        border: none;
+        color: #999;
+    }
+
+    .clear-search:hover {
+        color: #333;
+    }
+
     .rfq-status-card {
         max-height: 232px;
         overflow-y: auto;

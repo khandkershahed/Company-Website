@@ -2,20 +2,20 @@
     @include('metronic.pages.rfq.partials.rfq_css')
     <!-- Main Content Start -->
     @php
-    $months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-    ];
+        $months = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December',
+        ];
     @endphp
     <div class="mb-5 row">
         <div class="col-lg-4 ps-0">
@@ -124,19 +124,19 @@
                 <div class="px-3 pt-2 rfq-status-card w-100">
                     <div id="countryList">
                         @forelse ($countryWiseRfqs as $country)
-                        <div class="country-wrapper">
-                            <div class="d-flex align-items-center justify-content-between country-item">
-                                <div class="d-flex align-items-center">
-                                    <h5 class="mb-0 fw-normal ps-3">{{ $country->country }}</h5>
+                            <div class="country-wrapper">
+                                <div class="d-flex align-items-center justify-content-between country-item">
+                                    <div class="d-flex align-items-center">
+                                        <h5 class="mb-0 fw-normal ps-3">{{ $country->country }}</h5>
+                                    </div>
+                                    <div>
+                                        <span>{{ $country->total }}</span>
+                                    </div>
                                 </div>
-                                <div>
-                                    <span>{{ $country->total }}</span>
-                                </div>
+                                <hr>
                             </div>
-                            <hr>
-                        </div>
                         @empty
-                        <p class="text-center text-muted">No countries found.</p>
+                            <p class="text-center text-muted">No countries found.</p>
                         @endforelse
                     </div>
                     {{-- Hidden message for "No results found" --}}
@@ -169,39 +169,51 @@
 
                                 <!-- Country -->
                                 <select class="form-select filterCountry" data-control="select2"
-                                    data-allow-clear="true" data-enable-filtering="true"
-                                    id="filterCountry" name="country">
-                                    <option value="">Country</option>
+                                    data-placeholder="Country" data-allow-clear="true" id="filterCountry"
+                                    name="country">
+                                    <option></option> {{-- Must be empty to allow placeholder to show --}}
                                     @foreach ($countryWiseRfqs as $country)
-                                    <option value="{{ $country->country }}">{{ $country->country }}</option>
+                                        <option value="{{ $country->country }}">{{ $country->country }}</option>
                                     @endforeach
                                 </select>
 
+
                                 <!-- Salesman -->
                                 <select class="form-select filterSalesman" data-control="select2"
-                                    data-allow-clear="true" data-enable-filtering="true">
-                                    <option value="">Salesman</option>
+                                    data-placeholder="Salesmanager" data-allow-clear="true" data-enable-filtering="true"
+                                    id="filterSalesman" name="salesman">
+                                    {{-- <option value="">Salesman</option> --}}
+                                    <option></option>
                                     @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
                                     @endforeach
                                 </select>
 
                                 <!-- Company -->
                                 <select class="form-select filterCompany" data-control="select2"
-                                    data-allow-clear="true" data-enable-filtering="true"
+                                    data-placeholder="Company" data-allow-clear="true" data-enable-filtering="true"
                                     id="filterCompany" name="company">
-                                    <option value="">Company</option>
+                                    {{-- <option value="">Company</option> --}}
+                                    <option></option>
                                     @foreach ($companies as $company)
-                                    <option value="{{ $company }}">{{ $company }}</option>
+                                        <option value="{{ $company }}">{{ $company }}</option>
                                     @endforeach
                                 </select>
 
                                 <!-- Search -->
                                 <div class="position-relative flex-grow-1 flex-md-grow-0">
-                                    <i class="fa-solid fa-magnifying-glass fs-5 position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
+                                    <i
+                                        class="fa-solid fa-magnifying-glass fs-5 position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
                                     <input type="text" id="searchQuery" data-kt-table-widget-4="search"
-                                        class="form-control ps-10 searchQuery min-w-lg-100px" placeholder="Search" />
+                                        class="form-control ps-10 pe-30 searchQuery min-w-lg-100px"
+                                        placeholder="Search" />
+                                    <button type="button"
+                                        class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2 d-none"
+                                        id="clearSearch" style="z-index: 2;">
+                                        <i class="fas fa-times text-muted"></i>
+                                    </button>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -215,8 +227,8 @@
                     <div class="d-flex flex-stack justify-content-between align-items-center">
                         <div class="me-3 rounded-4">
                             <select class="form-select min-w-lg-150px" data-control="select2" data-allow-clear="true"
-                                data-placeholder="Year">
-                                <option value="{{ date('Y') }}">Year</option>
+                                data-placeholder="Year" name="year" id="filterYear">
+                                <option value="{{ date('Y') }}">2025</option>
                                 <option value="2022">2022</option>
                                 <option value="2023">2023</option>
                                 <option value="2024">2024</option>
@@ -226,23 +238,24 @@
                         </div>
                         <div class="me-3 rounded-4">
                             <select class="form-select min-w-lg-150px" data-control="select2"
-                                data-placeholder="Month">
-                                <option value="{{ date('M') }}">Month</option>
+                                data-placeholder="Month" name="month" id="filterMonth">
+                                <option value="{{ \Carbon\Carbon::now()->format('F') }}">
+                                    {{ \Carbon\Carbon::now()->format('F') }}
+                                </option>
                                 @foreach ($months as $month)
-                                <option value="{{ $month }}">{{ $month }}</option>
+                                    <option value="{{ $month }}">{{ $month }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="text-center me-3 rounded-4">
                             @if (!Route::is('admin.archived.rfq'))
-                            <a href="{{ route('admin.archived.rfq') }}"
-                                class="form-control min-w-lg-150px">Archived <i
-                                    class="fas fa-arrow-right"></i></a>
+                                <a href="{{ route('admin.archived.rfq') }}"
+                                    class="form-control min-w-lg-150px">Archived <i
+                                        class="fas fa-arrow-right"></i></a>
                             @else
-                            <a href="{{ route('admin.rfq.index') }}"
-                                class="form-control min-w-lg-150px">Recent RFQs <i
-                                    class="fas fa-arrow-right"></i></a>
+                                <a href="{{ route('admin.rfq.index') }}" class="form-control min-w-lg-150px">Recent
+                                    RFQs <i class="fas fa-arrow-right"></i></a>
                             @endif
                         </div>
                     </div>
@@ -251,70 +264,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="modal fade" id="new_customers" tabindex="-1" data-bs-backdrop="static"
-            data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalTitleId">
-                            New Customers RFQ Pending
-                        </h5>
-                        <button type="button" class="btn-close text-danger" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="pt-0 modal-body">
-                        <div class="pt-0 card">
-                            <div class="pt-0 card-body">
-                                <div class="table-responsive">
-                                    <table class="table text-center data_table table-striped table-row-bordered">
-                                        <thead>
-                                            <tr class="text-gray-800 fw-bold fs-6 px-7">
-                                                <th width="5%">Sl</th>
-                                                <th width="15%">RFQ Code</th>
-                                                <th width="25%">Client Name</th>
-                                                <th width="15%">Created At</th>
-                                                {{-- <th>Assign To</th> --}}
-                                                <th width="15%">Company Name</th>
-                                                <th width="15%">Country</th>
-                                                {{-- <th>Quick View</th> --}}
-                                                <th width="10%">
-                                                    Action
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($new_customers as $new_customer)
-                                            <tr class="">
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $new_customer->rfq_code }}</td>
-                                                <td>{{ $new_customer->name }}</td>
-                                                <td>{{ $new_customer->create_date }}
-                                                </td>
-                                                <td>{{ $new_customer->company_name }}</td>
-                                                <td>{{ $new_customer->country }}</td>
-                                                <td>
-                                                    <a href="{{ route('admin.rfq.destroy', [$new_customer->id]) }}"
-                                                        class="text-danger delete" title="Delete RFQ">
-                                                        <i
-                                                            class="delete fa-solid fa-trash-alt fs-3 dash-icons me-2 text-hover-danger"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                            Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- Container for the filtered RFQ queries -->
         <div class="tab-content" id="myTabContent">
             @include('metronic.pages.rfq.partials.rfq_queries')
@@ -423,18 +373,23 @@
         <script>
             $(document).ready(function() {
                 function initSelect2() {
-                    $('.fixed-width-select').select2({
-                        placeholder: 'Select an option',
-                        allowClear: true,
-                        width: 'resolve'
+                    $('select[data-control="select2"]').each(function() {
+                        const placeholder = $(this).data('placeholder') || 'Select an option';
+                        $(this).select2({
+                            placeholder: placeholder,
+                            allowClear: true,
+                            width: 'resolve',
+                        });
                     });
                 }
+
 
                 function fetchRfqData() {
                     var year = $('#filterYear').val();
                     var month = $('#filterMonth').val();
                     var company = $('#filterCompany').val();
                     var country = $('#filterCountry').val();
+                    var salesman = $('#filterSalesman').val();
                     var search = $('#searchQuery').val();
                     var activeTab = $('.rfq-tabs .nav-link.active');
                     var status = activeTab.data('status');
@@ -457,55 +412,62 @@
                             status: status,
                             country: country,
                             company: company,
+                            salesman: salesman,
                             search: search
                         },
                         success: function(response) {
                             if (response.view) {
                                 $('#myTabContent').html(response.view);
-
-                                // // Re-init select2 on new elements
                                 initSelect2();
-
-                                // // Restore values
-                                // $('#filterYear').val(year);
-                                // $('#filterMonth').val(month);
-                                // $('#filterCompany').val(company).trigger('change');
-                                // $('#filterCountry').val(country).trigger('change');
-                                // $('#searchQuery').val(search);
-
-                                // // Rebind filter change events
-                                // bindFilterEvents();
+                                bindFilterEvents();
 
                                 // Restore active tab
                                 $('.rfq-tabs .nav-link').removeClass('active');
                                 activeTab.addClass('active');
                             } else {
+                                $('#myTabContent').html(`
+                                <div class="my-4 text-center alert alert-danger">
+                                    Error fetching data. Please try again.
+                                </div>
+                            `);
                                 console.error('No view content returned');
                             }
                         },
                         error: function() {
                             $('#myTabContent').html(`
-                    <div class="my-4 text-center alert alert-danger">
-                        Error fetching data. Please try again.
-                    </div>
-                `);
+                                <div class="my-4 text-center alert alert-danger">
+                                    Error fetching data. Please try again.
+                                </div>
+                            `);
                         }
                     });
                 }
 
                 function bindFilterEvents() {
-                    $('#filterYear, #filterMonth, #filterCompany, #filterCountry')
-                        .off('input change')
-                        .on('input change', function() {
-                            fetchRfqData();
-                        });
+                    $('#filterYear, #filterMonth, #filterCompany, #filterCountry, #filterSalesman')
+                        .off('change')
+                        .on('change', fetchRfqData);
 
-                    $('#searchQuery, .searchQuery').off('keypress').on('keypress', function(e) {
+                    $('#searchQuery').off('input keypress').on('input keypress', function(e) {
+                        const searchVal = $(this).val();
+                        if (searchVal.length > 0) {
+                            $('#clearSearch').removeClass('d-none');
+                        } else {
+                            $('#clearSearch').addClass('d-none');
+                        }
+
                         if (e.which === 13) {
                             fetchRfqData();
                         }
                     });
+
+                    $('#clearSearch').off('click').on('click', function() {
+                        $('#searchQuery').val('').trigger('input');
+                        $(this).addClass('d-none');
+                        fetchRfqData();
+                    });
                 }
+
 
                 // Init on page load
                 initSelect2();
