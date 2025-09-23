@@ -280,6 +280,9 @@ class RFQController extends Controller
             if ($request->has('country') && $request->country != '') {
                 $query->where('country', $request->country);
             }
+            if ($request->has('salesman') && $request->salesman != '') {
+                $query->where('sales_man_id_L1', $request->salesman)->orWhere('sales_man_id_T1', $request->salesman)->orWhere('sales_man_id_T2', $request->salesman);
+            }
 
             // Apply status filter if provided
             if ($request->has('status') && $request->status != '') {

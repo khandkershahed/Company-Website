@@ -166,7 +166,7 @@
                                 </div>
                                 <div class="me-2">
                                     <select class="form-select filterSalesman min-w-lg-150px" data-control="select2"
-                                        data-allow-clear="true" data-enable-filtering="true">
+                                        data-allow-clear="true" data-enable-filtering="true" id="filterSalesman">
                                         <option value="">Salesman</option>
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -359,6 +359,7 @@
                     var month = $('#filterMonth').val();
                     var company = $('#filterCompany').val();
                     var country = $('#filterCountry').val();
+                    var salesman = $('#filterSalesman').val();
                     var search = $('#searchQuery').val();
                     var activeTab = $('.rfq-tabs .nav-link.active');
                     var status = activeTab.data('status');
@@ -381,6 +382,7 @@
                             status: status,
                             country: country,
                             company: company,
+                            salesman: salesman,
                             search: search
                         },
                         success: function(response) {
@@ -397,8 +399,8 @@
                                 // $('#filterCountry').val(country).trigger('change');
                                 // $('#searchQuery').val(search);
 
-                                // // Rebind filter change events
-                                // bindFilterEvents();
+                                // Rebind filter change events
+                                bindFilterEvents();
 
                                 // Restore active tab
                                 $('.rfq-tabs .nav-link').removeClass('active');
@@ -415,13 +417,13 @@
                 }
 
                 function bindFilterEvents() {
-                    $('#filterYear, #filterMonth, #filterCompany, #filterCountry')
+                    $('#filterYear, #filterMonth, #filterCompany, #filterCountry, #filterSalesman, #searchQuery')
                         .off('input change')
                         .on('input change', function() {
                             fetchRfqData();
                         });
 
-                    $('#searchQuery, .searchQuery').off('keypress').on('keypress', function(e) {
+                    $('#searchQuery').off('keypress').on('keypress', function(e) {
                         if (e.which === 13) {
                             fetchRfqData();
                         }
