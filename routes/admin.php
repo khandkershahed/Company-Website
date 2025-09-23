@@ -158,6 +158,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     );
 
     Route::get('sales-forecast', [SalesForecastController::class, 'salesForecast'])->name('sales.forecast');
+    Route::get('sales-report', [SalesForecastController::class, 'salesReport'])->name('sales.report');
 
     Route::get('archived/rfq', [RfqController::class, 'archivedRFQ'])->name('archived.rfq');
     Route::post('template/store', [SolutionCMSController::class, 'templateStore'])->name('solution.template.add');
@@ -241,7 +242,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::put('assign_salesmanager/{id}', [RFQController::class, 'AssignSalesMan'])->name('assign.salesman');
     Route::put('assign-salesman/{id}', [RFQController::class, 'AssignSalesManager'])->name('assign.salesmanager');
-    
+
     Route::controller(RFQController::class)->group(function () {
         Route::get('/edit/{id}/rfq-to-deal', 'DealConvert')->name('deal.convert');
         Route::put('convert-deal/store/{id}', 'ConvertDealStore')->name('convert.deal');

@@ -112,6 +112,7 @@
                                 'admin.rfq.edit',
                                 'single-rfq.quoation_mail',
                                 'admin.sales.forecast',
+                                'admin.sales.report',
                             ],
                             'subMenu' => [
                                 [
@@ -130,6 +131,13 @@
                                         'admin.sales.forecast',
                                     ],
                                     'route' => 'admin.sales.forecast',
+                                ],
+                                [
+                                    'title' => 'Sales Report',
+                                    'routes' => [
+                                        'admin.sales.report',
+                                    ],
+                                    'route' => 'admin.sales.report',
                                 ],
                             ],
                         ],
