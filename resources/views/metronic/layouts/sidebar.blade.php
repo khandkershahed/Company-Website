@@ -148,7 +148,7 @@
                                 'admin.solution-cms.index',
                                 'admin.solution-cms.create',
                                 'admin.solution-cms.edit',
-                                'admin.admin.site-content.index',
+                                'admin.site-content.index',
                                 'admin.job-post.index',
                                 'admin.job-post.create',
                                 'admin.job-post.edit',
@@ -157,12 +157,12 @@
                                 [
                                     'title' => 'Pages',
                                     'routes' => [
-                                        'admin.admin.site-content.index',
+                                        'admin.site-content.index',
                                         'admin.job-post.index',
                                         'admin.job-post.create',
                                         'admin.job-post.edit',
                                     ],
-                                    'route' => 'admin.admin.site-content.index',
+                                    'route' => 'admin.site-content.index',
                                 ],
                                 [
                                     'title' => 'Solution CMS',
