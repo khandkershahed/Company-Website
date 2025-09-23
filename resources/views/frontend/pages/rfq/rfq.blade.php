@@ -30,153 +30,105 @@
                                     <div data-repeater-list="contacts">
                                         @if ($cart_products->count() > 0)
                                         @foreach ($cart_products as $key => $cart_product)
-                                        @php $modalId = 'modal-' . $key; @endphp
                                         <div data-repeater-item class="row g-1">
                                             <div class="col-lg-1 col-2">
-                                                <input type="text" name="sl" class="text-center form-control sl-input" value="1" disabled autocomplete="off" />
+                                                <input type="text" name="sl"
+                                                    class="text-center form-control sl-input" value="1"
+                                                    disabled autocomplet="off" />
                                             </div>
                                             <div class="col-lg-9 col-6">
-                                                <input type="text" name="product_name" class="form-control" value="{{ $cart_product->name }}" placeholder="Product Name" required autocomplete="" />
+                                                <input type="text" name="product_name" class="form-control"
+                                                    value="{{ $cart_product->name }}"
+                                                    placeholder="Product Name " required autocomplete="" />
                                             </div>
                                             <div class="col-lg-1 col-2">
                                                 <div class="d-flex">
-                                                    <input type="text" name="qty" value="1" class="text-center form-control qty-input" style="width: 60px; margin-bottom: 6px" />
+                                                    <input type="text" name="qty" value="1"
+                                                        class="text-center form-control qty-input"
+                                                        style="width: 60px; margin-bottom: 6px" />
+
                                                     <div class="d-flex flex-column counting-btn">
-                                                        <button type="button" class="qty-btn increment-quantity" onclick="increment(this)" style="width: 32px; height: 32px">
+                                                        <button type="button"
+                                                            class="qty-btn increment-quantity"
+                                                            onclick="increment(this)"
+                                                            style="width: 32px; height: 32px">
                                                             <i class="fas fa-chevron-up btn-icons"></i>
                                                         </button>
-                                                        <button type="button" class="qty-btn decrement-quantity" onclick="decrement(this)" style="width: 32px; height: 32px">
+                                                        <button type="button"
+                                                            class="qty-btn decrement-quantity"
+                                                            onclick="decrement(this)"
+                                                            style="width: 32px; height: 32px">
                                                             <i class="fas fa-chevron-down btn-icons"></i>
                                                         </button>
                                                     </div>
                                                 </div>
+
                                             </div>
                                             <div class="col-lg-1 col-2">
+                                                {{-- <button type="button" data-repeater-delete
+                                                                class="py-2 btn btn-danger btn-sm w-100 trash-btn delete-btn"
+                                                                onclick="deleteRFQRow(event, this, '{{ $cart_product->rowId }}')"
+                                                data-id="{{ $cart_product->rowId }}">
+                                                <i class="fas fa-trash"></i>
+                                                </button> --}}
                                                 <div class="d-flex">
-                                                    <button type="button" class="py-2 btn btn-danger btn-sm w-100 trash-btn" data-bs-toggle="modal" data-bs-target="#{{ $modalId }}">
-                                                        ...
-                                                    </button>
-                                                    <button type="button" data-repeater-delete class="py-2 btn btn-danger btn-sm w-100 trash-btn delete-btn" data-id="{{ $cart_product->rowId ?? 'new' }}">
+                                                    <button type="button" data-repeater-delete
+                                                        class="py-2 btn btn-danger btn-sm w-100 trash-btn delete-btn"
+                                                        @isset($cart_product)
+                                                        data-id="{{ $cart_product->rowId }}"
+                                                        @endisset>
                                                         <i class="fas fa-trash"></i>
                                                     </button>
-                                                </div>
-
-                                                <div class="modal fade" id="{{ $modalId }}" tabindex="-1" aria-labelledby="{{ $modalId }}Label" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered">
-                                                        <div class="border-0 modal-content rounded-0">
-                                                            <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="{{ $modalId }}Label">Product Information</h1>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form action="" method="get">
-                                                                    <div class="row">
-                                                                        <div class="col-lg-6">
-                                                                            <div class="mb-3">
-                                                                                <label class="form-label">SKU Code</label>
-                                                                                <input type="text" class="form-control" placeholder="Enter SKU Code">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-lg-6">
-                                                                            <div class="mb-3">
-                                                                                <label class="form-label">Upload File</label>
-                                                                                <input type="file" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-lg-12">
-                                                                            <div class="mb-3">
-                                                                                <label class="form-label">Additional Info</label>
-                                                                                <textarea class="form-control" rows="3" placeholder="Enter any additional information here"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                                                    </div>
-                                                                </form>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         @endforeach
                                         @else
                                         <div data-repeater-item class="row g-1">
-                                            @php $modalId = 'modal-' . uniqid(); @endphp
                                             <div class="col-lg-1 col-2">
-                                                <input type="text" name="sl" class="text-center form-control sl-input" value="1" readonly />
+                                                <input type="text" name="sl"
+                                                    class="text-center form-control sl-input" value="1"
+                                                    readonly autocomplete="" />
                                             </div>
                                             <div class="col-lg-9 col-6">
-                                                <input type="text" name="product_name" class="form-control" placeholder="Product Name" required />
+                                                <input type="text" name="product_name" class="form-control"
+                                                    placeholder="Product Name" required autocomplete="off" />
                                             </div>
                                             <div class="col-lg-1 col-2">
                                                 <div class="d-flex">
-                                                    <input type="text" name="qty" value="1" class="text-center form-control qty-input" style="width: 60px; margin-bottom: 6px" />
+                                                    <input type="text" name="qty" value="1"
+                                                        class="text-center form-control qty-input"
+                                                        style="width: 60px; margin-bottom: 6px" />
+
                                                     <div class="d-flex flex-column counting-btn">
-                                                        <button type="button" class="qty-btn increment-quantity" onclick="increment(this)" style="width: 32px; height: 32px">
+                                                        <button type="button" class="qty-btn increment-quantity"
+                                                            onclick="increment(this)"
+                                                            style="width: 32px; height: 32px">
                                                             <i class="fas fa-chevron-up" style="color: #7a7577"></i>
                                                         </button>
-                                                        <button type="button" class="qty-btn decrement-quantity" onclick="decrement(this)" style="width: 32px; height: 32px">
-                                                            <i class="fas fa-chevron-down" style="color: #7a7577"></i>
+                                                        <button type="button" class="qty-btn decrement-quantity"
+                                                            onclick="decrement(this)"
+                                                            style="width: 32px; height: 32px">
+                                                            <i class="fas fa-chevron-down"
+                                                                style="color: #7a7577"></i>
                                                         </button>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-1 col-2">
                                                 <div class="d-flex">
-                                                    <button type="button" class="py-2 btn btn-danger btn-sm w-100 trash-btn" data-bs-toggle="modal" data-bs-target="#{{ $modalId }}">
-                                                        ...
-                                                    </button>
-                                                    <button type="button" data-repeater-delete class="py-2 btn btn-danger btn-sm w-100 trash-btn delete-btn" data-id="new">
+                                                    <button type="button" data-repeater-delete
+                                                        class="py-2 btn btn-danger btn-sm w-100 trash-btn delete-btn"
+                                                        data-id="new">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
-                                                </div>
-
-                                                <div class="modal fade" id="{{ $modalId }}" tabindex="-1" aria-labelledby="{{ $modalId }}Label" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered">
-                                                        <div class="border-0 modal-content rounded-0">
-                                                            <div class="modal-header bg-light">
-                                                                <h1 class="modal-title fs-5" id="{{ $modalId }}Label">Product Information</h1>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form action="" method="get">
-                                                                    <div class="row">
-                                                                        <div class="col-lg-6">
-                                                                            <div class="mb-3">
-                                                                                <label class="form-label">SKU Code</label>
-                                                                                <input type="text" class="form-control" placeholder="Enter SKU Code">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-lg-6">
-                                                                            <div class="mb-3">
-                                                                                <label class="form-label">Upload File</label>
-                                                                                <input type="file" class="form-control">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-lg-12">
-                                                                            <div class="mb-3">
-                                                                                <label class="form-label">Additional Info</label>
-                                                                                <textarea class="form-control" rows="3" placeholder="Enter any additional information here"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class=" d-flex justify-content-end">
-                                                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         @endif
                                     </div>
-
-                                    <button type="button" data-repeater-create class="mt-4 mb-3 rfq-add-btns">
+                                    <button type="button" data-repeater-create class="mt-4 mb-3 rfq-add-btns"
+                                        onclick="addRow()">
                                         <i class="fas fa-plus"></i> Add Items
                                     </button>
                                 </div>

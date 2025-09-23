@@ -372,4 +372,21 @@
             transition: color 0.3s;
         }
     }
+
+    .cst-btn {
+        background-color: #f9f9f9cf;
+        color: #ae0a46 !important;
+        padding: 0px !important;
+        width: 65px;
+        font-size: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-text-btn {
+        color: #ae0a46;
+        text-decoration: underline;
+        font-weight: 400;
+    }
 </style>
