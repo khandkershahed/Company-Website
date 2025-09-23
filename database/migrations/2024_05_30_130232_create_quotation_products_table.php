@@ -59,7 +59,7 @@ return new class extends Migration
             $table->string('vat_others_cost',250)->nullable();
             $table->string('vat_remittance',250)->nullable();
             $table->string('vat_packing',250)->nullable();
-            $table->string('vat_customs',250)->nullable();
+            $table->string('vat_customs',250)->nullable(); 
             $table->string('vat_tax',250)->nullable();
             $table->string('vat_subtotal',250)->nullable();
             $table->string('vat_final_total_price',250)->nullable();

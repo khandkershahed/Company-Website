@@ -30,8 +30,10 @@ return new class extends Migration
             $table->double('vat')->nullable();
             $table->double('vat_price')->nullable();
             $table->double('grand_total')->nullable();
-            $table->text('product_des')->nullable();
             $table->foreign('rfq_id')->references('id')->on('rfqs')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('sku_code')->nullable();
+            $table->string('image')->nullable();
+            $table->text('product_des')->nullable();
 
             $table->timestamps();
         });
