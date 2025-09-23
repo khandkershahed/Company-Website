@@ -14,4 +14,8 @@ class RfqQuotation extends Model
      * @var array
      */
     protected $guarded = [];
+    public function rfq()
+    {
+        return $this->belongsTo(Rfq::class, 'rfq_id', 'id');
+    }
 }

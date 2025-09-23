@@ -2,53 +2,8 @@
     role="tabpanel">
     <div class="row">
         <div class="col-lg-5 ps-0">
-            <div class="card" style="border-radius: 24px;">
-                <div class="px-4 pt-5 border-0 card-header">
-                    <div class="d-flex align-items-center">
-                        <div class="me-2">
-                            <select class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select filterCountry"
-                                data-control="select2" data-allow-clear="true" data-enable-filtering="true"
-                                id="filterCountry" name="country">
-                                <option value="">All Country</option>
-                                @foreach ($countries as $country)
-                                    <option value="{{ $country }}">{{ $country }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="me-2">
-                            <select class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select filterSalesman"
-                                data-control="select2" data-allow-clear="true" data-enable-filtering="true">
-                                <option value="">All Salesman</option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="me-2">
-                            <select class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select filterCompany"
-                                data-control="select2" data-allow-clear="true" data-enable-filtering="true"
-                                id="filterCompany" name="company">
-                                <option value="">All Company</option>
-                                @foreach ($companies as $company)
-                                    <option value="{{ $company }}">
-                                        {{ $company }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="me-2">
-                            <div class="text-white rounded position-relative me-2 d-flex align-items-center">
-                                <i
-                                    class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
-                                <input type="text" id="searchQuery" data-kt-table-widget-4="search"
-                                    class="form-control fs-7 ps-12 searchQuery" placeholder="Search" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="mx-5 mt-5">
-                <div class="px-5 pt-0 card-body">
+            <div class="card">
+                <div class="px-5 pt-3 card-body">
                     <div class="rfq-scroll">
                         <ul class="border-0 nav nav-tabs nav-pills flex-column">
                             <!-- RFQ Card -->
@@ -91,12 +46,21 @@
                                                 </div>
                                                 <div class="gap-2 mb-1 d-flex justify-content-end">
 
-                                                    <button type="button" class="btn btn-sm me-3"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#assignRfqModal-{{ $rfq->id }}"
-                                                        style="border: 1px solid #296088;">
-                                                        Assign
-                                                    </button>
+                                                    @if (!empty($rfq->sales_man_id_L1) || !empty($rfq->sales_man_id_T1) || !empty($rfq->sales_man_id_T2))
+                                                        <button type="button" class="btn btn-sm me-3" disabled
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#assignRfqModal-{{ $rfq->id }}"
+                                                            style="border: 1px solid #296088;">
+                                                            Already Assigned
+                                                        </button>
+                                                    @else
+                                                        <button type="button" class="btn btn-sm me-3"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#assignRfqModal-{{ $rfq->id }}"
+                                                            style="border: 1px solid #296088;">
+                                                            Assign
+                                                        </button>
+                                                    @endif
 
                                                     <button class="btn btn-sm btn-primary"
                                                         style="background-color: #296088;"
@@ -117,9 +81,9 @@
         </div>
 
         <div class="col-lg-7 pe-0">
-            <div class="border-0 card" style="border-radius: 24px;">
-                <div class="card-body">
-                    <div class="" style="height: 700px;overflow-x: hidden !important;">
+            <div class="border-0 card">
+                <div class="p-5 card-body">
+                    <div class="" style="height: 630px;overflow-x: hidden !important;">
                         <div class="border-0 rounded tab-content" id="myTabContent">
                             @include('metronic.pages.rfq.partials.pending_rfq')
                         </div>
@@ -135,51 +99,6 @@
         <div class="row">
             <div class="col-lg-5 ps-0">
                 <div class="border-0 card" style="border-radius: 24px;">
-                    <div class="px-4 pt-5 border-0 card-header">
-                        <div class="d-flex align-items-center">
-                            <div class="me-2">
-                                <select class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select filterCountry"
-                                    data-control="select2" data-allow-clear="true" data-enable-filtering="true"
-                                    id="filterCountry" name="country">
-                                    <option value="">All Country</option>
-                                    @foreach ($countries as $country)
-                                        <option value="{{ $country }}">{{ $country }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="me-2">
-                                <select class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select filterSalesman"
-                                    data-control="select2" data-allow-clear="true" data-enable-filtering="true">
-                                    <option value="">All Salesman</option>
-                                    @foreach ($users as $user)
-                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="me-2">
-                                <select class="py-4 form-select form-select-sm me-2 rounded-3 fixed-width-select filterCompany"
-                                    data-control="select2" data-allow-clear="true" data-enable-filtering="true"
-                                    id="filterCompany" name="company">
-                                    <option value="">All Company</option>
-                                    @foreach ($companies as $company)
-                                        <option value="{{ $company }}">
-                                            {{ $company }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="me-2">
-                                <div class="text-white rounded position-relative me-2 d-flex align-items-center">
-                                    <i
-                                        class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
-                                    <input type="text" id="searchQuery" data-kt-table-widget-4="search"
-                                        class="form-control fs-7 ps-12 searchQuery" placeholder="Search" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="mx-5">
                     <div class="px-5 pt-0 card-body">
                         <div class="overflow-scroll" style="height: 630px;">
                             <ul class="border-0 nav nav-tabs nav-pills">
@@ -216,12 +135,24 @@
                                                         </p>
                                                     </div>
                                                     <div class="gap-2 mb-1 d-flex justify-content-end">
-                                                        <button type="button" class="btn btn-sm me-3"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#assignRfqModal-{{ $quoted_rfq->id }}"
-                                                            style="border: 1px solid #296088;">
-                                                            Assign
-                                                        </button>
+                                                        @if (
+                                                            !empty($quoted_rfq->sales_man_id_L1) ||
+                                                                !empty($quoted_rfq->sales_man_id_T1) ||
+                                                                !empty($quoted_rfq->sales_man_id_T2))
+                                                            <button type="button" class="btn btn-sm me-3" disabled
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#assignRfqModal-{{ $quoted_rfq->id }}"
+                                                                style="border: 1px solid #296088;">
+                                                                Already Assigned
+                                                            </button>
+                                                        @else
+                                                            <button type="button" class="btn btn-sm me-3"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#assignRfqModal-{{ $quoted_rfq->id }}"
+                                                                style="border: 1px solid #296088;">
+                                                                Assign
+                                                            </button>
+                                                        @endif
                                                         <button class="btn btn-sm btn-primary"
                                                             style="background-color: #296088;"
                                                             onclick="window.location.href='{{ route('single-rfq.quoation_mail', $quoted_rfq->rfq_code) }}';">
@@ -279,8 +210,9 @@
                                                     data-control="select2" data-allow-clear="true"
                                                     data-enable-filtering="true" id="filterCountry" name="country">
                                                     <option value="">All Country</option>
-                                                    @foreach ($countries as $country)
-                                                        <option value="{{ $country }}">{{ $country }}
+                                                    @foreach ($countryWiseRfqs as $country)
+                                                        <option value="{{ $country->country }}">
+                                                            {{ $country->country }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -354,12 +286,21 @@
                                                     </div>
                                                     <div class="col-md-4 text-end">
                                                         <div class="gap-2 mb-1 d-flex justify-content-end">
-                                                            <button type="button" class="btn btn-sm me-3"
-                                                                data-bs-toggle="modal"
-                                                                data-bs-target="#assignRfqModal-{{ $lost_rfq->id }}"
-                                                                style="border: 1px solid #296088;">
-                                                                Assign
-                                                            </button>
+                                                            @if (!empty($lost_rfq->sales_man_id_L1) || !empty($lost_rfq->sales_man_id_T1) || !empty($lost_rfq->sales_man_id_T2))
+                                                                <button type="button" class="btn btn-sm me-3"
+                                                                    disabled data-bs-toggle="modal"
+                                                                    data-bs-target="#assignRfqModal-{{ $lost_rfq->id }}"
+                                                                    style="border: 1px solid #296088;">
+                                                                    Already Assigned
+                                                                </button>
+                                                            @else
+                                                                <button type="button" class="btn btn-sm me-3"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#assignRfqModal-{{ $lost_rfq->id }}"
+                                                                    style="border: 1px solid #296088;">
+                                                                    Assign
+                                                                </button>
+                                                            @endif
                                                             <button class="btn btn-sm w-50 btn-outline-primary"
                                                                 onclick="window.location.href='{{ route('single-rfq.quoation_mail', $lost_rfq->rfq_code) }}';">
                                                                 Quote
