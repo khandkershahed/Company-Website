@@ -20,7 +20,7 @@
                         <div class="breadcrumb py-2">
                             <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
                             <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                            <a href="{{ route('site-setting.index') }}" class="breadcrumb-item">Site Setting</a>
+                            <a href="{{ route('admin.site-setting.index') }}" class="breadcrumb-item">Site Setting</a>
                             <span class="breadcrumb-item active">Frontend Menu Builder</span>
                         </div>
                         <a href="#breadcrumb_elements"

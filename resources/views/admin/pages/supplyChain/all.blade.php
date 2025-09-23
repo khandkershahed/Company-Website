@@ -391,7 +391,7 @@
                                                 <span>Learnmore</span>
                                             </div>
                                         </a>
-                                        <a href="{{ route('business.index') }}" class="btn navigation_btn" style="width: 120px;">
+                                        <a href="{{ route('admin.business.index') }}" class="btn navigation_btn" style="width: 120px;">
                                             <div class="d-flex align-items-center">
                                                 <i class="fa fa-plus me-1" style="font-size: 10px;"></i>
                                                 <span>Business</span>

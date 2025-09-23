@@ -16,7 +16,7 @@
                         <div class="breadcrumb py-2">
                             <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house"></i></a>
                             <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                            <a href="{{ route('site-content.index') }}" class="breadcrumb-item">Site Contents</a>
+                            <a href="{{ route('admin.site-content.index') }}" class="breadcrumb-item">Site Contents</a>
                             <a href="{{ route('homepage.index') }}" class="breadcrumb-item"><span
                                     class="breadcrumb-item active">Home Page Builder</span></a>
                         </div>

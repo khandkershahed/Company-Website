@@ -45,7 +45,7 @@
                             <div class="breadcrumb py-2">
                                 <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
                                 <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                                <a href="{{ route('hr-and-admin.index') }}" class="breadcrumb-item"><span
+                                <a href="{{ route('admin.hr-and-admin.index') }}" class="breadcrumb-item"><span
                                         class="breadcrumb-item active">Hr and Admin</span></a>
                             </div>
                             <a href="#breadcrumb_elements"
@@ -125,7 +125,7 @@
                                                         <h1 class="title-text mb-0 main_color amount-ft-size">{{ App\Models\User::count() }}</h1>
                                                     </div>
                                                 </div>
-                                            </div> 
+                                            </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="card rounded-0 mb-1" style="background-color: #e7fff2;">

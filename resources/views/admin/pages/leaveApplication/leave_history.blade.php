@@ -61,14 +61,14 @@
                     <div class="breadcrumb py-2">
                         <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <a href="{{ route('hr-and-admin.index') }}" class="breadcrumb-item">HR & Admin</a>
+                        <a href="{{ route('admin.hr-and-admin.index') }}" class="breadcrumb-item">HR & Admin</a>
                         <span class="breadcrumb-item active">Leave Applications</span>
                     </div>
 
                 </div>
             </div>
             <div class="mx-2">
-                <a href="{{ route('hr-and-admin.index') }}" class="btn navigation_btn">
+                <a href="{{ route('admin.hr-and-admin.index') }}" class="btn navigation_btn">
                     <div class="d-flex align-items-center ">
                         <i class="fa-solid fa-nfc-magnifying-glass me-1" style="font-size: 10px;"></i>
                         <span>HR & Admin</span>

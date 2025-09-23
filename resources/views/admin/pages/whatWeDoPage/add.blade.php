@@ -7,7 +7,7 @@
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
-                        <a href="{{ route('site-content.index') }}" class="breadcrumb-item">Site Content</a>
+                        <a href="{{ route('admin.site-content.index') }}" class="breadcrumb-item">Site Content</a>
                         <a href="{{ route('what-we-do-page.index') }}" class="breadcrumb-item">What We Do Pages
                             Management</a>
                         <a href="" class="breadcrumb-item">Add</a>
@@ -492,7 +492,7 @@
                                     </div>
                                     {{--  --}}
                                 </div>
-                                
+
                                 <span class="mt-1 fw-bold text-info">Row Id</span>
                                 <div class="px-2 py-2 rounded bg-light">
                                     <div class="d-flex align-items-center pt-1">

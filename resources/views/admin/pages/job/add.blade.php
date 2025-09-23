@@ -12,7 +12,7 @@
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
-                        <a href="{{ route('hr-and-admin.index') }}" class="breadcrumb-item"> HR and Admin</a>
+                        <a href="{{ route('admin.hr-and-admin.index') }}" class="breadcrumb-item"> HR and Admin</a>
                         <a href="{{ route('admin.job-post.index') }}" class="breadcrumb-item">Job List</a>
                         <a href="" class="breadcrumb-item">Add</a>
                     </div>

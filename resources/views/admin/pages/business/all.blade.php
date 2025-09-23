@@ -62,13 +62,13 @@
                                 <span>Deal Create</span>
                             </div>
                         </a>
-                        <a href="{{ route('sales-dashboard.index') }}" class="btn navigation_btn" style="margin-right: 2px">
+                        <a href="{{ route('admin.sales-dashboard.index') }}" class="btn navigation_btn" style="margin-right: 2px">
                             <div class="d-flex align-items-center">
                                 <i class="fa-solid fa-business-time pe-1" style="font-size: 12px;"></i>
                                 <span> Sales</span>
                             </div>
                         </a>
-                        <a href="{{ route('marketing-dashboard.index') }}" class="btn navigation_btn"
+                        <a href="{{ route('admin.marketing-dashboard.index') }}" class="btn navigation_btn"
                             style="margin-right: 2px">
                             <div class="d-flex align-items-center">
                                 <i class="fa-solid fa-calculator pe-1" style="font-size: 12px;"></i>

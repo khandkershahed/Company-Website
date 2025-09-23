@@ -16,7 +16,7 @@
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
-                        <a href="{{ route('site-content.index') }}" class="breadcrumb-item">Site Content</a>
+                        <a href="{{ route('admin.site-content.index') }}" class="breadcrumb-item">Site Content</a>
                         <a href="{{ route('techglossy.index') }}" class="breadcrumb-item">Tech Glossy Management</a>
                         <a href="" class="breadcrumb-item">Edit</a>
                     </div>
@@ -47,7 +47,7 @@
                         <p class="text-white p-0 m-0 fw-bold"> Edit Techglossy </p>
                     </div>
                     <div class="col-lg-4 col-sm-12 text-end">
-                        
+
                     </div>
                 </div>
             </div>

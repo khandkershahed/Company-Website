@@ -14,7 +14,7 @@
                     <div class="breadcrumb py-2">
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <a href="{{ route('hr-and-admin.index') }}" class="breadcrumb-item">HR Admin</a>
+                        <a href="{{ route('admin.hr-and-admin.index') }}" class="breadcrumb-item">HR Admin</a>
                         <span class="breadcrumb-item active">Leave Dashboard</span>
                     </div>
                     <a href="#breadcrumb_elements"

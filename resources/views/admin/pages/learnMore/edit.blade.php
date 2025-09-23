@@ -7,7 +7,7 @@
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
-                        <a href="{{ route('site-content.index') }}" class="breadcrumb-item">Site Content</a>
+                        <a href="{{ route('admin.site-content.index') }}" class="breadcrumb-item">Site Content</a>
                         <a href="{{ route('learnMore.index') }}" class="breadcrumb-item">LearnMore Page</a>
                         <a href="" class="breadcrumb-item">Edit</a>
                     </div>
