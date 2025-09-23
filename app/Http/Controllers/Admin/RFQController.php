@@ -252,77 +252,84 @@ class RFQController extends Controller
 
     public function filterRFQ(Request $request)
     {
-        $users = User::whereJsonContains('department', 'business')
-            ->where('role', 'manager')
-            ->select('id', 'name')
-            ->orderBy('id', 'DESC')
-            ->get();
+        try {
+            $users = User::whereJsonContains('department', 'business')
+                ->where('role', 'manager')
+                ->select('id', 'name')
+                ->orderBy('id', 'DESC')
+                ->get();
 
-        // dd($request->search);
-        $query = Rfq::where('rfq_type', 'rfq');
-        $companies = (clone $query)->whereNotNull('company_name')->distinct('company_name')->pluck('company_name');
-        $countries = (clone $query)->whereNotNull('country')->distinct('country')->pluck('country');
+            // dd($request->search);
+            $query = Rfq::where('rfq_type', 'rfq');
+            $companies = (clone $query)->whereNotNull('company_name')->distinct('company_name')->pluck('company_name');
+            $countries = (clone $query)->whereNotNull('country')->distinct('country')->pluck('country');
 
-        // Apply year filter if provided
-        if ($request->has('year') && $request->year != '') {
-            $query->whereYear('create_date', $request->year);
-        }
+            // Apply year filter if provided
+            if ($request->has('year') && $request->year != '') {
+                $query->whereYear('create_date', $request->year);
+            }
 
-        // Apply month filter if provided
-        if ($request->has('month') && $request->month != '') {
-            $monthNumber = date('m', strtotime($request->month)); // Convert month name to number
-            $query->whereMonth('create_date', $monthNumber);
-        }
-        if ($request->has('company') && $request->company != '') {
-            $query->where('company_name', $request->company);
-        }
-        if ($request->has('country') && $request->country != '') {
-            $query->where('country', $request->country);
-        }
+            // Apply month filter if provided
+            if ($request->has('month') && $request->month != '') {
+                $monthNumber = date('m', strtotime($request->month)); // Convert month name to number
+                $query->whereMonth('create_date', $monthNumber);
+            }
+            if ($request->has('company') && $request->company != '') {
+                $query->where('company_name', $request->company);
+            }
+            if ($request->has('country') && $request->country != '') {
+                $query->where('country', $request->country);
+            }
 
-        // Apply status filter if provided
-        if ($request->has('status') && $request->status != '') {
-            // $query->where('status', $request->status);
-            $tab_status = $request->status;
-        } else {
-            $tab_status = '';
-        }
+            // Apply status filter if provided
+            if ($request->has('status') && $request->status != '') {
+                // $query->where('status', $request->status);
+                $tab_status = $request->status;
+            } else {
+                $tab_status = '';
+            }
 
-        // Apply search filter if provided
-        if ($request->has('search') && $request->search != '') {
-            // Search by specific fields, like name or RFQ ID
-            $search = $request->search;
-            $query->where(function ($q) use ($search) {
-                $q->where('rfq_code', 'like', "%$search%")
-                    ->orWhere('name', 'like', "%$search%")
-                    ->orWhere('company_name', 'like', "%$search%")
-                    ->orWhere('country', 'like', "%$search%")
-                    ->orWhere('create_date', 'like', "%$search%")
-                    ->orWhere('email', 'like', "%$search%"); // Add more fields to search as necessary
-            });
-        }
+            // Apply search filter if provided
+            if ($request->has('search') && $request->search != '') {
+                // Search by specific fields, like name or RFQ ID
+                $search = $request->search;
+                $query->where(function ($q) use ($search) {
+                    $q->where('rfq_code', 'like', "%$search%")
+                        ->orWhere('name', 'like', "%$search%")
+                        ->orWhere('company_name', 'like', "%$search%")
+                        ->orWhere('country', 'like', "%$search%")
+                        ->orWhere('create_date', 'like', "%$search%")
+                        ->orWhere('email', 'like', "%$search%"); // Add more fields to search as necessary
+                });
+            }
 
-        // Fetch filtered RFQs
-        $rfqs = $query->latest()->get();
+            // Fetch filtered RFQs
+            $rfqs = $query->latest()->get();
 
-        // Separate RFQs by their status
-        $pendings = $rfqs->where('status', 'rfq_created');
-        $quoteds = $rfqs->where('status', 'quoted');
-        $losts = $rfqs->where('status', 'lost');
+            // Separate RFQs by their status
+            $pendings = $rfqs->where('status', 'rfq_created');
+            $quoteds = $rfqs->where('status', 'quoted');
+            $losts = $rfqs->where('status', 'lost');
 
-        // Return the partial view for updated data as JSON
-        return response()->json([
-            'view' => view('metronic.pages.rfq.partials.rfq_queries', [
-                'rfqs'       => $rfqs,
-                'pendings'   => $pendings,
-                'quoteds'    => $quoteds,
-                'losts'      => $losts,
-                'users'         => $users,
-                'companies'     => $companies,
-                'countries'     => $countries,
-                'tab_status' => $tab_status,
-            ])->render(),
-        ]);
+            // Return the partial view for updated data as JSON
+            return response()->json([
+                'view' => view('metronic.pages.rfq.partials.rfq_queries', [
+                    'rfqs'       => $rfqs,
+                    'pendings'   => $pendings,
+                    'quoteds'    => $quoteds,
+                    'losts'      => $losts,
+                    'users'         => $users,
+                    'companies'     => $companies,
+                    'countries'     => $countries,
+                    'tab_status' => $tab_status,
+                ])->render(),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status'  => 'error',
+                'message' => $e->getMessage(),
+            ], 500);
+        };
     }
 
 

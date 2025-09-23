@@ -49,4 +49,8 @@ class SalesForecastController extends Controller
         $data = [];
         return view('metronic.pages.rfq.sales_forecast', $data);
     }
+
+    public function salesReport(Request $request){
+        return view('metronic.pages.rfq.sales_report');
+    }
 }
