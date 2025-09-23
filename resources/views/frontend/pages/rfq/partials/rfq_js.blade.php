@@ -1,4 +1,4 @@
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -427,60 +427,72 @@
         }
 
         $(document).ready(function() {
-            $('.repeater').repeater({
-                show: function() {
-                    $(this).slideDown('fast', function() {
-                        updateSerials();
-                    });
-                },
-                hide: function(deleteElement) {
-                    const $item = $(this);
-                    const $list = $item.closest('[data-repeater-list]');
-                    const itemCount = $list.find('[data-repeater-item]').length;
-
-                    if (itemCount > 1) {
-                        const rowId = $item.find('.delete-btn').data('id');
-                        alert(rowId);
-                        Swal.fire({
-                            title: 'Are you sure?',
-                            text: "This item will be removed.",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#d33',
-                            cancelButtonColor: '#3085d6',
-                            confirmButtonText: 'Yes, remove it!',
-                            cancelButtonText: 'Cancel'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                if (rowId && rowId !== 'new') {
-                                    deleteRFQFromServer(rowId, function() {
-                                        $item.slideUp('fast', function() {
-                                            $item.remove();
-                                            updateSerials();
-                                        });
-                                    });
-                                } else {
-                                    // It's a new row, just remove it from the DOM
-                                    $item.slideUp('fast', function() {
-                                        $item.remove();
-                                        updateSerials();
-                                    });
-                                }
-                            }
-                        });
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'At least one item must remain.',
-                            showConfirmButton: true
-                        });
-                    }
-                },
-                isFirstItemUndeletable: false
+    $('.repeater').repeater({
+        show: function() {
+            const $row = $(this);
+            $row.slideDown('fast', function() {
+                updateSerials();
             });
 
-            updateSerials(); // Initial run
-        });
+            // Assign a unique modal ID for this row
+            const $modal = $row.find('.modal');
+            if ($modal.length) {
+                const modalId = 'modal-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+                $modal.attr('id', modalId);
+                $modal.find('.modal-title').attr('id', modalId + 'Label');
+
+                // Update the modal button's target
+                const $button = $row.find('[data-bs-toggle="modal"]');
+                $button.attr('data-bs-target', '#' + modalId);
+            }
+        },
+        hide: function(deleteElement) {
+            const $item = $(this);
+            const $list = $item.closest('[data-repeater-list]');
+            const itemCount = $list.find('[data-repeater-item]').length;
+
+            if (itemCount > 1) {
+                const rowId = $item.find('.delete-btn').data('id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "This item will be removed.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, remove it!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        if (rowId && rowId !== 'new') {
+                            deleteRFQFromServer(rowId, function() {
+                                $item.slideUp('fast', function() {
+                                    $item.remove();
+                                    updateSerials();
+                                });
+                            });
+                        } else {
+                            $item.slideUp('fast', function() {
+                                $item.remove();
+                                updateSerials();
+                            });
+                        }
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'At least one item must remain.',
+                    showConfirmButton: true
+                });
+            }
+        },
+        isFirstItemUndeletable: false
+    });
+
+    updateSerials(); // Initial run
+});
+
     </script>
 
     <script>
