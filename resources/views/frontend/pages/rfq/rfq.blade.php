@@ -82,7 +82,7 @@
                                                 </div>
 
                                                 <div class="modal fade" id="{{ $modalId }}" tabindex="-1" aria-labelledby="{{ $modalId }}Label" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-dialog modal-lg modal-dialog-centered">
                                                         <div class="border-0 modal-content rounded-0">
                                                             <div class="modal-header">
                                                                 <h1 class="modal-title fs-5" id="{{ $modalId }}Label">Product Information</h1>
@@ -94,19 +94,19 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">SKU Code</label>
-                                                                                <input type="text" class="form-control" placeholder="Enter SKU Code">
+                                                                                <input type="text" class="form-control" name="sku_code" placeholder="Enter SKU Code">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">Upload File</label>
-                                                                                <input type="file" class="form-control">
+                                                                                <input type="file" class="form-control" name="image">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-lg-12">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">Additional Info</label>
-                                                                                <textarea class="form-control" rows="3" placeholder="Enter any additional information here"></textarea>
+                                                                                <textarea class="form-control" name="product_des" rows="3" placeholder="Enter any additional information here"></textarea>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -164,7 +164,7 @@
                                                 </div>
 
                                                 <div class="modal fade" id="{{ $modalId }}" tabindex="-1" aria-labelledby="{{ $modalId }}Label" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-dialog modal-lg modal-dialog-centered">
                                                         <div class="border-0 modal-content rounded-0">
                                                             <div class="modal-header bg-light">
                                                                 <h1 class="modal-title fs-5" id="{{ $modalId }}Label">Product Information</h1>
@@ -176,19 +176,19 @@
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">SKU Code</label>
-                                                                                <input type="text" class="form-control" placeholder="Enter SKU Code">
+                                                                                <input type="text" class="form-control" name="sku_code" placeholder="Enter SKU Code">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-lg-6">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">Upload File</label>
-                                                                                <input type="file" class="form-control">
+                                                                                <input type="file" class="form-control" name="image">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-lg-12">
                                                                             <div class="mb-3">
                                                                                 <label class="form-label">Additional Info</label>
-                                                                                <textarea class="form-control" rows="3" placeholder="Enter any additional information here"></textarea>
+                                                                                <textarea class="form-control" name="product_des" rows="3" placeholder="Enter any additional information here"></textarea>
                                                                             </div>
                                                                         </div>
                                                                     </div>

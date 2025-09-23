@@ -23,4 +23,13 @@ class Rfq extends Model
     {
         return $this->hasMany(QuotationProduct::class);
     }
+    public function rfqQuotation()
+    {
+        return $this->hasOne(RfqQuotation::class, 'rfq_id', 'id');
+    }
+    public function isAssigned(): bool
+{
+    return !empty($this->sales_man_id_L1) || !empty($this->sales_man_id_T1) || !empty($this->sales_man_id_T2);
+}
+
 }
