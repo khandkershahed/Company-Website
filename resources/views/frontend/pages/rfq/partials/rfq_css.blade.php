@@ -128,7 +128,7 @@
         border-radius: 0px;
         padding: 13px;
         box-shadow: none !important;
-        z-index: 10;
+        z-index: 0;
         transition-duration: 0.4s;
         -moz-transition-duration: 0.4s;
         -webkit-transition-duration: 0.4s;
