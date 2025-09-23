@@ -1,12 +1,18 @@
 <style>
+
     .rfq-status-card {
-        max-height: 400px;
+        max-height: 232px;
         overflow-y: auto;
+    }
+
+    .nav-line-tabs .nav-item .nav-link {
+        border: 1px solid #eee;
+        margin: 0px 5px;
     }
 
     .rfq-box {
         width: 100%;
-        height: 243px;
+        height: 232px;
         flex-shrink: 0;
         border-radius: 0.625rem;
         background: #FFF;
@@ -130,10 +136,9 @@
     }
 
     .rfq-pending {
-        border-radius: 8px;
-        background: #EFF4FF;
+        background: #eff4ff !important;
         display: flex;
-        padding: 10px 16px;
+        padding: 8px !important;
         justify-content: space-between;
         align-items: center;
         align-self: stretch;
@@ -142,9 +147,9 @@
 
     .rfq-quoted {
         border-radius: 8px;
-        background: #E8E9FF;
+        background: #E8E9FF !important;
         display: flex;
-        padding: 10px 16px;
+        padding: 8px !important;
         justify-content: space-between;
         align-items: center;
         align-self: stretch;
@@ -155,7 +160,7 @@
         border-radius: 8px;
         background: #FFDBDB;
         display: flex;
-        padding: 10px 16px;
+        padding: 8px !important;
         justify-content: space-between;
         align-items: center;
         align-self: stretch;
@@ -182,18 +187,17 @@
     }
 
     .nav-line-tabs .nav-item .nav-link {
-        padding: 12px !important;
+        padding: 8px !important;
     }
 
     .nav-line-tabs .nav-item .nav-link.active,
     .nav-line-tabs .nav-item .nav-link:hover:not(.disabled),
     .nav-line-tabs .nav-item.show .nav-link {
         background-color: #F2F4F6 !important;
-        border-radius: 8px;
-        border: 1px solid #F2F4F6 !important;
+        padding: 8px !important;
         border: 0;
-        padding: 12px !important;
         /* padding: 11px !important; */
+        transition: none !important;
         color: #000000 !important;
     }
 

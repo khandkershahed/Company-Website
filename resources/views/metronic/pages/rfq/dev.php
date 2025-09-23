@@ -15,7 +15,7 @@
     'October',
     'November',
     'December',
-    ];
+    ]; 
     @endphp
     <div class="rowm b-5">
 
