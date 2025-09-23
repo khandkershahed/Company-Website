@@ -1,5 +1,4 @@
 <style>
-
     .rfq-status-card {
         max-height: 232px;
         overflow-y: auto;
@@ -143,6 +142,7 @@
         align-items: center;
         align-self: stretch;
         margin-bottom: 12px;
+        border-radius: 8px;
     }
 
     .rfq-quoted {
@@ -176,6 +176,13 @@
         align-items: center;
         align-self: stretch;
     }
+
+    .nav-line-tabs .nav-item .nav-link.active,
+    .nav-line-tabs .nav-item .nav-link:hover:not(.disabled),
+    .nav-line-tabs .nav-item.show .nav-link {
+        padding: 10px;
+        background: #eee !important;
+    }
 </style>
 
 
@@ -184,21 +191,6 @@
     .table th,
     .table tr {
         font-size: 14px;
-    }
-
-    .nav-line-tabs .nav-item .nav-link {
-        padding: 8px !important;
-    }
-
-    .nav-line-tabs .nav-item .nav-link.active,
-    .nav-line-tabs .nav-item .nav-link:hover:not(.disabled),
-    .nav-line-tabs .nav-item.show .nav-link {
-        background-color: #F2F4F6 !important;
-        padding: 8px !important;
-        border: 0;
-        /* padding: 11px !important; */
-        transition: none !important;
-        color: #000000 !important;
     }
 
     .btn-outline-primary {
