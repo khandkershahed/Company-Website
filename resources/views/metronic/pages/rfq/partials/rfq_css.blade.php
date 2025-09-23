@@ -1,4 +1,13 @@
 <style>
+    .clear-search {
+        background: transparent;
+        border: none;
+        color: #999;
+    }
+
+    .clear-search:hover {
+        color: #333;
+    }
 
     .rfq-status-card {
         max-height: 232px;
@@ -136,13 +145,14 @@
     }
 
     .rfq-pending {
-        background: #eff4ff !important;
+        background: #EFF4FF !important;
         display: flex;
         padding: 8px !important;
         justify-content: space-between;
         align-items: center;
         align-self: stretch;
         margin-bottom: 12px;
+        border-radius: 8px;
     }
 
     .rfq-quoted {
@@ -158,7 +168,7 @@
 
     .rfq-failed {
         border-radius: 8px;
-        background: #FFDBDB;
+        background: #FFDBDB !important;
         display: flex;
         padding: 8px !important;
         justify-content: space-between;
@@ -169,12 +179,19 @@
 
     .rfq-closed {
         border-radius: 8px;
-        background: #FFEDD9;
+        background: #FFEDD9 !important;
         display: flex;
         padding: 10px 16px;
         justify-content: space-between;
         align-items: center;
         align-self: stretch;
+    }
+
+    .nav-line-tabs .nav-item .nav-link.active,
+    .nav-line-tabs .nav-item .nav-link:hover:not(.disabled),
+    .nav-line-tabs .nav-item.show .nav-link {
+        padding: 10px;
+        background: #eee !important;
     }
 </style>
 
@@ -184,21 +201,6 @@
     .table th,
     .table tr {
         font-size: 14px;
-    }
-
-    .nav-line-tabs .nav-item .nav-link {
-        padding: 8px !important;
-    }
-
-    .nav-line-tabs .nav-item .nav-link.active,
-    .nav-line-tabs .nav-item .nav-link:hover:not(.disabled),
-    .nav-line-tabs .nav-item.show .nav-link {
-        background-color: #F2F4F6 !important;
-        padding: 8px !important;
-        border: 0;
-        /* padding: 11px !important; */
-        transition: none !important;
-        color: #000000 !important;
     }
 
     .btn-outline-primary {

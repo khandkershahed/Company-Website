@@ -18,9 +18,9 @@
         ];
     @endphp
     <div class="mb-5 row">
-        <div class="col-lg-4">
-            <div class="card rfq-box shadow-none">
-                <div class="card-body d-flex align-items-center">
+        <div class="col-lg-4 ps-0">
+            <div class="shadow-none card rfq-box">
+                <div class="w-100 rfq-status-card">
                     <div class="row align-items-center">
                         <div class="col-lg-8">
                             <div class="">
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="card shadow-none rfq-status">
+            <div class="shadow-none card rfq-status">
                 <div class="w-100 rfq-status-card">
                     <div class="row align-items-center">
                         <div class="col-lg-6">
@@ -69,28 +69,37 @@
                                 <img src="{{ asset('backend/assets/images/rfq/Total_RFQ.svg') }}" alt="">
                             </div>
                             <div class="mt-4">
-                                <h1 class="rfq-title mb-0">RFQ</h1>
+                                <h1 class="mb-0 rfq-title">RFQ</h1>
                                 <p class="rfq-para">Status</p>
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <ul class="mb-3 nav nav-tabs nav-line-tabs fs-6 rfq-tabs border-0 w-100">
-                                <li class="nav-item flex-fill mb-2">
-                                    <a class="nav-link {{ empty($tab_status) || $tab_status == 'pending' ? 'active' : '' }} rfq-pending"
+                            <ul class="mb-3 border-0 nav nav-tabs nav-line-tabs fs-6 rfq-tabs w-100">
+                                <li class="mb-2 nav-item w-100">
+                                    <a class="nav-link w-100 {{ empty($tab_status) || $tab_status == 'pending' ? 'active' : '' }} rfq-pending"
                                         data-bs-toggle="tab" href="#pending" data-status="pending">
-                                        Pending ({{ $rfqs->count() }})
+                                        <div class="d-flex justify-content-between w-100 align-items-center">
+                                            <p class="mb-0">Pending</p>
+                                            <p class="mb-0">{{ $rfqs->count() }}</p>
+                                        </div>
                                     </a>
                                 </li>
-                                <li class="nav-item flex-fill mb-2">
-                                    <a class="nav-link {{ !empty($tab_status) && $tab_status == 'quoted' ? 'active' : '' }} rfq-quoted"
+                                <li class="mb-2 nav-item w-100">
+                                    <a class="nav-link w-100 {{ !empty($tab_status) && $tab_status == 'quoted' ? 'active' : '' }} rfq-quoted"
                                         data-bs-toggle="tab" href="#quoted" data-status="quoted">
-                                        Quoted ({{ $quoteds->count() }})
+                                        <div class="d-flex justify-content-between w-100 align-items-center">
+                                            <p class="mb-0">Quoted</p>
+                                            <p class="mb-0">{{ $quoteds->count() }}</p>
+                                        </div>
                                     </a>
                                 </li>
-                                <li class="nav-item flex-fill mb-2">
-                                    <a class="nav-link {{ !empty($tab_status) && $tab_status == 'lost' ? 'active' : '' }} rfq-failed"
+                                <li class="mb-2 nav-item w-100">
+                                    <a class="nav-link w-100 {{ !empty($tab_status) && $tab_status == 'lost' ? 'active' : '' }} rfq-failed"
                                         data-bs-toggle="tab" href="#failed" data-status="lost">
-                                        Lost ({{ $losts->count() }})
+                                        <div class="d-flex justify-content-between w-100 align-items-center">
+                                            <p class="mb-0">Lost</p>
+                                            <p class="mb-0">{{ $losts->count() }}</p>
+                                        </div>
                                     </a>
                                 </li>
                             </ul>
@@ -100,7 +109,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 pe-0">
             <div class="p-3 shadow-none card rfq-status-card">
                 <div class="px-2 border-0 card-header w-100">
                     <div class="text-white rounded position-relative me-2 d-flex align-items-center"
@@ -127,11 +136,11 @@
                                 <hr>
                             </div>
                         @empty
-                            <p class="text-muted text-center">No countries found.</p>
+                            <p class="text-center text-muted">No countries found.</p>
                         @endforelse
                     </div>
                     {{-- Hidden message for "No results found" --}}
-                    <p id="noResults" class="text-muted text-center mt-4" style="display: none;">No countries match
+                    <p id="noResults" class="mt-4 text-center text-muted" style="display: none;">No countries match
                         your
                         search.</p>
                 </div>
@@ -141,71 +150,85 @@
     <div class="mb-5 row">
         <div class="col-8 ps-0">
             <div class="shadow-none card card-flush">
-                <div class="p-0 card-body">
-                    <div class="d-flex flex-stack justify-content-between align-items-center">
-                        <div class="px-10 p-3 d-flex align-items-center me-3 rounded-4">
+                <div class="p-7 card-body">
+                    <div class="row g-3 align-items-center">
+
+                        <!-- Left Title Section -->
+                        <div class="col-12 col-md-5 d-flex align-items-center">
                             <div class="flex-grow-1">
                                 <a href="#allRFQ">
-                                    <span class="rfq-e-title">RFQ Filtered Details</span> <br />
-                                    <span class="rfq-p-title">Check all RFQ history here</span>
+                                    <span class="rfq-e-title d-block fw-bold">RFQ Filtered Details</span>
+                                    <span class="rfq-p-title text-muted small">Check all RFQ history here</span>
                                 </a>
                             </div>
                         </div>
 
-                        <div class="px-10 p-3 d-flex align-items-center me-3 rounded-4">
-                            <div class="d-flex align-items-center">
-                                <div class="me-2">
-                                    <select class="form-select filterCountry min-w-lg-150px" data-control="select2"
-                                        data-allow-clear="true" data-enable-filtering="true" id="filterCountry"
-                                        name="country">
-                                        <option value="">Country</option>
-                                        @foreach ($countryWiseRfqs as $country)
-                                            <option value="{{ $country->country }}">{{ $country->country }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="me-2">
-                                    <select class="form-select filterSalesman min-w-lg-150px" data-control="select2"
-                                        data-allow-clear="true" data-enable-filtering="true" id="filterSalesman">
-                                        <option value="">Salesman</option>
-                                        @foreach ($users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="me-2">
-                                    <select class="form-select filterCompany min-w-lg-150px" data-control="select2"
-                                        data-allow-clear="true" data-enable-filtering="true" id="filterCompany"
-                                        name="company">
-                                        <option value="">Company</option>
-                                        @foreach ($companies as $company)
-                                            <option value="{{ $company }}">{{ $company }}</option>
-                                        @endforeach
-                                    </select>
+                        <!-- Right Filters Section -->
+                        <div class="col-12 col-md-7">
+                            <div class="gap-2 d-flex justify-content-md-end">
+
+                                <!-- Country -->
+                                <select class="form-select filterCountry" data-control="select2"
+                                    data-placeholder="Country" data-allow-clear="true" id="filterCountry"
+                                    name="country">
+                                    <option></option> {{-- Must be empty to allow placeholder to show --}}
+                                    @foreach ($countryWiseRfqs as $country)
+                                        <option value="{{ $country->country }}">{{ $country->country }}</option>
+                                    @endforeach
+                                </select>
+
+
+                                <!-- Salesman -->
+                                <select class="form-select filterSalesman" data-control="select2"
+                                    data-placeholder="Salesmanager" data-allow-clear="true" data-enable-filtering="true"
+                                    id="filterSalesman" name="salesman">
+                                    {{-- <option value="">Salesman</option> --}}
+                                    <option></option>
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @endforeach
+                                </select>
+
+                                <!-- Company -->
+                                <select class="form-select filterCompany" data-control="select2"
+                                    data-placeholder="Company" data-allow-clear="true" data-enable-filtering="true"
+                                    id="filterCompany" name="company">
+                                    {{-- <option value="">Company</option> --}}
+                                    <option></option>
+                                    @foreach ($companies as $company)
+                                        <option value="{{ $company }}">{{ $company }}</option>
+                                    @endforeach
+                                </select>
+
+                                <!-- Search -->
+                                <div class="position-relative flex-grow-1 flex-md-grow-0">
+                                    <i
+                                        class="fa-solid fa-magnifying-glass fs-5 position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
+                                    <input type="text" id="searchQuery" data-kt-table-widget-4="search"
+                                        class="form-control ps-10 pe-30 searchQuery min-w-lg-100px"
+                                        placeholder="Search" />
+                                    <button type="button"
+                                        class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2 d-none"
+                                        id="clearSearch" style="z-index: 2;">
+                                        <i class="fas fa-times text-muted"></i>
+                                    </button>
                                 </div>
 
-                                <div class="me-2">
-                                    <div class="text-white rounded position-relative me-2 d-flex align-items-center">
-                                        <i
-                                            class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
-                                        <input type="text" id="searchQuery" data-kt-table-widget-4="search"
-                                            class="form-control fs-7 ps-12 searchQuery" placeholder="Search" />
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         <div class="col-4 pe-0">
             <div class="shadow-none card card-flush">
-                <div class="p-0 card-body">
-                    <div class="px-10 p-5 d-flex flex-stack justify-content-between align-items-center">
+                <div class="card-body">
+                    <div class="d-flex flex-stack justify-content-between align-items-center">
                         <div class="me-3 rounded-4">
                             <select class="form-select min-w-lg-150px" data-control="select2" data-allow-clear="true"
-                                data-placeholder="Year">
-                                <option value="{{ date('Y') }}">Year</option>
+                                data-placeholder="Year" name="year" id="filterYear">
+                                <option value="{{ date('Y') }}">2025</option>
                                 <option value="2022">2022</option>
                                 <option value="2023">2023</option>
                                 <option value="2024">2024</option>
@@ -215,15 +238,17 @@
                         </div>
                         <div class="me-3 rounded-4">
                             <select class="form-select min-w-lg-150px" data-control="select2"
-                                data-placeholder="Month">
-                                <option value="{{ date('M') }}">Month</option>
+                                data-placeholder="Month" name="month" id="filterMonth">
+                                <option value="{{ \Carbon\Carbon::now()->format('F') }}">
+                                    {{ \Carbon\Carbon::now()->format('F') }}
+                                </option>
                                 @foreach ($months as $month)
                                     <option value="{{ $month }}">{{ $month }}</option>
                                 @endforeach
                             </select>
                         </div>
 
-                        <div class="me-3 rounded-4 text-center">
+                        <div class="text-center me-3 rounded-4">
                             @if (!Route::is('admin.archived.rfq'))
                                 <a href="{{ route('admin.archived.rfq') }}"
                                     class="form-control min-w-lg-150px">Archived <i
@@ -239,6 +264,7 @@
         </div>
     </div>
     <div class="row">
+
         <!-- Container for the filtered RFQ queries -->
         <div class="tab-content" id="myTabContent">
             @include('metronic.pages.rfq.partials.rfq_queries')
@@ -276,7 +302,7 @@
 
                     // Show loading spinner
                     $('#myTabContent').html(`
-                <div class="text-center py-5">
+                <div class="py-5 text-center">
                     <div class="spinner-border text-primary" role="status">
                         <span class="visually-hidden">Loading...</span>
                     </div>
@@ -317,7 +343,7 @@
                         },
                         error: function() {
                             $('#myTabContent').html(`
-                        <div class="alert alert-danger text-center my-4">
+                        <div class="my-4 text-center alert alert-danger">
                             Error fetching data. Please try again.
                         </div>
                     `);
@@ -347,12 +373,16 @@
         <script>
             $(document).ready(function() {
                 function initSelect2() {
-                    $('.fixed-width-select').select2({
-                        placeholder: 'Select an option',
-                        allowClear: true,
-                        width: 'resolve'
+                    $('select[data-control="select2"]').each(function() {
+                        const placeholder = $(this).data('placeholder') || 'Select an option';
+                        $(this).select2({
+                            placeholder: placeholder,
+                            allowClear: true,
+                            width: 'resolve',
+                        });
                     });
                 }
+
 
                 function fetchRfqData() {
                     var year = $('#filterYear').val();
@@ -366,7 +396,7 @@
 
                     // Show loading spinner
                     $('#myTabContent').html(`
-                            <div class="text-center py-5">
+                            <div class="py-5 text-center">
                                 <div class="spinner-border text-primary" role="status">
                                     <span class="visually-hidden">Loading...</span>
                                 </div>
@@ -388,47 +418,56 @@
                         success: function(response) {
                             if (response.view) {
                                 $('#myTabContent').html(response.view);
-
-                                // // Re-init select2 on new elements
                                 initSelect2();
-
-                                // // Restore values
-                                // $('#filterYear').val(year);
-                                // $('#filterMonth').val(month);
-                                // $('#filterCompany').val(company).trigger('change');
-                                // $('#filterCountry').val(country).trigger('change');
-                                // $('#searchQuery').val(search);
-
-                                // Rebind filter change events
                                 bindFilterEvents();
 
                                 // Restore active tab
                                 $('.rfq-tabs .nav-link').removeClass('active');
                                 activeTab.addClass('active');
                             } else {
+                                $('#myTabContent').html(`
+                                <div class="my-4 text-center alert alert-danger">
+                                    Error fetching data. Please try again.
+                                </div>
+                            `);
                                 console.error('No view content returned');
                             }
                         },
-                        error: function(response) {
-                            alert(response.message);
-                            $('#myTabContent').html(response.message);
+                        error: function() {
+                            $('#myTabContent').html(`
+                                <div class="my-4 text-center alert alert-danger">
+                                    Error fetching data. Please try again.
+                                </div>
+                            `);
                         }
                     });
                 }
 
                 function bindFilterEvents() {
-                    $('#filterYear, #filterMonth, #filterCompany, #filterCountry, #filterSalesman, #searchQuery')
-                        .off('input change')
-                        .on('input change', function() {
-                            fetchRfqData();
-                        });
+                    $('#filterYear, #filterMonth, #filterCompany, #filterCountry, #filterSalesman')
+                        .off('change')
+                        .on('change', fetchRfqData);
 
-                    $('#searchQuery').off('keypress').on('keypress', function(e) {
+                    $('#searchQuery').off('input keypress').on('input keypress', function(e) {
+                        const searchVal = $(this).val();
+                        if (searchVal.length > 0) {
+                            $('#clearSearch').removeClass('d-none');
+                        } else {
+                            $('#clearSearch').addClass('d-none');
+                        }
+
                         if (e.which === 13) {
                             fetchRfqData();
                         }
                     });
+
+                    $('#clearSearch').off('click').on('click', function() {
+                        $('#searchQuery').val('').trigger('input');
+                        $(this).addClass('d-none');
+                        fetchRfqData();
+                    });
                 }
+
 
                 // Init on page load
                 initSelect2();
