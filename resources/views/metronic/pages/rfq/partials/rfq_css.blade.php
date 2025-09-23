@@ -135,7 +135,7 @@
     }
 
     .rfq-pending {
-        background: #eff4ff !important;
+        background: #EFF4FF !important;
         display: flex;
         padding: 8px !important;
         justify-content: space-between;
@@ -158,7 +158,7 @@
 
     .rfq-failed {
         border-radius: 8px;
-        background: #FFDBDB;
+        background: #FFDBDB !important;
         display: flex;
         padding: 8px !important;
         justify-content: space-between;
@@ -169,7 +169,7 @@
 
     .rfq-closed {
         border-radius: 8px;
-        background: #FFEDD9;
+        background: #FFEDD9 !important;
         display: flex;
         padding: 10px 16px;
         justify-content: space-between;
