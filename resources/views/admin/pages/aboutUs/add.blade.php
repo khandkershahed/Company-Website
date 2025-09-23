@@ -9,7 +9,7 @@
                         <div class="breadcrumb py-2">
                             <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house"></i></a>
                             <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                            <a href="{{ route('site-content.index') }}" class="breadcrumb-item">Site Contents</a>
+                            <a href="{{ route('admin.site-content.index') }}" class="breadcrumb-item">Site Contents</a>
                             <a href="{{ route('about-us.index') }}" class="breadcrumb-item">About Us Page</a>
                             <a href="{{ route('about-us.create') }}" class="breadcrumb-item">Add<span
                                     class="breadcrumb-item active"></span></a>

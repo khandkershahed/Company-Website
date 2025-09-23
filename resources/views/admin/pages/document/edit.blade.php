@@ -9,7 +9,7 @@
                         <div class="breadcrumb py-2">
                             <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house"></i></a>
                             <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                            <a href="{{ route('site-content.index') }}" class="breadcrumb-item">Site Contents</a>
+                            <a href="{{ route('admin.site-content.index') }}" class="breadcrumb-item">Site Contents</a>
                             <a href="{{ route('document.index') }}" class="breadcrumb-item">Document PDF</a>
                             <a href="{{ route('document.create') }}" class="breadcrumb-item">Edit<span
                                     class="breadcrumb-item active"></span></a>
@@ -49,7 +49,7 @@
                     <div class="container py-2">
                         <div class="px-2 py-2 m-2 bg-light rounded">
                             <div class="row mb-1">
-                                
+
 
                                 <div class="row mb-1">
                                     <div class="col-lg-4">

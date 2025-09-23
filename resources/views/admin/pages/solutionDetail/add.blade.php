@@ -8,7 +8,7 @@
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
-                        <a href="{{ route('site-content.index') }}" class="breadcrumb-item"> Site Content</a>
+                        <a href="{{ route('admin.site-content.index') }}" class="breadcrumb-item"> Site Content</a>
                         <a href="{{ route('solutionDetails.index') }}" class="breadcrumb-item">Solution Details</a>
                         <a href="" class="breadcrumb-item">Add</a>
                     </div>
@@ -70,7 +70,7 @@
                                             class="col-form-label label_style col-lg-2 p-0 text-start text-black">Industry
                                             Title</label>
                                         <select name="industry_id" class="form-control form-select-sm select"
-                                            data-container-css-class="select-sm" 
+                                            data-container-css-class="select-sm"
                                             data-placeholder="Chose Industry Title" required>
                                             <option></option>
                                             @foreach ($industries as $industrie)
@@ -164,7 +164,7 @@
                                             class="col-form-label label_style col-lg-2 p-0 text-start text-black">Solution
                                             Card One</label>
                                         <select name="solution_card_one_id" class="form-control form-select-sm select"
-                                            data-container-css-class="select-sm" 
+                                            data-container-css-class="select-sm"
                                             data-placeholder="Chose Solution Card One" required>
                                             <option></option>
                                             @foreach ($solution_cards as $solution_card)
@@ -179,7 +179,7 @@
                                             class="col-form-label label_style col-lg-2 p-0 text-start text-black">Solution
                                             Card Two</label>
                                         <select name="solution_card_two_id" class="form-control form-select-sm select"
-                                            data-container-css-class="select-sm" 
+                                            data-container-css-class="select-sm"
                                             data-placeholder="Chose Solution Card Two" required>
                                             <option></option>
                                             @foreach ($solution_cards as $solution_card)

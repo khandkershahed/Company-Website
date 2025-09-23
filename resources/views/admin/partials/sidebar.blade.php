@@ -69,16 +69,16 @@
                             <i class="fa-light fa-business-time side_baricon"></i>
                             <span class="text-start">Business</span></a>
                         <ul class="nav-group-sub collapse ms-4" style="">
-                            <li class="nav-item"><a href="{{ route('business.index') }}" class="nav-link">Dashboard</a>
+                            <li class="nav-item"><a href="{{ route('admin.business.index') }}" class="nav-link">Dashboard</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.rfq.index') }}" class="nav-link">RFQ
                                     Management</a>
                                 </li>
-                            <li class="nav-item"><a href="{{ route('sales-dashboard.index') }}" class="nav-link">
+                            <li class="nav-item"><a href="{{ route('admin.sales-dashboard.index') }}" class="nav-link">
                                     Sales</a>
                             </li>
-                            <li class="nav-item"><a href="{{ route('marketing-dashboard.index') }}"
+                            <li class="nav-item"><a href="{{ route('admin.marketing-dashboard.index') }}"
                                     class="nav-link">Marketing</a></li>
                             <li class="nav-item"><a href="{{ route('project.dashboard') }}"
                                     class="nav-link">Projects</a></li>
@@ -94,7 +94,7 @@
                             <i class="fa-duotone fa-sidebar-flip side_baricon"></i>
                             <span class="text-start ps-1">Site Contents</span></a>
                         <ul class="nav-group-sub collapse ms-4 {{ in_array(Route::current()->getName(), ['admin.solution-cms.index','solution.create']) ? 'show' : '' }}">
-                            <li class="nav-item"><a href="{{ route('site-content.index') }}"
+                            <li class="nav-item"><a href="{{ route('admin.site-content.index') }}"
                                     class="nav-link">Dashboard</a></li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.solution-cms.index') }}"
@@ -102,15 +102,15 @@
                                     All Solutions
                                 </a>
                             </li>
-                            <li class="nav-item"><a href="{{ route('site-content.index') }}" class="nav-link">Blog</a>
+                            <li class="nav-item"><a href="{{ route('admin.site-content.index') }}" class="nav-link">Blog</a>
                             </li>
-                            <li class="nav-item"><a href="{{ route('site-content.index') }}"
+                            <li class="nav-item"><a href="{{ route('admin.site-content.index') }}"
                                     class="nav-link">Techglossy</a></li>
-                            <li class="nav-item"><a href="{{ route('site-content.index') }}"
+                            <li class="nav-item"><a href="{{ route('admin.site-content.index') }}"
                                     class="nav-link">Feature</a></li>
-                            <li class="nav-item"><a href="{{ route('site-content.index') }}" class="nav-link">Client
+                            <li class="nav-item"><a href="{{ route('admin.site-content.index') }}" class="nav-link">Client
                                     Story</a></li>
-                            <li class="nav-item"><a href="{{ route('site-content.index') }}"
+                            <li class="nav-item"><a href="{{ route('admin.site-content.index') }}"
                                     class="nav-link">Showcase</a></li>
                             <li class="nav-item"><a href="{{ route('policy.index') }}" class="nav-link">Terms and
                                     Policy</a></li>
@@ -145,7 +145,7 @@
                             <i class="fa-light fa-user-tie side_baricon"></i>
                             <span class="text-start ps-1">HR & Admin</span></a>
                         <ul class="nav-group-sub collapse ms-4" style="">
-                            <li class="nav-item"><a href="{{ route('hr-and-admin.index') }}"
+                            <li class="nav-item"><a href="{{ route('admin.hr-and-admin.index') }}"
                                     class="nav-link">Dashboard</a></li>
                             <li class="nav-item"><a href="{{ route('leaveApplications') }}"
                                     class="nav-link">Leave</a>
@@ -170,22 +170,22 @@
                             <i class="fa-light fa-screwdriver-wrench side_baricon"></i>
                             <span class="text-start ps-1">Site Setting</span></a>
                         <ul class="nav-group-sub collapse ms-4" style="">
-                            <li class="nav-item"><a href="{{ route('site-setting.index') }}"
+                            <li class="nav-item"><a href="{{ route('admin.site-setting.index') }}"
                                     class="nav-link">Dashboard</a></li>
                             <li class="nav-item"><a href="{{ route('supplychain') }}" class="nav-link">Supply
                                     Chain</a>
                             </li>
-                            <li class="nav-item"><a href="{{ route('marketing-dashboard.index') }}"
+                            <li class="nav-item"><a href="{{ route('admin.marketing-dashboard.index') }}"
                                     class="nav-link">
                                     Business</a></li>
-                            <li class="nav-item"><a href="{{ route('site-content.index') }}"
+                            <li class="nav-item"><a href="{{ route('admin.site-content.index') }}"
                                     class="nav-link">Accounts</a></li>
-                            <li class="nav-item"><a href="{{ route('hr-and-admin.index') }}" class="nav-link">HR
+                            <li class="nav-item"><a href="{{ route('admin.hr-and-admin.index') }}" class="nav-link">HR
                                     Admin</a></li>
-                            <li class="nav-item"><a href="{{ route('site-content.index') }}"
+                            <li class="nav-item"><a href="{{ route('admin.site-content.index') }}"
                                     class="nav-link">Website
                                     Settings</a></li>
-                            <li class="nav-item"><a href="{{ route('site-content.index') }}" class="nav-link">Role
+                            <li class="nav-item"><a href="{{ route('admin.site-content.index') }}" class="nav-link">Role
                                     Settings</a></li>
                         </ul>
 

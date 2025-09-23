@@ -9,7 +9,7 @@
                     <div class="breadcrumb py-2">
                         <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <a href="{{ route('hr-and-admin.index') }}" class="breadcrumb-item"> HR and Admin</a>
+                        <a href="{{ route('admin.hr-and-admin.index') }}" class="breadcrumb-item"> HR and Admin</a>
                         <span class="breadcrumb-item active">Job Management</span>
                     </div>
                     <a href="#breadcrumb_elements"
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="px-3">
-                <a href="{{ route('hr-and-admin.index') }}" class="btn navigation_btn">
+                <a href="{{ route('admin.hr-and-admin.index') }}" class="btn navigation_btn">
                     <div class="d-flex align-items-center" data-bs-toggle="tooltip" data-bs-placement="top"
                         title="Add Solution Details">
                         <i class="fa-solid fa-users me-1" style="font-size: 12px;"></i>

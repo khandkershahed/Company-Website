@@ -50,7 +50,7 @@
                     <div class="breadcrumb py-2">
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <a href="{{ route('business.index') }}" class="breadcrumb-item">Business</a>
+                        <a href="{{ route('admin.business.index') }}" class="breadcrumb-item">Business</a>
                         <a href="{{ route('rfq-manage.index') }}" class="breadcrumb-item">RFQ Management</a>
                         <span class="breadcrumb-item active">Convert RFQ To Deal</span>
                     </div>

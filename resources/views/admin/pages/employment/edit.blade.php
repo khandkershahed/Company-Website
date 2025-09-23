@@ -18,8 +18,8 @@
                         <div class="breadcrumb py-2">
                             <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house"></i></a>
                             <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                            <a href="{{ route('site-setting.index') }}" class="breadcrumb-item">Employeement</a>
-                            <a href="{{ route('site-setting.index') }}" class="breadcrumb-item">Add</a>
+                            <a href="{{ route('admin.site-setting.index') }}" class="breadcrumb-item">Employeement</a>
+                            <a href="{{ route('admin.site-setting.index') }}" class="breadcrumb-item">Add</a>
                         </div>
                         <a href="#breadcrumb_elements"
                             class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
