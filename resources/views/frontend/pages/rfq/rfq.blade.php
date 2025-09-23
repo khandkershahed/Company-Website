@@ -65,23 +65,36 @@
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="border-0 modal-content rounded-0">
                                                             <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="{{ $modalId }}Label">Modal title {{ $modalId }}</h1>
+                                                                <h1 class="modal-title fs-5" id="{{ $modalId }}Label">Product Information</h1>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form action="" method="get">
-                                                                    <div class="mb-3">
-                                                                        <label class="form-label">Email address</label>
-                                                                        <input type="email" class="form-control" placeholder="name@example.com">
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <label class="form-label">Example textarea</label>
-                                                                        <textarea class="form-control" rows="3"></textarea>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label">SKU Code</label>
+                                                                                <input type="text" class="form-control" placeholder="Enter SKU Code">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label">Upload File</label>
+                                                                                <input type="file" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label">Additional Info</label>
+                                                                                <textarea class="form-control" rows="3" placeholder="Enter any additional information here"></textarea>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <button type="submit" class="btn btn-primary">Submit</button>
-                                                                    </div>  
+                                                                    </div>
                                                                 </form>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -124,21 +137,33 @@
                                                 <div class="modal fade" id="{{ $modalId }}" tabindex="-1" aria-labelledby="{{ $modalId }}Label" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="border-0 modal-content rounded-0">
-                                                            <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="{{ $modalId }}Label">Modal title {{ $modalId }}</h1>
+                                                            <div class="modal-header bg-light">
+                                                                <h1 class="modal-title fs-5" id="{{ $modalId }}Label">Product Information</h1>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
                                                                 <form action="" method="get">
-                                                                    <div class="mb-3">
-                                                                        <label class="form-label">Email address</label>
-                                                                        <input type="email" class="form-control" placeholder="name@example.com">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-6">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label">SKU Code</label>
+                                                                                <input type="text" class="form-control" placeholder="Enter SKU Code">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label">Upload File</label>
+                                                                                <input type="file" class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12">
+                                                                            <div class="mb-3">
+                                                                                <label class="form-label">Additional Info</label>
+                                                                                <textarea class="form-control" rows="3" placeholder="Enter any additional information here"></textarea>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        <label class="form-label">Example textarea</label>
-                                                                        <textarea class="form-control" rows="3"></textarea>
-                                                                    </div>
-                                                                    <div class="mb-3">
+                                                                    <div class=" d-flex justify-content-end">
                                                                         <button type="submit" class="btn btn-primary">Submit</button>
                                                                     </div>
                                                                 </form>
@@ -153,7 +178,7 @@
 
                                     <button type="button" data-repeater-create class="mt-4 mb-3 rfq-add-btns">
                                         <i class="fas fa-plus"></i> Add Items
-                                    </button>   
+                                    </button>
                                 </div>
                             </div>
                             <!-- ✅ End of repeater placement -->
