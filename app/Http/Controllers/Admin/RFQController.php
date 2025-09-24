@@ -710,9 +710,12 @@ class RFQController extends Controller
         // Notify users and send emails
         $name = $request->name;
         $user_emails = User::where(function ($query) {
-            $query->whereJsonContains('department', 'business')
-                ->orWhereJsonContains('department', 'logistics');
-        })->where('role', 'admin')->pluck('email')->toArray();
+                            $query->whereJsonContains('department', 'business')
+                                ->orWhereJsonContains('department', 'logistics');
+                        })->whereIn('role', ['admin', 'manager'])
+                        ->pluck('email')
+                        ->toArray();
+
 
         Notification::send(
             User::whereIn('email', $user_emails)->get(),
@@ -720,19 +723,7 @@ class RFQController extends Controller
         );
 
         $rfq = RFQ::with('rfqProducts')->where('id', $rfq_id)->first();
-        // $data = [
-        //     'name'          => $rfq->name,
-        //     'product_names' => $rfq->rfqProducts,
-        //     'phone'         => $rfq->phone,
-        //     'qty'           => $rfq->qty,
-        //     'company_name'  => $rfq->company_name,
-        //     'address'       => $rfq->address,
-        //     'message'       => $rfq->message,
-        //     'rfq_code'      => $rfq->rfq_code,
-        //     'email'         => $rfq->email,
-        //     'country'       => $rfq->country,
-        //     'link'          => route('single-rfq.show', $rfq->rfq_code),
-        // ];
+
         $data = [
             'name'                      => $rfq->name,
             'product_names'             => $rfq->rfqProducts,
@@ -769,6 +760,7 @@ class RFQController extends Controller
             'link'                      => route('single-rfq.show', $rfq->rfq_code),
         ];
         $rfq_code = $rfq->rfq_code;
+        if()
         try {
             // Mail::to($request->email)->send(new RFQNotificationClientMail($data));
             foreach ($user_emails as $email) {
