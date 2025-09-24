@@ -546,3 +546,26 @@
             });
         });
     </script>
+
+
+    <script>
+        const productInput = document.querySelector('[name="product_name"]');
+        const fileInput = document.querySelector('.file-input');
+        const warningText = document.querySelector('.warning-text');
+
+        function checkProductName() {
+            if (productInput.value.trim() === "") {
+            fileInput.disabled = true;
+            warningText.style.display = "block"; // Show text
+            } else {
+            fileInput.disabled = false;
+            warningText.style.display = "none"; // Hide text
+            }
+        }
+
+        // Run check while typing
+        productInput.addEventListener('input', checkProductName);
+
+        // Run check on page load too
+        checkProductName();
+    </script>

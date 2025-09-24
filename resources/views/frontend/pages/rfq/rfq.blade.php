@@ -221,18 +221,19 @@
                                                         <div class="py-2 modal-header bg-light">
                                                             <h1 class="modal-title fs-5" id="rfqModalLabel">Upload RFQ/Tender Images</h1>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>  
+                                                        </div>
+                                                        <!-- Modal Body -->
                                                         <div class="p-5 modal-body">
                                                             <div class="row">
                                                                 <div class="col-lg-12">
                                                                     <div class="mb-3">
-                                                                        <input type="file" class="form-control">
+                                                                        <input type="file" class="form-control file-input">
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="d-flex justify-content-center">
-                                                                <button type="submit" class="btn-color">Add File</button>
-                                                            </div>
+                                                            <p class="text-sm text-danger warning-text" style="display:none;">
+                                                                You must input product name in item Box.
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
