@@ -167,6 +167,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::put('seo/setting', [WebSettingController::class, 'seo'])->name('seo.setting');
     Route::put('smtp/setting', [WebSettingController::class, 'smtp'])->name('smtp.setting');
     Route::put('site/setting', [WebSettingController::class, 'site'])->name('site.setting');
+    Route::put('run/tools', [WebSettingController::class, 'runTools'])->name('tools.run');
     Route::get('hr/dashboard', [DashboardController::class, 'hrDashboard'])->name('hrDashboard.index');
     Route::get('hr-and-admin', [DashboardController::class, 'hrDashboard'])->name('hr-and-admin.index');
     // Toggle Status
@@ -667,67 +668,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     ///
 
-
-
-
-
-    ///Artisan Command
-
-
-
-    // Route for creating a symbolic link
-    Route::get('link', function () {
-        Artisan::call('storage:link');
-        Toastr::success('Storage linked successfully');
-        return back();
-    });
-
-    // Route for clearing cache
-    Route::get('clear-cache', function () {
-        Artisan::call('cache:clear');
-        Toastr::success('Cache cleared');
-        return back();
-    });
-
-    // Route for optimizing class loader
-    Route::get('optimize', function () {
-        Artisan::call('optimize:clear');
-        Toastr::success('Optimize cleared');
-        return back();
-    });
-
-    // Route for caching routes
-    Route::get('route-cache', function () {
-        Artisan::call('route:cache');
-        Toastr::success('Route cached');
-        return back();
-    });
-
-    // Route for clearing cached routes
-    Route::get('clear-route', function () {
-        Artisan::call('route:clear');
-        Toastr::success('Route value cleared');
-        return back();
-    });
-
-    // Route for clearing view cache
-    Route::get('clear-view', function () {
-        Artisan::call('view:clear');
-        Toastr::success('View cleared');
-        return back();
-    });
-
-    // Route for clearing config cache
-    Route::get('clear-config', function () {
-        Artisan::call('config:cache');
-        Toastr::success('Config cached');
-        return back();
-    });
-
-    // Route for running database migrations
-    Route::get('migrate', function () {
-        Artisan::call('migrate');
-        Toastr::success('Migration completed');
-        return back();
-    });
 });

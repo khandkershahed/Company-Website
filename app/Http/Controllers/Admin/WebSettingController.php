@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Country;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Requests\Setting\SeoRequest;
 use App\Http\Requests\Setting\SiteRequest;
@@ -73,8 +74,16 @@ class WebSettingController extends Controller
     //     return redirect()->back();
     // }
 
+
+
     public function smtp(Request $request)
     {
+        // Update runtime config for mail settings
+        Config::set('app.debug', $request->has('APP_DEBUG')); // true or false
+
+
+
+        // Update the .env file for persistence
         $envKeys = [
             'APP_DEBUG',
             'MAIL_MAILER',
@@ -85,63 +94,94 @@ class WebSettingController extends Controller
             'MAIL_ENCRYPTION',
             'MAIL_FROM_ADDRESS',
             'MAIL_FROM_NAME',
-            'MAIL_STATUS'
         ];
 
-        foreach ($envKeys as $key) {
-            if ($key === 'APP_DEBUG') {
-                $value = $request->has('APP_DEBUG') ? 'true' : 'false';
-            } else {
-                $value = $request->input($key);
-            }
+        //update mail configuration values using config facade
+        Config::set('app.debug', $request->has('APP_DEBUG'));
+        Config::set('mail.mailer', $request->MAIL_MAILER);
+        Config::set('mail.host', $request->MAIL_HOST);
+        Config::set('mail.port', $request->MAIL_PORT);
+        Config::set('mail.username', $request->MAIL_USERNAME);
+        Config::set('mail.password', $request->MAIL_PASSWORD);
+        Config::set('mail.encryption', $request->MAIL_ENCRYPTION);
+        Config::set('mail.from.address', $request->MAIL_FROM_ADDRESS);
+        Config::set('mail.from.name', $request->MAIL_FROM_NAME);
 
-            $this->setEnvValue($key, $value);
-        }
-
-        // Clear config first
-        Artisan::call('config:clear');
-
-        // Then cache new config
-        Artisan::call('config:cache');
+        //update mail configuration values in .env file
+        $env = file_get_contents(base_path('.env'));
+        $env = preg_replace('/MAIL_MAILER=(.*)/', 'MAIL_MAILER=' . $request->MAIL_MAILER, $env);
+        $env = preg_replace('/MAIL_MAILER=(.*)/', 'MAIL_MAILER=' . $request->MAIL_MAILER, $env);
+        $env = preg_replace('/MAIL_HOST=(.*)/', 'MAIL_HOST=' . $request->MAIL_HOST, $env);
+        $env = preg_replace('/MAIL_PORT=(.*)/', 'MAIL_PORT=' . $request->MAIL_PORT, $env);
+        $env = preg_replace('/MAIL_USERNAME=(.*)/', 'MAIL_USERNAME=' . $request->MAIL_USERNAME, $env);
+        $env = preg_replace('/MAIL_PASSWORD=(.*)/', 'MAIL_PASSWORD=' . $request->MAIL_PASSWORD, $env);
+        $env = preg_replace('/MAIL_ENCRYPTION=(.*)/', 'MAIL_ENCRYPTION=' . $request->MAIL_ENCRYPTION, $env);
+        $env = preg_replace('/MAIL_FROM_ADDRESS=(.*)/', 'MAIL_FROM_ADDRESS=' . $request->MAIL_FROM_ADDRESS, $env);
+        file_put_contents(base_path('.env'), $env);
 
         return redirect()->back()->with('success', 'Settings updated successfully.');
     }
 
-
     /**
-     * Replace or add a value in the .env file.
+     * Update or add key=value in .env file safely.
      */
     protected function setEnvValue($key, $value)
     {
         $envPath = base_path('.env');
-
         if (!file_exists($envPath)) {
-            return false;
+            throw new \Exception(".env file not found");
         }
 
-        // Escape double quotes
         $escapedValue = str_replace('"', '\"', $value);
-
-        // Always wrap in double quotes
         $formattedValue = "\"{$escapedValue}\"";
 
-        // Read .env content
         $envContent = file_get_contents($envPath);
 
         if (preg_match("/^{$key}=.*/m", $envContent)) {
-            // Replace existing key
             $envContent = preg_replace(
                 "/^{$key}=.*/m",
                 "{$key}={$formattedValue}",
                 $envContent
             );
         } else {
-            // Append if key not found
             $envContent .= "\n{$key}={$formattedValue}";
         }
 
         file_put_contents($envPath, $envContent);
     }
+
+
+    public function runTools(Request $request)
+    {
+        $action = $request->input('action');
+
+        $validActions = [
+            'link' => 'storage:link',
+            'cache:clear' => 'cache:clear',
+            'optimize:clear' => 'optimize:clear',
+            'route:cache' => 'route:cache',
+            'route:clear' => 'route:clear',
+            'view:clear' => 'view:clear',
+            'config:cache' => 'config:cache',
+            'migrate' => 'migrate',
+        ];
+
+        if (!array_key_exists($action, $validActions)) {
+            return back()->with('error', 'Invalid action selected');
+        }
+
+        try {
+            Artisan::call($validActions[$action]);
+            return back()->with('success', ucfirst(str_replace(':', ' ', $action)) . ' executed successfully.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Replace or add a value in the .env file.
+     */
+
 
 
     function site(SiteRequest $request)
