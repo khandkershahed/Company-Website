@@ -20,6 +20,6 @@ class TestMail extends Mailable
     public function build()
     {
         return $this->subject('Test Email from NGen IT')
-                    ->view('mail.test');
+                    ->view('mail.test', ['message' => $this->message]);
     }
 }
