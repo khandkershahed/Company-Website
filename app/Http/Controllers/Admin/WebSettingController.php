@@ -76,14 +76,54 @@ class WebSettingController extends Controller
 
 
 
+    // public function smtp(Request $request)
+    // {
+    //     // Update runtime config for mail settings
+    //     Config::set('app.debug', $request->has('APP_DEBUG')); // true or false
+
+
+
+    //     // Update the .env file for persistence
+    //     $envKeys = [
+    //         'APP_DEBUG',
+    //         'MAIL_MAILER',
+    //         'MAIL_HOST',
+    //         'MAIL_PORT',
+    //         'MAIL_USERNAME',
+    //         'MAIL_PASSWORD',
+    //         'MAIL_ENCRYPTION',
+    //         'MAIL_FROM_ADDRESS',
+    //         'MAIL_FROM_NAME',
+    //     ];
+
+    //     //update mail configuration values using config facade
+    //     Config::set('app.debug', $request->has('APP_DEBUG'));
+    //     Config::set('mail.mailer', $request->MAIL_MAILER);
+    //     Config::set('mail.host', $request->MAIL_HOST);
+    //     Config::set('mail.port', $request->MAIL_PORT);
+    //     Config::set('mail.username', $request->MAIL_USERNAME);
+    //     Config::set('mail.password', $request->MAIL_PASSWORD);
+    //     Config::set('mail.encryption', $request->MAIL_ENCRYPTION);
+    //     Config::set('mail.from.address', $request->MAIL_FROM_ADDRESS);
+    //     Config::set('mail.from.name', $request->MAIL_FROM_NAME);
+
+    //     //update mail configuration values in .env file
+    //     $env = file_get_contents(base_path('.env'));
+    //     $env = preg_replace('/MAIL_MAILER=(.*)/', 'MAIL_MAILER=' . $request->MAIL_MAILER, $env);
+    //     $env = preg_replace('/MAIL_MAILER=(.*)/', 'MAIL_MAILER=' . $request->MAIL_MAILER, $env);
+    //     $env = preg_replace('/MAIL_HOST=(.*)/', 'MAIL_HOST=' . $request->MAIL_HOST, $env);
+    //     $env = preg_replace('/MAIL_PORT=(.*)/', 'MAIL_PORT=' . $request->MAIL_PORT, $env);
+    //     $env = preg_replace('/MAIL_USERNAME=(.*)/', 'MAIL_USERNAME=' . $request->MAIL_USERNAME, $env);
+    //     $env = preg_replace('/MAIL_PASSWORD=(.*)/', 'MAIL_PASSWORD=' . $request->MAIL_PASSWORD, $env);
+    //     $env = preg_replace('/MAIL_ENCRYPTION=(.*)/', 'MAIL_ENCRYPTION=' . $request->MAIL_ENCRYPTION, $env);
+    //     $env = preg_replace('/MAIL_FROM_ADDRESS=(.*)/', 'MAIL_FROM_ADDRESS=' . $request->MAIL_FROM_ADDRESS, $env);
+    //     file_put_contents(base_path('.env'), $env);
+
+    //     return redirect()->back()->with('success', 'Settings updated successfully.');
+    // }
+
     public function smtp(Request $request)
     {
-        // Update runtime config for mail settings
-        Config::set('app.debug', $request->has('APP_DEBUG')); // true or false
-
-
-
-        // Update the .env file for persistence
         $envKeys = [
             'APP_DEBUG',
             'MAIL_MAILER',
@@ -96,31 +136,37 @@ class WebSettingController extends Controller
             'MAIL_FROM_NAME',
         ];
 
-        //update mail configuration values using config facade
-        Config::set('app.debug', $request->has('APP_DEBUG'));
-        Config::set('mail.mailer', $request->MAIL_MAILER);
-        Config::set('mail.host', $request->MAIL_HOST);
-        Config::set('mail.port', $request->MAIL_PORT);
-        Config::set('mail.username', $request->MAIL_USERNAME);
-        Config::set('mail.password', $request->MAIL_PASSWORD);
-        Config::set('mail.encryption', $request->MAIL_ENCRYPTION);
-        Config::set('mail.from.address', $request->MAIL_FROM_ADDRESS);
-        Config::set('mail.from.name', $request->MAIL_FROM_NAME);
+        // Update runtime config
+        foreach ($envKeys as $key) {
+            $value = $request->input($key);
+            if ($key === 'APP_DEBUG') {
+                Config::set('app.debug', filter_var($value, FILTER_VALIDATE_BOOLEAN));
+            } else {
+                Config::set(strtolower(str_replace('_', '.', $key)), $value);
+            }
+        }
 
-        //update mail configuration values in .env file
-        $env = file_get_contents(base_path('.env'));
-        $env = preg_replace('/MAIL_MAILER=(.*)/', 'MAIL_MAILER=' . $request->MAIL_MAILER, $env);
-        $env = preg_replace('/MAIL_MAILER=(.*)/', 'MAIL_MAILER=' . $request->MAIL_MAILER, $env);
-        $env = preg_replace('/MAIL_HOST=(.*)/', 'MAIL_HOST=' . $request->MAIL_HOST, $env);
-        $env = preg_replace('/MAIL_PORT=(.*)/', 'MAIL_PORT=' . $request->MAIL_PORT, $env);
-        $env = preg_replace('/MAIL_USERNAME=(.*)/', 'MAIL_USERNAME=' . $request->MAIL_USERNAME, $env);
-        $env = preg_replace('/MAIL_PASSWORD=(.*)/', 'MAIL_PASSWORD=' . $request->MAIL_PASSWORD, $env);
-        $env = preg_replace('/MAIL_ENCRYPTION=(.*)/', 'MAIL_ENCRYPTION=' . $request->MAIL_ENCRYPTION, $env);
-        $env = preg_replace('/MAIL_FROM_ADDRESS=(.*)/', 'MAIL_FROM_ADDRESS=' . $request->MAIL_FROM_ADDRESS, $env);
-        file_put_contents(base_path('.env'), $env);
+        // Update .env
+        $envPath = base_path('.env');
+        $envContent = file_get_contents($envPath);
 
-        return redirect()->back()->with('success', 'Settings updated successfully.');
+        foreach ($envKeys as $key) {
+            $value = $request->input($key);
+            $pattern = "/^{$key}=.*/m";
+            $replacement = "{$key}={$value}";
+
+            if (preg_match($pattern, $envContent)) {
+                $envContent = preg_replace($pattern, $replacement, $envContent);
+            } else {
+                $envContent .= PHP_EOL . $replacement;
+            }
+        }
+
+        file_put_contents($envPath, $envContent);
+
+        return redirect()->back()->with('success', 'SMTP settings updated successfully.');
     }
+
 
     /**
      * Update or add key=value in .env file safely.
