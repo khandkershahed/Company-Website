@@ -242,8 +242,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('/single-rfq/{id}/quotation', 'quotationMail')->name('single-rfq.quoation_mail');
     });
 
-    Route::put('assign_salesmanager/{id}', [RFQController::class, 'AssignSalesMan'])->name('assign.salesman');
-    Route::put('assign-salesman/{id}', [RFQController::class, 'AssignSalesManager'])->name('assign.salesmanager');
+    Route::put('assign-salesmanager/{id}', [RFQController::class, 'AssignSalesManager'])->name('assign.salesmanager');
+    Route::put('assign-salesman/{id}', [RFQController::class, 'AssignSalesMan'])->name('assign.salesman');
 
     Route::controller(RFQController::class)->group(function () {
         Route::get('/edit/{id}/rfq-to-deal', 'DealConvert')->name('deal.convert');
