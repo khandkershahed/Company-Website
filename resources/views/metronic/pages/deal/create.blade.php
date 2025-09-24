@@ -4,213 +4,242 @@
         <div id="kt_content_container" class="app-container container-fluid">
             <div class="d-flex align-items-center justify-content-center">
                 <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-12">
-                            <div class="mb-5 text-center">
-                                <h1 class="mb-0 rfq-title fw-bold text-primary">
-                                    Business Manager & Deal Information
-                                </h1>
-                                <div class="mt-2 text-primary">
-                                    <p class="mb-0">
-                                        Fill out the form below to complete the deal.
-                                        Review the details, confirm accuracy, submit, and
-                                        update the status.
-                                    </p>
+                    <div>
+                        <div class="p-10 mx-auto bg-white border rounded d-flex justify-content-center align-items-center flex-column w-25">
+                            <div class="fw-bold fs-5">
+                                Deal Submission Type
+                            </div>
+                            <div class="mt-5 d-flex">
+                                <div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="flexCheckDefault1" name="radio2" value="full" checked>
+                                        <label class="form-check-label" for="flexCheckDefault1">
+                                            Full Process
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="ps-5">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" id="flexCheckChecked1" name="radio2" value="draft">
+                                        <label class="form-check-label" for="flexCheckChecked1">
+                                            As Draft
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="mx-0 col-lg-10">
-                            <div class="border-0 shadow-sm card">
-                                <div class="py-10 mx-0 row g-0 align-items-center card-header"
-                                    style="background-color: #0b6476">
-                                    <div class="col-lg-3 ps-0">
-                                        <div>
-                                            <h4 class="text-white fw-bold">
-                                                Sales Manager Details
-                                            </h4>
-                                            <ul class="mb-0 text-white ps-0" style="list-style-type: none">
-                                                <li>
-                                                    <span class="fw-bold">Name:</span>
-                                                    <span class="text-muted">{{ Auth::user()->name }}</span>
-                                                </li>
-                                                <li>
-                                                    <span class="fw-bold">Email:</span>
-                                                    <a href="mailto:{{ Auth::user()->email }}"
-                                                        class="text-muted text-decoration-underline">{{ Auth::user()->email }}</a>
-                                                </li>
-                                                <li>
-                                                    <span class="fw-bold">Contact:</span>
-                                                    <a href="tel:+{{ Auth::user()->phone }}"
-                                                        class="text-muted text-decoration-underline">{{ Auth::user()->phone }}</a>
-                                                </li>
-                                            </ul>
+
+                        <div class="mt-4">
+                            <!-- Show If Full Process -->
+                            <div id="full-process-box">
+                                <div class="mt-5 row justify-content-center">
+                                    <div class="col-lg-12">
+                                        <div class="mb-5 text-center">
+                                            <h1 class="mb-0 rfq-title fw-bold text-primary">
+                                                Business Manager & Deal Information
+                                            </h1>
+                                            <div class="mt-2">
+                                                <p class="mb-0">
+                                                    Fill out the form below to complete the deal.
+                                                    Review the details, confirm accuracy, submit, and
+                                                    update the status.
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="text-center text-white col-lg-7 ps-0"></div>
-                                    <div class="text-white col-lg-2 pe-0">
-                                        <div class="">
-                                            <h4 class="text-white fw-bold">
-                                                Deal Information
-                                            </h4>
-                                            <p class="mb-0 pe-2 case-title">
-                                                <span class="fw-bold">Date:</span>
-                                                <span class="text-muted">{{ date('d M, Y') }}</span>
-                                            </p>
-                                            <p class="mb-0 pe-2 case-title">
-                                                <span class="fw-bold">ID:</span>
-                                                <span class="text-muted"></span>
-                                            </p>
-                                            <p class="mb-0 pe-2 case-title">
-                                                <span class="fw-bold">Status:</span>
-                                                <span class="text-muted"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <form id="stepperForm" action="{{ route('rfqCreate') }}" method="post"
-                                        enctype="multipart/form-data">
-                                        @csrf
-                                        <!-- ✅ Repeater goes here as you said -->
-                                        <div class="mt-5 mb-4">
-                                            <div class="repeater">
-                                                <div data-repeater-list="contacts">
-                                                    <div data-repeater-item class="row g-1 align-items-center">
-                                                        <!-- SL -->
-                                                        <div class="col-lg-1 col-2">
-                                                            <input type="text" name="sl" class="text-center form-control sl bg-light" value="1" readonly />
-                                                        </div>
+                                    <div class="mx-0 col-lg-10">
+                                        <div class="border-0 shadow-sm card">
+                                            <div class="py-10 mx-0 row g-0 align-items-center card-header"
+                                                style="background-color: #0b6476">
+                                                <div class="col-lg-3 ps-0">
+                                                    <div>
+                                                        <h4 class="text-white fw-bold">
+                                                            Sales Manager Details
+                                                        </h4>
+                                                        <ul class="mb-0 text-white ps-0" style="list-style-type: none">
+                                                            <li>
+                                                                <span class="text-gray-400 fw-bold">Name:</span>
+                                                                <span class="text-white">{{ Auth::user()->name }}</span>
+                                                            </li>
+                                                            <li>
+                                                                <span class="text-gray-400 fw-bold">Email:</span>
+                                                                <a href="mailto:{{ Auth::user()->email }}"
+                                                                    class="text-white text-decoration-underline">{{ Auth::user()->email }}</a>
+                                                            </li>
+                                                            <!-- <li>
+                                                                <span class="text-gray-400 fw-bold">Contact:</span>
+                                                                <a href="tel:+{{ Auth::user()->phone }}"
+                                                                    class="text-white text-decoration-underline">{{ Auth::user()->phone }}</a>
+                                                            </li> -->
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="text-center text-white col-lg-7 ps-0"></div>
+                                                <div class="text-white col-lg-2 pe-0">
+                                                    <div class="">
+                                                        <h4 class="text-white fw-bold">
+                                                            Deal Information
+                                                        </h4>
+                                                        <p class="mb-0 pe-2 case-title">
+                                                            <span class="fw-bold">Date:</span>
+                                                            <span class="text-white">{{ date('d M, Y') }}</span>
+                                                        </p>
+                                                        <!-- <p class="mb-0 pe-2 case-title">
+                                                            <span class="fw-bold">ID:</span>
+                                                            <span class="text-muted"></span>
+                                                        </p> -->
+                                                        <!-- <p class="mb-0 pe-2 case-title">
+                                                            <span class="fw-bold">Status:</span>
+                                                            <span class="text-muted"></span>
+                                                        </p> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <form id="stepperForm" action="{{ route('rfqCreate') }}" method="post"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <!-- ✅ Repeater goes here as you said -->
+                                                    <div class="mt-5 mb-4">
+                                                        <div class="repeater">
+                                                            <div data-repeater-list="contacts">
+                                                                <div data-repeater-item class="row g-1 align-items-center">
+                                                                    <!-- SL -->
+                                                                    <div class="col-lg-1 col-2">
+                                                                        <input type="text" name="sl" class="text-center form-control sl bg-light" value="1" readonly />
+                                                                    </div>
 
-                                                        <!-- Product Name -->
-                                                        <div class="col-lg-9 col-6">
-                                                            <input type="text" name="product_name" class="form-control " placeholder="Product Name" required />
-                                                        </div>
+                                                                    <!-- Product Name -->
+                                                                    <div class="col-lg-9 col-6">
+                                                                        <input type="text" name="product_name" class="form-control " placeholder="Product Name" required />
+                                                                    </div>
 
-                                                        <!-- Qty -->
-                                                        <div class="col-lg-1 col-2">
-                                                            <div class="d-flex">
-                                                                <input type="text" value="1"
-                                                                    class="mt-2 text-center form-control qty form-control-solid"
-                                                                    min="1" readonly name="qty"
-                                                                    style="width: 60px; margin-bottom: 6px;" />
-                                                                <div class="mt-2 d-flex flex-column counting-btn">
-                                                                    <button type="button" class="qty-btn increment-quantity" style="width: 32px; height: 32px">
-                                                                        <i class="fas fa-chevron-up" style="color: #7a7577"></i>
-                                                                    </button>
-                                                                    <button type="button" class="qty-btn decrement-quantity" style="width: 32px; height: 32px">
-                                                                        <i class="fas fa-chevron-down" style="color: #7a7577"></i>
-                                                                    </button>
+                                                                    <!-- Qty -->
+                                                                    <div class="col-lg-1 col-2">
+                                                                        <div class="d-flex">
+                                                                            <input type="text" value="1"
+                                                                                class="mt-2 text-center form-control qty form-control-solid"
+                                                                                min="1" readonly name="qty"
+                                                                                style="width: 60px; margin-bottom: 6px;" />
+                                                                            <div class="mt-2 d-flex flex-column counting-btn">
+                                                                                <button type="button" class="qty-btn increment-quantity" style="width: 32px; height: 32px">
+                                                                                    <i class="fas fa-chevron-up" style="color: #7a7577"></i>
+                                                                                </button>
+                                                                                <button type="button" class="qty-btn decrement-quantity" style="width: 32px; height: 32px">
+                                                                                    <i class="fas fa-chevron-down" style="color: #7a7577"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- Delete -->
+                                                                    <div class="col-lg-1 col-2">
+                                                                        <button type="button" data-repeater-delete class="py-2 btn btn-sm w-100 trash-btn">
+                                                                            <i class="fas fa-trash text-danger fs-1"></i>
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <!-- Delete -->
-                                                        <div class="col-lg-1 col-2">
-                                                            <button type="button" data-repeater-delete class="py-2 btn btn-sm w-100 trash-btn">
-                                                                <i class="fas fa-trash text-danger fs-1"></i>
+                                                            <!-- Add -->
+                                                            <button type="button" data-repeater-create class="mt-4 mb-3 rfq-add-btns">
+                                                                <i class="fas fa-plus"></i> Add Items
                                                             </button>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <!-- Add -->
-                                                <button type="button" data-repeater-create class="mt-4 mb-3 rfq-add-btns">
-                                                    <i class="fas fa-plus"></i> Add Items
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <!-- ✅ End of repeater placement -->
-                                        <hr class="my-10" />
-                                        <!-- For Desktop Only -->
-                                        <!-- Progress Bar -->
-                                        <div class="pt-3 progress-bar-steps for-desktop">
-                                            <div class="step" data-step="1">
-                                                <!-- <div class="step-label">Company Info</div> -->
-                                                <div class="step-label">
-                                                    <span class="d-none d-sm-inline">Company Info</span>
-                                                    <span class="d-inline d-sm-none">Company</span>
-                                                </div>
-                                                <div class="pt-1 circle ps-2">
-                                                    <i class="fas fa-check"></i>
-                                                </div>
-                                            </div>
-                                            <div class="step" data-step="2">
-                                                <div class="step-label">
-                                                    <span class="d-none d-sm-inline">Shipping Details</span>
-                                                    <span class="d-inline d-sm-none">Shipping</span>
-                                                </div>
-                                                <div class="pt-1 circle ps-2">
-                                                    <i class="fas fa-check"></i>
-                                                </div>
-                                            </div>
-                                            <div class="step" data-step="3">
-                                                <div class="step-label">
-                                                    <span class="d-none d-sm-inline">End User Info</span>
-                                                    <span class="d-inline d-sm-none">End User</span>
-                                                </div>
-                                                <div class="pt-1 circle ps-2">
-                                                    <i class="fas fa-check"></i>
-                                                </div>
-                                            </div>
-                                            <div class="step" data-step="4">
-                                                <div class="step-label">
-                                                    <span class="d-none d-sm-inline">Additional Details</span>
-                                                    <span class="d-inline d-sm-none">Additional</span>
-                                                </div>
-                                                <div class="pt-1 circle ps-2">
-                                                    <i class="fas fa-check"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Form starts here -->
-                                        <!-- Step 1 -->
-                                        <div class="step-content active" data-step="1">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="company_name"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Company Name (e.g: NGen It)" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mt-4 mb-4 form-check">
-                                                        <div>
-                                                            <input class="form-check-input" type="checkbox"
-                                                                value="" id="resellerCheckbox" required />
-                                                            <label class="form-check-label" for="resellerCheckbox">
-                                                                I am a reseller (Check if you are a
-                                                                reseller partner)
-                                                            </label>
+                                                    <!-- ✅ End of repeater placement -->
+                                                    <hr class="my-10" />
+                                                    <!-- For Desktop Only -->
+                                                    <!-- Progress Bar -->
+                                                    <div class="pt-3 progress-bar-steps for-desktop">
+                                                        <div class="step" data-step="1">
+                                                            <!-- <div class="step-label">Company Info</div> -->
+                                                            <div class="step-label">
+                                                                <span class="d-none d-sm-inline">Company Info</span>
+                                                                <span class="d-inline d-sm-none">Company</span>
+                                                            </div>
+                                                            <div class="pt-1 circle ps-2">
+                                                                <i class="fas fa-check"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="step" data-step="2">
+                                                            <div class="step-label">
+                                                                <span class="d-none d-sm-inline">Shipping Details</span>
+                                                                <span class="d-inline d-sm-none">Shipping</span>
+                                                            </div>
+                                                            <div class="pt-1 circle ps-2">
+                                                                <i class="fas fa-check"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="step" data-step="3">
+                                                            <div class="step-label">
+                                                                <span class="d-none d-sm-inline">End User Info</span>
+                                                                <span class="d-inline d-sm-none">End User</span>
+                                                            </div>
+                                                            <div class="pt-1 circle ps-2">
+                                                                <i class="fas fa-check"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="step" data-step="4">
+                                                            <div class="step-label">
+                                                                <span class="d-none d-sm-inline">Additional Details</span>
+                                                                <span class="d-inline d-sm-none">Additional</span>
+                                                            </div>
+                                                            <div class="pt-1 circle ps-2">
+                                                                <i class="fas fa-check"></i>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="name" class="form-control"
-                                                            autocomplete="off"
-                                                            placeholder="Client Name (e.g: Jhone Doe)" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="address" class="form-control"
-                                                            autocomplete="off"
-                                                            placeholder="Address (e.g: House No, Road, Block)"
-                                                            required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="designation" class="form-control"
-                                                            autocomplete="off"
-                                                            placeholder="Designation (e.g: Sales Manager)" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        {{-- <select class="form-select form-select-solid countrySelect"
+                                                    <!-- Form starts here -->
+                                                    <!-- Step 1 -->
+                                                    <div class="step-content active" data-step="1">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="company_name"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Company Name (e.g: NGen It)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mt-4 mb-4 form-check">
+                                                                    <div>
+                                                                        <input class="form-check-input" type="checkbox"
+                                                                            value="" id="resellerCheckbox" required />
+                                                                        <label class="form-check-label" for="resellerCheckbox">
+                                                                            I am a reseller (Check if you are a
+                                                                            reseller partner)
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="name" class="form-control"
+                                                                        autocomplete="off"
+                                                                        placeholder="Client Name (e.g: Jhone Doe)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="address" class="form-control"
+                                                                        autocomplete="off"
+                                                                        placeholder="Address (e.g: House No, Road, Block)"
+                                                                        required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="designation" class="form-control"
+                                                                        autocomplete="off"
+                                                                        placeholder="Designation (e.g: Sales Manager)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    {{-- <select class="form-select form-select-solid countrySelect"
                                                             name="country" aria-label="Select Country" required>
                                                             <option value="" selected disabled
                                                                 style="color: #7a7577 !important">
@@ -224,22 +253,22 @@
                                                                 Pakistan
                                                             </option>
                                                         </select> --}}
-                                                        <input type="text" name="country" class="form-control"
-                                                            autocomplete="off" placeholder="Country (e.g: Bangladesh)"
-                                                            required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="email" name="email" class="form-control"
-                                                            autocomplete="off"
-                                                            placeholder="Email Address (e.g: jhone@mail.com)"
-                                                            required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        {{-- <select class="form-select form-select-solid countrySelect"
+                                                                    <input type="text" name="country" class="form-control"
+                                                                        autocomplete="off" placeholder="Country (e.g: Bangladesh)"
+                                                                        required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="email" name="email" class="form-control"
+                                                                        autocomplete="off"
+                                                                        placeholder="Email Address (e.g: jhone@mail.com)"
+                                                                        required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    {{-- <select class="form-select form-select-solid countrySelect"
                                                             name="city" aria-label="Select City" required>
                                                             <option value="" selected disabled>
                                                                 Select City
@@ -253,335 +282,400 @@
                                                                 Rajshahi
                                                             </option>
                                                         </select> --}}
-                                                        <input type="text" name="city" class="form-control"
-                                                            autocomplete="off" placeholder="City (e.g: Dhaka)"
-                                                            required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="number" name="phone" class="form-control"
-                                                            autocomplete="off"
-                                                            placeholder="Phone Number (e.g: 018687955852)" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="zip_code" class="form-control"
-                                                            autocomplete="off" placeholder="ZIP Code (e.g: 1207)"
-                                                            required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="my-10">
-                                                        <!-- Delivery Address Checkbox -->
-                                                        <div class="mt-2 form-check">
-                                                            <input class="form-check-input deliveryAddress" type="checkbox"
-                                                                value="1" id="deliveryAddress" disabled
-                                                                required />
-                                                            <label class="form-check-label" for="deliveryAddress">
-                                                                My delivery address is the same as the
-                                                                company address
-                                                            </label>
+                                                                    <input type="text" name="city" class="form-control"
+                                                                        autocomplete="off" placeholder="City (e.g: Dhaka)"
+                                                                        required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="number" name="phone" class="form-control"
+                                                                        autocomplete="off"
+                                                                        placeholder="Phone Number (e.g: 018687955852)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="zip_code" class="form-control"
+                                                                        autocomplete="off" placeholder="ZIP Code (e.g: 1207)"
+                                                                        required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                <div class="my-10">
+                                                                    <!-- Delivery Address Checkbox -->
+                                                                    <div class="mt-2 form-check">
+                                                                        <input class="form-check-input deliveryAddress" type="checkbox"
+                                                                            value="1" id="deliveryAddress" disabled
+                                                                            required />
+                                                                        <label class="form-check-label" for="deliveryAddress">
+                                                                            My delivery address is the same as the
+                                                                            company address
+                                                                        </label>
+                                                                    </div>
+                                                                    <div id="checkDefaultContainer">
+                                                                        <div class="mt-3 mb-4 form-check">
+                                                                            <input class="form-check-input endUser" type="checkbox"
+                                                                                value="1" id="endUser" disabled required />
+                                                                            <label class="form-check-label" for="endUser">
+                                                                                I am the end user and my information
+                                                                                is the same as the company address
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div id="checkDefaultContainer">
-                                                            <div class="mt-3 mb-4 form-check">
-                                                                <input class="form-check-input endUser" type="checkbox"
-                                                                    value="1" id="endUser" disabled required />
-                                                                <label class="form-check-label" for="endUser">
-                                                                    I am the end user and my information
-                                                                    is the same as the company address
+                                                        <div class="mt-5 d-flex justify-content-between align-items-center">
+                                                            <div>
+                                                                <p class="mb-0 fw-semibold case-title">
+                                                                    "Please provide accurate and complete
+                                                                    details so we can reach out to you
+                                                                    smoothly."
+                                                                </p>
+                                                            </div>
+                                                            <button type="button" class="btn btn-primary next-step next-btn">
+                                                                Next <i class="fas fa-arrow-right-long"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Step 2 -->
+                                                    <div class="step-content" data-step="2">
+                                                        <div>
+                                                            <!-- Delivery Address Checkbox -->
+
+                                                            <div class="form-check my-15">
+                                                                <input class="form-check-input deliveryAddress" type="checkbox" name="is_contact_address" value="1"
+                                                                    id="stepTwoGotoStep3" />
+                                                                <label class="form-check-label" for="stepTwoGotoStep3">
+                                                                    Delivery address is same as the company
+                                                                    address
                                                                 </label>
                                                             </div>
                                                         </div>
+                                                        <!-- Step 2 Inputs Field -->
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="shipping_company_name"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Company Name (e.g: NGen It)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="shipping_name"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Client Name (e.g: Jhone Doe)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="shipping_address"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Address (e.g: House No, Road, Block)"
+                                                                        required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="shipping_designation"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Designation (e.g: Sales Manager)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="shipping_country"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Country (e.g: Bangladesh)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="email" name="shipping_email"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Email Address (e.g: jhone@mail.com)"
+                                                                        required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="shipping_city"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="City (e.g: Dhaka)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="number" name="shipping_phone"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Phone Number (e.g: 018687955852)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="shipping_zip_code"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="ZIP Code (e.g: 1207)" required />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Step 2 Inputs Field End-->
+                                                        <div class="d-flex justify-content-between align-items-center mt-15">
+                                                            <button type="button" class="btn btn-secondary prev-step prev-btn">
+                                                                <i class="fas fa-arrow-left-long pe-2"></i>
+                                                                Previous
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary next-step next-btn">
+                                                                Next <i class="fas fa-arrow-right-long"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-5 d-flex justify-content-between align-items-center">
-                                                <div>
-                                                    <p class="mb-0 fw-semibold case-title">
-                                                        "Please provide accurate and complete
-                                                        details so we can reach out to you
-                                                        smoothly."
-                                                    </p>
-                                                </div>
-                                                <button type="button" class="btn btn-primary next-step next-btn">
-                                                    Next <i class="fas fa-arrow-right-long"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <!-- Step 2 -->
-                                        <div class="step-content" data-step="2">
-                                            <div>
-                                                <!-- Delivery Address Checkbox -->
+                                                    <!-- Step 3 -->
+                                                    <div class="step-content" data-step="3">
+                                                        <!-- End User Checkbox -->
+                                                        <div>
+                                                            <div class="form-check my-15">
+                                                                <input class="form-check-input endUser" type="checkbox" value="1"
+                                                                    id="stepThreeGotoStep4" name="end_user_is_contact_address" />
+                                                                <label class="form-check-label" for="stepThreeGotoStep4">
+                                                                    I am the end user & same as the company
+                                                                    address
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Step 3 Inputs Field-->
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="end_user_company_name"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Company Name (e.g: NGen It)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="end_user_name"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Client Name (e.g: Jhone Doe)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="end_user_address"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Address (e.g: House No, Road, Block)"
+                                                                        required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="end_user_designation"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Designation (e.g: Sales Manager)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="end_user_country"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Country (e.g: Bangladesh)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="email" name="end_user_email"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Email Address (e.g: jhone@mail.com)"
+                                                                        required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="end_user_city"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="City (e.g: Dhaka)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="number" name="end_user_phone"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Phone Number (e.g: 018687955852)" required />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="end_user_zip_code"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="ZIP Code (e.g: 1207)" required />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Step 3 Inputs Field End-->
+                                                        <div class="d-flex justify-content-between align-items-center mt-15">
+                                                            <button type="button" class="btn btn-secondary prev-step prev-btn">
+                                                                <i class="fas fa-arrow-left-long pe-2"></i>
+                                                                Previous
+                                                            </button>
+                                                            <button type="button" class="btn btn-primary next-step next-btn">
+                                                                Next <i class="fas fa-arrow-right-long"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Step 4 -->
+                                                    <div class="step-content" data-step="4">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="project_name"
+                                                                        class="form-control" autocomplete="off"
+                                                                        placeholder="Project Name" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <input type="text" name="budget" class="form-control"
+                                                                        autocomplete="off" placeholder="Tentative Budget.." />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <select class="form-select form-select-solid countrySelect"
+                                                                        aria-label="Select Country" name="project_status">
+                                                                        <option value="" selected>
+                                                                            Current project status
+                                                                        </option>
+                                                                        <option value="budget_stage">
+                                                                            Budget Stage
+                                                                        </option>
+                                                                        <option value="tor_stage">
+                                                                            Tor Stage
+                                                                        </option>
+                                                                        <option value="rfq_stage">
+                                                                            RFQ Stage
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="mb-5">
+                                                                    <select class="form-select countrySelect"
+                                                                        aria-label="Select Country"
+                                                                        name="approximate_delivery_time">
+                                                                        <option value="" selected>
+                                                                            Tentetive Purchase Date
+                                                                        </option>
+                                                                        <option value="less_one_month">
+                                                                            1 Month
+                                                                        </option>
+                                                                        <option value="two_month">
+                                                                            2 Month
+                                                                        </option>
+                                                                        <option value="three_month">
+                                                                            3 Month
+                                                                        </option>
+                                                                        <option value="six_month">
+                                                                            6 Month
+                                                                        </option>
+                                                                        <option value="one_year">1 Year</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 col-lg-12">
+                                                                <textarea class="form-control" autocomplete="off" id="messageTextarea" name="project_brief"
+                                                                    placeholder="Leave a comment or message here..." rows="2" data-gtm-form-interact-field-id="9"></textarea>
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                <div class="form-check my-15">
+                                                                    <input class="form-check-input" type="checkbox"
+                                                                        value="" id="flexCheckChecked" checked />
+                                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                                        Skip the additional information
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-                                                <div class="form-check my-15">
-                                                    <input class="form-check-input deliveryAddress" type="checkbox" name="is_contact_address" value="1"
-                                                        id="stepTwoGotoStep3" />
-                                                    <label class="form-check-label" for="stepTwoGotoStep3">
-                                                        Delivery address is same as the company
-                                                        address
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <!-- Step 2 Inputs Field -->
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="shipping_company_name"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Company Name (e.g: NGen It)" required />
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <button type="button" class="btn btn-secondary prev-step prev-btn">
+                                                                <i class="fas fa-arrow-left-long pe-2"></i>
+                                                                Previous
+                                                            </button>
+                                                            <button type="submit" class="btn btn-primary next-step next-btn">
+                                                                Submit
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="shipping_name"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Client Name (e.g: Jhone Doe)" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="shipping_address"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Address (e.g: House No, Road, Block)"
-                                                            required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="shipping_designation"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Designation (e.g: Sales Manager)" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="shipping_country"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Country (e.g: Bangladesh)" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="email" name="shipping_email"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Email Address (e.g: jhone@mail.com)"
-                                                            required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="shipping_city"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="City (e.g: Dhaka)" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="number" name="shipping_phone"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Phone Number (e.g: 018687955852)" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="shipping_zip_code"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="ZIP Code (e.g: 1207)" required />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Step 2 Inputs Field End-->
-                                            <div class="d-flex justify-content-between align-items-center mt-15">
-                                                <button type="button" class="btn btn-secondary prev-step prev-btn">
-                                                    <i class="fas fa-arrow-left-long pe-2"></i>
-                                                    Previous
-                                                </button>
-                                                <button type="button" class="btn btn-primary next-step next-btn">
-                                                    Next <i class="fas fa-arrow-right-long"></i>
-                                                </button>
+                                                </form>
+                                                <!-- End form -->
                                             </div>
                                         </div>
-                                        <!-- Step 3 -->
-                                        <div class="step-content" data-step="3">
-                                            <!-- End User Checkbox -->
-                                            <div>
-                                                <div class="form-check my-15">
-                                                    <input class="form-check-input endUser" type="checkbox" value="1"
-                                                        id="stepThreeGotoStep4" name="end_user_is_contact_address" />
-                                                    <label class="form-check-label" for="stepThreeGotoStep4">
-                                                        I am the end user & same as the company
-                                                        address
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <!-- Step 3 Inputs Field-->
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="end_user_company_name"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Company Name (e.g: NGen It)" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="end_user_name"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Client Name (e.g: Jhone Doe)" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="end_user_address"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Address (e.g: House No, Road, Block)"
-                                                            required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="end_user_designation"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Designation (e.g: Sales Manager)" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="end_user_country"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Country (e.g: Bangladesh)" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="email" name="end_user_email"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Email Address (e.g: jhone@mail.com)"
-                                                            required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="end_user_city"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="City (e.g: Dhaka)" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="number" name="end_user_phone"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Phone Number (e.g: 018687955852)" required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="end_user_zip_code"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="ZIP Code (e.g: 1207)" required />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Step 3 Inputs Field End-->
-                                            <div class="d-flex justify-content-between align-items-center mt-15">
-                                                <button type="button" class="btn btn-secondary prev-step prev-btn">
-                                                    <i class="fas fa-arrow-left-long pe-2"></i>
-                                                    Previous
-                                                </button>
-                                                <button type="button" class="btn btn-primary next-step next-btn">
-                                                    Next <i class="fas fa-arrow-right-long"></i>
-                                                </button>
-                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Show If As Draft -->
+                            <div id="draft-box" style="display: none;">
+                                <div class="col-lg-12">
+                                    <div class="mb-5 text-center">
+                                        <h1 class="mb-0 rfq-title fw-bold text-primary">
+                                            Save Deal as Draft
+                                        </h1>
+                                        <div class="mt-2">
+                                            <p class="mb-0">
+                                                Fill out the form below to save your deal as a draft. <br>
+                                                You can review and update the details later before final submission.
+                                            </p>
                                         </div>
-                                        <!-- Step 4 -->
-                                        <div class="step-content" data-step="4">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="project_name"
-                                                            class="form-control" autocomplete="off"
-                                                            placeholder="Project Name" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <input type="text" name="budget" class="form-control"
-                                                            autocomplete="off" placeholder="Tentative Budget.." />
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <select class="form-select form-select-solid countrySelect"
-                                                            aria-label="Select Country" name="project_status">
-                                                            <option value="" selected>
-                                                                Current project status
-                                                            </option>
-                                                            <option value="budget_stage">
-                                                                Budget Stage
-                                                            </option>
-                                                            <option value="tor_stage">
-                                                                Tor Stage
-                                                            </option>
-                                                            <option value="rfq_stage">
-                                                                RFQ Stage
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="mb-5">
-                                                        <select class="form-select countrySelect"
-                                                            aria-label="Select Country"
-                                                            name="approximate_delivery_time">
-                                                            <option value="" selected>
-                                                                Tentetive Purchase Date
-                                                            </option>
-                                                            <option value="less_one_month">
-                                                                1 Month
-                                                            </option>
-                                                            <option value="two_month">
-                                                                2 Month
-                                                            </option>
-                                                            <option value="three_month">
-                                                                3 Month
-                                                            </option>
-                                                            <option value="six_month">
-                                                                6 Month
-                                                            </option>
-                                                            <option value="one_year">1 Year</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 col-lg-12">
-                                                    <textarea class="form-control" autocomplete="off" id="messageTextarea" name="project_brief"
-                                                        placeholder="Leave a comment or message here..." rows="2" data-gtm-form-interact-field-id="9"></textarea>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="form-check my-15">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            value="" id="flexCheckChecked" checked />
-                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                            Skip the additional information
-                                                        </label>
-                                                    </div>
-                                                </div>
+                                    </div>
+                                </div>
+                                <div class="mx-auto col-lg-6">
+                                    <form action="" method="post" enctype="multipart/form-data">
+                                        <div class="p-5 bg-white row gx-3 rounded-4">
+                                            <!-- Company Name -->
+                                            <div class="mb-3 col-6">
+                                                <label for="companyName" class="form-label">Company Name</label>
+                                                <input type="text" class="form-control" name="company_name" required>
                                             </div>
 
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <button type="button" class="btn btn-secondary prev-step prev-btn">
-                                                    <i class="fas fa-arrow-left-long pe-2"></i>
-                                                    Previous
-                                                </button>
-                                                <button type="submit" class="btn btn-primary next-step next-btn">
-                                                    Submit
-                                                </button>
+                                            <!-- Client Name -->
+                                            <div class="mb-3 col-6">
+                                                <label for="clientName" class="form-label">Client Name</label>
+                                                <input type="text" class="form-control" id="clientName" name="client_name" required>
+                                            </div>
+
+                                            <!-- Client Email -->
+                                            <div class="mb-3 col-4">
+                                                <label for="clientEmail" class="form-label">Client Email</label>
+                                                <input type="email" class="form-control" id="clientEmail" name="client_email" required>
+                                            </div>
+
+                                            <!-- Client Phone -->
+                                            <div class="mb-3 col-4">
+                                                <label for="clientPhone" class="form-label">Client Phone</label>
+                                                <input type="tel" class="form-control" id="clientPhone" name="client_phone" required>
+                                            </div>
+                                            <!-- Image Upload -->
+                                            <div class="mb-3 col-4">
+                                                <label for="clientImage" class="form-label">Upload Image</label>
+                                                <input type="file" class="form-control" id="clientImage" name="client_image" accept="image/*">
+                                            </div>
+
+                                            <!-- Text Box -->
+                                            <div class="mb-3 col-12">
+                                                <label for="clientMessage" class="form-label">Message / Notes</label>
+                                                <textarea class="form-control" id="clientMessage" name="client_message" rows="4"></textarea>
+                                            </div>
+                                            <!-- Submit Button -->
+                                            <div class="mt-3 d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-custom btn-primary">Add To  Draft <i class="text-white fas fa-right-long ps-2"></i></button>
                                             </div>
                                         </div>
                                     </form>
-                                    <!-- End form -->
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -952,6 +1046,29 @@
                 });
             });
         });
+    </script>
+    <!-- Hide and show the full process and as draft toggle -->
+    <script>
+        const radios = document.querySelectorAll('input[name="radio2"]');
+        const fullBox = document.getElementById('full-process-box');
+        const draftBox = document.getElementById('draft-box');
+
+        function toggleBoxes() {
+            if (document.getElementById('flexCheckDefault1').checked) {
+                fullBox.style.display = 'block';
+                draftBox.style.display = 'none';
+            } else {
+                fullBox.style.display = 'none';
+                draftBox.style.display = 'block';
+            }
+        }
+
+        radios.forEach(radio => {
+            radio.addEventListener('change', toggleBoxes);
+        });
+
+        // Run once on load
+        toggleBoxes();
     </script>
     @endpush
 </x-admin-app-layout>

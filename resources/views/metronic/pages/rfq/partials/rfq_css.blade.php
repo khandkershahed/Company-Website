@@ -63,7 +63,7 @@
         display: flex;
         width: 50px;
         height: 50px;
-        padding: 24px;
+        padding: 45px;
         justify-content: center;
         align-items: center;
         gap: 8px;
@@ -93,7 +93,7 @@
 
     .rfq-amount h1 {
         display: inline-flex;
-        padding: 30px 32px;
+        padding: 33px 30px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
