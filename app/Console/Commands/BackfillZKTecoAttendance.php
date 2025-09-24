@@ -82,7 +82,7 @@ class BackfillZKTecoAttendance extends Command
 
             $this->info("✅ Backfill complete. $processedCount records processed.");
         } catch (\Exception $e) {
-            Log::error("❌ ZKTeco Sync failed: " . $e->getMessage());
+            // Log::error("❌ ZKTeco Sync failed: " . $e->getMessage());
         } finally {
             $zk->disconnect();
         }

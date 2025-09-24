@@ -39,7 +39,7 @@ class SyncZKAttendance implements ShouldQueue
 
             // Ensure the users collection is not empty
             if ($users->isEmpty()) {
-                Log::warning('No users found to sync.');
+                // Log::warning('No users found to sync.');
                 return;
             }
 
@@ -47,9 +47,9 @@ class SyncZKAttendance implements ShouldQueue
             foreach ($users as $user) {
                 if (!empty($user->employee_id)) {
                     $employee_id = $user->employee_id;
-                    Log::info('Syncing attendance for user: ' . $user->id);
-                    Log::info('Month: ' . $this->month);
-                    Log::info('Employee ID: ' . $employee_id);
+                    // Log::info('Syncing attendance for user: ' . $user->id);
+                    // Log::info('Month: ' . $this->month);
+                    // Log::info('Employee ID: ' . $employee_id);
 
                     // Fetch attendance logs
                     $attendanceLogall = $zk->getEmployeeAttendance($this->month, $employee_id);
@@ -58,16 +58,16 @@ class SyncZKAttendance implements ShouldQueue
                     });
 
                     // Log the fetched data for debugging
-                    Log::info('Fetched Attendance Logs:', ['attendanceLogs' => $attendanceLogs]);
+                    // Log::info('Fetched Attendance Logs:', ['attendanceLogs' => $attendanceLogs]);
 
                     // Ensure $attendanceLogs is an array, even if empty
                     if (is_null($attendanceLogs)) {
-                        Log::warning("No attendance logs found for user ID: {$user->id} (Employee ID: {$employee_id}) - Received null");
+                        // Log::warning("No attendance logs found for user ID: {$user->id} (Employee ID: {$employee_id}) - Received null");
                         continue;
                     }
 
                     if (!is_array($attendanceLogs)) {
-                        Log::warning("Invalid data format for user ID: {$user->id} (Employee ID: {$employee_id}) - Expected array, got " . gettype($attendanceLogs));
+                        // Log::warning("Invalid data format for user ID: {$user->id} (Employee ID: {$employee_id}) - Expected array, got " . gettype($attendanceLogs));
                         continue;
                     }
 
@@ -101,13 +101,13 @@ class SyncZKAttendance implements ShouldQueue
                         );
                     }
                 } else {
-                    Log::warning("Employee ID is missing for user ID: {$user->id}");
+                    // Log::warning("Employee ID is missing for user ID: {$user->id}");
                 }
             }
 
             $zk->disconnect();
         } catch (\Exception $e) {
-            Log::error('ZKTeco Sync Error: ' . $e->getMessage());
+            // Log::error('ZKTeco Sync Error: ' . $e->getMessage());
         }
     }
 

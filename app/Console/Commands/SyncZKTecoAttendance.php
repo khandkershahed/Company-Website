@@ -167,7 +167,7 @@ class SyncZKTecoAttendance extends Command
 
             $this->info("✅ Sync complete. $synced records updated.");
         } catch (\Exception $e) {
-            Log::error("❌ ZKTeco Sync failed: " . $e->getMessage());
+            // Log::error("❌ ZKTeco Sync failed: " . $e->getMessage());
             // $this->error("❌ Sync failed: " . $e->getMessage());
         } finally {
             $zk->disconnect();
