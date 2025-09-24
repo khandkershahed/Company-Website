@@ -2,20 +2,20 @@
     @include('metronic.pages.rfq.partials.rfq_css')
     <!-- Main Content Start -->
     @php
-        $months = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December',
-        ];
+    $months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+    ];
     @endphp
     <div class="mb-5 row">
         <div class="col-lg-4 ps-0">
@@ -31,18 +31,18 @@
                                         <span class="pt-4 mb-2 text-gray-500 fw-semibold d-block fs-6 text-start">
                                             This Month: {{ $this_month }}
                                             @if ($last_month > 0)
-                                                @if ($percentage_change > 0)
-                                                    <span class="text-success ms-2">
-                                                        ▲ {{ $percentage_change }}%
-                                                    </span>
-                                                @elseif ($percentage_change < 0)
-                                                    <span class="text-danger ms-2">
-                                                        ▼ {{ abs($percentage_change) }}%
-                                                    </span>
-                                                @else
-                                                    <span class="text-muted ms-2">—</span>
-                                                @endif
-                                            @endif
+                                            @if ($percentage_change > 0)
+                                            <span class="text-success ms-2">
+                                                ▲ {{ $percentage_change }}%
+                                            </span>
+                                            @elseif ($percentage_change < 0)
+                                                <span class="text-danger ms-2">
+                                                ▼ {{ abs($percentage_change) }}%
+                                        </span>
+                                        @else
+                                        <span class="text-muted ms-2">—</span>
+                                        @endif
+                                        @endif
                                         </span>
                                         <span class="pt-4 text-gray-500 fw-semibold d-block fs-6 text-start">
                                             Last Month: {{ $last_month }}
@@ -124,109 +124,108 @@
                 <div class="px-3 pt-2 rfq-status-card w-100">
                     <div id="countryList">
                         @forelse ($countryWiseRfqs as $country)
-                            <div class="country-wrapper">
-                                <div class="d-flex align-items-center justify-content-between country-item">
-                                    <div class="d-flex align-items-center">
-                                        <h5 class="mb-0 fw-normal ps-3">{{ $country->country }}</h5>
-                                    </div>
-                                    <div>
-                                        <span>{{ $country->total }}</span>
-                                    </div>
+                        <div class="country-wrapper">
+                            <div class="d-flex align-items-center justify-content-between country-item">
+                                <div class="d-flex align-items-center">
+                                    <h5 class="mb-0 fw-normal ps-3">{{ $country->country }}</h5>
                                 </div>
-                                <hr>
+                                <div>
+                                    <span>{{ $country->total }}</span>
+                                </div>
                             </div>
+                            <hr>
+                        </div>
                         @empty
-                            <p class="text-center text-muted">No countries found.</p>
+                        <p class="text-center text-muted">No countries found.</p>
                         @endforelse
                     </div>
                     {{-- Hidden message for "No results found" --}}
                     <p id="noResults" class="mt-4 text-center text-muted" style="display: none;">No countries match
-                        your
-                        search.</p>
+                        your search.</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="mb-5 row">
-        <div class="col-8 ps-0">
-            <div class="shadow-none card card-flush">
-                <div class="p-7 card-body">
-                    <div class="row g-3 align-items-center">
-
-                        <!-- Left Title Section -->
-                        <div class="col-12 col-md-5 d-flex align-items-center">
-                            <div class="flex-grow-1">
-                                <a href="#allRFQ">
-                                    <span class="rfq-e-title d-block fw-bold">RFQ Filtered Details</span>
-                                    <span class="rfq-p-title text-muted small">Check all RFQ history here</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Right Filters Section -->
-                        <div class="col-12 col-md-7">
-                            <div class="gap-2 d-flex justify-content-md-end">
-
-                                <!-- Country -->
-                                <select class="form-select filterCountry" data-control="select2"
-                                    data-placeholder="Country" data-allow-clear="true" id="filterCountry"
-                                    name="country">
-                                    <option></option> {{-- Must be empty to allow placeholder to show --}}
-                                    @foreach ($countryWiseRfqs as $country)
-                                        <option value="{{ $country->country }}">{{ $country->country }}</option>
-                                    @endforeach
-                                </select>
-
-
-                                <!-- Salesman -->
-                                <select class="form-select filterSalesman" data-control="select2"
-                                    data-placeholder="Salesmanager" data-allow-clear="true" data-enable-filtering="true"
-                                    id="filterSalesman" name="salesman">
-                                    {{-- <option value="">Salesman</option> --}}
-                                    <option></option>
-                                    @foreach ($users as $user)
-                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                    @endforeach
-                                </select>
-
-                                <!-- Company -->
-                                <select class="form-select filterCompany" data-control="select2"
-                                    data-placeholder="Company" data-allow-clear="true" data-enable-filtering="true"
-                                    id="filterCompany" name="company">
-                                    {{-- <option value="">Company</option> --}}
-                                    <option></option>
-                                    @foreach ($companies as $company)
-                                        <option value="{{ $company }}">{{ $company }}</option>
-                                    @endforeach
-                                </select>
-
-                                <!-- Search -->
-                                <div class="position-relative flex-grow-1 flex-md-grow-0">
-                                    <i
-                                        class="fa-solid fa-magnifying-glass fs-5 position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
-                                    <input type="text" id="searchQuery" data-kt-table-widget-4="search"
-                                        class="form-control ps-10 pe-30 searchQuery min-w-lg-100px"
-                                        placeholder="Search" />
-                                    <button type="button"
-                                        class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2 d-none"
-                                        id="clearSearch" style="z-index: 2;">
-                                        <i class="fas fa-times text-muted"></i>
-                                    </button>
-                                </div>
-
-                            </div>
-                        </div>
+        <div class="mb-3 col-12 col-lg-8 ps-0">
+    <div class="shadow-none card card-flush">
+        <div class="p-4 card-body p-lg-7">
+            <div class="row g-3 align-items-center">
+                <!-- Left Title Section -->
+                <div class="col-12 col-md-5 d-flex align-items-center">
+                    <div class="flex-grow-1">
+                        <a href="#allRFQ" class="text-decoration-none">
+                            <span class="rfq-e-title d-block fw-bold">RFQ Filtered Details</span>
+                            <span class="rfq-p-title text-muted small">Check all RFQ history here</span>
+                        </a>
                     </div>
                 </div>
 
+                <!-- Right Filters Section -->
+                <div class="col-12 col-md-7">
+                    <div class="row g-2">
+                        <!-- Country -->
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                            <select class="form-select filterCountry w-100" data-control="select2"
+                                data-placeholder="Country" data-allow-clear="true" id="filterCountry"
+                                name="country">
+                                <option></option>
+                                @foreach ($countryWiseRfqs as $country)
+                                    <option value="{{ $country->country }}">{{ $country->country }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Salesman -->
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                            <select class="form-select filterSalesman w-100" data-control="select2"
+                                data-placeholder="Salesmanager" data-allow-clear="true"
+                                data-enable-filtering="true" id="filterSalesman" name="salesman">
+                                <option></option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Company -->
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                            <select class="form-select filterCompany w-100" data-control="select2"
+                                data-placeholder="Company" data-allow-clear="true"
+                                data-enable-filtering="true" id="filterCompany" name="company">
+                                <option></option>
+                                @foreach ($companies as $company)
+                                    <option value="{{ $company }}">{{ $company }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Search -->
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 position-relative">
+                            <i class="fa-solid fa-magnifying-glass fs-5 position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
+                            <input type="text" id="searchQuery" data-kt-table-widget-4="search"
+                                class="form-control ps-10 pe-30 searchQuery" placeholder="Search" />
+                            <button type="button"
+                                class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2 d-none"
+                                id="clearSearch" style="z-index: 2;">
+                                <i class="fas fa-times text-muted"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-4 pe-0">
+    </div>
+</div>
+
+
+        <div class="mb-3 col-12 col-md-6 col-lg-4">
             <div class="shadow-none card card-flush">
                 <div class="card-body">
-                    <div class="d-flex flex-stack justify-content-between align-items-center">
-                        <div class="me-3 rounded-4">
-                            <select class="form-select min-w-lg-150px" data-control="select2" data-allow-clear="true"
+                    <div class="flex-wrap gap-2 d-flex justify-content-between align-items-center">
+                        <!-- Year Select -->
+                        <div class="flex-grow-1 min-w-100 min-w-md-auto">
+                            <select class="form-select" data-control="select2" data-allow-clear="true"
                                 data-placeholder="Year" name="year" id="filterYear">
                                 <option value="{{ date('Y') }}">2025</option>
                                 <option value="2022">2022</option>
@@ -236,26 +235,30 @@
                                 <option value="2026">2026</option>
                             </select>
                         </div>
-                        <div class="me-3 rounded-4">
-                            <select class="form-select min-w-lg-150px" data-control="select2"
-                                data-placeholder="Month" name="month" id="filterMonth">
+
+                        <!-- Month Select -->
+                        <div class="flex-grow-1 min-w-100 min-w-md-auto">
+                            <select class="form-select" data-control="select2" data-placeholder="Month"
+                                name="month" id="filterMonth">
                                 <option value="{{ \Carbon\Carbon::now()->format('F') }}">
                                     {{ \Carbon\Carbon::now()->format('F') }}
                                 </option>
                                 @foreach ($months as $month)
-                                    <option value="{{ $month }}">{{ $month }}</option>
+                                <option value="{{ $month }}">{{ $month }}</option>
                                 @endforeach
                             </select>
                         </div>
 
-                        <div class="text-center me-3 rounded-4">
+                        <!-- Link Button -->
+                        <div class="text-center flex-grow-1 min-w-100 min-w-md-auto">
                             @if (!Route::is('admin.archived.rfq'))
-                                <a href="{{ route('admin.archived.rfq') }}"
-                                    class="form-control min-w-lg-150px">Archived <i
-                                        class="fas fa-arrow-right"></i></a>
+                            <a href="{{ route('admin.archived.rfq') }}" class="btn btn-outline-primary w-100">
+                                Archived <i class="fas fa-arrow-right"></i>
+                            </a>
                             @else
-                                <a href="{{ route('admin.rfq.index') }}" class="form-control min-w-lg-150px">Recent
-                                    RFQs <i class="fas fa-arrow-right"></i></a>
+                            <a href="{{ route('admin.rfq.index') }}" class="btn btn-outline-primary w-100">
+                                Recent RFQs <i class="fas fa-arrow-right"></i>
+                            </a>
                             @endif
                         </div>
                     </div>
@@ -264,14 +267,13 @@
         </div>
     </div>
     <div class="row">
-
         <!-- Container for the filtered RFQ queries -->
         <div class="tab-content" id="myTabContent">
             @include('metronic.pages.rfq.partials.rfq_queries')
         </div>
     </div>
     @include('metronic.pages.rfq.partials.assign-modal')
-    @push('scripts')
+@push('scripts')
         <script>
             $(".data_table").DataTable({
                 language: {
