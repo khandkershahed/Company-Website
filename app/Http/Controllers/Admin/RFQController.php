@@ -710,12 +710,9 @@ class RFQController extends Controller
         // Notify users and send emails
         $name = $request->name;
         $user_emails = User::where(function ($query) {
-                            $query->whereJsonContains('department', 'business')
-                                ->orWhereJsonContains('department', 'logistics');
-                        })->whereIn('role', ['admin', 'manager'])
-                        ->pluck('email')
-                        ->toArray();
-
+            $query->whereJsonContains('department', 'business')
+                ->orWhereJsonContains('department', 'logistics');
+        })->where('role', 'admin')->pluck('email')->toArray();
 
         Notification::send(
             User::whereIn('email', $user_emails)->get(),
@@ -760,7 +757,7 @@ class RFQController extends Controller
             'link'                      => route('single-rfq.show', $rfq->rfq_code),
         ];
         $rfq_code = $rfq->rfq_code;
-        if()
+        
         try {
             // Mail::to($request->email)->send(new RFQNotificationClientMail($data));
             foreach ($user_emails as $email) {
