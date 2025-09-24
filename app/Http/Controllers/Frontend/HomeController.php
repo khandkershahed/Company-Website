@@ -54,6 +54,7 @@ use App\Models\Admin\SoftwareInfoPage;
 use App\Models\Admin\PortfolioCategory;
 use App\Models\Admin\PortfolioChooseUs;
 use App\Models\Admin\SubSubSubCategory;
+use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\Admin\PortfolioClientFeedback;
 
@@ -1260,14 +1261,30 @@ class HomeController extends Controller
 
     public function emailSend(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-        ]);
+        try {
+            $request->validate([
+                'email' => 'required|email',
+            ]);
 
-        $message = "This is a test email sent to " . $request->email;
+            $message = $request->message;
+            try {
+                Mail::to($request->email)->send(new TestMail($message));
 
-        Mail::to($request->email)->send(new TestMail($message));
+                if (count(Mail::failures()) > 0) {
+                    Toastr::error('Failed to send test email.');
+                } else {
+                    Toastr::success('Test email sent successfully to ' . $request->email);
+                }
 
-        return back()->with('success', 'Test email sent successfully to ' . $request->email);
+                return redirect()->back();
+            } catch (\Exception $e) {
+                Session::flash('error', 'Failed to send test email: ' . $e->getMessage());
+                Toastr::error('Failed to send test email: ' . $e->getMessage());
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            Toastr::error('Failed to send test email: ' . $e->getMessage());
+            return redirect()->back();
+        }
     }
 }

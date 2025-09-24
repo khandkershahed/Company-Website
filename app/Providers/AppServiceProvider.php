@@ -175,7 +175,7 @@ class AppServiceProvider extends ServiceProvider
                 }
             }
         } catch (\Exception $e) {
-            Log::error('AppServiceProvider boot error: ' . $e->getMessage());
+            // Log::error('AppServiceProvider boot error: ' . $e->getMessage());
         }
     }
 }

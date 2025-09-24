@@ -404,7 +404,7 @@ class RFQController extends Controller
             ],
         );
         if ($validator->fails()) {
-            Log::error('Validation failed:', $validator->errors()->toArray());
+            // Log::error('Validation failed:', $validator->errors()->toArray());
             $messages = $validator->messages();
             foreach ($messages->all() as $message) {
                 // Toastr::error($message, 'Failed', ['timeOut' => 30000]);
@@ -536,7 +536,7 @@ class RFQController extends Controller
                 sleep(1);
             }
         } catch (\Exception $e) {
-            Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
+            // Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
             Session::flash('error', 'Email sending failed: ' . $e->getMessage());
         }
         session()->put("last_form_submission_{$userIp}", now());
@@ -775,7 +775,7 @@ class RFQController extends Controller
                 Mail::to($email)->send(new RFQConfirmationMail($data, $rfq_code));
             }
         } catch (\Exception $e) {
-            Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
+            // Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
             Toastr::error('There was an error sending the email.', 'Error');
         }
 

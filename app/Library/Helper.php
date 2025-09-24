@@ -361,79 +361,26 @@ class Helper
 
 
 
-    // public static function getTodayCheckInCheckOut(ZKTeco $self, $employeeId)
+    // protected function setEnvironmentValue($key, $value)
     // {
-    //     $self->_section = __METHOD__;
+    //     $path = base_path('.env');
 
-    //     // Get session
-    //     $command = Util::CMD_ATT_LOG_RRQ;
-    //     $command_string = '';
-    //     $session = $self->_command($command, $command_string, Util::COMMAND_TYPE_DATA);
+    //     if (file_exists($path)) {
+    //         // Escape for values with spaces or special characters
+    //         $value = preg_match('/\s/', $value) ? "\"$value\"" : $value;
 
-    //     // Return empty if session fails
-    //     if ($session === false) {
-    //         return [];
+    //         // Replace existing env key
+    //         file_put_contents(
+    //             $path,
+    //             preg_replace(
+    //                 "/^{$key}=.*/m",
+    //                 "{$key}={$value}",
+    //                 file_get_contents($path)
+    //             )
+    //         );
     //     }
-
-    //     $attData = Util::recData($self);
-
-    //     // If no data, return empty
-    //     if (empty($attData)) {
-    //         return [];
-    //     }
-
-    //     $attData = substr($attData, 10); // Remove the first 10 chars once
-
-    //     // Initialize attendance array
-    //     $attendance = [];
-
-    //     // Iterate through the data
-    //     while (strlen($attData) > 40) {
-    //         $u = unpack('H78', substr($attData, 0, 39));
-
-    //         // Hex to decimal conversion and extracting data
-    //         $u1 = hexdec(substr($u[1], 4, 2));
-    //         $u2 = hexdec(substr($u[1], 6, 2));
-    //         $uid = $u1 + ($u2 * 256);
-    //         $id = str_replace(chr(0), '', hex2bin(substr($u[1], 8, 18)));
-    //         $state = hexdec(substr($u[1], 56, 2));
-    //         $timestamp = Util::decodeTime(hexdec(Util::reverseHex(substr($u[1], 58, 8))));
-    //         $type = hexdec(Util::reverseHex(substr($u[1], 66, 2)));
-
-    //         $carbonTimestamp = Carbon::parse($timestamp);
-
-    //         // Only store attendance data if the record is for today and for the specific employee
-    //         if ($carbonTimestamp->isToday() && $id == $employeeId) {
-    //             $attendance[] = [
-    //                 'uid' => $uid,
-    //                 'id' => $id,
-    //                 'state' => $state,
-    //                 'timestamp' => $timestamp,
-    //                 'type' => $type,
-    //                 'date' => $carbonTimestamp->toDateString(), // Store only the date part
-    //             ];
-    //         }
-
-    //         // Move to the next set of data
-    //         $attData = substr($attData, 40);
-    //     }
-
-    //     // If no matching attendance records, return empty
-    //     if (empty($attendance)) {
-    //         return [];
-    //     }
-
-    //     // Sort the attendance by timestamp (optimized sorting)
-    //     usort($attendance, function ($a, $b) {
-    //         return strtotime($a['timestamp']) - strtotime($b['timestamp']);
-    //     });
-
-    //     // Return the first (check-in) and last (check-out) attendance records
-    //     return [
-    //         'check_in' => $attendance[0],
-    //         'check_out' => end($attendance)
-    //     ];
     // }
+
 
     public static function slug($string, $model, $column = 'slug')
     {

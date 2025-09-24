@@ -823,7 +823,7 @@ class SourcingController extends Controller
             return redirect()->back();
         } catch (\Exception $e) {
             DB::rollBack();
-            \Log::error('Product update failed: ' . $e->getMessage());
+            // \Log::error('Product update failed: ' . $e->getMessage());
             Toastr::error('Update failed. Please try again.');
             return redirect()->back()->withInput();
         }
