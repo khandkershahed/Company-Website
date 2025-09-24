@@ -354,3 +354,12 @@ th {
 .bg-gr-blue {
     background: linear-gradient(90deg, #d7e0ff 0%, #233cdd 100%);
 }
+
+.select2-container--bootstrap5 .select2-dropdown {
+    border: 0;
+    box-shadow: 0 0 50px 0 rgba(82, 63, 105, .15);
+    border-radius: .475rem;
+    padding: 1rem 0;
+    background-color: #fff;
+    width: 190px !important;
+}
