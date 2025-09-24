@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Helper;
 use App\Models\Seo;
 use App\Models\Site;
 use App\Models\Smtp;
+use Illuminate\Http\Request;
 use App\Models\Admin\Country;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Requests\Setting\SeoRequest;
 use App\Http\Requests\Setting\SiteRequest;
 use App\Http\Requests\Setting\SmtpRequest;
-use Helper;
 
 class WebSettingController extends Controller
 {
@@ -50,26 +52,97 @@ class WebSettingController extends Controller
         return redirect()->back();
     }
 
-    function smtp(SmtpRequest $request)
+    // function smtp(SmtpRequest $request)
+    // {
+    //     $dataToUpdateOrCreate = [
+    //         'driver'       => $request->driver,
+    //         'host'         => $request->host,
+    //         'port'         => $request->port,
+    //         'username'     => $request->username,
+    //         'password'     => $request->password,
+    //         'encryption'   => $request->encryption,
+    //         'from_address' => $request->from_address,
+    //         'from_name'    => $request->from_name,
+    //         'status'       => $request->status,
+    //     ];
+
+    //     $smtp = Smtp::updateOrCreate([], $dataToUpdateOrCreate);
+
+    //     $toastMessage = $smtp->wasRecentlyCreated ? 'Data has been created successfully!' : 'Data has been updated successfully!';
+    //     toastr()->success($toastMessage);
+    //     return redirect()->back();
+    // }
+
+    public function smtp(Request $request)
     {
-        $dataToUpdateOrCreate = [
-            'driver'       => $request->driver,
-            'host'         => $request->host,
-            'port'         => $request->port,
-            'username'     => $request->username,
-            'password'     => $request->password,
-            'encryption'   => $request->encryption,
-            'from_address' => $request->from_address,
-            'from_name'    => $request->from_name,
-            'status'       => $request->status,
+        $envKeys = [
+            'APP_DEBUG',
+            'MAIL_MAILER',
+            'MAIL_HOST',
+            'MAIL_PORT',
+            'MAIL_USERNAME',
+            'MAIL_PASSWORD',
+            'MAIL_ENCRYPTION',
+            'MAIL_FROM_ADDRESS',
+            'MAIL_FROM_NAME',
+            'MAIL_STATUS'
         ];
 
-        $smtp = Smtp::updateOrCreate([], $dataToUpdateOrCreate);
+        foreach ($envKeys as $key) {
+            if ($key === 'APP_DEBUG') {
+                $value = $request->has('APP_DEBUG') ? 'true' : 'false';
+            } else {
+                $value = $request->input($key);
+            }
 
-        $toastMessage = $smtp->wasRecentlyCreated ? 'Data has been created successfully!' : 'Data has been updated successfully!';
-        toastr()->success($toastMessage);
-        return redirect()->back();
+            $this->setEnvValue($key, $value);
+        }
+
+        // Clear config first
+        Artisan::call('config:clear');
+
+        // Then cache new config
+        Artisan::call('config:cache');
+
+        return redirect()->back()->with('success', 'Settings updated successfully.');
     }
+
+
+    /**
+     * Replace or add a value in the .env file.
+     */
+    protected function setEnvValue($key, $value)
+    {
+        $envPath = base_path('.env');
+
+        if (!file_exists($envPath)) {
+            return false;
+        }
+
+        // Escape double quotes
+        $escapedValue = str_replace('"', '\"', $value);
+
+        // Always wrap in double quotes
+        $formattedValue = "\"{$escapedValue}\"";
+
+        // Read .env content
+        $envContent = file_get_contents($envPath);
+
+        if (preg_match("/^{$key}=.*/m", $envContent)) {
+            // Replace existing key
+            $envContent = preg_replace(
+                "/^{$key}=.*/m",
+                "{$key}={$formattedValue}",
+                $envContent
+            );
+        } else {
+            // Append if key not found
+            $envContent .= "\n{$key}={$formattedValue}";
+        }
+
+        file_put_contents($envPath, $envContent);
+    }
+
 
     function site(SiteRequest $request)
     {
@@ -166,5 +239,40 @@ class WebSettingController extends Controller
         toastr()->success('Data has been saved successfully!');
 
         return redirect()->back();
+    }
+
+    public function toggleDebug($value)
+    {
+        // Ensure value is either 'true' or 'false'
+        $value = filter_var($value, FILTER_VALIDATE_BOOLEAN) ? 'true' : 'false';
+
+        // Update .env
+        $this->setEnvironmentValue('APP_DEBUG', $value);
+
+        // Clear config cache to apply change
+        Artisan::call('config:clear');
+
+        return response()->json([
+            'status' => 'success',
+            'APP_DEBUG' => $value
+        ]);
+    }
+
+    protected function setEnvironmentValue($key, $value)
+    {
+        $path = base_path('.env');
+
+        if (file_exists($path)) {
+            $value = preg_match('/\s/', $value) ? "\"$value\"" : $value;
+
+            file_put_contents(
+                $path,
+                preg_replace(
+                    "/^{$key}=.*/m",
+                    "{$key}={$value}",
+                    file_get_contents($path)
+                )
+            );
+        }
     }
 }
