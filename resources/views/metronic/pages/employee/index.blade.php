@@ -269,134 +269,132 @@
                             <i class="text-white fas fa-xmark"></i>
                         </a>
                     </div>
-                    <div class="modal-body">
+                    <div class="p-5 modal-body">
                         <form id="myform" method="post" class="needs-validation" action="{{ route('employee.store') }}" enctype="multipart/form-data" novalidate>
                             @csrf
-                            <div class="container pt-2">
-                                <div class="row g-3">
-                                    <!-- Full Name -->
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <label class="form-label star">Full Name</label>
-                                        <input type="text" maxlength="80" class="form-control " placeholder="Enter Employee Name" name="name" value="{{ old('name') }}" required>
-                                        <div class="invalid-feedback"> Please Enter Full Name.</div>
-                                    </div>
+                            <div class="p-5 row g-3">
+                                <!-- Full Name -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <label class="form-label star">Full Name</label>
+                                    <input type="text" maxlength="80" class="form-control " placeholder="Enter Employee Name" name="name" value="{{ old('name') }}" required>
+                                    <div class="invalid-feedback"> Please Enter Full Name.</div>
+                                </div>
 
-                                    <!-- Designation -->
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <label class="form-label star">Designation</label>
-                                        <input type="text" maxlength="50" class="form-control " placeholder="Enter Employee Designation" name="designation" value="{{ old('designation') }}" required>
-                                        <div class="invalid-feedback"> Please Enter Designation.</div>
-                                    </div>
+                                <!-- Designation -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <label class="form-label star">Designation</label>
+                                    <input type="text" maxlength="50" class="form-control " placeholder="Enter Employee Designation" name="designation" value="{{ old('designation') }}" required>
+                                    <div class="invalid-feedback"> Please Enter Designation.</div>
+                                </div>
 
-                                    <!-- Email -->
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <label class="form-label star">Email</label>
-                                        <input type="email" class="form-control " placeholder="Enter Email ID" name="email" value="{{ old('email') }}" required>
-                                        <div class="invalid-feedback"> Please Enter Email Address.</div>
-                                    </div>
+                                <!-- Email -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <label class="form-label star">Email</label>
+                                    <input type="email" class="form-control " placeholder="Enter Email ID" name="email" value="{{ old('email') }}" required>
+                                    <div class="invalid-feedback"> Please Enter Email Address.</div>
+                                </div>
 
-                                    <!-- Phone -->
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <label class="form-label">Phone</label>
-                                        <input type="text" maxlength="15" class="form-control allow_decimal" placeholder="Enter Phone Number" name="phone" value="{{ old('phone') }}">
-                                    </div>
+                                <!-- Phone -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <label class="form-label">Phone</label>
+                                    <input type="text" maxlength="15" class="form-control allow_decimal" placeholder="Enter Phone Number" name="phone" value="{{ old('phone') }}">
+                                </div>
 
-                                    <!-- Job Category -->
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <label class="form-label star">Job Category</label>
-                                        <select name="category_id" class="form-select" data-control="select2" data-placeholder="Select an option" data-hide-search="true" required>
-                                            <option value="" disabled selected>Choose Employee Category</option>
-                                            @foreach ($employeeCategories as $employeeCategory)
-                                            <option value="{{ $employeeCategory->id }}">{{ $employeeCategory->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback"> Please Enter Job Category.</div>
-                                    </div>
+                                <!-- Job Category -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <label class="form-label star">Job Category</label>
+                                    <select name="category_id" class="form-select" data-control="select2" data-placeholder="Select an option" data-hide-search="true" required>
+                                        <option value="" disabled selected>Choose Employee Category</option>
+                                        @foreach ($employeeCategories as $employeeCategory)
+                                        <option value="{{ $employeeCategory->id }}">{{ $employeeCategory->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="invalid-feedback"> Please Enter Job Category.</div>
+                                </div>
 
-                                    <!-- Employee Code -->
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <label class="form-label star">Employee Code (Biometric ID)</label>
-                                        <input type="text" class="form-control allow_decimal" placeholder="Employee Code" name="employee_id" maxlength="15" value="{{ old('employee_id') }}" required>
-                                        <div class="invalid-feedback"> Please Enter Employee Code.</div>
-                                    </div>
+                                <!-- Employee Code -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <label class="form-label star">Employee Code (Biometric ID)</label>
+                                    <input type="text" class="form-control allow_decimal" placeholder="Employee Code" name="employee_id" maxlength="15" value="{{ old('employee_id') }}" required>
+                                    <div class="invalid-feedback"> Please Enter Employee Code.</div>
+                                </div>
 
-                                    <!-- City -->
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <label class="form-label">City</label>
-                                        <input type="text" maxlength="50" class="form-control " placeholder="Enter City" name="city" value="{{ old('city') }}">
-                                    </div>
+                                <!-- City -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <label class="form-label">City</label>
+                                    <input type="text" maxlength="50" class="form-control " placeholder="Enter City" name="city" value="{{ old('city') }}">
+                                </div>
 
-                                    <!-- Department -->
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <label class="form-label star">Department</label>
-                                        <select name="department[]" class="form-select" data-control="select2" data-placeholder="Select an option" data-allow-clear="true" multiple="multiple" required>
-                                            <option value="admin">Admin</option>
-                                            <option value="business">Business</option>
-                                            <option value="accounts">Accounts</option>
-                                            <option value="site">Site & Contents</option>
-                                            <option value="logistics">Logistics</option>
-                                            <option value="support">Support</option>
-                                            <option value="hr">HR</option>
-                                        </select>
-                                        <div class="invalid-feedback"> Please Enter Department.</div>
-                                    </div>
+                                <!-- Department -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <label class="form-label star">Department</label>
+                                    <select name="department[]" class="form-select" data-control="select2" data-placeholder="Select an option" data-allow-clear="true" multiple="multiple" required>
+                                        <option value="admin">Admin</option>
+                                        <option value="business">Business</option>
+                                        <option value="accounts">Accounts</option>
+                                        <option value="site">Site & Contents</option>
+                                        <option value="logistics">Logistics</option>
+                                        <option value="support">Support</option>
+                                        <option value="hr">HR</option>
+                                    </select>
+                                    <div class="invalid-feedback"> Please Enter Department.</div>
+                                </div>
 
-                                    <!-- Role -->
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <label class="form-label star">Role</label>
-                                        <select name="role" class="form-select form-select-sm" required>
-                                            <option value="" disabled selected>Choose Role</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="manager">Manager</option>
-                                            <option value="others">Others</option>
-                                            <option value="developer">Support Developer</option>
-                                        </select>
-                                        <div class="invalid-feedback"> Please Enter Role.</div>
-                                    </div>
+                                <!-- Role -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <label class="form-label star">Role</label>
+                                    <select name="role" class="form-select form-select-sm" required>
+                                        <option value="" disabled selected>Choose Role</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="manager">Manager</option>
+                                        <option value="others">Others</option>
+                                        <option value="developer">Support Developer</option>
+                                    </select>
+                                    <div class="invalid-feedback"> Please Enter Role.</div>
+                                </div>
 
-                                    <!-- Supervisor -->
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <label class="form-label star">Supervisor</label>
-                                        <select name="supervisor_id" class="form-select form-select-sm" required>
-                                            <option value="" disabled selected>Choose Supervisor</option>
-                                            @foreach ($employees as $supervisor)
-                                            <option value="{{ $supervisor->id }}">{{ $supervisor->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback"> Please Enter Supervisor.</div>
-                                    </div>
+                                <!-- Supervisor -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <label class="form-label star">Supervisor</label>
+                                    <select name="supervisor_id" class="form-select form-select-sm" required>
+                                        <option value="" disabled selected>Choose Supervisor</option>
+                                        @foreach ($employees as $supervisor)
+                                        <option value="{{ $supervisor->id }}">{{ $supervisor->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="invalid-feedback"> Please Enter Supervisor.</div>
+                                </div>
 
-                                    <!-- Profile Picture -->
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <label class="form-label">Profile Picture</label>
-                                        <input type="file" class="form-control " name="photo">
-                                    </div>
+                                <!-- Profile Picture -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <label class="form-label">Profile Picture</label>
+                                    <input type="file" class="form-control " name="photo">
+                                </div>
 
-                                    <!-- Sign -->
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                        <label class="form-label">Sign</label>
-                                        <input type="file" class="form-control " name="sign">
-                                    </div>
+                                <!-- Sign -->
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <label class="form-label">Sign</label>
+                                    <input type="file" class="form-control " name="sign">
+                                </div>
 
-                                    <!-- Password -->
-                                    <div class="col-12 col-md-6 col-lg-6">
-                                        <label class="form-label star">Password</label>
-                                        <input type="password" class="form-control " id="password" name="password">
-                                        <div class="invalid-feedback"> Please Enter Password.</div>
-                                    </div>
+                                <!-- Password -->
+                                <div class="col-12 col-md-6 col-lg-6">
+                                    <label class="form-label star">Password</label>
+                                    <input type="password" class="form-control " id="password" name="password">
+                                    <div class="invalid-feedback"> Please Enter Password.</div>
+                                </div>
 
-                                    <!-- Confirm Password -->
-                                    <div class="col-12 col-md-6 col-lg-6">
-                                        <label class="form-label star">Confirm Password</label>
-                                        <input type="password" class="form-control " id="confirm_password" name="confirm_password">
-                                        <div id="message"></div>
-                                        <div class="invalid-feedback"> Please Enter Confirm Password.</div>
-                                    </div>
+                                <!-- Confirm Password -->
+                                <div class="col-12 col-md-6 col-lg-6">
+                                    <label class="form-label star">Confirm Password</label>
+                                    <input type="password" class="form-control " id="confirm_password" name="confirm_password">
+                                    <div id="message"></div>
+                                    <div class="invalid-feedback"> Please Enter Confirm Password.</div>
+                                </div>
 
-                                    <!-- Submit -->
-                                    <div class="mt-5 col-12 text-end">
-                                        <button type="submit" class="submit_btn btn btn-primary">Add Employee</button>
-                                    </div>
+                                <!-- Submit -->
+                                <div class="mt-5 col-12 text-end">
+                                    <button type="submit" class="submit_btn btn btn-primary">Add Employee</button>
                                 </div>
                             </div>
                         </form>
@@ -407,237 +405,209 @@
         </div>
         @foreach ($employees as $employee)
         <div id="editEmployee{{ $employee->id }}" class="modal fade" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
-                    <div class="px-4 text-white modal-header" style="background-color: #247297">
-                        <h5 class="modal-title">Edit Employee</h5>
-                        <a type="button" data-bs-dismiss="modal"> <i class="text-white ph ph-x"
-                                style="font-weight: 800;"></i>
+                    <div class="p-5 px-4 text-white modal-header" style="background-color: #247297">
+                        <h2 class="text-white">Edit Employee</h2>
+                        <a type="button" data-bs-dismiss="modal" class="px-0 bg-transparent pe-4">
+                            <i class="text-white fas fa-xmark"></i>
                         </a>
                     </div>
-                    <div class="pt-0 modal-body">
+                    <div class="p-5 modal-body">
                         <form id="myform" method="post"
                             action="{{ route('employee.update', $employee->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <div class="container pt-2">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basicpill-firstname-input">Full
-                                                Name</label>
-                                            <input type="text" maxlength="80"
-                                                class="form-control "
-                                                placeholder="Enter Employees Name" name="name"
-                                                value="{{ $employee->name }}" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <div class="mb-3">
-                                            <label class="form-label"
-                                                for="basicpill-email-input">Designation</label>
-                                            <input maxlength="50" type="text"
-                                                class="form-control "
-                                                placeholder="Enter Employees Designation" name="designation"
-                                                value="{{ $employee->designation }}" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-5">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basicpill-email-input">Email</label>
-                                            <input type="email" class="form-control "
-                                                placeholder="Enter Email ID" name="email"
-                                                value="{{ $employee->email }}" />
-                                        </div>
+                            <div class="p-5 row g-3">
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="basicpill-firstname-input">Full
+                                            Name</label>
+                                        <input type="text" maxlength="80"
+                                            class="form-control "
+                                            placeholder="Enter Employees Name" name="name"
+                                            value="{{ $employee->name }}" />
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basicpill-phoneno-input">Phone</label>
-                                            <input maxlength="15" type="text"
-                                                class="form-control allow_decimal"
-                                                placeholder="Enter Phone Number" name="phone"
-                                                value="{{ $employee->phone }}" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="basicpill-email-input">Job
-                                                Category</label>
-                                            <select name="category_id" class="form-control form-select-sm select"
-                                                data-container-css-class="select-sm" data-allow-clear="true"
-                                                data-minimum-results-for-search="Infinity"
-                                                data-placeholder="Choose Employee Category">
-                                                <option></option>
-                                                @foreach ($employeeCategories as $employeeCategory)
-                                                <option value="{{ $employeeCategory->id }}"
-                                                    @selected($employee->category_id == $employeeCategory->id)>
-                                                    {{ $employeeCategory->name }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label class="form-label star" for="basicpill-phoneno-input">Employee
-                                                Code
-                                                (Biometric ID)
-                                            </label>
-                                            <input type="text"
-                                                class="form-control allow_decimal"
-                                                placeholder="Employee Code (Biometric ID)" name="employee_id"
-                                                maxlength="15" value="{{ $employee->employee_id }}" required />
-                                        </div>
-                                        <div class="invalid-feedback"> Please Enter Employee Code.</div>
+                                <div class="col-lg-3">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            for="basicpill-email-input">Designation</label>
+                                        <input maxlength="50" type="text"
+                                            class="form-control "
+                                            placeholder="Enter Employees Designation" name="designation"
+                                            value="{{ $employee->designation }}" />
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basicpill-firstname-input">City</label>
-                                            <input type="text" maxlength="50"
-                                                class="form-control " placeholder="Enter City"
-                                                name="city" value="{{ $employee->city }}" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label class="form-label star"
-                                                for="basicpill-firstname-input">Department</label>
-
-                                            <select name="department[]"
-                                                class=" multiselect btn btn-sm" id="select6"
-                                                multiple="multiple" data-include-select-all-option="true"
-                                                data-placeholder="Choose Sector" data-enable-filtering="true"
-                                                data-enable-case-insensitive-filtering="true" required>
-                                                @php
-                                                $employeeIds = isset($employee->department)
-                                                ? json_decode($employee->department, true)
-                                                : [];
-                                                @endphp
-                                                <option value="admin" @selected(is_array($employeeIds) && in_array('admin', $employeeIds))>Admin</option>
-                                                <option value="business" @selected(is_array($employeeIds) && in_array('business', $employeeIds))>Business
-                                                </option>
-                                                <option value="accounts" @selected(is_array($employeeIds) && in_array('accounts', $employeeIds))>Accounts
-                                                </option>
-                                                <option value="hr" @selected(is_array($employeeIds) && in_array('hr', $employeeIds))>HR</option>
-                                                <option value="site" @selected(is_array($employeeIds) && in_array('site', $employeeIds))>Site & Contents
-                                                </option>
-                                                <option value="logistics" @selected(is_array($employeeIds) && in_array('logistics', $employeeIds))>Logistics
-                                                </option>
-                                                <option value="support" @selected(is_array($employeeIds) && in_array('support', $employeeIds))>Support
-                                                </option>
-                                            </select>
-                                            <div class="invalid-feedback"> Please Enter Department.</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basicpill-firstname-input">Role</label>
-                                            <select name="role" class="form-control form-select-sm select"
-                                                data-container-css-class="select-sm"
-                                                data-minimum-results-for-search="Infinity"
-                                                data-placeholder="Choose Sector" required>
-                                                <option></option>
-                                                <option value="admin" @selected($employee->role == 'admin')>Admin</option>
-                                                <option value="manager" @selected($employee->role == 'manager')>Manager
-                                                </option>
-                                                <option value="others" @selected($employee->role == 'others')>Others
-                                                </option>
-                                                <option value="developer" @selected($employee->role == 'developer')>Support
-                                                    Developer</option>
-                                            </select>
-                                            <div class="invalid-feedback"> Please Enter Role.</div>
-                                        </div>
+                                <div class="col-lg-5">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="basicpill-email-input">Email</label>
+                                        <input type="email" class="form-control "
+                                            placeholder="Enter Email ID" name="email"
+                                            value="{{ $employee->email }}" />
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="mb-4">
-                                            <label class="form-label required"
-                                                for="basicpill-firstname-input">Supervisor</label>
-                                            <select name="supervisor_id"
-                                                class="form-control select" data-control="select2"
-                                                data-placeholder="Select a Supervisor" data-allow-clear="true"
-                                                required>
-                                                <option></option>
-                                                @foreach ($employees as $supervisor)
-                                                <option value="{{ $supervisor->id }}"
-                                                    @selected($employee->supervisor_id == $supervisor->id)>
-                                                    {{ $supervisor->name }}
-                                                </option>
-                                                @endforeach
-                                            </select>
-                                            <div class="invalid-feedback"> Please Enter Supervisor.</div>
-                                        </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="basicpill-phoneno-input">Phone</label>
+                                        <input maxlength="15" type="text"
+                                            class="form-control allow_decimal"
+                                            placeholder="Enter Phone Number" name="phone"
+                                            value="{{ $employee->phone }}" />
                                     </div>
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basicpill-firstname-input">Profile
-                                                Picture</label>
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <input id="image" type="file"
-                                                        class="form-control "
-                                                        id="basicpill-firstname-input" name="photo" />
-                                                </div>
-                                                <div class="col-2">
-                                                    <img id="showImage"
-                                                        src="{{ !file_exists($employee->photo) ? url('upload/no_image.jpg') : url('storage/' . $employee->photo) }}"
-                                                        alt="Admin" style="width:40px; height: 40px;" />
-                                                </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-4">
+                                        <label class="form-label" for="basicpill-email-input">Job
+                                            Category</label>
+                                        <select name="category_id" class="form-select" data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
+                                            <option></option>
+                                            @foreach ($employeeCategories as $employeeCategory)
+                                            <option value="{{ $employeeCategory->id }}"
+                                                @selected($employee->category_id == $employeeCategory->id)>
+                                                {{ $employeeCategory->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label star" for="basicpill-phoneno-input">Employee
+                                            Code (Biometric ID)
+                                        </label>
+                                        <input type="text"
+                                            class="form-control allow_decimal"
+                                            placeholder="Employee Code (Biometric ID)" name="employee_id"
+                                            maxlength="15" value="{{ $employee->employee_id }}" required />
+                                    </div>
+                                    <div class="invalid-feedback"> Please Enter Employee Code.</div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="basicpill-firstname-input">City</label>
+                                        <input type="text" maxlength="50"
+                                            class="form-control " placeholder="Enter City"
+                                            name="city" value="{{ $employee->city }}" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label star"
+                                            for="basicpill-firstname-input">Department</label>
+                                        <select name="department[]" class="form-select form-select-solid" data-control="select2" data-placeholder="Select an option" data-allow-clear="true" multiple="multiple" required>
+                                            @php
+                                            $employeeIds = isset($employee->department)
+                                            ? json_decode($employee->department, true)
+                                            : [];
+                                            @endphp
+                                            <option value="admin" @selected(is_array($employeeIds) && in_array('admin', $employeeIds))>Admin</option>
+                                            <option value="business" @selected(is_array($employeeIds) && in_array('business', $employeeIds))>Business
+                                            </option>
+                                            <option value="accounts" @selected(is_array($employeeIds) && in_array('accounts', $employeeIds))>Accounts
+                                            </option>
+                                            <option value="hr" @selected(is_array($employeeIds) && in_array('hr', $employeeIds))>HR</option>
+                                            <option value="site" @selected(is_array($employeeIds) && in_array('site', $employeeIds))>Site & Contents
+                                            </option>
+                                            <option value="logistics" @selected(is_array($employeeIds) && in_array('logistics', $employeeIds))>Logistics
+                                            </option>
+                                            <option value="support" @selected(is_array($employeeIds) && in_array('support', $employeeIds))>Support
+                                            </option>
+                                        </select>
+                                        <div class="invalid-feedback"> Please Enter Department.</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="basicpill-firstname-input">Role</label>
+                                        <select name="role" class="form-select" data-control="select2" data-placeholder="Select an option" data-allow-clear="true" required>
+                                            <option></option>
+                                            <option value="admin" @selected($employee->role == 'admin')>Admin</option>
+                                            <option value="manager" @selected($employee->role == 'manager')>Manager
+                                            </option>
+                                            <option value="others" @selected($employee->role == 'others')>Others
+                                            </option>
+                                            <option value="developer" @selected($employee->role == 'developer')>Support
+                                                Developer</option>
+                                        </select>
+                                        <div class="invalid-feedback"> Please Enter Role.</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-4">
+                                        <label class="form-label required"
+                                            for="basicpill-firstname-input">Supervisor</label>
+                                        <select name="supervisor_id"
+                                            class="form-control select" data-control="select2"
+                                            data-placeholder="Select a Supervisor" data-allow-clear="true"
+                                            required>
+                                            <option></option>
+                                            @foreach ($employees as $supervisor)
+                                            <option value="{{ $supervisor->id }}"
+                                                @selected($employee->supervisor_id == $supervisor->id)>
+                                                {{ $supervisor->name }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                        <div class="invalid-feedback"> Please Enter Supervisor.</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="basicpill-firstname-input">Profile
+                                            Picture</label>
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <input id="image" type="file"
+                                                    class="form-control "
+                                                    id="basicpill-firstname-input" name="photo" />
+                                            </div>
+                                            <div class="col-2">
+                                                <img id="showImage"
+                                                    src="{{ !file_exists($employee->photo) ? url('upload/no_image.jpg') : url('storage/' . $employee->photo) }}"
+                                                    alt="Admin" style="width:40px; height: 40px;" />
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="basicpill-firstname-input">Sign</label>
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <input id="image" type="file"
-                                                        class="form-control "
-                                                        id="basicpill-firstname-input" name="sign" />
-                                                </div>
-                                                <div class="col-2">
-                                                    <img id="showImage"
-                                                        src="{{ !file_exists($employee->sign) ? url('upload/no_image.jpg') : url('storage/' . $employee->photo) }}"
-                                                        alt="Sign" style="width:40px; height: 40px;" />
-                                                </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="mb-4">
+                                        <label class="form-label" for="basicpill-firstname-input">Sign</label>
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <input id="image" type="file"
+                                                    class="form-control "
+                                                    id="basicpill-firstname-input" name="sign" />
                                             </div>
+                                            <div class="col-2">
+                                                <img id="showImage"
+                                                    src="{{ !file_exists($employee->sign) ? url('upload/no_image.jpg') : url('storage/' . $employee->photo) }}"
+                                                    alt="Sign" style="width:40px; height: 40px;" />
+                                            </div>
+                                        </div>
 
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label class="form-label"
-                                                for="basicpill-firstname-input">Password</label>
-                                            <input type="password" class="form-control "
-                                                id="password" name="password">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basicpill-firstname-input">Confirm
-                                                Password</label>
-                                            <input type="password" class="form-control "
-                                                id="confirm_password" name="confirm_password">
-                                            <div id="message"></div>
-                                        </div>
                                     </div>
                                 </div>
-
-                            </div>
-
-                            <div class="pt-3 pb-0 border-0 modal-footer pe-0">
-                                <button type="button" class="submit_close_btn "
-                                    data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="submit_btn from-prevent-multiple-submits"
-                                    style="padding: 10px;">Submit</button>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label"
+                                            for="basicpill-firstname-input">Password</label>
+                                        <input type="password" class="form-control "
+                                            id="password" name="password">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="basicpill-firstname-input">Confirm
+                                            Password</label>
+                                        <input type="password" class="form-control "
+                                            id="confirm_password" name="confirm_password">
+                                        <div id="message"></div>
+                                    </div>
+                                </div>
+                                <div class="mt-5 col-12 text-end">
+                                    <button type="submit" class="submit_btn btn btn-primary">Update Employee</button>
+                                </div>
                             </div>
                         </form>
                     </div>
