@@ -191,7 +191,8 @@
                     var unit_customs = principal_unit_total_amount * (custom_percentage / 100);
                     var eu_total = principal_unit_total_amount + office_cost + profit + others_cost +
                         unit_remittance + unit_packing + unit_customs;
-                    var unit_tax_vat = eu_total * tax_vat_percentage;
+                    var unit_tax_vat = principal_unit_total_amount * tax_vat_percentage;
+                    // var unit_tax_vat = eu_total * tax_vat_percentage;
 
                     var unit_subtotal = principal_unit_total_amount + office_cost + profit +
                         others_cost + unit_remittance + unit_packing + unit_customs + unit_tax_vat;
