@@ -152,17 +152,17 @@
         <div class="p-4 card-body p-lg-7">
             <div class="row g-3 align-items-center">
                 <!-- Left Title Section -->
-                <div class="col-12 col-md-5 d-flex align-items-center">
+                <div class="col-12 col-md-4 d-flex align-items-center">
                     <div class="flex-grow-1">
                         <a href="#allRFQ" class="text-decoration-none">
-                            <span class="rfq-e-title d-block fw-bold">RFQ Filtered Details</span>
-                            <span class="rfq-p-title text-muted small">Check all RFQ history here</span>
+                            <span class="rfq-e-title d-block fw-bold">RFQ Filtered</span>
+                            <span class="rfq-p-title text-muted small">All RFQ history here</span>
                         </a>
                     </div>
                 </div>
 
                 <!-- Right Filters Section -->
-                <div class="col-12 col-md-7">
+                <div class="col-12 col-md-8">
                     <div class="row g-2">
                         <!-- Country -->
                         <div class="col-12 col-sm-6 col-md-6 col-lg-3">
