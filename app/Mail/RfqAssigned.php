@@ -12,60 +12,46 @@ use Illuminate\Queue\SerializesModels;
 class RfqAssigned extends Mailable
 {
     use Queueable, SerializesModels;
+
     public $data;
+
     /**
      * Create a new message instance.
-     *
-     * @return void
      */
     public function __construct(array $data)
     {
         $this->data = $data;
     }
-    /**
-     * Get the message envelope.
-     *
-     * @return \Illuminate\Mail\Mailables\Envelope
-     */
-
-     public function build()
-    {
-        return $this->from('support@ngenit.com', 'NGEN-Business')
-                    ->view('mail.rfqAssign_mail', ['data' => $this->data])
-                    ->subject('A new Rfq is Assigned to you');
-    }
 
     /**
      * Get the message envelope.
-     *
-     * @return \Illuminate\Mail\Mailables\Envelope
      */
     public function envelope()
     {
         return new Envelope(
-            subject: 'A new Rfq is Assigned to you',
+            from: new \Illuminate\Mail\Mailables\Address('support@ngenit.com', 'NGEN-Business'),
+            subject: "A RFQ#{$this->data['rfq_code']} has been assigned to you."
         );
     }
 
     /**
-     * Get the message content definition.
-     *
-     * @return \Illuminate\Mail\Mailables\Content
+     * Get the content definition for the message.
      */
     public function content()
     {
         return new Content(
-            // view: 'view.name',
+            view: 'mail.rfqAssign_mail',
+            with: ['data' => $this->data],
         );
     }
 
     /**
      * Get the attachments for the message.
-     *
-     * @return array
      */
-    public function attachments()
+    public function attachments(): array
     {
         return [];
     }
+
+
 }

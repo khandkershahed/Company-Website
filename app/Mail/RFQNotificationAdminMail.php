@@ -23,7 +23,7 @@ class RFQNotificationAdminMail extends Mailable
     /**
      * Get the message envelope.
      *
-     * @return \Illuminate\Mail\Mailables\Envelope
+     * @return \Illuminate\Mail\Mailables\Envelope 
      */
 
      public function build()

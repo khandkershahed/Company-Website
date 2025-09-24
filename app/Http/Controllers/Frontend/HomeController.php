@@ -1270,12 +1270,7 @@ class HomeController extends Controller
             try {
                 Mail::to($request->email)->send(new TestMail($message));
 
-                if (count(Mail::failures()) > 0) {
-                    Toastr::error('Failed to send test email.');
-                } else {
-                    Toastr::success('Test email sent successfully to ' . $request->email);
-                }
-
+                Session::flash('success', 'Test email sent successfully to ' . $request->email);
                 return redirect()->back();
             } catch (\Exception $e) {
                 Session::flash('error', 'Failed to send test email: ' . $e->getMessage());

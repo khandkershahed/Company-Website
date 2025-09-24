@@ -1,6 +1,6 @@
 @foreach ($rfqs as $rfq)
 <div class="modal fade" id="assignRfqModal-{{ $rfq->id }}" tabindex="-1" aria-labelledby="assignRfqModalLabel-{{ $rfq->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="py-3 modal-header">
@@ -14,15 +14,15 @@
 
             <!-- Modal Body -->
             <div class="modal-body">
-                <form method="POST" action="{{ route('assign.salesmanager-role', $rfq->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('assign.salesmanager', $rfq->rfq_code) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
                     <div class="row g-3">
                         <!-- Leader L1 -->
-                        <div class="col-lg-12">
-                            <label for="sales_man_id_L1-{{ $rfq->id }}" class="form-label">Sales Manager Name (Leader - L1) <span class="text-danger">*</span></label>
-                            <select name="sales_man_id_L1" id="sales_man_id_L1-{{ $rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true" required>
+                        <div class="col-lg-6">
+                            {{-- <label for="sales_man_id_L1-{{ $rfq->id }}" class="form-label">Sales Manager Name (Leader - L1) <span class="text-danger">*</span></label> --}}
+                            <select name="sales_man_id_L1" id="sales_man_id_L1-{{ $rfq->id }}" class="form-select" data-control="select2" data-placeholder="Sales Manager Name (Leader - L1)" data-allow-clear="true" required>
                                 <option></option>
                                 @foreach ($users as $manager)
                                 <option value="{{ $manager->id }}">{{ $manager->name }}</option>
@@ -31,9 +31,9 @@
                         </div>
 
                         <!-- Team T1 -->
-                        <div class="col-lg-12">
-                            <label for="sales_man_id_T1-{{ $rfq->id }}" class="form-label">Sales Manager Name (Team - T1)</label>
-                            <select name="sales_man_id_T1" id="sales_man_id_T1-{{ $rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
+                        <div class="col-lg-6">
+                            {{-- <label for="sales_man_id_T1-{{ $rfq->id }}" class="form-label">Sales Manager Name (Team - T1)</label> --}}
+                            <select name="sales_man_id_T1" id="sales_man_id_T1-{{ $rfq->id }}" class="form-select" data-control="select2" data-placeholder="Sales Manager Name (Team - T1)" data-allow-clear="true">
                                 <option></option>
                                 @foreach ($users as $manager)
                                 <option value="{{ $manager->id }}">{{ $manager->name }}</option>
@@ -42,9 +42,9 @@
                         </div>
 
                         <!-- Team T2 -->
-                        <div class="col-lg-12">
-                            <label for="sales_man_id_T2-{{ $rfq->id }}" class="form-label">Sales Manager Name (Team - T2)</label>
-                            <select name="sales_man_id_T2" id="sales_man_id_T2-{{ $rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
+                        <div class="col-lg-6">
+                            {{-- <label for="sales_man_id_T2-{{ $rfq->id }}" class="form-label">Sales Manager Name (Team - T2)</label> --}}
+                            <select name="sales_man_id_T2" id="sales_man_id_T2-{{ $rfq->id }}" class="form-select" data-control="select2" data-placeholder="Sales Manager Name (Team - T2)" data-allow-clear="true">
                                 <option></option>
                                 @foreach ($users as $manager)
                                 <option value="{{ $manager->id }}">{{ $manager->name }}</option>
@@ -64,7 +64,7 @@
 @endforeach
 @foreach ($quoteds as $quoted_rfq)
 <div class="modal fade" tabindex="-1" id="assignRfqModal-{{ $quoted_rfq->id }}">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="py-3 modal-header">
                 <h5 class="modal-title" id="modalTitleId">
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <div class="pt-0 modal-body">
-                <form method="POST" action="{{ route('assign.salesmanager-role', $quoted_rfq->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('assign.salesmanager', $quoted_rfq->rfq_code) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -125,7 +125,7 @@
 @endforeach
 @foreach ($losts as $lost_rfq)
 <div class="modal fade" tabindex="-1" id="assignRfqModal-{{ $lost_rfq->id }}">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="py-3 modal-header">
                 <h5 class="modal-title" id="modalTitleId">
@@ -136,7 +136,7 @@
                 </div>
             </div>
             <div class="pt-0 modal-body">
-                <form method="POST" action="{{ route('assign.salesmanager-role', $lost_rfq->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('assign.salesmanager', $lost_rfq->rfq_code) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 

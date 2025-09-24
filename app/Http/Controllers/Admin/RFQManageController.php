@@ -120,7 +120,7 @@ class RFQManageController extends Controller
         $data['quotation_products'] = $request->product_name ?? []; // Ensure quotation_products is an array
         $data['vat_display'] = $data['vat_display'] ?? '0'; // Default to '0' if not set
         $data['special_discount_display'] = $data['special_discount_display'] ?? '0'; // Default to '0' if not set
-        $rfqQuotation = RfqQuotation::updateOrCreate(
+        $rfqQuotation = RfqQuotation::updateOrCreate( 
             ['rfq_id' => $rfq_id],
             [
                 // 'rfq_id' => $data['rfq_id'] ?? null,

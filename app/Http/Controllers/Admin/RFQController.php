@@ -310,7 +310,7 @@ class RFQController extends Controller
                 ->select('id', 'name')
                 ->orderByDesc('id')
                 ->get();
-            if($rfqs->isEmpty()){
+            if ($rfqs->isEmpty()) {
                 return response()->json([
                     'view' => '<div class="my-4 text-center text-white alert bg-danger">
                                     No RFQ Found. Please try again.
@@ -720,19 +720,7 @@ class RFQController extends Controller
         );
 
         $rfq = RFQ::with('rfqProducts')->where('id', $rfq_id)->first();
-        // $data = [
-        //     'name'          => $rfq->name,
-        //     'product_names' => $rfq->rfqProducts,
-        //     'phone'         => $rfq->phone,
-        //     'qty'           => $rfq->qty,
-        //     'company_name'  => $rfq->company_name,
-        //     'address'       => $rfq->address,
-        //     'message'       => $rfq->message,
-        //     'rfq_code'      => $rfq->rfq_code,
-        //     'email'         => $rfq->email,
-        //     'country'       => $rfq->country,
-        //     'link'          => route('single-rfq.show', $rfq->rfq_code),
-        // ];
+
         $data = [
             'name'                      => $rfq->name,
             'product_names'             => $rfq->rfqProducts,
@@ -769,6 +757,7 @@ class RFQController extends Controller
             'link'                      => route('single-rfq.show', $rfq->rfq_code),
         ];
         $rfq_code = $rfq->rfq_code;
+        
         try {
             // Mail::to($request->email)->send(new RFQNotificationClientMail($data));
             foreach ($user_emails as $email) {
@@ -1244,74 +1233,96 @@ class RFQController extends Controller
     public function AssignSalesManager(Request $request, $id)
     {
 
+        try {
+            $rfq = Rfq::where('rfq_code', $id)->firstOrFail();
 
-        // dd($request->all());
-        // Fetch the RFQ
-        $rfq = Rfq::where('rfq_code', $id)->firstOrFail();
 
-        // Determine product name
-        $product_name = $rfq->product_id
-            ? Product::where('id', $rfq->product_id)->value('name')
-            : RfqProduct::where('rfq_id', $rfq->id)->value('product_name');
+            // Prepare sales manager data
+            $salesManagers = [
+                'sales_man_id_L1' => $request->sales_man_id_L1,
+                'sales_man_id_T1' => $request->sales_man_id_T1,
+                'sales_man_id_T2' => $request->sales_man_id_T2,
+            ];
+            $salesManagerNames = ['L1' => '', 'T1' => '', 'T2' => ''];
+            $userEmails = [];
 
-        // Prepare sales manager data
-        $salesManagers = [
-            'sales_man_id_L1' => null,
-            'sales_man_id_T1' => null,
-            'sales_man_id_T2' => null,
-        ];
-        $salesManagerNames = ['L1' => '', 'T1' => '', 'T2' => ''];
-        $userEmails = [];
-
-        foreach ($salesManagers as $key => $value) {
-            if (!empty($request->$key)) {
-                $user = User::find($request->$key);
-                if ($user) {
-                    $salesManagers[$key] = $user->id;
-                    $salesManagerNames[substr($key, -2)] = $user->name;
-                    $userEmails[] = $user->email;
+            foreach ($salesManagers as $key => $value) {
+                if (!empty($request->$key)) {
+                    $user = User::find($request->$key);
+                    if ($user) {
+                        $salesManagers[$key] = $user->id;
+                        $salesManagerNames[substr($key, -2)] = $user->name;
+                        $userEmails[] = $user->email;
+                    }
                 }
             }
-        }
+            // Send RFQ assignment email
+            try {
+                $data = [
+                    'name'                  => $rfq->name,
+                    'product_names'         => $rfq->rfqProducts,
+                    'phone'                 => $rfq->phone,
+                    'qty'                   => $rfq->qty,
+                    'company_name'          => $rfq->company_name,
+                    'address'               => $rfq->address,
+                    'message'               => $rfq->message,
+                    'rfq_code'              => $rfq->rfq_code,
+                    'email'                 => $rfq->email,
+                    'country'               => $rfq->country,
+                    'shipping_name'         => $rfq->shipping_name,
+                    'shipping_email'        => $rfq->shipping_email,
+                    'shipping_phone'        => $rfq->shipping_phone,
+                    'shipping_company_name' => $rfq->shipping_company_name,
+                    'shipping_designation'  => $rfq->shipping_designation,
+                    'shipping_address'      => $rfq->shipping_address,
+                    'shipping_country'      => $rfq->shipping_country,
+                    'shipping_city'         => $rfq->shipping_city,
+                    'shipping_zip_code'     => $rfq->shipping_zip_code,
+                    'end_user_name'         => $rfq->end_user_name,
+                    'end_user_email'        => $rfq->end_user_email,
+                    'end_user_phone'        => $rfq->end_user_phone,
+                    'end_user_company_name' => $rfq->end_user_company_name,
+                    'end_user_designation'  => $rfq->end_user_designation,
+                    'end_user_address'      => $rfq->end_user_address,
+                    'end_user_country'      => $rfq->end_user_country,
+                    'end_user_city'         => $rfq->end_user_city,
+                    'end_user_zip_code'     => $rfq->end_user_zip_code,
+                    'project_name'          => $rfq->project_name,
+                    'project_status'        => $rfq->project_status,
+                    'approximate_delivery_time' => $rfq->approximate_delivery_time,
+                    'budget'                => $rfq->budget,
+                    'link'                  => route('single-rfq.show', $rfq->rfq_code),
+                ];
+                Mail::to($userEmails)->send(new RfqAssigned($data));
+                Toastr::success('Mail has been sent successfully.');
+            } catch (\Exception $e) {
+                Toastr::error('Email sending failed: ' . $e->getMessage());
+                return redirect()->back();
+            }
 
-        // Assign sales managers and update RFQ
-        $rfq->update([
-            'sales_man_id_L1' => $salesManagers['sales_man_id_L1'],
-            'sales_man_id_T1' => $salesManagers['sales_man_id_T1'],
-            'sales_man_id_T2' => $salesManagers['sales_man_id_T2'],
-            'status'          => 'assigned',
-        ]);
+            // Assign sales managers and update RFQ
+            $rfq->update([
+                'sales_man_id_L1' => $salesManagers['sales_man_id_L1'],
+                'sales_man_id_T1' => $salesManagers['sales_man_id_T1'],
+                'sales_man_id_T2' => $salesManagers['sales_man_id_T2'],
+                'status'          => 'assigned',
+            ]);
 
-        // Notify all users (you may filter by role if needed)
-        $allUsers = User::all();
-        Notification::send($allUsers, new RfqAssign(
-            $salesManagerNames['L1'],
-            $salesManagerNames['T1'],
-            $salesManagerNames['T2'],
-            $rfq->rfq_code
-        ));
+            // Notify all users (you may filter by role if needed)
+            $allUsers = User::all();
+            Notification::send($allUsers, new RfqAssign(
+                $salesManagerNames['L1'],
+                $salesManagerNames['T1'],
+                $salesManagerNames['T2'],
+                $rfq->rfq_code
+            ));
 
-        // Send RFQ assignment email
-        try {
-            Mail::to($userEmails)->send(new RfqAssigned([
-                'name'         => $rfq->name,
-                'product_name' => $product_name,
-                'phone'        => $rfq->phone,
-                'qty'          => $rfq->qty,
-                'company_name' => $rfq->company_name,
-                'address'      => $rfq->address,
-                'message'      => $rfq->message,
-                'rfq_code'     => $rfq->rfq_code,
-                'email'        => $rfq->email,
-            ]));
-            Toastr::success('Mail has been sent successfully.');
+            Toastr::success('Salesman assigned successfully.');
+            return redirect()->route('single-rfq.quoation_mail', $rfq->rfq_code);
         } catch (\Exception $e) {
-            Toastr::error('Failed to send email. Please try again later.', 'Error', ['timeOut' => 30000]);
+            Toastr::error('Error Occured: ' . $e->getMessage());
+            return redirect()->back();
         }
-
-
-        Toastr::success('Salesman assigned successfully.');
-        return redirect()->route('single-rfq.quoation_mail', $rfq->rfq_code);
     }
 
 
