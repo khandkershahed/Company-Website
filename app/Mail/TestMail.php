@@ -10,16 +10,16 @@ class TestMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $message;
+    public $emailMessage;
 
-    public function __construct($message)
+    public function __construct($emailMessage)
     {
-        $this->message = $message;
+        $this->emailMessage = $emailMessage;
     }
 
     public function build()
     {
-        return $this->subject('Test Email from NGen IT')
-                    ->view('mail.test', ['message' => $this->message]);
+        return $this->view('mail.test');
     }
 }
+

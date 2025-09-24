@@ -1265,11 +1265,11 @@ class HomeController extends Controller
                 'email' => 'required|email',
             ]);
 
-            $message = "This is a test email sent to " . $request->email;
-
+            $message = $request->message;
+            // dd($message, $request->email);
             Mail::to($request->email)->send(new TestMail($message));
-
-            return back()->with('success', 'Test email sent successfully to ' . $request->email);
+            Toastr::success('Test email sent successfully to ' . $request->email);
+            return redirect()->back();
         } catch (\Exception $e) {
             Toastr::error('Failed to send test email: ' . $e->getMessage());
             return redirect()->back();

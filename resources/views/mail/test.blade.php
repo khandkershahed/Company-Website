@@ -7,7 +7,7 @@
     </div>
     <div style="padding:25px;font-family:Arial, Helvetica, sans-serif;font-size:15px;">
         <p>
-            {{ $message }}
+            {{ $emailMessage }}
             <br><br>
             Thanks,
             <br><br>
