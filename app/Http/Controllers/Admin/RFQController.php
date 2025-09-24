@@ -757,11 +757,24 @@ class RFQController extends Controller
             'link'                      => route('single-rfq.show', $rfq->rfq_code),
         ];
         $rfq_code = $rfq->rfq_code;
-        
+
         try {
             // Mail::to($request->email)->send(new RFQNotificationClientMail($data));
-            foreach ($user_emails as $email) {
-                Mail::to($email)->send(new RFQConfirmationMail($data, $rfq_code));
+            if ($client_type = 'anonymous') {
+                foreach ($user_emails as $email) {
+                    Mail::to($email)->send(new RFQConfirmationMail($data, $rfq_code));
+                }
+            } else {
+                $user_emails = User::where(function ($query) {
+                    $query->whereJsonContains('department', 'business')
+                        ->orWhereJsonContains('department', 'logistics');
+                })->whereIn('role', ['admin', 'manager'])
+                    ->pluck('email')
+                    ->toArray();
+
+                foreach ($user_emails as $email) {
+                    Mail::to($email)->send(new RFQNotificationAdminMail($data, $rfq->rfq_code));
+                }
             }
         } catch (\Exception $e) {
             // Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging

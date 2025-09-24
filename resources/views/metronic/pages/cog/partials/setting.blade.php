@@ -3,7 +3,7 @@
         <div class="mt-0 col-lg-3">
             <select class="bg-white form-select form-select-sm" data-control="select2" data-placeholder="Select Region"
                 name="region" data-allow-clear="true" onchange="regionFunction()">
-                <option></option>
+                <option value="">Select Region</option>
                 <option value="bangladesh" @selected(optional($quotation)->region == 'bangladesh')>Bangladesh</option>
                 <option value="singapore" @selected(optional($quotation)->region == 'singapore')>Singapore</option>
                 <option value="middle_east" @selected(optional($quotation)->region == 'middle_east')>Middle East</option>
