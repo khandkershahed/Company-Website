@@ -1260,14 +1260,19 @@ class HomeController extends Controller
 
     public function emailSend(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-        ]);
+        try {
+            $request->validate([
+                'email' => 'required|email',
+            ]);
 
-        $message = "This is a test email sent to " . $request->email;
+            $message = "This is a test email sent to " . $request->email;
 
-        Mail::to($request->email)->send(new TestMail($message));
+            Mail::to($request->email)->send(new TestMail($message));
 
-        return back()->with('success', 'Test email sent successfully to ' . $request->email);
+            return back()->with('success', 'Test email sent successfully to ' . $request->email);
+        } catch (\Exception $e) {
+            Toastr::error('Failed to send test email: ' . $e->getMessage());
+            return redirect()->back();
+        }
     }
 }
