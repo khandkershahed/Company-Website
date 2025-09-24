@@ -83,7 +83,7 @@
                                     Dear <strong>Sales Manager</strong>,
                                 </p>
                                 <p style="font-size:16px; margin-top:0;">
-                                    We have received a RFQ and it is assigned to you. Please respond immediately for best customer service and
+                                    We have received a RFQ and it has been assigned to you. Please respond immediately for best customer service and
                                     reputation.
                                 </p>
                             </div>

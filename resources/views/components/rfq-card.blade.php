@@ -7,7 +7,7 @@
             <div class="col-md-6 d-flex align-items-center">
                 <i class="fa-regular fa-file fs-2 text-primary pe-3"></i>
                 <div class="text-start">
-                    <h1 class="h6 fw-normal mb-0">{{ $rfq->name }}</h1>
+                    <h1 class="h6 fw-normal mb-0">{{ $rfq->company_name }}</h1>
                     <div class="small text-muted">
                         @unless (Route::is('admin.archived.rfq'))
                             RFQ#
