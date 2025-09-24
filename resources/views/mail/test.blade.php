@@ -7,7 +7,7 @@
     </div>
     <div style="padding:25px;font-family:Arial, Helvetica, sans-serif;font-size:15px;">
         <p>
-            {{ $message }}
+            {{ $data['message'] }}
             <br><br>
             Thanks,
             <br><br>
@@ -17,7 +17,7 @@
         <p style="font-size:12px;">
             This is an automated message. Please do not reply to this message.
             You are receiving this message because you or someone on the account has requested additional
-            information about HostMonster products, services, offers or promotions. Visit our Subscription
+            information about NGEN IT Web Development. Visit our Subscription
             Manager to update your preferences or <a href="www.ngenitltd.com" target="_blank">unsubscribe</a>.
         </p>
     </div>
