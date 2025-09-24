@@ -8,11 +8,13 @@
                 @csrf
                 <input type="hidden" name="rfq_id" value="{{ $rfq->id }}">
                 <input type="hidden" name="rfq_code" value="{{ $rfq->rfq_code }}">
-                <div class="row align-items-center">
+                <div class="row align-items-center px-4">
                     <div class="col-lg-6">
                         <div class="my-10 mt-5 text-start">
                             <h1 class="mb-0 rfq-title fw-bold text-primary">
-                                {{ $rfq->rfq_code ?? 'RFQ Code' }}
+                                RFQ#{{ $rfq->rfq_code ?? 'RFQ Code' }} @if ($rfq->status == 'quoted') (<span
+                                    class="badge bg-success">Quoted</span>)
+                                @endif
                             </h1>
                             <div class="mt-2 text-primary">
                                 <p class="mb-0">{{ $rfq->name ?? 'Unknown' }} | {{ $rfq->designation ?? 'Unknown' }}
@@ -37,6 +39,8 @@
                             @include('metronic.pages.cog.partials.setting')
                         </div>
                     </div>
+                </div>
+                <div class="row align-items-center">
                     <div class="mt-8 col-lg-12">
                         <div class="d-flex align-items-center justify-content-between">
                             <ul class="border-0 nav nav-tabs nav-line-tabs nav-stretch fs-6 justify-content-start">
@@ -53,18 +57,20 @@
                             </ul>
                             <div class="d-flex align-items-center">
                                 <!-- VAT/GST as Button -->
-                                <label class="border btn btn-outline-danger bg-light rounded-1 d-flex align-items-center">
-                                    <input type="checkbox" class="form-check-input me-2 rounded-circle" name="vat_display" value="1"
-                                        id="vat_display" autocomplete="off"
+                                <label
+                                    class="border btn btn-outline-danger bg-light rounded-1 d-flex align-items-center">
+                                    <input type="checkbox" class="form-check-input me-2 rounded-circle"
+                                        name="vat_display" value="1" id="vat_display" autocomplete="off"
                                         @checked(optional($quotation)->vat_display == '1') />
                                     VAT/GST
                                 </label>
 
                                 <!-- Special Discount as Button -->
-                                <label class="border btn btn-outline-danger bg-light rounded-1 d-flex align-items-center">
-                                    <input type="checkbox" class="form-check-input me-2 rounded-circle" name="special_discount_display"
-                                        value="1" id="special_discount_display" autocomplete="off"
-                                        @checked(optional($quotation)->special_discount_display == '1') />
+                                <label
+                                    class="border btn btn-outline-danger bg-light rounded-1 d-flex align-items-center">
+                                    <input type="checkbox" class="form-check-input me-2 rounded-circle"
+                                        name="special_discount_display" value="1" id="special_discount_display"
+                                        autocomplete="off" @checked(optional($quotation)->special_discount_display == '1') />
                                     Special Discount
                                 </label>
                             </div>
@@ -104,7 +110,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Email Where Quotation will send</h5>
-                    <button type="button" class="btn-close text-danger" data-bs-dismiss="modal" aria-label="Close"> X </button>
+                    <button type="button" class="btn-close text-danger" data-bs-dismiss="modal" aria-label="Close"> X
+                    </button>
                 </div>
                 <form id="quotationMailForm" action="{{ route('bypass_quotation.send') }}" method="post"
                     enctype="multipart/form-data">
@@ -112,8 +119,8 @@
                     <div class="modal-body">
                         <div class="loader" style="display: none;">
                             <div class="d-flex justify-content-center align-items-center">
-                                <img class="preloader-spinner" src="{{ asset('/images/simple.gif') }}"
-                                    alt="Loading..." style="width: 200px; padding-top: 150px; padding-bottom: 150px;">
+                                <img class="preloader-spinner" src="{{ asset('/images/simple.gif') }}" alt="Loading..."
+                                    style="width: 200px; padding-top: 150px; padding-bottom: 150px;">
                             </div>
                         </div>
                         <div class="container p-2 mx-2 submit_modal_container">
