@@ -7,7 +7,7 @@
                     <div>
                         <div class="p-10 mx-auto bg-white border rounded d-flex justify-content-center align-items-center flex-column w-25">
                             <div class="fw-bold fs-5">
-                                Choose Deal Submission Type
+                                Deal Submission Type
                             </div>
                             <div class="mt-5 d-flex">
                                 <div>

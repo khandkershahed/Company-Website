@@ -20,7 +20,7 @@
     <div class="mb-5 row">
         <div class="col-lg-4 ps-0">
             <div class="shadow-none card rfq-box">
-                <div class="w-100 rfq-status-card">
+                <div class="w-100 rfq-status-card" style="overflow: hidden;">
                     <div class="row align-items-center">
                         <div class="col-lg-8">
                             <div class="">
@@ -69,7 +69,7 @@
                                 <img src="{{ asset('backend/assets/images/rfq/Total_RFQ.svg') }}" alt="">
                             </div>
                             <div class="mt-4">
-                                <h1 class="mb-0 rfq-title">RFQ</h1>
+                                <h1 class="mb-0">RFQ</h1>
                                 <p class="rfq-para">Status</p>
                             </div>
                         </div>
