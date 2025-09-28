@@ -49,7 +49,7 @@
                                                                     <div class="col-lg-6">
                                                                         <div class="mb-3">
                                                                             <label class="form-label">SKU Code</label>
-                                                                            <input type="text" class="form-control" placeholder="Enter SKU Code">
+                                                                            <input type="text" name="" class="form-control" placeholder="Enter SKU Code">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-lg-6">

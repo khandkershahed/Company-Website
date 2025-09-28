@@ -59,7 +59,7 @@ return new class extends Migration
             $table->string('vat_others_cost',250)->nullable();
             $table->string('vat_remittance',250)->nullable();
             $table->string('vat_packing',250)->nullable();
-            $table->string('vat_customs',250)->nullable(); 
+            $table->string('vat_customs',250)->nullable();
             $table->string('vat_tax',250)->nullable();
             $table->string('vat_subtotal',250)->nullable();
             $table->string('vat_final_total_price',250)->nullable();
@@ -73,6 +73,14 @@ return new class extends Migration
             $table->string('total_tax',250)->nullable();
             $table->string('total_subtotal',250)->nullable();
             $table->string('total_final_total_price',250)->nullable();
+            $table->string('sku_no')->nullable();
+            $table->string('model_no')->nullable();
+            $table->string('brand_name')->nullable();
+            $table->string('additional_product_name')->nullable();
+            $table->bigInteger('additional_qty')->nullable();
+            $table->string('image')->nullable();
+            $table->text('product_des')->nullable();
+            $table->text('additional_info')->nullable();
             $table->timestamps();
         });
     }
