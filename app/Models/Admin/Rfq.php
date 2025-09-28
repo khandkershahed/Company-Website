@@ -2,8 +2,9 @@
 
 namespace App\Models\Admin;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Rfq extends Model
 {
@@ -28,8 +29,20 @@ class Rfq extends Model
         return $this->hasOne(RfqQuotation::class, 'rfq_id', 'id');
     }
     public function isAssigned(): bool
-{
-    return !empty($this->sales_man_id_L1) || !empty($this->sales_man_id_T1) || !empty($this->sales_man_id_T2);
-}
-
+    {
+        return !empty($this->sales_man_id_L1) || !empty($this->sales_man_id_T1) || !empty($this->sales_man_id_T2);
+    }
+    // Salesman L1
+    public function salesmanL1()
+    {
+        return $this->belongsTo(User::class, 'sales_man_id_L1');
+    }
+    public function salesmanT1()
+    {
+        return $this->belongsTo(User::class, 'sales_man_id_T1');
+    }
+    public function salesmanT2()
+    {
+        return $this->belongsTo(User::class, 'sales_man_id_T2');
+    }
 }

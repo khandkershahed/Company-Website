@@ -97,7 +97,7 @@
                                         <div style="text-align: left;padding: 15px;">
                                             <p style="text-align: left; font-size: 18px; color: #141414;">
                                                 We have received your query, Thank you for your interest! Our dedicated
-                                                sales representative will contact with you within 24 hour working days.
+                                                sales representative will contact with you soon.
                                             </p>
                                         </div>
                                     </tr>
@@ -148,7 +148,7 @@
                                     <tr>
                                         <th
                                             style="border-bottom:1px solid #e7e7e7;width: 30%;background-color:#f1f1f1;padding:10px 15px;font-size:15px;text-align:left">
-                                            Fullname</th>
+                                            Name</th>
                                         <td
                                             style="padding:10px 15px;border-top:1px solid #f1f1f1;border-right:1px solid #f1f1f1;font-size:15px;text-align:left">
                                             {{ $data['name'] }}

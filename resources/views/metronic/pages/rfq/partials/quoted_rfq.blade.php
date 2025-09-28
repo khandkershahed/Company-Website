@@ -49,7 +49,7 @@
                                 ],
                                 [
                                     'status' => 'assigned',
-                                    'label' => 'Salesman Assigned',
+                                    'label' => 'Assigned to ' . optional($quoted_rfq->salesmanL1)->name ?? optional($quoted_rfq->salesmanT1)->name ?? optional($quoted_rfq->salesmanT2)->name ?? 'None',
                                     'icon' => 'fa fa-user-tie',
                                     'route' => route('deal.convert', $quoted_rfq->id),
                                     'condition' => $quoted_rfq->status == 'assigned',

@@ -1248,8 +1248,6 @@ class RFQController extends Controller
 
         try {
             $rfq = Rfq::where('rfq_code', $id)->firstOrFail();
-
-
             // Prepare sales manager data
             $salesManagers = [
                 'sales_man_id_L1' => $request->sales_man_id_L1,
