@@ -452,11 +452,13 @@
                                                                                 </button>
 
                                                                                 <!-- Share Button -->
-                                                                                <a href="{{ asset('storage/' . $product->image) }}" download=""
-                                                                                    class="text-white btn btn-sm btn-info"
-                                                                                    title="Share">
-                                                                                    <i class="bi bi-download"></i>
-                                                                                </a>
+                                                                                @if (!empty($product->image) && file_exists(public_path('storage/' . $product->image)))
+                                                                                    <a href="{{ asset('storage/' . $product->image) }}" download=""
+                                                                                        class="text-white btn btn-sm btn-info"
+                                                                                        title="Share">
+                                                                                        <i class="bi bi-download"></i>
+                                                                                    </a>
+                                                                                @endif
                                                                             </div>
                                                                         </td>
                                                                     </tr>
