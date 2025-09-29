@@ -376,60 +376,78 @@
                                             <!--end::Close-->
                                         </div>
                                         <div class="modal-body">
-                                            <div class="shadow-none card">
+                                            <div class="card">
                                                 <div class="p-0 card-body">
-                                                    <div class="accordion" id="accordionExample">
-                                                        @foreach ($rfq->rfqProducts as $product)
-                                                        <div class="mb-3 accordion-item">
-                                                            <h2 class="accordion-header" id="heading{{ $loop->index }}">
-                                                                <button class="accordion-button @if(!$loop->first) collapsed @endif"
-                                                                    type="button"
-                                                                    data-bs-toggle="collapse"
-                                                                    data-bs-target="#collapse{{ $loop->index }}"
-                                                                    aria-expanded="@if($loop->first)true @else false @endif"
-                                                                    aria-controls="collapse{{ $loop->index }}">
-
+                                                    <table class="table mb-0 align-middle border table-striped table-bordered">
+                                                        <thead>
+                                                            <tr class="table-light border-bottom">
+                                                                <th style="width: 5%;" class="ps-3">SL</th>
+                                                                <th style="width: 70%;">Item Name</th>
+                                                                <th style="width: 10%;">QTY</th>
+                                                                <th style="width: 15%;" class="text-center">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @forelse ($rfq->rfqProducts as $product)
+                                                            <tr class="bg-white" style="border-bottom: 1px solid #E2E2E2;">
+                                                                <td class="ps-3">{{ $loop->iteration }}</td>
+                                                                <td>
                                                                     <div>
-                                                                        <div class="fw-semibold">
-                                                                            {{ $loop->iteration }}. {{ $product->product_name }}
-                                                                            <span class="badge bg-primary ms-2">{{ $product->qty }} pcs</span>
-                                                                        </div>
-
-                                                                        <small class="text-muted">
-                                                                            SKU: {{ $product->sku_no }} |
-                                                                            Model: {{ $product->model_no }} |
-                                                                            Brand: {{ $product->brand_name }}
-                                                                        </small>
+                                                                        {{ $product->product_name ?? "No Name" }} <br />
+                                                                       <span class="text-muted">
+                                                                         {{ $product->brand_name ?? "No Brand" }} |
+                                                                        {{ $product->sku_no ?? "No SKU" }} |
+                                                                        {{ $product->model_no ?? "No Model" }}
+                                                                       </span>
                                                                     </div>
-                                                                </button>
-                                                            </h2>
+                                                                </td>
+                                                                <td class="text-center"><span class="fw-semibold">{{ $product->qty }}</span></td>
+                                                                <td>
+                                                                    <div class="btn-group" role="group">
+                                                                        <!-- Details Button -->
+                                                                        <button class="btn btn-sm btn-primary"
+                                                                            type="button"
+                                                                            data-bs-toggle="collapse"
+                                                                            data-bs-target="#details-{{ $loop->iteration }}"
+                                                                            aria-expanded="false"
+                                                                            aria-controls="details-{{ $loop->iteration }}">
+                                                                            <i class="bi bi-info-circle"></i> Details
+                                                                        </button>
 
-                                                            <div id="collapse{{ $loop->index }}"
-                                                                class="accordion-collapse collapse @if($loop->first) show @endif"
-                                                                data-bs-parent="#accordionExample">
-                                                                <div class="px-3 pt-3 pb-4 accordion-body">
-                                                                    <table class="table mb-0 border table-bordered">
-                                                                        <thead class="table-light">
-                                                                            <tr>
-                                                                                <th class="ps-3">SL</th>
-                                                                                <th colspan="4">Product Name</th>
-                                                                                <th class="pe-3">Qty</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td class="ps-3">{{ $loop->iteration }}</td>
-                                                                                <td colspan="4">{{ $product->product_name }}</td>
-                                                                                <td class="pe-3">{{ $product->qty }}</td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        @endforeach
-                                                    </div>
+                                                                        <!-- Share Button -->
+                                                                        <a href=""
+                                                                            class="text-white btn btn-sm btn-info" title="Share">
+                                                                            <i class="bi bi-send"></i>
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
 
+                                                            <!-- Collapsible Details Row -->
+                                                            <tr class="collapse" id="details-{{ $loop->iteration }}">
+                                                                <td colspan="4" class="bg-light">
+                                                                    <div class="p-3">
+                                                                        <h6 class="mb-2 fw-bold">Product Details</h6>
+                                                                        <ul class="mb-0">
+                                                                            <li><strong>Product:</strong> {{ $product->product_name ?? "N/A" }}</li>
+                                                                            <li><strong>Brand:</strong> {{ $product->brand_name ?? "N/A" }}</li>
+                                                                            <li><strong>SKU:</strong> {{ $product->sku_no ?? "N/A" }}</li>
+                                                                            <li><strong>Model:</strong> {{ $product->model_no ?? "N/A" }}</li>
+                                                                            <li><strong>Quantity:</strong> {{ $product->qty ?? "N/A" }}</li>
+                                                                            {{-- You can add more fields here --}}
+                                                                        </ul>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            @empty
+                                                            <tr>
+                                                                <td colspan="4" class="py-3 text-center text-muted">
+                                                                    No Products Available
+                                                                </td>
+                                                            </tr>
+                                                            @endforelse
+                                                        </tbody>
+                                                    </table>
                                                 </div>
                                             </div>
                                         </div>
