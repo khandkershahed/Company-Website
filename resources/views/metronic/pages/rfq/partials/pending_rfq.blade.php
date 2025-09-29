@@ -391,14 +391,14 @@
                                                             </thead>
                                                             <tbody>
                                                                 @forelse ($rfq->rfqProducts as $product)
-                                                                    <tr 
+                                                                    <tr  vertical-align: middle
                                                                         style="border-bottom: 1px solid #E2E2E2; background-color: white;">
                                                                         <td class="text-center">{{ $loop->iteration }}</td>
                                                                         <td>
                                                                             <div>
-                                                                                {{ $product->product_name ?? 'No Name' }}
-                                                                                <br />
+                                                                                <h6 class="mb-0">{{ $product->product_name ?? 'No Name' }}</h6>
                                                                                 @if (!empty($product->brand_name) || !empty($product->sku_no) || !empty($product->model_no))
+                                                                                <br />
                                                                                     <span>
                                                                                         @if (!empty($product->brand_name))
                                                                                             Brand : {{ $product->brand_name }}
@@ -448,17 +448,15 @@
                                                                         id="details-{{ $loop->iteration }}">
                                                                         <td colspan="4" class="bg-light">
                                                                             <div class="p-3">
-                                                                                <h6 class="mb-2 fw-bold">Product
-                                                                                    Details</h6>
-                                                                                <ul class="mb-0">
-                                                                                    <li><strong>Product Description:</strong>
-                                                                                        {{ $product->product_des ?? 'N/A' }}
-                                                                                    </li>
-                                                                                    <li><strong>Additional Info:</strong>
-                                                                                        {{ $product->additional_info ?? 'N/A' }}
-                                                                                    </li>
-                                                                                    {{-- You can add more fields here --}}
-                                                                                </ul>
+                                                                                <div class="mb-2">
+                                                                                    <h6 class="mb-1 fw-bold">Product Description</h6>
+                                                                                    <p class="mb-0"><i class="bi bi-arrow-right me-2"></i>{{ $product->product_des ?? 'N/A' }}</p>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <h6 class="mb-1 fw-bold">Additional Info</h6>
+                                                                                    <p class="mb-0"><i class="bi bi-arrow-right me-2"></i>{{ $product->additional_info ?? 'N/A' }}</p>
+                                                                                </div>
+                                                                                {{-- Add more fields in the same format if needed --}}
                                                                             </div>
                                                                         </td>
                                                                     </tr>
