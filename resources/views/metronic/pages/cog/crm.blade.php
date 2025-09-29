@@ -264,7 +264,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8 offset-lg-2">
+                    <div class="col-lg-9">
                         <div class="card shadow-none border">
                             <div class="card-header py-0 bg-light min-h-45px">
                                 <h5 class="card-title fw-semibold m-0">
