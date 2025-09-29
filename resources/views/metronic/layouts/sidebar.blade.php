@@ -113,6 +113,9 @@
                                 'single-rfq.quoation_mail',
                                 'admin.sales.forecast',
                                 'admin.sales.report',
+                                'deal.index',
+                                'deal.create',
+                                'deal.edit',
                             ],
                             'subMenu' => [
                                 [
@@ -126,17 +129,18 @@
                                     'route' => 'admin.rfq.index',
                                 ],
                                 [
+                                    'title' => 'Deals Drafts',
+                                    'routes' => ['deal.index', 'deal.create', 'deal.edit'],
+                                    'route' => 'deal.index',
+                                ],
+                                [
                                     'title' => 'Sales Forecast',
-                                    'routes' => [
-                                        'admin.sales.forecast',
-                                    ],
+                                    'routes' => ['admin.sales.forecast'],
                                     'route' => 'admin.sales.forecast',
                                 ],
                                 [
                                     'title' => 'Sales Report',
-                                    'routes' => [
-                                        'admin.sales.report',
-                                    ],
+                                    'routes' => ['admin.sales.report'],
                                     'route' => 'admin.sales.report',
                                 ],
                             ],
@@ -179,7 +183,12 @@
                         [
                             'title' => 'CRM',
                             'icon' => 'fa-duotone fa-headphones-simple fs-3',
-                            'routes' => ['admin.contact.index', 'admin.contact.create', 'admin.contact.edit','client-database.index'],
+                            'routes' => [
+                                'admin.contact.index',
+                                'admin.contact.create',
+                                'admin.contact.edit',
+                                'client-database.index',
+                            ],
                             'subMenu' => [
                                 [
                                     'title' => 'Client List',
@@ -191,7 +200,6 @@
                                     'routes' => ['admin.contact.index', 'admin.contact.create', 'admin.contact.edit'],
                                     'route' => 'admin.contact.index',
                                 ],
-
                             ],
                         ],
                         [

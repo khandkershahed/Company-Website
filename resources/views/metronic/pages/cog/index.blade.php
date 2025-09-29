@@ -12,8 +12,8 @@
                     <div class="col-lg-6">
                         <div class="my-10 mt-5 text-start">
                             <h1 class="mb-0 rfq-title fw-bold text-primary">
-                                RFQ#{{ $rfq->rfq_code ?? 'RFQ Code' }} @if ($rfq->status == 'quoted') (<span
-                                    class="badge bg-success px-2 py-3">Quoted</span>)
+                                RFQ#{{ $rfq->rfq_code ?? 'RFQ Code' }}  &nbsp; &nbsp; &nbsp; @if ($rfq->status == 'quoted') <span
+                                    class="badge bg-success px-2 py-3">Quoted</span>
                                 @endif
                             </h1>
                             <div class="mt-2 text-primary">

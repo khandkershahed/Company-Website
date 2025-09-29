@@ -1,5 +1,5 @@
 <x-admin-app-layout :title="'Deal Create Form'">
-    @include('metronic.pages.deal.deal_css')
+    @include('metronic.pages.deal.partials.deal_css')
     <div class="post d-flex flex-column-fluid" id="kt_post">
         <div id="kt_content_container" class="app-container container-fluid">
             <div class="d-flex align-items-center justify-content-center">
@@ -193,7 +193,7 @@
 
                                                                 <!-- Delete -->
                                                                 <!-- <div class="col-lg-1 col-2">
-                                                                   
+
                                                                 </div> -->
                                                             </div>
                                                         </div>

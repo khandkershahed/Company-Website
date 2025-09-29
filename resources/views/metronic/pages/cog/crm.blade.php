@@ -225,42 +225,46 @@
                                         </h4>
                                     </div>
                                 @else
-                                    <div class="mb-5">
-                                        <label for="sales_man_id_L1" class="form-label">Sales Manager Name (Leader -
-                                            L1)</label>
-                                        <select name="sales_man_id_L1" id="sales_man_id_L1" class="form-control select"
-                                            data-control="select2" data-placeholder="Select Sales Manager"
-                                            data-allow-clear="true" data-minimum-results-for-search="0" required>
-                                            <option></option>
-                                            @foreach ($users as $manager)
-                                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="mb-5">
-                                        <label for="sales_man_id_T1" class="form-label">Sales Manager Name (Team -
-                                            T1)</label>
-                                        <select name="sales_man_id_T1" id="sales_man_id_T1" class="form-control select"
-                                            data-control="select2" data-placeholder="Select Sales Manager"
-                                            data-allow-clear="true" data-minimum-results-for-search="0">
-                                            <option></option>
-                                            @foreach ($users as $manager)
-                                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="mb-5">
-                                        <label for="sales_man_id_T2" class="form-label">Sales Manager Name (Team -
-                                            T2)</label>
-                                        <select name="sales_man_id_T2" id="sales_man_id_T2"
-                                            class="form-control select" data-control="select2"
-                                            data-placeholder="Select Sales Manager" data-allow-clear="true"
-                                            data-minimum-results-for-search="0">
-                                            <option></option>
-                                            @foreach ($users as $manager)
-                                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-                                            @endforeach
-                                        </select>
+                                    <div class="row p-3">
+                                        <div class="mb-5">
+                                            <label for="sales_man_id_L1" class="form-label">Sales Manager Name (Leader -
+                                                L1)</label>
+                                            <select name="sales_man_id_L1" id="sales_man_id_L1"
+                                                class="form-control select" data-control="select2"
+                                                data-placeholder="Select Sales Manager" data-allow-clear="true"
+                                                data-minimum-results-for-search="0" required>
+                                                <option></option>
+                                                @foreach ($users as $manager)
+                                                    <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="mb-5">
+                                            <label for="sales_man_id_T1" class="form-label">Sales Manager Name (Team -
+                                                T1)</label>
+                                            <select name="sales_man_id_T1" id="sales_man_id_T1"
+                                                class="form-control select" data-control="select2"
+                                                data-placeholder="Select Sales Manager" data-allow-clear="true"
+                                                data-minimum-results-for-search="0">
+                                                <option></option>
+                                                @foreach ($users as $manager)
+                                                    <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="mb-5">
+                                            <label for="sales_man_id_T2" class="form-label">Sales Manager Name (Team -
+                                                T2)</label>
+                                            <select name="sales_man_id_T2" id="sales_man_id_T2"
+                                                class="form-control select" data-control="select2"
+                                                data-placeholder="Select Sales Manager" data-allow-clear="true"
+                                                data-minimum-results-for-search="0">
+                                                <option></option>
+                                                @foreach ($users as $manager)
+                                                    <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 @endif
                             </div>
@@ -273,7 +277,7 @@
                                     Create Client/Partner Account for this RFQ
                                 </h5>
                             </div>
-                            <div class="card-body p-2">
+                            <div class="card-body p-4">
                                 <div class="row">
                                     <div class="col-12 mt-5 mb-7 text-center">
                                         <p class="mb-0 p-0 d-flex align-items-center justify-content-center fs-3">
@@ -388,7 +392,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row p-4">
                 <div class="col-12 text-end">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
