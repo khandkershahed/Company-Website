@@ -99,7 +99,7 @@ class RFQManageController extends Controller
             'rfq_terms'     => QuotationTerm::where('rfq_id', $rfq->id)->get(),
             'countries'     => Country::select('country_code','country_name')->get(),
             'rfq_country'   => Country::where('country_name', 'LIKE', '%' . $rfq->country . '%')->first(),
-            'brands'        => Brand::latest('id')->select('title', 'image')->inRandomOrder()->limit(5)->get(),
+            'brands'        => Brand::latest('id')->select('title', 'image')->inRandomOrder()->limit(15)->get(),
             'rfq'           => $rfq,
             'users'         => $users,
         ];
@@ -120,7 +120,7 @@ class RFQManageController extends Controller
         $data['quotation_products'] = $request->product_name ?? []; // Ensure quotation_products is an array
         $data['vat_display'] = $data['vat_display'] ?? '0'; // Default to '0' if not set
         $data['special_discount_display'] = $data['special_discount_display'] ?? '0'; // Default to '0' if not set
-        $rfqQuotation = RfqQuotation::updateOrCreate( 
+        $rfqQuotation = RfqQuotation::updateOrCreate(
             ['rfq_id' => $rfq_id],
             [
                 // 'rfq_id' => $data['rfq_id'] ?? null,

@@ -51,7 +51,7 @@
                                         <div class="d-flex align-items-center">
                                             <p class="mb-0">Date:</p>
                                             <input class="border-0 w-100" name="quotation_date" type="text"
-                                                value="{{ $quotation->quotation_date ?? now()->format('d F Y') }}" />
+                                                value="{{ $quotation->quotation_date ?? now()->format('d-M-Y') }}" />
                                         </div>
                                     </th>
                                 </tr>
@@ -76,11 +76,9 @@
                                         <input class="border-0 w-100" name="address" type="text"
                                             value="{{ $quotation->address ?? $rfq->address }}" />
                                     </th>
-                                    <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
-                                        {{-- C<input class="border-0 w-100" name="customer_type" type="text"
-                                            value="Customer Type: Anonymous" /> --}}
+                                    {{-- <th style="border: 0;padding: 0;font-weight: normal;padding-top: 5px;">
                                         <span>Customer Type: {{ $rfq->client_type ?? 'Anonymous' }}</span>
-                                    </th>
+                                    </th> --}}
                                 </tr>
                             </thead>
                         </table>
