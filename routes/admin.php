@@ -35,19 +35,20 @@ use App\Http\Controllers\Admin\BankingController;
 use App\Http\Controllers\Admin\BulkSmsController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\DealControllerOld;
 use App\Http\Controllers\Admin\ExpenseController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\PartnerPermission;
-use App\Http\Controllers\Admin\ProductController;
 
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\SuccessController;
 use App\Http\Controllers\Salary\EntityController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\EmployeeController;
-use App\Http\Controllers\Admin\FeedbackController;
 
+use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\HomepageController;
 use App\Http\Controllers\Admin\HrPolicyController;
 use App\Http\Controllers\Admin\IndustryController;
@@ -114,6 +115,7 @@ use App\Http\Controllers\Admin\SalesTeamTargetController;
 use App\Http\Controllers\Admin\SalesYearTargetController;
 use App\Http\Controllers\Admin\SolutionDetailsController;
 use App\Http\Controllers\Admin\TierCalculationController;
+use App\Http\Controllers\Attendance\AttendanceController;
 use App\Http\Controllers\Admin\AdminMenuBuilderController;
 use App\Http\Controllers\Admin\EmployeeCategoryController;
 use App\Http\Controllers\Admin\HardwareInfoPageController;
@@ -134,7 +136,6 @@ use App\Http\Controllers\Admin\PolicyAcknowledgmentsController;
 use App\Http\Controllers\Client\ClientSupportMessageController;
 use App\Http\Controllers\Admin\FrontendNavbarMenuItemController;
 use App\Http\Controllers\Admin\PortfolioClientFeedbackController;
-use App\Http\Controllers\Attendance\AttendanceController;
 use App\Http\Controllers\Marketing\MarketingTeamTargetController;
 use App\Http\Controllers\Marketing\MarketingManagerRoleController;
 
@@ -183,6 +184,10 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('business', 'business')->name('business.index');
         Route::get('sales-dashboard', 'salesDashboard')->name('sales-dashboard.index');
         Route::get('marketing-dashboard', 'marketingDashboard')->name('marketing-dashboard.index');
+    });
+
+    Route::controller(DealController::class)->group(function () {
+        Route::post('/quick/deal/create', 'quickDealCreate')->name('quick.deal.create');
     });
 });
 
@@ -251,7 +256,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('/client/ajax/{client_id}', 'GetClient');
     });
 
-    Route::controller(DealController::class)->group(function () {
+    Route::controller(DealControllerOld::class)->group(function () {
         Route::get('/partner/ajax/{partner_id}', 'GetPartner');
         Route::get('/client/ajax/{client_id}', 'GetClient');
         Route::put('/send/quotation/{id}',  'SendQuotation')->name('quotation.send');

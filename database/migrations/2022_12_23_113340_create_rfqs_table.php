@@ -23,10 +23,10 @@ return new class extends Migration
             $table->unsignedBigInteger('partner_id')->nullable();
             $table->unsignedBigInteger('product_id')->nullable();
             $table->unsignedBigInteger('solution_id')->nullable();
-            $table->enum('client_type', ['client', 'partner','anonymous'])->nullable();
+            $table->enum('client_type', ['client', 'partner', 'anonymous'])->nullable();
             $table->string('name', 200)->nullable();
             $table->string('email', 200)->nullable();
-            $table->string('phone',20)->nullable();
+            $table->string('phone', 20)->nullable();
             $table->string('company_name', 200)->nullable();
             $table->string('designation', 200)->nullable();
             $table->text('address')->nullable();
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->enum('is_reseller', ['0', '1'])->default('0')->nullable();
             $table->string('shipping_name', 200)->nullable();
             $table->string('shipping_email', 200)->nullable();
-            $table->string('shipping_phone',20)->nullable();
+            $table->string('shipping_phone', 20)->nullable();
             $table->string('shipping_company_name', 200)->nullable();
             $table->string('shipping_designation', 200)->nullable();
             $table->text('shipping_address')->nullable();
@@ -46,7 +46,7 @@ return new class extends Migration
             $table->string('shipping_zip_code', 20)->nullable();
             $table->string('end_user_name', 200)->nullable();
             $table->string('end_user_email', 200)->nullable();
-            $table->string('end_user_phone',20)->nullable();
+            $table->string('end_user_phone', 20)->nullable();
             $table->string('end_user_company_name', 200)->nullable();
             $table->string('end_user_designation', 200)->nullable();
             $table->text('end_user_address')->nullable();
@@ -68,7 +68,7 @@ return new class extends Migration
             $table->json('solution')->nullable();
             $table->string('image')->nullable();
             $table->text('message')->nullable();
-            $table->enum('rfq_type', ['rfq', 'deal' , 'sales' , 'order' ,'delivery'])->default('rfq')->nullable();
+            $table->enum('rfq_type', ['rfq', 'deal', 'sales', 'order', 'delivery'])->default('rfq')->nullable();
             $table->enum('call', ['0', '1'])->default('0')->nullable();
             $table->enum('regular', ['0', '1'])->default('0')->nullable();
             $table->enum('special', ['0', '1'])->default('0')->nullable();
@@ -86,9 +86,10 @@ return new class extends Migration
             $table->string('delivery_location', 200)->nullable();
             $table->double('budget')->nullable();
             $table->string('project_status', 100)->nullable();
-            $table->string('approximate_delivery_time',150)->nullable();
+            $table->string('approximate_delivery_time', 150)->nullable();
             $table->string('client_po', 191)->nullable();
             $table->string('client_payment_pdf', 191)->nullable();
+            $table->string('deal_code', 100)->unique();
 
             $table->foreign('sales_man_id_L1')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('sales_man_id_T1')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
