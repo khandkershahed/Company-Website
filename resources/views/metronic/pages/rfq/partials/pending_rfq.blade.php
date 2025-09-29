@@ -378,30 +378,34 @@
                                             <div class="modal-body">
                                                 <div class="shadow-none card">
                                                     <div class="p-0 card-body">
-                                                        <table
-                                                            class="table mb-0 align-middle border">
+                                                        <table class="table mb-0 align-middle border">
                                                             <thead>
                                                                 <tr class="table-light border-bottom">
                                                                     <th style="width: 5%;" class="text-center">SL</th>
                                                                     <th style="width: 70%;">Item Name</th>
-                                                                    <th style="width: 10%;" class="text-center">QTY</th>
+                                                                    <th style="width: 10%;" class="text-center">QTY
+                                                                    </th>
                                                                     <th style="width: 15%;" class="text-center">Action
                                                                     </th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 @forelse ($rfq->rfqProducts as $product)
-                                                                    <tr  vertical-align: middle
+                                                                    <tr vertical-align: middle
                                                                         style="border-bottom: 1px solid #E2E2E2; background-color: white;">
-                                                                        <td class="text-center">{{ $loop->iteration }}</td>
+                                                                        <td class="text-center">{{ $loop->iteration }}
+                                                                        </td>
                                                                         <td>
                                                                             <div>
-                                                                                <h6 class="mb-0">{{ $product->product_name ?? 'No Name' }}</h6>
+                                                                                <h6 class="mb-0">
+                                                                                    {{ $product->product_name ?? 'No Name' }}
+                                                                                </h6>
                                                                                 @if (!empty($product->brand_name) || !empty($product->sku_no) || !empty($product->model_no))
-                                                                                <br />
+                                                                                    <br />
                                                                                     <span>
                                                                                         @if (!empty($product->brand_name))
-                                                                                            Brand : {{ $product->brand_name }}
+                                                                                            Brand :
+                                                                                            {{ $product->brand_name }}
                                                                                         @endif
                                                                                         @if (!empty($product->sku_no))
                                                                                             |
@@ -434,11 +438,14 @@
                                                                                 </button>
 
                                                                                 <!-- Share Button -->
-                                                                                <a href=""
-                                                                                    class="text-white btn btn-sm btn-info"
-                                                                                    title="Share">
-                                                                                    <i class="bi bi-download"></i>
-                                                                                </a>
+                                                                                @if (!empty($product->image) && file_exists(public_path('storage/' . $product->image)))
+                                                                                    <a href="{{ asset('storage/' . $product->image) }}"
+                                                                                        download=""
+                                                                                        class="text-white btn btn-sm btn-info"
+                                                                                        title="Share">
+                                                                                        <i class="bi bi-download"></i>
+                                                                                    </a>
+                                                                                @endif
                                                                             </div>
                                                                         </td>
                                                                     </tr>
@@ -449,12 +456,18 @@
                                                                         <td colspan="4" class="bg-light">
                                                                             <div class="p-3">
                                                                                 <div class="mb-2">
-                                                                                    <h6 class="mb-1 fw-bold">Product Description</h6>
-                                                                                    <p class="mb-0"><i class="bi bi-arrow-right me-2"></i>{{ $product->product_des ?? 'N/A' }}</p>
+                                                                                    <h6 class="mb-1 fw-bold">Product
+                                                                                        Description</h6>
+                                                                                    <p class="mb-0"><i
+                                                                                            class="bi bi-arrow-right me-2"></i>{{ $product->product_des ?? 'N/A' }}
+                                                                                    </p>
                                                                                 </div>
                                                                                 <div>
-                                                                                    <h6 class="mb-1 fw-bold">Additional Info</h6>
-                                                                                    <p class="mb-0"><i class="bi bi-arrow-right me-2"></i>{{ $product->additional_info ?? 'N/A' }}</p>
+                                                                                    <h6 class="mb-1 fw-bold">Additional
+                                                                                        Info</h6>
+                                                                                    <p class="mb-0"><i
+                                                                                            class="bi bi-arrow-right me-2"></i>{{ $product->additional_info ?? 'N/A' }}
+                                                                                    </p>
                                                                                 </div>
                                                                                 {{-- Add more fields in the same format if needed --}}
                                                                             </div>

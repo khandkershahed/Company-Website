@@ -49,7 +49,10 @@
                                 ],
                                 [
                                     'status' => 'assigned',
-                                    'label' => 'Assigned to ' . optional($quoted_rfq->salesmanL1)->name ?? optional($quoted_rfq->salesmanT1)->name ?? optional($quoted_rfq->salesmanT2)->name ?? 'None',
+                                    'label' =>
+                                        'Assigned to ' . optional($quoted_rfq->salesmanL1)->name ??
+                                        (optional($quoted_rfq->salesmanT1)->name ??
+                                            (optional($quoted_rfq->salesmanT2)->name ?? 'None')),
                                     'icon' => 'fa fa-user-tie',
                                     'route' => route('deal.convert', $quoted_rfq->id),
                                     'condition' => $quoted_rfq->status == 'assigned',
@@ -363,10 +366,139 @@
 
                             <!-- Product Information -->
                             <div class="mb-8 border shadow-none card">
-                                <div class="py-0 card-header bg-light">
+                                <div class="py-0 card-header bg-light align-items-center">
                                     <h5 class="m-0 card-title fw-semibold">
                                         Product Information
                                     </h5>
+                                    <div>
+                                        <button class="py-2 bg-white btn btn-light" data-bs-toggle="modal"
+                                            data-bs-target="#quotedRfqProductDetails-{{ $quoted_rfq->id }}">Details</button>
+                                    </div>
+                                </div>
+                                <div class="modal fade" tabindex="-1"
+                                    id="quotedRfqProductDetails-{{ $quoted_rfq->id }}">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl"
+                                        role="document">
+                                        <div class="modal-content">
+                                            <div class="py-3 modal-header">
+                                                <!--begin::Modal title-->
+                                                <h2>RFQ Details (@if (!Route::is('admin.archived.rfq'))
+                                                        RFQ#
+                                                    @endif{{ $quoted_rfq->rfq_code }})</h2>
+                                                <div class="btn btn-sm btn-icon btn-active-color-primary"
+                                                    data-bs-dismiss="modal">
+                                                    <i class="fas fa-xmark fs-1"></i>
+                                                </div>
+                                                <!--end::Close-->
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="shadow-none card">
+                                                    <div class="p-0 card-body">
+                                                        <table class="table mb-0 align-middle border">
+                                                            <thead>
+                                                                <tr class="table-light border-bottom">
+                                                                    <th style="width: 5%;" class="text-center">SL</th>
+                                                                    <th style="width: 70%;">Item Name</th>
+                                                                    <th style="width: 10%;" class="text-center">QTY
+                                                                    </th>
+                                                                    <th style="width: 15%;" class="text-center">Action
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @forelse ($quoted_rfq->rfqProducts as $product)
+                                                                    <tr
+                                                                        style="border-bottom: 1px solid #E2E2E2; background-color: white;">
+                                                                        <td class="text-center">{{ $loop->iteration }}
+                                                                        </td>
+                                                                        <td>
+                                                                            <div>
+                                                                                {{ $product->product_name ?? 'No Name' }}
+                                                                                <br />
+                                                                                @if (!empty($product->brand_name) || !empty($product->sku_no) || !empty($product->model_no))
+                                                                                    <span>
+                                                                                        @if (!empty($product->brand_name))
+                                                                                            Brand :
+                                                                                            {{ $product->brand_name }}
+                                                                                        @endif
+                                                                                        @if (!empty($product->sku_no))
+                                                                                            |
+                                                                                            SKU :
+                                                                                            {{ $product->sku_no ?? 'No SKU' }}
+                                                                                        @endif
+                                                                                        @if (!empty($product->model_no))
+                                                                                            |
+                                                                                            Model :
+                                                                                            {{ $product->model_no ?? 'No Model' }}
+                                                                                        @endif
+                                                                                    </span>
+                                                                                @endif
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="text-center"><span
+                                                                                class="fw-semibold">{{ $product->qty }}</span>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="btn-group" role="group">
+                                                                                <!-- Details Button -->
+                                                                                <button class="btn btn-sm btn-primary"
+                                                                                    type="button"
+                                                                                    data-bs-toggle="collapse"
+                                                                                    data-bs-target="#details-{{ $loop->iteration }}"
+                                                                                    aria-expanded="false"
+                                                                                    aria-controls="details-{{ $loop->iteration }}">
+                                                                                    <i class="bi bi-info-circle"></i>
+                                                                                    Details
+                                                                                </button>
+
+                                                                                <!-- Share Button -->
+                                                                                @if (!empty($product->image) && file_exists(public_path('storage/' . $product->image)))
+                                                                                    <a href="{{ asset('storage/' . $product->image) }}" download=""
+                                                                                        class="text-white btn btn-sm btn-info"
+                                                                                        title="Share">
+                                                                                        <i class="bi bi-download"></i>
+                                                                                    </a>
+                                                                                @endif
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+
+                                                                    <!-- Collapsible Details Row -->
+                                                                    <tr class="collapse"
+                                                                        id="details-{{ $loop->iteration }}">
+                                                                        <td colspan="4" class="bg-light">
+                                                                            <div class="p-3">
+                                                                                <h6 class="mb-2 fw-bold">Product
+                                                                                    Details</h6>
+                                                                                <ul class="mb-0">
+                                                                                    <li><strong>Product
+                                                                                            Description:</strong>
+                                                                                        {{ $product->product_des ?? 'N/A' }}
+                                                                                    </li>
+                                                                                    <li><strong>Additional
+                                                                                            Info:</strong>
+                                                                                        {{ $product->additional_info ?? 'N/A' }}
+                                                                                    </li>
+                                                                                    {{-- You can add more fields here --}}
+                                                                                </ul>
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                @empty
+                                                                    <tr>
+                                                                        <td colspan="4"
+                                                                            class="py-3 text-center text-muted">
+                                                                            No Products Available
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforelse
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="p-2 px-4 card-body">
                                     <div class="px-4 table-responsive table-border">

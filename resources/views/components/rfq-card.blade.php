@@ -47,6 +47,7 @@
                     $colorClass = match (true) {
                         $daysDiff === 0 => 'notif-blue', // 0 days - Blue
                         $daysDiff === 1 => 'notif-yellow', // 1 day - Yellow
+                        $daysDiff === 2 => 'notif-yellow', // 1 day - Yellow
                         $daysDiff === 3 => 'notif-dark-red', // 3 days - Dark Red
                         $daysDiff >= 4 => 'notif-light-red', // 4+ days - Light Red
                         default => 'notif-default', // Fallback
