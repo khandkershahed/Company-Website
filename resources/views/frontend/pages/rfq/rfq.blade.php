@@ -44,25 +44,60 @@
                                                                 <h1 class="modal-title fs-5" id="{{ $modalId }}Label">Product Information</h1>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
-                                                            <div class="modal-body">
-                                                                <div class="row">
-                                                                    <div class="col-lg-6">
+                                                            <div class="p-5 modal-body">
+                                                                <div class="row gx-2">
+                                                                    <div class="col-lg-2">
                                                                         <div class="mb-3">
-                                                                            <label class="form-label">SKU Code</label>
-                                                                            <input type="text" name="" class="form-control" placeholder="Enter SKU Code">
+                                                                            <label class="form-label fw-normal">SKU / Part No.</label>
+                                                                            <input type="text" name="sku_no" class="form-control" placeholder="Enter SKU / Part No.">
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-lg-6">
+                                                                    <div class="col-lg-3">
                                                                         <div class="mb-3">
-                                                                            <label class="form-label">Upload File</label>
-                                                                            <input type="file" class="form-control">
+                                                                            <label class="form-label fw-normal">Model No.</label>
+                                                                            <input type="text" name="model_no" class="form-control" placeholder="Enter Model No.">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-4">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label fw-normal">Brand Name</label>
+                                                                            <input type="text" name="brand_name" class="form-control" placeholder="Enter Brand Name">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label fw-normal">Quantity</label>
+                                                                            <input type="number" name="additional_qty" class="form-control" placeholder="Enter Quantity">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-lg-12">
                                                                         <div class="mb-3">
-                                                                            <label class="form-label">Additional Info</label>
-                                                                            <textarea class="form-control" rows="3" placeholder="Enter any additional information here"></textarea>
+                                                                            <label class="form-label fw-normal">Item Name</label>
+                                                                            <input type="text" name="additional_product_name" class="form-control" placeholder="Enter Item Name">
                                                                         </div>
+                                                                    </div>
+
+                                                                    <div class="col-lg-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label fw-normal">Item Description</label>
+                                                                            <textarea class="form-control" name="product_des" rows="2" placeholder="Enter Item Description"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label fw-normal">Additional Info</label>
+                                                                            <textarea class="form-control" name="additional_info" rows="2" placeholder="Enter any additional information"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr class="my-5">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="mb-3">
+                                                                            <label class="form-label fw-normal">Upload Product Datasheet / Images</label>
+                                                                            <input type="file" name="image" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-12 d-flex justify-content-end">
+                                                                        <button type="button" data-bs-dismiss="modal" class="btn-color">Close</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -78,7 +113,7 @@
                                             </div>
                                             <div class="col-lg-1 col-2">
                                                 <div class="d-flex">
-                                                    <input type="text" name="qty" value="1" class="text-center form-control qty-input" style="width: 60px; margin-bottom: 6px" />
+                                                    <input type="text" name="qty" value="1" class="text-center form-control qty-input" style="width: 60px;margin-bottom: 6px;padding-inline-end: 5px;padding-inline-start: 5px;" />
                                                     <div class="d-flex flex-column counting-btn">
                                                         <button type="button" class="qty-btn increment-quantity" onclick="increment(this)" style="width: 32px; height: 32px">
                                                             <i class="fas fa-chevron-up btn-icons"></i>
@@ -118,55 +153,56 @@
                                                                     <div class="col-lg-2">
                                                                         <div class="mb-3">
                                                                             <label class="form-label fw-normal">SKU / Part No.</label>
-                                                                            <input type="text" class="form-control" placeholder="Enter SKU / Part No.">
+                                                                            <input type="text" name="sku_no" class="form-control" placeholder="Enter SKU / Part No.">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-lg-3">
                                                                         <div class="mb-3">
                                                                             <label class="form-label fw-normal">Model No.</label>
-                                                                            <input type="text" class="form-control" placeholder="Enter Model No.">
+                                                                            <input type="text" name="model_no" class="form-control" placeholder="Enter Model No.">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-lg-4">
                                                                         <div class="mb-3">
                                                                             <label class="form-label fw-normal">Brand Name</label>
-                                                                            <input type="text" class="form-control" placeholder="Enter Brand Name">
+                                                                            <input type="text" name="brand_name" class="form-control" placeholder="Enter Brand Name">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-lg-3">
                                                                         <div class="mb-3">
                                                                             <label class="form-label fw-normal">Quantity</label>
-                                                                            <input type="number" class="form-control" placeholder="Enter Quantity">
+                                                                            <input type="number" name="additional_qty" class="form-control" placeholder="Enter Quantity">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-lg-12">
                                                                         <div class="mb-3">
                                                                             <label class="form-label fw-normal">Item Name</label>
-                                                                            <input type="text" class="form-control" placeholder="Enter Item Name">
+                                                                            <input type="text" name="additional_product_name" class="form-control" placeholder="Enter Item Name">
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="col-lg-6">
                                                                         <div class="mb-3">
                                                                             <label class="form-label fw-normal">Item Description</label>
-                                                                            <textarea class="form-control" rows="2" placeholder="Enter Item Description"></textarea>
+                                                                            <textarea class="form-control" name="product_des" rows="2" placeholder="Enter Item Description"></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-lg-6">
                                                                         <div class="mb-3">
                                                                             <label class="form-label fw-normal">Additional Info</label>
-                                                                            <textarea class="form-control" rows="2" placeholder="Enter any additional information"></textarea>
+                                                                            <textarea class="form-control" name="additional_info" rows="2" placeholder="Enter any additional information"></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <hr class="my-5">
                                                                     <div class="col-lg-12">
                                                                         <div class="mb-3">
                                                                             <label class="form-label fw-normal">Upload Product Datasheet / Images</label>
-                                                                            <input type="file" class="form-control" multiple>
+                                                                            <input type="file" name="image" class="form-control">
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-lg-12 d-flex justify-content-end">
-                                                                        <button type="submit" class="btn-color">Submit</button>
+                                                                        {{-- <button type="submit" class="btn-color">Submit</button> --}}
+                                                                        <button type="button" data-bs-dismiss="modal" class="btn-color">Close</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -182,7 +218,7 @@
                                             </div>
                                             <div class="col-lg-1 col-2">
                                                 <div class="d-flex">
-                                                    <input type="text" name="qty" value="1" class="text-center form-control qty-input" style="width: 60px; margin-bottom: 6px" />
+                                                    <input type="text" name="qty" value="1" class="text-center form-control qty-input" style="width: 60px;margin-bottom: 6px;padding-inline-end: 5px;padding-inline-start: 5px;" />
                                                     <div class="d-flex flex-column counting-btn">
                                                         <button type="button" class="qty-btn increment-quantity" onclick="increment(this)" style="width: 32px; height: 32px">
                                                             <i class="fas fa-chevron-up" style="color: #7a7577"></i>

@@ -48,7 +48,9 @@
                                 ],
                                 [
                                     'status' => 'assigned',
-                                    'label' => 'Assigned to ' . optional($rfq->salesmanL1)->name ?? optional($rfq->salesmanT1)->name ?? optional($rfq->salesmanT2)->name,
+                                    'label' =>
+                                        'Assigned to ' . optional($rfq->salesmanL1)->name ??
+                                        (optional($rfq->salesmanT1)->name ?? optional($rfq->salesmanT2)->name),
                                     'icon' => 'fa fa-user-tie',
                                     'route' => route('deal.convert', $rfq->id),
                                     'condition' => $rfq->status == 'assigned',
@@ -177,17 +179,11 @@
                                                                                 'Company Name',
                                                                                 $rfq->shipping_company_name,
                                                                             ],
-                                                                            [
-                                                                                'Designation',
-                                                                                $rfq->shipping_designation,
-                                                                            ],
+                                                                            ['Designation', $rfq->shipping_designation],
                                                                             ['Address', $rfq->shipping_address],
                                                                             ['Country', $rfq->shipping_country],
                                                                             ['City', $rfq->shipping_city],
-                                                                            [
-                                                                                'Zip Code',
-                                                                                $rfq->shipping_zip_code,
-                                                                            ],
+                                                                            ['Zip Code', $rfq->shipping_zip_code],
                                                                         ],
                                                                     ];
                                                                 }
@@ -211,17 +207,11 @@
                                                                                 'Company Name',
                                                                                 $rfq->end_user_company_name,
                                                                             ],
-                                                                            [
-                                                                                'Designation',
-                                                                                $rfq->end_user_designation,
-                                                                            ],
+                                                                            ['Designation', $rfq->end_user_designation],
                                                                             ['Address', $rfq->end_user_address],
                                                                             ['Country', $rfq->end_user_country],
                                                                             ['City', $rfq->end_user_city],
-                                                                            [
-                                                                                'Zip Code',
-                                                                                $rfq->end_user_zip_code,
-                                                                            ],
+                                                                            ['Zip Code', $rfq->end_user_zip_code],
                                                                         ],
                                                                     ];
                                                                 }
@@ -360,10 +350,83 @@
 
                             <!-- Product Information -->
                             <div class="mb-8 border shadow-none card">
-                                <div class="py-0 card-header bg-light">
+                                <div class="py-0 card-header bg-light align-items-center">
                                     <h5 class="m-0 card-title fw-semibold">
                                         Product Information
                                     </h5>
+                                    <div>
+                                        <button class="py-2 bg-white btn btn-light" data-bs-toggle="modal"
+                                            data-bs-target="#pendiRfqProductDetails-{{ $rfq->id }}">Details</button>
+                                    </div>
+                                </div>
+                                <div class="modal fade" tabindex="-1"
+                                    id="pendiRfqProductDetails-{{ $rfq->id }}">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl"
+                                        role="document">
+                                        <div class="modal-content">
+                                            <div class="py-3 modal-header">
+                                                <!--begin::Modal title-->
+                                                <h2>RFQ Details (@if (!Route::is('admin.archived.rfq'))
+                                                        RFQ#
+                                                    @endif{{ $rfq->rfq_code }})</h2>
+                                                <div class="btn btn-sm btn-icon btn-active-color-primary"
+                                                    data-bs-dismiss="modal">
+                                                    <i class="fas fa-xmark fs-1"></i>
+                                                </div>
+                                                <!--end::Close-->
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="shadow-none card">
+                                                    <div class="p-0 card-body">
+                                                        <div class="table-responsive">
+                                                            <table class="table mb-0 table-bordered table-striped">
+                                                                <tbody style="border-bottom: 1px solid #E2E2E2;">
+                                                                    @if ($rfq->rfqProducts->count() > 0)
+                                                                        @foreach ($rfq->rfqProducts as $product)
+                                                                            <tr>
+                                                                                <th width="12%" class="ps-3">SKU
+                                                                                    No:
+                                                                                </th>
+                                                                                <td width="19%" class="ps-3">
+                                                                                    {{ $product->sku_no }}</td>
+                                                                                <th width="13%">Model No:</th>
+                                                                                <td width="19%" class="ps-3">
+                                                                                    {{ $product->model_no }}</td>
+                                                                                <th width="15%" class="pe-3">
+                                                                                    Brand Name:
+                                                                                </th>
+                                                                                <td width="22%" class="ps-3">
+                                                                                    {{ $product->brand_name }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th class="ps-3">SL
+                                                                                </th>
+                                                                                <th colspan="4">Product Name</th>
+                                                                                <th class="pe-3">Qty
+                                                                                </th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="ps-3">
+                                                                                    {{ $loop->iteration }}</td>
+                                                                                <td colspan="4">{{ $product->product_name }}</td>
+                                                                                <td class="pe-3">{{ $product->qty }}
+                                                                                </td>
+                                                                            </tr>
+                                                                        @endforeach
+                                                                    @else
+                                                                        <tr>
+                                                                            <td colspan="3" class="text-center">No
+                                                                                Data Available</td>
+                                                                        </tr>
+                                                                    @endif
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="p-2 px-4 card-body">
                                     <div class="px-4 table-responsive table-border">

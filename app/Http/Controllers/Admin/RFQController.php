@@ -36,6 +36,7 @@ use App\Mail\RFQNotificationAdminMail;
 use App\Models\Admin\QuotationProduct;
 use App\Mail\RFQNotificationClientMail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Admin\CommercialDocument;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Validator;
@@ -329,7 +330,7 @@ class RFQController extends Controller
 
     public function rfqCreate(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $validator = Validator::make(
             $request->all(),
             [
@@ -456,22 +457,51 @@ class RFQController extends Controller
             $productName = $contact['product_name'] ?? null;
             $qty = $contact['qty'] ?? null;
 
-            if ($productName && $qty) {
-                RfqProduct::create([
-                    'rfq_id'       => $rfq_id,
-                    'product_name' => $productName,
-                    'qty'          => $qty,
-                    'created_at'   => now(),
-                ]);
-
-                QuotationProduct::create([
-                    'rfq_id'       => $rfq_id,
-                    'product_name' => $productName,
-                    'qty'          => $qty,
-                    'created_at'   => now(),
-                ]);
+            if (!$productName || !$qty) {
+                continue;
             }
+
+            $image = $contact['image'] ?? null;
+            $imagePath = null;
+
+            $files = [
+                'image'  => $image,
+            ];
+            $uploadedFiles = [];
+
+            foreach ($files as $key => $file) {
+                if (!empty($file)) {
+                    $filePath = 'rfq_products/' . $key;
+                    $uploadedFiles[$key] = Helper::imageUpload($file, $filePath);
+                    if ($uploadedFiles[$key]['status'] === 0) {
+                        return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
+                    }
+                } else {
+                    $uploadedFiles[$key] = ['status' => 0];
+                }
+            }
+            $imagePath = $uploadedFiles['image']['status']  == 1 ? $uploadedFiles['image']['file_path'] : null;
+
+
+            $data = [
+                'rfq_id'                  => $rfq_id,
+                'sku_no'                  => $contact['sku_no'] ?? null,
+                'model_no'                => $contact['model_no'] ?? null,
+                'brand_name'              => $contact['brand_name'] ?? null,
+                'additional_qty'          => $contact['additional_qty'] ?? null,
+                'additional_product_name' => $contact['additional_product_name'] ?? null,
+                'product_des'             => $contact['product_des'] ?? null,
+                'additional_info'         => $contact['additional_info'] ?? null,
+                'product_name'            => $productName,
+                'qty'                     => $qty,
+                'image'                   => $imagePath,
+                'created_at'              => now(),
+            ];
+
+            RfqProduct::create($data);
+            QuotationProduct::create($data);
         }
+
 
         // Notify users and send emails
         $name = $request->name;
@@ -1169,7 +1199,7 @@ class RFQController extends Controller
         return redirect()->back();
     }
 
-    
+
 
     public function rfqApprove($id)
     {
