@@ -11,7 +11,7 @@
         <div class="shadow-none card">
             <div class="p-4 bg-light rounded-3 d-flex justify-content-between align-items-center w-100">
                 <div class="d-flex align-items-center">
-                    <p class="mb-0 text-black ps-3">
+                    <p class="mb-0 text-black ps-3 fw-bold" style="font-size: 16px;">
                         @if (!Route::is('admin.archived.rfq'))
                             RFQ#
                         @endif{{ $rfq->rfq_code }}
@@ -246,14 +246,14 @@
                                                                                     style="box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px;">
                                                                                     <tr>
                                                                                         <th colspan="2"
-                                                                                            style="background-color:#d3d3d3; padding:10px; font-size:14px; text-align:center;">
+                                                                                            style="background-color:#f5f8fa; border-bottom: 1px solid #eee; padding:10px; font-size:14px; text-align:center;">
                                                                                             {{ $table['title'] }}
                                                                                         </th>
                                                                                     </tr>
                                                                                     @foreach ($table['rows'] as [$label, $value])
                                                                                         <tr>
                                                                                             <th
-                                                                                                style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400; width:130px;">
+                                                                                                style="background:#f5f8fa;padding:10px; text-align:left; font-weight:400; width:130px;">
                                                                                                 {{ $label }}
                                                                                             </th>
                                                                                             <td
@@ -376,24 +376,24 @@
                                                 <!--end::Close-->
                                             </div>
                                             <div class="modal-body">
-                                                <div class="card">
+                                                <div class="shadow-none card">
                                                     <div class="p-0 card-body">
                                                         <table
-                                                            class="table mb-0 align-middle border table-striped table-bordered">
+                                                            class="table mb-0 align-middle border">
                                                             <thead>
                                                                 <tr class="table-light border-bottom">
-                                                                    <th style="width: 5%;" class="ps-3">SL</th>
+                                                                    <th style="width: 5%;" class="text-center">SL</th>
                                                                     <th style="width: 70%;">Item Name</th>
-                                                                    <th style="width: 10%;">QTY</th>
+                                                                    <th style="width: 10%;" class="text-center">QTY</th>
                                                                     <th style="width: 15%;" class="text-center">Action
                                                                     </th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 @forelse ($rfq->rfqProducts as $product)
-                                                                    <tr class="bg-white"
-                                                                        style="border-bottom: 1px solid #E2E2E2;">
-                                                                        <td class="ps-3">{{ $loop->iteration }}</td>
+                                                                    <tr 
+                                                                        style="border-bottom: 1px solid #E2E2E2; background-color: white;">
+                                                                        <td class="text-center">{{ $loop->iteration }}</td>
                                                                         <td>
                                                                             <div>
                                                                                 {{ $product->product_name ?? 'No Name' }}

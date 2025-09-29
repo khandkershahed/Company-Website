@@ -148,77 +148,69 @@
     </div>
     <div class="mb-5 row">
         <div class="mb-3 col-12 col-lg-8 ps-0">
-    <div class="shadow-none card card-flush">
-        <div class="p-4 card-body p-lg-7">
-            <div class="row g-3 align-items-center">
-                <!-- Left Title Section -->
-                <div class="col-12 col-md-4 d-flex align-items-center">
-                    <div class="flex-grow-1">
-                        <a href="#allRFQ" class="text-decoration-none">
-                            <span class="rfq-e-title d-block fw-bold">RFQ Filtered</span>
-                            <span class="rfq-p-title text-muted small">All RFQ history here</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Right Filters Section -->
-                <div class="col-12 col-md-8">
-                    <div class="row g-2">
-                        <!-- Country -->
-                        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                            <select class="form-select filterCountry w-100" data-control="select2"
-                                data-placeholder="Country" data-allow-clear="true" id="filterCountry"
-                                name="country">
-                                <option></option>
-                                @foreach ($countryWiseRfqs as $country)
-                                    <option value="{{ $country->country }}">{{ $country->country }}</option>
-                                @endforeach
-                            </select>
+            <div class="shadow-none card card-flush" style="overflow-x: hidden !important;">
+                <div class="p-4 card-body p-lg-7">
+                    <div class="row align-items-center">
+                        <!-- Left Title Section -->
+                        <div class="col-lg-3">
+                            <a href="#allRFQ" class="text-decoration-none">
+                                <span class="rfq-e-title d-block fw-bold">RFQ Filtered</span>
+                                <span class="rfq-p-title text-muted small">All RFQ history here</span>
+                            </a>
                         </div>
-
-                        <!-- Salesman -->
-                        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                            <select class="form-select filterSalesman w-100" data-control="select2"
-                                data-placeholder="Salesmanager" data-allow-clear="true"
-                                data-enable-filtering="true" id="filterSalesman" name="salesman">
-                                <option></option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- Company -->
-                        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                            <select class="form-select filterCompany w-100" data-control="select2"
-                                data-placeholder="Company" data-allow-clear="true"
-                                data-enable-filtering="true" id="filterCompany" name="company">
-                                <option></option>
-                                @foreach ($companies as $company)
-                                    <option value="{{ $company }}">{{ $company }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- Search -->
-                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 position-relative">
-                            <i class="fa-solid fa-magnifying-glass fs-5 position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
-                            <input type="text" id="searchQuery" data-kt-table-widget-4="search"
-                                class="form-control ps-10 pe-30 searchQuery" placeholder="Search" />
-                            <button type="button"
-                                class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2 d-none"
-                                id="clearSearch" style="z-index: 2;">
-                                <i class="fas fa-times text-muted"></i>
-                            </button>
+                        <!-- Right Filters Section -->
+                        <div class="col-12 col-lg-9">
+                            <div class="row g-2">
+                                <!-- Country -->
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                                    <select class="form-select filterCountry w-100" data-control="select2"
+                                        data-placeholder="Country" data-allow-clear="true" id="filterCountry"
+                                        name="country">
+                                        <option></option>
+                                        @foreach ($countryWiseRfqs as $country)
+                                            <option value="{{ $country->country }}">{{ $country->country }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <!-- Salesman -->
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                                    <select class="form-select filterSalesman w-100" data-control="select2"
+                                        data-placeholder="Salesmanager" data-allow-clear="true"
+                                        data-enable-filtering="true" id="filterSalesman" name="salesman">
+                                        <option></option>
+                                        @foreach ($users as $user)
+                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <!-- Company -->
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                                    <select class="form-select filterCompany w-100" data-control="select2"
+                                        data-placeholder="Company" data-allow-clear="true"
+                                        data-enable-filtering="true" id="filterCompany" name="company">
+                                        <option></option>
+                                        @foreach ($companies as $company)
+                                            <option value="{{ $company }}">{{ $company }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <!-- Search -->
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                                    <i class="fa-solid fa-magnifying-glass fs-5 position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
+                                    <input type="text" id="searchQuery" data-kt-table-widget-4="search"
+                                        class="form-control ps-10 pe-30 searchQuery" placeholder="Search" />
+                                    <button type="button"
+                                        class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2 d-none"
+                                        id="clearSearch" style="z-index: 2;">
+                                        <i class="fas fa-times text-muted"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-
         <div class="mb-3 col-12 col-md-6 col-lg-4">
             <div class="shadow-none card card-flush">
                 <div class="card-body">

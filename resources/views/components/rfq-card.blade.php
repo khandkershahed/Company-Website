@@ -28,7 +28,7 @@
             <div class="col-md-6 d-flex align-items-center">
                 <i class="fa-regular fa-file fs-2 text-primary pe-3"></i>
                 <div class="text-start">
-                    <h1 class="h6 fw-normal mb-0">{{ $rfq->company_name }}</h1>
+                    <h1 class="mb-0 h6 fw-bold" style="font-size: 16px;">{{ $rfq->company_name }}</h1>
                     <div class="small text-muted">
                         @unless (Route::is('admin.archived.rfq'))
                             RFQ#
@@ -58,10 +58,10 @@
                     {{ $daysDiff }} {{ Str::plural('Day', $daysDiff) }}
                 </div>
 
-                <p class="small mb-1 text-muted">
+                <p class="mb-1 small text-muted">
                     {{ $rfq->created_at?->format('d M Y | h:i A') }}
                 </p>
-                <div class="d-flex justify-content-end gap-2">
+                <div class="gap-2 d-flex justify-content-end">
                     <button type="button"
                         class="btn btn-sm {{ $rfq->isAssigned() ? 'btn-bg-light btn-color-gray-700' : 'btn-outline-primary' }}"
                         data-bs-toggle="modal" data-bs-target="#assignRfqModal-{{ $rfq->id }}"
