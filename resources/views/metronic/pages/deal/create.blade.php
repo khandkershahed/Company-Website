@@ -80,40 +80,121 @@
                                                     <div class="repeater">
                                                         <div data-repeater-list="contacts">
                                                             <div data-repeater-item class="row g-1 align-items-center">
+
                                                                 <!-- SL -->
+                                                                <div class="col-lg-1 col-2">
+                                                                    <button type="button" title="Provide Additional Product Information" class="px-10 border btn btn-light btn-sm" style="font-size: 22px;" data-bs-toggle="modal" data-bs-target="#first_rfq">
+                                                                        ...
+                                                                    </button>
+                                                                    <!-- Modal Content -->
+                                                                    <div class="modal fade" id="first_rfq" tabindex="-1" aria-labelledby="first_rfqLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog modal-dialog-centered modal-xl">
+                                                                            <div class="border-0 modal-content rounded-0">
+                                                                                <div class="modal-header">
+                                                                                    <h1 class="modal-title fs-5" id="first_rfqLabel">Product Information</h1>
+                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                                                        <i class="fas fa-xmark"></i>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="p-5 modal-body">
+                                                                                    <div class="row gx-2">
+                                                                                        <div class="col-lg-2">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label fw-normal">SKU / Part No.</label>
+                                                                                                <input type="text" name="sku_no" class="form-control" placeholder="Enter SKU / Part No.">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-3">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label fw-normal">Model No.</label>
+                                                                                                <input type="text" name="model_no" class="form-control" placeholder="Enter Model No.">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-4">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label fw-normal">Brand Name</label>
+                                                                                                <input type="text" name="brand_name" class="form-control" placeholder="Enter Brand Name">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-3">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label fw-normal">Quantity</label>
+                                                                                                <input type="number" name="additional_qty" class="form-control" placeholder="Enter Quantity">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-12">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label fw-normal">Item Name</label>
+                                                                                                <input type="text" name="additional_product_name" class="form-control" placeholder="Enter Item Name">
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label fw-normal">Item Description</label>
+                                                                                                <textarea class="form-control" name="product_des" rows="2" placeholder="Enter Item Description"></textarea>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-6">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label fw-normal">Additional Info</label>
+                                                                                                <textarea class="form-control" name="additional_info" rows="2" placeholder="Enter any additional information"></textarea>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <hr class="my-5">
+                                                                                        <div class="col-lg-12">
+                                                                                            <div class="mb-3">
+                                                                                                <label class="form-label fw-normal">Upload Product Datasheet / Images</label>
+                                                                                                <input type="file" name="image" class="form-control">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-lg-12 d-flex justify-content-end">
+                                                                                            <button type="submit" data-bs-dismiss="modal" class="rfq-add-btns">Submit</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                                 <div class="col-lg-1 col-2">
                                                                     <input type="text" name="sl" class="text-center form-control sl bg-light" value="1" readonly />
                                                                 </div>
 
                                                                 <!-- Product Name -->
-                                                                <div class="col-lg-9 col-6">
+                                                                <div class="col-lg-8 col-6">
                                                                     <input type="text" name="product_name" class="form-control " placeholder="Product Name" required />
                                                                 </div>
 
                                                                 <!-- Qty -->
-                                                                <div class="col-lg-1 col-2">
-                                                                    <div class="d-flex">
-                                                                        <input type="text" value="1"
-                                                                            class="mt-2 text-center form-control qty form-control-solid"
-                                                                            min="1" readonly name="qty"
-                                                                            style="width: 60px; margin-bottom: 6px;" />
-                                                                        <div class="mt-2 d-flex flex-column counting-btn">
-                                                                            <button type="button" class="qty-btn increment-quantity" style="width: 32px; height: 32px">
-                                                                                <i class="fas fa-chevron-up" style="color: #7a7577"></i>
-                                                                            </button>
-                                                                            <button type="button" class="qty-btn decrement-quantity" style="width: 32px; height: 32px">
-                                                                                <i class="fas fa-chevron-down" style="color: #7a7577"></i>
+                                                                <div class="col-lg-2 col-2">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="d-flex">
+                                                                            <input type="text" value="1"
+                                                                                class="mt-2 text-center form-control qty form-control-solid"
+                                                                                min="1" readonly name="qty"
+                                                                                style="width: 60px; margin-bottom: 6px;" />
+                                                                            <div class="mt-2 d-flex flex-column counting-btn">
+                                                                                <button type="button" class="qty-btn increment-quantity" style="width: 32px; height: 32px">
+                                                                                    <i class="fas fa-chevron-up" style="color: #7a7577"></i>
+                                                                                </button>
+                                                                                <button type="button" class="qty-btn decrement-quantity" style="width: 32px; height: 32px">
+                                                                                    <i class="fas fa-chevron-down" style="color: #7a7577"></i>
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div>
+                                                                            <button type="button" data-repeater-delete class="py-2 btn btn-sm w-100 trash-btn">
+                                                                                <i class="fas fa-trash text-danger fs-1"></i>
                                                                             </button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
                                                                 <!-- Delete -->
-                                                                <div class="col-lg-1 col-2">
-                                                                    <button type="button" data-repeater-delete class="py-2 btn btn-sm w-100 trash-btn">
-                                                                        <i class="fas fa-trash text-danger fs-1"></i>
-                                                                    </button>
-                                                                </div>
+                                                                <!-- <div class="col-lg-1 col-2">
+                                                                   
+                                                                </div> -->
                                                             </div>
                                                         </div>
 
