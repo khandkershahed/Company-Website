@@ -1,4 +1,25 @@
 @props(['rfq', 'active' => false, 'tab' => 'pending'])
+<style>
+    .notif-blue {
+        color: #007bff !important;
+    }
+
+    .notif-yellow {
+        color: #ffc107 !important;
+    }
+
+    .notif-dark-red {
+        color: #800000 !important;
+    }
+
+    .notif-light-red {
+        color: #ff747f !important;
+    }
+
+    .notif-default {
+        color: #6c757d !important;
+    }
+</style>
 
 <li class="mt-2 nav-item w-100 me-0 mb-md-2">
     <a class="nav-link {{ $active ? 'active btn-active-primary' : '' }} w-100 btn btn-flex border p-3"
@@ -17,10 +38,26 @@
                 </div>
             </div>
             <div class="col-md-6 text-end pe-0">
-                <div class="fs-7 text-danger d-flex align-items-center justify-content-end">
+                {{-- <div class="fs-7 text-danger d-flex align-items-center justify-content-end">
                     <i class="fas fa-bell fa-shake me-1 text-danger"></i>
                     {{ $rfq->created_at?->diffInDays(now()) }} Days
+                </div> --}}
+                @php
+                    $daysDiff = $rfq->created_at?->diffInDays(now());
+                    $colorClass = match (true) {
+                        $daysDiff === 0 => 'notif-blue', // 0 days - Blue
+                        $daysDiff === 1 => 'notif-yellow', // 1 day - Yellow
+                        $daysDiff === 3 => 'notif-dark-red', // 3 days - Dark Red
+                        $daysDiff >= 4 => 'notif-light-red', // 4+ days - Light Red
+                        default => 'notif-default', // Fallback
+                    };
+                @endphp
+
+                <div class="fs-7 d-flex align-items-center justify-content-end {{ $colorClass }}">
+                    <i class="fas fa-bell fa-shake me-1 {{ $colorClass }}"></i>
+                    {{ $daysDiff }} {{ Str::plural('Day', $daysDiff) }}
                 </div>
+
                 <p class="small mb-1 text-muted">
                     {{ $rfq->created_at?->format('d M Y | h:i A') }}
                 </p>
