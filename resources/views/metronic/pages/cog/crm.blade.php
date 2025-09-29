@@ -209,7 +209,7 @@
                 </div>
 
                 <div class="row mt-5 gx-1">
-                    {{-- <div class="col-lg-3">
+                    <div class="col-lg-3">
                         <div class="card shadow-none border">
                             <div class="card-header py-0 bg-light min-h-45px">
                                 <h5 class="card-title fw-semibold m-0">
@@ -218,45 +218,52 @@
                             </div>
                             <div class="card-body p-2">
 
-                                <div class="mb-5">
-                                    <label for="sales_man_id_L1" class="form-label">Sales Manager Name (Leader -
-                                        L1)</label>
-                                    <select name="sales_man_id_L1" id="sales_man_id_L1" class="form-control select"
-                                        data-control="select2" data-placeholder="Select Sales Manager"
-                                        data-allow-clear="true" data-minimum-results-for-search="0" required>
-                                        <option></option>
-                                        @foreach ($users as $manager)
-                                            <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="mb-5">
-                                    <label for="sales_man_id_T1" class="form-label">Sales Manager Name (Team -
-                                        T1)</label>
-                                    <select name="sales_man_id_T1" id="sales_man_id_T1" class="form-control select"
-                                        data-control="select2" data-placeholder="Select Sales Manager"
-                                        data-allow-clear="true" data-minimum-results-for-search="0">
-                                        <option></option>
-                                        @foreach ($users as $manager)
-                                            <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="mb-5">
-                                    <label for="sales_man_id_T2" class="form-label">Sales Manager Name (Team -
-                                        T2)</label>
-                                    <select name="sales_man_id_T2" id="sales_man_id_T2" class="form-control select"
-                                        data-control="select2" data-placeholder="Select Sales Manager"
-                                        data-allow-clear="true" data-minimum-results-for-search="0">
-                                        <option></option>
-                                        @foreach ($users as $manager)
-                                            <option value="{{ $manager->id }}">{{ $manager->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                @if ($rfq->isAssigned())
+                                    <div class="row text-center">
+                                        <h4 class="text-primary">This RFQ is assigned to {{ optional($rfq->salesmanL1)->name ??
+                                        (optional($rfq->salesmanT1)->name ?? optional($rfq->salesmanT2)->name) }}</h4>
+                                    </div>
+                                @else
+                                    <div class="mb-5">
+                                        <label for="sales_man_id_L1" class="form-label">Sales Manager Name (Leader -
+                                            L1)</label>
+                                        <select name="sales_man_id_L1" id="sales_man_id_L1" class="form-control select"
+                                            data-control="select2" data-placeholder="Select Sales Manager"
+                                            data-allow-clear="true" data-minimum-results-for-search="0" required>
+                                            <option></option>
+                                            @foreach ($users as $manager)
+                                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="sales_man_id_T1" class="form-label">Sales Manager Name (Team -
+                                            T1)</label>
+                                        <select name="sales_man_id_T1" id="sales_man_id_T1" class="form-control select"
+                                            data-control="select2" data-placeholder="Select Sales Manager"
+                                            data-allow-clear="true" data-minimum-results-for-search="0">
+                                            <option></option>
+                                            @foreach ($users as $manager)
+                                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="mb-5">
+                                        <label for="sales_man_id_T2" class="form-label">Sales Manager Name (Team -
+                                            T2)</label>
+                                        <select name="sales_man_id_T2" id="sales_man_id_T2" class="form-control select"
+                                            data-control="select2" data-placeholder="Select Sales Manager"
+                                            data-allow-clear="true" data-minimum-results-for-search="0">
+                                            <option></option>
+                                            @foreach ($users as $manager)
+                                                <option value="{{ $manager->id }}">{{ $manager->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                @endif
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="col-lg-8 offset-lg-2">
                         <div class="card shadow-none border">
                             <div class="card-header py-0 bg-light min-h-45px">
