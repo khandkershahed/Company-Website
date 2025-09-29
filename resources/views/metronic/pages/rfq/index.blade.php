@@ -568,5 +568,6 @@
                 });
             });
         </script>
+        
     @endpush
 </x-admin-app-layout>
