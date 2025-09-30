@@ -227,7 +227,7 @@
                                 @foreach ($brands->slice(0, $brandsPerRow) as $brand)
                                     <td style="padding: 0;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
-                                            style="padding-left: 15px; width: 80px; height:45px display: block;" />
+                                            style="padding-left: 15px; width: 100px; height:45px; display: block;" />
                                     </td>
                                 @endforeach
                             </tr>
@@ -237,7 +237,7 @@
                                 @foreach ($brands->slice(0, $brandsPerRow) as $brand)
                                     <td style="padding: 0;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
-                                            style="padding-left: 15px; width: 80px; display: block;" />
+                                            style="padding-left: 15px; width: 100px; height:45px; display: block;" />
                                     </td>
                                 @endforeach
                             </tr>
@@ -245,7 +245,7 @@
                                 @foreach ($brands->slice($brandsPerRow, $brandsPerRow) as $brand)
                                     <td style="padding: 0;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
-                                            style="padding-left: 15px; width: 80px; display: block;" />
+                                            style="padding-left: 15px; width: 100px; height:45px; display: block;" />
                                     </td>
                                 @endforeach
                             </tr>
@@ -253,7 +253,7 @@
                                 @foreach ($brands->slice($brandsPerRow * 2, $brandsPerRow) as $brand)
                                     <td style="padding: 0;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
-                                            style="padding-left: 15px; width: 80px; display: block;" />
+                                            style="padding-left: 15px; width: 100px; height:45px; display: block;" />
                                     </td>
                                 @endforeach
                             </tr> --}}
