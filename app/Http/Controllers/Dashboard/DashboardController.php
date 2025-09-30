@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Admin\Rfq;
 use App\Models\Admin\Brand;
 use App\Models\Admin\Event;
 use Rats\Zkteco\Lib\ZKTeco;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Feature;
 use App\Models\Admin\Product;
 use App\Models\Admin\Category;
+use App\Models\KPI\Attendance;
 use App\Models\Admin\SubCategory;
 use App\Models\Admin\EventCategory;
 use Illuminate\Support\Facades\Log;
@@ -20,7 +22,6 @@ use App\Models\Admin\SolutionDetail;
 use App\Models\Admin\SubSubCategory;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Admin\LeaveApplication;
-use App\Models\KPI\Attendance;
 
 class DashboardController extends Controller
 {
@@ -155,7 +156,8 @@ class DashboardController extends Controller
     //     ]);
     // }
 
-    public function hrDashboard() {
+    public function hrDashboard()
+    {
         $data = [
             'attendances' => Attendance::whereDate('date', Carbon::today())->get(),
             'usercount' => User::count(),
@@ -179,10 +181,33 @@ class DashboardController extends Controller
     }
     public function salesDashboard()
     {
-        return view('admin.pages.dashboard.sales');
+        $baseQuery = Rfq::with('rfqQuotation')->where('rfq_type', 'rfq');
+        $rfqs = (clone $baseQuery)->latest()->get();
+        $pendings   = $rfqs->where('status', 'rfq_created');
+        $quoteds    = $rfqs->where('status', 'quoted');
+        $losts      = $rfqs->where('status', 'lost');
+        $closeds    = $rfqs->where('status', 'closed');
+        $deals      = $rfqs->where('status', 'deal');
+
+        // Sum total_final_total_price from quotations for quoted RFQs
+        $quoted_amount = $quoteds->flatMap(function ($rfq) {
+            return $rfq->rfqQuotation->pluck('total_final_total_price');
+        })->map(function ($price) {
+            return floatval(preg_replace('/[^\d.]/', '', $price)); // Sanitize in case it's stored as string with currency symbols
+        })->sum();
+        $data = [
+            'pendings'      => $pendings,
+            'quoteds'       => $quoteds,
+            'losts'         => $losts,
+            'closeds'       => $closeds,
+            'deals'         => $deals,
+            'quoted_amount' => $quoted_amount,
+        ];
+        return view('metronic.pages.sales.saleDashboard', $data);
     }
     public function marketingDashboard()
     {
-        return view('admin.pages.dashboard.marketing');
+        $data = [];
+        return view('metronic.pages.marketing.marketingDashboard', $data);
     }
 }

@@ -78,7 +78,7 @@
                             <li class="nav-item"><a href="{{ route('admin.sales-dashboard.index') }}" class="nav-link">
                                     Sales</a>
                             </li>
-                            <li class="nav-item"><a href="{{ route('admin.marketing-dashboard.index') }}"
+                            <li class="nav-item"><a href="{{ route('admin.marketing.dashboard') }}"
                                     class="nav-link">Marketing</a></li>
                             <li class="nav-item"><a href="{{ route('project.dashboard') }}"
                                     class="nav-link">Projects</a></li>
@@ -175,7 +175,7 @@
                             <li class="nav-item"><a href="{{ route('supplychain') }}" class="nav-link">Supply
                                     Chain</a>
                             </li>
-                            <li class="nav-item"><a href="{{ route('admin.marketing-dashboard.index') }}"
+                            <li class="nav-item"><a href="{{ route('admin.marketing.dashboard') }}"
                                     class="nav-link">
                                     Business</a></li>
                             <li class="nav-item"><a href="{{ route('admin.site-content.index') }}"

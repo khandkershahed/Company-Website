@@ -115,7 +115,9 @@
                                 'admin.sales.report',
                                 'deal.index',
                                 'deal.create',
-                                'deal.edit',
+                                'deal.edit','admin.sales-dashboard.index','admin.tender.index',
+                                'admin.marketing.dashboard','marketing-dmar.index',
+                                
                             ],
                             'subMenu' => [
                                 [
@@ -133,15 +135,59 @@
                                     'routes' => ['deal.index', 'deal.create', 'deal.edit'],
                                     'route' => 'deal.index',
                                 ],
+                                // [
+                                //     'title' => 'Sales Forecast',
+                                //     'routes' => ['admin.sales.forecast'],
+                                //     'route' => 'admin.sales.forecast',
+                                // ],
                                 [
-                                    'title' => 'Sales Forecast',
-                                    'routes' => ['admin.sales.forecast'],
+                                    'title' => 'Sales Management',
+                                    'routes' => ['admin.sales.forecast','admin.sales.report','admin.sales-dashboard.index','admin.tender.index'],
                                     'route' => 'admin.sales.forecast',
+                                    'subMenu' => [
+                                        [
+                                            'title' => 'Sales Dashboard',
+                                            'routes' => ['admin.sales-dashboard.index'],
+                                            'route' => 'admin.sales-dashboard.index',
+                                        ],
+                                        [
+                                            'title' => 'Sales Forecast',
+                                            'routes' => ['admin.sales.forecast'],
+                                            'route' => 'admin.sales.forecast',
+                                        ],
+                                        [
+                                            'title' => 'Sales Report',
+                                            'routes' => ['admin.sales.report'],
+                                            'route' => 'admin.sales.report',
+                                        ],
+                                        [
+                                            'title' => 'Tender Information',
+                                            'routes' => ['admin.tender.index'],
+                                            'route' => 'admin.tender.index',
+                                        ],
+                                    ],
                                 ],
                                 [
-                                    'title' => 'Sales Report',
-                                    'routes' => ['admin.sales.report'],
-                                    'route' => 'admin.sales.report',
+                                    'title' => 'Marketing Management',
+                                    'routes' => ['admin.marketing.dashboard','marketing-dmar.index'],
+                                    'route' => 'admin.marketing.dashboard',
+                                    'subMenu' => [
+                                        [
+                                            'title' => 'Marketing Dashboard',
+                                            'routes' => ['admin.marketing.dashboard'],
+                                            'route' => 'admin.marketing.dashboard',
+                                        ],
+                                        [
+                                            'title' => 'Marketing DMAR',
+                                            'routes' => ['marketing-dmar.index'],
+                                            'route' => 'marketing-dmar.index',
+                                        ],
+                                        [
+                                            'title' => 'Marketing EMAR',
+                                            'routes' => ['admin.sales.report'],
+                                            'route' => 'admin.sales.report',
+                                        ],
+                                    ],
                                 ],
                             ],
                         ],
