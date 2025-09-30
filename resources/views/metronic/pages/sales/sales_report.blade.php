@@ -153,6 +153,7 @@
                             <select
                                 class="form-select form-select-solid"
                                 data-control="select2"
+                                data-dropdown-css-class="w-100px"
                                 data-placeholder="Select Year"
                                 tabindex="-1" name="year"
                                 aria-hidden="true" id="filterYear">
