@@ -4,25 +4,24 @@
     <div class="content-wrapper">
         <!-- Inner content -->
         <!-- Page header -->
-        <div class="page-header page-header-light shadow">
+        <div class="shadow page-header page-header-light">
             <div class="page-header-content d-lg-flex border-top">
                 <div class="d-flex">
-                    <div class="breadcrumb py-2">
+                    <div class="py-2 breadcrumb">
                         <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
                         <span class="breadcrumb-item active">Sales Forcast Management</span>
                     </div>
 
                     <a href="#breadcrumb_elements"
-                        class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
+                        class="p-0 border-transparent btn btn-light align-self-center collapsed d-lg-none rounded-pill ms-auto"
                         data-bs-toggle="collapse">
-                        <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
+                        <i class="m-1 ph-caret-down collapsible-indicator ph-sm"></i>
                     </a>
                 </div>
             </div>
         </div>
         <!-- /page header -->
-        <!-- Content area -->
         <!-- Content area -->
         <div class="content">
 
@@ -35,26 +34,26 @@
                             <tr>
 
                                 <th class="quotaed-lbg"> <a href="#" class="text-white">Quoted </a> </th>
-                                <td class="quotaed-ltbg text-white"> 65788552.00</td>
+                                <td class="text-white quotaed-ltbg"> 65788552.00</td>
                                 <th class="quotaed-rbg"> <a href="#" class="text-white">Target</a> </th>
-                                <td class="quotaed-rtbg text-white"> 600008552.00 </td>
+                                <td class="text-white quotaed-rtbg"> 600008552.00 </td>
 
                             </tr>
 
                             <tr>
 
                                 <th class="quotaed-lbg"> <a href="#" class="text-white">Closed</a> </th>
-                                <td class="quotaed-ltbg text-white"> 45788552.00</td>
+                                <td class="text-white quotaed-ltbg"> 45788552.00</td>
                                 <th class="quotaed-rbg"> <a href="" class="text-white">Forecast</a> </th>
-                                <td class="quotaed-rtbg text-white"> 3308552.00 </td>
+                                <td class="text-white quotaed-rtbg"> 3308552.00 </td>
 
                             </tr>
                             <tr>
 
                                 <th class="quotaed-lbg"> <a href="#" class="text-white"> Performance </a> </th>
-                                <td class="quotaed-ltbg text-white"> 7808552.00</td>
+                                <td class="text-white quotaed-ltbg"> 7808552.00</td>
                                 <th class="quotaed-rbg"> <a href="#" class="text-white">Lost</a> </th>
-                                <td class="quotaed-rtbg text-white"> 2208552.00 </td>
+                                <td class="text-white quotaed-rtbg"> 2208552.00 </td>
 
                             </tr>
 
@@ -63,7 +62,7 @@
                 </div>
             </div>
 
-            <ul class="nav nav-tabs mb-3" role="tablist">
+            <ul class="mb-3 nav nav-tabs" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a href="#js-closed-tab1" class="nav-link active" data-bs-toggle="tab" aria-selected="true"
                         role="tab" tabindex="-1">

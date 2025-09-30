@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3">
+            <div class="col-xl-2">
                 <div class="shadow-none card card-flush card-rounded" style="background-color: #FFCD94;">
                     <div class="p-0 card-body">
                         <div class="d-flex align-items-center">
@@ -103,47 +103,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3">
-                <div class="shadow-none card card-flush card-rounded" style="background-color: #BFCDBE;">
-                    <div class="p-0 card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="">
-                                <div class="p-3 bg-white rounded-circle ms-10">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="26"
-                                        viewBox="0 0 30 26" fill="none">
-                                        <path
-                                            d="M29.0509 12.3353C28.587 8.76407 26.7806 5.50352 23.999 3.21635C21.2174 0.929178 17.6692 -0.212978 14.0757 0.0220291C10.4821 0.257037 7.11294 1.85157 4.65288 4.48154C2.19281 7.1115 0.826489 10.5795 0.83163 14.1807C0.824824 16.1083 1.21543 18.0165 1.97907 19.7864C2.74272 21.5562 3.86299 23.1496 5.26997 24.4672C6.34601 25.4634 7.76384 26.0079 9.23011 25.988H20.7622C22.3113 25.9916 23.7996 25.3855 24.9054 24.3007C26.4813 22.7675 27.6769 20.887 28.3967 18.8094C29.1165 16.7319 29.3405 14.5148 29.0509 12.3353ZM23.2547 22.6075C22.5904 23.2621 21.6948 23.6282 20.7622 23.6265H9.23011C8.36733 23.6442 7.53045 23.3312 6.8911 22.7516C5.71897 21.6537 4.78566 20.326 4.14941 18.8513C3.51316 17.3767 3.18761 15.7868 3.19308 14.1807C3.19424 12.5186 3.54584 10.8753 4.22495 9.35819C4.90406 7.84108 5.89542 6.4842 7.13433 5.37608C9.28696 3.43486 12.0851 2.36449 14.9838 2.3735C15.4469 2.37369 15.9097 2.39971 16.3699 2.45143C18.5845 2.70863 20.6809 3.58795 22.4163 4.98753C24.1518 6.38711 25.4552 8.24969 26.1756 10.3595C26.8961 12.4694 27.0041 14.7402 26.4872 16.9089C25.9702 19.0776 24.8495 21.0555 23.2547 22.6135V22.6075ZM10.0495 19.2401C10.2734 19.4593 10.4011 19.7585 10.4044 20.0718C10.4077 20.3851 10.2864 20.687 10.0672 20.9109C9.84804 21.1348 9.54887 21.2624 9.23555 21.2657C8.92223 21.269 8.62042 21.1478 8.39652 20.9286C7.05635 19.6158 6.13744 17.9337 5.75691 16.0967C5.37638 14.2597 5.55147 12.351 6.25987 10.6139C6.96826 8.8768 8.17787 7.38997 9.73451 6.34295C11.2912 5.29593 13.1243 4.73614 15.0003 4.73495C15.4519 4.73482 15.9028 4.76678 16.3499 4.83059C16.5034 4.85272 16.6511 4.90488 16.7844 4.9841C16.9178 5.06331 17.0342 5.16803 17.1271 5.29226C17.2199 5.4165 17.2874 5.55781 17.3257 5.70813C17.3639 5.85845 17.3722 6.01483 17.3499 6.16834C17.3296 6.3227 17.2786 6.47143 17.2 6.60579C17.1213 6.74014 17.0166 6.85741 16.8919 6.9507C16.7673 7.04399 16.6252 7.11142 16.4742 7.14901C16.3231 7.1866 16.166 7.1936 16.0122 7.1696C14.5345 6.95853 13.0279 7.21961 11.7074 7.91558C10.3869 8.61155 9.31993 9.70684 8.65883 11.0451C7.99773 12.3835 7.77624 13.8964 8.02598 15.368C8.27573 16.8397 8.98393 18.1948 10.0495 19.2401ZM24.3505 12.8312C24.4143 13.2782 24.4462 13.7292 24.4461 14.1807C24.4499 15.439 24.2001 16.6851 23.7116 17.8447C23.2231 19.0043 22.5059 20.0535 21.6029 20.9297C21.3787 21.1489 21.0766 21.2701 20.763 21.2666C20.4495 21.263 20.1502 21.1351 19.931 20.9109C19.7118 20.6866 19.5906 20.3845 19.5942 20.071C19.5977 19.7574 19.7257 19.4582 19.9499 19.2389C20.7477 18.4614 21.3501 17.506 21.708 16.451C22.0659 15.396 22.1691 14.2713 22.0091 13.1689C21.9643 12.8587 22.0446 12.5434 22.2322 12.2924C22.4199 12.0414 22.6996 11.8753 23.0097 11.8305C23.3199 11.7857 23.6352 11.866 23.8862 12.0537C24.1371 12.2413 24.3033 12.521 24.3481 12.8312H24.3505ZM17.2744 13.5762C17.4165 14.0872 17.3853 14.6308 17.1859 15.1222C16.9864 15.6136 16.6298 16.0251 16.1717 16.2924C15.7137 16.5598 15.18 16.6679 14.654 16.5999C14.128 16.5319 13.6394 16.2917 13.2644 15.9167C12.8894 15.5416 12.6491 15.053 12.5811 14.527C12.5131 14.001 12.6213 13.4674 12.8886 13.0093C13.1559 12.5513 13.5674 12.1947 14.0588 11.9952C14.5502 11.7957 15.0939 11.7646 15.6048 11.9067L20.0691 7.44235C20.1781 7.32957 20.3084 7.23962 20.4524 7.17774C20.5965 7.11586 20.7514 7.08329 20.9082 7.08193C21.0649 7.08057 21.2204 7.11044 21.3655 7.16981C21.5106 7.22918 21.6425 7.31685 21.7533 7.42771C21.8642 7.53857 21.9519 7.6704 22.0112 7.81551C22.0706 7.96061 22.1005 8.11609 22.0991 8.27287C22.0977 8.42964 22.0652 8.58458 22.0033 8.72863C21.9414 8.87268 21.8515 9.00297 21.7387 9.11189L17.2744 13.5762Z"
-                                            fill="#728771" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="p-4 text-start me-3">
-                                <p class="mb-0 text-black">Forecast</p>
-                                <h4 class="pt-3 text-black" style="font-size: 28px;">0 $</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-3 shadow-none card card-flush card-rounded" style="background-color: #FFA3A3;">
-                    <div class="p-0 card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="">
-                                <div class="p-3 bg-white rounded-circle ms-10">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                        viewBox="0 0 30 30" fill="none">
-                                        <path
-                                            d="M27.1537 15.8265L25.8715 17.1088L21.6386 12.8747C20.9637 12.231 20.0669 11.8719 19.1343 11.8719C18.2016 11.8719 17.3048 12.231 16.6299 12.8747L16.4257 13.079C16.2009 13.2939 15.9019 13.4139 15.5909 13.4139C15.2799 13.4139 14.9809 13.2939 14.7561 13.079L8.76633 7.08208C8.65741 6.96931 8.52713 6.87936 8.38307 6.81748C8.23902 6.7556 8.08409 6.72303 7.92731 6.72166C7.77054 6.7203 7.61506 6.75018 7.46995 6.80954C7.32485 6.86891 7.19301 6.95658 7.08215 7.06744C6.97129 7.17831 6.88362 7.31014 6.82425 7.45524C6.76488 7.60035 6.73501 7.75583 6.73637 7.9126C6.73774 8.06938 6.77031 8.22431 6.83219 8.36836C6.89407 8.51242 6.98402 8.6427 7.09679 8.75162L13.0854 14.7414C13.7601 15.3854 14.657 15.7447 15.5897 15.7447C16.5224 15.7447 17.4193 15.3854 18.094 14.7414L18.2983 14.5372C18.5231 14.3222 18.8221 14.2023 19.1331 14.2023C19.4441 14.2023 19.7431 14.3222 19.9679 14.5372L24.2019 18.7783L22.9197 20.0606C22.7546 20.2257 22.6422 20.4361 22.5966 20.6651C22.5511 20.8941 22.5745 21.1314 22.6638 21.3472C22.7532 21.5629 22.9045 21.7473 23.0986 21.877C23.2927 22.0068 23.5209 22.076 23.7544 22.0761H27.3981C27.8679 22.0761 28.3183 21.8895 28.6505 21.5573C28.9826 21.2252 29.1692 20.7747 29.1692 20.305V16.653C29.1676 16.4202 29.0971 16.1931 28.9667 16.0003C28.8364 15.8074 28.6519 15.6574 28.4365 15.5691C28.2211 15.4807 27.9844 15.4581 27.7562 15.5039C27.528 15.5497 27.3184 15.6619 27.1537 15.8265Z"
-                                            fill="#E83535" />
-                                        <path
-                                            d="M27.9882 26.7789H6.73516C5.79572 26.7789 4.89475 26.4057 4.23047 25.7414C3.56618 25.0771 3.19299 24.1762 3.19299 23.2367V2.01205C3.19299 1.6989 3.06859 1.39858 2.84716 1.17716C2.62573 0.955727 2.32541 0.831329 2.01227 0.831329C1.69912 0.831329 1.3988 0.955727 1.17737 1.17716C0.95594 1.39858 0.831543 1.6989 0.831543 2.01205L0.831543 23.2367C0.833418 24.8019 1.45601 26.3024 2.56274 27.4091C3.66948 28.5159 5.17 29.1385 6.73516 29.1403H27.9882C28.3013 29.1403 28.6016 29.0159 28.8231 28.7945C29.0445 28.5731 29.1689 28.2728 29.1689 27.9596C29.1689 27.6465 29.0445 27.3461 28.8231 27.1247C28.6016 26.9033 28.3013 26.7789 27.9882 26.7789Z"
-                                            fill="#E83535" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="p-4 text-start me-3">
-                                <p class="mb-0 text-black">Loss</p>
-                                <h4 class="pt-3 text-black" style="font-size: 28px;">0.68 %</h4>
-                            </div>
+            <div class="col-xl-4">
+                <div class="shadow-none card card-flush card-rounded">
+                    <div class="card-body">
+                        <div
+                            id="kt_charts_widget_16_chart"
+                            class="w-100 h-150px">
                         </div>
                     </div>
                 </div>
@@ -188,13 +153,13 @@
                         <div class="card-toolbar">
                             <div class="me-2">
                                 <select
-                                    class="form-select form-select-sm py-4 me-2 rounded-3 filterCountry min-w-200px"
+                                    class="py-4 form-select form-select-sm me-2 rounded-3 filterCountry min-w-200px"
                                     data-control="select2" data-allow-clear="true" data-enable-filtering="true"
                                     id="filterCountry" name="country">
                                     <option value="">All Country</option>
                                     @foreach ($countryWiseRfqs as $country)
-                                        <option value="{{ $country->country }}">{{ $country->country }}
-                                        </option>
+                                    <option value="{{ $country->country }}">{{ $country->country }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -243,7 +208,7 @@
 
                         </div>
                         <div class="px-3 mb-2 tab-content" id="filteredContainer">
-                            <div id="spinnerLoader" style="display: none;" class="text-center py-5">
+                            <div id="spinnerLoader" style="display: none;" class="py-5 text-center">
                                 <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;"
                                     role="status">
                                     <span class="visually-hidden">Loading...</span>
@@ -259,69 +224,290 @@
         </div>
     </div>
     @push('scripts')
-        <script>
-            $(document).ready(function() {
-                function initializeDataTables() {
-                    $('.dataTable').DataTable({
-                        "fixedHeader": {
-                            "header": true,
-                            "headerOffset": 5
-                        },
-                        "language": {
-                            "lengthMenu": "Show _MENU_",
-                        },
-                        "dom": "<'row mb-2'" +
-                            "<'col-sm-6 d-flex align-items-center justify-content-start dt-toolbar'l>" +
-                            "<'col-sm-6 d-flex align-items-center justify-content-end dt-toolbar'f>" +
-                            ">" +
-                            "<'table-responsive'tr>" +
-                            "<'row'" +
-                            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-                            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-                            ">"
-                    });
-                }
+    <script>
+        $(document).ready(function() {
+            function initializeDataTables() {
+                $('.dataTable').DataTable({
+                    "fixedHeader": {
+                        "header": true,
+                        "headerOffset": 5
+                    },
+                    "language": {
+                        "lengthMenu": "Show _MENU_",
+                    },
+                    "dom": "<'row mb-2'" +
+                        "<'col-sm-6 d-flex align-items-center justify-content-start dt-toolbar'l>" +
+                        "<'col-sm-6 d-flex align-items-center justify-content-end dt-toolbar'f>" +
+                        ">" +
+                        "<'table-responsive'tr>" +
+                        "<'row'" +
+                        "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                        "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                        ">"
+                });
+            }
 
-                function fetchFilteredData(country = '') {
-                    $.ajax({
-                        url: "{{ route('admin.forecast.filter') }}",
-                        method: "GET",
-                        data: {
-                            country: country
-                        },
-                        beforeSend: function() {
-                            $('#filteredContainer').hide();
-                            $('#spinnerLoader').show();
-                        },
-                        success: function(response) {
-                            $('#filteredContainer').html(response).fadeIn();
-                            initializeDataTables();
-                        },
-                        error: function() {
-                            $('#filteredContainer').html(`
-                    <div class="alert alert-danger text-center mt-4">
+            function fetchFilteredData(country = '') {
+                $.ajax({
+                    url: "{{ route('admin.forecast.filter') }}",
+                    method: "GET",
+                    data: {
+                        country: country
+                    },
+                    beforeSend: function() {
+                        $('#filteredContainer').hide();
+                        $('#spinnerLoader').show();
+                    },
+                    success: function(response) {
+                        $('#filteredContainer').html(response).fadeIn();
+                        initializeDataTables();
+                    },
+                    error: function() {
+                        $('#filteredContainer').html(`
+                    <div class="mt-4 text-center alert alert-danger">
                         Something went wrong while fetching data.
                     </div>
                 `).fadeIn();
-                        },
-                        complete: function() {
-                            $('#spinnerLoader').fadeOut();
-                        }
-                    });
-                }
-
-                // Radio filter
-                $('.filterCountry[type=radio]').on('change', function() {
-                    const selectedCountry = $(this).val();
-                    fetchFilteredData(selectedCountry);
+                    },
+                    complete: function() {
+                        $('#spinnerLoader').fadeOut();
+                    }
                 });
+            }
 
-                // Dropdown filter
-                $('#filterCountry').on('change', function() {
-                    const selectedCountry = $(this).val();
-                    fetchFilteredData(selectedCountry);
-                });
+            // Radio filter
+            $('.filterCountry[type=radio]').on('change', function() {
+                const selectedCountry = $(this).val();
+                fetchFilteredData(selectedCountry);
             });
-        </script>
+
+            // Dropdown filter
+            $('#filterCountry').on('change', function() {
+                const selectedCountry = $(this).val();
+                fetchFilteredData(selectedCountry);
+            });
+        });
+    </script>
+    <script>
+        var KTChartsWidget16 = {
+            init: function() {
+                !(function() {
+                    if ("undefined" != typeof am5) {
+                        var e = document.getElementById("kt_charts_widget_16_chart");
+                        e &&
+                            am5.ready(function() {
+                                var a = am5.Root.new(e);
+                                a.setThemes([am5themes_Animated.new(a)]);
+                                var t = a.container.children.push(
+                                        am5xy.XYChart.new(a, {
+                                            panX: !1,
+                                            panY: !1,
+                                            wheelX: "panX",
+                                            wheelY: "zoomX",
+                                            layout: a.verticalLayout,
+                                        })
+                                    ),
+                                    l =
+                                    (t.get("colors"),
+                                        [{
+                                                country: "US",
+                                                visits: 725
+                                            },
+                                            {
+                                                country: "UK",
+                                                visits: 625
+                                            },
+                                            {
+                                                country: "China",
+                                                visits: 602
+                                            },
+                                            {
+                                                country: "Japan",
+                                                visits: 509
+                                            },
+                                            {
+                                                country: "Germany",
+                                                visits: 322
+                                            },
+                                            {
+                                                country: "France",
+                                                visits: 214
+                                            },
+                                            {
+                                                country: "India",
+                                                visits: 204
+                                            },
+                                            {
+                                                country: "Spain",
+                                                visits: 198
+                                            },
+                                            {
+                                                country: "Italy",
+                                                visits: 165
+                                            },
+                                            {
+                                                country: "Russia",
+                                                visits: 130
+                                            },
+                                            {
+                                                country: "Norway",
+                                                visits: 93
+                                            },
+                                            {
+                                                country: "Canada",
+                                                visits: 41
+                                            },
+                                        ]);
+                                !(function() {
+                                    for (var e = 0, a = 0; a < l.length; a++) {
+                                        var t = l[a].visits;
+                                        e += t;
+                                    }
+                                    var o = 0;
+                                    for (a = 0; a < l.length; a++)
+                                        (o += t = l[a].visits),
+                                        (l[a].pareto = (o / e) * 100);
+                                })();
+                                var o = t.xAxes.push(
+                                    am5xy.CategoryAxis.new(a, {
+                                        categoryField: "country",
+                                        renderer: am5xy.AxisRendererX.new(a, {
+                                            minGridDistance: 30,
+                                        }),
+                                    })
+                                );
+                                o
+                                    .get("renderer")
+                                    .labels.template.setAll({
+                                        paddingTop: 10,
+                                        fontWeight: "400",
+                                        fontSize: 13,
+                                        fill: am5.color(
+                                            KTUtil.getCssVariableValue("--bs-gray-500")
+                                        ),
+                                    }),
+                                    o
+                                    .get("renderer")
+                                    .grid.template.setAll({
+                                        disabled: !0,
+                                        strokeOpacity: 0,
+                                    }),
+                                    o.data.setAll(l);
+                                var r = t.yAxes.push(
+                                    am5xy.ValueAxis.new(a, {
+                                        renderer: am5xy.AxisRendererY.new(a, {}),
+                                    })
+                                );
+                                r
+                                    .get("renderer")
+                                    .labels.template.setAll({
+                                        paddingLeft: 10,
+                                        fontWeight: "400",
+                                        fontSize: 13,
+                                        fill: am5.color(
+                                            KTUtil.getCssVariableValue("--bs-gray-500")
+                                        ),
+                                    }),
+                                    r
+                                    .get("renderer")
+                                    .grid.template.setAll({
+                                        stroke: am5.color(
+                                            KTUtil.getCssVariableValue(
+                                                "--bs-gray-300"
+                                            )
+                                        ),
+                                        strokeWidth: 1,
+                                        strokeOpacity: 1,
+                                        strokeDasharray: [3],
+                                    });
+                                var i = am5xy.AxisRendererY.new(a, {
+                                        opposite: !0
+                                    }),
+                                    s = t.yAxes.push(
+                                        am5xy.ValueAxis.new(a, {
+                                            renderer: i,
+                                            min: 0,
+                                            max: 100,
+                                            strictMinMax: !0,
+                                        })
+                                    );
+                                s
+                                    .get("renderer")
+                                    .labels.template.setAll({
+                                        fontWeight: "400",
+                                        fontSize: 13,
+                                        fill: am5.color(
+                                            KTUtil.getCssVariableValue("--bs-gray-500")
+                                        ),
+                                    }),
+                                    i.grid.template.set("forceHidden", !0),
+                                    s.set("numberFormat", "#'%");
+                                var n = t.series.push(
+                                    am5xy.ColumnSeries.new(a, {
+                                        xAxis: o,
+                                        yAxis: r,
+                                        valueYField: "visits",
+                                        categoryXField: "country",
+                                    })
+                                );
+                                n.columns.template.setAll({
+                                        tooltipText: "{categoryX}: {valueY}",
+                                        tooltipY: 0,
+                                        strokeOpacity: 0,
+                                        cornerRadiusTL: 6,
+                                        cornerRadiusTR: 6,
+                                    }),
+                                    n.columns.template.adapters.add(
+                                        "fill",
+                                        function(e, a) {
+                                            return t
+                                                .get("colors")
+                                                .getIndex(
+                                                    n.dataItems.indexOf(a.dataItem)
+                                                );
+                                        }
+                                    );
+                                var m = t.series.push(
+                                    am5xy.LineSeries.new(a, {
+                                        xAxis: o,
+                                        yAxis: s,
+                                        valueYField: "pareto",
+                                        categoryXField: "country",
+                                        stroke: am5.color(
+                                            KTUtil.getCssVariableValue("--bs-dark")
+                                        ),
+                                        maskBullets: !1,
+                                    })
+                                );
+                                m.bullets.push(function() {
+                                        return am5.Bullet.new(a, {
+                                            locationY: 1,
+                                            sprite: am5.Circle.new(a, {
+                                                radius: 5,
+                                                fill: am5.color(
+                                                    KTUtil.getCssVariableValue(
+                                                        "--bs-primary"
+                                                    )
+                                                ),
+                                                stroke: am5.color(
+                                                    KTUtil.getCssVariableValue("--bs-dark")
+                                                ),
+                                            }),
+                                        });
+                                    }),
+                                    n.data.setAll(l),
+                                    m.data.setAll(l),
+                                    n.appear(),
+                                    t.appear(1e3, 100);
+                            });
+                    }
+                })();
+            },
+        };
+        "undefined" != typeof module && (module.exports = KTChartsWidget16),
+            KTUtil.onDOMContentLoaded(function() {
+                KTChartsWidget16.init();
+            });
+    </script>
     @endpush
 </x-admin-app-layout>
