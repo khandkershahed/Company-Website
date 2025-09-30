@@ -1,8 +1,24 @@
 <x-admin-app-layout :title="'Sales Report'">
+    @php
+    $months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+    ];
+    @endphp
     <div
         class="px-0 container-fluid">
-        <div class="mb-10 row">
-            <div class="col-xl-3">
+        <div class="mb-5 row">
+            <div class="col-xl-3 ps-0">
                 <div class="shadow-none card card-flush card-rounded" style="background-color: #296088;">
                     <div class="p-0 card-body">
                         <div class="p-8 text-center me-3">
@@ -25,7 +41,7 @@
                             </div>
                             <div class="p-8 text-start me-3">
                                 <p class="mb-0 text-black">Total Yearly Target</p>
-                                <h4 class="pt-3 text-black" style="font-size: 28px;">31,355.80 $</h4>
+                                <h4 class="pt-3 text-black" style="font-size: 28px;">313.80 $</h4>
                             </div>
                         </div>
                     </div>
@@ -44,13 +60,13 @@
                             </div>
                             <div class="p-8 text-start me-3">
                                 <p class="mb-0 text-black">Sales Achieved</p>
-                                <h4 class="pt-3 text-black" style="font-size: 28px;">25,631,355.80 $</h4>
+                                <h4 class="pt-3 text-black" style="font-size: 28px;">2555.80 $</h4>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3">
+            <div class="col-xl-3 pe-0">
                 <div class="shadow-none card card-flush card-rounded" style="background-color: #FFCD94;">
                     <div class="p-0 card-body">
                         <div class="d-flex align-items-center">
@@ -70,190 +86,279 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="mb-5 row">
             <div class="shadow-none card card-flush card-rounded">
-                <div class="py-10 card-header w-100 justify-content-between align-items-center">
+                <div class="p-3 py-5 card-header w-100 justify-content-between align-items-center">
                     <div class="">
-                        <h4 class="mb-0" style="font-weight: 500; font-size: 22px;">Sales Report</h4>
-                        <p class="text-muted">Total 456,321 Deliveries</p>
+                        <div>
+                            <h4 class="mb-0" style="font-weight: 500; font-size: 22px;">Sales Report</h4>
+                            <p class="mb-0 text-muted">Total 456,321 Deliveries</p>
+                        </div>
+                        <div class="py-2 mt-2 bg-white d-flex align-items-center rounded-2">
+                            <div class="form-check form-check-custom form-check-solid form-check-sm ">
+                                <input class="form-check-input filterCountry" type="radio" name="country" value="bangladesh"
+                                    id="bangladesh" checked>
+                                <label class="form-check-label pe-3" for="bangladesh">
+                                    Bangladesh
+                                </label>
+                            </div>
+                            <div class="form-check form-check-custom form-check-solid form-check-sm ">
+                                <input class="form-check-input filterCountry" type="radio" name="country" value="singapore"
+                                    id="singapore">
+                                <label class="form-check-label pe-3" for="singapore">
+                                    Singapore
+                                </label>
+                            </div>
+                            <div class="form-check form-check-custom form-check-solid form-check-sm ">
+                                <input class="form-check-input filterCountry" type="radio" name="country" value="portugal"
+                                    id="portugal">
+                                <label class="form-check-label pe-3" for="portugal">
+                                    Portugal
+                                </label>
+                            </div>
+                        </div>
                     </div>
                     <div class="d-flex align-items-center">
-                        <a href="marketing-dmr-target.html" class="text-black btn btn-sm btn-light-primary ms-3" style="background-color: #F2F4F6 !important;font-weight: 400; ">
-                            Report
-                        </a>
-                        <div class="mx-2">
+                        <!-- <div class="mx-1">
                             <select
-                                class="form-select form-select-sm form-select-solid"
+                                class="form-select form-select-solid"
+                                data-control="select2"
+                                data-placeholder="Select Quarter"
+                                tabindex="-1"
+                                aria-hidden="true">
+                                <option>Select Quarter</option>
+                                <option value="all">All</option>
+                                <option value="Q1">Q1 (Jan - Mar)</option>
+                                <option value="Q2">Q2 (Apr - Jun)</option>
+                                <option value="Q3">Q3 (Jul - Sep)</option>
+                                <option value="Q4">Q4 (Oct - Dec)</option>
+                            </select>
+                        </div> -->
+                        <div class="mx-1">
+                            <select
+                                class="form-select form-select-solid"
                                 data-control="select2"
                                 data-placeholder="Select Month"
                                 tabindex="-1"
-                                aria-hidden="true">
-                                <option>Select Month</option>
-                                <option value="all">All</option>
-                                <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March">March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
+                                aria-hidden="true" name="month" id="filterMonth">
+                                <option value="{{ \Carbon\Carbon::now()->format('F') }}">
+                                    {{ \Carbon\Carbon::now()->format('F') }}
+                                </option>
+                                @foreach ($months as $month)
+                                <option value="{{ $month }}">{{ $month }}</option>
+                                @endforeach
                             </select>
                         </div>
-                        <a href="marketing-dmr-target.html" class="text-white btn btn-sm btn-light-primary" style="background-color: #F2F4F6 !important;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none">
-                                <path d="M19 6V4C19 2.93913 18.5786 1.92172 17.8284 1.17157C17.0783 0.421427 16.0609 0 15 0L9 0C7.93913 0 6.92172 0.421427 6.17157 1.17157C5.42143 1.92172 5 2.93913 5 4V6C3.67441 6.00159 2.40356 6.52888 1.46622 7.46622C0.528882 8.40356 0.00158786 9.67441 0 11L0 16C0.00158786 17.3256 0.528882 18.5964 1.46622 19.5338C2.40356 20.4711 3.67441 20.9984 5 21C5 21.7956 5.31607 22.5587 5.87868 23.1213C6.44129 23.6839 7.20435 24 8 24H16C16.7956 24 17.5587 23.6839 18.1213 23.1213C18.6839 22.5587 19 21.7956 19 21C20.3256 20.9984 21.5964 20.4711 22.5338 19.5338C23.4711 18.5964 23.9984 17.3256 24 16V11C23.9984 9.67441 23.4711 8.40356 22.5338 7.46622C21.5964 6.52888 20.3256 6.00159 19 6ZM7 4C7 3.46957 7.21071 2.96086 7.58579 2.58579C7.96086 2.21071 8.46957 2 9 2H15C15.5304 2 16.0391 2.21071 16.4142 2.58579C16.7893 2.96086 17 3.46957 17 4V6H7V4ZM17 21C17 21.2652 16.8946 21.5196 16.7071 21.7071C16.5196 21.8946 16.2652 22 16 22H8C7.73478 22 7.48043 21.8946 7.29289 21.7071C7.10536 21.5196 7 21.2652 7 21V17C7 16.7348 7.10536 16.4804 7.29289 16.2929C7.48043 16.1054 7.73478 16 8 16H16C16.2652 16 16.5196 16.1054 16.7071 16.2929C16.8946 16.4804 17 16.7348 17 17V21ZM22 16C22 16.7956 21.6839 17.5587 21.1213 18.1213C20.5587 18.6839 19.7956 19 19 19V17C19 16.2044 18.6839 15.4413 18.1213 14.8787C17.5587 14.3161 16.7956 14 16 14H8C7.20435 14 6.44129 14.3161 5.87868 14.8787C5.31607 15.4413 5 16.2044 5 17V19C4.20435 19 3.44129 18.6839 2.87868 18.1213C2.31607 17.5587 2 16.7956 2 16V11C2 10.2044 2.31607 9.44129 2.87868 8.87868C3.44129 8.31607 4.20435 8 5 8H19C19.7956 8 20.5587 8.31607 21.1213 8.87868C21.6839 9.44129 22 10.2044 22 11V16Z" fill="#515151" />
-                                <path d="M18 10H16C15.7348 10 15.4804 10.1054 15.2929 10.2929C15.1054 10.4804 15 10.7348 15 11C15 11.2652 15.1054 11.5196 15.2929 11.7071C15.4804 11.8946 15.7348 12 16 12H18C18.2652 12 18.5196 11.8946 18.7071 11.7071C18.8946 11.5196 19 11.2652 19 11C19 10.7348 18.8946 10.4804 18.7071 10.2929C18.5196 10.1054 18.2652 10 18 10Z" fill="#515151" />
-                            </svg>
-                        </a>
+                        <div class="mx-1">
+                            <select
+                                class="form-select form-select-solid"
+                                data-control="select2"
+                                data-placeholder="Select Year"
+                                tabindex="-1" name="year"
+                                aria-hidden="true" id="filterYear">
+                                <option value="{{ date('Y') }}">2025</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                            </select>
+                        </div>
+                        <!-- <a href="marketing-dmr-target.html" class="p-4 px-10 text-black btn btn-sm btn-light-primary ms-1" style="background-color: #F2F4F6 !important;font-weight: 400; ">
+                            Report
+                        </a> -->
                     </div>
                 </div>
-                <div class="pt-0 card-body">
+            </div>
+            <div class="mt-6 shadow-none card card-flush card-rounded ">
+                <div class="p-5 card-body">
                     <div class="table-responsive" style="max-height: 630px; overflow-y: auto;">
-                        <table class="table mb-0 border" style="min-width: 1100px; table-layout: fixed;">
-                            <thead>
-                                <tr class="bg-light">
-                                    <th width="7%" class="ps-3">SL</th>
-                                    <th width="10%">Date</th>
-                                    <th width="10%">Total</th>
-                                    <th width="15%" class="text-start">Sales Target</th>
-                                    <th width="10%">Total Sales</th>
-                                    <th width="12%" class="text-center">Monthly Achv.(%)</th>
-                                    <th width="12%" class="text-center">Yearly Achv.(%)</th>
-                                    <th width="12%">Deficiencies</th>
-                                    <th width="12%" class="text-end pe-10">Status</th>
+                        <table class="table mb-0 align-middle border rounded shadow-sm dataTable table-hover" style="min-width: 1100px; table-layout: fixed;">
+                            <thead class="py-3 text-black bg-light" style="border-radius: 5px !important;">
+                                <tr class="">
+                                    <th width="7%" class="py-3 ps-3">SL</th>
+                                    <th width="10%" class="py-3">Date</th>
+                                    <th width="10%" class="py-3">Total</th>
+                                    <th width="15%" class="py-3 text-start">Sales Target</th>
+                                    <th width="10%" class="py-3">Total Sales</th>
+                                    <th width="12%" class="py-3 text-center">Monthly Achv.(%)</th>
+                                    <th width="12%" class="py-3 text-center">Yearly Achv.(%)</th>
+                                    <th width="12%" class="py-3">Deficiencies</th>
+                                    <th width="12%" class="py-3 text-end pe-3">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr style="border-bottom: 1px solid #EAEAEA;">
                                     <td class="ps-3">1</td>
                                     <td>5 Feb 25</td>
-                                    <td>500</td>
+                                    <td><span class="fw-bold text-primary">500</span></td>
                                     <td class="text-start">Grameenphone Ltd.</td>
-                                    <td>$12,000</td>
-                                    <td class="text-center">85%</td>
-                                    <td class="text-center">72%</td>
+                                    <td class="fw-semibold text-success">$12,000</td>
+                                    <td class="text-center"><span class="text-black badge bg-light-success">85%</span></td>
+                                    <td class="text-center"><span class="text-black badge bg-light-info">72%</span></td>
                                     <td>Positive Response</td>
-                                    <td class="text-end pe-10">Ongoing</td>
+                                    <td class="text-end pe-3"><span class="badge bg-light-warning text-dark">Ongoing</span></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid #EAEAEA;">
                                     <td class="ps-3">2</td>
                                     <td>8 Feb 25</td>
-                                    <td>750</td>
+                                    <td><span class="fw-bold text-primary">750</span></td>
                                     <td class="text-start">BRAC Bank</td>
-                                    <td>$25,000</td>
-                                    <td class="text-center">92%</td>
-                                    <td class="text-center">81%</td>
+                                    <td class="fw-semibold text-success">$25,000</td>
+                                    <td class="text-center"><span class="text-black badge bg-light-success">92%</span></td>
+                                    <td class="text-center"><span class="text-black badge bg-light-info">81%</span></td>
                                     <td>Need Proposal</td>
-                                    <td class="text-end pe-10">Pending</td>
+                                    <td class="text-end pe-3"><span class="text-black badge bg-secondary">Pending</span></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid #EAEAEA;">
                                     <td class="ps-3">3</td>
                                     <td>12 Feb 25</td>
-                                    <td>320</td>
+                                    <td><span class="fw-bold text-primary">320</span></td>
                                     <td class="text-start">Dhaka University</td>
-                                    <td>$8,500</td>
-                                    <td class="text-center">60%</td>
-                                    <td class="text-center">40%</td>
+                                    <td class="fw-semibold text-success">$8,500</td>
+                                    <td class="text-center"><span class="badge bg-light-warning text-dark">60%</span></td>
+                                    <td class="text-center"><span class="text-black badge bg-light-danger">40%</span></td>
                                     <td>Technical Clarification</td>
-                                    <td class="text-end pe-10">In Progress</td>
+                                    <td class="text-end pe-3"><span class="text-black badge bg-light-primary">In Progress</span></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid #EAEAEA;">
                                     <td class="ps-3">4</td>
                                     <td>15 Feb 25</td>
-                                    <td>1000</td>
+                                    <td><span class="fw-bold text-primary">1000</span></td>
                                     <td class="text-start">Bangladesh Navy</td>
-                                    <td>$40,000</td>
-                                    <td class="text-center">70%</td>
-                                    <td class="text-center">55%</td>
+                                    <td class="fw-semibold text-success">$40,000</td>
+                                    <td class="text-center"><span class="badge bg-light-warning text-dark">70%</span></td>
+                                    <td class="text-center"><span class="text-black badge bg-light-danger">55%</span></td>
                                     <td>Provide Demo</td>
-                                    <td class="text-end pe-10">Ongoing</td>
+                                    <td class="text-end pe-3"><span class="badge bg-light-warning text-dark">Ongoing</span></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid #EAEAEA;">
                                     <td class="ps-3">5</td>
                                     <td>20 Feb 25</td>
-                                    <td>420</td>
+                                    <td><span class="fw-bold text-primary">420</span></td>
                                     <td class="text-start">Beximco Pharma</td>
-                                    <td>$18,000</td>
-                                    <td class="text-center">65%</td>
-                                    <td class="text-center">48%</td>
+                                    <td class="fw-semibold text-success">$18,000</td>
+                                    <td class="text-center"><span class="badge bg-light-warning text-dark">65%</span></td>
+                                    <td class="text-center"><span class="text-black badge bg-light-danger">48%</span></td>
                                     <td>Prepare Proposal</td>
-                                    <td class="text-end pe-10">Prospect</td>
+                                    <td class="text-end pe-3"><span class="badge bg-light-info text-dark">Prospect</span></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid #EAEAEA;">
-                                    <td class="ps-3">4</td>
-                                    <td>15 Feb 25</td>
-                                    <td>1000</td>
-                                    <td class="text-start">Bangladesh Navy</td>
-                                    <td>$40,000</td>
-                                    <td class="text-center">70%</td>
-                                    <td class="text-center">55%</td>
-                                    <td>Provide Demo</td>
-                                    <td class="text-end pe-10">Ongoing</td>
+                                    <td class="ps-3">6</td>
+                                    <td>22 Feb 25</td>
+                                    <td><span class="fw-bold text-primary">680</span></td>
+                                    <td class="text-start">IFIC Bank</td>
+                                    <td class="fw-semibold text-success">$14,500</td>
+                                    <td class="text-center"><span class="text-black badge bg-light-success">88%</span></td>
+                                    <td class="text-center"><span class="text-black badge bg-light-info">74%</span></td>
+                                    <td>Follow Up</td>
+                                    <td class="text-end pe-3"><span class="badge bg-light-warning text-dark">Ongoing</span></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid #EAEAEA;">
-                                    <td class="ps-3">5</td>
-                                    <td>20 Feb 25</td>
-                                    <td>420</td>
-                                    <td class="text-start">Beximco Pharma</td>
-                                    <td>$18,000</td>
-                                    <td class="text-center">65%</td>
-                                    <td class="text-center">48%</td>
-                                    <td>Prepare Proposal</td>
-                                    <td class="text-end pe-10">Prospect</td>
+                                    <td class="ps-3">7</td>
+                                    <td>24 Feb 25</td>
+                                    <td><span class="fw-bold text-primary">900</span></td>
+                                    <td class="text-start">Robi Axiata Ltd.</td>
+                                    <td class="fw-semibold text-success">$28,000</td>
+                                    <td class="text-center"><span class="text-black badge bg-light-warning text-dark">72%</span></td>
+                                    <td class="text-center"><span class="text-black badge bg-light-danger">51%</span></td>
+                                    <td>Need Meeting</td>
+                                    <td class="text-end pe-3"><span class="text-black badge bg-secondary">Pending</span></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid #EAEAEA;">
-                                    <td class="ps-3">4</td>
-                                    <td>15 Feb 25</td>
-                                    <td>1000</td>
-                                    <td class="text-start">Bangladesh Navy</td>
-                                    <td>$40,000</td>
-                                    <td class="text-center">70%</td>
-                                    <td class="text-center">55%</td>
-                                    <td>Provide Demo</td>
-                                    <td class="text-end pe-10">Ongoing</td>
+                                    <td class="ps-3">8</td>
+                                    <td>26 Feb 25</td>
+                                    <td><span class="fw-bold text-primary">560</span></td>
+                                    <td class="text-start">Square Group</td>
+                                    <td class="fw-semibold text-success">$22,500</td>
+                                    <td class="text-center"><span class="text-black badge bg-light-success">90%</span></td>
+                                    <td class="text-center"><span class="text-black badge bg-light-info">77%</span></td>
+                                    <td>Client Review</td>
+                                    <td class="text-end pe-3"><span class="text-black badge bg-light-primary">In Progress</span></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid #EAEAEA;">
-                                    <td class="ps-3">5</td>
-                                    <td>20 Feb 25</td>
-                                    <td>420</td>
-                                    <td class="text-start">Beximco Pharma</td>
-                                    <td>$18,000</td>
-                                    <td class="text-center">65%</td>
-                                    <td class="text-center">48%</td>
-                                    <td>Prepare Proposal</td>
-                                    <td class="text-end pe-10">Prospect</td>
+                                    <td class="ps-3">9</td>
+                                    <td>28 Feb 25</td>
+                                    <td><span class="fw-bold text-primary">450</span></td>
+                                    <td class="text-start">British Council</td>
+                                    <td class="fw-semibold text-success">$9,800</td>
+                                    <td class="text-center"><span class="badge bg-light-warning text-dark">64%</span></td>
+                                    <td class="text-center"><span class="text-black badge bg-light-danger">42%</span></td>
+                                    <td>Budget Approval</td>
+                                    <td class="text-end pe-3"><span class="badge bg-light-info text-dark">Prospect</span></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid #EAEAEA;">
-                                    <td class="ps-3">4</td>
-                                    <td>15 Feb 25</td>
-                                    <td>1000</td>
-                                    <td class="text-start">Bangladesh Navy</td>
-                                    <td>$40,000</td>
-                                    <td class="text-center">70%</td>
-                                    <td class="text-center">55%</td>
-                                    <td>Provide Demo</td>
-                                    <td class="text-end pe-10">Ongoing</td>
+                                    <td class="ps-3">10</td>
+                                    <td>2 Mar 25</td>
+                                    <td><span class="fw-bold text-primary">770</span></td>
+                                    <td class="text-start">Airtel Bangladesh</td>
+                                    <td class="fw-semibold text-success">$30,000</td>
+                                    <td class="text-center"><span class="text-black badge bg-light-success">89%</span></td>
+                                    <td class="text-center"><span class="text-black badge bg-light-info">78%</span></td>
+                                    <td>Proposal Sent</td>
+                                    <td class="text-end pe-3"><span class="badge bg-light-warning text-dark">Ongoing</span></td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid #EAEAEA;">
-                                    <td class="ps-3">5</td>
-                                    <td>20 Feb 25</td>
-                                    <td>420</td>
-                                    <td class="text-start">Beximco Pharma</td>
-                                    <td>$18,000</td>
-                                    <td class="text-center">65%</td>
-                                    <td class="text-center">48%</td>
-                                    <td>Prepare Proposal</td>
-                                    <td class="text-end pe-10">Prospect</td>
+                                    <td class="ps-3">11</td>
+                                    <td>4 Mar 25</td>
+                                    <td><span class="fw-bold text-primary">300</span></td>
+                                    <td class="text-start">IDLC Finance</td>
+                                    <td class="fw-semibold text-success">$7,200</td>
+                                    <td class="text-center"><span class="badge bg-light-warning text-dark">55%</span></td>
+                                    <td class="text-center"><span class="text-black badge bg-light-danger">39%</span></td>
+                                    <td>Need RFP</td>
+                                    <td class="text-end pe-3"><span class="text-black badge bg-secondary">Pending</span></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #EAEAEA;">
+                                    <td class="ps-3">12</td>
+                                    <td>6 Mar 25</td>
+                                    <td><span class="fw-bold text-primary">880</span></td>
+                                    <td class="text-start">Summit Power</td>
+                                    <td class="fw-semibold text-success">$35,000</td>
+                                    <td class="text-center"><span class="text-black badge bg-light-success">94%</span></td>
+                                    <td class="text-center"><span class="text-black badge bg-light-info">83%</span></td>
+                                    <td>Final Discussion</td>
+                                    <td class="text-end pe-3"><span class="badge bg-light-primary">In Progress</span></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #EAEAEA;">
+                                    <td class="ps-3">13</td>
+                                    <td>9 Mar 25</td>
+                                    <td><span class="fw-bold text-primary">640</span></td>
+                                    <td class="text-start">Eastern Bank Ltd.</td>
+                                    <td class="fw-semibold text-success">$20,500</td>
+                                    <td class="text-center"><span class="text-black badge bg-light-success">82%</span></td>
+                                    <td class="text-center"><span class="text-black badge bg-light-info">68%</span></td>
+                                    <td>Awaiting Feedback</td>
+                                    <td class="text-end pe-3"><span class="badge bg-light-warning text-dark">Ongoing</span></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #EAEAEA;">
+                                    <td class="ps-3">14</td>
+                                    <td>12 Mar 25</td>
+                                    <td><span class="fw-bold text-primary">510</span></td>
+                                    <td class="text-start">Banglalink</td>
+                                    <td class="fw-semibold text-success">$15,600</td>
+                                    <td class="text-center"><span class="badge bg-light-warning text-dark">68%</span></td>
+                                    <td class="text-center"><span class="text-black badge bg-light-danger">50%</span></td>
+                                    <td>Need Demo</td>
+                                    <td class="text-end pe-3"><span class="badge bg-light-info text-dark">Prospect</span></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid #EAEAEA;">
+                                    <td class="ps-3">15</td>
+                                    <td>15 Mar 25</td>
+                                    <td><span class="fw-bold text-primary">960</span></td>
+                                    <td class="text-start">Grameen Shakti</td>
+                                    <td class="fw-semibold text-success">$42,000</td>
+                                    <td class="text-center"><span class="text-black badge bg-light-success">95%</span></td>
+                                    <td class="text-center"><span class="text-black badge bg-light-info">85%</span></td>
+                                    <td>Contract Signing</td>
+                                    <td class="text-end pe-3"><span class="text-black badge bg-light-success">Completed</span></td>
                                 </tr>
                             </tbody>
+
                         </table>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
