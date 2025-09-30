@@ -24,45 +24,6 @@
             box-sizing: border-box;
         }
     </style>
-    <style>
-        .footer-area {
-            page-break-before: always;
-            page-break-inside: avoid;
-
-            background: #f9f9f9;
-            border-top: 1px solid #eee;
-        }
-
-        .footer-table {
-            width: 100%;
-            padding: 30px;
-            border-collapse: collapse;
-        }
-
-        .footer-table td {
-            padding: 5px;
-            vertical-align: top;
-        }
-
-        .bottom-bar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #ae0a46;
-            height: 45px;
-            text-align: center;
-            color: white;
-            font-size: 16px;
-        }
-
-        .bottom-bar a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-
-        }
-    </style>
 </head>
 
 <body style="margin:0; padding:0; width:100%; font-family: 'Montserrat', sans-serif; font-size: 12px;">
@@ -323,9 +284,9 @@
         </tr>
     </table>
 
-    {{-- <!-- Footer Content Info -->
+    <!-- Footer Content Info -->
     <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
-        style="border-collapse: collapse; background:#f9f9f9; padding:30px 30px;width: 100%;border-right: 1px solid #eeeeee;">
+        style="border-collapse: collapse; background:#f9f9f9; padding:20px 30px;width: 100%;border-right: 1px solid #eeeeee;">
         <tr style="padding-left: 20px; padding-right:20px">
             <td style="width: 75%; vertical-align: top; padding-right: 10px;">
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
@@ -381,43 +342,7 @@
                 </a>
             </td>
         </tr>
-    </table> --}}
-    <div class="footer-area">
-
-        <!-- Footer Main Info Table -->
-        <table class="footer-table">
-            <tr>
-                <td style="width: 75%;">
-                    <table>
-                        <tr>
-                            <td style="font-weight: 600;">{{ $quotation->sender_name ?? 'Adan Mahmud' }}</td>
-                            <td>{{ $quotation->ngen_email ?? 'sales@ngenitltd.com' }}</td>
-                        </tr>
-                        <tr>
-                            <td>{{ $quotation->sender_designation ?? 'Sr. Manager' }}</td>
-                            <td>{{ $quotation->ngen_whatsapp_number ?? '+8801714243446' }} (WhatsApp)</td>
-                        </tr>
-                        <tr>
-                            <td>Partner & Business Development</td>
-                            <td>{{ $quotation->ngen_number_two ?? '+1 917-720-3055' }} (Skype)</td>
-                        </tr>
-                    </table>
-                </td>
-                <td style="width: 25%; text-align: center;">
-                    <h3 style="color: #ae0a46; margin: 0;">
-                        {{ $quotation->ngen_company_name ?? 'NGEN PTE. LTD.' }}
-                    </h3>
-                    <p style="margin: 0;">{{ $quotation->ngen_company_registration_number ?? 'N/A' }}</p>
-                </td>
-            </tr>
-        </table>
-
-        <!-- Footer Bottom Bar -->
-        <div class="bottom-bar">
-            <a href="https://www.ngenitltd.com">www.ngenitltd.com</a>
-        </div>
-
-    </div>
+    </table>
 
 </body>
 
