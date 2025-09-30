@@ -225,7 +225,7 @@
                             {{-- Show 2 rows --}}
                             <tr>
                                 @foreach ($brands->slice(0, $brandsPerRow) as $brand)
-                                    <td style="padding: 3px 0px;">
+                                    <td style="padding: 2px 0px;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
                                             style="padding-left: 15px; width: 100px; height:45px; display: block;" />
                                     </td>
@@ -235,7 +235,7 @@
                             {{-- Show 3 rows --}}
                             <tr style="margin-bottom:3px;">
                                 @foreach ($brands->slice(0, $brandsPerRow) as $brand)
-                                    <td style="padding: 3px 0px;">
+                                    <td style="padding: 2px 0px;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
                                             style="padding-left: 15px; width: 100px; height:45px; display: block;" />
                                     </td>
@@ -243,7 +243,7 @@
                             </tr>
                             <tr>
                                 @foreach ($brands->slice($brandsPerRow, $brandsPerRow) as $brand)
-                                    <td style="padding: 3px 0px;">
+                                    <td style="padding: 2px 0px;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
                                             style="padding-left: 15px; width: 100px; height:45px; display: block;" />
                                     </td>
@@ -253,7 +253,7 @@
                             {{-- Show 3 rows --}}
                             <tr style="margin-bottom:3px;">
                                 @foreach ($brands->slice(0, $brandsPerRow) as $brand)
-                                    <td style="padding: 3px 0px;">
+                                    <td style="padding: 2px 0px;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
                                             style="padding-left: 15px; width: 100px; height:45px; display: block;" />
                                     </td>
@@ -261,7 +261,7 @@
                             </tr>
                             <tr style="margin-bottom:3px;">
                                 @foreach ($brands->slice($brandsPerRow, $brandsPerRow) as $brand)
-                                    <td style="padding: 3px 0px;">
+                                    <td style="padding: 2px 0px;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
                                             style="padding-left: 15px; width: 100px; height:45px; display: block;" />
                                     </td>
@@ -269,7 +269,7 @@
                             </tr>
                             <tr>
                                 @foreach ($brands->slice(10, $brandsPerRow) as $brand)
-                                    <td style="padding: 3px 0px;">
+                                    <td style="padding: 2px 0px;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
                                             style="padding-left: 15px; width: 100px; height:45px; display: block;" />
                                     </td>
