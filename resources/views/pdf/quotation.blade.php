@@ -221,7 +221,7 @@
 
                         @if ($totalProducts > 3)
                             {{-- No rows shown --}}
-                        @elseif ($totalProducts > 2)
+                        @elseif ($totalProducts > 2) 
                             {{-- Show 2 rows --}}
                             <tr>
                                 @foreach ($brands->slice(0, $brandsPerRow) as $brand)
