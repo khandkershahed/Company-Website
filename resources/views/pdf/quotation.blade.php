@@ -205,7 +205,7 @@
                                 Brands</td>
                         </tr>
                     </tbody>
-                    <tbody style="background-color: #f0f0f0;">
+                    <tbody style="background-color: #f0f0f0; ">
                         {{-- <tr>
                             @foreach ($brands as $brand)
                                 <td style="padding: 0;">
@@ -225,43 +225,53 @@
                             {{-- Show 2 rows --}}
                             <tr>
                                 @foreach ($brands->slice(0, $brandsPerRow) as $brand)
-                                    <td style="padding: 0;">
+                                    <td style="padding: 2px 0px;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
-                                            style="padding-left: 15px; width: 80px; display: block;" />
+                                            style="padding-left: 15px; width: 100px; height:45px; display: block;" />
                                     </td>
                                 @endforeach
                             </tr>
-                            <tr>
-                                @foreach ($brands->slice($brandsPerRow, $brandsPerRow) as $brand)
-                                    <td style="padding: 0;">
-                                        <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
-                                            style="padding-left: 15px; width: 80px; display: block;" />
-                                    </td>
-                                @endforeach
-                            </tr>
-                        @elseif ($totalProducts > 0)
+                        @elseif ($totalProducts > 1)
                             {{-- Show 3 rows --}}
-                            <tr>
+                            <tr style="margin-bottom:3px;">
                                 @foreach ($brands->slice(0, $brandsPerRow) as $brand)
-                                    <td style="padding: 0;">
+                                    <td style="padding: 2px 0px;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
-                                            style="padding-left: 15px; width: 80px; display: block;" />
+                                            style="padding-left: 15px; width: 100px; height:45px; display: block;" />
                                     </td>
                                 @endforeach
                             </tr>
                             <tr>
                                 @foreach ($brands->slice($brandsPerRow, $brandsPerRow) as $brand)
-                                    <td style="padding: 0;">
+                                    <td style="padding: 2px 0px;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
-                                            style="padding-left: 15px; width: 80px; display: block;" />
+                                            style="padding-left: 15px; width: 100px; height:45px; display: block;" />
+                                    </td>
+                                @endforeach
+                            </tr>
+                        @elseif ($totalProducts === 1)
+                            {{-- Show 3 rows --}}
+                            <tr style="margin-bottom:3px;">
+                                @foreach ($brands->slice(0, $brandsPerRow) as $brand)
+                                    <td style="padding: 2px 0px;">
+                                        <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
+                                            style="padding-left: 15px; width: 100px; height:45px; display: block;" />
+                                    </td>
+                                @endforeach
+                            </tr>
+                            <tr style="margin-bottom:3px;">
+                                @foreach ($brands->slice($brandsPerRow, $brandsPerRow) as $brand)
+                                    <td style="padding: 2px 0px;">
+                                        <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
+                                            style="padding-left: 15px; width: 100px; height:45px; display: block;" />
                                     </td>
                                 @endforeach
                             </tr>
                             <tr>
-                                @foreach ($brands->slice($brandsPerRow * 2, $brandsPerRow) as $brand)
-                                    <td style="padding: 0;">
+                                @foreach ($brands->slice(10, $brandsPerRow) as $brand)
+                                    <td style="padding: 2px 0px;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
-                                            style="padding-left: 15px; width: 80px; display: block;" />
+                                            style="padding-left: 15px; width: 100px; height:45px; display: block;" />
                                     </td>
                                 @endforeach
                             </tr>
@@ -276,7 +286,7 @@
 
     <!-- Footer Content Info -->
     <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
-        style="border-collapse: collapse; background:#f9f9f9; padding:30px 30px;width: 100%;border-right: 1px solid #eeeeee;">
+        style="border-collapse: collapse; background:#f9f9f9; padding:20px 30px;width: 100%;border-right: 1px solid #eeeeee;">
         <tr style="padding-left: 20px; padding-right:20px">
             <td style="width: 75%; vertical-align: top; padding-right: 10px;">
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
@@ -311,8 +321,7 @@
                         <td style="font-weight: 500; padding: 0px 25px 0px 0px;">
                             <h3 style="margin: 0; padding: 5px 0px; color: #ae0a46;">
                                 {{ $quotation->ngen_company_name ??
-                                    'NGEN PTE.
-                                                                                LTd.' }}
+                                    'NGEN PTE LTd.' }}
                             </h3>
                             <p style="margin: 0; padding: 0;">
                                 {{ $quotation->ngen_company_registration_number ?? 'N/A' }}</p>
