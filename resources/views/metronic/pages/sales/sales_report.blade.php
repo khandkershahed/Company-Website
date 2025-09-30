@@ -155,9 +155,13 @@
                             </select>
                         </div>
                         <div class="mx-1">
-                            <select class="form-select form-select-solid" data-control="select2"
-                                data-placeholder="Select Year" tabindex="-1" name="year" aria-hidden="true"
-                                id="filterYear">
+                            <select
+                                class="form-select form-select-solid"
+                                data-control="select2"
+                                data-dropdown-css-class="w-100px"
+                                data-placeholder="Select Year"
+                                tabindex="-1" name="year"
+                                aria-hidden="true" id="filterYear">
                                 <option value="{{ date('Y') }}">2025</option>
                                 <option value="2022">2022</option>
                                 <option value="2023">2023</option>
