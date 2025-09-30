@@ -219,9 +219,9 @@
                             $brandsPerRow = 5;
                         @endphp
 
-                        @if ($totalProducts > 3)
+                        @if ($totalProducts > 4)
                             {{-- No rows shown --}}
-                        @elseif ($totalProducts > 1)
+                        @elseif ($totalProducts > 3)
                             {{-- Show 2 rows --}}
                             <tr>
                                 @foreach ($brands->slice(0, $brandsPerRow) as $brand)
@@ -231,7 +231,7 @@
                                     </td>
                                 @endforeach
                             </tr>
-                        @elseif ($totalProducts > 0)
+                        @elseif ($totalProducts > 2)
                             {{-- Show 3 rows --}}
                             <tr>
                                 @foreach ($brands->slice(0, $brandsPerRow) as $brand)
@@ -249,14 +249,32 @@
                                     </td>
                                 @endforeach
                             </tr>
-                            {{-- <tr>
-                                @foreach ($brands->slice($brandsPerRow * 2, $brandsPerRow) as $brand)
+                        @elseif ($totalProducts > 1)
+                            {{-- Show 3 rows --}}
+                            <tr>
+                                @foreach ($brands->slice(0, $brandsPerRow) as $brand)
                                     <td style="padding: 0;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
                                             style="padding-left: 15px; width: 100px; height:45px; display: block;" />
                                     </td>
                                 @endforeach
-                            </tr> --}}
+                            </tr>
+                            <tr>
+                                @foreach ($brands->slice($brandsPerRow, $brandsPerRow) as $brand)
+                                    <td style="padding: 0;">
+                                        <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
+                                            style="padding-left: 15px; width: 100px; height:45px; display: block;" />
+                                    </td>
+                                @endforeach
+                            </tr>
+                            <tr>
+                                @foreach ($brands->slice(10, $brandsPerRow) as $brand)
+                                    <td style="padding: 0;">
+                                        <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
+                                            style="padding-left: 15px; width: 100px; height:45px; display: block;" />
+                                    </td>
+                                @endforeach
+                            </tr>
                         @endif
 
                     </tbody>
