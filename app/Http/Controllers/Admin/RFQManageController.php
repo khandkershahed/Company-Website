@@ -354,7 +354,7 @@ class RFQManageController extends Controller
         $data['quotation_title'] = $data['quotation']->quotation_title;
 
         if ($data['quotation']->currency == 'taka') {
-            $data['currency'] = 'Tk';
+            $data['currency'] = 'TK';
         } elseif ($data['quotation']->currency == 'euro') {
             $data['currency'] = '€';
         } elseif ($data['quotation']->currency == 'dollar') {
@@ -362,7 +362,7 @@ class RFQManageController extends Controller
         } elseif ($data['quotation']->currency == 'pound') {
             $data['currency'] = '£';
         } else {
-            $data['currency'] = 'Tk';
+            $data['currency'] = 'TK';
         }
         $data['rfq']->update([
             'status'  => 'quoted',
