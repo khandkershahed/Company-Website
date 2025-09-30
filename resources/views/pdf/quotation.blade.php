@@ -28,13 +28,14 @@
         .footer-area {
             page-break-before: always;
             page-break-inside: avoid;
-            padding: 30px;
+
             background: #f9f9f9;
             border-top: 1px solid #eee;
         }
 
         .footer-table {
             width: 100%;
+            padding: 30px;
             border-collapse: collapse;
         }
 
@@ -44,6 +45,9 @@
         }
 
         .bottom-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background-color: #ae0a46;
             height: 45px;
             text-align: center;
@@ -56,6 +60,7 @@
             text-decoration: none;
             font-weight: 500;
             letter-spacing: 0.1em;
+
         }
     </style>
 </head>
