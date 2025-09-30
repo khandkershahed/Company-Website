@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\NoticeController;
 use App\Http\Controllers\Admin\PolicyController;
 use App\Http\Controllers\Admin\RegionController;
 use App\Http\Controllers\Admin\TaxVatController;
+use App\Http\Controllers\Admin\TenderController;
 use App\Http\Controllers\Order\ReportController;
 use App\Http\Controllers\Order\ReturnController;
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -39,15 +40,15 @@ use App\Http\Controllers\Admin\DealControllerOld;
 use App\Http\Controllers\Admin\ExpenseController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\PartnerController;
-use App\Http\Controllers\Admin\PartnerPermission;
 
+use App\Http\Controllers\Admin\PartnerPermission;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\SuccessController;
 use App\Http\Controllers\Salary\EntityController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\EmployeeController;
 
+use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\FeedbackController;
 use App\Http\Controllers\Admin\HomepageController;
 use App\Http\Controllers\Admin\HrPolicyController;
@@ -154,6 +155,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resources(
         [
             'contact' => ContactController::class,
+            'tender' => TenderController::class,
         ],
         ['except' => ['show', 'create']]
     );
@@ -178,13 +180,15 @@ Route::get('/sales-forecast/filter', [SalesForecastController::class, 'filterFor
     //     Route::get('/rfq', 'index')->name('admin.rfq.index'); // Corrected route name
     // });
 
+
+
     Route::controller(DashboardController::class)->group(function () {
         Route::get('site-dashboard', 'siteDashboard')->name('site-content.index');
         Route::get('site-setting', 'siteSetting')->name('site-setting.index');
         Route::get('accounts-finance', 'accountsFinance')->name('accounts-finance.index');
         Route::get('business', 'business')->name('business.index');
         Route::get('sales-dashboard', 'salesDashboard')->name('sales-dashboard.index');
-        Route::get('marketing-dashboard', 'marketingDashboard')->name('marketing-dashboard.index');
+        Route::get('marketing-dashboard', 'marketingDashboard')->name('marketing.dashboard');
     });
 
     Route::controller(DealController::class)->group(function () {
@@ -468,7 +472,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     //     Route::get('accounts-finance', 'accountsFinance')->name('accounts-finance.index');
     //     Route::get('business', 'business')->name('admin.business.index');
     //     Route::get('sales-dashboard', 'salesDashboard')->name('admin.sales-dashboard.index');
-    //     Route::get('marketing-dashboard', 'marketingDashboard')->name('admin.marketing-dashboard.index');
+    //     Route::get('marketing-dashboard', 'marketingDashboard')->name('admin.marketing.dashboard');
     // });
 
 

@@ -21,16 +21,12 @@ class SalesForecastController extends Controller
 
         $rfqs = (clone $baseQuery)->latest()->get();
 
-        $rfq_count = $rfqs->count();
-
-        $companies = (clone $baseQuery)->whereNotNull('company_name')->pluck('company_name')->unique();
         $countryWiseRfqs = (clone $baseQuery)
             ->whereNotNull('country')
             ->selectRaw('country, COUNT(*) as total')
             ->groupBy('country')
             ->orderBy('total', 'DESC')
             ->get();
-        $regions = Region::orderBy('region_name', 'ASC')->get();
 
         $pendings   = $rfqs->where('status', 'rfq_created');
         $quoteds    = $rfqs->where('status', 'quoted');
@@ -51,13 +47,12 @@ class SalesForecastController extends Controller
             'losts'           => $losts,
             'closeds'         => $closeds,
             'deals'           => $deals,
-            'rfq_count'       => $rfq_count,
+            // 'rfq_count'       => $rfq_count,
             'countryWiseRfqs' => $countryWiseRfqs,
-            'companies'       => $companies,
+            // 'companies'       => $companies,
             'rfqs'            => $rfqs,
             'request'         => $request,
             'quoted_amount'   => $quoted_amount,
-            'regions'         => $regions,
         ]);
     }
 
@@ -93,6 +88,9 @@ class SalesForecastController extends Controller
 
     public function salesReport(Request $request)
     {
-        return view('metronic.pages.sales.sales_report');
+        $data = [
+            'sales' =>Rfq::where('rfq_type', 'sales')->latest('id')->get(),
+        ];
+        return view('metronic.pages.sales.sales_report', $data);
     }
 }
