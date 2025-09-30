@@ -17,5 +17,5 @@ class RfqQuotation extends Model
     public function rfq()
     {
         return $this->belongsTo(Rfq::class, 'rfq_id', 'id');
-    }
+    } 
 }

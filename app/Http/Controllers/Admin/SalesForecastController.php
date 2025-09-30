@@ -6,51 +6,93 @@ use Carbon\Carbon;
 use App\Models\Admin\Rfq;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Region;
 
 class SalesForecastController extends Controller
 {
     public function salesForecast(Request $request)
     {
-        $baseQuery = Rfq::where('rfq_type', 'rfq');
+        $baseQuery = Rfq::with('rfqQuotation')->where('rfq_type', 'rfq');
 
-        // Count total RFQs
-
-        $companies = (clone $baseQuery)->whereNotNull('company_name')->distinct('company_name')->pluck('company_name');
-        $countries = (clone $baseQuery)->whereNotNull('country')->distinct('country')->pluck('country');
-        // Get new customers where 'confirmation' is null
-        $new_customers = (clone $baseQuery)->whereNull('confirmation')->where('created_at', '>=', Carbon::now()->subMonths(1))->latest()->get();
-
-        // Apply filters dynamically
-        if ($request->filled('year')) {
-            $baseQuery->whereYear('created_at', $request->year);
-        } elseif (!$request->filled('month')) {
-            $baseQuery->where('created_at', '>=', '2025-01-01');
+        // Filter by status if provided
+        if ($request->filled('status')) {
+            $baseQuery->where('status', $request->status);
         }
 
-        if ($request->filled('month')) {
-            $monthNumber = date('m', strtotime($request->month));
-            $baseQuery->whereMonth('created_at', $monthNumber);
-            if (!$request->filled('year')) {
-                $baseQuery->where('created_at', '>=', '2025-08-17');
-            }
+        $rfqs = (clone $baseQuery)->latest()->get();
+
+        $rfq_count = $rfqs->count();
+
+        $companies = (clone $baseQuery)->whereNotNull('company_name')->pluck('company_name')->unique();
+        $countryWiseRfqs = (clone $baseQuery)
+            ->whereNotNull('country')
+            ->selectRaw('country, COUNT(*) as total')
+            ->groupBy('country')
+            ->orderBy('total', 'DESC')
+            ->get();
+        $regions = Region::orderBy('region_name', 'ASC')->get();
+
+        $pendings   = $rfqs->where('status', 'rfq_created');
+        $quoteds    = $rfqs->where('status', 'quoted');
+        $losts      = $rfqs->where('status', 'lost');
+        $closeds    = $rfqs->where('status', 'closed');
+        $deals      = $rfqs->where('status', 'deal');
+
+        // Sum total_final_total_price from quotations for quoted RFQs
+        $quoted_amount = $quoteds->flatMap(function ($rfq) {
+            return $rfq->rfqQuotation->pluck('total_final_total_price');
+        })->map(function ($price) {
+            return floatval(preg_replace('/[^\d.]/', '', $price)); // Sanitize in case it's stored as string with currency symbols
+        })->sum();
+
+        return view('metronic.pages.sales.sales_forecast', [
+            'quoteds'         => $quoteds,
+            'pendings'        => $pendings,
+            'losts'           => $losts,
+            'closeds'         => $closeds,
+            'deals'           => $deals,
+            'rfq_count'       => $rfq_count,
+            'countryWiseRfqs' => $countryWiseRfqs,
+            'companies'       => $companies,
+            'rfqs'            => $rfqs,
+            'request'         => $request,
+            'quoted_amount'   => $quoted_amount,
+            'regions'         => $regions,
+        ]);
+    }
+
+    public function filterForecast(Request $request)
+    {
+        $baseQuery = Rfq::with('rfqQuotation')->where('rfq_type', 'rfq');
+
+        if ($request->filled('country')) {
+            $baseQuery->where('country', $request->country);
         }
 
         if ($request->filled('status')) {
             $baseQuery->where('status', $request->status);
         }
 
-        // Fetch filtered RFQs
-        $rfq_count = (clone $baseQuery)->count();
         $rfqs = $baseQuery->latest()->get();
-        // Separate RFQs by status
+
         $pendings = $rfqs->where('status', 'rfq_created');
         $quoteds  = $rfqs->where('status', 'quoted');
         $losts    = $rfqs->where('status', 'lost');
-        $data = [];
-        return view('metronic.pages.rfq.sales_forecast', $data);
+        $closeds  = $rfqs->where('status', 'closed');
+        $deals    = $rfqs->where('status', 'deal');
+
+        return view('metronic.pages.sales.partials.forecastFiltered', [
+            'quoteds'  => $quoteds,
+            'pendings' => $pendings,
+            'losts'    => $losts,
+            'closeds'  => $closeds,
+            'deals'    => $deals,
+        ]);
     }
 
-    public function salesReport(Request $request){
-        return view('metronic.pages.rfq.sales_report');
+
+    public function salesReport(Request $request)
+    {
+        return view('metronic.pages.sales.sales_report');
     }
 }

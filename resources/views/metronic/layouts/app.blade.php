@@ -288,7 +288,7 @@
 
         // Initialize DataTables for elements with class 'my-datatable'
         $(document).ready(function() {
-            new DataTableInitializer('.my-datatable');
+            new DataTableInitializer('.my-datatable , .dataTable');
         });
         // Modal js
         // Make the DIV element draggable:

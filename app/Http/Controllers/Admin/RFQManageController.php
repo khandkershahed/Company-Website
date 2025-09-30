@@ -366,6 +366,8 @@ class RFQManageController extends Controller
         }
         $data['rfq']->update([
             'status'  => 'quoted',
+            'total_price' => $data['quotation']->total_final_total_price,
+            'quoted_price' => $data['quotation']->total_final_total_price,
         ]);
         $fileName = 'Qutotation(' . $data['rfq']->rfq_code . ').pdf';
         $filePath = 'public/files/' . $fileName;

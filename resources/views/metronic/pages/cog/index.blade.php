@@ -30,7 +30,7 @@
                                 {{-- <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#clientTYpe"
                                 class="p-2 text-center btn btn-secondary">
                                 <i class="fas fa-user-tie fs-3 ps-1"></i>
-                            </a> --}}
+                            </a> --}} 
                             </h5>
                         </div>
                     </div>

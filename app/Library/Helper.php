@@ -268,6 +268,8 @@ class Helper
     }
 
 
+
+
     public static function Upload(UploadedFile $mainFile, string $uploadPath, ?int $reqWidth = null, ?int $reqHeight = null): array
     {
         // Create an empty output array

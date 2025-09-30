@@ -157,6 +157,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         ],
         ['except' => ['show', 'create']]
     );
+Route::get('/sales-forecast/filter', [SalesForecastController::class, 'filterForecast'])->name('forecast.filter');
 
     Route::get('sales-forecast', [SalesForecastController::class, 'salesForecast'])->name('sales.forecast');
     Route::get('sales-report', [SalesForecastController::class, 'salesReport'])->name('sales.report');

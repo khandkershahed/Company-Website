@@ -45,4 +45,5 @@ class Rfq extends Model
     {
         return $this->belongsTo(User::class, 'sales_man_id_T2');
     }
+
 }
