@@ -205,7 +205,7 @@
                                 Brands</td>
                         </tr>
                     </tbody>
-                    <tbody style="background-color: #f0f0f0;">
+                    <tbody style="background-color: #f0f0f0; ">
                         {{-- <tr>
                             @foreach ($brands as $brand)
                                 <td style="padding: 0;">
@@ -227,7 +227,7 @@
                                 @foreach ($brands->slice(0, $brandsPerRow) as $brand)
                                     <td style="padding: 0;">
                                         <img src="{{ asset('storage/' . $brand->image) }}" alt="{{ $brand->name }}"
-                                            style="padding-left: 15px; width: 80px; display: block;" />
+                                            style="padding-left: 15px; width: 80px; height:45px display: block;" />
                                     </td>
                                 @endforeach
                             </tr>
