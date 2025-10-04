@@ -174,7 +174,7 @@
                                                                     <a href="{{ route('attendance.single.currentMonth', $employee->id) }}"
                                                                         hover-tooltip="Current month Attendance"
                                                                         tooltip-position="top"
-                                                                        class="border-bottom-link">
+                                                                        class="border-bottom-link me-4">
                                                                         <i
                                                                             class="fa-solid fa-arrow-up-right-from-square main_color go-icon"></i>
                                                                     </a>
