@@ -12,7 +12,7 @@
                         <th>Date</th>
                         <th>Check-In</th>
                         <th>Check-Out</th>
-                    </tr>
+                    </tr> 
                 </thead>
                 <tbody class="fw-bold text-gray-600">
                     @foreach ($attendances as $attendance)
