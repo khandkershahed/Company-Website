@@ -50,6 +50,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'department' => 'array',
     ];
 
     protected static function booted()
@@ -129,4 +130,9 @@ class User extends Authenticatable
 
         return $this->department === $department;
     }
+    public function isBusinessAdminOrManager()
+    {
+        return $this->inDepartment('business') && in_array($this->role, ['admin', 'manager']);
+    }
+
 }

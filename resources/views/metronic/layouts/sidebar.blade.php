@@ -47,12 +47,12 @@
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </div>
-@php dd(Auth::user()->whereJsonContains('department', 'business')); @endphp
+
                 {{-- Site Content  --}}
                 @php
                     $marketingMenu = [];
 
-                    if (Auth::user()->whereJsonContains('department', 'business')) {
+                    if (Auth::user()->isBusinessAdminOrManager()) {
                         $marketingMenu = [
                             'title' => 'Marketing Management',
                             'routes' => [
@@ -298,7 +298,7 @@
                         ],
                     ];
                     foreach ($menuItems as &$item) {
-                        if ($item['title'] === 'business' && !empty($marketingMenu)) {
+                        if ($item['title'] === 'Business' && !empty($marketingMenu)) {
                             $item['subMenu'][] = $marketingMenu;
                         }
                     }

@@ -155,8 +155,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     );
     Route::resources(
         [
-            'contact' => ContactController::class,
-            'tender' => TenderController::class,
+            'contact'        => ContactController::class,
+            'tender'         => TenderController::class,
+            'marketing-emar' => MarketingEmarController::class,
         ],
         ['except' => ['show', 'create']]
     );
@@ -288,7 +289,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'rfq-manage'      => RFQManageController::class,
             'deal'            => DealController::class,
             'rfqOrderStatus'  => RfqOrderStatusController::class,
-            'marketing-emar'  => MarketingEmarController::class,
+
         ]
     );
 
