@@ -1,4 +1,5 @@
-<x-admin-app-layout :title="'RFQ Dashboard'">
+<!-- RFQ Dashboard -->
+ <x-admin-app-layout :title="'RFQ Dashboard'">
     @include('metronic.pages.rfq.partials.rfq_css')
     <!-- Main Content Start -->
     @php
@@ -563,3 +564,4 @@
         
     @endpush
 </x-admin-app-layout>
+<!-- RFQ Dashboard End -->
