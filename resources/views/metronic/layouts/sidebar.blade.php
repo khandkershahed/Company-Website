@@ -47,9 +47,39 @@
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </div>
-
+@php dd(Auth::user()->whereJsonContains('department', 'business')); @endphp
                 {{-- Site Content  --}}
                 @php
+                    $marketingMenu = [];
+
+                    if (Auth::user()->whereJsonContains('department', 'business')) {
+                        $marketingMenu = [
+                            'title' => 'Marketing Management',
+                            'routes' => [
+                                'admin.marketing.dashboard',
+                                'marketing-dmar.index',
+                                'admin.marketing-emar.index',
+                            ],
+                            'route' => 'admin.marketing.dashboard',
+                            'subMenu' => [
+                                [
+                                    'title' => 'Marketing Dashboard',
+                                    'routes' => ['admin.marketing.dashboard'],
+                                    'route' => 'admin.marketing.dashboard',
+                                ],
+                                [
+                                    'title' => 'Marketing DMAR',
+                                    'routes' => ['marketing-dmar.index'],
+                                    'route' => 'marketing-dmar.index',
+                                ],
+                                [
+                                    'title' => 'Marketing EMAR',
+                                    'routes' => ['admin.marketing-emar.index'],
+                                    'route' => 'admin.marketing-emar.index',
+                                ],
+                            ],
+                        ];
+                    }
                     $menuItems = [
                         [
                             'title' => 'Supply Chain',
@@ -115,9 +145,11 @@
                                 'admin.sales.report',
                                 'deal.index',
                                 'deal.create',
-                                'deal.edit','admin.sales-dashboard.index','admin.tender.index',
-                                'admin.marketing.dashboard','marketing-dmar.index',
-                                
+                                'deal.edit',
+                                'admin.sales-dashboard.index',
+                                'admin.tender.index',
+                                'admin.marketing.dashboard',
+                                'marketing-dmar.index',
                             ],
                             'subMenu' => [
                                 [
@@ -142,7 +174,12 @@
                                 // ],
                                 [
                                     'title' => 'Sales Management',
-                                    'routes' => ['admin.sales.forecast','admin.sales.report','admin.sales-dashboard.index','admin.tender.index'],
+                                    'routes' => [
+                                        'admin.sales.forecast',
+                                        'admin.sales.report',
+                                        'admin.sales-dashboard.index',
+                                        'admin.tender.index',
+                                    ],
                                     'route' => 'admin.sales.forecast',
                                     'subMenu' => [
                                         [
@@ -167,28 +204,9 @@
                                         ],
                                     ],
                                 ],
-                                [
-                                    'title' => 'Marketing Management',
-                                    'routes' => ['admin.marketing.dashboard','marketing-dmar.index'],
-                                    'route' => 'admin.marketing.dashboard',
-                                    'subMenu' => [
-                                        [
-                                            'title' => 'Marketing Dashboard',
-                                            'routes' => ['admin.marketing.dashboard'],
-                                            'route' => 'admin.marketing.dashboard',
-                                        ],
-                                        [
-                                            'title' => 'Marketing DMAR',
-                                            'routes' => ['marketing-dmar.index'],
-                                            'route' => 'marketing-dmar.index',
-                                        ],
-                                        [
-                                            'title' => 'Marketing EMAR',
-                                            'routes' => ['admin.sales.report'],
-                                            'route' => 'admin.sales.report',
-                                        ],
-                                    ],
-                                ],
+                                // [
+
+                                // ],
                             ],
                         ],
                         [
@@ -279,6 +297,12 @@
                             ],
                         ],
                     ];
+                    foreach ($menuItems as &$item) {
+                        if ($item['title'] === 'business' && !empty($marketingMenu)) {
+                            $item['subMenu'][] = $marketingMenu;
+                        }
+                    }
+                    unset($item);
                 @endphp
 
                 @foreach ($menuItems as $item)

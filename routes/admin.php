@@ -127,6 +127,7 @@ use App\Http\Controllers\Admin\PortfolioCategoryController;
 use App\Http\Controllers\Admin\PortfolioChooseUsController;
 use App\Http\Controllers\FormBulider\FormBuilderController;
 use App\Http\Controllers\Marketing\MarketingDmarController;
+use App\Http\Controllers\Marketing\MarketingEmarController;
 use App\Http\Controllers\Admin\CommercialDocumentController;
 use App\Http\Controllers\Admin\EmployeeDepartmentController;
 use App\Http\Controllers\Admin\FrontendNavbarMenuController;
@@ -159,7 +160,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         ],
         ['except' => ['show', 'create']]
     );
-Route::get('/sales-forecast/filter', [SalesForecastController::class, 'filterForecast'])->name('forecast.filter');
+    Route::get('/sales-forecast/filter', [SalesForecastController::class, 'filterForecast'])->name('forecast.filter');
 
     Route::get('sales-forecast', [SalesForecastController::class, 'salesForecast'])->name('sales.forecast');
     Route::get('sales-report', [SalesForecastController::class, 'salesReport'])->name('sales.report');
@@ -287,6 +288,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'rfq-manage'      => RFQManageController::class,
             'deal'            => DealController::class,
             'rfqOrderStatus'  => RfqOrderStatusController::class,
+            'marketing-emar'  => MarketingEmarController::class,
         ]
     );
 

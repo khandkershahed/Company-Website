@@ -120,4 +120,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(RfqOrderStatus::class, 'employee_id');  // 'employee_id' is the foreign key in the leave_applications table
     }
+    // In User.php model
+    public function inDepartment($department)
+    {
+        if (is_array($this->department)) {
+            return in_array($department, $this->department);
+        }
+
+        return $this->department === $department;
+    }
 }
