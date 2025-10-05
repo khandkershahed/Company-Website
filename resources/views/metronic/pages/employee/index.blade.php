@@ -50,8 +50,8 @@
                 <div class="col-lg-12">
                     <div class="row gx-3">
                         <div class="mb-3 col-lg-3 col-md-6 col-sm-6">
-                            <div class="text-white border-0 card rounded-1 active " style="background-color: #0b6476;" id="home-tab"
-                                data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
+                            <div class="text-white border-0 card rounded-1 active " style="background-color: #0b6476;"
+                                id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
                                 aria-controls="home" aria-selected="true">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center">
@@ -65,21 +65,22 @@
                         </div>
 
                         @foreach ($employeeCategories as $employeeCategory)
-                        <div class="mb-3 col-lg-3 col-md-6 col-sm-6">
-                            <div class="text-white border-0 card rounded-1" style="background-color: #0b6476;"
-                                id="profile-tab" data-bs-toggle="tab"
-                                data-bs-target="#profile-{{ $employeeCategory->id }}" type="button" role="tab"
-                                aria-controls="profile" aria-selected="false">
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <h2 class="mb-0 text-white">{{ $employeeCategory->name }}</h2>
-                                        <div class="py-5 px-7 rounded-circle" style="background-color: #247297;">
-                                            <h2 class="mb-0 text-white">{{ $employeeCategory->employee->count() }}</h2>
+                            <div class="mb-3 col-lg-3 col-md-6 col-sm-6">
+                                <div class="text-white border-0 card rounded-1" style="background-color: #0b6476;"
+                                    id="profile-tab" data-bs-toggle="tab"
+                                    data-bs-target="#profile-{{ $employeeCategory->id }}" type="button" role="tab"
+                                    aria-controls="profile" aria-selected="false">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h2 class="mb-0 text-white">{{ $employeeCategory->name }}</h2>
+                                            <div class="py-5 px-7 rounded-circle" style="background-color: #247297;">
+                                                <h2 class="mb-0 text-white">{{ $employeeCategory->employee->count() }}
+                                                </h2>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
 
@@ -90,24 +91,28 @@
                         <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="col-lg-12">
                                 <div class="card">
-                                    <div class="py-5 card-header align-items-center w-100" style="background-color: #0b6476;">
+                                    <div class="py-5 card-header align-items-center w-100"
+                                        style="background-color: #0b6476;">
                                         <div class="d-flex justify-content-between align-items-center w-100">
                                             <h6 class="mb-0 text-center text-white">All Employee</h6>
                                             <div class="">
-                                                <a href="{{ route('employee-category.index') }}" class="bg-white border btn navigation_btn btn-sm">
+                                                <a href="{{ route('employee-category.index') }}"
+                                                    class="bg-white border btn navigation_btn btn-sm">
                                                     <div class=" d-flex align-items-center">
                                                         <i class="fa-solid fa-nfc-magnifying-glass me-1"></i>
                                                         <span>Employee Category</span>
                                                     </div>
                                                 </a>
-                                                <a href="{{ route('employee-department.index') }}" class="bg-white border btn navigation_btn btn-sm">
+                                                <a href="{{ route('employee-department.index') }}"
+                                                    class="bg-white border btn navigation_btn btn-sm">
                                                     <div class=" d-flex align-items-center">
                                                         <i class="fa-solid fa-nfc-magnifying-glass me-1"></i>
                                                         <span>Department</span>
                                                     </div>
                                                 </a>
-                                                <a href="{{ route('employee-department.index') }}" data-bs-toggle="modal"
-                                                    data-bs-target="#addEmployee" class="bg-white border btn navigation_btn btn-sm">
+                                                <a href="{{ route('employee-department.index') }}"
+                                                    data-bs-toggle="modal" data-bs-target="#addEmployee"
+                                                    class="bg-white border btn navigation_btn btn-sm">
                                                     <div class=" d-flex align-items-center">
                                                         <i class="fa-solid fa-nfc-magnifying-glass me-1"></i>
                                                         <span>Add</span>
@@ -119,7 +124,8 @@
                                     <div class="p-0 card-body">
                                         <div class="table-responsive">
                                             <table class="table text-center table-bordered employeeDT table-hover">
-                                                <thead style="border-bottom: 1px solid #247297; background-color: #eee;">
+                                                <thead
+                                                    style="border-bottom: 1px solid #247297; background-color: #eee;">
                                                     <tr class="fw-bold">
                                                         <th width="5%">SL</th>
                                                         <th width="10%">Image</th>
@@ -133,45 +139,59 @@
                                                 </thead>
                                                 <tbody>
                                                     @if ($employees)
-                                                    @foreach ($employees as $key => $employee)
-                                                    <tr style="border-bottom: 1px solid #eee;">
-                                                        <!-- Serial Number -->
-                                                        <td>{{ ++$key }}</td>
-                                                        <!-- Employee Image -->
-                                                        <td>
-                                                            <img src="{{ !file_exists($employee->photo) ? url('upload/no_image.jpg') : url('upload/admin/' . $employee->photo) }}"
-                                                                alt="" width="40px" height="40px"
-                                                                style="border-radius: 50%">
-                                                        </td>
-                                                        <!-- Employee Name -->
-                                                        <td>{{ $employee->name }}</td>
-                                                        <td>
-                                                            @if ($employee->employeeStatus)
-                                                            {{ $employee->employeeStatus->name }}
-                                                            @else
-                                                            No Job Status Assigned
-                                                            @endif
-                                                        </td>
-                                                        <!-- Employee Email -->
-                                                        <td>{{ $employee->email }}</td>
-                                                        <!-- Employee Designation -->
-                                                        <td>{{ $employee->designation }}</td>
-                                                        <!-- Employee Actions -->
-                                                        <td class="text-center">
-                                                            <a href="javascript:void(0);" class="text-primary"
-                                                                data-bs-target="#editEmployee{{ $employee->id }}"
-                                                                data-bs-toggle="modal" type="button">
-                                                                <i
-                                                                    class="fa-solid fa-pen-to-square dash-icons"></i>
-                                                            </a>
-                                                            <a href="{{ route('employee.destroy', [$employee->id]) }}"
-                                                                class="mx-2 text-danger delete">
-                                                                <i
-                                                                    class="delete fa-solid fa-trash dash-icons"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    @endforeach
+                                                        @foreach ($employees as $key => $employee)
+                                                            <tr style="border-bottom: 1px solid #eee;">
+                                                                <!-- Serial Number -->
+                                                                <td>{{ ++$key }}</td>
+                                                                <!-- Employee Image -->
+                                                                <td>
+                                                                    <img src="{{ !file_exists($employee->photo) ? url('upload/no_image.jpg') : url('upload/admin/' . $employee->photo) }}"
+                                                                        alt="" width="40px" height="40px"
+                                                                        style="border-radius: 50%">
+                                                                </td>
+                                                                <!-- Employee Name -->
+                                                                <td>{{ $employee->name }}</td>
+                                                                <td>
+                                                                    @if ($employee->employeeStatus)
+                                                                        {{ $employee->employeeStatus->name }}
+                                                                    @else
+                                                                        No Job Status Assigned
+                                                                    @endif
+                                                                </td>
+                                                                <!-- Employee Email -->
+                                                                <td>{{ $employee->email }}</td>
+                                                                <!-- Employee Designation -->
+                                                                <td>{{ $employee->designation }}</td>
+                                                                <!-- Employee Actions -->
+                                                                <td class="text-center">
+                                                                    <a href="{{ route('attendance.single.lastMonth', $employee->id) }}"
+                                                                        hover-tooltip="Last month Attendance"
+                                                                        tooltip-position="top"
+                                                                        class="border-bottom-link me-4">
+                                                                        <i
+                                                                            class="fa-solid fa-arrow-up-right-from-square main_color go-icon"></i>
+                                                                    </a>
+                                                                    <a href="{{ route('attendance.single.currentMonth', $employee->id) }}"
+                                                                        hover-tooltip="Current month Attendance"
+                                                                        tooltip-position="top"
+                                                                        class="border-bottom-link me-4">
+                                                                        <i
+                                                                            class="fa-solid fa-arrow-up-right-from-square main_color go-icon"></i>
+                                                                    </a>
+                                                                    <a href="javascript:void(0);" class="text-primary"
+                                                                        data-bs-target="#editEmployee{{ $employee->id }}"
+                                                                        data-bs-toggle="modal" type="button">
+                                                                        <i
+                                                                            class="fa-solid fa-pen-to-square dash-icons"></i>
+                                                                    </a>
+                                                                    <a href="{{ route('employee.destroy', [$employee->id]) }}"
+                                                                        class="mx-2 text-danger delete">
+                                                                        <i
+                                                                            class="delete fa-solid fa-trash dash-icons"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
                                                     @endif
                                                 </tbody>
                                             </table>
@@ -181,79 +201,93 @@
                             </div>
                         </div>
                         @foreach ($employeeCategories as $employeeCategory)
-                        <div class="tab-pane" id="profile-{{ $employeeCategory->id }}" role="tabpanel"
-                            aria-labelledby="home-tab">
-                            <div class="col-lg-12">
-                                <h6 class="p-1 m-0 text-center"
-                                    style="color: #fff; border-bottom: 1px solid #9042fc;background: #9042fc;">
-                                    {{ $employeeCategory->name }} Employee
-                                </h6>
-                                <div class="card ronded-0">
-                                    <div class="p-0 card-body">
-                                        <div class="table-responsive">
-                                            <table class="table text-center employeeDT table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th width="5%">SL</th>
-                                                        <th width="10%">Image</th>
-                                                        <th width="20%">Name</th>
-                                                        <th width="15%">Job Status</th>
-                                                        <th width="20%">Email</th>
-                                                        <th width="15%">Designation</th>
-                                                        {{-- <th width="23%">Department</th> --}}
-                                                        <th width="15%" class="text-center">Actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @if (!empty($employeeCategory->employee))
-                                                    @foreach ($employeeCategory->employee as $key => $employee)
-                                                    <tr>
-                                                        <!-- Serial Number -->
-                                                        <td>{{ ++$key }}</td>
-                                                        <!-- Employee Image -->
-                                                        <td>
-                                                            <img src="{{ !file_exists($employee->photo) ? url('upload/no_image.jpg') : url('upload/admin/' . $employee->photo) }}"
-                                                                alt="" width="40px"
-                                                                height="40px" style="border-radius: 50%">
-                                                        </td>
-                                                        <!-- Employee Name -->
-                                                        <td>{{ $employee->name }}</td>
-                                                        <td>
-                                                            @if ($employee->employeeStatus)
-                                                            {{ $employee->employeeStatus->name }}
-                                                            @else
-                                                            No Job Status Assigned
-                                                            @endif
-                                                        </td>
-                                                        <!-- Employee Email -->
-                                                        <td>{{ $employee->email }}</td>
-                                                        <!-- Employee Designation -->
-                                                        <td>{{ $employee->designation }}</td>
-                                                        <!-- Employee Actions -->
-                                                        <td class="text-center">
-                                                            <a href="javascript:void(0);"
-                                                                class="text-primary"
-                                                                data-bs-target="#editEmployee{{ $employee->id }}"
-                                                                data-bs-toggle="modal" type="button">
-                                                                <i
-                                                                    class="fa-solid fa-pen-to-square dash-icons"></i>
-                                                            </a>
-                                                            <a href="{{ route('employee.destroy', [$employee->id]) }}"
-                                                                class="mx-2 text-danger delete">
-                                                                <i
-                                                                    class="delete fa-solid fa-trash dash-icons"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    @endforeach
-                                                    @endif
-                                                </tbody>
-                                            </table>
+                            <div class="tab-pane" id="profile-{{ $employeeCategory->id }}" role="tabpanel"
+                                aria-labelledby="home-tab">
+                                <div class="col-lg-12">
+                                    <h6 class="p-1 m-0 text-center"
+                                        style="color: #fff; border-bottom: 1px solid #9042fc;background: #9042fc;">
+                                        {{ $employeeCategory->name }} Employee
+                                    </h6>
+                                    <div class="card ronded-0">
+                                        <div class="p-0 card-body">
+                                            <div class="table-responsive">
+                                                <table class="table text-center employeeDT table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th width="5%">SL</th>
+                                                            <th width="10%">Image</th>
+                                                            <th width="20%">Name</th>
+                                                            <th width="15%">Job Status</th>
+                                                            <th width="20%">Email</th>
+                                                            <th width="15%">Designation</th>
+                                                            {{-- <th width="23%">Department</th> --}}
+                                                            <th width="15%" class="text-center">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if (!empty($employeeCategory->employee))
+                                                            @foreach ($employeeCategory->employee as $key => $employee)
+                                                                <tr>
+                                                                    <!-- Serial Number -->
+                                                                    <td>{{ ++$key }}</td>
+                                                                    <!-- Employee Image -->
+                                                                    <td>
+                                                                        <img src="{{ !file_exists($employee->photo) ? url('upload/no_image.jpg') : url('upload/admin/' . $employee->photo) }}"
+                                                                            alt="" width="40px"
+                                                                            height="40px" style="border-radius: 50%">
+                                                                    </td>
+                                                                    <!-- Employee Name -->
+                                                                    <td>{{ $employee->name }}</td>
+                                                                    <td>
+                                                                        @if ($employee->employeeStatus)
+                                                                            {{ $employee->employeeStatus->name }}
+                                                                        @else
+                                                                            No Job Status Assigned
+                                                                        @endif
+                                                                    </td>
+                                                                    <!-- Employee Email -->
+                                                                    <td>{{ $employee->email }}</td>
+                                                                    <!-- Employee Designation -->
+                                                                    <td>{{ $employee->designation }}</td>
+                                                                    <!-- Employee Actions -->
+                                                                    <td class="text-center">
+                                                                        <a href="{{ route('attendance.single.lastMonth', $employee->id) }}"
+                                                                            hover-tooltip="Last month Attendance"
+                                                                            tooltip-position="top"
+                                                                            class="border-bottom-link me-4">
+                                                                            <i
+                                                                                class="fa-solid fa-arrow-up-right-from-square main_color go-icon"></i>
+                                                                        </a>
+                                                                        <a href="{{ route('attendance.single.currentMonth', $employee->id) }}"
+                                                                            hover-tooltip="Current month Attendance"
+                                                                            tooltip-position="top"
+                                                                            class="border-bottom-link me-3">
+                                                                            <i
+                                                                                class="fa-solid fa-arrow-up-right-from-square main_color go-icon"></i>
+                                                                        </a>
+                                                                        <a href="javascript:void(0);"
+                                                                            class="text-primary"
+                                                                            data-bs-target="#editEmployee{{ $employee->id }}"
+                                                                            data-bs-toggle="modal" type="button">
+                                                                            <i
+                                                                                class="fa-solid fa-pen-to-square dash-icons"></i>
+                                                                        </a>
+                                                                        <a href="{{ route('employee.destroy', [$employee->id]) }}"
+                                                                            class="mx-2 text-danger delete">
+                                                                            <i
+                                                                                class="delete fa-solid fa-trash dash-icons"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        @endif
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
                     </div>
                 </div>
@@ -270,43 +304,52 @@
                         </a>
                     </div>
                     <div class="p-5 modal-body">
-                        <form id="myform" method="post" class="needs-validation" action="{{ route('employee.store') }}" enctype="multipart/form-data" novalidate>
+                        <form id="myform" method="post" class="needs-validation"
+                            action="{{ route('employee.store') }}" enctype="multipart/form-data" novalidate>
                             @csrf
                             <div class="p-5 row g-3">
                                 <!-- Full Name -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <label class="form-label star">Full Name</label>
-                                    <input type="text" maxlength="80" class="form-control " placeholder="Enter Employee Name" name="name" value="{{ old('name') }}" required>
+                                    <input type="text" maxlength="80" class="form-control "
+                                        placeholder="Enter Employee Name" name="name" value="{{ old('name') }}"
+                                        required>
                                     <div class="invalid-feedback"> Please Enter Full Name.</div>
                                 </div>
 
                                 <!-- Designation -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <label class="form-label star">Designation</label>
-                                    <input type="text" maxlength="50" class="form-control " placeholder="Enter Employee Designation" name="designation" value="{{ old('designation') }}" required>
+                                    <input type="text" maxlength="50" class="form-control "
+                                        placeholder="Enter Employee Designation" name="designation"
+                                        value="{{ old('designation') }}" required>
                                     <div class="invalid-feedback"> Please Enter Designation.</div>
                                 </div>
 
                                 <!-- Email -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <label class="form-label star">Email</label>
-                                    <input type="email" class="form-control " placeholder="Enter Email ID" name="email" value="{{ old('email') }}" required>
+                                    <input type="email" class="form-control " placeholder="Enter Email ID"
+                                        name="email" value="{{ old('email') }}" required>
                                     <div class="invalid-feedback"> Please Enter Email Address.</div>
                                 </div>
 
                                 <!-- Phone -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <label class="form-label">Phone</label>
-                                    <input type="text" maxlength="15" class="form-control allow_decimal" placeholder="Enter Phone Number" name="phone" value="{{ old('phone') }}">
+                                    <input type="text" maxlength="15" class="form-control allow_decimal"
+                                        placeholder="Enter Phone Number" name="phone" value="{{ old('phone') }}">
                                 </div>
 
                                 <!-- Job Category -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <label class="form-label star">Job Category</label>
-                                    <select name="category_id" class="form-select" data-control="select2" data-placeholder="Select an option" data-hide-search="true" required>
+                                    <select name="category_id" class="form-select" data-control="select2"
+                                        data-placeholder="Select an option" data-hide-search="true" required>
                                         <option value="" disabled selected>Choose Employee Category</option>
                                         @foreach ($employeeCategories as $employeeCategory)
-                                        <option value="{{ $employeeCategory->id }}">{{ $employeeCategory->name }}</option>
+                                            <option value="{{ $employeeCategory->id }}">{{ $employeeCategory->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                     <div class="invalid-feedback"> Please Enter Job Category.</div>
@@ -315,20 +358,25 @@
                                 <!-- Employee Code -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <label class="form-label star">Employee Code (Biometric ID)</label>
-                                    <input type="text" class="form-control allow_decimal" placeholder="Employee Code" name="employee_id" maxlength="15" value="{{ old('employee_id') }}" required>
+                                    <input type="text" class="form-control allow_decimal"
+                                        placeholder="Employee Code" name="employee_id" maxlength="15"
+                                        value="{{ old('employee_id') }}" required>
                                     <div class="invalid-feedback"> Please Enter Employee Code.</div>
                                 </div>
 
                                 <!-- City -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <label class="form-label">City</label>
-                                    <input type="text" maxlength="50" class="form-control " placeholder="Enter City" name="city" value="{{ old('city') }}">
+                                    <input type="text" maxlength="50" class="form-control "
+                                        placeholder="Enter City" name="city" value="{{ old('city') }}">
                                 </div>
 
                                 <!-- Department -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <label class="form-label star">Department</label>
-                                    <select name="department[]" class="form-select" data-control="select2" data-placeholder="Select an option" data-allow-clear="true" multiple="multiple" required>
+                                    <select name="department[]" class="form-select" data-control="select2"
+                                        data-placeholder="Select an option" data-allow-clear="true"
+                                        multiple="multiple" required>
                                         <option value="admin">Admin</option>
                                         <option value="business">Business</option>
                                         <option value="accounts">Accounts</option>
@@ -359,7 +407,7 @@
                                     <select name="supervisor_id" class="form-select form-select-sm" required>
                                         <option value="" disabled selected>Choose Supervisor</option>
                                         @foreach ($employees as $supervisor)
-                                        <option value="{{ $supervisor->id }}">{{ $supervisor->name }}</option>
+                                            <option value="{{ $supervisor->id }}">{{ $supervisor->name }}</option>
                                         @endforeach
                                     </select>
                                     <div class="invalid-feedback"> Please Enter Supervisor.</div>
@@ -387,7 +435,8 @@
                                 <!-- Confirm Password -->
                                 <div class="col-12 col-md-6 col-lg-6">
                                     <label class="form-label star">Confirm Password</label>
-                                    <input type="password" class="form-control " id="confirm_password" name="confirm_password">
+                                    <input type="password" class="form-control " id="confirm_password"
+                                        name="confirm_password">
                                     <div id="message"></div>
                                     <div class="invalid-feedback"> Please Enter Confirm Password.</div>
                                 </div>
@@ -404,216 +453,211 @@
             </div>
         </div>
         @foreach ($employees as $employee)
-        <div id="editEmployee{{ $employee->id }}" class="modal fade" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered modal-xl">
-                <div class="modal-content">
-                    <div class="p-5 px-4 text-white modal-header" style="background-color: #247297">
-                        <h2 class="text-white">Edit Employee</h2>
-                        <a type="button" data-bs-dismiss="modal" class="px-0 bg-transparent pe-4">
-                            <i class="text-white fas fa-xmark"></i>
-                        </a>
-                    </div>
-                    <div class="p-5 modal-body">
-                        <form id="myform" method="post"
-                            action="{{ route('employee.update', $employee->id) }}" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-                            <div class="p-5 row g-3">
-                                <div class="col-lg-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="basicpill-firstname-input">Full
-                                            Name</label>
-                                        <input type="text" maxlength="80"
-                                            class="form-control "
-                                            placeholder="Enter Employees Name" name="name"
-                                            value="{{ $employee->name }}" />
+            <div id="editEmployee{{ $employee->id }}" class="modal fade" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content">
+                        <div class="p-5 px-4 text-white modal-header" style="background-color: #247297">
+                            <h2 class="text-white">Edit Employee</h2>
+                            <a type="button" data-bs-dismiss="modal" class="px-0 bg-transparent pe-4">
+                                <i class="text-white fas fa-xmark"></i>
+                            </a>
+                        </div>
+                        <div class="p-5 modal-body">
+                            <form id="myform" method="post"
+                                action="{{ route('employee.update', $employee->id) }}" enctype="multipart/form-data">
+                                @csrf
+                                @method('PUT')
+                                <div class="p-5 row g-3">
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="basicpill-firstname-input">Full
+                                                Name</label>
+                                            <input type="text" maxlength="80" class="form-control "
+                                                placeholder="Enter Employees Name" name="name"
+                                                value="{{ $employee->name }}" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="mb-3">
-                                        <label class="form-label"
-                                            for="basicpill-email-input">Designation</label>
-                                        <input maxlength="50" type="text"
-                                            class="form-control "
-                                            placeholder="Enter Employees Designation" name="designation"
-                                            value="{{ $employee->designation }}" />
+                                    <div class="col-lg-3">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="basicpill-email-input">Designation</label>
+                                            <input maxlength="50" type="text" class="form-control "
+                                                placeholder="Enter Employees Designation" name="designation"
+                                                value="{{ $employee->designation }}" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="basicpill-email-input">Email</label>
-                                        <input type="email" class="form-control "
-                                            placeholder="Enter Email ID" name="email"
-                                            value="{{ $employee->email }}" />
+                                    <div class="col-lg-5">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="basicpill-email-input">Email</label>
+                                            <input type="email" class="form-control " placeholder="Enter Email ID"
+                                                name="email" value="{{ $employee->email }}" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="basicpill-phoneno-input">Phone</label>
-                                        <input maxlength="15" type="text"
-                                            class="form-control allow_decimal"
-                                            placeholder="Enter Phone Number" name="phone"
-                                            value="{{ $employee->phone }}" />
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="basicpill-phoneno-input">Phone</label>
+                                            <input maxlength="15" type="text" class="form-control allow_decimal"
+                                                placeholder="Enter Phone Number" name="phone"
+                                                value="{{ $employee->phone }}" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="mb-4">
-                                        <label class="form-label" for="basicpill-email-input">Job
-                                            Category</label>
-                                        <select name="category_id" class="form-select" data-control="select2" data-placeholder="Select an option" data-allow-clear="true">
-                                            <option></option>
-                                            @foreach ($employeeCategories as $employeeCategory)
-                                            <option value="{{ $employeeCategory->id }}"
-                                                @selected($employee->category_id == $employeeCategory->id)>
-                                                {{ $employeeCategory->name }}
-                                            </option>
-                                            @endforeach
-                                        </select>
+                                    <div class="col-lg-4">
+                                        <div class="mb-4">
+                                            <label class="form-label" for="basicpill-email-input">Job
+                                                Category</label>
+                                            <select name="category_id" class="form-select" data-control="select2"
+                                                data-placeholder="Select an option" data-allow-clear="true">
+                                                <option></option>
+                                                @foreach ($employeeCategories as $employeeCategory)
+                                                    <option value="{{ $employeeCategory->id }}"
+                                                        @selected($employee->category_id == $employeeCategory->id)>
+                                                        {{ $employeeCategory->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="mb-3">
-                                        <label class="form-label star" for="basicpill-phoneno-input">Employee
-                                            Code (Biometric ID)
-                                        </label>
-                                        <input type="text"
-                                            class="form-control allow_decimal"
-                                            placeholder="Employee Code (Biometric ID)" name="employee_id"
-                                            maxlength="15" value="{{ $employee->employee_id }}" required />
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label star" for="basicpill-phoneno-input">Employee
+                                                Code (Biometric ID)
+                                            </label>
+                                            <input type="text" class="form-control allow_decimal"
+                                                placeholder="Employee Code (Biometric ID)" name="employee_id"
+                                                maxlength="15" value="{{ $employee->employee_id }}" required />
+                                        </div>
+                                        <div class="invalid-feedback"> Please Enter Employee Code.</div>
                                     </div>
-                                    <div class="invalid-feedback"> Please Enter Employee Code.</div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="basicpill-firstname-input">City</label>
-                                        <input type="text" maxlength="50"
-                                            class="form-control " placeholder="Enter City"
-                                            name="city" value="{{ $employee->city }}" />
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="basicpill-firstname-input">City</label>
+                                            <input type="text" maxlength="50" class="form-control "
+                                                placeholder="Enter City" name="city"
+                                                value="{{ $employee->city }}" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="mb-3">
-                                        <label class="form-label star"
-                                            for="basicpill-firstname-input">Department</label>
-                                        <select name="department[]" class="form-select form-select-solid" data-control="select2" data-placeholder="Select an option" data-allow-clear="true" multiple="multiple" required>
-                                            @php
-                                            $employeeIds = isset($employee->department)
-                                            ? json_decode($employee->department, true)
-                                            : [];
-                                            @endphp
-                                            <option value="admin" @selected(is_array($employeeIds) && in_array('admin', $employeeIds))>Admin</option>
-                                            <option value="business" @selected(is_array($employeeIds) && in_array('business', $employeeIds))>Business
-                                            </option>
-                                            <option value="accounts" @selected(is_array($employeeIds) && in_array('accounts', $employeeIds))>Accounts
-                                            </option>
-                                            <option value="hr" @selected(is_array($employeeIds) && in_array('hr', $employeeIds))>HR</option>
-                                            <option value="site" @selected(is_array($employeeIds) && in_array('site', $employeeIds))>Site & Contents
-                                            </option>
-                                            <option value="logistics" @selected(is_array($employeeIds) && in_array('logistics', $employeeIds))>Logistics
-                                            </option>
-                                            <option value="support" @selected(is_array($employeeIds) && in_array('support', $employeeIds))>Support
-                                            </option>
-                                        </select>
-                                        <div class="invalid-feedback"> Please Enter Department.</div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label star"
+                                                for="basicpill-firstname-input">Department</label>
+                                            <select name="department[]" class="form-select form-select-solid"
+                                                data-control="select2" data-placeholder="Select an option"
+                                                data-allow-clear="true" multiple="multiple" required>
+                                                @php
+                                                    $employeeIds = isset($employee->department)
+                                                        ? json_decode($employee->department, true)
+                                                        : [];
+                                                @endphp
+                                                <option value="admin" @selected(is_array($employeeIds) && in_array('admin', $employeeIds))>Admin</option>
+                                                <option value="business" @selected(is_array($employeeIds) && in_array('business', $employeeIds))>Business
+                                                </option>
+                                                <option value="accounts" @selected(is_array($employeeIds) && in_array('accounts', $employeeIds))>Accounts
+                                                </option>
+                                                <option value="hr" @selected(is_array($employeeIds) && in_array('hr', $employeeIds))>HR</option>
+                                                <option value="site" @selected(is_array($employeeIds) && in_array('site', $employeeIds))>Site & Contents
+                                                </option>
+                                                <option value="logistics" @selected(is_array($employeeIds) && in_array('logistics', $employeeIds))>Logistics
+                                                </option>
+                                                <option value="support" @selected(is_array($employeeIds) && in_array('support', $employeeIds))>Support
+                                                </option>
+                                            </select>
+                                            <div class="invalid-feedback"> Please Enter Department.</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="basicpill-firstname-input">Role</label>
-                                        <select name="role" class="form-select" data-control="select2" data-placeholder="Select an option" data-allow-clear="true" required>
-                                            <option></option>
-                                            <option value="admin" @selected($employee->role == 'admin')>Admin</option>
-                                            <option value="manager" @selected($employee->role == 'manager')>Manager
-                                            </option>
-                                            <option value="others" @selected($employee->role == 'others')>Others
-                                            </option>
-                                            <option value="developer" @selected($employee->role == 'developer')>Support
-                                                Developer</option>
-                                        </select>
-                                        <div class="invalid-feedback"> Please Enter Role.</div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="basicpill-firstname-input">Role</label>
+                                            <select name="role" class="form-select" data-control="select2"
+                                                data-placeholder="Select an option" data-allow-clear="true" required>
+                                                <option></option>
+                                                <option value="admin" @selected($employee->role == 'admin')>Admin</option>
+                                                <option value="manager" @selected($employee->role == 'manager')>Manager
+                                                </option>
+                                                <option value="others" @selected($employee->role == 'others')>Others
+                                                </option>
+                                                <option value="developer" @selected($employee->role == 'developer')>Support
+                                                    Developer</option>
+                                            </select>
+                                            <div class="invalid-feedback"> Please Enter Role.</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="mb-4">
-                                        <label class="form-label required"
-                                            for="basicpill-firstname-input">Supervisor</label>
-                                        <select name="supervisor_id"
-                                            class="form-control select" data-control="select2"
-                                            data-placeholder="Select a Supervisor" data-allow-clear="true"
-                                            required>
-                                            <option></option>
-                                            @foreach ($employees as $supervisor)
-                                            <option value="{{ $supervisor->id }}"
-                                                @selected($employee->supervisor_id == $supervisor->id)>
-                                                {{ $supervisor->name }}
-                                            </option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback"> Please Enter Supervisor.</div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-4">
+                                            <label class="form-label required"
+                                                for="basicpill-firstname-input">Supervisor</label>
+                                            <select name="supervisor_id" class="form-control select"
+                                                data-control="select2" data-placeholder="Select a Supervisor"
+                                                data-allow-clear="true" required>
+                                                <option></option>
+                                                @foreach ($employees as $supervisor)
+                                                    <option value="{{ $supervisor->id }}"
+                                                        @selected($employee->supervisor_id == $supervisor->id)>
+                                                        {{ $supervisor->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <div class="invalid-feedback"> Please Enter Supervisor.</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="basicpill-firstname-input">Profile
-                                            Picture</label>
-                                        <div class="row">
-                                            <div class="col-10">
-                                                <input id="image" type="file"
-                                                    class="form-control "
-                                                    id="basicpill-firstname-input" name="photo" />
-                                            </div>
-                                            <div class="col-2">
-                                                <img id="showImage"
-                                                    src="{{ !file_exists($employee->photo) ? url('upload/no_image.jpg') : url('storage/' . $employee->photo) }}"
-                                                    alt="Admin" style="width:40px; height: 40px;" />
+                                    <div class="col-lg-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="basicpill-firstname-input">Profile
+                                                Picture</label>
+                                            <div class="row">
+                                                <div class="col-10">
+                                                    <input id="image" type="file" class="form-control "
+                                                        id="basicpill-firstname-input" name="photo" />
+                                                </div>
+                                                <div class="col-2">
+                                                    <img id="showImage"
+                                                        src="{{ !file_exists($employee->photo) ? url('upload/no_image.jpg') : url('storage/' . $employee->photo) }}"
+                                                        alt="Admin" style="width:40px; height: 40px;" />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="mb-4">
-                                        <label class="form-label" for="basicpill-firstname-input">Sign</label>
-                                        <div class="row">
-                                            <div class="col-10">
-                                                <input id="image" type="file"
-                                                    class="form-control "
-                                                    id="basicpill-firstname-input" name="sign" />
+                                    <div class="col-lg-4">
+                                        <div class="mb-4">
+                                            <label class="form-label" for="basicpill-firstname-input">Sign</label>
+                                            <div class="row">
+                                                <div class="col-10">
+                                                    <input id="image" type="file" class="form-control "
+                                                        id="basicpill-firstname-input" name="sign" />
+                                                </div>
+                                                <div class="col-2">
+                                                    <img id="showImage"
+                                                        src="{{ !file_exists($employee->sign) ? url('upload/no_image.jpg') : url('storage/' . $employee->photo) }}"
+                                                        alt="Sign" style="width:40px; height: 40px;" />
+                                                </div>
                                             </div>
-                                            <div class="col-2">
-                                                <img id="showImage"
-                                                    src="{{ !file_exists($employee->sign) ? url('upload/no_image.jpg') : url('storage/' . $employee->photo) }}"
-                                                    alt="Sign" style="width:40px; height: 40px;" />
-                                            </div>
-                                        </div>
 
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="basicpill-firstname-input">Password</label>
+                                            <input type="password" class="form-control " id="password"
+                                                name="password">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="basicpill-firstname-input">Confirm
+                                                Password</label>
+                                            <input type="password" class="form-control " id="confirm_password"
+                                                name="confirm_password">
+                                            <div id="message"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-5 col-12 text-end">
+                                        <button type="submit" class="submit_btn btn btn-primary">Update
+                                            Employee</button>
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label"
-                                            for="basicpill-firstname-input">Password</label>
-                                        <input type="password" class="form-control "
-                                            id="password" name="password">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="basicpill-firstname-input">Confirm
-                                            Password</label>
-                                        <input type="password" class="form-control "
-                                            id="confirm_password" name="confirm_password">
-                                        <div id="message"></div>
-                                    </div>
-                                </div>
-                                <div class="mt-5 col-12 text-end">
-                                    <button type="submit" class="submit_btn btn btn-primary">Update Employee</button>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         @endforeach
     </div>
 </x-admin-app-layout>

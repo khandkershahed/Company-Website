@@ -72,7 +72,7 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <form id="stepperForm" action="{{ route('rfqCreate') }}" method="post"
+                                            <form id="stepperForm" action="{{ route('deal.store') }}" method="post"
                                                 enctype="multipart/form-data">
                                                 @csrf
                                                 <!-- ✅ Repeater goes here as you said -->
@@ -702,12 +702,13 @@
 
                                     <!-- Card Body -->
                                     <div class="card-body">
-                                        <form action="" method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('admin.quick.deal.store') }}" method="post" enctype="multipart/form-data">
+                                            @csrf
                                             <div class="row gx-3">
                                                 <!-- Client Name -->
                                                 <div class="mb-3 col-12">
                                                     <label for="clientName" class="form-label">Client Name</label>
-                                                    <input type="text" class="form-control" id="clientName" name="client_name" required>
+                                                    <input type="text" class="form-control" id="clientName" name="name" required>
                                                 </div>
                                                 <!-- Company Name -->
                                                 <div class="mb-3 col-4">
@@ -717,13 +718,13 @@
                                                 <!-- Client Email -->
                                                 <div class="mb-3 col-4">
                                                     <label for="clientEmail" class="form-label">Client Email</label>
-                                                    <input type="email" class="form-control" id="clientEmail" name="client_email" required>
+                                                    <input type="email" class="form-control" id="clientEmail" name="email" required>
                                                 </div>
 
                                                 <!-- Client Phone -->
                                                 <div class="mb-3 col-4">
                                                     <label for="clientPhone" class="form-label">Client Phone</label>
-                                                    <input type="tel" class="form-control" id="clientPhone" name="client_phone" required>
+                                                    <input type="tel" class="form-control" id="clientPhone" name="phone" required>
                                                 </div>
 
                                                 <!-- Image Upload -->
@@ -735,7 +736,7 @@
                                                 <!-- Text Box -->
                                                 <div class="mb-3 col-12">
                                                     <label for="clientMessage" class="form-label">Message / Notes</label>
-                                                    <textarea class="form-control" id="clientMessage" name="client_message" rows="4"></textarea>
+                                                    <textarea class="form-control" id="clientMessage" name="message" rows="4"></textarea>
                                                 </div>
 
                                                 <!-- Submit Button -->

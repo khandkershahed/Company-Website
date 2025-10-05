@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\EmployeeAdd as MailEmployeeAdd;
 use App\Models\Admin\EmployeeCategory;
+use Illuminate\Support\Facades\Session as TosterSession;
 
 class EmployeeController extends Controller
 {

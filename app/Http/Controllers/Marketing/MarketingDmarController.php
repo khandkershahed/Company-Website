@@ -18,8 +18,9 @@ class MarketingDmarController extends Controller
      */
     public function index()
     {
-        $data['MarketingDmars'] = MarketingDmar::get();
-        return view('admin.pages.MarketingDmar.all', $data);
+        // $data['MarketingDmars'] = MarketingDmar::get();
+        // return view('metronic.pages.marketingDmar.index', $data);
+        return view('metronic.pages.marketingDmar.index');
     }
 
     /**

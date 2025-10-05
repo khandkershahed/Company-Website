@@ -567,7 +567,7 @@ class RFQController extends Controller
                 })->whereIn('role', ['admin', 'manager'])
                     ->pluck('email')
                     ->toArray();
-
+                Mail::to($request->email)->send(new RFQNotificationClientMail($data));
                 foreach ($user_emails as $email) {
                     Mail::to($email)->send(new RFQNotificationAdminMail($data, $rfq->rfq_code));
                 }

@@ -192,7 +192,7 @@ Route::get('/sales-forecast/filter', [SalesForecastController::class, 'filterFor
     });
 
     Route::controller(DealController::class)->group(function () {
-        Route::post('/quick/deal/create', 'quickDealCreate')->name('quick.deal.create');
+        Route::post('/quick/deal/store', 'quickDealStore')->name('quick.deal.store');
     });
 });
 

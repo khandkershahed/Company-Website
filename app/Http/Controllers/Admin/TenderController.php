@@ -20,7 +20,7 @@ class TenderController extends Controller
      */
     public function create()
     {
-        //
+        return view('metronic.pages.tender.create');
     }
 
     /**
