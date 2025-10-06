@@ -77,6 +77,11 @@
                                     'routes' => ['admin.marketing-emar.index'],
                                     'route' => 'admin.marketing-emar.index',
                                 ],
+                                [
+                                    'title' => 'Marketing Plan',
+                                    'routes' => ['admin.marketing-plan.index'],
+                                    'route' => 'admin.marketing-plan.index',
+                                ],
                             ],
                         ];
                     }

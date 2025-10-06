@@ -1,23 +1,8 @@
 <!-- RFQ Dashboard -->
- <x-admin-app-layout :title="'RFQ Dashboard'">
+<x-admin-app-layout :title="'RFQ Dashboard'">
     @include('metronic.pages.rfq.partials.rfq_css')
     <!-- Main Content Start -->
-    @php
-    $months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-    ];
-    @endphp
+   
     <div class="mb-5 row">
         <div class="col-lg-4 ps-3 ps-lg-0">
             <div class="mb-3 shadow-none card rfq-box mb-lg-0">
@@ -32,18 +17,18 @@
                                         <span class="pt-4 mb-2 text-gray-500 fw-semibold d-block fs-6 text-start">
                                             This Month: {{ $this_month }}
                                             @if ($last_month > 0)
-                                            @if ($percentage_change > 0)
-                                            <span class="text-success ms-2">
-                                                ▲ {{ $percentage_change }}%
-                                            </span>
-                                            @elseif ($percentage_change < 0)
-                                                <span class="text-danger ms-2">
-                                                ▼ {{ abs($percentage_change) }}%
-                                        </span>
-                                        @else
-                                        <span class="text-muted ms-2">—</span>
-                                        @endif
-                                        @endif
+                                                @if ($percentage_change > 0)
+                                                    <span class="text-success ms-2">
+                                                        ▲ {{ $percentage_change }}%
+                                                    </span>
+                                                @elseif ($percentage_change < 0)
+                                                    <span class="text-danger ms-2">
+                                                        ▼ {{ abs($percentage_change) }}%
+                                                    </span>
+                                                @else
+                                                    <span class="text-muted ms-2">—</span>
+                                                @endif
+                                            @endif
                                         </span>
                                         <span class="pt-4 text-gray-500 fw-semibold d-block fs-6 text-start">
                                             Last Month: {{ $last_month }}
@@ -125,19 +110,19 @@
                 <div class="px-3 pt-2 rfq-status-card w-100">
                     <div id="countryList">
                         @forelse ($countryWiseRfqs as $country)
-                        <div class="country-wrapper">
-                            <div class="d-flex align-items-center justify-content-between country-item">
-                                <div class="d-flex align-items-center">
-                                    <h5 class="mb-0 fw-normal ps-3">{{ $country->country }}</h5>
+                            <div class="country-wrapper">
+                                <div class="d-flex align-items-center justify-content-between country-item">
+                                    <div class="d-flex align-items-center">
+                                        <h5 class="mb-0 fw-normal ps-3">{{ $country->country }}</h5>
+                                    </div>
+                                    <div>
+                                        <span>{{ $country->total }}</span>
+                                    </div>
                                 </div>
-                                <div>
-                                    <span>{{ $country->total }}</span>
-                                </div>
+                                <hr>
                             </div>
-                            <hr>
-                        </div>
                         @empty
-                        <p class="text-center text-muted">No countries found.</p>
+                            <p class="text-center text-muted">No countries found.</p>
                         @endforelse
                     </div>
                     {{-- Hidden message for "No results found" --}}
@@ -197,7 +182,8 @@
                                 </div>
                                 <!-- Search -->
                                 <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                                    <i class="fa-solid fa-magnifying-glass search-icons fs-5 position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
+                                    <i
+                                        class="fa-solid fa-magnifying-glass search-icons fs-5 position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
                                     <input type="text" id="searchQuery" data-kt-table-widget-4="search"
                                         class="form-control ps-10 pe-30 searchQuery" placeholder="Search" />
                                     <button type="button"
@@ -237,7 +223,7 @@
                                     {{ \Carbon\Carbon::now()->format('F') }}
                                 </option>
                                 @foreach ($months as $month)
-                                <option value="{{ $month }}">{{ $month }}</option>
+                                    <option value="{{ $month }}">{{ $month }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -245,13 +231,13 @@
                         <!-- Link Button -->
                         <div class="text-center flex-grow-1 min-w-100 min-w-md-auto">
                             @if (!Route::is('admin.archived.rfq'))
-                            <a href="{{ route('admin.archived.rfq') }}" class="btn btn-outline-primary w-100">
-                                Archived <i class="fas fa-arrow-right"></i>
-                            </a>
+                                <a href="{{ route('admin.archived.rfq') }}" class="btn btn-outline-primary w-100">
+                                    Archived <i class="fas fa-arrow-right"></i>
+                                </a>
                             @else
-                            <a href="{{ route('admin.rfq.index') }}" class="btn btn-outline-primary w-100">
-                                Recent RFQs <i class="fas fa-arrow-right"></i>
-                            </a>
+                                <a href="{{ route('admin.rfq.index') }}" class="btn btn-outline-primary w-100">
+                                    Recent RFQs <i class="fas fa-arrow-right"></i>
+                                </a>
                             @endif
                         </div>
                     </div>
@@ -266,7 +252,7 @@
         </div>
     </div>
     @include('metronic.pages.rfq.partials.assign-modal')
-@push('scripts')
+    @push('scripts')
         <script>
             $(".data_table").DataTable({
                 language: {
@@ -561,7 +547,6 @@
                 });
             });
         </script>
-        
     @endpush
 </x-admin-app-layout>
 <!-- RFQ Dashboard End -->

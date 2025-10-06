@@ -18,21 +18,7 @@
         }
     </style>
     <!-- Main Content Start -->
-    @php
-        $months = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December',
-        ];
+    
     @endphp
     <div class="row gx-8 gx-xl-10">
         <div class="mb-5 row">

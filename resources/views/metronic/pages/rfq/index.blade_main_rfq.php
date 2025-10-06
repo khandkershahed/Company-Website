@@ -2,22 +2,7 @@
  <x-admin-app-layout :title="'RFQ Dashboard'">
     @include('metronic.pages.rfq.partials.rfq_css')
     <!-- Main Content Start -->
-    @php
-    $months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-    ];
-    @endphp
+    
     <div class="mb-5 row">
         <div class="col-lg-4 ps-0">
             <div class="shadow-none card rfq-box">
@@ -561,7 +546,7 @@
                 });
             });
         </script>
-        
+
     @endpush
 </x-admin-app-layout>
 <!-- RFQ Dashboard End -->
