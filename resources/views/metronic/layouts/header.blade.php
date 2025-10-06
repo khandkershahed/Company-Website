@@ -85,6 +85,9 @@
                         <a class="btn btn-md btn-info me-4" href="{{ route('deal.index') }}">Deals List</a>
                         <a class="btn btn-md btn-info me-3" href="{{ route('admin.sales.forecast') }}">Forecast</a>
                     @endif
+                    @if (Route::currentRouteName() == 'admin.marketing-plan.index')
+                        <a class="btn btn-md btn-info me-4" href="{{ route('admin.marketing-plan.create') }}">Add Marketing Plan</a>
+                    @endif
                     {{-- <div class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px"
                         data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
                         <span class="svg-icon svg-icon-1">

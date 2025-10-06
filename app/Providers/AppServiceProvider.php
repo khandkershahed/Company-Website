@@ -140,7 +140,7 @@ class AppServiceProvider extends ServiceProvider
                     'header_features',
                     $cacheDuration,
                     fn() =>
-                    Feature::inRandomOrder()->limit(4)->get(['id','slug', 'title', 'image', 'created_at', 'badge'])
+                    Feature::inRandomOrder()->limit(4)->get(['id', 'slug', 'title', 'image', 'created_at', 'badge'])
                 ));
             }
 
@@ -161,6 +161,12 @@ class AppServiceProvider extends ServiceProvider
                     TechGlossy::where('featured', '1')->inRandomOrder()->first(['id', 'badge', 'title', 'image', 'created_at', 'created_by'])
                 ));
             }
+
+            $months = [
+                'January','February','March','April','May','June','July','August','September','October','November','December',
+            ];
+
+            View::share('months', $months);
 
             // Global view data
             if ($existingTables->has('users') && $existingTables->has('products')) {

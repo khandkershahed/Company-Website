@@ -128,6 +128,7 @@ use App\Http\Controllers\Admin\PortfolioChooseUsController;
 use App\Http\Controllers\FormBulider\FormBuilderController;
 use App\Http\Controllers\Marketing\MarketingDmarController;
 use App\Http\Controllers\Marketing\MarketingEmarController;
+use App\Http\Controllers\Marketing\MarketingPlanController;
 use App\Http\Controllers\Admin\CommercialDocumentController;
 use App\Http\Controllers\Admin\EmployeeDepartmentController;
 use App\Http\Controllers\Admin\FrontendNavbarMenuController;
@@ -158,8 +159,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
             'contact'        => ContactController::class,
             'tender'         => TenderController::class,
             'marketing-emar' => MarketingEmarController::class,
+            'marketing-plan' => MarketingPlanController::class,
         ],
-        ['except' => ['show', 'create']]
+        ['except' => ['show']]
     );
     Route::get('/sales-forecast/filter', [SalesForecastController::class, 'filterForecast'])->name('forecast.filter');
 

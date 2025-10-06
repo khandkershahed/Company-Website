@@ -1,20 +1,5 @@
 <x-admin-app-layout :title="'Sales Report'">
-    @php
-        $months = [
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December',
-        ];
-    @endphp
+    
     <div class="px-0 container-fluid">
         <div class="mb-5 row">
             <div class="col-xl-3 ps-0">
