@@ -84,6 +84,11 @@
     .rfq-icon img {
         width: 28px;
     }
+    .rfq-box {
+        height: 160px;
+    }
+    .rfq-status {
+    height: 182px !important;}
 }
 
 .nav-line-tabs .nav-item .bypass-nav.active,
