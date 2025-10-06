@@ -183,7 +183,7 @@
                                 <!-- Search -->
                                 <div class="col-12 col-sm-6 col-md-6 col-lg-3">
                                     <i
-                                        class="fa-solid fa-magnifying-glass search-icons fs-5 position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
+                                        class="fa-solid fa-magnifying-glass search-icons fs-5 position-absolute translate-middle-y ms-3 text-muted"></i>
                                     <input type="text" id="searchQuery" data-kt-table-widget-4="search"
                                         class="form-control ps-10 pe-30 searchQuery" placeholder="Search" />
                                     <button type="button"
