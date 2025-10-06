@@ -52,7 +52,7 @@
 
                 <!-- Responsible / Submission -->
                 <div class="tab-pane fade" id="responsible" role="tabpanel" aria-labelledby="responsible-tab">
-                    <div class="mt-3 row g-3">
+                    <div class="row g-3">
                         <div class="col-md-4">
                             <label class="form-label fw-semibold">Responsible Person</label>
                             <select name="responsible_person_id" class="form-select" data-control="select2">
@@ -79,8 +79,8 @@
 
                 <!-- Action & Status -->
                 <div class="tab-pane fade" id="action" role="tabpanel" aria-labelledby="action-tab">
-                    <div class="mt-3 row g-3">
-                        <div class="col-md-8">
+                    <div class="row g-3">
+                        <div class="col-md-6">
                             <label class="form-label fw-semibold">Action</label>
                             <select name="action" class="form-select" data-control="select2">
                                 @foreach (['Talk Today', 'Talk in this Week', 'Talk Urgently', 'Talk with Partner', 'Email Marketing', 'Start Relation', 'Important Client', 'Meet This Week', 'Meet Next Week', 'Attend Pre Bid Meet', 'Meet Tomorrow', 'Purchase Schedule', 'Get More Details', 'Get ToR / SoW', 'NO'] as $action)
@@ -88,7 +88,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <label class="form-label fw-semibold">Participate</label>
                             <select name="participate" class="form-select" data-control="select2">
                                 @foreach (['Yes', 'No', 'May Be', 'Need Discussion'] as $opt)
@@ -96,7 +96,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label class="form-label fw-semibold">Submitted</label>
                             <select name="submitted" class="form-select" data-control="select2">
                                 @foreach (['Yes', 'No'] as $opt)
@@ -104,7 +104,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label class="form-label fw-semibold">Tender Status</label>
                             <select name="tender_status" class="form-select" data-control="select2">
                                 {{-- @foreach (['Live', 'Fail', 'Re Tender', 'Time Over', 'Technical Eval', 'Lost', 'Not Lowest', 'Probability', 'Won', 'Submitted', 'Participating'] as $status) --}}
@@ -113,7 +113,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label class="form-label fw-semibold">Purchase</label>
                             <select name="purchase" class="form-select" data-control="select2">
                                 @foreach (['Yes', 'No', 'May Be'] as $opt)
@@ -126,7 +126,7 @@
 
                 <!-- Tenderer / Reference -->
                 <div class="tab-pane fade" id="tenderer" role="tabpanel" aria-labelledby="tenderer-tab">
-                    <div class="mt-3 row g-3">
+                    <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Tenderer</label>
                             <input type="text" name="tenderer" class="form-control" value="{{ old('tenderer', $tender->tenderer ?? '') }}">
@@ -140,8 +140,8 @@
 
                 <!-- Submission Details -->
                 <div class="tab-pane fade" id="submission" role="tabpanel" aria-labelledby="submission-tab">
-                    <div class="mt-3 row g-3">
-                        <div class="col-md-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
                             <label class="form-label fw-semibold">Mode of Submission</label>
                             <select name="mode_of_submission" class="form-select" data-control="select2">
                                 @foreach (['Hardcopy', 'Email', 'Online'] as $opt)
@@ -149,7 +149,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label class="form-label fw-semibold">Hardcopy Reference Id</label>
                             <input type="text" name="hardcopy_reference_id" class="form-control" value="{{ old('hardcopy_reference_id', $tender->hardcopy_reference_id ?? '') }}">
                         </div>
@@ -165,11 +165,11 @@
                             <label class="form-label fw-semibold">Pre-Bid Meeting</label>
                             <input type="text" name="pre_bid_meeting" class="form-control" value="{{ old('pre_bid_meeting', $tender->pre_bid_meeting ?? '') }}">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label class="form-label fw-semibold">Schedule Value (Tk)</label>
                             <input type="number" step="0.01" name="schedule_value_tk" class="form-control" value="{{ old('schedule_value_tk', $tender->schedule_value_tk ?? '') }}">
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <label class="form-label fw-semibold">Security (Tk)</label>
                             <input type="number" step="0.01" name="security" class="form-control" value="{{ old('security', $tender->security ?? '') }}">
                         </div>
@@ -184,7 +184,7 @@
 
                 <!-- Client Details -->
                 <div class="tab-pane fade" id="client" role="tabpanel" aria-labelledby="client-tab">
-                    <div class="mt-3 row g-3">
+                    <div class="row g-3">
                         <div class="col-md-4">
                             <label class="form-label fw-semibold">Client Name</label>
                             <input type="text" name="client_name" class="form-control" value="{{ old('client_name', $tender->client_name ?? '') }}">
@@ -207,25 +207,25 @@
                         </div>
                         <div class="col-12">
                             <label class="form-label fw-semibold">Contact Address</label>
-                            <textarea name="contact_address" class="form-control" rows="4">{{ old('contact_address', $tender->contact_address ?? '') }}</textarea>
+                            <textarea name="contact_address" class="form-control" rows="2">{{ old('contact_address', $tender->contact_address ?? '') }}</textarea>
                         </div>
                     </div>
                 </div>
 
                 <!-- Comments -->
                 <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-                    <div class="mt-3 row g-3">
-                        <div class="col-md-4">
-                            <label class="form-label fw-semibold">Comments by Manager</label>
-                            <textarea name="comments_by_manager" class="form-control" rows="4">{{ old('comments_by_manager', $tender->comments_by_manager ?? '') }}</textarea>
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label fw-semibold">Comments by MD</label>
-                            <textarea name="comments_by_md" class="form-control" rows="4">{{ old('comments_by_md', $tender->comments_by_md ?? '') }}</textarea>
-                        </div>
-                        <div class="col-md-4">
+                    <div class="row g-3">
+                        <div class="col-md-12">
                             <label class="form-label fw-semibold">General Comments</label>
-                            <textarea name="general_comments" class="form-control" rows="4">{{ old('general_comments', $tender->general_comments ?? '') }}</textarea>
+                            <textarea name="general_comments" class="form-control" rows="2">{{ old('general_comments', $tender->general_comments ?? '') }}</textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Comments by Manager</label>
+                            <textarea name="comments_by_manager" class="form-control" rows="2">{{ old('comments_by_manager', $tender->comments_by_manager ?? '') }}</textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Comments by MD</label>
+                            <textarea name="comments_by_md" class="form-control" rows="2">{{ old('comments_by_md', $tender->comments_by_md ?? '') }}</textarea>
                         </div>
                     </div>
                 </div>

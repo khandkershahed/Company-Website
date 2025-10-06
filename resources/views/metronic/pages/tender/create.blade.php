@@ -1,10 +1,10 @@
  <x-admin-app-layout :title="'Add Tender Information'">
      <div class="card card-flash">
-         <div class="mt-6 card-header">
+         <div class="py-4 card-header">
              <div class="card-title">
-                 <h4 class="mb-0 text-gray-800">
+                 <h1 class="mb-0 text-gray-800">
                      Add Tender Information
-                 </h4>
+                 </h1>
              </div>
 
              <div class="card-toolbar">
