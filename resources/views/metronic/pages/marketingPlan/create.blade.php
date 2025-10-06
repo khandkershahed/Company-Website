@@ -1,6 +1,6 @@
 <x-admin-app-layout :title="'Add Your Marketing Plan'">
-    <div class="card card-flash">
-        <div class="mt-6 card-header">
+    <div class="border shadow-none card card-flash">
+        <div class="py-3 border-0 card-header bg-light-primary">
             <div class="card-title">
                 <h4 class="mb-0 text-gray-800">Add Your Marketing Plans</h4>
             </div>
@@ -47,8 +47,8 @@
 
                                         <div class="col-md-2">
                                             <label class="form-label">Marketing Type</label>
-                                            <select class="form-select" name="marketing_type">
-                                                <option value="">Select type</option>
+                                            <select class="form-select repeater-select2" name="marketing_type" data-placeholder="Select an option">
+                                                <option ></option>
                                                 <option value="email">Email</option>
                                                 <option value="call">Call</option>
                                                 <option value="social">Social</option>
@@ -102,8 +102,8 @@
 
                     <!-- Add Button -->
                     <div class="form-group">
-                        <a href="javascript:;" data-repeater-create class="btn btn-light-primary">
-                            <i class="ki-duotone ki-plus fs-3"></i> Add Row
+                        <a href="javascript:;" data-repeater-create style="text-decoration: underline; font-weight: 400;">
+                         Add Row
                         </a>
                     </div>
 
