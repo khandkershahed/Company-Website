@@ -135,7 +135,7 @@
                          <div class="col-md-4">
                              <label class="form-label fw-semibold">Current Status</label>
                              <select name="current_status" class="form-select">
-                                 @foreach (['Ongoing', 'Pending', 'In Progress', 'Prospect'] as $status)
+                                 @foreach (['Ongoing', 'Pending', 'In Progress', 'Prospect', 'Lost', 'Quoted', 'Sale', 'Potential'] as $status)
                                      <option value="{{ $status }}"
                                          {{ old('current_status', $marketingDmar->current_status ?? '') == $status ? 'selected' : '' }}>
                                          {{ $status }}</option>

@@ -15,24 +15,41 @@ class SettingsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('settings')->insert([
+        DB::table('sites')->insert([
 
             // Admin
             [
-                'name'      =>  "Ngen It",
-                'short_name'=>  "Software, License, Solutions, Services &amp; More",
-                'favicon'   =>  "https://www.ngenitltd.com/assets/ngenitfront1/images/favicon.ico",
-                'logo'      =>  'https://www.ngenitltd.com/assets/ngenitfront1/images/logo.png',
-                'address'   =>  "Haque Chamber(11 floor - C&D)
-                 89/2, Panthapath, Dhaka-1215",
-                'email1'     =>  "support@ngenitltd.com",
-                'email2'     =>  "sales@ngenitltd.com",
-                'mobile'     =>  "+88 01714243446",
-                'phone'     =>  "(+88) 0258155838",
-                'hour'      =>  "Saturday - Thursday : 09 AM - 06 PM",
-                'facebook'  =>  "https://www.facebook.com/ngenitltd",
-                'twitter'   =>  "www.twitter.com",
-                'linked_in' =>  "www.linked-in.com",
+                'site_name'         => 'Ngen It',
+            'company_name'      => 'Ngen It Ltd.',
+            'site_slogan'       => 'Software, License, Solutions, Services & More',
+            'meta_description'  => 'Ngen IT - Technology-driven solutions for software, licenses, and services.',
+            'logo'              => 'https://www.ngenitltd.com/assets/ngenitfront1/images/logo.png',
+            'favicon'           => 'https://www.ngenitltd.com/assets/ngenitfront1/images/favicon.ico',
+            'og_image'          => null,
+            'phone_one'         => '+88 01714243446',
+            'phone_two'         => '(+88) 0258155838',
+            'whatsapp_number'   => '+88 01714243446',
+            'address'           => "Haque Chamber(11 floor - C&D)\n89/2, Panthapath, Dhaka-1215",
+            'currency'          => 'BDT',
+            // 'country_id'        => 1, // change based on your country list
+            'default_language'  => 'en',
+            'contact_email'     => 'support@ngenitltd.com',
+            'support_email'     => 'sales@ngenitltd.com',
+            'info_email'        => 'info@ngenitltd.com',
+            'sales_email'       => 'sales@ngenitltd.com',
+            'facebook_url'      => 'https://www.facebook.com/ngenitltd',
+            'twitter_url'       => 'https://www.twitter.com/ngenitltd',
+            'instagram_url'     => 'https://www.instagram.com/ngenitltd',
+            'linkedin_url'      => 'https://www.linkedin.com/company/ngenitltd',
+            'youtube_url'       => 'https://www.youtube.com/ngenitltd',
+            'github_url'        => 'https://github.com/ngenitltd',
+            'portfolio_url'     => 'https://www.ngenitltd.com/portfolio',
+            'fiver_url'         => 'https://www.fiverr.com/ngenitltd',
+            'upwork_url'        => 'https://www.upwork.com/o/companies/~ngenitltd',
+            'service_days'      => 'Saturday - Thursday',
+            'service_time'      => '09 AM - 06 PM',
+            'created_at'        => now(),
+            'updated_at'        => now(),
 
 
             ],

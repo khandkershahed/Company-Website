@@ -13,20 +13,20 @@
 <div class="px-0 tab-content">
     @foreach ($tabTenders as $tabId => $tabData)
         <div class="tab-pane fade {{ $loop->first ? 'active show' : '' }}" id="{{ $tabId }}" role="tabpanel">
-            <div class="table-responsive" style="max-height: 630px; overflow-y: auto;">
+            <div class="table-responsive" style="">
                 <table class="table border rounded table-row-bordered dataTable" style="min-width: 120%;">
                     <thead class="bg-light">
                         <tr>
                             <th class="ps-3" width="3%">Sl</th>
-                            <th width="14%">Status</th>
-                            <th width="8%">Type</th>
-                            <th width="10%">Responsible</th>
-                            <th width="8%">Last Date</th>
+                            <th width="14%">Title</th>
+                            <th width="6%">Type</th>
+                            <th width="8%">Responsible</th>
+                            <th width="7%">Last Date</th>
                             <th width="5%">Day</th>
                             <th width="8%">Action</th>
                             <th width="7%">Participate</th>
-                            <th width="8%">Value Tk.</th>
-                            <th width="6%">Tender</th>
+                            <th width="7%">Value</th>
+                            <th width="6%">Security</th>
                             <th width="7%">Purchased</th>
                             <th width="8%">Tenderer</th>
                             <th width="8%">Reference</th>
@@ -44,31 +44,28 @@
                             <tr>
                                 <td class="ps-3">{{ $index + 1 }}</td>
                                 <td>
-                                    <div class="dropdown">
-                                        <a href="#" class="text-primary dropdown-toggle" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            {{ $tender->tender_status ?? '-' }}
+                                    <div class="dropdown"
+                                        style="width: 150px; white-space: normal; word-break: break-word;">
+                                        <a href="#" class="text-primary dropdown-toggle d-block text-truncate"
+                                            style="white-space: normal; word-break: break-word;"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            {{ $tender->title ?? '-' }}
                                         </a>
                                         <ul class="dropdown-menu text-center">
-                                            <li>
+                                            <li class="pb-2" style="border-bottom: 1px dashed #E4E6EF;">
                                                 <a class="dropdown-item text-center fs-3 text-gray-900"
                                                     href="{{ route('admin.tender.edit', $tender->id) }}">Edit</a>
                                             </li>
-                                            <li>
+                                            <li class="pt-2">
                                                 <a class="dropdown-item text-center delete"
-                                                    href="{{ route('admin.tender.destroy', $tender->id) }}"><i class="fas fa-trash text-danger fs-3"></i></a>
-                                                {{-- <form action="{{ route('admin.tender.destroy', $tender->id) }}"
-                                                    method="POST"
-                                                    onsubmit="return confirm('Are you sure you want to delete this tender?');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                        class="dropdown-item text-danger">Delete</button>
-                                                </form> --}}
+                                                    href="{{ route('admin.tender.destroy', $tender->id) }}">
+                                                    <i class="fas fa-trash text-danger fs-3"></i>
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
                                 </td>
+
                                 <td>{{ $tender->tender_type ?? '-' }}</td>
                                 <td>{{ $tender->responsiblePerson->name ?? '-' }}</td>
                                 <td>{{ $tender->last_date_of_submission ? \Carbon\Carbon::parse($tender->last_date_of_submission)->format('d.m.y') : '-' }}
@@ -78,15 +75,26 @@
                                 <td>{{ $tender->participate ?? '-' }}</td>
                                 <td>{{ $tender->schedule_value_tk ? number_format($tender->schedule_value_tk, 2) : '-' }}
                                 </td>
-                                <td>{{ $tender->title ?? '-' }}</td>
+                                <td>{{ $tender->security ?? '-' }}</td>
                                 <td>{{ $tender->purchase ?? '-' }}</td>
                                 <td>{{ $tender->tenderer ?? '-' }}</td>
                                 <td>
-                                    @if ($tender->tender_reference)
-                                        <a href="#">{{ Str::limit($tender->tender_reference, 20) }}</a>
+                                    @php
+                                        $reference = $tender->tender_reference;
+                                        $url = $reference
+                                            ? (Str::startsWith($reference, ['http://', 'https://'])
+                                                ? $reference
+                                                : 'https://' . $reference)
+                                            : null;
+                                    @endphp
+                                    @if ($reference)
+                                        <a href="{{ $url }}" target="_blank">
+                                            {{ Str::limit($reference, 20) }}
+                                        </a>
                                     @else
                                         -
                                     @endif
+
                                 </td>
                                 <td>{{ $tender->mode_of_submission ?? '-' }}</td>
                                 <td>{{ $tender->submission_medium ?? '-' }}</td>

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\MarketingDmar;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
@@ -18,12 +19,50 @@ class MarketingDmarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['dmars'] = MarketingDmar::get();
-        // return view('metronic.pages.marketingDmar.index', $data);
-        return view('metronic.pages.marketingDmar.index',$data);
+        $query = MarketingDmar::query();
+
+        if (Auth::user()->role !== 'admin') {
+            $query->where('user_id', Auth::id());
+        }
+
+        $dmars = $query->get();
+
+        $data = [
+            'dmars' => $dmars,
+        ];
+        return view('metronic.pages.marketingDmar.index', $data);
     }
+
+    public function filter(Request $request)
+    {
+        $query = MarketingDmar::query();
+
+        if (Auth::user()->role !== 'admin') {
+            $query->where('user_id', Auth::id());
+        }
+
+        if ($request->filled('date')) {
+            $query->whereDate('date', $request->date);
+        }
+
+        if ($request->filled('month')) {
+            $query->where('month', $request->month);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('current_status', $request->status);
+        }
+
+        $dmars = $query->get();
+
+        // Return JSON response with HTML partial for table rows
+        $html = view('metronic.pages.marketingDmar.partials.dmar_table_rows', compact('dmars'))->render();
+
+        return response()->json(['html' => $html]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +73,7 @@ class MarketingDmarController extends Controller
     {
         $data['users'] = User::where('role', 'sales')->select('id', 'name')->get();
         // return view('admin.pages.MarketingDmar.add', $data);
-        return view('metronic.pages.MarketingDmar.create', $data);
+        return view('metronic.pages.marketingDmar.create', $data);
     }
 
     /**
@@ -45,7 +84,7 @@ class MarketingDmarController extends Controller
      */
     public function store(Request $request)
     {
-         try {
+        try {
             $data = $request->validate($this->validationRules());
             MarketingDmar::create($data);
 
@@ -53,7 +92,7 @@ class MarketingDmarController extends Controller
             return redirect()->route('marketing-dmar.index');
         } catch (Exception $e) {
             return redirect()->back()->withInput()
-                             ->with('error', 'Failed to create Marketing DMAR: ' . $e->getMessage());
+                ->with('error', 'Failed to create Marketing DMAR: ' . $e->getMessage());
         }
     }
 
@@ -77,7 +116,7 @@ class MarketingDmarController extends Controller
     public function edit($id)
     {
         $data['marketingDmar'] = MarketingDmar::find($id);
-        return view('admin.pages.MarketingDmar.edit', $data);
+        return view('metronic.pages.marketingDmar.edit', $data);
     }
 
     /**
@@ -87,63 +126,17 @@ class MarketingDmarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, MarketingDmar $marketing_dmar)
     {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'marketing_manager_id' => 'nullable',
-                'status'               => 'nullable',
-                'area'                 => 'nullable',
-                'quarter'              => 'nullable',
-                'month'                => 'nullable',
-                'week'                 => 'nullable',
-                'date'                 => 'nullable',
-                'client_type'          => 'nullable',
-                'sector'               => 'nullable',
-                'company_name'         => 'nullable',
-                'activity'             => 'nullable',
-                'current_status'       => 'nullable',
-                'solution'             => 'nullable',
-                'product'              => 'nullable',
-                'phone'                => 'nullable',
-                'contact'              => 'nullable',
-                'comments_by_sales'    => 'nullable',
-                'comments_by_ceo'      => 'nullable',
-                'action_on_fail'       => 'nullable',
-            ],
-        );
-
-        if ($validator->passes()) {
-            MarketingDmar::find($id)->update([
-                'marketing_manager_id' => $request->marketing_manager_id,
-                'status'               => $request->status,
-                'area'                 => $request->area,
-                'quarter'              => $request->quarter,
-                'month'                => $request->month,
-                'week'                 => $request->week,
-                'date'                 => $request->date,
-                'client_type'          => $request->client_type,
-                'sector'               => $request->sector,
-                'company_name'         => $request->company_name,
-                'activity'             => $request->activity,
-                'current_status'       => $request->current_status,
-                'solution'             => $request->solution,
-                'product'              => $request->product,
-                'phone'                => $request->phone,
-                'contact'              => $request->contact,
-                'comments_by_sales'    => $request->comments_by_sales,
-                'comments_by_ceo'      => $request->comments_by_ceo,
-                'action_on_fail'       => $request->action_on_fail,
-            ]);
-            Toastr::success('Data Updated Successfully.');
-        } else {
-            $messages = $validator->messages();
-            foreach ($messages->all() as $message) {
-                Toastr::error($message, 'Failed', ['timeOut' => 30000]);
-            }
+        try {
+            $data = $request->validate($this->validationRules());
+            $marketing_dmar->update($data);
+            Session::flash('success', 'Marketing DMAR updated successfully.');
+            return redirect()->route('marketing-dmar.index');
+        } catch (Exception $e) {
+            Session::flash('error', 'Failed to update Marketing DMAR: ' . $e->getMessage());
+            return redirect()->back()->withInput();
         }
-        return redirect()->back();
     }
 
     /**
@@ -183,5 +176,16 @@ class MarketingDmarController extends Controller
             'contact_website' => 'nullable|string|max:255',
             'contact_social' => 'nullable|string',
         ];
+    }
+
+    public function multiDelete(Request $request)
+    {
+        $ids = $request->input('ids');
+        if ($ids && is_array($ids)) {
+            MarketingDmar::whereIn('id', $ids)->delete();
+            return redirect()->back()->with('success', 'Selected entries deleted successfully.');
+        }
+
+        return redirect()->back()->with('warning', 'No entries selected.');
     }
 }

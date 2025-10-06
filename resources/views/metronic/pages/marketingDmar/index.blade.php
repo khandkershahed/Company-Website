@@ -7,7 +7,8 @@
                         <div class="d-flex flex-stack justify-content-center align-items-center h-268px">
                             <div>
                                 <img class="img-fluid rounded-circle h-100px w-100px" style="border: 2px solid #296088;"
-                                    src="{{ asset('https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name)) }}" alt="">
+                                    src="{{ asset('https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name)) }}"
+                                    alt="">
                             </div>
                             <div class="p-8 me-3 text-start">
                                 <h4 class="text-black">{{ Auth::user()->name }}</h4>
@@ -195,42 +196,47 @@
                     </div>
                     <div class="d-flex align-items-center">
                         <div>
-                            <input class="form-control form-control-sm" type="date" name="date" id="">
+                            <input class="form-control form-control-sm" type="date" name="date"
+                                id="filterDate">
                         </div>
+
                         <div class="mx-2">
-                            <select class="form-select form-select-sm" data-control="select2"
-                                data-placeholder="month" tabindex="-1" aria-hidden="true">
-                                <option>Select Month</option>
-                                <option value="all">All</option>
-                                <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March">March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
+                            <select class="form-select form-select-sm w-150px" data-control="select2"
+                                data-placeholder="Select Month" name="month" data-allow-clear="true"
+                                id="filterMonth">
+                                <option></option>
+                                @foreach ($months as $month)
+                                    <option value="{{ $month }}" @selected(old('month', request('month')) == $month)>
+                                        {{ $month }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                         <div>
-                            <select class="form-select form-select-sm" data-control="select2"
-                                data-placeholder="subject" tabindex="-1" aria-hidden="true">
-                                <option>Select Achievement</option>
-                                <option value="Visit">Visit</option>
+                            <select class="form-select form-select-sm w-200px" data-control="select2"
+                                data-allow-clear="true" data-placeholder="Select Achievement" name="status"
+                                id="filterStatus">
+                                <option></option>
+                                @foreach (['Ongoing', 'Pending', 'In Progress', 'Prospect', 'Lost', 'Quoted', 'Sale', 'Potential'] as $status)
+                                    <option value="{{ $status }}" @selected(request('status') == $status)>
+                                        {{ $status }}</option>
+                                @endforeach
+                            </select>
+
+                            {{-- <option value="Visit">Visit</option>
                                 <option value="Call">Call</option>
                                 <option value="Social">Social</option>
                                 <option value="Email">Email</option>
                                 <option value="Lost">Lost</option>
                                 <option value="Quote">Quote</option>
                                 <option value="Potential">Potential</option>
-                                <option value="Sales">Sales</option>
-                            </select>
+                                <option value="Sales">Sales</option> --}}
                         </div>
-                        <a href="marketing-dmr-target.html"
+                        <button type="button" id="clearFilters" class="btn btn-sm btn-light-danger ms-3">
+                            <i class="fa-solid fa-xmark text-danger fs-3"></i>
+                        </button>
+
+                        <a href="{{ route('admin.marketing-target.index') }}"
                             class="text-white btn btn-sm btn-light-primary bg-primary ms-3"
                             style="background-color: #0B6476 !important;">
                             Target <i class="text-white fa-solid fa-arrow-right"></i>
@@ -238,115 +244,140 @@
                     </div>
                 </div>
                 <div class="pt-0 card-body">
-                    <div class="table-responsive" style="max-height: 630px; overflow-y: auto;">
-                        <table class="table mb-0 border" style="min-width: 120%;">
-                            <thead>
-                                <tr class="bg-light">
-                                    <th width="7%" class="ps-3">Date</th>
-                                    <th width="6%">Month</th>
-                                    <th width="7%">Activity</th>
-                                    <th width="12%" class="text-center">Company</th>
-                                    <th width="8%">Service</th>
-                                    <th width="10%">Products</th>
-                                    <th width="10%">Tentative</th>
-                                    <th width="10%">Comments</th>
-                                    <th width="10%">Action on Fail</th>
-                                    <th width="10%">Current Status</th>
-                                    <th width="8%">Client Type</th>
-                                    <th width="8%">Sector</th>
-                                    <th width="10%">Sub Sector</th>
-                                    <th width="12%" class="text-end pe-5">Area</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="" style="border-bottom: 1px solid #EAEAEA;">
-                                    <td class="ps-3">5 Feb 25</td>
-                                    <td>Feb</td>
-                                    <td>MEETING</td>
-                                    <td>Grameenphone Ltd.</td>
-                                    <td>Telecom</td>
-                                    <td class="text-center">Software License</td>
-                                    <td>$12,000</td>
-                                    <td>Positive Response</td>
-                                    <td>Follow Up</td>
-                                    <td>Ongoing</td>
-                                    <td>Existing</td>
-                                    <td>Private</td>
-                                    <td>Corporate</td>
-                                    <td class="text-end pe-5">Banani, Dhaka</td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid #EAEAEA;">
-                                    <td class="ps-3">8 Feb 25</td>
-                                    <td>Feb</td>
-                                    <td>PRESENTATION</td>
-                                    <td>BRAC Bank</td>
-                                    <td>Banking</td>
-                                    <td class="text-center">IT Equipment</td>
-                                    <td>$25,000</td>
-                                    <td>Need Proposal</td>
-                                    <td>Resubmit</td>
-                                    <td>Pending</td>
-                                    <td>New</td>
-                                    <td>Private</td>
-                                    <td>Finance</td>
-                                    <td class="text-end pe-5">Gulshan, Dhaka</td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid #EAEAEA;">
-                                    <td class="ps-3">12 Feb 25</td>
-                                    <td>Feb</td>
-                                    <td>VISIT</td>
-                                    <td>Dhaka University</td>
-                                    <td>Education</td>
-                                    <td class="text-center">Networking</td>
-                                    <td>$8,500</td>
-                                    <td>Site Survey Completed</td>
-                                    <td>Technical Clarification</td>
-                                    <td>In Progress</td>
-                                    <td>New</td>
-                                    <td>Public</td>
-                                    <td>Education</td>
-                                    <td class="text-end pe-5">Nilkhet</td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid #EAEAEA;">
-                                    <td class="ps-3">15 Feb 25</td>
-                                    <td>Feb</td>
-                                    <td>FOLLOW UP</td>
-                                    <td>Bangladesh Navy</td>
-                                    <td>Defense</td>
-                                    <td class="text-center">Security System</td>
-                                    <td>$40,000</td>
-                                    <td>Under Review</td>
-                                    <td>Provide Demo</td>
-                                    <td>Ongoing</td>
-                                    <td>Existing</td>
-                                    <td>Government</td>
-                                    <td>Defense</td>
-                                    <td class="text-end pe-5">Chattogram</td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid #EAEAEA;">
-                                    <td class="ps-3">20 Feb 25</td>
-                                    <td>Feb</td>
-                                    <td>WORKSHOP</td>
-                                    <td>Beximco Pharma</td>
-                                    <td>Healthcare</td>
-                                    <td class="text-center">Medical Software</td>
-                                    <td>$18,000</td>
-                                    <td>Management Interested</td>
-                                    <td>Prepare Proposal</td>
-                                    <td>Prospect</td>
-                                    <td>New</td>
-                                    <td>Private</td>
-                                    <td>Pharmaceuticals</td>
-                                    <td class="text-end pe-5">Tongi</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <form id="multiDeleteForm" method="POST" action="{{ route('admin.marketing-dmar.multi-delete') }}">
+                        @csrf
+                        @method('DELETE')
+
+                        {{-- Action buttons --}}
+                        <div class="d-flex justify-content-end mb-3" id="actionButtons" style="display: none;">
+                            <a href="#" id="editBtn" class="btn btn-warning btn-sm me-2">✏️ Edit</a>
+                            <button type="submit" id="deleteBtn" class="btn btn-danger btn-sm me-2">🗑️
+                                Delete</button>
+                            <button type="submit" id="multiDeleteBtn" class="btn btn-danger btn-sm">🗑️ Delete
+                                Selected</button>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table mb-0 border dataTable" style="min-width: 100%;">
+                                <thead>
+                                    <tr class="bg-light">
+                                        <th class="ps-3 text-center" width="3%">
+                                            <input class="form-check-input" type="checkbox" id="selectAll">
+                                        </th>
+                                        <th width="7%">Date</th>
+                                        <th width="6%">Month</th>
+                                        <th width="7%">Activity</th>
+                                        <th width="12%" class="text-center">Company</th>
+                                        <th width="8%">Service</th>
+                                        <th width="10%">Products</th>
+                                        <th width="10%">Tentative</th>
+                                        <th width="10%">Comments</th>
+                                        <th width="10%">Action on Fail</th>
+                                        <th width="10%">Current Status</th>
+                                        <th width="8%">Client Type</th>
+                                        <th width="8%">Sector</th>
+                                        <th width="10%">Sub Sector</th>
+                                        <th width="12%" class="text-end pe-5">Area</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dmarTableBody">
+                                    @include('metronic.pages.marketingDmar.partials.dmar_table_rows', [
+                                        'dmars' => $dmars,
+                                    ])
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+
 
                 </div>
             </div>
         </div>
     </div>
+
     @push('scripts')
+        <script>
+            $(document).ready(function() {
+                function toggleActionButtons() {
+                    let checkedBoxes = $('.rowCheckbox:checked');
+                    let selectedCount = checkedBoxes.length;
+
+                    if (selectedCount === 0) {
+                        $('#actionButtons').hide();
+                    } else if (selectedCount === 1) {
+                        let id = checkedBoxes.val();
+                        $('#editBtn').attr('href', `/admin/marketing-dmar/${id}/edit`);
+                        $('#actionButtons').show();
+                        $('#editBtn').show();
+                        $('#deleteBtn').show();
+                        $('#multiDeleteBtn').hide();
+                    } else {
+                        $('#actionButtons').show();
+                        $('#editBtn').hide();
+                        $('#deleteBtn').hide();
+                        $('#multiDeleteBtn').show();
+                    }
+                }
+
+                // On individual checkbox change
+                $(document).on('change', '.rowCheckbox', toggleActionButtons);
+
+                // Select all checkboxes
+                $('#selectAll').on('change', function() {
+                    $('.rowCheckbox').prop('checked', this.checked);
+                    toggleActionButtons();
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                // Initialize select2
+                $('#filterMonth, #filterStatus').select2({
+                    placeholder: 'Select option',
+                    allowClear: true
+                });
+
+                // Disable caching
+                $.ajaxSetup({
+                    cache: false
+                });
+
+                function fetchFilteredData() {
+                    let date = $('#filterDate').val();
+                    let month = $('#filterMonth').val();
+                    let status = $('#filterStatus').val();
+
+                    $.ajax({
+                        url: "{{ route('admin.marketing-dmar.filter') }}",
+                        method: 'GET',
+                        data: {
+                            date: date,
+                            month: month,
+                            status: status,
+                            _t: Date.now() // prevent cache
+                        },
+                        success: function(response) {
+                            $('#dmarTableBody').html(response.html);
+                        },
+                        error: function() {
+                            alert('Error loading data.');
+                        }
+                    });
+                }
+
+                // Trigger on filter change
+                $('#filterDate, #filterMonth, #filterStatus').on('change', fetchFilteredData);
+
+                // Clear all filters
+                $('#clearFilters').on('click', function() {
+                    $('#filterDate').val('');
+                    $('#filterMonth').val(null).trigger('change');
+                    $('#filterStatus').val(null).trigger('change');
+                    fetchFilteredData();
+                });
+            });
+        </script>
     @endpush
+
+
 </x-admin-app-layout>

@@ -15,142 +15,163 @@
         </div>
 
         <div class="card-body">
-            <form action="" method="post">
-                <div id="kt_docs_repeater_advanced">
-
+            <form action="{{ route('admin.marketing-plan.store') }}" method="post">
+                @csrf
+                <div id="maketingPlans">
                     <!-- Repeater List -->
-                    <div data-repeater-list="kt_docs_repeater_advanced">
+                    @php
+                        $oldRepeaterData = old('maketingPlans', [[]]); // Fallback to one empty item
+                    @endphp
 
-                        <!-- Repeater Item -->
-                        <div data-repeater-item>
-                            <div class="mb-4 border shadow-none card">
-                                <div class="card-body">
+                    <div data-repeater-list="maketingPlans">
+                        @foreach ($oldRepeaterData as $index => $row)
+                            <div data-repeater-item>
+                                <div class="mb-4 border shadow-none card">
+                                    <div class="card-body">
+                                        <div class="row g-3">
 
-                                    <div class="row g-3">
+                                            <div class="col-md-2">
+                                                <label class="form-label">Month</label>
+                                                <select class="form-select repeater-select2" name="month" data-placeholder="Select Type" data-allow-clear="true">
+                                                    @foreach ($months as $month)
+                                                        <option value="{{ $month }}"
+                                                            @selected($row['month'] ?? now()->format('F') ?? '' === $month)>
+                                                            {{ $month }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
 
-                                        <div class="col-md-2">
-                                            <label class="form-label">Month</label>
-                                            <select class="form-select repeater-select2" data-placeholder="Select an option">
-                                                <option></option>
-                                                <option value="1">Option 1</option>
-                                                <option value="2">Option 2</option>
-                                                <option value="3">Option 3</option>
-                                            </select>
+                                            <div class="col-md-2">
+                                                <label class="form-label">Date</label>
+                                                <input class="form-control repeater-daterangepicker" name="date"
+                                                    value="{{ $row['date'] ?? '' }}" placeholder="Pick date" />
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <label class="form-label">Marketing Type</label>
+                                                <select class="form-select repeater-select2" name="marketing_type" data-placeholder="Select Type" data-allow-clear="true">
+                                                    <option></option>
+                                                    <option value="site_visit" @selected($row['marketing_type'] ?? '' === 'site_visit')>Site Visit
+                                                    </option>
+                                                    <option value="client_visit" @selected($row['marketing_type'] ?? '' === 'client_visit')>Client
+                                                        Visit</option>
+                                                    <option value="telephone" @selected($row['marketing_type'] ?? '' === 'telephone')>Telephone
+                                                    </option>
+                                                    <option value="email" @selected($row['marketing_type'] ?? '' === 'email')>Email</option>
+                                                    <option value="social" @selected($row['marketing_type'] ?? '' === 'social')>Social</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label class="form-label">Title</label>
+                                                <input type="text" class="form-control" name="title"
+                                                    value="{{ $row['title'] ?? '' }}" placeholder="Title" />
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <label class="form-label">Contact Name</label>
+                                                <input type="text" class="form-control" name="contact_name"
+                                                    value="{{ $row['contact_name'] ?? '' }}" placeholder="Name" />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <label class="form-label">Contact Number</label>
+                                                <input type="text" class="form-control" name="contact_number"
+                                                    value="{{ $row['contact_number'] ?? '' }}" placeholder="Phone" />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <label class="form-label">Contact Email</label>
+                                                <input type="email" class="form-control" name="contact_email"
+                                                    value="{{ $row['contact_email'] ?? '' }}" placeholder="Email" />
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="form-label">Contact Address</label>
+                                                <textarea class="form-control" name="contact_address" rows="1" placeholder="Address">{{ $row['contact_address'] ?? '' }}</textarea>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="form-label">Website</label>
+                                                <textarea class="form-control" name="contact_website" rows="1" placeholder="Website">{{ $row['contact_website'] ?? '' }}</textarea>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="form-label">Social</label>
+                                                <textarea class="form-control" name="contact_social" rows="1" placeholder="Social">{{ $row['contact_social'] ?? '' }}</textarea>
+                                            </div>
+
+                                            <div class="col-12 text-end">
+                                                <a href="javascript:;" data-repeater-delete
+                                                    class="btn btn-sm btn-light-danger">
+                                                    Delete <i class="fa fa-solid fa-trash fs-6"></i>
+                                                </a>
+                                            </div>
+
                                         </div>
-
-                                        <div class="col-md-2">
-                                            <label class="form-label">Date</label>
-                                            <input class="form-control repeater-daterangepicker" placeholder="Pick date" />
-                                        </div>
-
-
-
-                                        <div class="col-md-2">
-                                            <label class="form-label">Marketing Type</label>
-                                            <select class="form-select repeater-select2" name="marketing_type" data-placeholder="Select an option">
-                                                <option ></option>
-                                                <option value="email">Email</option>
-                                                <option value="call">Call</option>
-                                                <option value="social">Social</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label class="form-label">Contact Number</label>
-                                            <input type="text" class="form-control" name="contact_number" placeholder="Phone" />
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <label class="form-label">Contact Email</label>
-                                            <input type="email" class="form-control" name="contact_email" placeholder="Email" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">Contact Name</label>
-                                            <input type="text" class="form-control" name="contact_name" placeholder="Name" />
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label">Title</label>
-                                            <input type="text" class="form-control" name="title" placeholder="Title" />
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <label class="form-label">Contact Address</label>
-                                            <textarea class="form-control" name="contact_address" rows="4" placeholder="Address"></textarea>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <label class="form-label">Website</label>
-                                            <textarea class="form-control" name="contact_website" rows="4" placeholder="Website"></textarea>
-                                        </div>
-
-                                        <div class="col-md-4">
-                                            <label class="form-label">Social</label>
-                                            <textarea class="form-control" name="contact_social" rows="4" placeholder="Social"></textarea>
-                                        </div>
-
-
-                                        <div class="col-12 text-end">
-                                            <a href="javascript:;" data-repeater-delete class="btn btn-sm btn-light-danger">
-                                                Delete <i class="fa fa-solid fa-trash fs-6"></i>
-                                            </a>
-                                        </div>
-
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
+
 
                     <!-- Add Button -->
                     <div class="form-group">
-                        <a href="javascript:;" data-repeater-create style="text-decoration: underline; font-weight: 400;">
-                         Add Row
+                        <a href="javascript:;" data-repeater-create
+                            style="text-decoration: underline; font-weight: 400;">
+                            Add Row
                         </a>
                     </div>
 
+                </div>
+                <div class="mt-3 text-end">
+                    <button class="btn btn-primary">Add Plan</button>
                 </div>
             </form>
         </div>
     </div>
 
     @push('scripts')
-    <script>
-        $(document).ready(function() {
+        <script>
+            $(document).ready(function() {
 
-            function initRepeaterElements(item) {
-                // Init select2
-                $(item).find('.repeater-select2').select2();
+                function initRepeaterElements(item) {
+                    // Init select2
+                    $(item).find('.repeater-select2').select2();
 
-                // Init daterangepicker
-                $(item).find('.repeater-daterangepicker').daterangepicker({
-                    singleDatePicker: true,
-                    showDropdowns: true,
-                    minYear: 1901,
-                    maxYear: parseInt(moment().format("YYYY"), 12)
-                });
+                    // Init daterangepicker
+                    $(item).find('.repeater-daterangepicker').daterangepicker({
+                        singleDatePicker: true,
+                        showDropdowns: true,
+                        minYear: 1901,
+                        maxYear: parseInt(moment().format("YYYY"), 12)
+                    });
 
-                // Init Tagify if needed
-                $(item).find('[data-kt-repeater="tagify"]').each(function() {
-                    new Tagify(this);
-                });
-            }
-
-            $('#kt_docs_repeater_advanced').repeater({
-                initEmpty: false,
-                show: function() {
-                    $(this).slideDown();
-                    initRepeaterElements(this); // Initialize new item
-                },
-                hide: function(deleteElement) {
-                    $(this).slideUp(deleteElement);
+                    // Init Tagify if needed
+                    $(item).find('[data-kt-repeater="tagify"]').each(function() {
+                        new Tagify(this);
+                    });
                 }
-            });
 
-            // Initialize **all existing items on page load** (including the first one)
-            $('#kt_docs_repeater_advanced [data-repeater-item]').each(function() {
-                initRepeaterElements(this);
-            });
+                $('#maketingPlans').repeater({
+                    initEmpty: false,
+                    show: function() {
+                        $(this).slideDown();
+                        initRepeaterElements(this); // Initialize new item
+                    },
+                    hide: function(deleteElement) {
+                        $(this).slideUp(deleteElement);
+                    }
+                });
 
-        });
-    </script>
+                // Initialize **all existing items on page load** (including the first one)
+                $('#maketingPlans [data-repeater-item]').each(function() {
+                    initRepeaterElements(this);
+                });
+
+            });
+        </script>
     @endpush
 </x-admin-app-layout>

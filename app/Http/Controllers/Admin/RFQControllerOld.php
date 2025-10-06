@@ -88,7 +88,7 @@ class RFQControllerOld extends Controller
             ->whereNotNull('country')
             ->selectRaw('country, COUNT(*) as total')
             ->groupBy('country')
-            ->orderBy('total', 'DESC')
+            ->orderBy('total', 'DESC') 
             ->get();
 
         // Get new customers where 'confirmation' is null

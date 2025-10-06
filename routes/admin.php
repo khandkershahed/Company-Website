@@ -165,6 +165,13 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         ],
         ['except' => ['show']]
     );
+
+    Route::post('/marketing-plan/{id}/toggle-status', [MarketingPlanController::class, 'toggleStatus'])->name('marketing-plan.toggleStatus');
+    Route::get('admin/marketing-dmar/filter', [MarketingDmarController::class, 'filter'])->name('marketing-dmar.filter');
+    Route::delete('marketing-dmar/multi-delete', [MarketingDmarController::class, 'multiDelete'])->name('marketing-dmar.multi-delete');
+
+
+
     Route::get('/sales-forecast/filter', [SalesForecastController::class, 'filterForecast'])->name('forecast.filter');
 
     Route::get('sales-forecast', [SalesForecastController::class, 'salesForecast'])->name('sales.forecast');

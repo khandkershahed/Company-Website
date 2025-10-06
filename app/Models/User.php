@@ -22,24 +22,6 @@ class User extends Authenticatable
 
     protected $guarded = [];
 
-    // protected $fillable = [
-    //     'name',
-    //     'username',
-    //     'email',
-    //     'photo',
-    //     'phone',
-    //     'designation',
-    //     'address',
-    //     'city',
-    //     'country',
-    //     'postal',
-    //     'last_seen',
-    //     'role',
-    //     'status',
-    //     'email_verified_at',
-    //     'password',
-    // ];
-
 
     protected $hidden = [
         'password',
@@ -124,15 +106,15 @@ class User extends Authenticatable
     // In User.php model
     public function inDepartment($department)
     {
-        if (is_array($this->department)) {
-            return in_array($department, $this->department);
-        }
+        $depts = is_array($this->department)
+            ? $this->department
+            : json_decode($this->department, true);
 
-        return $this->department === $department;
+        return in_array($department, $depts ?? []);
     }
+
     public function isBusinessAdminOrManager()
     {
         return $this->inDepartment('business') && in_array($this->role, ['admin', 'manager']);
     }
-
 }

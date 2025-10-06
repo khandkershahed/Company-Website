@@ -1,21 +1,22 @@
 <x-admin-app-layout :title="'Marketing DMAR Target'">
     <div class="px-0 container-fluid">
         <div class="mb-5 row">
-            <div class="col">
+            <div class="col-lg-4 mb-3 mb-lg-0">
                 <div class="shadow-none card card-flush card-rounded ">
-                    <div class="d-flex justify-content-center align-items-center h-140px">
+                    <div class="d-flex flex-stack justify-content-center align-items-center h-140px">
                         <div>
                             <img class="img-fluid rounded-circle h-100px w-100px" style="border: 2px solid #296088;"
-                                src="https://picsum.photos/id/1/200/300" alt="">
+                                src="{{ asset('https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name)) }}"
+                                alt="">
                         </div>
                         <div class="p-8 me-3 text-start">
-                            <p class="mb-1 text-black fw-bold" style="font-size: 16px;">Esther Howard</p>
-                            <p class="mb-0 text-muted" style="font-size: 16px;">Sales Manager</p>
+                            <h4 class="text-black">{{ Auth::user()->name }}</h4>
+                            <p class="mb-0 text-muted">{{ Auth::user()->designation }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-lg-4 mb-3 mb-lg-0">
                 <div class="shadow-none card card-flush card-rounded ">
                     <div class="d-flex justify-content-center align-items-center h-140px">
                         <div class="p-8 me-3 text-start ">
@@ -24,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-lg-4 mb-3 mb-lg-0">
                 <div class="shadow-none card card-flush card-rounded ">
                     <div class="px-15 d-flex justify-content-between align-items-center h-140px">
                         <div>
@@ -36,11 +37,9 @@
                             <div>
                                 <select class="form-select form-select-sm" data-control="select2"
                                     data-placeholder="Month" name="month" id="filterMonth">
-                                    {{-- <option value="{{ \Carbon\Carbon::now()->format('F') }}">
-                                        {{ \Carbon\Carbon::now()->format('F') }}
-                                    </option> --}}
                                     @foreach ($months as $month)
-                                        <option value="{{ $month }}" @selected(\Carbon\Carbon::now()->format('F') === $month)>{{ $month }}</option>
+                                        <option value="{{ $month }}" @selected(\Carbon\Carbon::now()->format('F') === $month)>
+                                            {{ $month }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -69,18 +68,6 @@
                                         <td class="text-start ps-3">January</td>
                                         <td class="text-end pe-3">70,000$</td>
                                     </tr>
-                                    <tr class="border-bottom">
-                                        <td class="text-start ps-3">January</td>
-                                        <td class="text-end pe-3">70,000$</td>
-                                    </tr>
-                                    <tr class="border-bottom">
-                                        <td class="text-start ps-3">January</td>
-                                        <td class="text-end pe-3">70,000$</td>
-                                    </tr>
-                                    <tr class="border-bottom">
-                                        <td class="text-start ps-3">January</td>
-                                        <td class="text-end pe-3">70,000$</td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -92,8 +79,9 @@
                     <div class="px-3 mx-10 mt-10 card-header align-items-center bg-light">
                         <div class="justify-content-between align-items-center d-flex w-100">
                             <p class="py-0 mb-0 w-100 bg-light" style="font-size: 16px;">{{ $month }} </p>
-                            <a class="bg-white btn btn-sm btn-light w-150px " href="/super-admin/marketing-plan">
-                                Marketing Plan <i class="ms-2 fa-solid fa-right-arrow"></i>
+                            <a class="bg-white btn btn-sm btn-light w-175px d-flex align-items-center"
+                                href="{{ route('admin.marketing-plan.index') }}">
+                                Marketing Plan <i class="ms-2 fa-solid fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>

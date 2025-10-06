@@ -29,7 +29,7 @@
                  @csrf
                  @method('PUT')
                  @include('metronic.pages.tender.partials.form', ['users' => $users, 'tender' => $tender])
-                 <div class="mt-3">
+                 <div class="mt-3 text-end">
                      <button class="btn btn-primary">Edit Tender</button>
                  </div>
              </form>

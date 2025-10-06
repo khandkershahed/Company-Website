@@ -62,6 +62,8 @@
                                 'admin.marketing-plan.index',
                                 'admin.marketing-plan.create',
                                 'admin.marketing-plan.edit',
+                                'admin.marketing-target.index',
+                                'admin.marketing-target.create',
                             ],
                             'route' => 'admin.marketing.dashboard',
                             'subMenu' => [
@@ -92,11 +94,11 @@
                                 [
                                     'title' => 'Marketing Target',
                                     'routes' => [
-                                        'admin.marketing-plan.index',
-                                        'admin.marketing-plan.create',
-                                        'admin.marketing-plan.edit',
+                                        'admin.marketing-target.index',
+                                        'admin.marketing-target.create',
+                                        'admin.marketing-target.edit',
                                     ],
-                                    'route' => 'admin.marketing-plan.index',
+                                    'route' => 'admin.marketing-target.index',
                                 ],
                             ],
                         ];
@@ -175,6 +177,8 @@
                                 'admin.marketing-plan.index',
                                 'admin.marketing-plan.create',
                                 'admin.marketing-plan.edit',
+                                'admin.marketing-target.index',
+                                'admin.marketing-target.create',
                             ],
                             'subMenu' => [
                                 [

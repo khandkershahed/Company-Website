@@ -87,6 +87,11 @@
                     @endif
                     @if (Route::currentRouteName() === 'admin.marketing-plan.index')
                         <a class="btn btn-md btn-info me-4" href="{{ route('admin.marketing-plan.create') }}">Add Marketing Plan</a>
+                        <a class="btn btn-md btn-info me-4" href="{{ route('admin.marketing-target.index') }}">Marketing Target</a>
+                    @endif
+                    @if (Route::currentRouteName() === 'admin.marketing-target.index')
+                        {{-- <a class="btn btn-md btn-info me-4" href="{{ route('admin.marketing-plan.create') }}">Add Marketing Plan</a> --}}
+                        <a class="btn btn-md btn-info me-4" href="{{ route('admin.marketing-target.create') }}">Add Marketing Target</a>
                     @endif
                     @if (Route::currentRouteName() === 'admin.tender.index')
                         <a class="btn btn-md btn-info me-4" href="{{ route('admin.tender.create') }}">Add Tender information</a>
