@@ -133,6 +133,7 @@ use App\Http\Controllers\Admin\CommercialDocumentController;
 use App\Http\Controllers\Admin\EmployeeDepartmentController;
 use App\Http\Controllers\Admin\FrontendNavbarMenuController;
 use App\Http\Controllers\Admin\FrontendMenuBuilderController;
+use App\Http\Controllers\Marketing\MarketingTargetController;
 use App\Http\Controllers\Admin\FrontendNavbarModuleController;
 use App\Http\Controllers\Admin\PaymentMethodDetailsController;
 use App\Http\Controllers\Admin\PolicyAcknowledgmentsController;
@@ -156,10 +157,11 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     );
     Route::resources(
         [
-            'contact'        => ContactController::class,
-            'tender'         => TenderController::class,
-            'marketing-emar' => MarketingEmarController::class,
-            'marketing-plan' => MarketingPlanController::class,
+            'contact'          => ContactController::class,
+            'tender'           => TenderController::class,
+            'marketing-emar'   => MarketingEmarController::class,
+            'marketing-plan'   => MarketingPlanController::class,
+            'marketing-target' => MarketingTargetController::class,
         ],
         ['except' => ['show']]
     );

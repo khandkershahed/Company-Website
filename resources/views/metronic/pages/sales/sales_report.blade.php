@@ -1,5 +1,5 @@
 <x-admin-app-layout :title="'Sales Report'">
-    
+
     <div class="px-0 container-fluid">
         <div class="mb-5 row">
             <div class="col-xl-3 ps-0">
@@ -131,22 +131,16 @@
                             <select class="form-select form-select-solid" data-control="select2"
                                 data-placeholder="Select Month" tabindex="-1" aria-hidden="true" name="month"
                                 id="filterMonth">
-                                <option value="{{ \Carbon\Carbon::now()->format('F') }}">
-                                    {{ \Carbon\Carbon::now()->format('F') }}
-                                </option>
                                 @foreach ($months as $month)
-                                    <option value="{{ $month }}">{{ $month }}</option>
+                                    <option value="{{ $month }}" @selected(\Carbon\Carbon::now()->format('F') === $month)>
+                                        {{ $month }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="mx-1">
-                            <select
-                                class="form-select form-select-solid"
-                                data-control="select2"
-                                data-dropdown-css-class="w-100px"
-                                data-placeholder="Select Year"
-                                tabindex="-1" name="year"
-                                aria-hidden="true" id="filterYear">
+                            <select class="form-select form-select-solid" data-control="select2"
+                                data-dropdown-css-class="w-100px" data-placeholder="Select Year" tabindex="-1"
+                                name="year" aria-hidden="true" id="filterYear">
                                 <option value="{{ date('Y') }}">2025</option>
                                 <option value="2022">2022</option>
                                 <option value="2023">2023</option>

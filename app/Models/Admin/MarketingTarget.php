@@ -5,7 +5,7 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MarketingPlan extends Model
+class MarketingTarget extends Model
 {
     use HasFactory;
     /**

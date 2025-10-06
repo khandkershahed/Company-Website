@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('marketing_plans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnUpdate()->onDelete('null');  // Faisal
+            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete();  // Faisal
             $table->year('year')->nullable();
             $table->string('month')->nullable(); // e.g., 'January', 'February'
             $table->date('date')->nullable();

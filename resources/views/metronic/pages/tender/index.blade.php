@@ -72,18 +72,23 @@
                 <div class="shadow-none card card-flush card-rounded">
                     <div class="pt-4 border-0 card-header align-items-center">
                         <div class="card-title align-items-start flex-column">
-                            <p class="mb-0 font-normal text-black" style="font-size: 15px;">Tender List % Information
-                            </p>
-                            <div data-kt-daterangepicker="true" data-kt-daterangepicker-opens="left"
-                                class="mt-2 btn btn-sm btn-light d-flex align-items-center" data-kt-initialized="1">
-                                <div class="text-gray-600 fw-bold">20 July 2025 - 18 August 2025</div>
-                            </div>
+                            <p class="mb-0 font-normal text-black" style="font-size: 15px;">Tender List Information</p>
+
+                            <form id="filterForm" method="GET">
+                                <input type="hidden" name="date_range" id="date_range">
+                                <div id="daterange" class="mt-2 btn btn-sm btn-light d-flex align-items-center">
+                                    <div class="text-gray-600 fw-bold">
+                                        <span id="daterange-text">Select Date Range</span>
+                                        <i class="bi bi-calendar ms-2"></i>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <ul class="nav nav-pills nav-pills-custom mx-9" role="tablist">
                             <li class="nav-item me-3 me-lg-6" role="presentation">
                                 <a class="py-3 overflow-hidden nav-link btn btn-outline btn-flex btn-active-color-primary active"
                                     data-bs-toggle="pill" id="kt_charts_widget_10_tab_0"
-                                    href="#kt_charts_widget_10_tab_content_0" aria-selected="true" role="tab"
+                                    href="#all_tenders" aria-selected="true" role="tab"
                                     tabindex="-1">
                                     <div class="nav-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19"
@@ -105,7 +110,7 @@
                             <li class="nav-item me-3 me-lg-6" role="presentation">
                                 <a class="py-3 overflow-hidden nav-link btn btn-outline btn-flex btn-active-color-primary"
                                     data-bs-toggle="pill" id="kt_charts_widget_10_tab_1"
-                                    href="#kt_charts_widget_10_tab_content_1" aria-selected="false" role="tab"
+                                    href="#live" aria-selected="false" role="tab"
                                     tabindex="-1">
                                     <div class="nav-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19"
@@ -133,7 +138,7 @@
                             <li class="nav-item me-3 me-lg-6" role="presentation">
                                 <a class="py-3 overflow-hidden nav-link btn btn-outline btn-flex btn-active-color-primary"
                                     data-bs-toggle="pill" id="kt_charts_widget_10_tab_2"
-                                    href="#kt_charts_widget_10_tab_content_2" aria-selected="false" role="tab">
+                                    href="#participating" aria-selected="false" role="tab">
                                     <div class="nav-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19"
                                             viewBox="0 0 20 21" fill="none">
@@ -160,7 +165,7 @@
                             <li class="nav-item me-3 me-lg-6" role="presentation">
                                 <a class="py-3 overflow-hidden nav-link btn btn-outline btn-flex btn-active-color-primary"
                                     data-bs-toggle="pill" id="kt_charts_widget_10_tab_3"
-                                    href="#kt_charts_widget_10_tab_content_3" aria-selected="false" role="tab"
+                                    href="#submitted" aria-selected="false" role="tab"
                                     tabindex="-1">
                                     <div class="nav-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19"
@@ -178,7 +183,7 @@
                             <li class="nav-item me-3 me-lg-6" role="presentation">
                                 <a class="py-3 overflow-hidden nav-link btn btn-outline btn-flex btn-active-color-primary"
                                     data-bs-toggle="pill" id="kt_charts_widget_10_tab_4"
-                                    href="#kt_charts_widget_10_tab_content_4" aria-selected="false" role="tab"
+                                    href="#won_tenders" aria-selected="false" role="tab"
                                     tabindex="-1">
                                     <div class="nav-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19"
@@ -197,7 +202,7 @@
                             <li class="nav-item me-3 me-lg-6" role="presentation">
                                 <a class="py-3 overflow-hidden nav-link btn btn-outline btn-flex btn-active-color-primary"
                                     data-bs-toggle="pill" id="kt_charts_widget_10_tab_5"
-                                    href="#kt_charts_widget_10_tab_content_5" aria-selected="false" role="tab"
+                                    href="#lost_tenders" aria-selected="false" role="tab"
                                     tabindex="-1">
                                     <div class="nav-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19"
@@ -212,37 +217,13 @@
                                         Lost / Not Particiapted
                                     </span>
                                 </a>
-                            </li> 
+                            </li>
                         </ul>
-                        <div class="card-toolbar flex-column">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="form-check form-check-custom form-check-solid form-check-sm me-3">
-                                    <input class="form-check-input" type="radio" name="group2" value="BD"
-                                        id="radioBD" checked="">
-                                    <label class="form-check-label" for="radioBD">
-                                        Live
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-custom form-check-solid form-check-sm me-3">
-                                    <input class="form-check-input" type="radio" name="group2" value="PK"
-                                        id="radioPK">
-                                    <label class="form-check-label" for="radioPK">
-                                        Lost
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-custom form-check-solid form-check-sm me-3">
-                                    <input class="form-check-input" type="radio" name="group2" value="US"
-                                        id="radioUS">
-                                    <label class="form-check-label" for="radioUS">
-                                        Submited
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <div class="card-body">
-                        <div class="px-0 tab-content">
-                            <div class="tab-pane fade active show" id="kt_charts_widget_10_tab_content_0"
+                        @include('metronic.pages.tender.partials.tenderTabs')
+                        {{-- <div class="px-0 tab-content">
+                            <div class="tab-pane fade active show" id="all_tenders"
                                 role="tabpanel" aria-labelledby="kt_charts_widget_10_tab_0">
                                 <div class="table-responsive">
                                     <div class="table-responsive" style="max-height: 630px; overflow-y: auto;">
@@ -294,139 +275,330 @@
                                                     <td>Yes</td>
                                                     <td>-</td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="ps-3">1</td>
-                                                    <td>RECORD PH / EMAIL</td>
-                                                    <td>-</td>
-                                                    <td>Faisal</td>
-                                                    <td>01.04.24</td>
-                                                    <td>Monday</td>
-                                                    <td>Purchase Schedule</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>Brac Net</td>
-                                                    <td><a href="#">Adobe Suite</a></td>
-                                                    <td>-</td>
-                                                    <td>Yes</td>
-                                                    <td>-</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="ps-3">1</td>
-                                                    <td>RECORD PH / EMAIL</td>
-                                                    <td>-</td>
-                                                    <td>Faisal</td>
-                                                    <td>01.04.24</td>
-                                                    <td>Monday</td>
-                                                    <td>Purchase Schedule</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>Brac Net</td>
-                                                    <td><a href="#">Adobe Suite</a></td>
-                                                    <td>-</td>
-                                                    <td>Yes</td>
-                                                    <td>-</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="ps-3">1</td>
-                                                    <td>RECORD PH / EMAIL</td>
-                                                    <td>-</td>
-                                                    <td>Faisal</td>
-                                                    <td>01.04.24</td>
-                                                    <td>Monday</td>
-                                                    <td>Purchase Schedule</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>Brac Net</td>
-                                                    <td><a href="#">Adobe Suite</a></td>
-                                                    <td>-</td>
-                                                    <td>Yes</td>
-                                                    <td>-</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="ps-3">1</td>
-                                                    <td>RECORD PH / EMAIL</td>
-                                                    <td>-</td>
-                                                    <td>Faisal</td>
-                                                    <td>01.04.24</td>
-                                                    <td>Monday</td>
-                                                    <td>Purchase Schedule</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>Brac Net</td>
-                                                    <td><a href="#">Adobe Suite</a></td>
-                                                    <td>-</td>
-                                                    <td>Yes</td>
-                                                    <td>-</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="ps-3">1</td>
-                                                    <td>RECORD PH / EMAIL</td>
-                                                    <td>-</td>
-                                                    <td>Faisal</td>
-                                                    <td>01.04.24</td>
-                                                    <td>Monday</td>
-                                                    <td>Purchase Schedule</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>-</td>
-                                                    <td>Brac Net</td>
-                                                    <td><a href="#">Adobe Suite</a></td>
-                                                    <td>-</td>
-                                                    <td>Yes</td>
-                                                    <td>-</td>
-                                                </tr>
+
+
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_1" role="tabpanel"
+                            <div class="tab-pane fade" id="live" role="tabpanel"
                                 aria-labelledby="kt_charts_widget_10_tab_1">
                                 <div class="table-responsive">
-                                    asdasdasd
+                                    <table class="table border rounded table-row-bordered dataTable"
+                                        style="min-width: 120%;">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th width="3%" class="ps-3">Sl</th>
+                                                <th width="14%">Status</th>
+                                                <th width="8%">Type</th>
+                                                <th width="10%">Responsible</th>
+                                                <th width="8%">Last Date</th>
+                                                <th width="5%">Day</th>
+                                                <th width="8%">Action</th>
+                                                <th width="7%">Participate</th>
+                                                <th width="8%">Value Tk.</th>
+                                                <th width="6%">Tender</th>
+                                                <th width="7%">Purchased</th>
+                                                <th width="8%">Tenderer</th>
+                                                <th width="8%">Reference</th>
+                                                <th width="10%" colspan="3" class="text-center">Submission
+                                                </th>
+                                            </tr>
+                                            <tr class="bg-white">
+                                                <th colspan="13"></th>
+                                                <th title="Hardcopy Reference Number">Hardcopy</th>
+                                                <th title="Submission via Email or Online">E/O</th>
+                                                <th title="e-Government Procurement ID" width="10%"
+                                                    class="pe-3">eGP</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody style="color: #7B7B7B;">
+                                            <tr>
+                                                <td class="ps-3">1</td>
+                                                <td>RECORD PH / EMAIL</td>
+                                                <td>-</td>
+                                                <td>Faisal</td>
+                                                <td>01.04.24</td>
+                                                <td>Monday</td>
+                                                <td>Purchase Schedule</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>Brac Net</td>
+                                                <td><a href="#">Adobe Suite</a></td>
+                                                <td>-</td>
+                                                <td>Yes</td>
+                                                <td>-</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_2" role="tabpanel"
+                            <div class="tab-pane fade" id="participating" role="tabpanel"
                                 aria-labelledby="kt_charts_widget_10_tab_2">
                                 <div class="table-responsive">
                                     <div class="table-responsive">
-                                        asdasdasd
+                                        <table class="table border rounded table-row-bordered dataTable"
+                                            style="min-width: 120%;">
+                                            <thead class="bg-light">
+                                                <tr>
+                                                    <th width="3%" class="ps-3">Sl</th>
+                                                    <th width="14%">Status</th>
+                                                    <th width="8%">Type</th>
+                                                    <th width="10%">Responsible</th>
+                                                    <th width="8%">Last Date</th>
+                                                    <th width="5%">Day</th>
+                                                    <th width="8%">Action</th>
+                                                    <th width="7%">Participate</th>
+                                                    <th width="8%">Value Tk.</th>
+                                                    <th width="6%">Tender</th>
+                                                    <th width="7%">Purchased</th>
+                                                    <th width="8%">Tenderer</th>
+                                                    <th width="8%">Reference</th>
+                                                    <th width="10%" colspan="3" class="text-center">Submission
+                                                    </th>
+                                                </tr>
+                                                <tr class="bg-white">
+                                                    <th colspan="13"></th>
+                                                    <th title="Hardcopy Reference Number">Hardcopy</th>
+                                                    <th title="Submission via Email or Online">E/O</th>
+                                                    <th title="e-Government Procurement ID" width="10%"
+                                                        class="pe-3">eGP</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody style="color: #7B7B7B;">
+                                                <tr>
+                                                    <td class="ps-3">1</td>
+                                                    <td>RECORD PH / EMAIL</td>
+                                                    <td>-</td>
+                                                    <td>Faisal</td>
+                                                    <td>01.04.24</td>
+                                                    <td>Monday</td>
+                                                    <td>Purchase Schedule</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>-</td>
+                                                    <td>Brac Net</td>
+                                                    <td><a href="#">Adobe Suite</a></td>
+                                                    <td>-</td>
+                                                    <td>Yes</td>
+                                                    <td>-</td>
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_3" role="tabpanel"
+                            <div class="tab-pane fade" id="submitted" role="tabpanel"
                                 aria-labelledby="kt_charts_widget_10_tab_3">
                                 <div class="table-responsive">
-                                    asdasda
+                                    <table class="table border rounded table-row-bordered dataTable"
+                                        style="min-width: 120%;">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th width="3%" class="ps-3">Sl</th>
+                                                <th width="14%">Status</th>
+                                                <th width="8%">Type</th>
+                                                <th width="10%">Responsible</th>
+                                                <th width="8%">Last Date</th>
+                                                <th width="5%">Day</th>
+                                                <th width="8%">Action</th>
+                                                <th width="7%">Participate</th>
+                                                <th width="8%">Value Tk.</th>
+                                                <th width="6%">Tender</th>
+                                                <th width="7%">Purchased</th>
+                                                <th width="8%">Tenderer</th>
+                                                <th width="8%">Reference</th>
+                                                <th width="10%" colspan="3" class="text-center">Submission
+                                                </th>
+                                            </tr>
+                                            <tr class="bg-white">
+                                                <th colspan="13"></th>
+                                                <th title="Hardcopy Reference Number">Hardcopy</th>
+                                                <th title="Submission via Email or Online">E/O</th>
+                                                <th title="e-Government Procurement ID" width="10%"
+                                                    class="pe-3">eGP</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody style="color: #7B7B7B;">
+                                            <tr>
+                                                <td class="ps-3">1</td>
+                                                <td>RECORD PH / EMAIL</td>
+                                                <td>-</td>
+                                                <td>Faisal</td>
+                                                <td>01.04.24</td>
+                                                <td>Monday</td>
+                                                <td>Purchase Schedule</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>Brac Net</td>
+                                                <td><a href="#">Adobe Suite</a></td>
+                                                <td>-</td>
+                                                <td>Yes</td>
+                                                <td>-</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_4" role="tabpanel"
+                            <div class="tab-pane fade" id="won_tenders" role="tabpanel"
                                 aria-labelledby="kt_charts_widget_10_tab_4">
                                 <div class="table-responsive">
-                                    asdasd
+                                    <table class="table border rounded table-row-bordered dataTable"
+                                        style="min-width: 120%;">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th width="3%" class="ps-3">Sl</th>
+                                                <th width="14%">Status</th>
+                                                <th width="8%">Type</th>
+                                                <th width="10%">Responsible</th>
+                                                <th width="8%">Last Date</th>
+                                                <th width="5%">Day</th>
+                                                <th width="8%">Action</th>
+                                                <th width="7%">Participate</th>
+                                                <th width="8%">Value Tk.</th>
+                                                <th width="6%">Tender</th>
+                                                <th width="7%">Purchased</th>
+                                                <th width="8%">Tenderer</th>
+                                                <th width="8%">Reference</th>
+                                                <th width="10%" colspan="3" class="text-center">Submission
+                                                </th>
+                                            </tr>
+                                            <tr class="bg-white">
+                                                <th colspan="13"></th>
+                                                <th title="Hardcopy Reference Number">Hardcopy</th>
+                                                <th title="Submission via Email or Online">E/O</th>
+                                                <th title="e-Government Procurement ID" width="10%"
+                                                    class="pe-3">eGP</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody style="color: #7B7B7B;">
+                                            <tr>
+                                                <td class="ps-3">1</td>
+                                                <td>RECORD PH / EMAIL</td>
+                                                <td>-</td>
+                                                <td>Faisal</td>
+                                                <td>01.04.24</td>
+                                                <td>Monday</td>
+                                                <td>Purchase Schedule</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>Brac Net</td>
+                                                <td><a href="#">Adobe Suite</a></td>
+                                                <td>-</td>
+                                                <td>Yes</td>
+                                                <td>-</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="kt_charts_widget_10_tab_content_5" role="tabpanel"
+                            <div class="tab-pane fade" id="lost_tenders" role="tabpanel"
                                 aria-labelledby="kt_charts_widget_10_tab_5">
                                 <div class="table-responsive">
-                                    asdasd
+                                    <table class="table border rounded table-row-bordered dataTable"
+                                        style="min-width: 120%;">
+                                        <thead class="bg-light">
+                                            <tr>
+                                                <th width="3%" class="ps-3">Sl</th>
+                                                <th width="14%">Status</th>
+                                                <th width="8%">Type</th>
+                                                <th width="10%">Responsible</th>
+                                                <th width="8%">Last Date</th>
+                                                <th width="5%">Day</th>
+                                                <th width="8%">Action</th>
+                                                <th width="7%">Participate</th>
+                                                <th width="8%">Value Tk.</th>
+                                                <th width="6%">Tender</th>
+                                                <th width="7%">Purchased</th>
+                                                <th width="8%">Tenderer</th>
+                                                <th width="8%">Reference</th>
+                                                <th width="10%" colspan="3" class="text-center">Submission
+                                                </th>
+                                            </tr>
+                                            <tr class="bg-white">
+                                                <th colspan="13"></th>
+                                                <th title="Hardcopy Reference Number">Hardcopy</th>
+                                                <th title="Submission via Email or Online">E/O</th>
+                                                <th title="e-Government Procurement ID" width="10%"
+                                                    class="pe-3">eGP</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody style="color: #7B7B7B;">
+                                            <tr>
+                                                <td class="ps-3">1</td>
+                                                <td>RECORD PH / EMAIL</td>
+                                                <td>-</td>
+                                                <td>Faisal</td>
+                                                <td>01.04.24</td>
+                                                <td>Monday</td>
+                                                <td>Purchase Schedule</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>Brac Net</td>
+                                                <td><a href="#">Adobe Suite</a></td>
+                                                <td>-</td>
+                                                <td>Yes</td>
+                                                <td>-</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
     @push('scripts')
+        <script>
+            $(function() {
+                const predefinedRanges = {
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month')
+                        .endOf('month')
+                    ],
+                    'Upcoming Month': [moment().add(1, 'month').startOf('month'), moment().add(1, 'month').endOf(
+                        'month')],
+                    'Custom Range': [moment().subtract(29, 'days'), moment()]
+                };
+
+                $('#daterange').daterangepicker({
+                    opens: 'left',
+                    ranges: predefinedRanges,
+                    autoUpdateInput: false,
+                }, function(start, end, label) {
+                    let formatted = start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD');
+                    $('#date_range').val(formatted);
+                    $('#daterange-text').text(formatted);
+                    $('#filterForm').submit(); // Submit form automatically on selection
+                });
+            });
+        </script>
     @endpush
 </x-admin-app-layout>

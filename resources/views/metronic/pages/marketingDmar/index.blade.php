@@ -7,12 +7,12 @@
                         <div class="d-flex flex-stack justify-content-center align-items-center h-268px">
                             <div>
                                 <img class="img-fluid rounded-circle h-100px w-100px" style="border: 2px solid #296088;"
-                                    src="https://picsum.photos/id/1/200/300" alt="">
+                                    src="{{ asset('https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name)) }}" alt="">
                             </div>
                             <div class="p-8 me-3 text-start">
-                                <h4 class="text-black">Esther Howard</h4>
-                                <p class="mb-0 text-muted">Sales Manager</p>
-                                <p class="mb-0 text-muted">DMAR | FY 2025</p>
+                                <h4 class="text-black">{{ Auth::user()->name }}</h4>
+                                <p class="mb-0 text-muted">{{ Auth::user()->designation }}</p>
+                                <p class="mb-0 text-muted">DMAR | FY {{ date('Y') }}</p>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                                         EMAILED
                                     </span>
                                     <span class="px-2 text-black ms-3 rounded-2">
-                                        150
+                                        0
                                     </span>
                                 </div>
                                 <div
@@ -52,7 +52,7 @@
                                     <span class="text-black ">
                                         CALLED</span>
                                     <span class="px-2 text-black ms-3 rounded-2">
-                                        300
+                                        0
                                     </span>
                                 </div>
                                 <div
@@ -60,7 +60,7 @@
                                     <span class="text-black ">
                                         VISITIED</span>
                                     <span class="px-2 text-black ms-3 rounded-2">
-                                        300
+                                        0
                                     </span>
                                 </div>
                                 <div
@@ -68,14 +68,14 @@
                                     <span class="text-black ">
                                         POSTED</span>
                                     <span class="px-2 text-black ms-3 rounded-2">
-                                        300
+                                        0
                                     </span>
                                 </div>
                                 <div class="p-2 d-flex align-items-center justify-content-between rounded-2"
                                     style="background-color: #296088;">
                                     <span class="text-white"> Total</span>
                                     <span class="px-2 text-white ms-3 rounded-2">
-                                        300
+                                        0
                                     </span>
                                 </div>
                             </div>
