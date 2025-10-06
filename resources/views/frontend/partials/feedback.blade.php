@@ -194,9 +194,9 @@
     <section class="sticky-bottom-bar" id="stickyBottomBar" style="background: -webkit-linear-gradient(bottom left, #ae0a46 0%, #4e0721 100%); /* Safari, Chrome */
 background: linear-gradient(to top right, #ae0a46 0%, #4e0721 100%); /* Standard */">
         <div class="text-center">
-            <div class="p-3 mx-auto rounded d-flex justify-content-between align-items-center w-75">
-                <div>
-                    <div class="d-flex justify-content-between align-items-center" type="button"
+            <div class="mx-auto row w-75 align-items-center">
+                <div class="col-lg-10">
+                    <div class="p-5 d-flex justify-content-between align-items-center" type="button"
                         data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasBottom"
                         aria-controls="offcanvasBottom">
@@ -224,7 +224,9 @@ background: linear-gradient(to top right, #ae0a46 0%, #4e0721 100%); /* Standard
                 </div>
 
                 <!-- Close icon -->
-                <i id="stickyCloseBtn" class="text-white fas fa-times fs-5 ms-2 fa-shake" style="cursor: pointer; "></i>
+                <div class="col-lg-2">
+                    <i id="stickyCloseBtn" class="text-white fas fa-times fs-5 ms-2 fa-shake" style="cursor: pointer; "></i>
+                </div>
             </div>
         </div>
     </section>
