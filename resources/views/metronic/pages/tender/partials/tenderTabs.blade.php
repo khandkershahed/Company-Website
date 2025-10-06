@@ -43,7 +43,30 @@
                         @forelse ($tabData as $index => $tender)
                             <tr>
                                 <td class="ps-3">{{ $index + 1 }}</td>
-                                <td>{{ $tender->tender_status ?? '-' }}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <a href="#" class="text-primary dropdown-toggle" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            {{ $tender->tender_status ?? '-' }}
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('admin.tender.edit', $tender->id) }}">Edit</a>
+                                            </li>
+                                            <li>
+                                                <form action="{{ route('admin.tender.destroy', $tender->id) }}"
+                                                    method="POST"
+                                                    onsubmit="return confirm('Are you sure you want to delete this tender?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="dropdown-item text-danger">Delete</button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
                                 <td>{{ $tender->tender_type ?? '-' }}</td>
                                 <td>{{ $tender->responsiblePerson->name ?? '-' }}</td>
                                 <td>{{ $tender->last_date_of_submission ? \Carbon\Carbon::parse($tender->last_date_of_submission)->format('d.m.y') : '-' }}

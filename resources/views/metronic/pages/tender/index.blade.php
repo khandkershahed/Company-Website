@@ -5,12 +5,12 @@
                 <div class="shadow-none card card-flush card-rounded">
                     <div class="pt-5 card-header">
                         <div class="card-title d-flex flex-column">
-                            <p class="mb-0 optional-color font-44px">604</p>
+                            <p class="mb-0 optional-color font-44px">{{ $live_tenders->count() }}</p>
                         </div>
                     </div>
                     <div class="pt-2 card-body d-flex flex-column justify-content-end pe-0">
                         <span class="pt-1 mb-2 tender-p-para">Total Live Tender</span>
-                        <smal class="mb-2 text-gray-800 fw-bolder d-block">April 16 2025 (current Month)</smal>
+                        <smal class="mb-2 text-gray-800 fw-bolder d-block">{{ now()->format('d M, Y') }}</smal>
                     </div>
                 </div>
             </div>
@@ -18,12 +18,12 @@
                 <div class="shadow-none card card-flush card-rounded">
                     <div class="pt-5 card-header">
                         <div class="card-title d-flex flex-column">
-                            <p class="mb-0 optional-color font-44px">256</p>
+                            <p class="mb-0 optional-color font-44px">{{ $participating_tenders->count() }}</p>
                         </div>
                     </div>
                     <div class="pt-2 card-body d-flex flex-column justify-content-end pe-0">
                         <span class="pt-1 mb-2 tender-p-para">Total Participating Tender</span>
-                        <smal class="mb-2 text-gray-800 fw-bolder d-block">16 April 2025</smal>
+                        <smal class="mb-2 text-gray-800 fw-bolder d-block">{{ now()->format('d M, Y') }}</smal>
                     </div>
                 </div>
             </div>
@@ -31,12 +31,12 @@
                 <div class="shadow-none card card-flush card-rounded">
                     <div class="pt-5 card-header">
                         <div class="card-title d-flex flex-column">
-                            <p class="mb-0 optional-color font-44px">320</p>
+                            <p class="mb-0 optional-color font-44px">{{ $submitted_tenders->count() }}</p>
                         </div>
                     </div>
                     <div class="pt-2 card-body d-flex flex-column justify-content-end pe-0">
                         <span class="pt-1 mb-2 tender-p-para">Total Submitted Tender</span>
-                        <smal class="mb-2 text-gray-800 fw-bolder d-block">16 April 2025</smal>
+                        <smal class="mb-2 text-gray-800 fw-bolder d-block">{{ now()->format('d M, Y') }}</smal>
                     </div>
                 </div>
             </div>
@@ -44,12 +44,12 @@
                 <div class="shadow-none card card-flush card-rounded">
                     <div class="pt-5 card-header">
                         <div class="card-title d-flex flex-column">
-                            <p class="mb-0 optional-color font-44px">250</p>
+                            <p class="mb-0 optional-color font-44px">{{ $won_tenders->count() }}</p>
                         </div>
                     </div>
                     <div class="pt-2 card-body d-flex flex-column justify-content-end pe-0">
                         <span class="pt-1 mb-2 tender-p-para">Total Won Tender</span>
-                        <smal class="mb-2 text-gray-800 fw-bolder d-block">16 April 2025</smal>
+                        <smal class="mb-2 text-gray-800 fw-bolder d-block">{{ now()->format('d M, Y') }}</smal>
                     </div>
                 </div>
             </div>
@@ -57,12 +57,12 @@
                 <div class="shadow-none card card-flush card-rounded">
                     <div class="pt-5 card-header">
                         <div class="card-title d-flex flex-column">
-                            <p class="mb-0 optional-color font-44px">656</p>
+                            <p class="mb-0 optional-color font-44px">{{ $lost_tenders->count() }}</p>
                         </div>
                     </div>
                     <div class="pt-2 card-body d-flex flex-column justify-content-end pe-0">
                         <span class="pt-1 mb-2 tender-p-para">Total Lost Tender</span>
-                        <smal class="mb-2 text-gray-800 fw-bolder d-block">16 April 2025</smal>
+                        <smal class="mb-2 text-gray-800 fw-bolder d-block">{{ now()->format('d M, Y') }}</smal>
                     </div>
                 </div>
             </div>
@@ -76,20 +76,29 @@
 
                             <form id="filterForm" method="GET">
                                 <input type="hidden" name="date_range" id="date_range">
-                                <div id="daterange" class="mt-2 btn btn-sm btn-light d-flex align-items-center">
-                                    <div class="text-gray-600 fw-bold">
-                                        <span id="daterange-text">Select Date Range</span>
+
+                                <div class="mt-2 btn btn-sm btn-light d-flex align-items-center">
+                                    <div id="daterange" class="text-gray-600 fw-bold">
+                                        <span id="daterange-text">
+                                            {{ request('date_range') ? request('date_range') : 'Select Date Range' }}
+                                        </span>
                                         <i class="bi bi-calendar ms-2"></i>
                                     </div>
+                                    @if (request('date_range'))
+                                        <button type="submit" name="clear" value="1"
+                                            class="btn btn-sm ms-2"><i class="fas fa-trash text-danger"></i></button>
+                                    @endif
                                 </div>
+
+                                {{-- Clear Filter Button (Shown only if filter is active) --}}
                             </form>
+
                         </div>
                         <ul class="nav nav-pills nav-pills-custom mx-9" role="tablist">
                             <li class="nav-item me-3 me-lg-6" role="presentation">
                                 <a class="py-3 overflow-hidden nav-link btn btn-outline btn-flex btn-active-color-primary active"
-                                    data-bs-toggle="pill" id="kt_charts_widget_10_tab_0"
-                                    href="#all_tenders" aria-selected="true" role="tab"
-                                    tabindex="-1">
+                                    data-bs-toggle="pill" id="kt_charts_widget_10_tab_0" href="#all_tenders"
+                                    aria-selected="true" role="tab" tabindex="-1">
                                     <div class="nav-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19"
                                             viewBox="0 0 24 25" fill="none">
@@ -109,9 +118,8 @@
                             </li>
                             <li class="nav-item me-3 me-lg-6" role="presentation">
                                 <a class="py-3 overflow-hidden nav-link btn btn-outline btn-flex btn-active-color-primary"
-                                    data-bs-toggle="pill" id="kt_charts_widget_10_tab_1"
-                                    href="#live" aria-selected="false" role="tab"
-                                    tabindex="-1">
+                                    data-bs-toggle="pill" id="kt_charts_widget_10_tab_1" href="#live"
+                                    aria-selected="false" role="tab" tabindex="-1">
                                     <div class="nav-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19"
                                             viewBox="0 0 18 21" fill="none">
@@ -137,8 +145,8 @@
                             </li>
                             <li class="nav-item me-3 me-lg-6" role="presentation">
                                 <a class="py-3 overflow-hidden nav-link btn btn-outline btn-flex btn-active-color-primary"
-                                    data-bs-toggle="pill" id="kt_charts_widget_10_tab_2"
-                                    href="#participating" aria-selected="false" role="tab">
+                                    data-bs-toggle="pill" id="kt_charts_widget_10_tab_2" href="#participating"
+                                    aria-selected="false" role="tab">
                                     <div class="nav-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19"
                                             viewBox="0 0 20 21" fill="none">
@@ -164,9 +172,8 @@
                             </li>
                             <li class="nav-item me-3 me-lg-6" role="presentation">
                                 <a class="py-3 overflow-hidden nav-link btn btn-outline btn-flex btn-active-color-primary"
-                                    data-bs-toggle="pill" id="kt_charts_widget_10_tab_3"
-                                    href="#submitted" aria-selected="false" role="tab"
-                                    tabindex="-1">
+                                    data-bs-toggle="pill" id="kt_charts_widget_10_tab_3" href="#submitted"
+                                    aria-selected="false" role="tab" tabindex="-1">
                                     <div class="nav-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19"
                                             viewBox="0 0 24 25" fill="none">
@@ -182,9 +189,8 @@
                             </li>
                             <li class="nav-item me-3 me-lg-6" role="presentation">
                                 <a class="py-3 overflow-hidden nav-link btn btn-outline btn-flex btn-active-color-primary"
-                                    data-bs-toggle="pill" id="kt_charts_widget_10_tab_4"
-                                    href="#won_tenders" aria-selected="false" role="tab"
-                                    tabindex="-1">
+                                    data-bs-toggle="pill" id="kt_charts_widget_10_tab_4" href="#won_tenders"
+                                    aria-selected="false" role="tab" tabindex="-1">
                                     <div class="nav-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19"
                                             viewBox="0 0 18 19" fill="none">
@@ -201,9 +207,8 @@
                             </li>
                             <li class="nav-item me-3 me-lg-6" role="presentation">
                                 <a class="py-3 overflow-hidden nav-link btn btn-outline btn-flex btn-active-color-primary"
-                                    data-bs-toggle="pill" id="kt_charts_widget_10_tab_5"
-                                    href="#lost_tenders" aria-selected="false" role="tab"
-                                    tabindex="-1">
+                                    data-bs-toggle="pill" id="kt_charts_widget_10_tab_5" href="#lost_tenders"
+                                    aria-selected="false" role="tab" tabindex="-1">
                                     <div class="nav-icon me-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19"
                                             viewBox="0 0 24 25" fill="none">
@@ -592,13 +597,24 @@
                     opens: 'left',
                     ranges: predefinedRanges,
                     autoUpdateInput: false,
+                    locale: {
+                        cancelLabel: 'Clear'
+                    }
                 }, function(start, end, label) {
                     let formatted = start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD');
                     $('#date_range').val(formatted);
                     $('#daterange-text').text(formatted);
-                    $('#filterForm').submit(); // Submit form automatically on selection
+                    $('#filterForm').submit();
+                });
+
+                // Optional: Handle Clear from daterangepicker (X button)
+                $('#daterange').on('cancel.daterangepicker', function(ev, picker) {
+                    $('#date_range').val('');
+                    $('#daterange-text').text('Select Date Range');
+                    $('#filterForm').submit();
                 });
             });
         </script>
     @endpush
+
 </x-admin-app-layout>
