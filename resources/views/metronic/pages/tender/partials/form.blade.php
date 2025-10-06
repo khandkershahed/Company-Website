@@ -30,7 +30,7 @@
             @foreach ($users as $user)
                 <option value="{{ $user->id }}"
                     {{ old('responsible_person_id', $tender->responsible_person_id ?? '') == $user->id ? 'selected' : '' }}>
-                    {{ $user->display_name }}
+                    {{ $user->name }}
                 </option>
             @endforeach
         </select>
