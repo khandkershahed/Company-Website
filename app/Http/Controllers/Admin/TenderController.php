@@ -268,8 +268,8 @@ class TenderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Tender $tender)
     {
-        //
+        $tender->delete();
     }
 }
