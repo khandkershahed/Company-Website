@@ -1,6 +1,6 @@
  <x-admin-app-layout :title="'Add Tender Information'">
      <div class="card card-flash">
-         <div class="card-header mt-6">
+         <div class="mt-6 card-header">
              <div class="card-title">
                  <h4 class="mb-0 text-gray-800">
                      Add Tender Information
@@ -24,11 +24,11 @@
                  </a>
              </div>
          </div>
-         <div class="card-body pt-0">
+         <div class="pt-0 card-body">
              <form action="{{ route('admin.tender.store') }}" method="POST">
                  @csrf
                  @include('metronic.pages.tender.partials.form', ['users' => $users])
-                 <div class="mt-3">
+                 <div class="mt-3 text-end">
                      <button class="btn btn-primary">Create Tender</button>
                  </div>
              </form>
