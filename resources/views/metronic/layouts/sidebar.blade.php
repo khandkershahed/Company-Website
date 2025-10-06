@@ -59,6 +59,9 @@
                                 'admin.marketing.dashboard',
                                 'marketing-dmar.index',
                                 'admin.marketing-emar.index',
+                                'admin.marketing-plan.index',
+                                'admin.marketing-plan.create',
+                                'admin.marketing-plan.edit',
                             ],
                             'route' => 'admin.marketing.dashboard',
                             'subMenu' => [
@@ -79,7 +82,20 @@
                                 ],
                                 [
                                     'title' => 'Marketing Plan',
-                                    'routes' => ['admin.marketing-plan.index'],
+                                    'routes' => [
+                                        'admin.marketing-plan.index',
+                                        'admin.marketing-plan.create',
+                                        'admin.marketing-plan.edit',
+                                    ],
+                                    'route' => 'admin.marketing-plan.index',
+                                ],
+                                [
+                                    'title' => 'Marketing Target',
+                                    'routes' => [
+                                        'admin.marketing-plan.index',
+                                        'admin.marketing-plan.create',
+                                        'admin.marketing-plan.edit',
+                                    ],
                                     'route' => 'admin.marketing-plan.index',
                                 ],
                             ],
@@ -156,6 +172,9 @@
                                 'admin.marketing.dashboard',
                                 'marketing-dmar.index',
                                 'admin.marketing-emar.index',
+                                'admin.marketing-plan.index',
+                                'admin.marketing-plan.create',
+                                'admin.marketing-plan.edit',
                             ],
                             'subMenu' => [
                                 [
