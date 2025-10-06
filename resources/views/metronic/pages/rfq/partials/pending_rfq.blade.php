@@ -9,9 +9,9 @@
     <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}" id="pending_rfq_{{ $rfq->id }}"
         role="tabpanel">
         <div class="shadow-none card">
-            <div class="p-4 bg-light rounded-3 d-flex justify-content-between align-items-center w-100">
+            <div class="p-4 bg-light rounded-3 d-flex justify-content-between align-items-center w-100 rfq-content-info">
                 <div class="d-flex align-items-center">
-                    <p class="mb-0 text-black ps-3 fw-bold" style="font-size: 16px;">
+                    <p class="mb-0 text-black ps-3 fw-bold rfq-tab-content">
                         @if (!Route::is('admin.archived.rfq'))
                             RFQ#
                         @endif{{ $rfq->rfq_code }}
