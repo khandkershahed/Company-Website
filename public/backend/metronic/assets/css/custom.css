@@ -52,6 +52,9 @@
 .rfq-tab-content {
     font-size: 16px;
 }
+.search-icons {
+    top: 48px;
+}
 @media (max-width: 600px) {
     #clock,
     .breadcrumb,
@@ -59,9 +62,7 @@
         display: none !important;
     }
     .search-icons {
-        position: relative;
-        left: 250px;
-        margin-top: 3px;
+        top: 236px;
     }
     .rfq-query-filter {
         margin-top: 18px;
@@ -89,6 +90,18 @@
     }
     .rfq-status {
         height: 182px !important;
+    }
+    .trackNavbar {
+        align-items: center;
+        height: 200px;
+        display: flex;
+        width: 60% !important;
+        margin: auto;
+    }
+    .table td,
+    .table th,
+    .table tr {
+        font-size: 12px !important;
     }
 }
 
