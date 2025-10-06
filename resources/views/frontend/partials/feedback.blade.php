@@ -140,6 +140,7 @@
         z-index: 1050;
         /* stays above all content */
     }
+
     .rfq-full-button {
         width: 100%;
         font-family: var(--primary-font);
@@ -147,12 +148,13 @@
         font-size: var(--header-font-size);
         color: var(--white);
         background: #000080;
-        height: 54px;
+        height: 150px;
         padding: 15px 0px;
         border-top: 1px solid #000080;
         border-bottom: 1px solid #000080;
         border-radius: 0px;
     }
+
     .rfq-full-button:hover {
         width: 100%;
         font-family: var(--primary-font);
@@ -160,11 +162,12 @@
         font-size: var(--header-font-size);
         color: var(--white);
         background: #000080;
-        height: 54px;
+        height: 150px;
         padding: 15px 0px;
         border: 1px solid #000080;
         border-radius: 0px;
     }
+
     .rfq-full-button:active {
         width: 100%;
         font-family: var(--primary-font);
@@ -172,7 +175,7 @@
         font-size: var(--header-font-size);
         color: var(--white);
         background: #000080 !important;
-        height: 54px;
+        height: 150px;
         padding: 15px 0px;
         border: 1px solid #000080 !important;
         border-radius: 0px;
@@ -188,20 +191,44 @@
             {{ Cart::count() }} {{ Cart::count() > 1 ? 'Item(s)' : 'Item' }} Added
         </span>
     </button>
-    <section class="sticky-bottom-bar" id="stickyBottomBar">
-        <div class="text-center ">
-            <button class="text-white fw-semibold rfq-full-button"
-                type="button"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasBottom"
-                aria-controls="offcanvasBottom">
-                <span class="miniRFQQTY"
-                    style="line-height: 1.3; font-size:1.2rem; font-family: system-ui; letter-spacing: 1px;">
-                    {{ Cart::count() }} {{ Cart::count() > 1 ? 'Item(s)' : 'Item' }} Added
-                </span>
-            </button>
+    <section class="sticky-bottom-bar" id="stickyBottomBar" style="background: -webkit-linear-gradient(bottom left, #ae0a46 0%, #4e0721 100%); /* Safari, Chrome */
+background: linear-gradient(to top right, #ae0a46 0%, #4e0721 100%); /* Standard */">
+        <div class="text-center">
+            <div class="p-3 mx-auto rounded d-flex justify-content-between align-items-center w-75">
+                <div>
+                    <div class="d-flex justify-content-between align-items-center" type="button"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasBottom"
+                        aria-controls="offcanvasBottom">
+                        <div class="text-start">
+                            <h5 class="mb-1 text-white">Your Cart Summary</h5>
+                            <p class="mb-2 text-white" style="font-size: 0.9rem;">
+                                Review the items you’ve added to your cart.<br /> You can click the button below to view or edit your selections.
+                            </p>
+                            <span class="text-white miniRFQQTY"
+                                style="line-height: 1.3; font-size:1.2rem; font-family: system-ui; letter-spacing: 1px;">
+                                ({{ Cart::count() }} {{ Cart::count() > 1 ? 'Item(s)' : 'Item' }} Added)
+                            </span>
+                        </div>
+
+                        <div>
+                           <!-- Offcanvas trigger button -->
+                            <button class="py-1 btn btn-white ms-3" type="button" style="height: 40px;display: flex;justify-content: center;align-items: center;"
+                                data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasBottom"
+                                aria-controls="offcanvasBottom">
+                                View Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Close icon -->
+                <i id="stickyCloseBtn" class="text-white fas fa-times fs-5 ms-2 fa-shake" style="cursor: pointer; "></i>
+            </div>
         </div>
     </section>
+
     @else
     <a href="{{ route('rfq') }}" class="feedback_upper_modal d-lg-block d-sm-none">
         <span class="miniRFQQTY" style="line-height: 1.3; font-size:1.2rem; font-family: system-ui;position: relative;top: 20%;">
@@ -690,22 +717,35 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const stickyBar = document.getElementById('stickyBottomBar');
+        const closeBtn = document.getElementById('stickyCloseBtn');
         const offcanvasEl = document.getElementById('offcanvasBottom');
         const itemCount = {{ Cart::count() }};
 
-        // Hide the sticky bar if no items
+        // Hide sticky section if no items
         if (itemCount === 0) {
             stickyBar.style.display = 'none';
+            return;
         }
 
-        // Listen for Bootstrap offcanvas events
-        offcanvasEl.addEventListener('show.bs.offcanvas', () => {
+        // Close button click: hide section for 1 minute
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent bubbling to offcanvas button
             stickyBar.style.display = 'none';
+            setTimeout(() => {
+                stickyBar.style.display = 'block';
+            }, 10000); // 1 minute
         });
 
-        offcanvasEl.addEventListener('hidden.bs.offcanvas', () => {
-            if (itemCount > 0) stickyBar.style.display = 'block';
-        });
+        // Hide sticky bar when offcanvas opens
+        if (offcanvasEl) {
+            offcanvasEl.addEventListener('show.bs.offcanvas', () => {
+                stickyBar.style.display = 'none';
+            });
+
+            offcanvasEl.addEventListener('hidden.bs.offcanvas', () => {
+                if (itemCount > 0) stickyBar.style.display = 'block';
+            });
+        }
     });
 </script>
 {{-- Feed Back Button --}}
