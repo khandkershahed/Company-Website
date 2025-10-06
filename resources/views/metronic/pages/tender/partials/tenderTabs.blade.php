@@ -49,20 +49,22 @@
                                             aria-expanded="false">
                                             {{ $tender->tender_status ?? '-' }}
                                         </a>
-                                        <ul class="dropdown-menu">
+                                        <ul class="dropdown-menu text-center">
                                             <li>
-                                                <a class="dropdown-item"
+                                                <a class="dropdown-item text-center fs-3 text-gray-900"
                                                     href="{{ route('admin.tender.edit', $tender->id) }}">Edit</a>
                                             </li>
                                             <li>
-                                                <form action="{{ route('admin.tender.destroy', $tender->id) }}"
+                                                <a class="dropdown-item text-center delete"
+                                                    href="{{ route('admin.tender.destroy', $tender->id) }}"><i class="fas fa-trash text-danger fs-3"></i></a>
+                                                {{-- <form action="{{ route('admin.tender.destroy', $tender->id) }}"
                                                     method="POST"
                                                     onsubmit="return confirm('Are you sure you want to delete this tender?');">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
                                                         class="dropdown-item text-danger">Delete</button>
-                                                </form>
+                                                </form> --}}
                                             </li>
                                         </ul>
                                     </div>
