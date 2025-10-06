@@ -23,7 +23,7 @@
         height: 0.6em;
         padding: 0.25em 0.25em;
         color: #ffff;
-        background: transparent url('{{ asset('images/close.png') }}') center / 0.7em auto no-repeat;
+        background: transparent url('{{ asset(' images/close.png') }}') center / 0.7em auto no-repeat;
         border: 0;
         border-radius: 0.375rem;
         opacity: 1;
@@ -131,23 +131,83 @@
     .offcanvas.offcanvas-bottom {
         height: auto;
     }
+
+    .sticky-bottom-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1050;
+        /* stays above all content */
+    }
+    .rfq-full-button {
+        width: 100%;
+        font-family: var(--primary-font);
+        text-align: center;
+        font-size: var(--header-font-size);
+        color: var(--white);
+        background: #000080;
+        height: 54px;
+        padding: 15px 0px;
+        border-top: 1px solid #000080;
+        border-bottom: 1px solid #000080;
+        border-radius: 0px;
+    }
+    .rfq-full-button:hover {
+        width: 100%;
+        font-family: var(--primary-font);
+        text-align: center;
+        font-size: var(--header-font-size);
+        color: var(--white);
+        background: #000080;
+        height: 54px;
+        padding: 15px 0px;
+        border: 1px solid #000080;
+        border-radius: 0px;
+    }
+    .rfq-full-button:active {
+        width: 100%;
+        font-family: var(--primary-font);
+        text-align: center;
+        font-size: var(--header-font-size);
+        color: var(--white);
+        background: #000080 !important;
+        height: 54px;
+        padding: 15px 0px;
+        border: 1px solid #000080 !important;
+        border-radius: 0px;
+    }
 </style>
 
 <section>
     @if (Cart::count() > 0)
-        <button class="feedback_upper_modal d-lg-block d-sm-none" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
-            <span class="miniRFQQTY"
-                style="line-height: 1.3; font-size:1.2rem; font-family: system-ui;letter-spacing: 1px;">
-                {{ Cart::count() }} {{ Cart::count() > 1 ? 'Item(s)' : 'Item' }} Added
-            </span>
-        </button>
+    <button class="feedback_upper_modal d-lg-block d-sm-none" type="button" data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
+        <span class="miniRFQQTY"
+            style="line-height: 1.3; font-size:1.2rem; font-family: system-ui;letter-spacing: 1px;">
+            {{ Cart::count() }} {{ Cart::count() > 1 ? 'Item(s)' : 'Item' }} Added
+        </span>
+    </button>
+    <section class="sticky-bottom-bar" id="stickyBottomBar">
+        <div class="text-center ">
+            <button class="text-white fw-semibold rfq-full-button"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasBottom"
+                aria-controls="offcanvasBottom">
+                <span class="miniRFQQTY"
+                    style="line-height: 1.3; font-size:1.2rem; font-family: system-ui; letter-spacing: 1px;">
+                    {{ Cart::count() }} {{ Cart::count() > 1 ? 'Item(s)' : 'Item' }} Added
+                </span>
+            </button>
+        </div>
+    </section>
     @else
-        <a href="{{ route('rfq') }}" class="feedback_upper_modal d-lg-block d-sm-none">
-            <span class="miniRFQQTY" style="line-height: 1.3; font-size:1.2rem; font-family: system-ui;position: relative;top: 20%;">
-                Ask Query
-            </span>
-        </a>
+    <a href="{{ route('rfq') }}" class="feedback_upper_modal d-lg-block d-sm-none">
+        <span class="miniRFQQTY" style="line-height: 1.3; font-size:1.2rem; font-family: system-ui;position: relative;top: 20%;">
+            Ask Query
+        </span>
+    </a>
     @endif
 
     {{-- Offcanvas --}}
@@ -162,18 +222,18 @@
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="modal-header py-2" style="background: #ae0a46;">
-                    <h5 class="modal-title text-white" id="staticBackdropLabel">Get Price Quotation
+                <div class="py-2 modal-header" style="background: #ae0a46;">
+                    <h5 class="text-white modal-title" id="staticBackdropLabel">Get Price Quotation
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body p-lg-4 p-0">
+                <div class="p-0 modal-body p-lg-4">
                     <div class="container">
                         <form action="{{ route('rfq.add') }}" enctype="multipart/form-data" method="POST">
                             @csrf
                             <input type="hidden" name="client_id"
                                 value="{{ optional(Auth::guard('client')->user())->id }}">
-                            <div class="row mb-4">
+                            <div class="mb-4 row">
                                 <div class="col-lg-9">
                                     <input type="text" class="form-control" name="product_name" id="product_name"
                                         value="{{ old('product_name') }}" placeholder="Product Name" required>
@@ -184,30 +244,30 @@
                                         value="{{ old('qty') }}">
                                 </div>
                             </div>
-                            <div class="row mb-4">
-                                <div class="col-lg-4 mb-3 pe-0">
+                            <div class="mb-4 row">
+                                <div class="mb-3 col-lg-4 pe-0">
                                     <input type="text" class="form-control rounded-0" required id="name"
                                         name="name" placeholder="Your Name *"
                                         value="{{ optional(Auth::guard('client')->user())->name }}" />
                                 </div>
-                                <div class="col-lg-4 mb-3 pe-0">
+                                <div class="mb-3 col-lg-4 pe-0">
                                     <input type="number" class="form-control rounded-0" id="phone" name="phone"
                                         placeholder="Your Phone Number *" required
                                         value="{{ optional(Auth::guard('client')->user())->phone }}" />
                                 </div>
-                                <div class="col-lg-4 mb-3">
+                                <div class="mb-3 col-lg-4">
                                     <input type="text" class="form-control rounded-0" id="contact"
                                         name="company_name" placeholder="Your Company Name *" required
                                         value="{{ optional(Auth::guard('client')->user())->company_name }}" />
                                 </div>
-                                <div class="col-lg-5 mb-3 pe-0">
+                                <div class="mb-3 col-lg-5 pe-0">
                                     <input type="email" required class="form-control rounded-0" id="email"
                                         name="email" placeholder="Your Email *"
                                         value="{{ optional(Auth::guard('client')->user())->email }}" />
-                                    <span class="text-danger text-start p-0 m-0 email_validation"
+                                    <span class="p-0 m-0 text-danger text-start email_validation"
                                         style="display: none">Please input valid email</span>
                                 </div>
-                                <div class="col-lg-3 mb-3">
+                                <div class="mb-3 col-lg-3">
                                     <select name="country" class="form-control select" id="country">
                                         <option value="Afghanistan">Afghanistan</option>
                                         <option value="Åland Islands">Åland Islands</option>
@@ -479,16 +539,16 @@
                                         <option value="Zimbabwe">Zimbabwe</option>
                                     </select>
                                 </div>
-                                <div class="col-lg-4 mb-3">
+                                <div class="mb-3 col-lg-4">
                                     <input type="file" name="image" class="form-control rounded-0"
                                         id="image" accept="image/*" placeholder="Your Custom Image" />
                                 </div>
-                                <div class="col-lg-12 mb-3">
+                                <div class="mb-3 col-lg-12">
                                     <textarea class="form-control rounded-0" id="message" name="message" rows="3" placeholder="Your Message"></textarea>
                                 </div>
                             </div>
                             <div class="row align-items-center">
-                                <div class="col-lg-3 mb-3">
+                                <div class="mb-3 col-lg-3">
                                     <div class="form-check"
                                         style="border: 1px dashed #4e8ef5;
                                     padding: 28px 45px;
@@ -500,19 +560,19 @@
                                             Call Me
                                         </label>
                                     </div>
-                                    {{-- <div class="form-check border-0">
+                                    {{-- <div class="border-0 form-check">
                                         <input class="form-check-input" type="checkbox" value="1"
                                             id="flexCheckDefault" name="call" placeholder="Call Me" />
                                         <label class="form-check-label" for="flexCheckDefault"> Call Me</label>
                                     </div> --}}
                                 </div>
-                                <div class="col-lg-6 mb-3">
-                                    <div class="form-group px-3 mx-1 message g-recaptcha w-100"
+                                <div class="mb-3 col-lg-6">
+                                    <div class="px-3 mx-1 form-group message g-recaptcha w-100"
                                         data-sitekey="{{ config('app.recaptcha_site_key') }}">
                                     </div>
                                 </div>
-                                <div class="col-lg-3 mb-3">
-                                    <button type="submit" class="btn rounded-0 p-2"
+                                <div class="mb-3 col-lg-3">
+                                    <button type="submit" class="p-2 btn rounded-0"
                                         style="background: #ae0a46; color: white; width:150px; font-size:20px"
                                         role="button">Submit</button>
                                 </div>
@@ -626,4 +686,26 @@
     }
 </script>
 
+<!-- JS logic -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const stickyBar = document.getElementById('stickyBottomBar');
+        const offcanvasEl = document.getElementById('offcanvasBottom');
+        const itemCount = {{ Cart::count() }};
+
+        // Hide the sticky bar if no items
+        if (itemCount === 0) {
+            stickyBar.style.display = 'none';
+        }
+
+        // Listen for Bootstrap offcanvas events
+        offcanvasEl.addEventListener('show.bs.offcanvas', () => {
+            stickyBar.style.display = 'none';
+        });
+
+        offcanvasEl.addEventListener('hidden.bs.offcanvas', () => {
+            if (itemCount > 0) stickyBar.style.display = 'block';
+        });
+    });
+</script>
 {{-- Feed Back Button --}}

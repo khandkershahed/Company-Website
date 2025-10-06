@@ -1,14 +1,14 @@
 <!-- RFQ Dashboard -->
- <x-admin-app-layout :title="'RFQ Dashboard'">
+<x-admin-app-layout :title="'RFQ Dashboard'">
     @include('metronic.pages.rfq.partials.rfq_css')
     <!-- Main Content Start -->
     
     <div class="mb-5 row">
-        <div class="col-lg-4 ps-0">
-            <div class="shadow-none card rfq-box">
+        <div class="col-lg-4 ps-3 ps-lg-0">
+            <div class="mb-3 shadow-none card rfq-box mb-lg-0">
                 <div class="w-100 rfq-status-card" style="overflow: hidden;">
                     <div class="row align-items-center">
-                        <div class="col-lg-8">
+                        <div class="col-lg-8 col-8">
                             <div class="">
                                 <h1>Total RFQ</h1>
                                 <p>{{ date('d M , Y') }}</p>
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 col-4">
                             <div class="rfq-amount">
                                 <h1 class="value">{{ $rfq_count }}</h1>
                             </div>
@@ -47,20 +47,20 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="shadow-none card rfq-status">
+            <div class="mb-3 shadow-none card rfq-status mb-lg-0">
                 <div class="w-100 rfq-status-card">
                     <div class="row align-items-center">
-                        <div class="col-lg-6">
+                        <div class="col-lg-6 col-6">
                             <div class="rfq-icon">
                                 <img src="{{ asset('backend/assets/images/rfq/Total_RFQ.svg') }}" alt="">
                             </div>
                             <div class="mt-4">
                                 <h1 class="mb-0">RFQ</h1>
-                                <p class="rfq-para">Status</p>
+                                <p class="mb-0 rfq-para">Status</p>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <ul class="mb-3 border-0 nav nav-tabs nav-line-tabs fs-6 rfq-tabs w-100">
+                        <div class="col-lg-6 col-6">
+                            <ul class="mb-0 border-0 mb-lg-3 nav nav-tabs nav-line-tabs fs-6 rfq-tabs w-100">
                                 <li class="mb-2 nav-item w-100">
                                     <a class="nav-link w-100 {{ empty($tab_status) || $tab_status == 'pending' ? 'active' : '' }} rfq-pending"
                                         data-bs-toggle="tab" href="#pending" data-status="pending">
@@ -95,7 +95,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 pe-0">
+        <div class="col-lg-4 pe-3 pe-lg-3">
             <div class="p-3 shadow-none card rfq-status-card">
                 <div class="px-2 border-0 card-header w-100">
                     <div class="text-white rounded position-relative me-2 d-flex align-items-center"
@@ -133,19 +133,19 @@
         </div>
     </div>
     <div class="mb-5 row">
-        <div class="mb-3 col-12 col-lg-8 ps-0">
+        <div class="mb-3 col-12 col-lg-8 ps-3 ps-lg-0">
             <div class="shadow-none card card-flush" style="overflow-x: hidden !important;">
                 <div class="p-4 card-body p-lg-7">
                     <div class="row align-items-center">
                         <!-- Left Title Section -->
                         <div class="col-lg-3">
-                            <a href="#allRFQ" class="text-decoration-none">
+                            <a href="#allRFQ" class="mb-2 text-decoration-none mb-lg-0">
                                 <span class="rfq-e-title d-block fw-bold">RFQ Filtered</span>
                                 <span class="rfq-p-title text-muted small">All RFQ history here</span>
                             </a>
                         </div>
                         <!-- Right Filters Section -->
-                        <div class="col-12 col-lg-9">
+                        <div class="col-12 col-lg-9 rfq-query-filter">
                             <div class="row g-2">
                                 <!-- Country -->
                                 <div class="col-12 col-sm-6 col-md-6 col-lg-3">
@@ -154,7 +154,7 @@
                                         name="country">
                                         <option></option>
                                         @foreach ($countryWiseRfqs as $country)
-                                            <option value="{{ $country->country }}">{{ $country->country }}</option>
+                                        <option value="{{ $country->country }}">{{ $country->country }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -165,7 +165,7 @@
                                         data-enable-filtering="true" id="filterSalesman" name="salesman">
                                         <option></option>
                                         @foreach ($users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -176,13 +176,13 @@
                                         data-enable-filtering="true" id="filterCompany" name="company">
                                         <option></option>
                                         @foreach ($companies as $company)
-                                            <option value="{{ $company }}">{{ $company }}</option>
+                                        <option value="{{ $company }}">{{ $company }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <!-- Search -->
                                 <div class="col-12 col-sm-6 col-md-6 col-lg-3">
-                                    <i class="fa-solid fa-magnifying-glass fs-5 position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
+                                    <i class="fa-solid fa-magnifying-glass search-icons fs-5 position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
                                     <input type="text" id="searchQuery" data-kt-table-widget-4="search"
                                         class="form-control ps-10 pe-30 searchQuery" placeholder="Search" />
                                     <button type="button"
@@ -199,7 +199,7 @@
         </div>
         <div class="mb-3 col-12 col-md-6 col-lg-4">
             <div class="shadow-none card card-flush">
-                <div class="card-body">
+                <div class="card-body rfq-query-filter">
                     <div class="flex-wrap gap-2 d-flex justify-content-between align-items-center">
                         <!-- Year Select -->
                         <div class="flex-grow-1 min-w-100 min-w-md-auto">
@@ -251,7 +251,7 @@
         </div>
     </div>
     @include('metronic.pages.rfq.partials.assign-modal')
-@push('scripts')
+   @push('scripts')
         <script>
             $(".data_table").DataTable({
                 language: {

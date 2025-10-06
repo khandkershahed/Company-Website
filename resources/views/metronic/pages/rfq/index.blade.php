@@ -45,14 +45,35 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="mb-3 shadow-none card rfq-status mb-lg-0">
-                <div class="w-100 rfq-status-card">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 col-6">
-                            <div class="rfq-icon">
-                                <img src="{{ asset('backend/assets/images/rfq/Total_RFQ.svg') }}" alt="">
+            <div class="col">
+                <div class="shadow-none card card-flush card-rounded ">
+                    <div class="px-15 d-flex justify-content-between align-items-center h-140px">
+                        <div>
+                            <p class="mb-0 optional-color" style="font-size: 28px;"><span class="text-muted">Year</span> 2025</p>
+                        </div>
+                        <div class="p-8 text-start pe-0">
+                            <p class="mb-2 text-black">Check Monthly Information</p>
+                            <div>
+                                <select
+                                    class="form-select form-select-sm"
+                                    data-control="select2"
+                                    data-placeholder="date"
+                                    tabindex="-1"
+                                    aria-hidden="true">
+                                    <option>Select Date</option>
+                                    <option value="January" selected>January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                </select>
                             </div>
                             <div class="mt-4">
                                 <h1 class="mb-0">RFQ</h1>
