@@ -212,7 +212,7 @@
                                         Lost / Not Particiapted
                                     </span>
                                 </a>
-                            </li>
+                            </li> 
                         </ul>
                         <div class="card-toolbar flex-column">
                             <div class="d-flex justify-content-between align-items-center">

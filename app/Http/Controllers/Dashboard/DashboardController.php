@@ -22,7 +22,7 @@ use App\Models\Admin\SolutionDetail;
 use App\Models\Admin\SubSubCategory;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Admin\LeaveApplication;
-
+ 
 class DashboardController extends Controller
 {
     public function device_ip()

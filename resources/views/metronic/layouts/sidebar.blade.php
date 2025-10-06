@@ -150,6 +150,7 @@
                                 'admin.tender.index',
                                 'admin.marketing.dashboard',
                                 'marketing-dmar.index',
+                                'admin.marketing-emar.index',
                             ],
                             'subMenu' => [
                                 [
@@ -167,11 +168,7 @@
                                     'routes' => ['deal.index', 'deal.create', 'deal.edit'],
                                     'route' => 'deal.index',
                                 ],
-                                // [
-                                //     'title' => 'Sales Forecast',
-                                //     'routes' => ['admin.sales.forecast'],
-                                //     'route' => 'admin.sales.forecast',
-                                // ],
+
                                 [
                                     'title' => 'Sales Management',
                                     'routes' => [
@@ -204,9 +201,6 @@
                                         ],
                                     ],
                                 ],
-                                // [
-
-                                // ],
                             ],
                         ],
                         [

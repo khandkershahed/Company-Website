@@ -264,7 +264,7 @@
                                     <span contenteditable="" tabindex="0" data-placeholder="Choose Multi Client"
                                         aria-placeholder="Choose Multi Client" class="tagify__input" role="textbox"
                                         aria-autocomplete="both" aria-multiline="false"></span>
-                                    ​
+
                                 </tags><input class="form-control d-flex align-items-center" value=""
                                     placeholder="Choose Multi Client" id="kt_tagify_users">
                             </div>
@@ -284,10 +284,10 @@
                     <div class="pt-5 card-body">
                         <tags class="tagify form-control d-flex align-items-center tagify--noTags tagify--empty"
                             tabindex="-1">
-                            <span contenteditable="" tabindex="0" data-placeholder="​" aria-placeholder=""
+                            <span contenteditable="" tabindex="0" data-placeholder="" aria-placeholder=""
                                 class="tagify__input" role="textbox" aria-autocomplete="both"
                                 aria-multiline="false"></span>
-                            ​
+
                         </tags><input class="form-control d-flex align-items-center" value=""
                             id="kt_tagify_country">
                     </div>
