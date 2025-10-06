@@ -33,7 +33,8 @@ return new class extends Migration
             $table->string('tenderer')->nullable();
             $table->text('tender_reference')->nullable();
             $table->string('mode_of_submission')->nullable(); // Select box options are : 'Hardcopy', 'Email', 'Online'
-            $table->string('submission_medium')->nullable(); // e.g., 'eGP ID', 'Hardcopy Ref'
+            $table->string('hardcopy_reference_id')->nullable(); // e.g., 'eGP ID', 'Hardcopy Ref'
+            $table->string('online_reference')->nullable(); // e.g., 'eGP ID', 'Hardcopy Ref'
             $table->string('egp_id')->nullable();
             $table->string('pre_bid_meeting')->nullable();
 

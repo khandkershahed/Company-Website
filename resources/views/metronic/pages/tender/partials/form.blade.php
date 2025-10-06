@@ -151,9 +151,14 @@
 
     {{-- Submission Medium --}}
     <div class="col-md-4">
-        <label class="form-label">Submission Medium</label>
-        <input type="text" name="submission_medium" class="form-control"
-            value="{{ old('submission_medium', $tender->submission_medium ?? '') }}">
+        <label class="form-label">Hardcopy Reference Id</label>
+        <input type="text" name="hardcopy_reference_id" class="form-control"
+            value="{{ old('hardcopy_reference_id', $tender->hardcopy_reference_id ?? '') }}">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Email / Online</label>
+        <input type="text" name="online_reference" class="form-control"
+            value="{{ old('online_reference', $tender->online_reference ?? '') }}">
     </div>
 
     {{-- eGP ID --}}
