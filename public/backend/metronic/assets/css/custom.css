@@ -85,10 +85,11 @@
         width: 28px;
     }
     .rfq-box {
-        height: 160px;
+        height: 160px !important;
     }
     .rfq-status {
-    height: 182px !important;}
+        height: 182px !important;
+    }
 }
 
 .nav-line-tabs .nav-item .bypass-nav.active,

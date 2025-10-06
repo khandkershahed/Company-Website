@@ -1,5 +1,5 @@
 <!-- RFQ Dashboard -->
- <x-admin-app-layout :title="'RFQ Dashboard'">
+<x-admin-app-layout :title="'RFQ Dashboard'">
     @include('metronic.pages.rfq.partials.rfq_css')
     <!-- Main Content Start -->
     @php
@@ -169,7 +169,7 @@
                                         name="country">
                                         <option></option>
                                         @foreach ($countryWiseRfqs as $country)
-                                            <option value="{{ $country->country }}">{{ $country->country }}</option>
+                                        <option value="{{ $country->country }}">{{ $country->country }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -180,7 +180,7 @@
                                         data-enable-filtering="true" id="filterSalesman" name="salesman">
                                         <option></option>
                                         @foreach ($users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -191,7 +191,7 @@
                                         data-enable-filtering="true" id="filterCompany" name="company">
                                         <option></option>
                                         @foreach ($companies as $company)
-                                            <option value="{{ $company }}">{{ $company }}</option>
+                                        <option value="{{ $company }}">{{ $company }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -266,7 +266,7 @@
         </div>
     </div>
     @include('metronic.pages.rfq.partials.assign-modal')
-@push('scripts')
+   @push('scripts')
         <script>
             $(".data_table").DataTable({
                 language: {

@@ -249,7 +249,8 @@
                                                             @endphp
 
                                                             @foreach (array_chunk($infoTables, 3) as $tablePair)
-                                                                <table width="100%" cellpadding="0" cellspacing="0"
+                                                                <div class="table-responsive">
+                                                                    <table width="100%" cellpadding="0" cellspacing="0"
                                                                     border="0" style="table-layout:fixed;">
                                                                     <tr>
                                                                         @foreach ($tablePair as $table)
@@ -282,6 +283,7 @@
                                                                         @endforeach
                                                                     </tr>
                                                                 </table>
+                                                                </div>
                                                             @endforeach
                                                         </div>
                                                     </div>
