@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Marketing;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Admin\Country;
@@ -18,7 +19,11 @@ class MarketingTargetController extends Controller
      */
     public function index()
     {
-        //
+        
+        $data = [
+            'month' => Carbon::now()->format('F')
+        ];
+        return view('metronic.pages.marketingTarget.index', $data);
     }
 
     /**

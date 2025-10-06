@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('marketing_targets', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete();  // Faisal
+            $table->foreignId('sector_id')->nullable()->constrained('marketing_sectors')->cascadeOnUpdate()->cascadeOnUpdate();  // Faisal
+            $table->string('month')->nullable(); // e.g., 'January', 'February'
+            $table->integer('amount')->nullable();
+            $table->double('value')->nullable();
             $table->timestamps();
         });
     }

@@ -1,4 +1,4 @@
-<x-admin-app-layout :title="'Add Your Marketing Plan'">
+<x-admin-app-layout :title="'Add Your Marketing Target'">
     <div class="card card-flash">
 
         <div class="card-header mt-6">
@@ -11,7 +11,7 @@
 
             <div class="card-toolbar">
 
-                <a href="{{ route('admin.marketing-plan.index') }}" class="btn btn-light-info">
+                <a href="{{ route('admin.marketing-target.index') }}" class="btn btn-light-info">
 
                     <span class="svg-icon svg-icon-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

@@ -17,7 +17,7 @@ return new class extends Migration
             // Basic Info
             $table->string('title')->nullable(); // 'Live' Tender name or Title
             $table->string('tender_type')->nullable(); //Select box options are : EOI,RFQ,Consultant,eGP,Enlistment,RFP
-            $table->foreignId('responsible_person_id')->nullable()->constrained('users')->cascadeOnUpdate()->onDelete('null');  // Faisal
+            $table->foreignId('responsible_person_id')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete();  // Faisal
             $table->date('last_date_of_submission')->nullable();
             $table->string('submission_day')->nullable(); //Select box options are : & Days name
             $table->string('action')->nullable(); //Select box options are : Talk Today, Talk in this Week, Talk Urgently, Talk with Partner, Email Marketing, Start Relation, Important Client, Meet This Week, Meet Next Week, Attend Pre Bid Meet, Meet Tomorrow, Purchase Schedule, Get More Details, GEet ToR / SoW, NO

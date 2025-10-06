@@ -36,11 +36,8 @@
                             <div>
                                 <select class="form-select form-select-sm" data-control="select2" data-placeholder="Month"
                                     name="month" id="filterMonth">
-                                    <option value="{{ \Carbon\Carbon::now()->format('F') }}">
-                                        {{ \Carbon\Carbon::now()->format('F') }}
-                                    </option>
                                     @foreach ($months as $month)
-                                        <option value="{{ $month }}">{{ $month }}</option>
+                                        <option value="{{ $month }}" @selected(\Carbon\Carbon::now()->format('F') === $month)>{{ $month }}</option>
                                     @endforeach
                                 </select>
                             </div>
