@@ -49,6 +49,42 @@
         font-size: 1rem;
     }
 }
+.rfq-tab-content {
+    font-size: 16px;
+}
+@media (max-width: 600px) {
+    #clock,
+    .breadcrumb,
+    .fa-file {
+        display: none !important;
+    }
+    .search-icons {
+        position: relative;
+        left: 250px;
+        margin-top: 3px;
+    }
+    .rfq-query-filter {
+        margin-top: 18px;
+    }
+    .rfq-content-triger {
+        text-align: center;
+    }
+    .rfq-tab-content {
+        font-size: 12px;
+    }
+    .rfq-content-info p:last-child {
+        display: none;
+    }
+    .rfq-icon {
+        display: flex;
+        width: 30px;
+        height: 30px;
+        padding: 30px;
+    }
+    .rfq-icon img {
+        width: 28px;
+    }
+}
 
 .nav-line-tabs .nav-item .bypass-nav.active,
 .nav-line-tabs .nav-item .bypass-nav:hover:not(.disabled),
@@ -357,8 +393,8 @@ th {
 
 .select2-container--bootstrap5 .select2-dropdown {
     border: 0;
-    box-shadow: 0 0 50px 0 rgba(82, 63, 105, .15);
-    border-radius: .475rem;
+    box-shadow: 0 0 50px 0 rgba(82, 63, 105, 0.15);
+    border-radius: 0.475rem;
     padding: 1rem 0;
     background-color: #fff;
 }

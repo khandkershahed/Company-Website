@@ -19,13 +19,61 @@
     .notif-default {
         color: #6c757d !important;
     }
+    @media (max-width: 767px) {
+    .rfq-content-triger {
+        text-align: center !important;
+        justify-content: center !important;
+    }
+
+    .rfq-content-triger .col-md-6 {
+        text-align: center !important;
+    }
+
+    .rfq-content-triger .d-flex {
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    .rfq-content-triger i {
+        margin-right: 0 !important;
+        margin-bottom: 5px !important;
+    }
+
+    .rfq-content-triger .text-start {
+        text-align: center !important;
+    }
+
+    .rfq-content-triger .text-end {
+        text-align: center !important;
+        padding-right: 0 !important;
+    }
+
+    .rfq-content-triger .d-flex.justify-content-end {
+        justify-content: center !important;
+    }
+
+    .rfq-content-triger .d-flex.align-items-center.justify-content-end {
+        justify-content: center !important;
+    }
+
+    .rfq-content-triger .gap-2.d-flex.justify-content-end {
+        justify-content: center !important;
+    }
+
+    /* Buttons center alignment */
+    .rfq-content-triger .gap-2 {
+        justify-content: center !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+    }
+}
 </style>
 
 <li class="mt-2 nav-item w-100 me-0 mb-md-2">
     <a class="nav-link {{ $active ? 'active btn-active-primary' : '' }} w-100 btn btn-flex border p-3"
         data-bs-toggle="tab" href="#{{ $tab }}_rfq_{{ $rfq->id }}">
-        <div class="row w-100 align-items-center">
-            <div class="col-md-6 d-flex align-items-center">
+        <div class="row w-100 align-items-center rfq-content-triger">
+            <div class="col-md-6 col-12 d-flex align-items-center">
                 <i class="fa-regular fa-file fs-2 text-primary pe-3"></i>
                 <div class="text-start">
                     <h1 class="mb-0 h6 fw-bold" style="font-size: 16px;">{{ $rfq->company_name }}</h1>
@@ -37,7 +85,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 text-end pe-0">
+            <div class="col-md-6 col-12 text-end pe-0">
                 {{-- <div class="fs-7 text-danger d-flex align-items-center justify-content-end">
                     <i class="fas fa-bell fa-shake me-1 text-danger"></i>
                     {{ $rfq->created_at?->diffInDays(now()) }} Days

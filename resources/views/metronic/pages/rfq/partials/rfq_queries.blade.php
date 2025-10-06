@@ -2,11 +2,11 @@
 <div class="tab-pane fade {{ empty($tab_status) || $tab_status == 'pending' ? 'show active' : '' }}" id="pending"
     role="tabpanel">
     <div class="row">
-        <div class="col-lg-5 ps-0">
-            <div class="card">
-                <div class="card-body px-5 pt-3">
+        <div class="col-lg-5 ps-3 ps-lg-0">
+            <div class="mb-3 card mb-lg-0">
+                <div class="px-5 pt-3 card-body">
                     <div class="rfq-scroll">
-                        <ul class="nav nav-tabs nav-pills flex-column border-0">
+                        <ul class="border-0 nav nav-tabs nav-pills flex-column">
                             @foreach ($rfqs as $rfq)
                                 <x-rfq-card :rfq="$rfq" :active="$loop->first" tab="pending" />
                             @endforeach
@@ -16,10 +16,10 @@
             </div>
         </div>
 
-        <div class="col-lg-7 pe-0">
-            <div class="card border-0">
-                <div class="card-body p-5">
-                    <div class="tab-content border-0 rounded" style="height: 630px; overflow-x: hidden !important;">
+        <div class="col-lg-7 pe-3 pe-lg-0">
+            <div class="border-0 card">
+                <div class="p-5 card-body">
+                    <div class="border-0 rounded tab-content" style="height: 630px; overflow-x: hidden !important;">
                         @include('metronic.pages.rfq.partials.pending_rfq')
                     </div>
                 </div>
@@ -34,10 +34,10 @@
     @if ($quoteds->count() > 0)
         <div class="row">
             <div class="col-lg-5 ps-0">
-                <div class="card border-0 rounded-3">
-                    <div class="card-body px-5 pt-0">
+                <div class="border-0 card rounded-3">
+                    <div class="px-5 pt-0 card-body">
                         <div class="overflow-scroll" style="height: 630px;">
-                            <ul class="nav nav-tabs nav-pills border-0">
+                            <ul class="border-0 nav nav-tabs nav-pills">
                                 @foreach ($quoteds as $rfq)
                                     <x-rfq-card :rfq="$rfq" :active="$loop->first" tab="quoted" />
                                 @endforeach
@@ -48,10 +48,10 @@
             </div>
 
             <div class="col-lg-7 pe-0">
-                <div class="card border-0 rounded-3">
+                <div class="border-0 card rounded-3">
                     <div class="card-body">
                         <div class="overflow-scroll" style="height: 700px; overflow-x: hidden !important;">
-                            <div class="tab-content border-0 rounded" id="myTabContent">
+                            <div class="border-0 rounded tab-content" id="myTabContent">
                                 @include('metronic.pages.rfq.partials.quoted_rfq')
                             </div>
                         </div>
@@ -61,7 +61,7 @@
         </div>
     @else
         <div class="row">
-            <div class="col-12 text-center">
+            <div class="text-center col-12">
                 <div class="alert alert-info">
                     <strong>No RFQs have been quoted yet.</strong>
                 </div>
@@ -74,19 +74,19 @@
 <div class="tab-pane fade {{ !empty($tab_status) && $tab_status == 'lost' ? 'show active' : '' }}" id="failed"
     role="tabpanel">
     <div class="row">
-        <div class="card shadow-sm">
+        <div class="shadow-sm card">
             <div class="card-body">
                 @if ($losts->count() > 0)
                     <div class="row g-4">
                         <div class="col-lg-5">
-                            <div class="card overflow-scroll" style="height: 700px;">
-                                <ul class="nav nav-tabs nav-pills border-0">
+                            <div class="overflow-scroll card" style="height: 700px;">
+                                <ul class="border-0 nav nav-tabs nav-pills">
                                     {{-- Filter Bar --}}
                                     <li class="nav-item w-100 me-0 mb-md-2">
                                         <div class="d-flex align-items-center">
                                             <div class="me-2">
                                                 <select
-                                                    class="form-select form-select-sm py-4 me-2 rounded-3 filterCountry"
+                                                    class="py-4 form-select form-select-sm me-2 rounded-3 filterCountry"
                                                     data-control="select2" data-allow-clear="true"
                                                     data-enable-filtering="true" id="filterCountry" name="country">
                                                     <option value="">All Country</option>
@@ -98,7 +98,7 @@
                                             </div>
                                             <div class="me-2">
                                                 <select
-                                                    class="form-select form-select-sm py-4 me-2 rounded-3 filterSalesman"
+                                                    class="py-4 form-select form-select-sm me-2 rounded-3 filterSalesman"
                                                     data-control="select2" data-allow-clear="true"
                                                     data-enable-filtering="true">
                                                     <option value="">All Salesman</option>
@@ -109,7 +109,7 @@
                                             </div>
                                             <div class="me-2">
                                                 <select
-                                                    class="form-select form-select-sm py-4 me-2 rounded-3 filterCompany"
+                                                    class="py-4 form-select form-select-sm me-2 rounded-3 filterCompany"
                                                     data-control="select2" data-allow-clear="true"
                                                     data-enable-filtering="true" id="filterCompany" name="company">
                                                     <option value="">All Company</option>
@@ -139,8 +139,8 @@
                         </div>
 
                         <div class="col-lg-5">
-                            <div class="card overflow-scroll" style="height: 700px; overflow-x: hidden !important;">
-                                <div class="tab-content border-0 rounded" id="myTabContent">
+                            <div class="overflow-scroll card" style="height: 700px; overflow-x: hidden !important;">
+                                <div class="border-0 rounded tab-content" id="myTabContent">
                                     @include('metronic.pages.rfq.partials.lost_rfq')
                                 </div>
                             </div>
@@ -148,7 +148,7 @@
                     </div>
                 @else
                     <div class="row">
-                        <div class="col-12 text-center">
+                        <div class="text-center col-12">
                             <div class="alert alert-info">
                                 <strong>No RFQs have been lost yet.</strong>
                             </div>
