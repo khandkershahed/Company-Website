@@ -1,16 +1,18 @@
+
+
 <div class="offcanvas-header rfq-head-bg">
-    <h5 class="text-center text-white mb-0">All RFQ Product Added In Query!</h5>
+    <h5 class="mb-0 text-center text-white">All RFQ Product Added In Query!</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" style="color: #ae0a46;">
         {{-- style="background: #ae0a46;padding-bottom: 18px;padding-left: 12px;padding-right: 15px;"> --}}
         {{-- <i class="fa-solid fa-xmark"></i> --}}
     </button>
 </div>
 
-<div class="offcanvas-body p-0">
-    <div class="container-fluid px-0">
+<div class="p-0 offcanvas-body">
+    <div class="px-0 container-fluid">
         <div class="row ps-4">
             <div class="col-lg-9">
-                <div class="row mt-4 pb-5">
+                <div class="pb-5 mt-4 row">
                     @if ($cart_items)
                         @foreach ($cart_items as $cart_item)
                             @php
@@ -22,7 +24,7 @@
                             @endphp
                             <div class="col-lg-12">
                                 <div>
-                                    <div class="card text-center border-0 rfq-cards">
+                                    <div class="text-center border-0 card rfq-cards">
                                         <div class="d-flex align-items-center">
                                             <div class="card-body"
                                                 style="text-align: start; width: 100%; padding-left: 15px; height: 100%; display: flex; align-items: center; justify-content: space-around; border-bottom: 1px solid #eee">
