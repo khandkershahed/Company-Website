@@ -547,6 +547,6 @@
                 });
             });
         </script>
-    @endpush
+    @endpush 
 </x-admin-app-layout>
 <!-- RFQ Dashboard End -->
