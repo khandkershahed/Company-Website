@@ -93,7 +93,8 @@
                         <div class="col-md-3">
                             <label class="form-label fw-semibold">Tender Status</label>
                             <select name="tender_status" class="form-select" data-control="select2">
-                                @foreach (['Live', 'Fail', 'Re Tender', 'Time Over', 'Technical Eval', 'Lost', 'Not Lowest', 'Probability', 'Won', 'Submitted', 'Participating'] as $status)
+                                {{-- @foreach (['Live', 'Fail', 'Re Tender', 'Time Over', 'Technical Eval', 'Lost', 'Not Lowest', 'Probability', 'Won', 'Submitted', 'Participating'] as $status) --}}
+                                @foreach (['Live',  'Lost',  'Won', 'Submitted', 'Participating'] as $status)
                                 <option value="{{ $status }}" {{ old('tender_status', $tender->tender_status ?? '') == $status ? 'selected' : '' }}>{{ $status }}</option>
                                 @endforeach
                             </select>
@@ -158,12 +159,12 @@
                             <label class="form-label fw-semibold">Security (Tk)</label>
                             <input type="number" step="0.01" name="security" class="form-control" value="{{ old('security', $tender->security ?? '') }}">
                         </div>
-                        <div class="mt-3 col-md-4">
+                        {{-- <div class="mt-3 col-md-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="time_over" value="1" {{ old('time_over', $tender->time_over ?? false) ? 'checked' : '' }}>
                                 <label class="form-check-label fw-semibold">Time Over</label>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 

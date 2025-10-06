@@ -77,20 +77,20 @@
                             <form id="filterForm" method="GET">
                                 <input type="hidden" name="date_range" id="date_range">
 
-                                <div id="daterange" class="mt-2 btn btn-sm btn-light d-flex align-items-center">
-                                    <div class="text-gray-600 fw-bold">
+                                <div class="mt-2 btn btn-sm btn-light d-flex align-items-center">
+                                    <div id="daterange" class="text-gray-600 fw-bold">
                                         <span id="daterange-text">
                                             {{ request('date_range') ? request('date_range') : 'Select Date Range' }}
                                         </span>
                                         <i class="bi bi-calendar ms-2"></i>
                                     </div>
+                                    @if (request('date_range'))
+                                        <button type="submit" name="clear" value="1"
+                                            class="btn btn-sm ms-2"><i class="fas fa-trash text-danger"></i></button>
+                                    @endif
                                 </div>
 
                                 {{-- Clear Filter Button (Shown only if filter is active) --}}
-                                @if (request('date_range'))
-                                    <button type="submit" name="clear" value="1"
-                                        class="btn btn-sm btn-outline-danger ms-2">Clear Filter</button>
-                                @endif
                             </form>
 
                         </div>
