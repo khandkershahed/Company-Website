@@ -3,13 +3,27 @@
         <!-- Left Side Tabs -->
         <div class="p-5 mb-4 col-md-2 mb-md-0 bg-light-info rounded-2">
             <ul class="nav nav-pills flex-column" id="tenderTab" role="tablist">
-                <li class="nav-item w-100"><button class="nav-link active w-100 text-start" id="info-tab" data-bs-toggle="pill" data-bs-target="#info" type="button" role="tab">Tender Information</button></li>
-                <li class="nav-item w-100"><button class="nav-link w-100 text-start" id="responsible-tab" data-bs-toggle="pill" data-bs-target="#responsible" type="button" role="tab">Responsible / Submission</button></li>
-                <li class="nav-item w-100"><button class="nav-link w-100 text-start" id="action-tab" data-bs-toggle="pill" data-bs-target="#action" type="button" role="tab">Action & Status</button></li>
-                <li class="nav-item w-100"><button class="nav-link w-100 text-start" id="tenderer-tab" data-bs-toggle="pill" data-bs-target="#tenderer" type="button" role="tab">Tenderer / Reference</button></li>
-                <li class="nav-item w-100"><button class="nav-link w-100 text-start" id="submission-tab" data-bs-toggle="pill" data-bs-target="#submission" type="button" role="tab">Submission Details</button></li>
-                <li class="nav-item w-100"><button class="nav-link w-100 text-start" id="client-tab" data-bs-toggle="pill" data-bs-target="#client" type="button" role="tab">Client Details</button></li>
-                <li class="nav-item w-100"><button class="nav-link w-100 text-start" id="comments-tab" data-bs-toggle="pill" data-bs-target="#comments" type="button" role="tab">Comments</button></li>
+                <li class="mb-4 border nav-item w-100">
+                    <button class="nav-link active w-100 text-start" id="info-tab" data-bs-toggle="pill" data-bs-target="#info" type="button" role="tab">Tender Information</button>
+                </li>
+                <li class="mb-4 border nav-item w-100">
+                    <button class="nav-link w-100 text-start" id="responsible-tab" data-bs-toggle="pill" data-bs-target="#responsible" type="button" role="tab">Responsible / Submission</button>
+                </li>
+                <li class="mb-4 border nav-item w-100">
+                    <button class="nav-link w-100 text-start" id="action-tab" data-bs-toggle="pill" data-bs-target="#action" type="button" role="tab">Action & Status</button>
+                </li>
+                <li class="mb-4 border nav-item w-100">
+                    <button class="nav-link w-100 text-start" id="tenderer-tab" data-bs-toggle="pill" data-bs-target="#tenderer" type="button" role="tab">Tenderer / Reference</button>
+                </li>
+                <li class="mb-4 border nav-item w-100">
+                    <button class="nav-link w-100 text-start" id="submission-tab" data-bs-toggle="pill" data-bs-target="#submission" type="button" role="tab">Submission Details</button>
+                </li>
+                <li class="mb-4 border nav-item w-100">
+                    <button class="nav-link w-100 text-start" id="client-tab" data-bs-toggle="pill" data-bs-target="#client" type="button" role="tab">Client Details</button>
+                </li>
+                <li class="border nav-item w-100">
+                    <button class="nav-link w-100 text-start" id="comments-tab" data-bs-toggle="pill" data-bs-target="#comments" type="button" role="tab">Comments</button>
+                </li>
             </ul>
         </div>
 
