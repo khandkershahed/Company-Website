@@ -3,16 +3,16 @@
         <div class="mb-5 row">
             <div class="col">
                 <div class="shadow-none card card-flush card-rounded ">
-                    <div class="d-flex justify-content-center align-items-center h-140px">
-                        <div>
-                            <img class="img-fluid rounded-circle h-100px w-100px" style="border: 2px solid #296088;"
-                                src="https://picsum.photos/id/1/200/300" alt="">
+                    <div class="d-flex flex-stack justify-content-center align-items-center h-268px">
+                            <div>
+                                <img class="img-fluid rounded-circle h-100px w-100px" style="border: 2px solid #296088;"
+                                    src="{{ asset('https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name)) }}" alt="">
+                            </div>
+                            <div class="p-8 me-3 text-start">
+                                <h4 class="text-black">{{ Auth::user()->name }}</h4>
+                                <p class="mb-0 text-muted">{{ Auth::user()->designation }}</p>
+                            </div>
                         </div>
-                        <div class="p-8 me-3 text-start">
-                            <p class="mb-1 text-black fw-bold" style="font-size: 16px;">Esther Howard</p>
-                            <p class="mb-0 text-muted" style="font-size: 16px;">Sales Manager</p>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="col">

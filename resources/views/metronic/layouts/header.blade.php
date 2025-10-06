@@ -92,7 +92,13 @@
                         <a class="btn btn-md btn-info me-4" href="{{ route('admin.tender.create') }}">Add Tender information</a>
                     @endif
                     @if (Route::currentRouteName() === 'admin.tender.create')
-                        <a class="btn btn-md btn-info me-4" href="{{ route('admin.tender.create') }}">Tender Lists</a>
+                        <a class="btn btn-md btn-info me-4" href="{{ route('admin.tender.index') }}">Tender Lists</a>
+                    @endif
+                    @if (Route::currentRouteName() === 'marketing-dmar.create')
+                        <a class="btn btn-md btn-info me-4" href="{{ route('marketing-dmar.index') }}">Marketing DMAR</a>
+                    @endif
+                    @if (Route::currentRouteName() === 'marketing-dmar.index')
+                        <a class="btn btn-md btn-info me-4" href="{{ route('marketing-dmar.create') }}">Set DMAR</a>
                     @endif
                     {{-- <div class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px"
                         data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">

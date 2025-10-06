@@ -109,7 +109,7 @@
                                     <span class="text-black ">
                                         QUOTED</span>
                                     <span class="px-2 text-black ms-3 rounded-2">
-                                        150
+                                        0
                                     </span>
                                 </div>
                                 <div
@@ -117,7 +117,7 @@
                                     <span class="text-black ">
                                         POTENTIAL</span>
                                     <span class="px-2 text-black ms-3 rounded-2">
-                                        300
+                                        0
                                     </span>
                                 </div>
                                 <div
@@ -125,7 +125,7 @@
                                     <span class="text-black ">
                                         SOLD</span>
                                     <span class="px-2 text-black ms-3 rounded-2">
-                                        300
+                                        0
                                     </span>
                                 </div>
                                 <div
@@ -133,14 +133,14 @@
                                     <span class="text-black ">
                                         LOST</span>
                                     <span class="px-2 text-black ms-3 rounded-2">
-                                        300
+                                        0
                                     </span>
                                 </div>
                                 <div class="p-2 d-flex align-items-center justify-content-between rounded-2"
                                     style="background-color: #296088;">
                                     <span class="text-white "> Total</span>
                                     <span class="px-2 text-white ms-3 rounded-2">
-                                        300
+                                        0
                                     </span>
                                 </div>
                             </div>
@@ -165,19 +165,19 @@
                                 <tbody>
                                     <tr style="border-bottom: 1px solid #EAEAEA;">
                                         <td class="py-2 ps-3">Bank</td>
-                                        <td class="py-2 pe-4 text-end">05</td>
+                                        <td class="py-2 pe-4 text-end">0</td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid #EAEAEA;">
                                         <td class="py-2 ps-3">Government</td>
-                                        <td class="py-2 pe-4 text-end">05</td>
+                                        <td class="py-2 pe-4 text-end">0</td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid #EAEAEA;">
                                         <td class="py-2 ps-3">Education</td>
-                                        <td class="py-2 pe-4 text-end">05</td>
+                                        <td class="py-2 pe-4 text-end">0</td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid #EAEAEA;">
                                         <td class="py-2 ps-3">Small & Medium</td>
-                                        <td class="py-2 pe-4 text-end">05</td>
+                                        <td class="py-2 pe-4 text-end">0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -195,23 +195,7 @@
                     </div>
                     <div class="d-flex align-items-center">
                         <div>
-                            <select class="form-select form-select-sm" data-control="select2" data-placeholder="date"
-                                tabindex="-1" aria-hidden="true">
-                                <option>Select Date</option>
-                                <option value="all">All</option>
-                                <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March">March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
-                            </select>
+                            <input class="form-control form-control-sm" type="date" name="date" id="">
                         </div>
                         <div class="mx-2">
                             <select class="form-select form-select-sm" data-control="select2"

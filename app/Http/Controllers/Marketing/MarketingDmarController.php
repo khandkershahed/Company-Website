@@ -30,8 +30,9 @@ class MarketingDmarController extends Controller
      */
     public function create()
     {
-        $data['users'] = User::where('role', 'sales')->select('users.id', 'users.name')->get();
-        return view('admin.pages.MarketingDmar.add', $data);
+        $data['users'] = User::where('role', 'sales')->select('id', 'name')->get();
+        // return view('admin.pages.MarketingDmar.add', $data);
+        return view('metronic.pages.MarketingDmar.create', $data);
     }
 
     /**

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Marketing;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Admin\MarketingPlan;
+use App\Http\Controllers\Controller;
 
 class MarketingPlanController extends Controller
 {
@@ -28,7 +30,36 @@ class MarketingPlanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'user_id' => 'nullable|exists:users,id',
+            'year' => 'nullable|integer',
+            'month' => 'nullable|string',
+            'date' => 'nullable|date',
+            'title' => 'nullable|string|max:255',
+            'marketing_type' => 'nullable|string',
+            'status' => 'nullable|string',
+            'contact_name' => 'nullable|string|max:255',
+            'contact_number' => 'nullable|string|max:50',
+            'contact_email' => 'nullable|email|max:255',
+            'contact_address' => 'nullable|string',
+            'contact_website' => 'nullable|string',
+            'contact_social' => 'nullable|string',
+            'notes' => 'nullable|string',
+        ]);
+
+        // Ensure date is in correct format
+        if (!empty($data['date'])) {
+            $data['date'] = date('Y-m-d', strtotime($data['date']));
+        }
+
+        // Ensure user_id is valid
+        if (!empty($data['user_id']) && !User::find($data['user_id'])) {
+            $data['user_id'] = null;
+        }
+
+        MarketingPlan::create($data);
+
+        return redirect()->route('marketing-plans.index')->with('success', 'Marketing Plan created successfully.');
     }
 
     /**
