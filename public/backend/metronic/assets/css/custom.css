@@ -77,9 +77,9 @@
     }
     .rfq-icon {
         display: flex;
-        width: 30px;
-        height: 30px;
-        padding: 30px;
+        width: 30px !important;
+        height: 30px !important;
+        padding: 30px !important;
     }
     .rfq-icon img {
         width: 28px;
