@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('marketing_sectors', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->foreignId('parent_id')->nullable()->constrained('marketing_sectors')->onDelete('set null');
+            $table->string('name')->index();
+            $table->string('slug')->unique();
+            $table->string('logo', 220)->nullable();
+            $table->string('image', 220)->nullable();
+            $table->string('banner_image', 220)->nullable();
+            $table->text('description')->nullable();
+            $table->text('video_link')->nullable();
+            $table->string('status')->default('active')->comment('inactive,active');
             $table->timestamps();
         });
     }

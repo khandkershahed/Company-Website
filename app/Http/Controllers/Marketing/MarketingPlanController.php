@@ -113,8 +113,7 @@ class MarketingPlanController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             Session::flash('error', $e->getMessage());
-            return redirect()->back()
-                ->withInput();
+            return redirect()->back()->withInput();
         }
     }
 
