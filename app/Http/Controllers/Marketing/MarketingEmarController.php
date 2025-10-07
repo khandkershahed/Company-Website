@@ -15,7 +15,7 @@ class MarketingEmarController extends Controller
     public function index()
     {
         $data = [
-            'emails' = [],
+            'emails' => [],
             'clients'  => Client::select('name','email','id','company_name')->where('user_type', 'client')->orWhere('user_type', 'client')->get(),
             'products' => Product::select('name','id')->where('status','active')->where('product_status','product')->get(),
         ];
