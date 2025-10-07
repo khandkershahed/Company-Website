@@ -568,25 +568,25 @@
         </div>
     </div>
     @push('scripts')
-                    <script>
-                        $(document).ready(function() {
-                            $('#productSelect').select2({
-                                tags: true, // Enable tagging
-                                tokenSeparators: [',', ' '], // Comma or space separate tags
-                                createTag: function(params) {
-                                    let term = $.trim(params.term);
-                                    if (term === '') {
-                                        return null;
-                                    }
-                                    // Return the new tag object to add custom text as value and text
-                                    return {
-                                        id: term,
-                                        text: term,
-                                        newTag: true // add additional parameters if needed
-                                    }
-                                }
-                            });
-                        });
-                    </script>
-                @endpush
+        <script>
+            $(document).ready(function() {
+                $('#productSelect').select2({
+                    tags: true, // Enable tagging
+                    tokenSeparators: [',', ' '], // Comma or space separate tags
+                    createTag: function(params) {
+                        let term = $.trim(params.term);
+                        if (term === '') {
+                            return null;
+                        }
+                        // Return the new tag object to add custom text as value and text
+                        return {
+                            id: term,
+                            text: term,
+                            newTag: true // add additional parameters if needed
+                        }
+                    }
+                });
+            });
+        </script>
+    @endpush
 </x-admin-app-layout>
