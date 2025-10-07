@@ -106,11 +106,24 @@
     .card-rounded .h-268px {
         height: 200px;
     }
+    .card-rounded .h-140px {
+        height: 200px;
+    }
     .card-rounded {
         margin-bottom: 10px;
     }
     .form-select-sm {
         width: 100% !important;
+    }
+    #kt_header_nav div:last-child {
+        display: none !important;
+    }
+    .custom-tender{
+       width: 100% !important;
+    }
+    .custom-tender .nav-link{
+       width: 100% !important;
+       margin-bottom: 5px;
     }
 }
 
@@ -146,13 +159,16 @@
         width: 275px;
         overflow: hidden;
     }
+    #kt_content_container {
+        overflow: hidden;
+    }
 
     .filter-bar .btn,
     .filter-bar .form-control,
     .filter-bar .form-select {
         width: 100%;
     }
-    .dmr-box{
+    .dmr-box {
         overflow: hidden;
     }
 }

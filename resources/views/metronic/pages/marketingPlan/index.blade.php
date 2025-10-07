@@ -2,7 +2,7 @@
     <div class="px-0 container-fluid">
         <form id="monthFilterForm" method="GET" action="{{ route('admin.marketing-plan.index') }}">
             <div class="mb-5 row">
-                <div class="col-lg-4 mb-3 mb-lg-0">
+                <div class="mb-3 col-lg-4 mb-lg-0">
                     <div class="shadow-none card card-flush card-rounded ">
                         <div class="d-flex flex-stack justify-content-center align-items-center h-140px">
                             <div>
@@ -17,7 +17,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-3 mb-lg-0">
+                <div class="mb-3 col-lg-4 mb-lg-0">
                     <div class="shadow-none card card-flush card-rounded ">
                         <div class="d-flex justify-content-center align-items-center h-140px">
                             <div class="p-8 me-3 text-start ">
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 mb-3 mb-lg-0">
+                <div class="mb-3 col-lg-4 mb-lg-0">
                     <div class="shadow-none card card-flush card-rounded ">
                         <div class="px-15 d-flex justify-content-between align-items-center h-140px">
                             <div>
@@ -60,7 +60,7 @@
                         <ul class="nav nav-stretch nav-pills nav-pills-custom d-flex" role="tablist">
                             @php $i = 0; @endphp
                             @foreach ($types as $typeKey => $typeLabel)
-                                <li class="nav-item" role="presentation">
+                                <li class="nav-item custom-tender" role="presentation">
                                     <a class="py-3 overflow-hidden nav-link btn btn-outline btn-flex btn-active-color-primary {{ $i === 0 ? 'active' : '' }}"
                                         data-bs-toggle="pill" href="#tab_{{ $typeKey }}"
                                         aria-selected="{{ $i === 0 ? 'true' : 'false' }}" role="tab">
@@ -97,7 +97,7 @@
                                                         class="accordion-collapse collapse {{ $idx === 0 ? 'show' : '' }}"
                                                         aria-labelledby="heading_{{ $typeKey }}_{{ $idx }}"
                                                         data-bs-parent="#accordion_{{ $typeKey }}">
-                                                        <div class="accordion-body py-1">
+                                                        <div class="py-1 accordion-body">
                                                             <div class="table-responsive">
                                                                 <table class="table align-middle gs-0 gy-4">
                                                                     <thead>
@@ -187,7 +187,7 @@
                                                 <div class="modal fade" id="addressModal{{ $plan->id }}"
                                                     tabindex="-1" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered">
-                                                        <div class="modal-content p-4">
+                                                        <div class="p-4 modal-content">
                                                             <div class="modal-header">
                                                                 <h3 class="modal-title">Contact Details</h3>
                                                                 <button type="button"
@@ -202,32 +202,32 @@
                                                                         class="table table-bordered table-hover table-striped fs-4">
                                                                         <tbody>
                                                                             <tr>
-                                                                                <th class="w-200px p-4">Name:</th>
+                                                                                <th class="p-4 w-200px">Name:</th>
                                                                                 <td class="min-w-350px">
                                                                                     {{ $plan->contact_name }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="w-200px p-4">Phone:</th>
+                                                                                <th class="p-4 w-200px">Phone:</th>
                                                                                 <td class="min-w-350px">
                                                                                     {{ $plan->contact_number }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="w-200px p-4">Email:</th>
+                                                                                <th class="p-4 w-200px">Email:</th>
                                                                                 <td class="min-w-350px">
                                                                                     {{ $plan->contact_email }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="w-200px p-4">Address:</th>
+                                                                                <th class="p-4 w-200px">Address:</th>
                                                                                 <td class="min-w-350px">
                                                                                     {{ $plan->contact_address }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="w-200px p-4">Website:</th>
+                                                                                <th class="p-4 w-200px">Website:</th>
                                                                                 <td class="min-w-350px">
                                                                                     {{ $plan->contact_website }}</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="w-200px p-4">Social:</th>
+                                                                                <th class="p-4 w-200px">Social:</th>
                                                                                 <td class="min-w-350px">
                                                                                     {{ $plan->contact_social }}</td>
                                                                             </tr>
@@ -244,7 +244,7 @@
                                                 <div class="modal fade" id="editModal{{ $plan->id }}"
                                                     tabindex="-1" aria-hidden="true">
                                                     <div class="modal-dialog modal-lg modal-dialog-centered">
-                                                        <div class="modal-content p-4">
+                                                        <div class="p-4 modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title">Edit Marketing Plan</h5>
                                                                 <button type="button"
