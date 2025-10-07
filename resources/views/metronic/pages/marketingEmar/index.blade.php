@@ -259,7 +259,7 @@
                     <!-- if chose bulk -->
                     <div class="bulk-email-div" style="display: none">
                         <div class="border-0 shadow-none card card-flush card-rounded">
-                            <div class="pt-5 card-header">
+                            {{-- <div class="pt-5 card-header">
                                 <h3 class="text-gray-800 card-title fw-bold">
                                     Multi Client
                                 </h3>
@@ -274,6 +274,22 @@
 
                                 </tags><input class="form-control d-flex align-items-center" value=""
                                     placeholder="Choose Multi Client" id="kt_tagify_users">
+                            </div> --}}
+                            <div class="pt-5 card-header">
+                                <h3 class="text-gray-800 card-title fw-bold">
+                                    Select Client’s Mail
+                                </h3>
+                                <p class="text-gray-500">Pick an email to continue</p>
+                            </div>
+                            <div class="pt-5 card-body">
+                                <select class="form-select form-select-solid" data-control="select2"
+                                    data-placeholder="Client Email" name="client_email">
+                                    <option></option>
+                                    @foreach ($clients as $client)
+                                        <option value="{{ $client->email }}">{{ $client->name }}
+                                            [{{ $client->company_name }}]</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -282,7 +298,7 @@
 
             <div class="col-lg-3">
                 <div class="border-0 shadow-none card card-flush card-rounded">
-                    <div class="pt-5 card-header flex-column">
+                    {{-- <div class="pt-5 card-header flex-column">
                         <h3 class="text-gray-800 card-title fw-bold">
                             Select Client’s Mail
                         </h3>
@@ -297,6 +313,23 @@
 
                         </tags><input class="form-control d-flex align-items-center" value=""
                             id="kt_tagify_country">
+                    </div> --}}
+                    <div class="border-0 shadow-none card card-flush card-rounded">
+                        <div class="pt-5 card-header">
+                            <h3 class="text-gray-800 card-title fw-bold">
+                                Select Product
+                            </h3>
+                            <p class="text-gray-500">Type product name</p>
+                        </div>
+                        <div class="pt-5 card-body">
+                            <select class="form-select form-select-solid" data-control="select2"
+                                data-placeholder="Select Product" name="product_id[]" multiple>
+                                <option></option>
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->email }}">{{ $product->email }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -328,6 +361,7 @@
             <div class="col-lg-2">
                 <div class="border-0 shadow-none card card-flush card-rounded">
                     <div class="card-body">
+                        <h5>No Sector right now</h5>
                         {{-- <div class="p-3 mb-3 border rounded-3">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" value="Email Template One"
