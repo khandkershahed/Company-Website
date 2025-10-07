@@ -227,10 +227,12 @@
                         </div>
                         <div class="pt-5 card-body">
                             <select class="form-select form-select-solid" data-control="select2"
-                                data-placeholder="Select an option">
+                                data-placeholder="Client Email" name="client_email">
                                 <option></option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
+                                @foreach ($clients as $client)
+                                    <option value="{{ $client->email }}">{{ $client->name }}
+                                        [{{ $client->company_name }}]</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -239,13 +241,18 @@
                         <div class="border-0 shadow-none card card-flush card-rounded">
                             <div class="pt-5 card-header">
                                 <h3 class="text-gray-800 card-title fw-bold">
-                                    Select Client’s Mail
+                                    Select Product
                                 </h3>
                                 <p class="text-gray-500">Type product name</p>
                             </div>
                             <div class="pt-5 card-body">
-                                <input class="form-control d-flex align-items-center" value=""
-                                    id="kt_tagify_country" />
+                                <select class="form-select form-select-solid" data-control="select2"
+                                    data-placeholder="Select Product" name="product_id">
+                                    <option></option>
+                                    @foreach ($products as $product)
+                                        <option value="{{ $product->email }}">{{ $product->email }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -321,7 +328,7 @@
             <div class="col-lg-2">
                 <div class="border-0 shadow-none card card-flush card-rounded">
                     <div class="card-body">
-                        <div class="p-3 mb-3 border rounded-3">
+                        {{-- <div class="p-3 mb-3 border rounded-3">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" value="Email Template One"
                                     id="inbox-radio-1" name="inbox">
@@ -330,58 +337,7 @@
                                     <span class="fw-semibold">Businness</span>
                                 </label>
                             </div>
-                        </div>
-
-                        <div class="p-3 mb-3 border rounded-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" value="Email Template One"
-                                    id="inbox-radio-1" name="inbox">
-                                <label class="form-check-label d-block" for="inbox-radio-1" data-bs-toggle="modal"
-                                    data-bs-target="#inboxModal">
-                                    <span class="fw-semibold">Hospital</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="p-3 mb-3 border rounded-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" value="Email Template One"
-                                    id="inbox-radio-1" name="inbox">
-                                <label class="form-check-label d-block" for="inbox-radio-1" data-bs-toggle="modal"
-                                    data-bs-target="#inboxModal">
-                                    <span class="fw-semibold">Client</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="p-3 mb-3 border rounded-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" value="Email Template One"
-                                    id="inbox-radio-1" name="inbox">
-                                <label class="form-check-label d-block" for="inbox-radio-1" data-bs-toggle="modal"
-                                    data-bs-target="#inboxModal">
-                                    <span class="fw-semibold">Corporate</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="p-3 mb-3 border rounded-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" value="Email Template One"
-                                    id="inbox-radio-1" name="inbox">
-                                <label class="form-check-label d-block" for="inbox-radio-1" data-bs-toggle="modal"
-                                    data-bs-target="#inboxModal">
-                                    <span class="fw-semibold">Industry</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="p-3 mb-3 border rounded-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" value="Email Template One"
-                                    id="inbox-radio-1" name="inbox">
-                                <label class="form-check-label d-block" for="inbox-radio-1" data-bs-toggle="modal"
-                                    data-bs-target="#inboxModal">
-                                    <span class="fw-semibold">Government</span>
-                                </label>
-                            </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -393,45 +349,26 @@
                                 <div class="col-lg-12">
                                     <div class="mb-3">
                                         <label for="toField" class="form-label fw-semibold">To</label>
-                                        <textarea id="toField" class="py-0 form-control border-top-0 border-right-0 border-left-0" rows="1" placeholder="Enter recipient email"></textarea>
+                                        <textarea id="toField" class="py-0 form-control border-top-0 border-right-0 border-left-0" rows="1"
+                                            placeholder="Enter recipient email"></textarea>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="subjectField" class="form-label fw-semibold">Subject</label>
-                                        <textarea id="subjectField" class="py-0 form-control border-top-0 border-right-0 border-left-0" rows="1" placeholder="Enter subject"></textarea>
+                                        <textarea id="subjectField" class="py-0 form-control border-top-0 border-right-0 border-left-0" rows="1"
+                                            placeholder="Enter subject"></textarea>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="messageField" class="form-label fw-semibold">Message</label>
-                                        <textarea id="messageField" class="py-0 form-control border-top-0 border-right-0 border-left-0" rows="6" placeholder="Type your message here"></textarea>
+                                        <textarea id="messageField" class="py-0 form-control border-top-0 border-right-0 border-left-0" rows="6"
+                                            placeholder="Type your message here"></textarea>
                                     </div>
                                     <div class="mt-2 mb-1 d-flex align-items-center">
                                         <button type="submit" class="px-10 py-3 btn btn-primary rounded-pill"
                                             style="background-color: #0B57D0;">Send</button>
                                         <div>
-                                            <a href="#" class="ps-5">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25"
-                                                    viewBox="0 0 24 25" fill="none">
-                                                    <mask id="mask0_529_2178" style="mask-type:alpha"
-                                                        maskUnits="userSpaceOnUse" x="0" y="0" width="24"
-                                                        height="25">
-                                                        <rect y="0.5" width="24" height="24" fill="#D9D9D9" />
-                                                    </mask>
-                                                    <g mask="url(#mask0_529_2178)">
-                                                        <path
-                                                            d="M16 11.5V6.5H18V11.5H16ZM11 18.4C10.4167 18.2333 9.9375 17.9083 9.5625 17.425C9.1875 16.9417 9 16.3833 9 15.75V6.5H11V18.4ZM11.75 22.5C10.0167 22.5 8.54167 21.8917 7.325 20.675C6.10833 19.4583 5.5 17.9833 5.5 16.25V7C5.5 5.75 5.9375 4.6875 6.8125 3.8125C7.6875 2.9375 8.75 2.5 10 2.5C11.25 2.5 12.3125 2.9375 13.1875 3.8125C14.0625 4.6875 14.5 5.75 14.5 7V14.5H12.5V7C12.4833 6.3 12.2375 5.70833 11.7625 5.225C11.2875 4.74167 10.7 4.5 10 4.5C9.3 4.5 8.70833 4.74167 8.225 5.225C7.74167 5.70833 7.5 6.3 7.5 7V16.25C7.48333 17.4333 7.89167 18.4375 8.725 19.2625C9.55833 20.0875 10.5667 20.5 11.75 20.5C12.1667 20.5 12.5625 20.4458 12.9375 20.3375C13.3125 20.2292 13.6667 20.0667 14 19.85V22.075C13.65 22.2083 13.2875 22.3125 12.9125 22.3875C12.5375 22.4625 12.15 22.5 11.75 22.5ZM16 21.5V18.5H13V16.5H16V13.5H18V16.5H21V18.5H18V21.5H16Z"
-                                                            fill="#9F9F9F" />
-                                                    </g>
-                                                </svg>
-                                            </a>
-                                            <a href="#" class="ps-3">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="14"
-                                                    viewBox="0 0 20 14" fill="none">
-                                                    <path
-                                                        d="M15 13.5V10.5H12V8.5H15V5.5H17V8.5H20V10.5H17V13.5H15ZM9 10.5H5C3.61667 10.5 2.4375 10.0125 1.4625 9.0375C0.4875 8.0625 0 6.88333 0 5.5C0 4.11667 0.4875 2.9375 1.4625 1.9625C2.4375 0.9875 3.61667 0.5 5 0.5H9V2.5H5C4.16667 2.5 3.45833 2.79167 2.875 3.375C2.29167 3.95833 2 4.66667 2 5.5C2 6.33333 2.29167 7.04167 2.875 7.625C3.45833 8.20833 4.16667 8.5 5 8.5H9V10.5ZM6 6.5V4.5H14V6.5H6ZM20 5.5H18C18 4.66667 17.7083 3.95833 17.125 3.375C16.5417 2.79167 15.8333 2.5 15 2.5H11V0.5H15C16.3833 0.5 17.5625 0.9875 18.5375 1.9625C19.5125 2.9375 20 4.11667 20 5.5Z"
-                                                        fill="#9F9F9F" />
-                                                </svg>
-                                            </a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -500,35 +437,17 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="odd">
-                                                <td class="sorting_1"><input type="checkbox"></td>
-                                                <td>John Doe</td>
-                                                <td>Meeting rescheduled to Friday</td>
-                                                <td>2025/04/22</td>
-                                                <td>
-                                                    <span class="badge bg-success">Read</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="even">
-                                                <td class="sorting_1"><input type="checkbox"></td>
-                                                <td>HR Department</td>
-                                                <td>Annual performance review form</td>
-                                                <td>2025/04/21</td>
-                                                <td>
-                                                    <span class="badge bg-warning">Unread</span>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd">
-                                                <td class="sorting_1"><input type="checkbox"></td>
-                                                <td>Admin</td>
-                                                <td>
-                                                    Your password will expire in 3 days
-                                                </td>
-                                                <td>2025/04/20</td>
-                                                <td>
-                                                    <span class="badge bg-danger">Important</span>
-                                                </td>
-                                            </tr>
+                                            @foreach ($emails as $email)
+                                                <tr class="odd">
+                                                    <td class="sorting_1"><input type="checkbox"></td>
+                                                    <td>John Doe</td>
+                                                    <td>Meeting rescheduled to Friday</td>
+                                                    <td>2025/04/22</td>
+                                                    <td>
+                                                        <span class="badge bg-success">Read</span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -536,11 +455,91 @@
 
                             <!-- Draft and Deleted tabs can be added similarly -->
                             <div class="tab-pane fade" id="tab_draft">
-                                Repeat structure for Draft
+                                <div class="border-0 table-responsive rounded-4">
+                                    <table class="table table-row-bordered gy-5 gs-7 dataTable no-footer"
+                                        id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+                                        <thead>
+                                            <tr class="bg-light fw-bold ">
+                                                <th style="width: 55.7031px;" class="sorting sorting_asc"
+                                                    tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                                    colspan="1" aria-sort="ascending"
+                                                    aria-label=": activate to sort column descending">
+                                                    <input type="checkbox">
+                                                </th>
+                                                <th style="width: 380px;" class="sorting" tabindex="0"
+                                                    aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                                    aria-label="From: activate to sort column ascending">From</th>
+                                                <th style="width: 690.359px;" class="sorting" tabindex="0"
+                                                    aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                                    aria-label="Subject: activate to sort column ascending">Subject
+                                                </th>
+                                                <th style="width: 302.375px;" class="sorting" tabindex="0"
+                                                    aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                                    aria-label="Date: activate to sort column ascending">Date</th>
+                                                <th style="width: 70.0625px;" class="sorting" tabindex="0"
+                                                    aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                                    aria-label="Status: activate to sort column ascending">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($emails as $email)
+                                                <tr class="odd">
+                                                    <td class="sorting_1"><input type="checkbox"></td>
+                                                    <td>John Doe</td>
+                                                    <td>Meeting rescheduled to Friday</td>
+                                                    <td>2025/04/22</td>
+                                                    <td>
+                                                        <span class="badge bg-success">Read</span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
 
                             <div class="tab-pane fade" id="tab_deleted">
-                                Repeat structure for Deleted
+                                <div class="border-0 table-responsive rounded-4">
+                                    <table class="table table-row-bordered gy-5 gs-7 dataTable no-footer"
+                                        id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+                                        <thead>
+                                            <tr class="bg-light fw-bold ">
+                                                <th style="width: 55.7031px;" class="sorting sorting_asc"
+                                                    tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
+                                                    colspan="1" aria-sort="ascending"
+                                                    aria-label=": activate to sort column descending">
+                                                    <input type="checkbox">
+                                                </th>
+                                                <th style="width: 380px;" class="sorting" tabindex="0"
+                                                    aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                                    aria-label="From: activate to sort column ascending">From</th>
+                                                <th style="width: 690.359px;" class="sorting" tabindex="0"
+                                                    aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                                    aria-label="Subject: activate to sort column ascending">Subject
+                                                </th>
+                                                <th style="width: 302.375px;" class="sorting" tabindex="0"
+                                                    aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                                    aria-label="Date: activate to sort column ascending">Date</th>
+                                                <th style="width: 70.0625px;" class="sorting" tabindex="0"
+                                                    aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                                    aria-label="Status: activate to sort column ascending">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($emails as $email)
+                                                <tr class="odd">
+                                                    <td class="sorting_1"><input type="checkbox"></td>
+                                                    <td>John Doe</td>
+                                                    <td>Meeting rescheduled to Friday</td>
+                                                    <td>2025/04/22</td>
+                                                    <td>
+                                                        <span class="badge bg-success">Read</span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

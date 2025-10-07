@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Marketing;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Product;
+use App\Models\Client\Client;
 use Illuminate\Http\Request;
 
 class MarketingEmarController extends Controller
@@ -12,7 +14,12 @@ class MarketingEmarController extends Controller
      */
     public function index()
     {
-        return view('metronic.pages.marketingEmar.index');
+        $data = [
+            'emails' = [],
+            'clients'  => Client::select('name','email','id','company_name')->where('user_type', 'client')->orWhere('user_type', 'client')->get(),
+            'products' => Product::select('name','id')->where('status','active')->where('product_status','product')->get(),
+        ];
+        return view('metronic.pages.marketingEmar.index',$data);
     }
 
     /**

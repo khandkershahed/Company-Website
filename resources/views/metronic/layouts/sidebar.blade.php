@@ -69,11 +69,11 @@
                             ],
                             'route' => 'admin.marketing.dashboard',
                             'subMenu' => [
-                                [
-                                    'title' => 'Marketing Dashboard',
-                                    'routes' => ['admin.marketing.dashboard'],
-                                    'route' => 'admin.marketing.dashboard',
-                                ],
+                                // [
+                                //     'title' => 'Marketing Dashboard',
+                                //     'routes' => ['admin.marketing.dashboard'],
+                                //     'route' => 'admin.marketing.dashboard',
+                                // ],
                                 [
                                     'title' => 'Marketing DMAR',
                                     'routes' => [
