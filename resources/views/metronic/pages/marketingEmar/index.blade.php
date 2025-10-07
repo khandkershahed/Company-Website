@@ -391,20 +391,19 @@
                         <form action="">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="form-floating pe-8">
-                                        <textarea class="py-0 form-control border-top-0 border-right-0 border-left-0" placeholder="Leave a comment here"
-                                            id="floatingTextarea"></textarea>
-                                        <label for="floatingTextarea">To</label>
+                                    <div class="mb-3">
+                                        <label for="toField" class="form-label fw-semibold">To</label>
+                                        <textarea id="toField" class="py-0 form-control border-top-0 border-right-0 border-left-0" rows="1" placeholder="Enter recipient email"></textarea>
                                     </div>
-                                    <div class="form-floating pe-8">
-                                        <textarea class="py-0 form-control border-top-0 border-right-0 border-left-0" placeholder="Leave a comment here"
-                                            id="floatingTextarea"></textarea>
-                                        <label for="floatingTextarea">Subject</label>
+
+                                    <div class="mb-3">
+                                        <label for="subjectField" class="form-label fw-semibold">Subject</label>
+                                        <textarea id="subjectField" class="py-0 form-control border-top-0 border-right-0 border-left-0" rows="1" placeholder="Enter subject"></textarea>
                                     </div>
-                                    <div class="form-floating pe-8">
-                                        <textarea class="py-0 form-control border-top-0 border-right-0 border-left-0" placeholder="Leave a comment here"
-                                            id="floatingTextarea2" style="height: 200px"></textarea>
-                                        <label for="floatingTextarea2">Message</label>
+
+                                    <div class="mb-3">
+                                        <label for="messageField" class="form-label fw-semibold">Message</label>
+                                        <textarea id="messageField" class="py-0 form-control border-top-0 border-right-0 border-left-0" rows="6" placeholder="Type your message here"></textarea>
                                     </div>
                                     <div class="mt-2 mb-1 d-flex align-items-center">
                                         <button type="submit" class="px-10 py-3 btn btn-primary rounded-pill"
@@ -469,12 +468,12 @@
                 </div>
             </div>
             <div class="col-lg-12">
-                <div class="border-0 shadow-none card card-flush card-rounded">
-                    <div class="p-0 card-body">
+                <div class="bg-white border-0 shadow-none card card-flush card-rounded">
+                    <div class="p-5 card-body">
                         <div class="tab-content">
                             <!-- ALL Tab -->
                             <div class="tab-pane fade show active" id="tab_all">
-                                <div class="border table-responsive rounded-4">
+                                <div class="border-0 table-responsive rounded-4">
                                     <table class="table table-row-bordered gy-5 gs-7 dataTable no-footer"
                                         id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
                                         <thead>
