@@ -1,7 +1,7 @@
 <x-admin-app-layout :title="'Marketing DMAR'">
-    <div class="px-0 container-fluid">
-        <div class="mb-0 mb-lg-10 row">
-            <div class="col-xl-3">
+    <div class="px-0 container-fluid dmr-box">
+        <div class="mb-0 mb-lg-5 row">
+            <div class="col-xl-3 ps-lg-0">
                 <div class="shadow-none card card-flush card-rounded">
                     <div class="p-0 card-body">
                         <div class="d-flex flex-stack justify-content-center align-items-center h-268px">
@@ -149,7 +149,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3">
+            <div class="col-xl-3 pe-lg-0">
                 <div class="shadow-none card card-flush card-rounded">
                     <div class="card-header w-100 justify-content-center align-items-center">
                         <h6 class="mb-0 fw-normal">Sectorwise Number Of Visit</h6>
@@ -196,17 +196,16 @@
                     </div>
 
                     <!-- Right: Filters & Buttons -->
-                    <div class="flex-wrap gap-2 d-flex align-items-center justify-content-start justify-content-md-end">
+                    <div class="flex-wrap gap-2 filter-bar d-flex align-items-center">
                         <!-- Date Filter -->
-                        <div>
+                        <div class="filter-item">
                             <input class="form-control form-control-sm" type="date" name="date" id="filterDate">
                         </div>
 
                         <!-- Month Filter -->
-                        <div>
-                            <select class="w-auto form-select form-select-sm min-w-150" data-control="select2"
-                                data-placeholder="Select Month" name="month" data-allow-clear="true" id="filterMonth">
-                                <option></option>
+                        <div class="filter-item">
+                            <select class="form-select form-select-sm" name="month" id="filterMonth">
+                                <option value="">Select Month</option>
                                 @foreach ($months as $month)
                                 <option value="{{ $month }}" @selected(old('month', request('month'))==$month)>
                                     {{ $month }}
@@ -216,10 +215,9 @@
                         </div>
 
                         <!-- Status Filter -->
-                        <div>
-                            <select class="w-auto form-select form-select-sm min-w-200" data-control="select2"
-                                data-placeholder="Select Achievement" name="status" data-allow-clear="true" id="filterStatus">
-                                <option></option>
+                        <div class="filter-item">
+                            <select class="form-select form-select-sm" name="status" id="filterStatus">
+                                <option value="">Select Achievement</option>
                                 @foreach (['Ongoing', 'Pending', 'In Progress', 'Prospect', 'Lost', 'Quoted', 'Sale', 'Potential'] as $status)
                                 <option value="{{ $status }}" @selected(request('status')==$status)>
                                     {{ $status }}
@@ -229,18 +227,23 @@
                         </div>
 
                         <!-- Clear Filters Button -->
-                        <button type="button" id="clearFilters"
-                            class="btn btn-outline btn-sm d-flex align-items-center justify-content-center">
-                            <i class="fa-solid fa-xmark text-danger fs-5"></i>
-                        </button>
+                        <div class="">
+                            <button type="button" id="clearFilters" title="Clear Filters"
+                                class="btn btn-outline btn-sm d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-xmark text-danger fs-5"></i>
+                            </button>
+                        </div>
 
                         <!-- Target Button -->
-                        <a href="{{ route('admin.marketing-target.index') }}"
-                            class="text-white btn btn-sm bg-primary d-flex align-items-center justify-content-center"
-                            style="background-color: #0B6476 !important;">
-                            Target <i class="fa-solid fa-arrow-right ms-1"></i>
-                        </a>
+                        <div class="filter-item">
+                            <a href="{{ route('admin.marketing-target.index') }}"
+                                class="text-white btn btn-sm bg-primary d-flex align-items-center justify-content-center w-100"
+                                style="background-color: #0B6476 !important;">
+                                Target <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
                     </div>
+
                 </div>
 
                 <div class="pt-3 card-body">
@@ -289,8 +292,6 @@
                             </table>
                         </div>
                     </form>
-
-
                 </div>
             </div>
         </div>
