@@ -169,6 +169,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::post('/marketing-plan/{id}/toggle-status', [MarketingPlanController::class, 'toggleStatus'])->name('marketing-plan.toggleStatus');
     Route::get('admin/marketing-dmar/filter', [MarketingDmarController::class, 'filter'])->name('marketing-dmar.filter');
     Route::delete('marketing-dmar/multi-delete', [MarketingDmarController::class, 'multiDelete'])->name('marketing-dmar.multi-delete');
+    Route::get('marketing-target/{user_id}/edit/{month}', [MarketingTargetController::class, 'editMonth'])->name('marketing-target.edit-month');
 
 
 

@@ -164,22 +164,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr style="border-bottom: 1px solid #EAEAEA;">
-                                        <td class="py-2 ps-3">Bank</td>
-                                        <td class="py-2 pe-4 text-end">0</td>
-                                    </tr>
-                                    <tr style="border-bottom: 1px solid #EAEAEA;">
-                                        <td class="py-2 ps-3">Government</td>
-                                        <td class="py-2 pe-4 text-end">0</td>
-                                    </tr>
-                                    <tr style="border-bottom: 1px solid #EAEAEA;">
-                                        <td class="py-2 ps-3">Education</td>
-                                        <td class="py-2 pe-4 text-end">0</td>
-                                    </tr>
-                                    <tr style="border-bottom: 1px solid #EAEAEA;">
-                                        <td class="py-2 ps-3">Small & Medium</td>
-                                        <td class="py-2 pe-4 text-end">0</td>
-                                    </tr>
+                                    @foreach ($sector_values as $sector)
+                                        <tr style="border-bottom: 1px solid #EAEAEA;">
+                                            <td class="py-2 ps-3">{{ $sector->name }}</td>
+                                            <td class="py-2 pe-4 text-end">0</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

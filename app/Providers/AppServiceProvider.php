@@ -163,10 +163,25 @@ class AppServiceProvider extends ServiceProvider
             }
 
             $months = [
-                'January','February','March','April','May','June','July','August','September','October','November','December',
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July',
+                'August',
+                'September',
+                'October',
+                'November',
+                'December',
             ];
 
             View::share('months', $months);
+
+            $sectors = ['Banks', 'Group of Companies', 'Small & Medium', 'NGOs', 'Government', 'Education', 'Enterprises', 'Garments', 'Manufacturing'];
+
+            View::share('sectors', $sectors);
 
             // Global view data
             if ($existingTables->has('users') && $existingTables->has('products')) {

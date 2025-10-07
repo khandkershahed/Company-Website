@@ -32,7 +32,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'department' => 'array',
+        // 'department' => 'array',
     ];
 
     protected static function booted()

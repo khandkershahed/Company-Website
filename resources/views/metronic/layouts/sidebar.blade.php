@@ -58,6 +58,8 @@
                             'routes' => [
                                 'admin.marketing.dashboard',
                                 'marketing-dmar.index',
+                                'marketing-dmar.create',
+                                'marketing-dmar.edit',
                                 'admin.marketing-emar.index',
                                 'admin.marketing-plan.index',
                                 'admin.marketing-plan.create',
@@ -74,7 +76,11 @@
                                 ],
                                 [
                                     'title' => 'Marketing DMAR',
-                                    'routes' => ['marketing-dmar.index'],
+                                    'routes' => [
+                                        'marketing-dmar.index',
+                                        'marketing-dmar.create',
+                                        'marketing-dmar.edit',
+                                    ],
                                     'route' => 'marketing-dmar.index',
                                 ],
                                 [
@@ -173,6 +179,8 @@
                                 'admin.tender.index',
                                 'admin.marketing.dashboard',
                                 'marketing-dmar.index',
+                                'marketing-dmar.create',
+                                'marketing-dmar.edit',
                                 'admin.marketing-emar.index',
                                 'admin.marketing-plan.index',
                                 'admin.marketing-plan.create',

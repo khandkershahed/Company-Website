@@ -23,7 +23,9 @@ class MarketingDmarController extends Controller
     {
         $query = MarketingDmar::query();
 
+        $sector_values = [];
         if (Auth::user()->role !== 'admin') {
+
             $query->where('user_id', Auth::id());
         }
 
@@ -31,6 +33,7 @@ class MarketingDmarController extends Controller
 
         $data = [
             'dmars' => $dmars,
+            'sector_values' => $sector_values,
         ];
         return view('metronic.pages.marketingDmar.index', $data);
     }

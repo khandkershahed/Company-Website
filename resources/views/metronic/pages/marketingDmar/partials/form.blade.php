@@ -33,7 +33,8 @@
                  <!-- Basic Info -->
                  <div class="tab-pane fade show active" id="basic" role="tabpanel" aria-labelledby="basic-tab">
                      <div class="row g-3">
-                        <input type="hidden" name="user_id" value="{{ old('user_id', $marketingDmar->user_id ?? Auth::user()->id) }}">
+                         <input type="hidden" name="user_id"
+                             value="{{ old('user_id', $marketingDmar->user_id ?? Auth::user()->id) }}">
                          {{-- <div class="col-md-4">
                              <label class="form-label fw-semibold">User</label>
                              <select name="user_id" class="form-select">
@@ -124,7 +125,8 @@
                      <div class="row g-3">
                          <div class="col-md-4">
                              <label class="form-label fw-semibold">Action on Fail</label>
-                             <select name="action_on_fail" class="form-select">
+                             <select name="action_on_fail" class="form-select" data-control="select2" data-placeholder="Action on Fail" data-allow-clear="true">
+                                <option></option>
                                  @foreach (['Followup', 'Resubmit', 'Technical Clarification', 'Provide Demo', 'Prepare Proposal'] as $action)
                                      <option value="{{ $action }}"
                                          {{ old('action_on_fail', $marketingDmar->action_on_fail ?? '') == $action ? 'selected' : '' }}>
@@ -134,7 +136,8 @@
                          </div>
                          <div class="col-md-4">
                              <label class="form-label fw-semibold">Current Status</label>
-                             <select name="current_status" class="form-select">
+                             <select name="current_status" class="form-select" data-control="select2" data-placeholder="Current Status" data-allow-clear="true">
+                                <option></option>
                                  @foreach (['Ongoing', 'Pending', 'In Progress', 'Prospect', 'Lost', 'Quoted', 'Sale', 'Potential'] as $status)
                                      <option value="{{ $status }}"
                                          {{ old('current_status', $marketingDmar->current_status ?? '') == $status ? 'selected' : '' }}>
@@ -142,9 +145,10 @@
                                  @endforeach
                              </select>
                          </div>
-                         <div class="col-md-2">
+                         <div class="col-md-3">
                              <label class="form-label fw-semibold">Client Type</label>
-                             <select name="client_type" class="form-select">
+                             <select name="client_type" class="form-select" data-control="select2" data-placeholder="Client Type" data-allow-clear="true">
+                                <option></option>
                                  @foreach (['Existing', 'New', 'Old'] as $type)
                                      <option value="{{ $type }}"
                                          {{ old('client_type', $marketingDmar->client_type ?? '') == $type ? 'selected' : '' }}>
@@ -154,12 +158,18 @@
                          </div>
                          <div class="col-md-3">
                              <label class="form-label fw-semibold">Sector</label>
-                             <input type="text" name="sector" class="form-control"
-                                 value="{{ old('sector', $marketingDmar->sector ?? '') }}">
+                             <select name="sector" class="form-select" data-control="select2" data-placeholder="Select Sector" data-allow-clear="true">
+                                <option></option>
+                                 @foreach ($sectors as $sector)
+                                     <option value="{{ $sector }}"
+                                         {{ old('sector', $marketingDmar->sector ?? '') == $sector ? 'selected' : '' }}>
+                                         {{ $sector }}</option>
+                                 @endforeach
+                             </select>
                          </div>
                          <div class="col-md-3">
                              <label class="form-label fw-semibold">Sub-Sector</label>
-                             <input type="text" name="sub_sector" class="form-control"
+                             <input type="text" name="sub_sector" class="form-control" placeholder="input Sub Sector if any"
                                  value="{{ old('sub_sector', $marketingDmar->sub_sector ?? '') }}">
                          </div>
                          <div class="col-md-6">
