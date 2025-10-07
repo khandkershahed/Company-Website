@@ -159,8 +159,8 @@
                             <table class="table border table-borderd rounded-3">
                                 <thead class="bg-light rounded-3">
                                     <tr class="text-black">
-                                        <th scope="col" class="py-2 ps-3">Total</th>
-                                        <th scope="col" class="py-2 pe-4 text-end">Sector</th>
+                                        <th scope="col" class="py-2 ps-3">Sector</th>
+                                        <th scope="col" class="py-2 pe-4 text-end">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>

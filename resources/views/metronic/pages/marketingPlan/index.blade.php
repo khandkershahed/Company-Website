@@ -294,25 +294,25 @@
                                                                             data-allow-clear="true">
                                                                             <option></option>
                                                                             <option value="site_visit"
-                                                                                @selected($plan->marketing_type ?? '' === 'site_visit')>Site Visit
+                                                                                @selected($plan->marketing_type == 'site_visit')>Site Visit
                                                                             </option>
                                                                             <option value="client_visit"
-                                                                                @selected($plan->marketing_type ?? '' === 'client_visit')>Client
+                                                                                @selected($plan->marketing_type == 'client_visit')>Client
                                                                                 Visit</option>
                                                                             <option value="telephone"
-                                                                                @selected($plan->marketing_type ?? '' === 'telephone')>Telephone
+                                                                                @selected($plan->marketing_type == 'telephone')>Telephone
                                                                             </option>
                                                                             <option value="email"
-                                                                                @selected($plan->marketing_type ?? '' === 'email')>Email
+                                                                                @selected($plan->marketing_type == 'email')>Email
                                                                             </option>
                                                                             <option value="social"
-                                                                                @selected($plan->marketing_type ?? '' === 'social')>Social
+                                                                                @selected($plan->marketing_type == 'social')>Social
                                                                             </option>
                                                                         </select>
                                                                     </div>
                                                                     <div class="mb-3 col-md-6">
                                                                         <label class="form-label">Status</label>
-                                                                        <select name="status" class="form-control">
+                                                                        <select name="status" class="form-select">
                                                                             <option value="pending"
                                                                                 {{ $plan->status == 'pending' ? 'selected' : '' }}>
                                                                                 Pending</option>

@@ -6,11 +6,11 @@
                     <div class="pt-5 card-header">
                         <div class="card-title d-flex flex-column">
                             <div class="d-flex align-items-center">
-                                <span class="text-gray-900 fs-2hx fw-bold me-2 lh-1 ls-n2">500</span>
+                                <span class="text-gray-900 fs-2hx fw-bold me-2 lh-1 ls-n2">0</span>
 
                                 <span class="px-4 py-2 badge badge-light-danger fs-base ms-5">
                                     <i class="fas fa-arrow-down fs-5 text-danger ms-n1" aria-hidden="true"></i>
-                                    2.2%
+                                    0%
                                 </span>
                             </div>
                             <span class="pt-1 text-gray-500 fw-semibold fs-6">Total Mail</span>
@@ -20,11 +20,11 @@
                     <div class="card-body d-flex align-items-end pt-9">
                         <div class="mt-3 d-flex align-items-center flex-column w-100">
                             <div class="mt-auto mb-2 d-flex justify-content-between w-100">
-                                <span class="text-gray-900 fw-bolder fs-6">1,048 to Goal</span>
-                                <span class="text-gray-500 fw-bold fs-6">62%</span>
+                                <span class="text-gray-900 fw-bolder fs-6">0 to Goal</span>
+                                <span class="text-gray-500 fw-bold fs-6">0%</span>
                             </div>
                             <div class="mx-3 rounded h-8px w-100 bg-light-blue">
-                                <div class="rounded bg-gr-blue h-8px" role="progressbar" style="width: 62%"
+                                <div class="rounded bg-gr-blue h-8px" role="progressbar" style="width: 0%"
                                     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                     <div class="pt-5 card-header">
                         <div class="card-title d-flex flex-column">
                             <div class="d-flex align-items-center">
-                                <span class="text-gray-900 fs-2hx fw-bold me-2 lh-1 ls-n2">50/20</span>
+                                <span class="text-gray-900 fs-2hx fw-bold me-2 lh-1 ls-n2">0/0</span>
 
                                 <span class="px-4 py-2 badge badge-light-primary fs-base ms-5">
                                     <i class="fas fa-arrow-up fs-5 text-primary ms-n1" aria-hidden="true"></i>
@@ -50,12 +50,12 @@
                     <div class="card-body d-flex align-items-end pt-9">
                         <div class="mt-3 d-flex align-items-center flex-column w-100">
                             <div class="mt-auto mb-2 d-flex justify-content-between w-100">
-                                <span class="text-gray-900 fw-bolder fs-6">1,048 to Goal</span>
-                                <span class="text-gray-500 fw-bold fs-6">62%</span>
+                                <span class="text-gray-900 fw-bolder fs-6">0 to Goal</span>
+                                <span class="text-gray-500 fw-bold fs-6">0%</span>
                             </div>
 
                             <div class="mx-3 rounded h-8px w-100 bg-light-blue">
-                                <div class="rounded bg-gr-blue h-8px" role="progressbar" style="width: 62%"
+                                <div class="rounded bg-gr-blue h-8px" role="progressbar" style="width: 0%"
                                     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                         </div>
@@ -67,12 +67,12 @@
                     <div class="pt-5 card-header">
                         <h3 class="card-title align-items-start flex-column">
                             <span class="text-gray-900 card-label fw-bold">Sector Cover</span>
-                            <span class="mt-1 text-gray-500 fw-semibold fs-6">1,046 Sector We Cover</span>
+                            <span class="mt-1 text-gray-500 fw-semibold fs-6">0 Sector We Cover</span>
                         </h3>
                         <div class="card-toolbar">
                             <span class="px-4 py-2 badge badge-light-danger fs-base mt-n3">
                                 <i class="fas fa-arrow-down fs-5 text-danger ms-n1 me-2" aria-hidden="true"></i>
-                                <span class="fs-4">05</span>
+                                <span class="fs-4">0</span>
                             </span>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                                         </div>
 
                                         <div class="text-gray-700 ms-auto fw-bolder text-end">
-                                            03
+                                            0
                                         </div>
                                     </div>
 
@@ -111,7 +111,7 @@
                                         </div>
 
                                         <div class="text-gray-700 ms-auto fw-bolder text-end">
-                                            10
+                                            0
                                         </div>
                                     </div>
                                 </div>
@@ -125,12 +125,12 @@
                     <div class="pt-5 card-header">
                         <h3 class="card-title align-items-start flex-column">
                             <span class="text-gray-900 card-label fw-bold">New Client Mailed</span>
-                            <span class="mt-1 text-gray-500 fw-semibold fs-6">1,046 Current Client</span>
+                            <span class="mt-1 text-gray-500 fw-semibold fs-6">0 Current Client</span>
                         </h3>
                         <div class="card-toolbar">
                             <span class="px-4 py-2 badge badge-light-danger fs-base mt-n3">
                                 <i class="fas fa-arrow-down fs-5 text-danger ms-n1 me-2" aria-hidden="true"></i>
-                                <span class="fs-4">05</span>
+                                <span class="fs-4">0</span>
                             </span>
                         </div>
                     </div>
@@ -152,7 +152,7 @@
                                         </div>
 
                                         <div class="text-gray-700 ms-auto fw-bolder text-end">
-                                            03
+                                            0
                                         </div>
                                     </div>
 
@@ -170,7 +170,7 @@
                                         </div>
 
                                         <div class="text-gray-700 ms-auto fw-bolder text-end">
-                                            10
+                                            0
                                         </div>
                                     </div>
                                 </div>
