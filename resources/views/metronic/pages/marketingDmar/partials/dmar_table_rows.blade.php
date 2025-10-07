@@ -1,6 +1,6 @@
 @foreach ($dmars as $dmar)
     <tr>
-        <td class="ps-3 text-center">
+        <td class="text-center ps-3">
             <input type="checkbox" class="rowCheckbox form-check-input ps-3" name="ids[]" value="{{ $dmar->id }}">
         </td>
         <td class="ps-3">{{ \Carbon\Carbon::parse($dmar->date)->format('j M y') }}</td>

@@ -103,6 +103,15 @@
     .table tr {
         font-size: 12px !important;
     }
+    .card-rounded .h-268px{
+        height: 200px;
+    }
+    .card-rounded{
+        margin-bottom: 10px;
+    }
+    .form-select-sm{
+        width: 100% !important;
+    }
 }
 
 .nav-line-tabs .nav-item .bypass-nav.active,
