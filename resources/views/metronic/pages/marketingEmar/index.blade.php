@@ -250,7 +250,7 @@
                                     data-placeholder="Select Product" name="product_id">
                                     <option></option>
                                     @foreach ($products as $product)
-                                        <option value="{{ $product->email }}">{{ $product->email }}</option>
+                                        <option value="{{ $product->id }}">{{ $product->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -326,7 +326,7 @@
                                 data-placeholder="Select Product" name="product_id[]" multiple>
                                 <option></option>
                                 @foreach ($products as $product)
-                                    <option value="{{ $product->email }}">{{ $product->email }}</option>
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
                                 @endforeach
                             </select>
                         </div>
