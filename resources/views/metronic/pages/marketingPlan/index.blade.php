@@ -312,7 +312,7 @@
                                                                     </div>
                                                                     <div class="mb-3 col-md-6">
                                                                         <label class="form-label">Status</label>
-                                                                        <select name="status" class="form-control">
+                                                                        <select name="status" class="form-select">
                                                                             <option value="pending"
                                                                                 {{ $plan->status == 'pending' ? 'selected' : '' }}>
                                                                                 Pending</option>
