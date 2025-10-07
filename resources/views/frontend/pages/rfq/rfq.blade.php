@@ -33,12 +33,12 @@
                                         @php $modalId = 'modal-' . $key; @endphp
                                         <div data-repeater-item class="row g-1">
                                             <div class="col-lg-1 col-2">
-                                                <button type="button" title="Provide Additional Product Information" class="border btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#{{ $modalId }}">
+                                                <button type="button" title="Provide Additional Product Information" class="px-10 border-0 shadow-sm btn btn-light btn-sm w-75" style="font-size: 30px;" data-bs-toggle="modal" data-bs-target="#{{ $modalId }}">
                                                     ...
                                                 </button>
                                                 <!-- Modal Content -->
                                                 <div class="modal fade" id="{{ $modalId }}" tabindex="-1" aria-labelledby="{{ $modalId }}Label" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-dialog modal-dialog-centered modal-xl">
                                                         <div class="border-0 modal-content rounded-0">
                                                             <div class="modal-header">
                                                                 <h1 class="modal-title fs-5" id="{{ $modalId }}Label">Product Information</h1>

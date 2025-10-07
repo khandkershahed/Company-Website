@@ -148,7 +148,7 @@
         font-size: var(--header-font-size);
         color: var(--white);
         background: #000080;
-        height: 150px;
+        height: 50px;
         padding: 15px 0px;
         border-top: 1px solid #000080;
         border-bottom: 1px solid #000080;
@@ -162,7 +162,7 @@
         font-size: var(--header-font-size);
         color: var(--white);
         background: #000080;
-        height: 150px;
+        height: 50px;
         padding: 15px 0px;
         border: 1px solid #000080;
         border-radius: 0px;
@@ -175,7 +175,7 @@
         font-size: var(--header-font-size);
         color: var(--white);
         background: #000080 !important;
-        height: 150px;
+        height: 50px;
         padding: 15px 0px;
         border: 1px solid #000080 !important;
         border-radius: 0px;
@@ -195,37 +195,40 @@
 background: linear-gradient(to top right, #ae0a46 0%, #4e0721 100%); /* Standard */">
         <div class="text-center">
             <div class="mx-auto row w-75 align-items-center">
-                <div class="col-lg-10">
-                    <div class="p-5 d-flex justify-content-between align-items-center" type="button"
+                <div class="col-lg-11">
+                    <div class="p-5 py-2 d-flex justify-content-between align-items-center" type="button"
                         data-bs-toggle="offcanvas"
                         data-bs-target="#offcanvasBottom"
                         aria-controls="offcanvasBottom">
                         <div class="text-start">
-                            <h5 class="mb-1 text-white">Your Cart Summary</h5>
+                            <!-- <h5 class="mb-1 text-white">Your Cart Summary</h5>
                             <p class="mb-2 text-white" style="font-size: 0.9rem;">
                                 Review the items you’ve added to your cart.<br /> You can click the button below to view or edit your selections.
-                            </p>
+                            </p> -->
                             <span class="text-white miniRFQQTY"
                                 style="line-height: 1.3; font-size:1.2rem; font-family: system-ui; letter-spacing: 1px;">
-                                ({{ Cart::count() }} {{ Cart::count() > 1 ? 'Item(s)' : 'Item' }} Added)
+                                {{ Cart::count() }} {{ Cart::count() > 1 ? "Product's" : 'Product' }} Added
                             </span>
+                            <p class="mb-0 text-sm text-white">
+                                Click to view the product...
+                            </p>
                         </div>
 
                         <div>
                            <!-- Offcanvas trigger button -->
-                            <button class="py-1 btn btn-white ms-3" type="button" style="height: 40px;display: flex;justify-content: center;align-items: center;"
+                            <!-- <button class="py-1 btn btn-white ms-3" type="button" style="height: 40px;display: flex;justify-content: center;align-items: center;"
                                 data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasBottom"
                                 aria-controls="offcanvasBottom">
                                 View Cart
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                 </div>
 
                 <!-- Close icon -->
-                <div class="col-lg-2">
-                    <i id="stickyCloseBtn" class="text-white fas fa-times fs-5 ms-2 fa-shake" style="cursor: pointer; "></i>
+                <div class="col-lg-1">
+                    <i id="stickyCloseBtn" title="Close for one minit" class="text-white fas fa-times fs-5 ms-2 fa-shake" style="cursor: pointer; "></i>
                 </div>
             </div>
         </div>
