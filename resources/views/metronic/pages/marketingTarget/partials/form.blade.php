@@ -73,7 +73,7 @@
                     );
                 @endphp
 
-                <div class="col-lg-4 col-sm-6 mb-3">
+                <div class="col-lg-3 col-sm-6 mb-3">
                     <div class="border p-3 rounded bg-light d-flex align-items-center justify-content-between">
                         <label class="form-label fw-semibold mb-0 me-2">{{ $sector }}:</label>
                         <input type="hidden" name="targets[{{ $contactType }}][{{ $index }}][sector]"
