@@ -247,7 +247,7 @@
                             </div>
                             <div class="pt-5 card-body">
                                 <select class="form-select form-select-solid" data-control="select2"
-                                    data-placeholder="Select Product" name="product_id">
+                                    data-placeholder="Select Product" data-allow-clear="true" name="product_id">
                                     <option></option>
                                     @foreach ($products as $product)
                                         <option value="{{ $product->id }}">{{ $product->name }}</option>
@@ -298,40 +298,26 @@
 
             <div class="col-lg-3">
                 <div class="border-0 shadow-none card card-flush card-rounded">
-                    {{-- <div class="pt-5 card-header flex-column">
+                    <div class="pt-5 card-header">
                         <h3 class="text-gray-800 card-title fw-bold">
-                            Select Client’s Mail
+                            Select Product
                         </h3>
                         <p class="text-gray-500">Type product name</p>
                     </div>
                     <div class="pt-5 card-body">
-                        <tags class="tagify form-control d-flex align-items-center tagify--noTags tagify--empty"
-                            tabindex="-1">
-                            <span contenteditable="" tabindex="0" data-placeholder="" aria-placeholder=""
-                                class="tagify__input" role="textbox" aria-autocomplete="both"
-                                aria-multiline="false"></span>
-
-                        </tags><input class="form-control d-flex align-items-center" value=""
-                            id="kt_tagify_country">
-                    </div> --}}
-                    <div class="border-0 shadow-none card card-flush card-rounded">
-                        <div class="pt-5 card-header">
-                            <h3 class="text-gray-800 card-title fw-bold">
-                                Select Product
-                            </h3>
-                            <p class="text-gray-500">Type product name</p>
-                        </div>
-                        <div class="pt-5 card-body">
-                            <select class="form-select form-select-solid" data-control="select2"
-                                data-placeholder="Select Product" name="product_id[]" multiple>
-                                <option></option>
-                                @foreach ($products as $product)
-                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        <select class="form-select form-select-solid" data-control="select2"
+                            data-placeholder="Select or add products" data-allow-clear="true" name="product_id[]"
+                            multiple id="productSelect">
+                            <option></option>
+                            @foreach ($products as $product)
+                                <option value="{{ $product->id }}">{{ $product->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
+
+
+
             </div>
             <div class="col-lg-3">
                 <div class="border-0 shadow-none card card-flush card-rounded">
@@ -582,5 +568,25 @@
         </div>
     </div>
     @push('scripts')
-    @endpush
+                    <script>
+                        $(document).ready(function() {
+                            $('#productSelect').select2({
+                                tags: true, // Enable tagging
+                                tokenSeparators: [',', ' '], // Comma or space separate tags
+                                createTag: function(params) {
+                                    let term = $.trim(params.term);
+                                    if (term === '') {
+                                        return null;
+                                    }
+                                    // Return the new tag object to add custom text as value and text
+                                    return {
+                                        id: term,
+                                        text: term,
+                                        newTag: true // add additional parameters if needed
+                                    }
+                                }
+                            });
+                        });
+                    </script>
+                @endpush
 </x-admin-app-layout>
