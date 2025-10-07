@@ -1,7 +1,7 @@
 <x-admin-app-layout :title="'Marketing DMAR'">
-    <div class="px-0 container-fluid">
-        <div class="mb-10 row">
-            <div class="col-xl-3">
+    <div class="px-0 container-fluid dmr-box">
+        <div class="mb-0 mb-lg-5 row">
+            <div class="col-xl-3 ps-lg-0">
                 <div class="shadow-none card card-flush card-rounded">
                     <div class="p-0 card-body">
                         <div class="d-flex flex-stack justify-content-center align-items-center h-268px">
@@ -149,7 +149,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3">
+            <div class="col-xl-3 pe-lg-0">
                 <div class="shadow-none card card-flush card-rounded">
                     <div class="card-header w-100 justify-content-center align-items-center">
                         <h6 class="mb-0 fw-normal">Sectorwise Number Of Visit</h6>
@@ -189,71 +189,75 @@
         </div>
         <div class="row">
             <div class="shadow-none card card-flush card-rounded">
-                <div class="py-10 card-header w-100 justify-content-between align-items-center">
-                    <div class="d-flex justify-content-start align-items-center">
-                        <h4 class="mb-0" style="font-weight: 500;">Direct Marketing Association Research</h4>
-
+                <div class="flex-wrap gap-3 py-10 card-header w-100 d-flex justify-content-between align-items-center">
+                    <!-- Left: Title -->
+                    <div class="d-flex align-items-center flex-grow-1">
+                        <h4 class="mb-0 fw-semibold text-truncate">Direct Marketing Association Research</h4>
                     </div>
-                    <div class="d-flex align-items-center">
-                        <div>
-                            <input class="form-control form-control-sm" type="date" name="date"
-                                id="filterDate">
+
+                    <!-- Right: Filters & Buttons -->
+                    <div class="flex-wrap gap-2 filter-bar d-flex align-items-center">
+                        <!-- Date Filter -->
+                        <div class="filter-item">
+                            <input class="form-control form-control-sm" type="date" name="date" id="filterDate">
                         </div>
 
-                        <div class="mx-2">
-                            <select class="form-select form-select-sm w-150px" data-control="select2"
-                                data-placeholder="Select Month" name="month" data-allow-clear="true"
-                                id="filterMonth">
-                                <option></option>
+                        <!-- Month Filter -->
+                        <div class="filter-item">
+                            <select class="form-select form-select-sm" name="month" id="filterMonth">
+                                <option value="">Select Month</option>
                                 @foreach ($months as $month)
-                                    <option value="{{ $month }}" @selected(old('month', request('month')) == $month)>
-                                        {{ $month }}
-                                    </option>
+                                <option value="{{ $month }}" @selected(old('month', request('month'))==$month)>
+                                    {{ $month }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
-                        <div>
-                            <select class="form-select form-select-sm w-200px" data-control="select2"
-                                data-allow-clear="true" data-placeholder="Select Achievement" name="status"
-                                id="filterStatus">
-                                <option></option>
+
+                        <!-- Status Filter -->
+                        <div class="filter-item">
+                            <select class="form-select form-select-sm" name="status" id="filterStatus">
+                                <option value="">Select Achievement</option>
                                 @foreach (['Ongoing', 'Pending', 'In Progress', 'Prospect', 'Lost', 'Quoted', 'Sale', 'Potential'] as $status)
-                                    <option value="{{ $status }}" @selected(request('status') == $status)>
-                                        {{ $status }}</option>
+                                <option value="{{ $status }}" @selected(request('status')==$status)>
+                                    {{ $status }}
+                                </option>
                                 @endforeach
                             </select>
-
-                            {{-- <option value="Visit">Visit</option>
-                                <option value="Call">Call</option>
-                                <option value="Social">Social</option>
-                                <option value="Email">Email</option>
-                                <option value="Lost">Lost</option>
-                                <option value="Quote">Quote</option>
-                                <option value="Potential">Potential</option>
-                                <option value="Sales">Sales</option> --}}
                         </div>
-                        <button type="button" id="clearFilters" class="btn btn-sm btn-light-danger ms-3">
-                            <i class="fa-solid fa-xmark text-danger fs-3"></i>
-                        </button>
 
-                        <a href="{{ route('admin.marketing-target.index') }}"
-                            class="text-white btn btn-sm btn-light-primary bg-primary ms-3"
-                            style="background-color: #0B6476 !important;">
-                            Target <i class="text-white fa-solid fa-arrow-right"></i>
-                        </a>
+                        <!-- Clear Filters Button -->
+                        <div class="">
+                            <button type="button" id="clearFilters" title="Clear Filters"
+                                class="btn btn-outline btn-sm d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-xmark text-danger fs-5"></i>
+                            </button>
+                        </div>
+
+                        <!-- Target Button -->
+                        <div class="filter-item">
+                            <a href="{{ route('admin.marketing-target.index') }}"
+                                class="text-white btn btn-sm bg-primary d-flex align-items-center justify-content-center w-100"
+                                style="background-color: #0B6476 !important;">
+                                Target <i class="fa-solid fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
                     </div>
+
                 </div>
-                <div class="pt-0 card-body">
+
+                <div class="pt-3 card-body">
                     <form id="multiDeleteForm" method="POST" action="{{ route('admin.marketing-dmar.multi-delete') }}">
                         @csrf
                         @method('DELETE')
 
                         {{-- Action buttons --}}
-                        <div class="d-flex justify-content-end mb-3" id="actionButtons" style="display: none;">
-                            <a href="#" id="editBtn" class="btn btn-warning btn-sm me-2">✏️ Edit</a>
-                            <button type="submit" id="deleteBtn" class="btn btn-danger btn-sm me-2">🗑️
+                        <div class="mb-3 d-flex justify-content-end" id="actionButtons" style="display: none;">
+                            <a href="#" id="editBtn" class="btn btn-light btn-sm me-2">✏️ Edit</a>
+                            <button type="submit" id="deleteBtn" class="btn btn-light-danger btn-sm me-2">
+                                <i class="fa fa-solid fa-trash"></i>
                                 Delete</button>
-                            <button type="submit" id="multiDeleteBtn" class="btn btn-danger btn-sm">🗑️ Delete
+                            <button type="submit" id="multiDeleteBtn" class="btn btn-light-danger btn-sm"><i class="fa fa-solid fa-trash"></i> Delete
                                 Selected</button>
                         </div>
 
@@ -261,122 +265,131 @@
                             <table class="table mb-0 border dataTable" style="min-width: 100%;">
                                 <thead>
                                     <tr class="bg-light">
-                                        <th class="ps-3 text-center" width="3%">
+                                        <th class="text-center ps-3" width="3%">
                                             <input class="form-check-input" type="checkbox" id="selectAll">
                                         </th>
-                                        <th width="7%">Date</th>
-                                        <th width="6%">Month</th>
-                                        <th width="7%">Activity</th>
-                                        <th width="12%" class="text-center">Company</th>
-                                        <th width="8%">Service</th>
-                                        <th width="10%">Products</th>
-                                        <th width="10%">Tentative</th>
-                                        <th width="10%">Comments</th>
-                                        <th width="10%">Action on Fail</th>
-                                        <th width="10%">Current Status</th>
-                                        <th width="8%">Client Type</th>
-                                        <th width="8%">Sector</th>
+                                        <th width="5%">Date</th>
+                                        <th width="5%">Month</th>
+                                        <th width="5%">Activity</th>
+                                        <th width="10%" class="text-center">Company</th>
+                                        <th width="5%">Service</th>
+                                        <th width="11%">Products</th>
+                                        <th width="5%">Tentative</th>
+                                        <th width="8%">Comments</th>
+                                        <th width="7%">Action on Fail</th>
+                                        <th width="7%">Current Status</th>
+                                        <th width="7%">Client Type</th>
+                                        <th width="5%">Sector</th>
                                         <th width="10%">Sub Sector</th>
-                                        <th width="12%" class="text-end pe-5">Area</th>
+                                        <th width="10%" class="text-end pe-10">Area</th>
                                     </tr>
                                 </thead>
                                 <tbody id="dmarTableBody">
                                     @include('metronic.pages.marketingDmar.partials.dmar_table_rows', [
-                                        'dmars' => $dmars,
+                                    'dmars' => $dmars,
                                     ])
                                 </tbody>
                             </table>
                         </div>
                     </form>
-
-
                 </div>
             </div>
         </div>
     </div>
 
     @push('scripts')
-        <script>
-            $(document).ready(function() {
-                function toggleActionButtons() {
-                    let checkedBoxes = $('.rowCheckbox:checked');
-                    let selectedCount = checkedBoxes.length;
+    <script>
+        $(document).ready(function() {
+            function toggleActionButtons() {
+                let checkedBoxes = $('.rowCheckbox:checked');
+                let selectedCount = checkedBoxes.length;
 
-                    if (selectedCount === 0) {
-                        $('#actionButtons').hide();
-                    } else if (selectedCount === 1) {
-                        let id = checkedBoxes.val();
-                        $('#editBtn').attr('href', `/admin/marketing-dmar/${id}/edit`);
-                        $('#actionButtons').show();
-                        $('#editBtn').show();
-                        $('#deleteBtn').show();
-                        $('#multiDeleteBtn').hide();
-                    } else {
-                        $('#actionButtons').show();
-                        $('#editBtn').hide();
-                        $('#deleteBtn').hide();
-                        $('#multiDeleteBtn').show();
+                if (selectedCount === 0) {
+                    $('#actionButtons').hide();
+                } else if (selectedCount === 1) {
+                    let id = checkedBoxes.val();
+                    $('#editBtn').attr('href', `/admin/marketing-dmar/${id}/edit`);
+                    $('#actionButtons').show();
+                    $('#editBtn').show();
+                    $('#deleteBtn').show();
+                    $('#multiDeleteBtn').hide();
+                } else {
+                    $('#actionButtons').show();
+                    $('#editBtn').hide();
+                    $('#deleteBtn').hide();
+                    $('#multiDeleteBtn').show();
+                }
+            }
+
+            // On individual checkbox change
+            $(document).on('change', '.rowCheckbox', toggleActionButtons);
+
+            // Select all checkboxes
+            $('#selectAll').on('change', function() {
+                $('.rowCheckbox').prop('checked', this.checked);
+                toggleActionButtons();
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Initialize select2
+            $('#filterMonth, #filterStatus').select2({
+                placeholder: 'Select option',
+                allowClear: true
+            });
+
+            // Disable caching
+            $.ajaxSetup({
+                cache: false
+            });
+
+            function fetchFilteredData() {
+                let date = $('#filterDate').val();
+                let month = $('#filterMonth').val();
+                let status = $('#filterStatus').val();
+
+                $.ajax({
+                    url: "{{ route('admin.marketing-dmar.filter') }}",
+                    method: 'GET',
+                    data: {
+                        date: date,
+                        month: month,
+                        status: status,
+                        _t: Date.now() // prevent cache
+                    },
+                    success: function(response) {
+                        $('#dmarTableBody').html(response.html);
+                    },
+                    error: function() {
+                        alert('Error loading data.');
                     }
-                }
-
-                // On individual checkbox change
-                $(document).on('change', '.rowCheckbox', toggleActionButtons);
-
-                // Select all checkboxes
-                $('#selectAll').on('change', function() {
-                    $('.rowCheckbox').prop('checked', this.checked);
-                    toggleActionButtons();
                 });
+            }
+
+            // Trigger on filter change
+            $('#filterDate, #filterMonth, #filterStatus').on('change', fetchFilteredData);
+
+            // Clear all filters
+            $('#clearFilters').on('click', function() {
+                $('#filterDate').val('');
+                $('#filterMonth').val(null).trigger('change');
+                $('#filterStatus').val(null).trigger('change');
+                fetchFilteredData();
+            });
+        });
+    </script>
+    <!-- <script>
+            $('#selectAll').on('change', function() {
+                $('#multiDeleteBtn').toggleClass('d-none', !this.checked);
             });
         </script>
         <script>
-            $(document).ready(function() {
-                // Initialize select2
-                $('#filterMonth, #filterStatus').select2({
-                    placeholder: 'Select option',
-                    allowClear: true
-                });
-
-                // Disable caching
-                $.ajaxSetup({
-                    cache: false
-                });
-
-                function fetchFilteredData() {
-                    let date = $('#filterDate').val();
-                    let month = $('#filterMonth').val();
-                    let status = $('#filterStatus').val();
-
-                    $.ajax({
-                        url: "{{ route('admin.marketing-dmar.filter') }}",
-                        method: 'GET',
-                        data: {
-                            date: date,
-                            month: month,
-                            status: status,
-                            _t: Date.now() // prevent cache
-                        },
-                        success: function(response) {
-                            $('#dmarTableBody').html(response.html);
-                        },
-                        error: function() {
-                            alert('Error loading data.');
-                        }
-                    });
-                }
-
-                // Trigger on filter change
-                $('#filterDate, #filterMonth, #filterStatus').on('change', fetchFilteredData);
-
-                // Clear all filters
-                $('#clearFilters').on('click', function() {
-                    $('#filterDate').val('');
-                    $('#filterMonth').val(null).trigger('change');
-                    $('#filterStatus').val(null).trigger('change');
-                    fetchFilteredData();
-                });
+             $(document).on('change', '.rowCheckbox', function() {
+                const anyChecked = $('.rowCheckbox:checked').length > 0;
+                $('#multiDeleteBtn').toggleClass('d-none', !anyChecked);
             });
-        </script>
+        </script> -->
     @endpush
 
 

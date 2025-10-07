@@ -103,8 +103,59 @@
     .table tr {
         font-size: 12px !important;
     }
+    .card-rounded .h-268px {
+        height: 200px;
+    }
+    .card-rounded {
+        margin-bottom: 10px;
+    }
+    .form-select-sm {
+        width: 100% !important;
+    }
 }
 
+/* Base Layout */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.filter-item {
+    flex: 0 0 auto;
+    width: 150px;
+}
+
+/* Make form elements same height */
+.filter-bar .form-control,
+.filter-bar .form-select,
+.filter-bar .btn {
+    height: 36px;
+}
+
+/* ✅ Mobile Responsive */
+@media (max-width: 768px) {
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-item {
+        width: 275px;
+        overflow: hidden;
+    }
+
+    .filter-bar .btn,
+    .filter-bar .form-control,
+    .filter-bar .form-select {
+        width: 100%;
+    }
+    .dmr-box{
+        overflow: hidden;
+    }
+}
 .nav-line-tabs .nav-item .bypass-nav.active,
 .nav-line-tabs .nav-item .bypass-nav:hover:not(.disabled),
 .nav-line-tabs .nav-item.show .bypass-nav {
