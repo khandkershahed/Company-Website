@@ -19,7 +19,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="p-4 card-body">
+                    <div class="p-3 card-body p-lg-4">
 
                         <form id="stepperForm" action="{{ route('rfqCreate') }}" method="post"
                             enctype="multipart/form-data">
@@ -32,8 +32,8 @@
                                         @foreach ($cart_products as $key => $cart_product)
                                         @php $modalId = 'modal-' . $key; @endphp
                                         <div data-repeater-item class="row g-1">
-                                            <div class="col-lg-1 col-2">
-                                                <button type="button" title="Provide Additional Product Information" class="px-10 border-0 shadow-sm btn btn-light btn-sm w-75" style="font-size: 30px;" data-bs-toggle="modal" data-bs-target="#{{ $modalId }}">
+                                            <div class="col-lg-1 col-12">
+                                                <button type="button" title="Provide Additional Product Information" class="px-10 border-0 shadow-sm deal-modal-btn btn btn-light btn-sm w-75" style="font-size: 30px;" data-bs-toggle="modal" data-bs-target="#{{ $modalId }}">
                                                     ...
                                                 </button>
                                                 <!-- Modal Content -->
@@ -111,7 +111,7 @@
                                             <div class="col-lg-8 col-6">
                                                 <input type="text" name="product_name" class="form-control" value="{{ $cart_product->name }}" placeholder="Product Name" required autocomplete="" />
                                             </div>
-                                            <div class="col-lg-1 col-2">
+                                            <div class="col-lg-1 col-4">
                                                 <div class="d-flex">
                                                     <input type="text" name="qty" value="1" class="text-center form-control qty-input" style="width: 60px;margin-bottom: 6px;padding-inline-end: 5px;padding-inline-start: 5px;" />
                                                     <div class="d-flex flex-column counting-btn">
@@ -136,8 +136,8 @@
                                         @else
                                         <div data-repeater-item class="row g-1">
                                             @php $modalId = 'modal-' . uniqid(); @endphp
-                                            <div class="col-lg-1 col-2">
-                                                <button type="button" class="py-4 border-0 shadow-sm btn btn-light btn-sm cst-btn" data-bs-toggle="modal" data-bs-target="#{{ $modalId }}">
+                                            <div class="col-lg-1 col-12">
+                                                <button type="button" class="py-4 mb-3 border-0 shadow-sm btn btn-light btn-sm cst-btn mb-lg-0" data-bs-toggle="modal" data-bs-target="#{{ $modalId }}">
                                                     ...
                                                 </button>
                                                 <!-- Modal Content -->
@@ -213,7 +213,7 @@
                                             <div class="col-lg-1 col-2">
                                                 <input type="text" name="sl" class="text-center form-control sl-input" value="1" readonly />
                                             </div>
-                                            <div class="col-lg-8 col-6">
+                                            <div class="col-lg-8 col-5">
                                                 <input type="text" name="product_name" class="form-control" placeholder="Product Name" required />
                                             </div>
                                             <div class="col-lg-1 col-2">
@@ -229,7 +229,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-1 col-2">
+                                            <div class="col-lg-1 col-3">
                                                 <div class="d-flex">
                                                     <button type="button" data-repeater-delete class="py-2 btn btn-danger btn-sm w-100 trash-btn delete-btn" data-id="new">
                                                         <i class="fas fa-trash"></i>
@@ -285,8 +285,8 @@
                             <div class="pt-3 progress-bar-steps for-desktop">
                                 <div class="step" data-step="1">
                                     <div class="step-label">
-                                        <span class="d-none d-sm-inline">Company Info</span>
-                                        <span class="d-inline d-sm-none">Company</span>
+                                        <span class="">Company Info</span>
+                                        <span class="">Company</span>
                                     </div>
                                     <div class="pt-1 circle ps-2">
                                         <i class="fas fa-check"></i>
@@ -294,8 +294,8 @@
                                 </div>
                                 <div class="step" data-step="2">
                                     <div class="step-label">
-                                        <span class="d-none d-sm-inline">Shipping Details</span>
-                                        <span class="d-inline d-sm-none">Shipping</span>
+                                        <span class="">Shipping Details</span>
+                                        <span class="">Shipping</span>
                                     </div>
                                     <div class="pt-1 circle ps-2">
                                         <i class="fas fa-check"></i>
@@ -303,8 +303,8 @@
                                 </div>
                                 <div class="step" data-step="3">
                                     <div class="step-label">
-                                        <span class="d-none d-sm-inline">End User Info</span>
-                                        <span class="d-inline d-sm-none">End User</span>
+                                        <span class="">End User Info</span>
+                                        <span class="">End User</span>
                                     </div>
                                     <div class="pt-1 circle ps-2">
                                         <i class="fas fa-check"></i>
@@ -312,8 +312,8 @@
                                 </div>
                                 <div class="step" data-step="4">
                                     <div class="step-label">
-                                        <span class="d-none d-sm-inline">Additional Details</span>
-                                        <span class="d-inline d-sm-none">Additional</span>
+                                        <span class="">Additional Details</span>
+                                        <span class="">Additional</span>
                                     </div>
                                     <div class="pt-1 circle ps-2">
                                         <i class="fas fa-check"></i>

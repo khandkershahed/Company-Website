@@ -16279,6 +16279,14 @@ thead {
         gap: 15px;
     }
 }
+@media (max-width: 600px) {
+     .cst-btn {
+        width: 100% !important;
+    }
+    .delete-btn{
+        text-align: end;
+    }
+}
 
 .wedo-cards__item {
     background-size: cover;

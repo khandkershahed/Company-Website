@@ -125,8 +125,10 @@
        width: 100% !important;
        margin-bottom: 5px;
     }
+    .deal-modal-btn{
+        width: 100% !important;
+    }
 }
-
 /* Base Layout */
 .filter-bar {
     display: flex;

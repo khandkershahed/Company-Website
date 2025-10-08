@@ -1,7 +1,7 @@
 <x-admin-app-layout :title="'Deal Create Form'">
     @include('metronic.pages.deal.partials.deal_css')
     <div class="post d-flex flex-column-fluid" id="kt_post">
-        <div id="kt_content_container" class="app-container container-fluid">
+        <div id="kt_content_container" class="px-0 app-container container-fluid px-lg-auto">
             <div class="d-flex align-items-center justify-content-center">
                 <div class="container">
                     <div class="mt-4">
@@ -22,7 +22,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mx-0 col-lg-10">
+                                <div class="px-0 mx-0 col-lg-10 col-12 px-lg-auto">
                                     <div class="border shadow-sm card">
                                         <div class="py-10 mx-0 row g-0 align-items-center card-header"
                                             style="background-color: #0b6476">
@@ -82,8 +82,8 @@
                                                             <div data-repeater-item class="row g-1 align-items-center">
 
                                                                 <!-- SL -->
-                                                                <div class="col-lg-1 col-2">
-                                                                    <button type="button" title="Provide Additional Product Information" class="px-10 border btn btn-light btn-sm" style="font-size: 22px;" data-bs-toggle="modal" data-bs-target="#first_rfq">
+                                                                <div class="col-lg-1 col-12">
+                                                                    <button type="button" title="Provide Additional Product Information" class="px-10 border btn btn-light btn-sm deal-modal-btn" style="font-size: 22px;" data-bs-toggle="modal" data-bs-target="#first_rfq">
                                                                         ...
                                                                     </button>
                                                                     <!-- Modal Content -->
@@ -98,57 +98,57 @@
                                                                                 </div>
                                                                                 <div class="p-5 modal-body">
                                                                                     <div class="row gx-2">
-                                                                                        <div class="col-lg-2">
+                                                                                        <div class="col-12 col-lg-2">
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label fw-normal">SKU / Part No.</label>
                                                                                                 <input type="text" name="sku_no" class="form-control" placeholder="Enter SKU / Part No.">
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="col-lg-3">
+                                                                                        <div class="col-12 col-lg-3">
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label fw-normal">Model No.</label>
                                                                                                 <input type="text" name="model_no" class="form-control" placeholder="Enter Model No.">
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="col-lg-4">
+                                                                                        <div class="col-12 col-lg-4">
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label fw-normal">Brand Name</label>
                                                                                                 <input type="text" name="brand_name" class="form-control" placeholder="Enter Brand Name">
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="col-lg-3">
+                                                                                        <div class="col-12 col-lg-3">
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label fw-normal">Quantity</label>
                                                                                                 <input type="number" name="additional_qty" class="form-control" placeholder="Enter Quantity">
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="col-lg-12">
+                                                                                        <div class="col-12 col-lg-12">
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label fw-normal">Item Name</label>
                                                                                                 <input type="text" name="additional_product_name" class="form-control" placeholder="Enter Item Name">
                                                                                             </div>
                                                                                         </div>
 
-                                                                                        <div class="col-lg-6">
+                                                                                        <div class="col-12 col-lg-6">
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label fw-normal">Item Description</label>
                                                                                                 <textarea class="form-control" name="product_des" rows="2" placeholder="Enter Item Description"></textarea>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="col-lg-6">
+                                                                                        <div class="col-12 col-lg-6">
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label fw-normal">Additional Info</label>
                                                                                                 <textarea class="form-control" name="additional_info" rows="2" placeholder="Enter any additional information"></textarea>
                                                                                             </div>
                                                                                         </div>
                                                                                         <hr class="my-5">
-                                                                                        <div class="col-lg-12">
+                                                                                        <div class="col-12 col-lg-12">
                                                                                             <div class="mb-3">
                                                                                                 <label class="form-label fw-normal">Upload Product Datasheet / Images</label>
                                                                                                 <input type="file" name="image" class="form-control">
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="col-lg-12 d-flex justify-content-end">
+                                                                                        <div class="col-12 col-lg-12 d-flex justify-content-end">
                                                                                             <button type="submit" data-bs-dismiss="modal" class="rfq-add-btns">Submit</button>
                                                                                         </div>
                                                                                     </div>
@@ -167,7 +167,7 @@
                                                                 </div>
 
                                                                 <!-- Qty -->
-                                                                <div class="col-lg-2 col-2">
+                                                                <div class="col-lg-2 col-4">
                                                                     <div class="d-flex align-items-center">
                                                                         <div class="d-flex">
                                                                             <input type="text" value="1"
@@ -190,11 +190,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-                                                                <!-- Delete -->
-                                                                <!-- <div class="col-lg-1 col-2">
-
-                                                                </div> -->
                                                             </div>
                                                         </div>
 
