@@ -16,7 +16,7 @@
 
         .form-control-sm {
             width: 100%;
-            height: 33px;
+            height: 33px; 
             padding: 1px;
         }
 

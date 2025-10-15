@@ -13,7 +13,7 @@
         }
 
         .info-details {
-            border-top: 1px solid #ae0a46;
+            border-top: 1px solid #ae0a46; 
         }
     </style>
     <div class="content-wrapper">

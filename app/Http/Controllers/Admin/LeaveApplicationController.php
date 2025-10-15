@@ -319,6 +319,7 @@ class LeaveApplicationController extends Controller
             $leaveApplication->update(array_merge([
                 // 'employee_id'             => $request->employee_id,
                 // 'name'                    => $request->name,
+                'substitute_id'           => $request->substitute_id,
                 'type_of_leave'           => $request->type_of_leave,
                 'designation'             => $request->designation,
                 'company'                 => $request->company,

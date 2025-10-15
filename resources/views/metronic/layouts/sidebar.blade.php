@@ -69,7 +69,7 @@
                             ],
                             'route' => 'admin.marketing.dashboard',
                             'subMenu' => [
-                               
+
                                 [
                                     'title' => 'Marketing DMAR',
                                     'routes' => [
@@ -235,6 +235,7 @@
                                 ],
                             ],
                         ],
+
                         [
                             'title' => 'Site Contents',
                             'icon' => 'fa-duotone fa-sidebar-flip fs-3',
@@ -295,12 +296,17 @@
                         [
                             'title' => 'HR & Admin',
                             'icon' => 'fa-duotone fa-user-tie fs-3',
-                            'routes' => ['admin.hrDashboard.index', 'employee.index'],
+                            'routes' => ['admin.hrDashboard.index', 'employee.index','admin.attendance.history'],
                             'subMenu' => [
                                 [
-                                    'title' => 'Dashboard',
+                                    'title' => 'HR Admin Dashboard',
                                     'routes' => ['admin.hrDashboard.index'],
                                     'route' => 'admin.hrDashboard.index',
+                                ],
+                                [
+                                    'title' => 'Attendance, Leave , Movement History',
+                                    'routes' => ['admin.attendance.history'],
+                                    'route' => 'admin.attendance.history',
                                 ],
                                 [
                                     'title' => 'Employee List',

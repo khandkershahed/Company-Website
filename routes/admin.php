@@ -188,6 +188,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::put('run/tools', [WebSettingController::class, 'runTools'])->name('tools.run');
     Route::get('hr/dashboard', [DashboardController::class, 'hrDashboard'])->name('hrDashboard.index');
     Route::get('hr-and-admin', [DashboardController::class, 'hrDashboard'])->name('hr-and-admin.index');
+    Route::get('attendance-history', [AttendanceController::class, 'attendanceHistory'])->name('attendance.history');
     // Toggle Status
     Route::post('brands/toggle-status/{id}', [BrandController::class, 'toggleStatus'])->name('brands.toggle-status');
     // Route::controller(RFQController::class)->group(function () {

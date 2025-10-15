@@ -152,11 +152,8 @@
                                                                 <!-- Employee Name -->
                                                                 <td>{{ $employee->name }}</td>
                                                                 <td>
-                                                                    @if ($employee->employeeStatus)
-                                                                        {{ $employee->employeeStatus->name }}
-                                                                    @else
-                                                                        No Job Status Assigned
-                                                                    @endif
+                                                                    {{ optional($employee->employeeStatus)->name ?? 'No Job Status Assigned'}}
+
                                                                 </td>
                                                                 <!-- Employee Email -->
                                                                 <td>{{ $employee->email }}</td>

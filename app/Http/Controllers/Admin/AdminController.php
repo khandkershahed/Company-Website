@@ -619,9 +619,11 @@ class AdminController extends Controller
     public function AdminProfile()
     {
 
-        $id = Auth::user()->id;
-        $data = User::find($id);
-        return view('admin.pages.profile.index', compact('data'));
+        $data = [
+            'user' => Auth::user(),
+        ];
+        return view('metronic.pages.profile.index', $data);
+        // return view('admin.pages.profile.index', compact('data'));
     } // End Mehtod
 
     public function AdminProfileStore(Request $request)
