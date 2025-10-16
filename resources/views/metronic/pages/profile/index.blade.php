@@ -1,7 +1,6 @@
 <x-admin-app-layout :title="'My Profile'">
     <div class="px-0 container-fluid">
-        <!-- Profile Header End -->
-        <!-- Profile Details Start -->
+        
         <div class="mb-5 shadow-sm card mb-xl-10">
             <div class="pb-0 card-body pt-9">
                 <div class="flex-wrap d-flex flex-sm-nowrap">
@@ -67,51 +66,21 @@
                             <div class="d-flex w-75">
                                 <div class="border-transparent card w-100" data-bs-theme="light"
                                     style="background-color: #1C325E;">
-                                    <!--begin::Body-->
+
                                     <div class="card-body d-flex ps-xl-15 h-125px">
-                                        <!--begin::Wrapper-->
+
                                         <div class="m-0">
-                                            <!--begin::Title-->
-                                            {{-- <div class="text-white position-relative fs-2x z-index-2 fw-bold mb-7">
-                                                <span class="me-2">
-                                                    You have got
-                                                    <span class="position-relative d-inline-block text-danger">
-                                                        <a href="https://preview.keenthemes.com/metronic8/demo1/pages/user-profile/overview.html"
-                                                            class="text-danger opacity-75-hover">2300 bonus</a>
 
-                                                        <!--begin::Separator-->
-                                                        <span
-                                                            class="bottom-0 border-4 opacity-50 position-absolute start-0 border-danger border-bottom w-100"></span>
-                                                        <!--end::Separator-->
-                                                    </span>
-                                                </span>
-                                                points.<br>
-                                                Feel free to use them in your lessons
-                                            </div> --}}
-                                            <!--end::Title-->
 
-                                            <!--begin::Action-->
-                                            {{-- <div class="mb-3">
-                                                <a href="#" class="btn btn-danger fw-semibold me-2"
-                                                    data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">
-                                                    Get Reward
-                                                </a>
-
-                                                <a href="https://preview.keenthemes.com/metronic8/demo1/apps/support-center/overview.html"
-                                                    class="bg-white btn btn-color-white bg-opacity-15 bg-hover-opacity-25 fw-semibold">
-                                                    How to
-                                                </a>
-                                            </div> --}}
-                                            <!--begin::Action-->
                                         </div>
-                                        <!--begin::Wrapper-->
 
-                                        <!--begin::Illustration-->
+
+
                                         <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/illustrations/sigma-1/17-dark.png"
                                             class="bottom-0 position-absolute me-3 end-0 h-200px" alt="">
-                                        <!--end::Illustration-->
+
                                     </div>
-                                    <!--end::Body-->
+
                                 </div>
                             </div>
                         </div>
@@ -149,8 +118,8 @@
                 </ul>
             </div>
         </div>
-        <!-- Profile Details End -->
-        <!-- Profile Content End -->
+
+
         <div class="mb-5 shadow-sm card mb-xl-10" id="kt_profile_details_view">
             <div class="cursor-pointer card-header">
                 <div class="m-0 card-title">
@@ -159,7 +128,7 @@
 
                 <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#profileedit"
                     class="btn btn-sm btn-primary align-self-center">Edit Profile</a>
-                <!-- Modal -->
+
                 <div class="modal fade" id="profileedit" data-bs-backdrop="static" data-bs-keyboard="false"
                     tabindex="-1" aria-labelledby="profileeditLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
@@ -172,210 +141,220 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <div class="mb-5 card mb-xl-0">
-                                    <div id="kt_account_settings_profile_details" class="collapse show">
-                                        <form id="kt_account_profile_details_form"
-                                            class="form fv-plugins-bootstrap5 fv-plugins-framework"
-                                            novalidate="novalidate">
-                                            <div class="card-body border-top p-9">
-                                                <div class="mb-6 row">
-                                                    <label
-                                                        class="col-lg-4 col-form-label fw-semibold fs-6">Avatar</label>
 
-                                                    <div class="col-lg-8">
-                                                        <div class="image-input image-input-outline"
-                                                            data-kt-image-input="true"
-                                                            style="
-                                              background-image: url('/metronic8/demo1/assets/media/svg/avatars/blank.svg');
-                                            ">
-                                                            <div class="image-input-wrapper w-125px h-125px"
-                                                                style="
-                                                background-image: url(assets/media/avatars/300-1.jpg);
-                                              ">
-                                                            </div>
-
-                                                            <label
-                                                                class="shadow btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body"
-                                                                data-kt-image-input-action="change"
-                                                                data-bs-toggle="tooltip" aria-label="Change avatar"
-                                                                data-bs-original-title="Change avatar"
-                                                                data-kt-initialized="1">
-                                                                <i class="fa-solid fa-pencil fs-7"
-                                                                    aria-hidden="true"></i>
-
-                                                                <input type="file" name="avatar"
-                                                                    accept=".png, .jpg, .jpeg">
-                                                                <input type="hidden" name="avatar_remove">
-                                                            </label>
-
-                                                            <span
-                                                                class="shadow btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body"
-                                                                data-kt-image-input-action="cancel"
-                                                                data-bs-toggle="tooltip" aria-label="Cancel avatar"
-                                                                data-bs-original-title="Cancel avatar"
-                                                                data-kt-initialized="1">
-                                                                <i class="fa-solid fa--cross fs-2"
-                                                                    aria-hidden="true"></i>
-                                                            </span>
-
-                                                            <span
-                                                                class="shadow btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body"
-                                                                data-kt-image-input-action="remove"
-                                                                data-bs-toggle="tooltip" aria-label="Remove avatar"
-                                                                data-bs-original-title="Remove avatar"
-                                                                data-kt-initialized="1">
-                                                                <i class="ki-duotone ki-cross fs-2"><span
-                                                                        class="path1"></span><span
-                                                                        class="path2"></span></i>
-                                                            </span>
-                                                        </div>
-
-                                                        <div class="form-text">
-                                                            Allowed file types: png, jpg, jpeg.
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="mb-6 row">
-                                                    <label
-                                                        class="col-lg-4 col-form-label required fw-semibold fs-6">Full
+                                <form id="myform" method="post" action="{{ route('employee.update', $user->id) }}"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="container pt-2">
+                                        <div class="row">
+                                            <div class="col-lg-6 mb-7">
+                                                <div class="mb-5">
+                                                    <label class="form-label" for="basicpill-firstname-input">Full
                                                         Name</label>
-
-                                                    <div class="col-lg-8">
-                                                        <div class="row">
-                                                            <div class="col-lg-6 fv-row fv-plugins-icon-container">
-                                                                <input type="text" name="fname"
-                                                                    class="mb-3 form-control form-control-lg form-control-solid mb-lg-0"
-                                                                    placeholder="First name" value="Max">
-                                                                <div
-                                                                    class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-6 fv-row fv-plugins-icon-container">
-                                                                <input type="text" name="lname"
-                                                                    class="form-control form-control-lg form-control-solid"
-                                                                    placeholder="Last name" value="Smith">
-                                                                <div
-                                                                    class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <input type="text" maxlength="80"
+                                                        class="form-control form-control-sm"
+                                                        placeholder="Enter Employees Name" name="name"
+                                                        value="{{ $user->name }}" />
                                                 </div>
-
-                                                <div class="mb-6 row">
-                                                    <label
-                                                        class="col-lg-4 col-form-label required fw-semibold fs-6">Company</label>
-
-                                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                                                        <input type="text" name="company"
-                                                            class="form-control form-control-lg form-control-solid"
-                                                            placeholder="Company name" value="Keenthemes">
-                                                        <div
-                                                            class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                                                        </div>
-                                                    </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-7">
+                                                <div class="mb-5">
+                                                    <label class="form-label"
+                                                        for="basicpill-email-input">Email</label>
+                                                    <input type="email" class="form-control form-control-sm"
+                                                        placeholder="Enter Email ID" name="email"
+                                                        value="{{ $user->email }}" />
                                                 </div>
+                                            </div>
+                                            <div class="col-lg-4 mb-7">
+                                                <div class="mb-5">
+                                                    <label class="form-label"
+                                                        for="basicpill-email-input">Designation</label>
+                                                    <input maxlength="50" type="text"
+                                                        class="form-control form-control-sm"
+                                                        placeholder="Enter Employees Designation" name="designation"
+                                                        value="{{ $user->designation }}" />
+                                                </div>
+                                            </div>
 
-                                                <div class="mb-6 row">
-                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">
-                                                        <span class="required">Contact Phone</span>
-
-                                                        <span class="ms-1" data-bs-toggle="tooltip"
-                                                            aria-label="Phone number must be active"
-                                                            data-bs-original-title="Phone number must be active"
-                                                            data-kt-initialized="1">
-                                                            <i class="text-gray-500 ki-duotone ki-information-5 fs-6"><span
-                                                                    class="path1"></span><span
-                                                                    class="path2"></span><span
-                                                                    class="path3"></span></i></span>
+                                            <div class="col-lg-4 mb-7">
+                                                <div class="mb-5">
+                                                    <label class="form-label"
+                                                        for="basicpill-phoneno-input">Phone</label>
+                                                    <input maxlength="15" type="text"
+                                                        class="form-control form-control-sm allow_decimal"
+                                                        placeholder="Enter Phone Number" name="phone"
+                                                        value="{{ $user->phone }}" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 mb-7">
+                                                <div class="mb-5">
+                                                    <label class="form-label" for="basicpill-email-input">Job
+                                                        Category</label>
+                                                    <select name="category_id"
+                                                        class="form-select form-select-sm" data-control="select2"
+                                                        data-container-css-class="select-sm" data-allow-clear="true"
+                                                        data-minimum-results-for-search="Infinity"
+                                                        data-placeholder="Choose Employee Category">
+                                                        <option></option>
+                                                        @foreach ($employeeCategories as $employeeCategory)
+                                                            <option value="{{ $employeeCategory->id }}"
+                                                                @selected($user->category_id == $employeeCategory->id)>
+                                                                {{ $employeeCategory->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 mb-7">
+                                                <div class="mb-5">
+                                                    <label class="form-label star"
+                                                        for="basicpill-phoneno-input">Employee Code
+                                                        (Biometric ID)
                                                     </label>
-
-                                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                                                        <input type="tel" name="phone"
-                                                            class="form-control form-control-lg form-control-solid"
-                                                            placeholder="Phone number" value="044 3276 454 935">
-                                                        <div
-                                                            class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                                                        </div>
-                                                    </div>
+                                                    <input type="text"
+                                                        class="form-control form-control-sm allow_decimal"
+                                                        placeholder="Employee Code (Biometric ID)" name="employee_id"
+                                                        maxlength="15" value="{{ $user->employee_id }}" required />
                                                 </div>
-
-                                                <div class="mb-6 row">
-                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Company
-                                                        Site</label>
-
-                                                    <div class="col-lg-8 fv-row">
-                                                        <input type="text" name="website"
-                                                            class="form-control form-control-lg form-control-solid"
-                                                            placeholder="Company website" value="keenthemes.com">
-                                                    </div>
-                                                </div>
-
-                                                <div class="mb-6 row">
-                                                    <label
-                                                        class="col-lg-4 col-form-label required fw-semibold fs-6">Communication</label>
-
-                                                    <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                                                        <div class="mt-3 d-flex align-items-center">
-                                                            <label
-                                                                class="form-check form-check-custom form-check-inline form-check-solid me-5">
-                                                                <input class="form-check-input" name="communication[]"
-                                                                    type="checkbox" value="1">
-                                                                <span class="fw-semibold ps-2 fs-6">
-                                                                    Email
-                                                                </span>
-                                                            </label>
-
-                                                            <label
-                                                                class="form-check form-check-custom form-check-inline form-check-solid">
-                                                                <input class="form-check-input" name="communication[]"
-                                                                    type="checkbox" value="2">
-                                                                <span class="fw-semibold ps-2 fs-6">
-                                                                    Phone
-                                                                </span>
-                                                            </label>
-                                                        </div>
-
-                                                        <div
-                                                            class="fv-plugins-message-container fv-plugins-message-container--enabled invalid-feedback">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="mb-0 row">
-                                                    <label class="col-lg-4 col-form-label fw-semibold fs-6">Allow
-                                                        Marketing</label>
-
-                                                    <div class="col-lg-8 d-flex align-items-center">
-                                                        <div
-                                                            class="form-check form-check-solid form-switch form-check-custom fv-row">
-                                                            <input class="form-check-input w-45px h-30px"
-                                                                type="checkbox" id="allowmarketing" checked="">
-                                                            <label class="form-check-label"
-                                                                for="allowmarketing"></label>
-                                                        </div>
-                                                    </div>
+                                                <div class="invalid-feedback"> Please Enter Employee Code.</div>
+                                            </div>
+                                            <div class="col-lg-4 mb-7">
+                                                <div class="mb-5">
+                                                    <label class="form-label"
+                                                        for="basicpill-firstname-input">Country</label>
+                                                    <input type="text" maxlength="50"
+                                                        class="form-control form-control-sm" placeholder="Enter Country"
+                                                        name="country" value="{{ $user->country }}" />
                                                 </div>
                                             </div>
 
-                                            <div class="py-6 pb-0 card-footer d-flex justify-content-end px-9">
-                                                <button type="reset"
-                                                    class="btn btn-light btn-active-light-primary me-2">
-                                                    Discard
-                                                </button>
-                                                <button type="submit" class="btn btn-primary"
-                                                    id="kt_account_profile_details_submit">
-                                                    Save Changes
-                                                </button>
-                                            </div>
+                                            <div class="col-lg-4 mb-7">
+                                                <div class="mb-5">
+                                                    <label class="form-label star"
+                                                        for="basicpill-firstname-input">Department</label>
 
-                                            <input type="hidden">
-                                        </form>
+                                                    <select name="department[]" class="form-select form-select-sm"
+                                                        data-allow-clear="true" data-control="select2"
+                                                        multiple="multiple" data-include-select-all-option="true"
+                                                        data-placeholder="Choose Sector" data-enable-filtering="true"
+                                                        data-enable-case-insensitive-filtering="true" required>
+                                                        @php
+                                                            $employeeIds = isset($user->department)
+                                                                ? json_decode($user->department, true)
+                                                                : [];
+                                                        @endphp
+                                                        <option value="admin" @selected(is_array($employeeIds) && in_array('admin', $employeeIds))>Admin
+                                                        </option>
+                                                        <option value="business" @selected(is_array($employeeIds) && in_array('business', $employeeIds))>Business
+                                                        </option>
+                                                        <option value="accounts" @selected(is_array($employeeIds) && in_array('accounts', $employeeIds))>Accounts
+                                                        </option>
+                                                        <option value="hr" @selected(is_array($employeeIds) && in_array('hr', $employeeIds))>HR</option>
+                                                        <option value="site" @selected(is_array($employeeIds) && in_array('site', $employeeIds))>Site &
+                                                            Contents
+                                                        </option>
+                                                        <option value="logistics" @selected(is_array($employeeIds) && in_array('logistics', $employeeIds))>
+                                                            Logistics
+                                                        </option>
+                                                        <option value="support" @selected(is_array($employeeIds) && in_array('support', $employeeIds))>Support
+                                                        </option>
+                                                    </select>
+                                                    <div class="invalid-feedback"> Please Enter Department.</div>
+                                                </div>
+                                            </div>
+                                            {{-- <div class="col-lg-4 mb-7">
+                                                <div class="mb-5">
+                                                    <label class="form-label"
+                                                        for="basicpill-firstname-input">Role</label>
+                                                    <select name="role" class="form-control form-select-sm select"
+                                                        data-container-css-class="select-sm"
+                                                        data-minimum-results-for-search="Infinity"
+                                                        data-placeholder="Choose Sector" required>
+                                                        <option></option>
+                                                        <option value="admin" @selected($user->role == 'admin')>Admin
+                                                        </option>
+                                                        <option value="manager" @selected($user->role == 'manager')>Manager
+                                                        </option>
+                                                        <option value="others" @selected($user->role == 'others')>Others
+                                                        </option>
+                                                        <option value="developer" @selected($user->role == 'developer')>Support
+                                                            Developer</option>
+                                                    </select>
+                                                    <div class="invalid-feedback"> Please Enter Role.</div>
+                                                </div>
+                                            </div> --}}
+
+                                            <div class="col-lg-4 mb-7">
+                                                <div class="mb-4">
+                                                    <label class="form-label required"
+                                                        for="basicpill-firstname-input">Supervisor</label>
+                                                    <select name="supervisor_id" class="form-select form-select-sm"
+                                                        data-allow-clear="true" data-control="select2"
+                                                        data-placeholder="Select a Supervisor" data-allow-clear="true"
+                                                        required>
+                                                        <option></option>
+                                                        @foreach ($employees as $supervisor)
+                                                            <option value="{{ $supervisor->id }}"
+                                                                @selected(old('supervisor_id', $user->supervisor_id) == $supervisor->id)>
+                                                                {{ $supervisor->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    <div class="invalid-feedback"> Please Enter Supervisor.</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8 mb-7">
+                                                <div class="mb-5">
+                                                    <label class="form-label" for="address">Address</label>
+                                                    <textarea class="form-control form-control-sm" name="address" id="address" rows="2">{{ old('address', $user->address) }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-7">
+                                                <div class="mb-5">
+                                                    <label class="form-label" for="photo">Profile
+                                                        Picture</label>
+                                                    <x-metronic.file-input id="photo" name="photo"
+                                                        :source="asset('upload/Profile/admin/' . $user->photo)" :value="old('photo')"></x-metronic.file-input>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 mb-7">
+                                                <div class="mb-4">
+                                                    <label class="form-label" for="sign">Sign</label>
+                                                    <x-metronic.file-input id="sign" name="sign"
+                                                        :source="asset('upload/Profile/admin/' . $user->sign)" :value="old('sign')"></x-metronic.file-input>
+                                                </div>
+                                            </div>
+                                            {{-- <div class="col-lg-4 mb-7">
+                                                <div class="mb-5">
+                                                    <label class="form-label"
+                                                        for="basicpill-firstname-input">Password</label>
+                                                    <input type="password" class="form-control form-control-sm"
+                                                        id="password" name="password">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 mb-7">
+                                                <div class="mb-5">
+                                                    <label class="form-label" for="basicpill-firstname-input">Confirm
+                                                        Password</label>
+                                                    <input type="password" class="form-control form-control-sm"
+                                                        id="confirm_password" name="confirm_password">
+                                                    <div id="message"></div>
+                                                </div>
+                                            </div> --}}
+                                        </div>
+
                                     </div>
-                                </div>
+
                             </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger " data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary from-prevent-multiple-submits"
+                                    style="padding: 10px;">Submit</button>
+                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -383,62 +362,92 @@
 
             <div class="card-body p-9">
                 <div class="row mb-7">
-                    <!-- Column 1 -->
-                    <div class="mb-4 col-lg-2 col-md-4">
-                        <label class="fw-semibold text-muted d-block">Full Name</label>
-                        <span class="text-gray-800 fw-bold fs-6 d-block">Max Smith</span>
 
-                        <label class="mt-3 fw-semibold text-muted d-block">Company</label>
-                        <span class="text-gray-800 fw-semibold fs-6 d-block">Keenthemes</span>
-                    </div>
-
-                    <!-- Column 2 -->
-                    <div class="mb-4 col-lg-2 col-md-4">
-                        <label class="fw-semibold text-muted d-block">Contact Phone</label>
-                        <div class="d-flex align-items-center">
-                            <span class="text-gray-800 fw-bold fs-6 me-2">044 3276 454 935</span>
-                            <span class="badge badge-success">Verified</span>
+                    <div class="mb-4 col-lg-4 col-md-4">
+                        <div class="mb-7">
+                            <label class="fw-semibold text-muted form-label d-block">Full Name</label>
+                            <span class="text-gray-800 fw-bold fs-6 d-block">{{ $user->name }}</span>
                         </div>
 
-                        <label class="mt-3 fw-semibold text-muted d-block">Company Site</label>
-                        <a href="#"
-                            class="text-gray-800 fw-semibold fs-6 text-hover-primary d-block">keenthemes.com</a>
+
+                        <div class="mb-7">
+                            <label class="fw-semibold text-muted form-label d-block">Departments</label>
+                            @if (!empty($user->department))
+                                @foreach (json_decode($user->department, true) as $dept)
+                                    <span
+                                        class="badge badge-light-primary me-1 mb-1 text-capitalize">{{ $dept }}</span>
+                                @endforeach
+                            @else
+                                <span class="text-muted">N/A</span>
+                            @endif
+                        </div>
+
                     </div>
 
-                    <!-- Column 3 -->
-                    <div class="mb-4 col-lg-2 col-md-4">
-                        <label class="fw-semibold text-muted d-block">Country</label>
-                        <span class="text-gray-800 fw-bold fs-6 d-block">Germany</span>
 
-                        <label class="mt-3 fw-semibold text-muted d-block">Communication</label>
-                        <span class="text-gray-800 fw-bold fs-6 d-block">Email, Phone</span>
+                    <div class="mb-4 col-lg-2 col-md-4">
+                        <div class="mb-7">
+                            <label class="fw-semibold text-muted form-label d-block">Contact Phone</label>
+                            <div class="d-flex align-items-center">
+                                <span class="text-gray-800 fw-bold fs-6 me-2">{{ $user->phone ?? 'N/A' }}</span>
+                                @if ($user->email_verified_at)
+                                    <span class="badge badge-success">Verified</span>
+                                @else
+                                    <span class="badge badge-secondary">Unverified</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="mb-7">
+                            <label class="fw-semibold text-muted form-label d-block">User Type</label>
+                            <span class="text-gray-800 fw-semibold fs-6 d-block">{{ ucfirst($user->role) }}</span>
+                        </div>
+
                     </div>
 
-                    <!-- Column 4 -->
-                    <div class="mb-4 col-lg-2 col-md-4">
-                        <label class="fw-semibold text-muted d-block">Allow Changes</label>
-                        <span class="text-gray-800 fw-semibold fs-6 d-block">Yes</span>
 
-                        <label class="mt-3 fw-semibold text-muted d-block">Status</label>
-                        <span class="text-gray-800 fw-semibold fs-6 d-block">Active</span>
+                    <div class="mb-4 col-lg-2 col-md-4">
+                        <div class="mb-7">
+                            <label class="fw-semibold text-muted form-label d-block">Country</label>
+                            <span class="text-gray-800 fw-bold fs-6 d-block">{{ $user->country ?? 'N/A' }}</span>
+                        </div>
+
+                        <div class="mb-7">
+                            <label class="fw-semibold text-muted form-label d-block">Communication</label>
+                            <span class="text-gray-800 fw-bold fs-6 d-block">Email, Phone</span>
+                        </div>
                     </div>
 
-                    <!-- Column 5 -->
-                    <div class="mb-4 col-lg-2 col-md-4">
-                        <label class="fw-semibold text-muted d-block">Member Since</label>
-                        <span class="text-gray-800 fw-semibold fs-6 d-block">2023</span>
 
-                        <label class="mt-3 fw-semibold text-muted d-block">User Type</label>
-                        <span class="text-gray-800 fw-semibold fs-6 d-block">Admin</span>
+                    <div class="mb-4 col-lg-2 col-md-4">
+                        <div class="mb-7">
+                            <label class="fw-semibold text-muted form-label d-block">Address</label>
+                            <span class="text-gray-800 fw-semibold fs-6 d-block">{{ $user->address ?? 'N/A' }}</span>
+                        </div>
+
+                        <div class="mb-7">
+                            <label class="fw-semibold text-muted form-label d-block">Status</label>
+                            <span class="text-gray-800 fw-semibold fs-6 d-block">{{ ucfirst($user->status) }}</span>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-4 col-lg-2 col-md-4">
+                        <label class="fw-semibold text-muted form-label d-block">Joining Date</label>
+                        <div class="mb-7">
+                            <span
+                                class="text-gray-800 fw-semibold fs-6 d-block">{{ $user->created_at->format('Y') }}</span>
+                        </div>
+
+
                     </div>
                 </div>
 
             </div>
         </div>
-        <!-- Profile Content End -->
-        
+
+
     </div>
     @push('scripts')
     @endpush
 </x-admin-app-layout>
-<!-- RFQ Dashboard End -->
+

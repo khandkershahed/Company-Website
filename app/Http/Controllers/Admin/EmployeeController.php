@@ -242,7 +242,7 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->all());
-        $admins = User::findOrFail($id);
+        $admin = User::findOrFail($id);
 
         $mainFilePhoto                 = $request->file('photo');
         $mainFileSign                  = $request->file('sign');
@@ -259,7 +259,7 @@ class EmployeeController extends Controller
         if (!empty($mainFilePhoto)) {
             $globalFunPhoto  = Helper::customUpload($mainFilePhoto, $filePathPhoto);
             $paths = [
-                storage_path("app/public/employee/photo/{$admins->photo}"),
+                storage_path("app/public/employee/photo/{$admin->photo}"),
             ];
             foreach ($paths as $path) {
                 if (File::exists($path)) {
@@ -272,7 +272,7 @@ class EmployeeController extends Controller
         if (!empty($mainFileSign)) {
             $globalFunSign  = Helper::customUpload($mainFileSign, $filePathSign);
             $paths = [
-                storage_path("app/public/employee/sign/{$admins->sign}"),
+                storage_path("app/public/employee/sign/{$admin->sign}"),
             ];
             foreach ($paths as $path) {
                 if (File::exists($path)) {
@@ -285,7 +285,7 @@ class EmployeeController extends Controller
         if (!empty($mainFileCeoSign)) {
             $globalFunCeoSign  = Helper::customUpload($mainFileCeoSign, $filePathCeoSign);
             $paths = [
-                storage_path("app/public/employee/ceoSign/{$admins->ceo_sign}"),
+                storage_path("app/public/employee/ceoSign/{$admin->ceo_sign}"),
             ];
             foreach ($paths as $path) {
                 if (File::exists($path)) {
@@ -298,7 +298,7 @@ class EmployeeController extends Controller
         if (!empty($mainFileOperationDirectorSign)) {
             $globalFunOperationDirectorSign  = Helper::customUpload($mainFileOperationDirectorSign, $filePathOperationDirectorSign);
             $paths = [
-                storage_path("app/public/employee/operationDirectorSign/{$admins->operation_director_sign}"),
+                storage_path("app/public/employee/operationDirectorSign/{$admin->operation_director_sign}"),
             ];
             foreach ($paths as $path) {
                 if (File::exists($path)) {
@@ -311,7 +311,7 @@ class EmployeeController extends Controller
         if (!empty($mainFileManagingDirectorSign)) {
             $globalFunManagingDirectorSign  = Helper::customUpload($mainFileManagingDirectorSign, $filePathManagingDirectorSign);
             $paths = [
-                storage_path("app/public/employee/managingDirectorSign/{$admins->managing_director_sign}"),
+                storage_path("app/public/employee/managingDirectorSign/{$admin->managing_director_sign}"),
             ];
             foreach ($paths as $path) {
                 if (File::exists($path)) {
@@ -322,23 +322,24 @@ class EmployeeController extends Controller
             $globalFunManagingDirectorSign = ['status' => 0];
         }
 
-        $admins->update([
+        $admin->update([
             'department_id'                                 => $request->department_id,
             'supervisor_id'                                 => $request->supervisor_id,
             'name'                                          => $request->name,
             'username'                                      => $request->username,
             'email'                                         => $request->email,
-            'photo'                                         => $globalFunPhoto['status'] == 1 ? $globalFunPhoto['file_name'] : $admins->photo,
+            'photo'                                         => $globalFunPhoto['status'] == 1 ? $globalFunPhoto['file_name'] : $admin->photo,
             'phone'                                         => $request->phone,
             'designation'                                   => $request->designation,
             'address'                                       => $request->address,
             'city'                                          => $request->city,
+            'country'                                       => $request->country,
             'postal'                                        => $request->postal,
             'last_seen'                                     => $request->last_seen,
-            'role'                                          => $request->role,
+            'role'                                          => $request->role ?? $admin->role,
             'department'                                    => json_encode($request->department),
             'status'                                        => 'active',
-            'password'                                      => (!empty($request->password) ? Hash::make($request->password) : $admins->password),
+            'password'                                      => (!empty($request->password) ? Hash::make($request->password) : $admin->password),
             'category_id'                                   => $request->category_id,
             'employee_id'                                   => $request->employee_id,
             'mobile'                                        => $request->mobile,
@@ -414,10 +415,10 @@ class EmployeeController extends Controller
             'sisters_total'                                 => $request->sisters_total,
             'siblings_contact_info_one'                     => $request->siblings_contact_info_one,
             'siblings_contact_info_two'                     => $request->siblings_contact_info_two,
-            'sign'                                          => $globalFunSign['status'] == 1 ? $globalFunSign['file_name'] : $admins->sign,
-            'ceo_sign'                                      => $globalFunCeoSign['status'] == 1 ? $globalFunCeoSign['file_name'] : $admins->ceo_sign,
-            'operation_director_sign'                       => $globalFunOperationDirectorSign['status'] == 1 ? $globalFunOperationDirectorSign['file_name'] : $admins->operation_director_sign,
-            'managing_director_sign'                        => $globalFunManagingDirectorSign['status'] == 1 ? $globalFunManagingDirectorSign['file_name'] : $admins->managing_director_sign,
+            'sign'                                          => $globalFunSign['status'] == 1 ? $globalFunSign['file_name'] : $admin->sign,
+            'ceo_sign'                                      => $globalFunCeoSign['status'] == 1 ? $globalFunCeoSign['file_name'] : $admin->ceo_sign,
+            'operation_director_sign'                       => $globalFunOperationDirectorSign['status'] == 1 ? $globalFunOperationDirectorSign['file_name'] : $admin->operation_director_sign,
+            'managing_director_sign'                        => $globalFunManagingDirectorSign['status'] == 1 ? $globalFunManagingDirectorSign['file_name'] : $admin->managing_director_sign,
             'sign_date'                                     => $request->sign_date,
             'evaluation_date'                               => $request->evaluation_date,
             'casual_leave_due_as_on'                        => $request->casual_leave_due_as_on,
@@ -434,7 +435,7 @@ class EmployeeController extends Controller
 
         ]);
         Toastr::success('Data has been updated successfully!');
-        return redirect()->back()->with('success', 'Data has been updated successfully!');
+        return redirect()->back();
     }
 
     /**
