@@ -34,26 +34,19 @@
                 <div class="col-lg-12">
                     <div class="shadow-sm card card-flush" style="background-color: #1C325E;">
                         <div class="card-body d-flex ps-xl-15">
-                            <!--begin::Wrapper-->
                             <div class="m-0">
-                                <!--begin::Title-->
                                 <div class="text-white position-relative fs-2x z-index-2 fw-bold mb-7">
                                     <span class="me-2">
-                                        You have got
+                                        Strengthen your
                                         <span class="position-relative d-inline-block text-danger">
-                                            <a href="	https://preview.keenthemes.com/metronic8/demo1/pages/user-profile/overview.html" class="text-danger opacity-75-hover">2300 bonus</a>
-
-                                            <!--begin::Separator-->
+                                            <a href="	https://preview.keenthemes.com/metronic8/demo1/pages/user-profile/overview.html" class="text-danger opacity-75-hover">supply chain</a>
                                             <span class="bottom-0 border-4 opacity-50 position-absolute start-0 border-danger border-bottom w-100"></span>
-                                            <!--end::Separator-->
                                         </span>
                                     </span>
-                                    points.<br>
-                                    Feel free to use them in your lessons
+                                    network<br>
+                                    with smarter management tools.
                                 </div>
-                                <!--end::Title-->
 
-                                <!--begin::Action-->
                                 <div class="mb-3">
                                     <a href="#" class="btn btn-danger fw-semibold me-2" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">
                                         Get Reward
@@ -63,13 +56,9 @@
                                         How to
                                     </a>
                                 </div>
-                                <!--begin::Action-->
                             </div>
-                            <!--begin::Wrapper-->
 
-                            <!--begin::Illustration-->
                             <img src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/illustrations/sigma-1/17-dark.png" class="bottom-0 position-absolute me-3 end-0 h-200px" alt="">
-                            <!--end::Illustration-->
                         </div>
                     </div>
                 </div>
@@ -79,9 +68,9 @@
                     <div class="shadow-sm card card-flush">
                         <div class="pt-5 card-header">
                             <div class="card-title d-flex flex-column">
-                                <span class="text-gray-900 fs-2hx fw-bold me-2 lh-1 ls-n2">69,700</span>
+                                <span class="text-gray-900 fs-2hx fw-bold me-2 lh-1 ls-n2">69</span>
 
-                                <span class="pt-1 text-gray-500 fw-semibold fs-6">Expected Earnings This Month</span>
+                                <span class="pt-1 text-gray-500 fw-semibold fs-6">Total Agent</span>
                             </div>
                         </div>
 
@@ -148,7 +137,7 @@
                         </div>
 
                         <div class="card-body d-flex flex-column justify-content-end pe-0">
-                            <span class="mb-2 text-gray-800 fs-6 fw-bolder d-block">Agent List</span>
+                            <span class="mb-2 text-gray-800 fs-6 fw-bolder d-block">Top Agent</span>
 
                             <div class="symbol-group symbol-hover flex-nowrap">
                                 <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" data-bs-original-title="Alan Warden" data-kt-initialized="1">

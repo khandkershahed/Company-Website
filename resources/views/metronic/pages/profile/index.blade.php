@@ -1,6 +1,6 @@
 <x-admin-app-layout :title="'My Profile'">
     <div class="px-0 container-fluid">
-        
+
         <div class="mb-5 shadow-sm card mb-xl-10">
             <div class="pb-0 card-body pt-9">
                 <div class="flex-wrap d-flex flex-sm-nowrap">
@@ -66,52 +66,42 @@
                             <div class="d-flex w-75">
                                 <div class="border-transparent card w-100" data-bs-theme="light"
                                     style="background-color: #1C325E;">
-
                                     <div class="card-body d-flex ps-xl-15 h-125px">
-
                                         <div class="m-0">
-
-
                                         </div>
-
-
-
                                         <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/illustrations/sigma-1/17-dark.png"
                                             class="bottom-0 position-absolute me-3 end-0 h-200px" alt="">
-
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <ul class="border-transparent nav nav-stretch nav-line-tabs nav-line-tabs-2x fs-5 fw-bold">
-                    <li class="mt-2 nav-item">
-                        <a class="py-5 nav-link text-active-primary ms-0 me-10 active" href="/hr-admin/single-profile">
+                <!-- Tabs Nav -->
+                <ul class="border-transparent nav nav-stretch nav-line-tabs nav-line-tabs-2x fs-5 fw-bold" id="supplyChainTabs" role="tablist">
+                    <li class="mt-2 nav-item" role="presentation">
+                        <a class="py-5 nav-link text-active-primary ms-0 me-10 active" id="overview-tab" data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">
                             Overview
                         </a>
                     </li>
-
-                    <li class="mt-2 nav-item">
-                        <a class="py-5 nav-link text-active-primary ms-0 me-10" href="all-documents.html">
+                    <li class="mt-2 nav-item" role="presentation">
+                        <a class="py-5 nav-link text-active-primary ms-0 me-10" id="documents-tab" data-bs-toggle="tab" href="#documents" role="tab" aria-controls="documents" aria-selected="false">
                             Documents
                         </a>
                     </li>
-
-                    <li class="mt-2 nav-item">
-                        <a class="py-5 nav-link text-active-primary ms-0 me-10" href="javascript:void(0)">
+                    <li class="mt-2 nav-item" role="presentation">
+                        <a class="py-5 nav-link text-active-primary ms-0 me-10" id="security-tab" data-bs-toggle="tab" href="#security" role="tab" aria-controls="security" aria-selected="false">
                             Security
                         </a>
                     </li>
-                    <li class="mt-2 nav-item">
-                        <a class="py-5 nav-link text-active-primary ms-0 me-10" href="/hr-admin/single-attendance">
-                            Attendace
+                    <li class="mt-2 nav-item" role="presentation">
+                        <a class="py-5 nav-link text-active-primary ms-0 me-10" id="attendance-tab" data-bs-toggle="tab" href="#attendance" role="tab" aria-controls="attendance" aria-selected="false">
+                            Attendance
                         </a>
                     </li>
-                    <li class="mt-2 nav-item">
-                        <a class="py-5 nav-link text-active-primary ms-0 me-10" href="/hr-admin/single-leave">
+                    <li class="mt-2 nav-item" role="presentation">
+                        <a class="py-5 nav-link text-active-primary ms-0 me-10" id="leaves-tab" data-bs-toggle="tab" href="#leaves" role="tab" aria-controls="leaves" aria-selected="false">
                             Leaves
                         </a>
                     </li>
@@ -119,152 +109,154 @@
             </div>
         </div>
 
+        <!-- Tabs Content -->
+        <div class="mt-5 tab-content" id="supplyChainTabsContent">
+            <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+                <div class="mb-5 shadow-sm card mb-xl-10" id="kt_profile_details_view">
+                    <div class="cursor-pointer card-header">
+                        <div class="m-0 card-title">
+                            <h3 class="m-0 fw-bold">Profile Details</h3>
+                        </div>
 
-        <div class="mb-5 shadow-sm card mb-xl-10" id="kt_profile_details_view">
-            <div class="cursor-pointer card-header">
-                <div class="m-0 card-title">
-                    <h3 class="m-0 fw-bold">Profile Details</h3>
-                </div>
+                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#profileedit"
+                            class="btn btn-sm btn-primary align-self-center">Edit Profile</a>
 
-                <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#profileedit"
-                    class="btn btn-sm btn-primary align-self-center">Edit Profile</a>
+                        <div class="modal fade" id="profileedit" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="profileeditLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="profileeditLabel">
+                                            Profile Details
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
 
-                <div class="modal fade" id="profileedit" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="-1" aria-labelledby="profileeditLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="profileeditLabel">
-                                    Profile Details
-                                </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
+                                        <form id="myform" method="post" action="{{ route('employee.update', $user->id) }}"
+                                            enctype="multipart/form-data">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="container pt-2">
+                                                <div class="row">
+                                                    <div class="col-lg-6 mb-7">
+                                                        <div class="mb-5">
+                                                            <label class="form-label" for="basicpill-firstname-input">Full
+                                                                Name</label>
+                                                            <input type="text" maxlength="80"
+                                                                class="form-control form-control-sm"
+                                                                placeholder="Enter Employees Name" name="name"
+                                                                value="{{ $user->name }}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-7">
+                                                        <div class="mb-5">
+                                                            <label class="form-label"
+                                                                for="basicpill-email-input">Email</label>
+                                                            <input type="email" class="form-control form-control-sm"
+                                                                placeholder="Enter Email ID" name="email"
+                                                                value="{{ $user->email }}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 mb-7">
+                                                        <div class="mb-5">
+                                                            <label class="form-label"
+                                                                for="basicpill-email-input">Designation</label>
+                                                            <input maxlength="50" type="text"
+                                                                class="form-control form-control-sm"
+                                                                placeholder="Enter Employees Designation" name="designation"
+                                                                value="{{ $user->designation }}" />
+                                                        </div>
+                                                    </div>
 
-                                <form id="myform" method="post" action="{{ route('employee.update', $user->id) }}"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
-                                    <div class="container pt-2">
-                                        <div class="row">
-                                            <div class="col-lg-6 mb-7">
-                                                <div class="mb-5">
-                                                    <label class="form-label" for="basicpill-firstname-input">Full
-                                                        Name</label>
-                                                    <input type="text" maxlength="80"
-                                                        class="form-control form-control-sm"
-                                                        placeholder="Enter Employees Name" name="name"
-                                                        value="{{ $user->name }}" />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 mb-7">
-                                                <div class="mb-5">
-                                                    <label class="form-label"
-                                                        for="basicpill-email-input">Email</label>
-                                                    <input type="email" class="form-control form-control-sm"
-                                                        placeholder="Enter Email ID" name="email"
-                                                        value="{{ $user->email }}" />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 mb-7">
-                                                <div class="mb-5">
-                                                    <label class="form-label"
-                                                        for="basicpill-email-input">Designation</label>
-                                                    <input maxlength="50" type="text"
-                                                        class="form-control form-control-sm"
-                                                        placeholder="Enter Employees Designation" name="designation"
-                                                        value="{{ $user->designation }}" />
-                                                </div>
-                                            </div>
+                                                    <div class="col-lg-4 mb-7">
+                                                        <div class="mb-5">
+                                                            <label class="form-label"
+                                                                for="basicpill-phoneno-input">Phone</label>
+                                                            <input maxlength="15" type="text"
+                                                                class="form-control form-control-sm allow_decimal"
+                                                                placeholder="Enter Phone Number" name="phone"
+                                                                value="{{ $user->phone }}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 mb-7">
+                                                        <div class="mb-5">
+                                                            <label class="form-label" for="basicpill-email-input">Job
+                                                                Category</label>
+                                                            <select name="category_id"
+                                                                class="form-select form-select-sm" data-control="select2"
+                                                                data-container-css-class="select-sm" data-allow-clear="true"
+                                                                data-minimum-results-for-search="Infinity"
+                                                                data-placeholder="Choose Employee Category">
+                                                                <option></option>
+                                                                @foreach ($employeeCategories as $employeeCategory)
+                                                                <option value="{{ $employeeCategory->id }}"
+                                                                    @selected($user->category_id == $employeeCategory->id)>
+                                                                    {{ $employeeCategory->name }}
+                                                                </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 mb-7">
+                                                        <div class="mb-5">
+                                                            <label class="form-label star"
+                                                                for="basicpill-phoneno-input">Employee Code
+                                                                (Biometric ID)
+                                                            </label>
+                                                            <input type="text"
+                                                                class="form-control form-control-sm allow_decimal"
+                                                                placeholder="Employee Code (Biometric ID)" name="employee_id"
+                                                                maxlength="15" value="{{ $user->employee_id }}" required />
+                                                        </div>
+                                                        <div class="invalid-feedback"> Please Enter Employee Code.</div>
+                                                    </div>
+                                                    <div class="col-lg-4 mb-7">
+                                                        <div class="mb-5">
+                                                            <label class="form-label"
+                                                                for="basicpill-firstname-input">Country</label>
+                                                            <input type="text" maxlength="50"
+                                                                class="form-control form-control-sm" placeholder="Enter Country"
+                                                                name="country" value="{{ $user->country }}" />
+                                                        </div>
+                                                    </div>
 
-                                            <div class="col-lg-4 mb-7">
-                                                <div class="mb-5">
-                                                    <label class="form-label"
-                                                        for="basicpill-phoneno-input">Phone</label>
-                                                    <input maxlength="15" type="text"
-                                                        class="form-control form-control-sm allow_decimal"
-                                                        placeholder="Enter Phone Number" name="phone"
-                                                        value="{{ $user->phone }}" />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 mb-7">
-                                                <div class="mb-5">
-                                                    <label class="form-label" for="basicpill-email-input">Job
-                                                        Category</label>
-                                                    <select name="category_id"
-                                                        class="form-select form-select-sm" data-control="select2"
-                                                        data-container-css-class="select-sm" data-allow-clear="true"
-                                                        data-minimum-results-for-search="Infinity"
-                                                        data-placeholder="Choose Employee Category">
-                                                        <option></option>
-                                                        @foreach ($employeeCategories as $employeeCategory)
-                                                            <option value="{{ $employeeCategory->id }}"
-                                                                @selected($user->category_id == $employeeCategory->id)>
-                                                                {{ $employeeCategory->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 mb-7">
-                                                <div class="mb-5">
-                                                    <label class="form-label star"
-                                                        for="basicpill-phoneno-input">Employee Code
-                                                        (Biometric ID)
-                                                    </label>
-                                                    <input type="text"
-                                                        class="form-control form-control-sm allow_decimal"
-                                                        placeholder="Employee Code (Biometric ID)" name="employee_id"
-                                                        maxlength="15" value="{{ $user->employee_id }}" required />
-                                                </div>
-                                                <div class="invalid-feedback"> Please Enter Employee Code.</div>
-                                            </div>
-                                            <div class="col-lg-4 mb-7">
-                                                <div class="mb-5">
-                                                    <label class="form-label"
-                                                        for="basicpill-firstname-input">Country</label>
-                                                    <input type="text" maxlength="50"
-                                                        class="form-control form-control-sm" placeholder="Enter Country"
-                                                        name="country" value="{{ $user->country }}" />
-                                                </div>
-                                            </div>
+                                                    <div class="col-lg-4 mb-7">
+                                                        <div class="mb-5">
+                                                            <label class="form-label star"
+                                                                for="basicpill-firstname-input">Department</label>
 
-                                            <div class="col-lg-4 mb-7">
-                                                <div class="mb-5">
-                                                    <label class="form-label star"
-                                                        for="basicpill-firstname-input">Department</label>
-
-                                                    <select name="department[]" class="form-select form-select-sm"
-                                                        data-allow-clear="true" data-control="select2"
-                                                        multiple="multiple" data-include-select-all-option="true"
-                                                        data-placeholder="Choose Sector" data-enable-filtering="true"
-                                                        data-enable-case-insensitive-filtering="true" required>
-                                                        @php
-                                                            $employeeIds = isset($user->department)
+                                                            <select name="department[]" class="form-select form-select-sm"
+                                                                data-allow-clear="true" data-control="select2"
+                                                                multiple="multiple" data-include-select-all-option="true"
+                                                                data-placeholder="Choose Sector" data-enable-filtering="true"
+                                                                data-enable-case-insensitive-filtering="true" required>
+                                                                @php
+                                                                $employeeIds = isset($user->department)
                                                                 ? json_decode($user->department, true)
                                                                 : [];
-                                                        @endphp
-                                                        <option value="admin" @selected(is_array($employeeIds) && in_array('admin', $employeeIds))>Admin
-                                                        </option>
-                                                        <option value="business" @selected(is_array($employeeIds) && in_array('business', $employeeIds))>Business
-                                                        </option>
-                                                        <option value="accounts" @selected(is_array($employeeIds) && in_array('accounts', $employeeIds))>Accounts
-                                                        </option>
-                                                        <option value="hr" @selected(is_array($employeeIds) && in_array('hr', $employeeIds))>HR</option>
-                                                        <option value="site" @selected(is_array($employeeIds) && in_array('site', $employeeIds))>Site &
-                                                            Contents
-                                                        </option>
-                                                        <option value="logistics" @selected(is_array($employeeIds) && in_array('logistics', $employeeIds))>
-                                                            Logistics
-                                                        </option>
-                                                        <option value="support" @selected(is_array($employeeIds) && in_array('support', $employeeIds))>Support
-                                                        </option>
-                                                    </select>
-                                                    <div class="invalid-feedback"> Please Enter Department.</div>
-                                                </div>
-                                            </div>
-                                            {{-- <div class="col-lg-4 mb-7">
+                                                                @endphp
+                                                                <option value="admin" @selected(is_array($employeeIds) && in_array('admin', $employeeIds))>Admin
+                                                                </option>
+                                                                <option value="business" @selected(is_array($employeeIds) && in_array('business', $employeeIds))>Business
+                                                                </option>
+                                                                <option value="accounts" @selected(is_array($employeeIds) && in_array('accounts', $employeeIds))>Accounts
+                                                                </option>
+                                                                <option value="hr" @selected(is_array($employeeIds) && in_array('hr', $employeeIds))>HR</option>
+                                                                <option value="site" @selected(is_array($employeeIds) && in_array('site', $employeeIds))>Site &
+                                                                    Contents
+                                                                </option>
+                                                                <option value="logistics" @selected(is_array($employeeIds) && in_array('logistics', $employeeIds))>
+                                                                    Logistics
+                                                                </option>
+                                                                <option value="support" @selected(is_array($employeeIds) && in_array('support', $employeeIds))>Support
+                                                                </option>
+                                                            </select>
+                                                            <div class="invalid-feedback"> Please Enter Department.</div>
+                                                        </div>
+                                                    </div>
+                                                    {{-- <div class="col-lg-4 mb-7">
                                                 <div class="mb-5">
                                                     <label class="form-label"
                                                         for="basicpill-firstname-input">Role</label>
@@ -286,48 +278,48 @@
                                                 </div>
                                             </div> --}}
 
-                                            <div class="col-lg-4 mb-7">
-                                                <div class="mb-4">
-                                                    <label class="form-label required"
-                                                        for="basicpill-firstname-input">Supervisor</label>
-                                                    <select name="supervisor_id" class="form-select form-select-sm"
-                                                        data-allow-clear="true" data-control="select2"
-                                                        data-placeholder="Select a Supervisor" data-allow-clear="true"
-                                                        required>
-                                                        <option></option>
-                                                        @foreach ($employees as $supervisor)
-                                                            <option value="{{ $supervisor->id }}"
-                                                                @selected(old('supervisor_id', $user->supervisor_id) == $supervisor->id)>
-                                                                {{ $supervisor->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                    <div class="invalid-feedback"> Please Enter Supervisor.</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-8 mb-7">
-                                                <div class="mb-5">
-                                                    <label class="form-label" for="address">Address</label>
-                                                    <textarea class="form-control form-control-sm" name="address" id="address" rows="2">{{ old('address', $user->address) }}</textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 mb-7">
-                                                <div class="mb-5">
-                                                    <label class="form-label" for="photo">Profile
-                                                        Picture</label>
-                                                    <x-metronic.file-input id="photo" name="photo"
-                                                        :source="asset('upload/Profile/admin/' . $user->photo)" :value="old('photo')"></x-metronic.file-input>
+                                                    <div class="col-lg-4 mb-7">
+                                                        <div class="mb-4">
+                                                            <label class="form-label required"
+                                                                for="basicpill-firstname-input">Supervisor</label>
+                                                            <select name="supervisor_id" class="form-select form-select-sm"
+                                                                data-allow-clear="true" data-control="select2"
+                                                                data-placeholder="Select a Supervisor" data-allow-clear="true"
+                                                                required>
+                                                                <option></option>
+                                                                @foreach ($employees as $supervisor)
+                                                                <option value="{{ $supervisor->id }}"
+                                                                    @selected(old('supervisor_id', $user->supervisor_id) == $supervisor->id)>
+                                                                    {{ $supervisor->name }}
+                                                                </option>
+                                                                @endforeach
+                                                            </select>
+                                                            <div class="invalid-feedback"> Please Enter Supervisor.</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-8 mb-7">
+                                                        <div class="mb-5">
+                                                            <label class="form-label" for="address">Address</label>
+                                                            <textarea class="form-control form-control-sm" name="address" id="address" rows="2">{{ old('address', $user->address) }}</textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-7">
+                                                        <div class="mb-5">
+                                                            <label class="form-label" for="photo">Profile
+                                                                Picture</label>
+                                                            <x-metronic.file-input id="photo" name="photo"
+                                                                :source="asset('upload/Profile/admin/' . $user->photo)" :value="old('photo')"></x-metronic.file-input>
 
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 mb-7">
-                                                <div class="mb-4">
-                                                    <label class="form-label" for="sign">Sign</label>
-                                                    <x-metronic.file-input id="sign" name="sign"
-                                                        :source="asset('upload/Profile/admin/' . $user->sign)" :value="old('sign')"></x-metronic.file-input>
-                                                </div>
-                                            </div>
-                                            {{-- <div class="col-lg-4 mb-7">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 mb-7">
+                                                        <div class="mb-4">
+                                                            <label class="form-label" for="sign">Sign</label>
+                                                            <x-metronic.file-input id="sign" name="sign"
+                                                                :source="asset('upload/Profile/admin/' . $user->sign)" :value="old('sign')"></x-metronic.file-input>
+                                                        </div>
+                                                    </div>
+                                                    {{-- <div class="col-lg-4 mb-7">
                                                 <div class="mb-5">
                                                     <label class="form-label"
                                                         for="basicpill-firstname-input">Password</label>
@@ -344,110 +336,115 @@
                                                     <div id="message"></div>
                                                 </div>
                                             </div> --}}
-                                        </div>
+                                                </div>
+
+                                            </div>
 
                                     </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger " data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary from-prevent-multiple-submits"
+                                            style="padding: 10px;">Submit</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body p-9">
+                        <div class="row mb-7">
+                            <div class="mb-4 col-lg-4 col-md-4">
+                                <div class="mb-7">
+                                    <label class="fw-semibold text-muted form-label d-block">Full Name</label>
+                                    <span class="text-gray-800 fw-bold fs-6 d-block">{{ $user->name }}</span>
+                                </div>
+                                <div class="mb-7">
+                                    <label class="fw-semibold text-muted form-label d-block">Departments</label>
+                                    @if (!empty($user->department))
+                                    @foreach (json_decode($user->department, true) as $dept)
+                                    <span
+                                        class="mb-1 badge badge-light-primary me-1 text-capitalize">{{ $dept }}</span>
+                                    @endforeach
+                                    @else
+                                    <span class="text-muted">N/A</span>
+                                    @endif
+                                </div>
 
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger " data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary from-prevent-multiple-submits"
-                                    style="padding: 10px;">Submit</button>
+                            <div class="mb-4 col-lg-2 col-md-4">
+                                <div class="mb-7">
+                                    <label class="fw-semibold text-muted form-label d-block">Contact Phone</label>
+                                    <div class="d-flex align-items-center">
+                                        <span class="text-gray-800 fw-bold fs-6 me-2">{{ $user->phone ?? 'N/A' }}</span>
+                                        @if ($user->email_verified_at)
+                                        <span class="badge badge-success">Verified</span>
+                                        @else
+                                        <span class="badge badge-secondary">Unverified</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="mb-7">
+                                    <label class="fw-semibold text-muted form-label d-block">User Type</label>
+                                    <span class="text-gray-800 fw-semibold fs-6 d-block">{{ ucfirst($user->role) }}</span>
+                                </div>
                             </div>
-                            </form>
+                            <div class="mb-4 col-lg-2 col-md-4">
+                                <div class="mb-7">
+                                    <label class="fw-semibold text-muted form-label d-block">Country</label>
+                                    <span class="text-gray-800 fw-bold fs-6 d-block">{{ $user->country ?? 'N/A' }}</span>
+                                </div>
+                                <div class="mb-7">
+                                    <label class="fw-semibold text-muted form-label d-block">Communication</label>
+                                    <span class="text-gray-800 fw-bold fs-6 d-block">Email, Phone</span>
+                                </div>
+                            </div>
+                            <div class="mb-4 col-lg-2 col-md-4">
+                                <div class="mb-7">
+                                    <label class="fw-semibold text-muted form-label d-block">Address</label>
+                                    <span class="text-gray-800 fw-semibold fs-6 d-block">{{ $user->address ?? 'N/A' }}</span>
+                                </div>
+
+                                <div class="mb-7">
+                                    <label class="fw-semibold text-muted form-label d-block">Status</label>
+                                    <span class="text-gray-800 fw-semibold fs-6 d-block">{{ ucfirst($user->status) }}</span>
+                                </div>
+                            </div>
+                            <div class="mb-4 col-lg-2 col-md-4">
+                                <label class="fw-semibold text-muted form-label d-block">Joining Date</label>
+                                <div class="mb-7">
+                                    <span
+                                        class="text-gray-800 fw-semibold fs-6 d-block">{{ $user->created_at->format('Y') }}</span>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
 
-            <div class="card-body p-9">
-                <div class="row mb-7">
+            <div class="tab-pane fade" id="documents" role="tabpanel" aria-labelledby="documents-tab">
+                <h4 class="mb-3 fw-bold">Documents</h4>
+                <p>Access all related supply chain documents and records here.</p>
+            </div>
 
-                    <div class="mb-4 col-lg-4 col-md-4">
-                        <div class="mb-7">
-                            <label class="fw-semibold text-muted form-label d-block">Full Name</label>
-                            <span class="text-gray-800 fw-bold fs-6 d-block">{{ $user->name }}</span>
-                        </div>
+            <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+                <h4 class="mb-3 fw-bold">Security</h4>
+                <p>Manage access control, data security, and supplier verification.</p>
+            </div>
 
+            <div class="tab-pane fade" id="attendance" role="tabpanel" aria-labelledby="attendance-tab">
+                <h4 class="mb-3 fw-bold">Attendance</h4>
+                <p>Track team attendance and logistics coordination details.</p>
+            </div>
 
-                        <div class="mb-7">
-                            <label class="fw-semibold text-muted form-label d-block">Departments</label>
-                            @if (!empty($user->department))
-                                @foreach (json_decode($user->department, true) as $dept)
-                                    <span
-                                        class="badge badge-light-primary me-1 mb-1 text-capitalize">{{ $dept }}</span>
-                                @endforeach
-                            @else
-                                <span class="text-muted">N/A</span>
-                            @endif
-                        </div>
-
-                    </div>
-
-
-                    <div class="mb-4 col-lg-2 col-md-4">
-                        <div class="mb-7">
-                            <label class="fw-semibold text-muted form-label d-block">Contact Phone</label>
-                            <div class="d-flex align-items-center">
-                                <span class="text-gray-800 fw-bold fs-6 me-2">{{ $user->phone ?? 'N/A' }}</span>
-                                @if ($user->email_verified_at)
-                                    <span class="badge badge-success">Verified</span>
-                                @else
-                                    <span class="badge badge-secondary">Unverified</span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="mb-7">
-                            <label class="fw-semibold text-muted form-label d-block">User Type</label>
-                            <span class="text-gray-800 fw-semibold fs-6 d-block">{{ ucfirst($user->role) }}</span>
-                        </div>
-
-                    </div>
-
-
-                    <div class="mb-4 col-lg-2 col-md-4">
-                        <div class="mb-7">
-                            <label class="fw-semibold text-muted form-label d-block">Country</label>
-                            <span class="text-gray-800 fw-bold fs-6 d-block">{{ $user->country ?? 'N/A' }}</span>
-                        </div>
-
-                        <div class="mb-7">
-                            <label class="fw-semibold text-muted form-label d-block">Communication</label>
-                            <span class="text-gray-800 fw-bold fs-6 d-block">Email, Phone</span>
-                        </div>
-                    </div>
-
-
-                    <div class="mb-4 col-lg-2 col-md-4">
-                        <div class="mb-7">
-                            <label class="fw-semibold text-muted form-label d-block">Address</label>
-                            <span class="text-gray-800 fw-semibold fs-6 d-block">{{ $user->address ?? 'N/A' }}</span>
-                        </div>
-
-                        <div class="mb-7">
-                            <label class="fw-semibold text-muted form-label d-block">Status</label>
-                            <span class="text-gray-800 fw-semibold fs-6 d-block">{{ ucfirst($user->status) }}</span>
-                        </div>
-                    </div>
-
-
-                    <div class="mb-4 col-lg-2 col-md-4">
-                        <label class="fw-semibold text-muted form-label d-block">Joining Date</label>
-                        <div class="mb-7">
-                            <span
-                                class="text-gray-800 fw-semibold fs-6 d-block">{{ $user->created_at->format('Y') }}</span>
-                        </div>
-
-
-                    </div>
-                </div>
-
+            <div class="tab-pane fade" id="leaves" role="tabpanel" aria-labelledby="leaves-tab">
+                <h4 class="mb-3 fw-bold">Leaves</h4>
+                <p>Monitor leave schedules and resource allocation within your supply chain teams.</p>
             </div>
         </div>
-
 
     </div>
     @push('scripts')
     @endpush
 </x-admin-app-layout>
-
