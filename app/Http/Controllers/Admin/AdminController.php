@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
 use Intervention\Image\Facades\Image;
 use App\Models\Admin\EmployeeCategory;
+use App\Models\Admin\LeaveApplication;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\EmployeeAdd as MailEmployeeAdd;
 use Illuminate\Support\Facades\Notification;
@@ -207,13 +208,48 @@ class AdminController extends Controller
         return redirect('/admin/login');
     } // End Mehtod
 
-    public function AdminProfile()
+    public function AdminProfile(Request $request)
     {
 
+        $user = Auth::user();
+        // Accept month input (name or number), default to current month
+        $monthInput = $request->input('month', now()->format('F')); // e.g. “October” or “10”
+        $year = now()->year;  // default to current year
+
+        // Convert month name/format into numeric month (1–12)
+        if (is_numeric($monthInput)) {
+            $month = intval($monthInput);
+            if ($month < 1 || $month > 12) {
+                abort(400, 'Invalid month number.');
+            }
+        } else {
+            // Try parsing month name
+            $timestamp = strtotime("1 " . $monthInput);
+            if ($timestamp === false) {
+                abort(400, 'Invalid month name.');
+            }
+            $month = intval(date('m', $timestamp));
+        }
+        $leaveApplications = LeaveApplication::where('employee_id', $user->id)->get();
+        $sicks = $leaveApplications->where('type_of_leave', 'sick');
+        $earneds = $leaveApplications->where('type_of_leave', 'earned');
+        $casuals = $leaveApplications->where('type_of_leave', 'casual');
+        $pendings = $leaveApplications->where('status', 'pending');
+        $attendances = Attendance::where('user_id', $user->id)
+            ->whereMonth('date', $month)
+            ->whereYear('date', $year)
+            ->get();
+
         $data = [
-            'user' => Auth::user(),
+            'user' => $user,
             'employees' => User::with('employeeStatus')->get(['id', 'name']),
             'employeeCategories' => EmployeeCategory::with('employee')->get(['id', 'name']),
+            'attendances'   => $attendances,
+            'selectedMonth' => $monthInput,
+            'sicks'         => $sicks,
+            'earneds'       => $earneds,
+            'casuals'       => $casuals,
+            'pendings'      => $pendings,
         ];
         return view('metronic.pages.profile.index', $data);
         // return view('admin.pages.profile.index', compact('data'));

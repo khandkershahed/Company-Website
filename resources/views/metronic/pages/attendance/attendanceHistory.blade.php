@@ -201,14 +201,6 @@
                                 @endforeach
                             </select>
                         </form>
-                        {{-- <ul class="nav nav-tabs nav-line-tabs fs-6">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="tab" href="#officialAll">This Month</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="tab" href="#officialRead">Last Month</a>
-                            </li>
-                        </ul> --}}
                     </div>
                 </div>
                 <div class="px-2 card-body hover-scroll-overlay-y" style="height: 450px">

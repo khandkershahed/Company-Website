@@ -121,9 +121,9 @@ class AttendanceController extends Controller
             ->whereYear('date', $year)
             ->get();
 
-        
 
-        return view('metronic.pages.attendance.attendanceHistory', [
+
+        return view('metronic.pages.attendance.attendanceHistory', [ 
             'attendances'   => $attendances,
             'selectedMonth' => $monthInput,
             'sicks'         => $sicks,
