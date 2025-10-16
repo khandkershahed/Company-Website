@@ -8,7 +8,8 @@
 <body>
     <div class="preloader" style="background: black;">
         {{-- <img src="{{ asset('frontend/images/backend_loader.gif') }}" alt="Loading..." class="preloader-spinner"> --}}
-        <img src="{{ asset('frontend/images/backend_loader.gif') }}" alt="Loading..." class="preloader-spinner" width="665px">
+        <img src="{{ asset('frontend/images/backend_loader.gif') }}" alt="Loading..." class="preloader-spinner"
+            width="665px">
     </div>
     <!-- Main navbar -->
     @include('admin.partials.header')

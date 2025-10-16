@@ -86,21 +86,26 @@
                         <a class="btn btn-md btn-info me-3" href="{{ route('admin.sales.forecast') }}">Forecast</a>
                     @endif
                     @if (Route::currentRouteName() === 'admin.marketing-plan.index')
-                        <a class="btn btn-md btn-info me-4 d-none d-lg-block" href="{{ route('admin.marketing-plan.create') }}">Add Marketing Plan</a>
-                        <a class="btn btn-md btn-info me-4 d-none d-lg-block" href="{{ route('admin.marketing-target.index') }}">Marketing Target</a>
+                        <a class="btn btn-md btn-info me-4 d-none d-lg-block"
+                            href="{{ route('admin.marketing-plan.create') }}">Add Marketing Plan</a>
+                        <a class="btn btn-md btn-info me-4 d-none d-lg-block"
+                            href="{{ route('admin.marketing-target.index') }}">Marketing Target</a>
                     @endif
                     @if (Route::currentRouteName() === 'admin.marketing-target.index')
                         {{-- <a class="btn btn-md btn-info me-4" href="{{ route('admin.marketing-plan.create') }}">Add Marketing Plan</a> --}}
-                        <a class="btn btn-md btn-info me-4" href="{{ route('admin.marketing-target.create') }}">Add Marketing Target</a>
+                        <a class="btn btn-md btn-info me-4" href="{{ route('admin.marketing-target.create') }}">Add
+                            Marketing Target</a>
                     @endif
                     @if (Route::currentRouteName() === 'admin.tender.index')
-                        <a class="btn btn-md btn-info me-4" href="{{ route('admin.tender.create') }}">Add Tender information</a>
+                        <a class="btn btn-md btn-info me-4" href="{{ route('admin.tender.create') }}">Add Tender
+                            information</a>
                     @endif
                     @if (Route::currentRouteName() === 'admin.tender.create')
                         <a class="btn btn-md btn-info me-4" href="{{ route('admin.tender.index') }}">Tender Lists</a>
                     @endif
                     @if (Route::currentRouteName() === 'marketing-dmar.create')
-                        <a class="btn btn-md btn-info me-4" href="{{ route('marketing-dmar.index') }}">Marketing DMAR</a>
+                        <a class="btn btn-md btn-info me-4" href="{{ route('marketing-dmar.index') }}">Marketing
+                            DMAR</a>
                     @endif
                     @if (Route::currentRouteName() === 'marketing-dmar.index')
                         <a class="btn btn-md btn-info me-4" href="{{ route('marketing-dmar.create') }}">Set DMAR</a>
@@ -128,6 +133,9 @@
 
 
                 </div>
+                @php
+                    $ncount = Auth::user()->unreadNotifications()->count();
+                @endphp
 
                 <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
                     <div class="cursor-pointer symbol symbol-30px symbol-md-40px" data-kt-menu-trigger="click"

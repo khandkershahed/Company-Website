@@ -488,7 +488,8 @@
                                                 <div class="mb-7">
                                                     <x-metronic.label for="title"
                                                         class="required">Title</x-metronic.label>
-                                                    <x-metronic.input class="form-control form-control-solid" id="title" name="title"
+                                                    <x-metronic.input class="form-control form-control-solid"
+                                                        id="title" name="title"
                                                         :value="old('title')"></x-metronic.input>
                                                 </div>
                                                 <div class="mb-7">
@@ -698,5 +699,63 @@
 
     </div>
     @push('scripts')
+        <script>
+            $(document).ready(function() {
+                function validatePasswords() {
+                    const newPassword = $('#newpassword').val();
+                    const confirmPassword = $('#confirmpassword').val();
+
+                    // Reset classes and messages
+                    $('#newpassword, #confirmpassword')
+                        .removeClass('is-valid is-invalid');
+
+                    $('#newpassword').siblings('.fv-plugins-message-container').html('');
+                    $('#confirmpassword').siblings('.fv-plugins-message-container').html('');
+
+                    let isValid = true;
+
+                    // New Password Validation
+                    if (!newPassword) {
+                        $('#newpassword').addClass('is-invalid');
+                        $('#newpassword').siblings('.fv-plugins-message-container')
+                            .html('<div class="invalid-feedback d-block">Password is required.</div>');
+                        isValid = false;
+                    } else {
+                        $('#newpassword').addClass('is-valid');
+                    }
+
+                    // Confirm Password Validation
+                    if (!confirmPassword) {
+                        $('#confirmpassword').addClass('is-invalid');
+                        $('#confirmpassword').siblings('.fv-plugins-message-container')
+                            .html('<div class="invalid-feedback d-block">Please confirm your password.</div>');
+                        isValid = false;
+                    } else if (newPassword !== confirmPassword) {
+                        $('#confirmpassword').addClass('is-invalid');
+                        $('#confirmpassword').siblings('.fv-plugins-message-container')
+                            .html(
+                                '<div class="invalid-feedback d-block">The password and its confirm are not the same.</div>'
+                                );
+                        isValid = false;
+                    } else {
+                        $('#confirmpassword').addClass('is-valid');
+                    }
+
+                    return isValid;
+                }
+
+                // Validate on typing
+                $('#newpassword, #confirmpassword').on('input', function() {
+                    validatePasswords();
+                });
+
+                // Validate on form submit
+                $('form').on('submit', function(e) {
+                    if (!validatePasswords()) {
+                        e.preventDefault();
+                    }
+                });
+            });
+        </script>
     @endpush
 </x-admin-app-layout>

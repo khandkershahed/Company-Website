@@ -22,7 +22,7 @@ use App\Models\Admin\SolutionDetail;
 use App\Models\Admin\SubSubCategory;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Admin\LeaveApplication;
- 
+
 class DashboardController extends Controller
 {
     public function device_ip()
@@ -159,7 +159,7 @@ class DashboardController extends Controller
     public function hrDashboard()
     {
         $data = [
-            'attendances' => Attendance::whereDate('date', Carbon::today())->get(),
+            'attendances' => Attendance::with('user')->whereDate('date', Carbon::today())->get(),
             'usercount' => User::count(),
             'notices' => Notice::latest('id')->get(),
             'leave_applications' => LeaveApplication::latest('id')->get(['name', 'id', 'status']),
