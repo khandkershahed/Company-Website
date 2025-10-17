@@ -832,7 +832,7 @@
                                         <div class="table-responsive">
                                             <ul class="ms-0 ps-0" style="list-style-type: none">
                                                 @foreach ($notices as $notice)
-                                                    <li class="d-flex justify-content-between align-items-center">
+                                                    <li class="d-flex justify-content-between align-items-center mb-3">
                                                         <div class="d-flex align-items-center">
                                                             <div class="pe-3">
                                                                 <i class="fa-regular fa-message badge-icons"></i>

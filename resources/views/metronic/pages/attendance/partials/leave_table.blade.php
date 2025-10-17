@@ -70,122 +70,111 @@
                             </a> --}}
                             <div class="modal fade" id="showLeaveApplication_{{ $leave->id }}" tabindex="-1"
                                 aria-hidden="true">
-                                <div class="modal-dialog-centered modal-dialog modal-lg">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
-                                        <div class="py-3 border-0 modal-header bg-primary rounded-0">
-                                            <h3 class="text-white modal-title">Leave Application</h3>
-                                            <div class="btn btn-sm btn-icon btn-white" data-bs-dismiss="modal">
-                                                <i class="fa fa-times text-white"></i>
-                                            </div>
+                                        <div class="modal-header bg-primary text-white">
+                                            <h5 class="modal-title">Leave Application Details</h5>
+                                            <button type="button" class="btn-close btn-close-white"
+                                                data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
-                                        <div class="p-20 pt-0 modal-body scroll-y px-15">
-                                            <div class="printContent">
-                                                <div class="mt-5 row">
-                                                    <div class="col-md-12">
-                                                        <div class="text-end mb-3">
-                                                            <img src="https://i.ibb.co/yddR5JX/minimal-letters-professional-ngen-logo-260nw-2016934238-removebg-preview.png"
-                                                                style="height: 60px" alt="NGEN Logo">
-                                                        </div>
-                                                        <p class="py-3">Date:
-                                                            {{ \Carbon\Carbon::now()->format('F j, Y') }}</p>
-                                                        <p class="fw-bold mb-0">Managing Director</p>
-                                                        <p class="fw-bold mb-0">NGENT IT</p>
-                                                        <p class="fw-bold mb-0">Ring Road, Dhaka-1207</p>
-                                                        <p class="fw-bold mb-5">Phone: +8801714243446</p>
+                                        <div class="modal-body">
+                                            <p><strong>Employee:</strong>
+                                                {{ $leave->name ?? optional($leave->employee)->name }}</p>
+                                            <p><strong>Designation:</strong>
+                                                {{ $leave->designation ?? optional($leave->employee)->designation }}
+                                            </p>
+                                            <p><strong>Company:</strong> {{ $leave->company ?? '—' }}</p>
+                                            <p><strong>Leave Type:</strong> {{ ucfirst($leave->type_of_leave) }}</p>
+                                            <p><strong>Start Date:</strong>
+                                                {{ \Carbon\Carbon::parse($leave->leave_start_date)->format('d M Y') }}
+                                            </p>
+                                            <p><strong>End Date:</strong>
+                                                {{ \Carbon\Carbon::parse($leave->leave_end_date)->format('d M Y') }}
+                                            </p>
+                                            <p><strong>Total Days:</strong> {{ $leave->total_days ?? '—' }}</p>
+                                            <p><strong>Leave Explanation:</strong>
+                                                {{ $leave->leave_explanation ?? '—' }}</p>
+                                            <p><strong>Address During Leave:</strong>
+                                                {{ $leave->leave_address ?? '—' }}</p>
+                                            <p><strong>Leave Contact No:</strong> {{ $leave->leave_contact_no ?? '—' }}
+                                            </p>
+                                            <p><strong>Reporting On:</strong>
+                                                {{ \Carbon\Carbon::parse($leave->reporting_on)->format('d M Y') ?? '—' }}
+                                            </p>
 
-                                                        <p class="mb-3 fw-bold">
-                                                            Substitute: {{ optional($leave->substitute)->name ?? '—' }}
-                                                        </p>
+                                            <hr>
 
-                                                        <div class="mb-3">
-                                                            <h5>Subject: <span>Leave Request For
-                                                                    {{ ucfirst($leave->type_of_leave) }}</span></h5>
-                                                        </div>
-
-                                                        <div style="text-align: justify">
-                                                            <p>Dear <span class="fw-bold">Sir</span>,</p>
-                                                            <p>
-                                                                I am writing to inform you that I need to take leave
-                                                                from work
-                                                                starting on
-                                                                <strong>{{ \Carbon\Carbon::parse($leave->leave_start_date)->format('F j, Y') }}</strong>
-                                                                to
-                                                                <strong>{{ \Carbon\Carbon::parse($leave->leave_end_date)->format('F j, Y') }}</strong>.
-                                                                Applying for
-                                                                <strong>{{ ucfirst($leave->type_of_leave) }}</strong>.
-                                                            </p>
-                                                            <p>
-                                                                The reason for my leave is as mentioned in the
-                                                                application. I have ensured that my current tasks
-                                                                are either completed or delegated, and I will be
-                                                                reachable in case of emergencies.
-                                                            </p>
-                                                            <p>
-                                                                I would appreciate your kind approval.
-                                                            </p>
-                                                        </div>
-
-                                                        <div class="pt-4">
-                                                            <p class="fw-bold mb-0">Thank you.</p>
-                                                            <p class="mb-0 fw-bold">Sincerely,</p>
-                                                            <p class="mb-0">{{ optional($leave->user)->name ?? '—' }}
-                                                            </p>
-                                                            <p class="mb-0">
-                                                                {{ optional($leave->user)->designation ?? 'Employee' }}
-                                                            </p>
-                                                            <p class="mb-0">NGEN IT Ltd.</p>
-                                                        </div>
-
-                                                        <div class="pt-5 mt-4">
-                                                            <div class="row">
-                                                                <div class="col-lg-4">
-                                                                    <p class="text-gray mb-0">Substitute Signature</p>
-                                                                    <div class="divider"></div>
-                                                                    <p class="fw-bold">
-                                                                        {{ optional($leave->substitute)->name ?? '—' }}
-                                                                    </p>
-                                                                    {{-- <img class="img-fluid" width="100px"
-                                                                        src="https://i.ibb.co/ng6R5L1/george-walker-bush-signature.png"
-                                                                        alt="" /> --}}
-                                                                </div>
-                                                                {{-- <div class="col-lg-4">
-                                                                    <p class="text-gray mb-0">Supervisor Signature</p>
-                                                                    <div class="divider"></div>
-                                                                    <p class="fw-bold">[Supervisor Name]</p>
-                                                                    <img class="img-fluid" width="100px"
-                                                                        src="https://i.ibb.co/ng6R5L1/george-walker-bush-signature.png"
-                                                                        alt="" />
-                                                                </div> --}}
-                                                                {{-- <div class="col-lg-4">
-                                                                    <p class="text-gray mb-0">HR & Admin Signature</p>
-                                                                    <div class="divider"></div>
-                                                                    <p class="fw-bold">[HR Name]</p>
-                                                                    <img class="img-fluid" width="100px"
-                                                                        src="https://i.ibb.co/ng6R5L1/george-walker-bush-signature.png"
-                                                                        alt="" />
-                                                                </div> --}}
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                            <!-- Signatures -->
+                                            <div class="row">
+                                                <div class="col-md-3 text-center">
+                                                    <p>Substitute</p>
+                                                    <img src="{{ asset('storage/' . $leave->substitute_signature) }}"
+                                                        width="100" alt="Sub Signature">
+                                                    <p class="fw-bold mt-2">
+                                                        {{ optional($leave->substitute)->name ?? '—' }}</p>
+                                                </div>
+                                                <div class="col-md-3 text-center">
+                                                    <p>Supervisor</p>
+                                                    <img src="{{ asset('storage/' . $leave->supervisor_signature) }}"
+                                                        width="100" alt="Sup Signature">
+                                                    <p class="fw-bold mt-2">
+                                                        {{ optional($leave->supervisor)->name ?? '—' }}</p>
+                                                </div>
+                                                <div class="col-md-3 text-center">
+                                                    <p>HR</p>
+                                                    <img src="{{ asset('storage/' . $leave->hr_signature) }}"
+                                                        width="100" alt="HR Signature">
+                                                    <p class="fw-bold mt-2">HR/Admin</p>
+                                                </div>
+                                                <div class="col-md-3 text-center">
+                                                    <p>CEO</p>
+                                                    <img src="{{ asset('storage/' . $leave->ceo_signature) }}"
+                                                        width="100" alt="CEO Signature">
+                                                    <p class="fw-bold mt-2">CEO</p>
                                                 </div>
                                             </div>
+
+                                            <hr>
+
+                                            <!-- Official Leave Balances -->
+                                            <p><strong>Casual Leave Due:</strong> {{ $leave->casual_leave_due_as_on }}
+                                            </p>
+                                            <p><strong>Casual Leave Availed:</strong>
+                                                {{ $leave->casual_leave_availed }}</p>
+                                            <p><strong>Casual Leave Balance:</strong> {{ $leave->casual_balance_due }}
+                                            </p>
+
+                                            <p><strong>Earned Leave Due:</strong> {{ $leave->earned_leave_due_as_on }}
+                                            </p>
+                                            <p><strong>Earned Leave Availed:</strong>
+                                                {{ $leave->earned_leave_availed }}</p>
+                                            <p><strong>Earned Leave Balance:</strong> {{ $leave->earned_balance_due }}
+                                            </p>
+
+                                            <p><strong>Medical Leave Due:</strong>
+                                                {{ $leave->medical_leave_due_as_on }}</p>
+                                            <p><strong>Medical Leave Availed:</strong>
+                                                {{ $leave->medical_leave_availed }}</p>
+                                            <p><strong>Medical Leave Balance:</strong>
+                                                {{ $leave->medical_balance_due }}</p>
+
+                                            <hr>
+
+                                            <!-- Notes -->
+                                            <p><strong>Substitute Note:</strong> {{ $leave->substitute_note ?? '—' }}
+                                            </p>
+                                            <p><strong>Supervisor Note:</strong> {{ $leave->supervisor_note ?? '—' }}
+                                            </p>
+                                            <p><strong>HR Note:</strong> {{ $leave->hr_note ?? '—' }}</p>
+                                            <p><strong>CEO Note:</strong> {{ $leave->ceo_note ?? '—' }}</p>
                                         </div>
-                                        <div
-                                            class="px-10 py-5 d-flex justify-content-between align-items-center border-top">
-                                            <div class="d-flex align-items-center">
-                                                <label class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        id="statusSwitch_{{ $leave->id }}">
-                                                    <span class="ms-2 text-danger">Not Approved</span>
-                                                </label>
-                                            </div>
-                                            <div>
-                                                <button class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-                                            </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <a href="javascript:void(0);"
                                 class="btn btn-sm btn-icon btn-primary btn-active-color-primary mb-3"
                                 title="Edit Application" data-bs-toggle="modal"

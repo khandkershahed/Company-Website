@@ -19,4 +19,12 @@ class LeaveApplication extends Model
     {
         return $this->belongsTo((User::class), 'substitute_id');
     }
+    public function user()
+    {
+        return $this->belongsTo((User::class), 'employee_id');
+    }
+    public function supervisor()
+    {
+        return $this->belongsTo((User::class), 'supervisor_id');
+    }
 }
