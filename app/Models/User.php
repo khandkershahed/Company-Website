@@ -106,15 +106,26 @@ class User extends Authenticatable
     // In User.php model
     public function inDepartment($department)
     {
-        $depts = is_array($this->department)
-            ? $this->department
-            : json_decode($this->department, true);
+        $depts = [];
 
-        return in_array($department, $depts ?? []);
+        if (is_array($this->department)) {
+            $depts = $this->department;
+        } elseif (is_string($this->department)) {
+            $decoded = json_decode($this->department, true);
+            $depts = is_array($decoded) ? $decoded : [$this->department]; // fallback if not JSON
+        }
+
+        return in_array($department, $depts);
     }
+
 
     public function isBusinessAdminOrManager()
     {
         return $this->inDepartment('business') && in_array($this->role, ['admin', 'manager']);
+    }
+
+    public function staffDocuments()
+    {
+       return $this->hasMany(StaffDocument::class, 'user_id');
     }
 }

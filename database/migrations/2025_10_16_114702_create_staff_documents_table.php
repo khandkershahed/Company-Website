@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('staff_documents', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();  // Faisal
+            $table->string('document_name')->nullable();
+            $table->string('document_file')->nullable();
+            $table->date('valid_from')->nullable();
+            $table->date('valid_to')->nullable();
             $table->timestamps();
         });
     }

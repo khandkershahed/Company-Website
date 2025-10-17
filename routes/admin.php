@@ -140,6 +140,8 @@ use App\Http\Controllers\Admin\PolicyAcknowledgmentsController;
 use App\Http\Controllers\Client\ClientSupportMessageController;
 use App\Http\Controllers\Admin\FrontendNavbarMenuItemController;
 use App\Http\Controllers\Admin\PortfolioClientFeedbackController;
+use App\Http\Controllers\Admin\StaffDocumentController;
+use App\Http\Controllers\Admin\StaffMeetingController;
 use App\Http\Controllers\Marketing\MarketingTeamTargetController;
 use App\Http\Controllers\Marketing\MarketingManagerRoleController;
 
@@ -162,8 +164,16 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
             'marketing-emar'   => MarketingEmarController::class,
             'marketing-plan'   => MarketingPlanController::class,
             'marketing-target' => MarketingTargetController::class,
+            'staff-documents'  => StaffDocumentController::class,
         ],
         ['except' => ['show']]
+    );
+    Route::resources(
+        [
+            'staff-documents'  => StaffDocumentController::class,
+            'staff-meetings'   => StaffMeetingController::class,
+        ],
+        ['except' => ['show', 'index', 'create']]
     );
 
     Route::post('/marketing-plan/{id}/toggle-status', [MarketingPlanController::class, 'toggleStatus'])->name('marketing-plan.toggleStatus');

@@ -3,7 +3,8 @@
 <div class="row gx-1">
     <div class="col-10">
         <input id="{{ $id ?? 'file-input' }}" type="file" class="form-control form-control-solid @error($name)is-invalid @enderror"
-            name="{{ $name }}" accept="image/*" {{ $attributes }} onchange="previewFile(this)" />
+            name="{{ $name }}" accept="" {{ $attributes }} onchange="previewFile(this)" />
+            {{-- name="{{ $name }}" accept="image/*" {{ $attributes }} onchange="previewFile(this)" /> --}}
 
         @error($name)
             <div class="invalid-feedback">

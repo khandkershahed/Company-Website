@@ -392,7 +392,7 @@
                                 </div>
                                 <div class="mb-7">
                                     <label class="fw-semibold text-muted form-label d-block">Departments</label>
-                                    @if (!empty($user->department))
+                                    @if (!empty($user->department) && is_array(json_decode($user->department, true)))
                                         @foreach (json_decode($user->department, true) as $dept)
                                             <span
                                                 class="mb-1 badge badge-light-primary me-1 text-capitalize">{{ $dept }}</span>
@@ -450,7 +450,7 @@
                                 <label class="fw-semibold text-muted form-label d-block">Joining Date</label>
                                 <div class="mb-7">
                                     <span
-                                        class="text-gray-800 fw-semibold fs-6 d-block">{{ $user->created_at->format('Y') }}</span>
+                                        class="text-gray-800 fw-semibold fs-6 d-block">{{ optional($user->created_at)->format('Y') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -480,23 +480,24 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <form id="myform" method="post" action=""
+                                    <form id="myform" method="post"
+                                        action="{{ route('admin.staff-documents.store') }}"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="modal-body">
                                             <div class="row">
                                                 <div class="mb-7">
-                                                    <x-metronic.label for="title"
-                                                        class="required">Title</x-metronic.label>
+                                                    <x-metronic.label for="document_name" class="required">Document
+                                                        Name</x-metronic.label>
                                                     <x-metronic.input class="form-control form-control-solid"
-                                                        id="title" name="title"
-                                                        :value="old('title')"></x-metronic.input>
+                                                        id="document_name" name="document_name"
+                                                        :value="old('document_name')"></x-metronic.input>
                                                 </div>
                                                 <div class="mb-7">
-                                                    <x-metronic.label for="document"
+                                                    <x-metronic.label for="document_file"
                                                         class="required">Document</x-metronic.label>
-                                                    <x-metronic.file-input id="document" name="document"
-                                                        {{-- :source="asset('')" --}} :value="old('document')"></x-metronic.file-input>
+                                                    <x-metronic.file-input id="document_file" name="document_file"
+                                                        {{-- :source="asset('')" --}} :value="old('document_file')"></x-metronic.file-input>
                                                 </div>
                                             </div>
 
@@ -515,7 +516,48 @@
                     </div>
 
                     <div class="card-body p-9">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table
+                                    class="table border data_table table-striped table-row-bordered gy-5 gs-7 rounded-3 dataTable">
+                                    <thead class="text-gray-500 fs-7">
+                                        <tr class="text-gray-800 fw-bold fs-6 px-5">
+                                            <th width="10%">Sl</th>
+                                            <th width="65%">Document Name</th>
+                                            <th width="15%">Download</th>
+                                            <th width="10%">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="fs-6">
 
+                                        @foreach ($user->staffDocuments as $document)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>
+                                                    {{ $document->document_name }}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ asset('storage/' . $document->document_file) }}"
+                                                        target="_blank"
+                                                        class="p-2 me-3 btn btn-icon btn-light btn-sm rounded-circle">
+                                                        <i class="fas fa-download fs-4" aria-hidden="true"></i>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('admin.staff-documents.destroy', $document->id) }}"
+                                                        target="_blank"
+                                                        class="delete p-2 btn btn-icon btn-light btn-sm rounded-circle">
+                                                        <i class="fas fa-trash-alt fs-4 text-danger"
+                                                            aria-hidden="true"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -602,31 +644,31 @@
 
                                         @foreach ($attendances as $attendance)
                                             <tr>
-                                                <td>{{ $attendance->date }}</td>
+                                                <td>{{ $attendance['date'] }}</td>
+
+                                                <td>{{ $attendance['check_in'] ?? 'N/A' }}</td>
+
+                                                <td>{{ $attendance['check_out'] ?? 'N/A' }}</td>
+
                                                 <td>
-                                                    {{ $attendance->check_in }}
-                                                </td>
-                                                <td>
-                                                    {{ optional($attendance)->check_out }}
-                                                </td>
-                                                <td>
-                                                    @if (optional($attendance)->check_in !== 'N/A')
+                                                    @if (!empty($attendance['check_in']) && $attendance['check_in'] !== 'N/A')
                                                         @php
-                                                            $checkIn = Carbon\Carbon::parse($attendance->check_in);
+                                                            $checkIn = \Carbon\Carbon::parse($attendance['check_in']);
                                                         @endphp
 
-                                                        @if ($checkIn > Carbon\Carbon::parse('09:06:00') && $checkIn < Carbon\Carbon::parse('10:01:00'))
-                                                            <span class="text-white badge badge-danger">L</span>
-                                                        @elseif ($checkIn >= Carbon\Carbon::parse('10:01:00') && $checkIn < Carbon\Carbon::parse('15:00:00'))
+                                                        @if ($checkIn > \Carbon\Carbon::parse('09:06:00') && $checkIn < \Carbon\Carbon::parse('10:01:00'))
+                                                            <span class="text-white badge badge-warning">L</span>
+                                                        @elseif ($checkIn >= \Carbon\Carbon::parse('10:01:00') && $checkIn < \Carbon\Carbon::parse('15:00:00'))
                                                             <span class="text-white badge badge-danger">LL</span>
+                                                        @else
+                                                            <span class="text-white badge badge-success">On Time</span>
                                                         @endif
+                                                    @elseif ($attendance['status'] === 'Friday')
+                                                        <span class="text-white badge badge-info">Friday</span>
                                                     @else
-                                                        <p class="text-danger mb-0 p-0 fw-bold">
-                                                            {{ optional($attendance)->absent_note }}</p>
+                                                        <span class="text-white badge badge-danger">Absent</span>
                                                     @endif
-
                                                 </td>
-                                                {{-- <td>Khandaker Shahed</td> --}}
                                             </tr>
                                         @endforeach
 
@@ -735,7 +777,7 @@
                         $('#confirmpassword').siblings('.fv-plugins-message-container')
                             .html(
                                 '<div class="invalid-feedback d-block">The password and its confirm are not the same.</div>'
-                                );
+                            );
                         isValid = false;
                     } else {
                         $('#confirmpassword').addClass('is-valid');
