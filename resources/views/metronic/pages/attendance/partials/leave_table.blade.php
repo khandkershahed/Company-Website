@@ -59,7 +59,7 @@
                         <td class="text-center">
                             <a href="javascript:void(0)"
                                 class="btn btn-sm btn-icon btn-primary btn-active-color-primary mb-3"
-                                data-bs-toggle="modal" data-bs-target="#showLeaveApplication"
+                                data-bs-toggle="modal" data-bs-target="#showLeaveApplication_{{ $leave->id }}"
                                 data-id="{{ $leave->id }}" title="Show Application">
                                 <i class="text-white fa-solid fa-eye fs-6"></i>
                             </a>
