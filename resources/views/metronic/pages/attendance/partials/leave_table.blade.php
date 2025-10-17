@@ -3,19 +3,34 @@
     <div class="px-2 card-body hover-scroll-overlay-y" style="height: 450px">
         <table class="table border table-striped gs-7 rounded-3">
             <thead>
-                <tr class="text-gray-800 fw-bold fs-6 px-7">
-                    <th width="15%">Type</th>
-                    <th width="22%">Off Day</th>
-                    <th width="15%">Job Status</th>
-                    <th width="13%">Status</th>
-                    <th width="20%">Substitute</th>
-                    <th width="15%" class="text-center">Action</th>
-                </tr>
+                @if (Route::currentRouteName() === 'admin.hrDashboard.index' || Route::currentRouteName() === 'hr-and-admin.index')
+                    <tr class="text-gray-800 fw-bold fs-6 px-7">
+                        <th width="12%">Type</th>
+                        <th width="12%">Staff</th>
+                        <th width="20%">Off Day</th>
+                        <th width="12%">Job Status</th>
+                        <th width="12%">Status</th>
+                        <th width="18%">Substitute</th>
+                        <th width="12%" class="text-center">Action</th>
+                    </tr>
+                @else
+                    <tr class="text-gray-800 fw-bold fs-6 px-7">
+                        <th width="15%">Type</th>
+                        <th width="22%">Off Day</th>
+                        <th width="15%">Job Status</th>
+                        <th width="13%">Status</th>
+                        <th width="20%">Substitute</th>
+                        <th width="15%" class="text-center">Action</th>
+                    </tr>
+                @endif
             </thead>
             <tbody>
                 @forelse ($leaves as $leave)
                     <tr>
                         <td>{{ ucfirst($leave->type_of_leave) }}</td>
+                        @if (Route::currentRouteName() === 'admin.hrDashboard.index' || Route::currentRouteName() === 'hr-and-admin.index')
+                            <td>{{ optional($leave->user)->name ?? '—' }}</td>
+                        @endif
                         <td>
                             <span
                                 class="text-info">{{ strtoupper(\Carbon\Carbon::parse($leave->leave_start_date)->format('j M y')) }}</span>
@@ -43,9 +58,9 @@
                         <td>{{ optional($leave->substitute)->name ?? '—' }}</td>
                         <td class="text-center">
                             <a href="javascript:void(0)"
-                                class="btn btn-sm btn-icon btn-primary btn-active-color-primary mb-3" data-bs-toggle="modal"
-                                data-bs-target="#showLeaveApplication" data-id="{{ $leave->id }}"
-                                title="Show Application">
+                                class="btn btn-sm btn-icon btn-primary btn-active-color-primary mb-3"
+                                data-bs-toggle="modal" data-bs-target="#showLeaveApplication"
+                                data-id="{{ $leave->id }}" title="Show Application">
                                 <i class="text-white fa-solid fa-eye fs-6"></i>
                             </a>
                             {{-- <a href="javascript:void(0);"
@@ -53,145 +68,119 @@
                                 data-id="{{ $leave->id }}" title="Print Application">
                                 <i class="text-white fa-solid fa-print fs-6"></i>
                             </a> --}}
-                            <div class="modal fade" id="showLeaveApplication" tabindex="-1" aria-hidden="true">
+                            <div class="modal fade" id="showLeaveApplication_{{ $leave->id }}" tabindex="-1"
+                                aria-hidden="true">
                                 <div class="modal-dialog-centered modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="py-3 border-0 modal-header bg-primary rounded-0">
                                             <h3 class="text-white modal-title">Leave Application</h3>
-                                            <div class="btn btn-sm btn-icon btn-active-color-primary btn-white"
-                                                data-bs-dismiss="modal">
-                                                <span class="svg-icon svg-icon-1">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                        height="24" viewBox="0 0 24 24" fill="none">
-                                                        <rect opacity="0.5" x="6" y="17.3137" width="16"
-                                                            height="2" rx="1"
-                                                            transform="rotate(-45 6 17.3137)" fill="currentColor" />
-                                                        <rect x="7.41422" y="6" width="16" height="2"
-                                                            rx="1" transform="rotate(45 7.41422 6)"
-                                                            fill="currentColor" />
-                                                    </svg>
-                                                </span>
+                                            <div class="btn btn-sm btn-icon btn-white" data-bs-dismiss="modal">
+                                                <i class="fa fa-times text-white"></i>
                                             </div>
                                         </div>
                                         <div class="p-20 pt-0 modal-body scroll-y px-15">
                                             <div class="printContent">
                                                 <div class="mt-5 row">
                                                     <div class="col-md-12">
-                                                        <div class="logo-container"
-                                                            style="position: relative; right: 40px">
-                                                            <img alt="Logo"
-                                                                src="https://i.ibb.co/yddR5JX/minimal-letters-professional-ngen-logo-260nw-2016934238-removebg-preview.png"
-                                                                class="company-logo"
-                                                                style="width: 200px; height: 80px" />
+                                                        <div class="text-end mb-3">
+                                                            <img src="https://i.ibb.co/yddR5JX/minimal-letters-professional-ngen-logo-260nw-2016934238-removebg-preview.png"
+                                                                style="height: 60px" alt="NGEN Logo">
                                                         </div>
-                                                        <div>
-                                                            <p class="py-5 my-5">Date: August 20, 2024</p>
-                                                            <p class="mb-0 fw-bold">Managing Director</p>
-                                                            <p class="mb-0 fw-bold">NGent It</p>
-                                                            <p class="mb-0 fw-bold">Ring Road, Dhaka-1207</p>
-                                                            <p class="mb-0 fw-bold">Phone: +8801714243446</p>
-                                                        </div>
-                                                        <div class="py-5">
-                                                            <p class="mb-0 fw-bold">
-                                                                Substitute: Khandaker Shahed (Team Leader)
-                                                            </p>
-                                                        </div>
-                                                        <div class="pt-5 my-5">
-                                                            <h5>
-                                                                Subject:
-                                                                <span>Leave Request For Sick/Earn/Casual</span>
-                                                            </h5>
+                                                        <p class="py-3">Date:
+                                                            {{ \Carbon\Carbon::now()->format('F j, Y') }}</p>
+                                                        <p class="fw-bold mb-0">Managing Director</p>
+                                                        <p class="fw-bold mb-0">NGENT IT</p>
+                                                        <p class="fw-bold mb-0">Ring Road, Dhaka-1207</p>
+                                                        <p class="fw-bold mb-5">Phone: +8801714243446</p>
+
+                                                        <p class="mb-3 fw-bold">
+                                                            Substitute: {{ optional($leave->substitute)->name ?? '—' }}
+                                                        </p>
+
+                                                        <div class="mb-3">
+                                                            <h5>Subject: <span>Leave Request For
+                                                                    {{ ucfirst($leave->type_of_leave) }}</span></h5>
                                                         </div>
 
-                                                        <div class="letter-content" style="text-align: justify">
-                                                            <p class="pt-5">Dear <span class="fw-bold">Sir</span>,</p>
+                                                        <div style="text-align: justify">
+                                                            <p>Dear <span class="fw-bold">Sir</span>,</p>
                                                             <p>
                                                                 I am writing to inform you that I need to take leave
-                                                                from
-                                                                work for 3 days. The leave will start on
-                                                                <span class="fw-bold">August 21, 2024</span>, and I will
-                                                                resume work on
-                                                                <span class="fw-bold">August 24, 2024</span>. Applying
-                                                                for
-                                                                <span class="fw-bold">Sick Leave</span>.
+                                                                from work
+                                                                starting on
+                                                                <strong>{{ \Carbon\Carbon::parse($leave->leave_start_date)->format('F j, Y') }}</strong>
+                                                                to
+                                                                <strong>{{ \Carbon\Carbon::parse($leave->leave_end_date)->format('F j, Y') }}</strong>.
+                                                                Applying for
+                                                                <strong>{{ ucfirst($leave->type_of_leave) }}</strong>.
                                                             </p>
-
                                                             <p>
-                                                                The reason for my leave is a scheduled medical
-                                                                appointment. I have ensured that my current tasks are
-                                                                either completed or handed over to a colleague, and I
-                                                                will
-                                                                be available via email should any urgent matters arise.
+                                                                The reason for my leave is as mentioned in the
+                                                                application. I have ensured that my current tasks
+                                                                are either completed or delegated, and I will be
+                                                                reachable in case of emergencies.
                                                             </p>
-
                                                             <p>
-                                                                I appreciate your understanding and approval of this
-                                                                leave
-                                                                request.
+                                                                I would appreciate your kind approval.
                                                             </p>
                                                         </div>
 
-                                                        <div class="pt-5 signature-section">
-                                                            <p class="fw-bold">Thank you.</p>
+                                                        <div class="pt-4">
+                                                            <p class="fw-bold mb-0">Thank you.</p>
                                                             <p class="mb-0 fw-bold">Sincerely,</p>
-                                                            <p class="mb-0">Sazeduzzaman Saju</p>
-                                                            <p class="mb-0">Frontend Developer</p>
+                                                            <p class="mb-0">{{ optional($leave->user)->name ?? '—' }}
+                                                            </p>
+                                                            <p class="mb-0">
+                                                                {{ optional($leave->user)->designation ?? 'Employee' }}
+                                                            </p>
                                                             <p class="mb-0">NGEN IT Ltd.</p>
                                                         </div>
-                                                        <div class="pt-5 mt-5">
-                                                            <!-- Substitute Signature -->
+
+                                                        <div class="pt-5 mt-4">
                                                             <div class="row">
                                                                 <div class="col-lg-4">
-                                                                    <p class="mb-0 text-gray">Substitute Signature</p>
+                                                                    <p class="text-gray mb-0">Substitute Signature</p>
                                                                     <div class="divider"></div>
-                                                                    <div>
-                                                                        <p class="fw-bold">Khandaker Shahed</p>
-                                                                        <img class="img-fluid" width="100px"
-                                                                            src="https://i.ibb.co/ng6R5L1/george-walker-bush-signature.png"
-                                                                            alt="" />
-                                                                    </div>
+                                                                    <p class="fw-bold">
+                                                                        {{ optional($leave->substitute)->name ?? '—' }}
+                                                                    </p>
+                                                                    {{-- <img class="img-fluid" width="100px"
+                                                                        src="https://i.ibb.co/ng6R5L1/george-walker-bush-signature.png"
+                                                                        alt="" /> --}}
                                                                 </div>
-                                                                <div class="col-lg-4">
-                                                                    <p class="mb-0 text-gray">Supervisor Signature</p>
+                                                                {{-- <div class="col-lg-4">
+                                                                    <p class="text-gray mb-0">Supervisor Signature</p>
                                                                     <div class="divider"></div>
-                                                                    <div>
-                                                                        <p class="fw-bold">Khandaker Shahed</p>
-                                                                        <img class="img-fluid" width="100px"
-                                                                            src="https://i.ibb.co/ng6R5L1/george-walker-bush-signature.png"
-                                                                            alt="" />
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-4">
-                                                                    <p class="mb-0 text-gray">HR & Admin Signature</p>
+                                                                    <p class="fw-bold">[Supervisor Name]</p>
+                                                                    <img class="img-fluid" width="100px"
+                                                                        src="https://i.ibb.co/ng6R5L1/george-walker-bush-signature.png"
+                                                                        alt="" />
+                                                                </div> --}}
+                                                                {{-- <div class="col-lg-4">
+                                                                    <p class="text-gray mb-0">HR & Admin Signature</p>
                                                                     <div class="divider"></div>
-                                                                    <div>
-                                                                        <p class="fw-bold">Minhaj Hossain</p>
-                                                                        <img class="img-fluid" width="100px"
-                                                                            src="https://i.ibb.co/ng6R5L1/george-walker-bush-signature.png"
-                                                                            alt="" />
-                                                                    </div>
-                                                                </div>
+                                                                    <p class="fw-bold">[HR Name]</p>
+                                                                    <img class="img-fluid" width="100px"
+                                                                        src="https://i.ibb.co/ng6R5L1/george-walker-bush-signature.png"
+                                                                        alt="" />
+                                                                </div> --}}
                                                             </div>
-                                                            <!-- Substitute Signature -->
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="px-10 py-5 d-flex justify-content-between align-items-center"
-                                            style="border-top: 1px solid #eee">
+                                        <div
+                                            class="px-10 py-5 d-flex justify-content-between align-items-center border-top">
                                             <div class="d-flex align-items-center">
-                                                <label class="status-switch">
-                                                    <input type="checkbox" id="statusSwitch"
-                                                        class="form-control-sm form-control" />
-                                                    <span class="status-switch-slider"></span>
+                                                <label class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        id="statusSwitch_{{ $leave->id }}">
+                                                    <span class="ms-2 text-danger">Not Approved</span>
                                                 </label>
-                                                <p id="statusText" class="mb-0 text-danger ps-5">Not Approved</p>
                                             </div>
                                             <div>
-                                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                                    Close
-                                                </button>
+                                                <button class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>
@@ -242,7 +231,8 @@
                                                                         <span class="text-danger">*</span>
                                                                     </label>
                                                                     <select name="type_of_leave"
-                                                                        class="form-select form-select-sm" data-control="select2"
+                                                                        class="form-select form-select-sm"
+                                                                        data-control="select2"
                                                                         data-placeholder="Select Type of Leave"
                                                                         data-allow-clear="true" required>
                                                                         <option value="sick"

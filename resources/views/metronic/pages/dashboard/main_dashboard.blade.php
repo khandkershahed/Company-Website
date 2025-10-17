@@ -712,7 +712,7 @@
                     </div>
                 </div> --}}
                 <div class="table-responsive">
-                    <ul class="ms-0 ps-0" style="list-style-type: none">
+                    <ul class="ms-0 ps-5" style="list-style-type: none">
                         @foreach ($notices as $notice)
                             <li class="d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center">
@@ -729,7 +729,6 @@
                                     </div>
                                 </div>
                             </li>
-                            <li style="padding-left: 14px">|</li>
                         @endforeach
 
                     </ul>

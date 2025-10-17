@@ -277,8 +277,7 @@
                                                     {{-- Sick Leaves --}}
                                                     <div class="tab-pane fade show active" id="sickLeave"
                                                         role="tabpanel">
-                                                        @include(
-                                                            'metronic.pages.attendance.partials.leave_table',
+                                                        @include('metronic.pages.attendance.partials.leave_table',
                                                             [
                                                                 'leaves' => $sicks,
                                                             ]
@@ -287,8 +286,7 @@
 
                                                     {{-- Earned Leaves --}}
                                                     <div class="tab-pane fade" id="earnedLeave" role="tabpanel">
-                                                        @include(
-                                                            'metronic.pages.attendance.partials.leave_table',
+                                                        @include('metronic.pages.attendance.partials.leave_table',
                                                             [
                                                                 'leaves' => $earneds,
                                                             ]
@@ -297,8 +295,7 @@
 
                                                     {{-- Casual Leaves --}}
                                                     <div class="tab-pane fade" id="casualLeave" role="tabpanel">
-                                                        @include(
-                                                            'metronic.pages.attendance.partials.leave_table',
+                                                        @include('metronic.pages.attendance.partials.leave_table',
                                                             [
                                                                 'leaves' => $casuals,
                                                             ]
@@ -307,8 +304,7 @@
 
                                                     {{-- Pending Leaves --}}
                                                     <div class="tab-pane fade" id="pendingLeave" role="tabpanel">
-                                                        @include(
-                                                            'metronic.pages.attendance.partials.leave_table',
+                                                        @include('metronic.pages.attendance.partials.leave_table',
                                                             [
                                                                 'leaves' => $pendings,
                                                             ]
@@ -854,7 +850,6 @@
                                                             </div>
                                                         </div>
                                                     </li>
-                                                    <li style="padding-left: 14px">|</li>
                                                 @endforeach
 
                                             </ul>
