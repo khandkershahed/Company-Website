@@ -66,6 +66,9 @@
     .dataTables_length{
         display: none !important;
     }
+    .symbol-100sm{
+        width: 100% !important;
+    }
     #clock,
     .breadcrumb,
     .fa-file {
