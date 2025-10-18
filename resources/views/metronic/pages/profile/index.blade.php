@@ -139,13 +139,12 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <div class="modal-body">
-
-                                        <form id="myform" method="post"
-                                            action="{{ route('employee.update', $user->id) }}"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            @method('PUT')
+                                    <form id="myform" method="post"
+                                        action="{{ route('employee.update', $user->id) }}"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="modal-body">
                                             <div class="container pt-2">
                                                 <div class="row">
                                                     <div class="col-lg-6 mb-7">
@@ -281,26 +280,26 @@
                                                         </div>
                                                     </div>
                                                     {{-- <div class="col-lg-4 mb-7">
-                                                <div class="mb-5">
-                                                    <label class="form-label"
-                                                        for="basicpill-firstname-input">Role</label>
-                                                    <select name="role" class="form-control form-select-sm select"
-                                                        data-container-css-class="select-sm"
-                                                        data-minimum-results-for-search="Infinity"
-                                                        data-placeholder="Choose Sector" required>
-                                                        <option></option>
-                                                        <option value="admin" @selected($user->role == 'admin')>Admin
-                                                        </option>
-                                                        <option value="manager" @selected($user->role == 'manager')>Manager
-                                                        </option>
-                                                        <option value="others" @selected($user->role == 'others')>Others
-                                                        </option>
-                                                        <option value="developer" @selected($user->role == 'developer')>Support
-                                                            Developer</option>
-                                                    </select>
-                                                    <div class="invalid-feedback"> Please Enter Role.</div>
-                                                </div>
-                                            </div> --}}
+                                                            <div class="mb-5">
+                                                                    <label class="form-label"
+                                                                        for="basicpill-firstname-input">Role</label>
+                                                                    <select name="role" class="form-control form-select-sm select"
+                                                                        data-container-css-class="select-sm"
+                                                                        data-minimum-results-for-search="Infinity"
+                                                                        data-placeholder="Choose Sector" required>
+                                                                        <option></option>
+                                                                        <option value="admin" @selected($user->role == 'admin')>Admin
+                                                                        </option>
+                                                                        <option value="manager" @selected($user->role == 'manager')>Manager
+                                                                        </option>
+                                                                        <option value="others" @selected($user->role == 'others')>Others
+                                                                        </option>
+                                                                        <option value="developer" @selected($user->role == 'developer')>Support
+                                                                            Developer</option>
+                                                                    </select>
+                                                                    <div class="invalid-feedback"> Please Enter Role.</div>
+                                                                </div>
+                                                            </div> --}}
 
                                                     <div class="col-lg-4 mb-7">
                                                         <div class="mb-4">
@@ -350,33 +349,32 @@
                                                         </div>
                                                     </div>
                                                     {{-- <div class="col-lg-4 mb-7">
-                                                <div class="mb-5">
-                                                    <label class="form-label"
-                                                        for="basicpill-firstname-input">Password</label>
-                                                    <input type="password" class="form-control form-control-sm"
-                                                        id="password" name="password">
+                                                            <div class="mb-5">
+                                                                <label class="form-label"
+                                                                    for="basicpill-firstname-input">Password</label>
+                                                                <input type="password" class="form-control form-control-sm"
+                                                                    id="password" name="password">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 mb-7">
+                                                            <div class="mb-5">
+                                                                <label class="form-label" for="basicpill-firstname-input">Confirm
+                                                                    Password</label>
+                                                                <input type="password" class="form-control form-control-sm"
+                                                                    id="confirm_password" name="confirm_password">
+                                                                <div id="message"></div>
+                                                            </div>
+                                                        </div> --}}
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 mb-7">
-                                                <div class="mb-5">
-                                                    <label class="form-label" for="basicpill-firstname-input">Confirm
-                                                        Password</label>
-                                                    <input type="password" class="form-control form-control-sm"
-                                                        id="confirm_password" name="confirm_password">
-                                                    <div id="message"></div>
-                                                </div>
-                                            </div> --}}
-                                                </div>
-
-                                            </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger "
-                                            data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary from-prevent-multiple-submits"
-                                            style="padding: 10px;">Submit</button>
-                                    </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger "
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit"
+                                                class="btn btn-primary from-prevent-multiple-submits"
+                                                style="padding: 10px;">Submit</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
