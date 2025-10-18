@@ -12,7 +12,7 @@
         @enderror
     </div>
     <div class="col-2 mt-n7">
-        <img id="{{ $id ?? 'file-input' }}-preview" src="{{ !empty($source) ? $source : asset('upload/no_image.jpg') }}"
+        <img id="{{ $id ?? 'file-input' }}-preview" src="{{ !empty($source) && file_exists($source) ? $source : asset('upload/no_image.jpg') }}"
             alt="Image Preview" class="img-thumbnail" style="display: {{ !empty($source) ? 'block' : 'none' }};height: 65px;">
     </div>
 </div>

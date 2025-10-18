@@ -597,18 +597,16 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <label class="form-label" for="photo">Profile
+                                            <label class="form-label" for="photo_edit">Profile
                                                 Picture</label>
-                                                <x-metronic.file-input id="photo" name="photo" :source="asset('storage/' . $employee->photo)" class="form-control" ></x-metronic.file-input>
+                                                <x-metronic.file-input id="photo_edit" name="photo" :source="asset('storage/' . $employee->photo)" ></x-metronic.file-input>
 
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-4">
-                                            <label class="form-label" for="sign">Sign</label>
-                                            <x-metronic.file-input id="sign" name="sign" class="form-control" :source="asset('storage/' . $employee->sign)" ></x-metronic.file-input>
-
-
+                                            <label class="form-label" for="sign_edit">Sign</label>
+                                            <x-metronic.file-input id="sign_edit" name="sign" class="form-control" :source="asset('storage/' . $employee->sign)" ></x-metronic.file-input>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
