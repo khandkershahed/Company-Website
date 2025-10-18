@@ -84,7 +84,7 @@ class DashboardController extends Controller
 
     //     // Try connecting to the ZKTeco device
     //     try {
-    //         $zk = new ZKTeco($deviceip, 4370);
+    //         $zk = new ZKTeco($deviceip, 4370); 
     //         if ($zk->connect()) {
     //             $zk->enableDevice();
     //             $attendances = $zk->getAttendance(2);
