@@ -97,6 +97,8 @@ return new class extends Migration
             $table->text('managing_director_sign')->comment('file')->nullable();
             $table->date('sign_date')->nullable();
             $table->date('evaluation_date')->nullable();  //New
+            $table->date('last_evaluation_date')->nullable();  //New
+            $table->date('next_evaluation_date')->nullable();  //New
             $table->integer('casual_leave_due_as_on')->default('0')->nullable();  //New
             $table->integer('casual_leave_availed')->default('0')->nullable();  //New
             $table->integer('casual_balance_due')->default('0')->nullable();  //New
