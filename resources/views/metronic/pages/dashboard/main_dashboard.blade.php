@@ -16,8 +16,8 @@
                                     <span class="position-relative d-inline-block">
                                         <a href="javascript:void(0);"
                                             class="mb-1 link-white opacity-75-hover fw-bold d-block">
-                                            {{ optional(Auth::user()->employeeLeave)->casual_leave_due_as_on + optional(Auth::user()->employeeLeave)->earned_leave_due_as_on + optional(Auth::user()->employeeLeave)->medical_leave_due_as_on }} remaining leave
-                                            days</a> 
+                                            {{ optional(Auth::user()->employeeLeave)->total_leave - (optional(Auth::user()->employeeLeave)->casual_leave_availed + optional(Auth::user()->employeeLeave)->earned_leave_availed + optional(Auth::user()->employeeLeave)->medical_leave_availed) }} remaining leave
+                                            days</a>
 
                                         <span
                                             class="bottom-0 border-2 opacity-50 position-absolute start-0 border-body border-bottom w-100"></span>
