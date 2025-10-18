@@ -68,7 +68,7 @@
                         <div class="col-sm-6">
                             <div class="mb-3 d-flex justify-content-between align-items-center">
                                 <span class="text-gray-500 fw-semibold">This Month Total:</span>
-                                <span class="px-4 py-3 text-white bg-primary rounded-circle">{{ optional(Auth::user()->employeeLeave)->total_leave }}</span>
+                                <span class="px-4 py-3 text-white bg-primary rounded-circle">{{ (Auth::user()->category_id == 1) ? 2 : 1 }}</span>
                             </div>
                         </div>
                     </div>
