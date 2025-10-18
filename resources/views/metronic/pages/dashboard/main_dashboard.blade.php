@@ -671,9 +671,43 @@
                             Total 4 notice post in this month
                         </p>
                     </div>
-                    {{-- <div>
-                        <button class="rounded-pill btn btn-light">+ Add Notice</button>
-                    </div> --}}
+                    <!-- Add Notice Button -->
+<div>
+    <button type="button" class="btn btn-light rounded-pill" data-bs-toggle="modal" data-bs-target="#addNoticeModal">
+        + Add Notice
+    </button>
+</div>
+
+<!-- Add Notice Modal -->
+<div class="modal fade" id="addNoticeModal" tabindex="-1" aria-labelledby="addNoticeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addNoticeModalLabel">Add New Notice</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+            </div>
+
+            <form action="" method="POST">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="noticeTitle" class="form-label">Title</label>
+                        <input type="text" name="title" id="noticeTitle" class="form-control" placeholder="Enter notice title" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="noticeDescription" class="form-label">Description</label>
+                        <textarea name="description" id="noticeDescription" rows="4" class="form-control" placeholder="Enter notice details" required></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Notice</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
                 </div>
                 {{-- <div>
                     <div class="px-4 mb-2 ">
