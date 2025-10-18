@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('staff_id')->nullable()->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();  // Faisal
             $table->foreignId('lead_by')->nullable()->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();  // Faisal
-            $table->string('title'); // e.g., "Trade License"
-            $table->date('date'); // Will store both date and time
-            $table->dateTime('start_time'); // Will store both date and time
-            $table->dateTime('end_time');
-            $table->json('participants'); // e.g., "Minhajul Islam"
-            $table->enum('type', ['office', 'out_of_office'])->default('office'); // 'In Office' or 'Out Of Office'
+            $table->string('title')->nullable(); // e.g., "Trade License"
+            $table->date('date')->nullable(); // Will store both date and time
+            $table->dateTime('start_time')->nullable(); // Will store both date and time
+            $table->dateTime('end_time')->nullable();
+            $table->json('participants')->nullable(); // e.g., "Minhajul Islam"
+            $table->enum('type', ['office', 'out_of_office'])->default('office')->nullable(); // 'In Office' or 'Out Of Office'
             $table->timestamps();
         });
     }
