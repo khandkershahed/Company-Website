@@ -7,7 +7,7 @@
                     <div class="shadow-none card card-flush h-100"
                         style="background-image: linear-gradient(to top, #296088, #003B65);">
                         <div class="card-header">
-                            <h3 class="pt-5 text-white card-title align-items-start flex-column">
+                            <h3 class="text-white card-title align-items-start flex-column">
                                 <span class="mb-3 fw-bold fs-2x">{{ Auth::user()->name }}</span>
 
                                 <div class="text-white fs-4">
@@ -62,13 +62,13 @@
                         <div class="col-sm-6" style="border-right: 1px solid #eee;">
                             <div class="mb-3 d-flex justify-content-between align-items-center">
                                 <span class="text-gray-500 fw-semibold">Yearly Total Leave:</span>
-                                <span class="p-3 text-white bg-primary rounded-circle">24</span>
+                                <span class="px-4 py-3 text-white bg-primary rounded-circle">24</span>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mb-3 d-flex justify-content-between align-items-center">
                                 <span class="text-gray-500 fw-semibold">This Month Total:</span>
-                                <span class="p-3 text-white bg-primary rounded-circle">24</span>
+                                <span class="px-4 py-3 text-white bg-primary rounded-circle">24</span>
                             </div>
                         </div>
                     </div>
@@ -76,13 +76,13 @@
                         <div class="col-sm-6" style="border-right: 1px solid #eee;">
                             <div class="mt-3 d-flex justify-content-between align-items-center">
                                 <span class="text-gray-500 fw-semibold">This Year Taken:</span>
-                                <span class="p-3 text-white bg-primary rounded-circle">24</span>
+                                <span class="px-4 py-3 text-white bg-primary rounded-circle">24</span>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mt-3 d-flex justify-content-between align-items-center">
                                 <span class="text-gray-500 fw-semibold">This Month Taken:</span>
-                                <span class="p-3 text-white bg-primary rounded-circle">24</span>
+                                <span class="px-4 py-3 text-white bg-primary rounded-circle">24</span>
                             </div>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                         {{-- <div class="col-sm-6">
                             <div class="mt-7 d-flex justify-content-between align-items-center">
                                 <span class="text-gray-500 fw-semibold">Your Critical Point:</span>
-                                <span class="text-white badge badge-circle badge-danger p-5">24</span>
+                                <span class="p-5 text-white badge badge-circle badge-danger">24</span>
                             </div>
                         </div> --}}
                     </div>
@@ -174,13 +174,13 @@
                                 <a href="{{ asset('storage/' . $document->document_file) }}" target="_blank" class="p-2 me-3 btn btn-icon btn-light btn-sm rounded-circle">
                                     <i class="fas fa-download fs-4" aria-hidden="true"></i>
                                 </a>
-                                <a href="{{ route('admin.staff-documents.destroy', $document->id) }}" target="_blank" class="delete p-2 btn btn-icon btn-light btn-sm rounded-circle">
+                                <a href="{{ route('admin.staff-documents.destroy', $document->id) }}" target="_blank" class="p-2 delete btn btn-icon btn-light btn-sm rounded-circle">
                                     <i class="fas fa-trash-alt fs-4 text-danger" aria-hidden="true"></i>
                                 </a>
                             </div>
                         </div>
                     @empty
-                        <div class="text-center my-5">
+                        <div class="my-5 text-center">
                             <h5 class="text-gray-500">No Documents Found</h5>
                         </div>
                     @endforelse
@@ -191,7 +191,7 @@
             <div class="card">
                 <div class="py-4 card-header justify-content-between align-items-center">
                     <div>
-                        <h1 class="mb-0">Meeting List</h1>
+                        <h1 class="text-gray-800 text-hover-primary fs-3 fw-bold">Meeting List</h1>
                         <p class="mb-0 text-gray-400">
                             Total {{ $pendingMeetings }} weekly pending meeting
                         </p>
@@ -213,10 +213,10 @@
                 @endphp
 
                 <div class="border-0 card-header" style="min-height: 52px">
-                    <ul class="border-0 nav nav-pills nav-pills-custom" role="tablist">
+                    <ul class="mt-4 border-0 nav nav-pills nav-pills-custom" role="tablist">
                         @foreach ($mainTabs as $id => $title)
                             <li class="m-0 nav-item rounded-pill" role="presentation">
-                                <a class="pt-5 pb-2 overflow-hidden border-0 nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-pill h-100 {{ $tabIndex++ == 0 ? 'active' : '' }}"
+                                <a class="overflow-hidden border-0 nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-pill {{ $tabIndex++ == 0 ? 'active' : '' }}"
                                     id="meetingTab_{{ $id }}" data-bs-toggle="pill"
                                     href="#{{ $id }}"
                                     aria-selected="{{ $tabIndex == 1 ? 'true' : 'false' }}" role="tab"
@@ -389,7 +389,7 @@
                                                                         @method('PUT')
                                                                         {{-- ... (Rest of the form fields using $meeting and $users) ... --}}
                                                                         <div class="modal-body">
-                                                                            <div class="row mb-4">
+                                                                            <div class="mb-4 row">
                                                                                 <div class="col-md-12">
                                                                                     <label class="form-label">Meeting
                                                                                         Title</label>
@@ -400,7 +400,7 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-4">
+                                                                            <div class="mb-4 row">
                                                                                 <div class="col-md-6">
                                                                                     <label class="form-label">Lead
                                                                                         By</label>
@@ -437,7 +437,7 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="row mb-4">
+                                                                            <div class="mb-4 row">
                                                                                 <div class="col-md-4">
                                                                                     <label
                                                                                         class="form-label">Date</label>
@@ -464,7 +464,7 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            {{-- <div class="row mb-4">
+                                                                            {{-- <div class="mb-4 row">
                                                                                     <div class="col-md-12">
                                                                                         <label
                                                                                             class="form-label">Participants
@@ -511,7 +511,7 @@
 
                                                     </div>
                                                 @empty
-                                                    <div class="text-center py-5">
+                                                    <div class="py-5 text-center">
                                                         <p class="text-gray-500">No {{ strtolower($tabTitle) }}
                                                             scheduled for {{ $day['carbon_date']->format('l, M d') }}.
                                                         </p>
@@ -531,7 +531,7 @@
             <div class="card card-flush min-h-100">
                 <div class="card-header py-7">
                         <div>
-                            <h1>Performance Tracker</h1>
+                            <h1 class="text-gray-800 text-hover-primary fs-3 fw-bold">Performance Tracker</h1>
                             <span class="text-gray-500 fs-6 fw-semibold">Performance in this year</span>
                         </div>
                         <div class="mb-2 d-flex align-items-center">
@@ -594,7 +594,7 @@
     <div class="mt-5 row">
         <div class="col-lg-8">
             <div class="card">
-                <div class="card-header align-items-center py-2">
+                <div class="py-2 pb-0 border-0 card-header align-items-center">
                     <div>
                         <h1 class="card-title">Attendance Details</h1>
                     </div>
@@ -611,13 +611,13 @@
                         </form>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="pt-0 card-body">
                     <div class="row">
                         <div class="table-responsive">
                             <table
                                 class="table border data_table table-striped table-row-bordered gy-5 gs-7 rounded-3 dataTable">
                                 <thead class="text-gray-500 fs-7">
-                                    <tr class="text-gray-800 fw-bold fs-6 px-5">
+                                    <tr class="px-5 text-gray-800 fw-bold fs-6">
                                         <th width="30%">Date</th>
                                         <th width="25%">Check In</th>
                                         <th width="25%">Check Out</th>
@@ -663,13 +663,13 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="bg-white card card-flush">
-                <div class="p-2 py-5 d-flex justify-content-between align-items-center">
+            <div class="p-5 bg-white card card-flush">
+                <div class="py-2 card-header align-items-center ps-3">
                     <div>
-                        <h1 class="mb-0">Notice Board</h1>
-                        {{-- <p class="mb-0 text-gray-400">
+                        <h1 class="text-gray-800 text-hover-primary fs-3 fw-bold">Notice Board</h1>
+                        <p class="mb-0 text-gray-400">
                             Total 4 notice post in this month
-                        </p> --}}
+                        </p>
                     </div>
                     {{-- <div>
                         <button class="rounded-pill btn btn-light">+ Add Notice</button>
@@ -708,10 +708,10 @@
                         </div>
                     </div>
                 </div> --}}
-                <div class="table-responsive">
+                <div class="mt-5 table-responsive">
                     <ul class="ms-0 ps-5" style="list-style-type: none">
                         @foreach ($notices as $notice)
-                            <li class="d-flex justify-content-between align-items-center mb-3">
+                            <li class="mb-3 d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center">
                                     <div class="pe-3">
                                         <i class="fa-regular fa-message badge-icons"></i>
@@ -785,7 +785,7 @@
                     <form action="{{ route('admin.staff-meetings.store') }}" method="POST">
                         @csrf
                         <div class="modal-body">
-                            <div class="row mb-4">
+                            <div class="mb-4 row">
                                 <div class="col-md-12">
                                     <label class="form-label">Meeting Title</label>
                                     <input type="text" name="title" class="form-control" required
@@ -793,7 +793,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-4">
+                            <div class="mb-4 row">
                                 <div class="col-md-6">
                                     <label class="form-label">Lead By</label>
                                     <select name="lead_by" class="form-select" data-control="select2"
@@ -815,7 +815,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-4">
+                            <div class="mb-4 row">
                                 <div class="col-md-4">
                                     <label class="form-label">Date</label>
                                     <input type="date" name="date" class="form-control" required>
@@ -830,7 +830,7 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="row mb-4">
+                            {{-- <div class="mb-4 row">
                                 <div class="col-md-12">
                                     <label class="form-label">Participants (Select Multiple)</label>
                                     <select name="participants[]" class="form-select" data-control="select2" data-allow-clear="true" multiple>
