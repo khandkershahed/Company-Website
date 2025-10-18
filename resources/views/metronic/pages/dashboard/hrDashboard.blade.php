@@ -114,11 +114,13 @@
                                     @endphp
                                     <div class="flex-column d-flex w-50">
                                         <div class="px-3 py-2 mb-3 bg-white d-flex rounded-1 justify-content-between">
-                                            <span class="text-black fw-semibold">
+                                            <a href="{{ route('notification.index') }}">
+                                                <span class="text-black fw-semibold">
                                                 Total</span>
                                             <span class="text-black fw-semibold ms-3 rounded-2">
                                                 {{ $ncount }}
                                             </span>
+                                            </a>
                                         </div>
                                         <div class="px-3 py-2 bg-white d-flex rounded-1 justify-content-between">
                                             <span class="text-black fw-semibold">

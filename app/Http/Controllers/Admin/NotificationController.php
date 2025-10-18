@@ -15,9 +15,10 @@ class NotificationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
+    {
         $data['notifications'] = DB::table('notifications')->where('notifiable_id', Auth::user()->id)->orderBy('created_at' , 'DESC')->get();
-        return view('admin.pages.notification.all', $data);
+        // return view('admin.pages.notification.all', $data);
+        return view('metronic.pages.notification.index', $data);
     }
 
     /**
