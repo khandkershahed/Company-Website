@@ -171,10 +171,12 @@
 
                             <div class="text-end">
 
-                                <a href="{{ asset('storage/' . $document->document_file) }}" target="_blank" class="p-2 me-3 btn btn-icon btn-light btn-sm rounded-circle">
+                                <a href="{{ asset('storage/' . $document->document_file) }}" target="_blank"
+                                    class="p-2 me-3 btn btn-icon btn-light btn-sm rounded-circle">
                                     <i class="fas fa-download fs-4" aria-hidden="true"></i>
                                 </a>
-                                <a href="{{ route('admin.staff-documents.destroy', $document->id) }}" target="_blank" class="p-2 delete btn btn-icon btn-light btn-sm rounded-circle">
+                                <a href="{{ route('admin.staff-documents.destroy', $document->id) }}" target="_blank"
+                                    class="p-2 delete btn btn-icon btn-light btn-sm rounded-circle">
                                     <i class="fas fa-trash-alt fs-4 text-danger" aria-hidden="true"></i>
                                 </a>
                             </div>
@@ -530,19 +532,19 @@
         <div class="col-xl-4">
             <div class="card card-flush min-h-100">
                 <div class="card-header py-7">
-                        <div>
-                            <h1 class="text-gray-800 text-hover-primary fs-3 fw-bold">Performance Tracker</h1>
-                            <span class="text-gray-500 fs-6 fw-semibold">Performance in this year</span>
-                        </div>
-                        <div class="mb-2 d-flex align-items-center">
-                            <span class="text-gray-800 fs-2hx fw-bold me-2 lh-1 ls-n2">0%</span>
+                    <div>
+                        <h1 class="text-gray-800 text-hover-primary fs-3 fw-bold">Performance Tracker</h1>
+                        <span class="text-gray-500 fs-6 fw-semibold">Performance in this year</span>
+                    </div>
+                    <div class="mb-2 d-flex align-items-center">
+                        <span class="text-gray-800 fs-2hx fw-bold me-2 lh-1 ls-n2">0%</span>
 
-                            {{-- <span class="badge badge-light-danger fs-base">
+                        {{-- <span class="badge badge-light-danger fs-base">
                                 <i class="ki-duotone ki-arrow-up fs-5 text-danger ms-n1"><span
                                         class="path1"></span><span class="path2"></span></i>
                                 0%
                             </span> --}}
-                        </div>
+                    </div>
                 </div>
 
                 <div class="pt-0 card-body">
@@ -663,72 +665,57 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <div class="p-5 bg-white card card-flush">
+            <div class="p-5 bg-white card card-flush min-h-100">
                 <div class="py-2 card-header align-items-center ps-3">
                     <div>
                         <h1 class="text-gray-800 text-hover-primary fs-3 fw-bold">Notice Board</h1>
                         <p class="mb-0 text-gray-400">
-                            Total 4 notice post in this month
+                            @php
+                                $noticeCount = $notices
+                                    ->where(fn($n) => \Carbon\Carbon::parse($n->publish_date)->isSameMonth(now()))
+                                    ->count();
+                            @endphp
+
+                            Total {{ $noticeCount }} notices posted in {{ now()->format('F') }}.
                         </p>
+
                     </div>
-                    {{-- <div>
-                        <button class="rounded-pill btn btn-light">+ Add Notice</button>
-                    </div> --}}
+                    <div>
+                        <button class="rounded-pill btn btn-light" data-bs-toggle="modal"
+                            data-bs-target="#makeleave">+ Apply Leave</button>
+                    </div>
                 </div>
-                {{-- <div>
+                <div>
                     <div class="px-4 mb-2 ">
-                        <div style="height: 590px; overflow: auto" class="tab-pane fade show active"
-                            id="kt_timeline_widget_3_tab_content_1" role="tabpanel">
-                            <div class="mb-6 d-flex align-items-center">
-                                <span data-kt-element="bullet"
-                                    class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-success"></span>
+                        <div class="tab-pane fade show active" id="kt_timeline_widget_3_tab_content_1"
+                            role="tabpanel">
+                            @forelse ($notices as $notice)
+                                <div class="mb-6 d-flex align-items-center">
+                                    <span data-kt-element="bullet"
+                                        class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-success"></span>
 
-                                <div class="flex-grow-1 me-5">
-                                    <div class="text-gray-800 fw-semibold fs-2">
-                                        10:20 - 11:00
-                                        <span class="text-gray-500 fw-semibold fs-7">
-                                            AM
-                                        </span>
+                                    <div class="flex-grow-1 me-5">
+                                        <div class="text-gray-800 fw-semibold fs-4">
+                                            {{ $notice->title }}
+                                        </div>
+
+                                        <div class="text-gray-700 fw-semibold fs-6">
+                                            <i class="fa-solid fa-calendar-days me-3"></i>
+                                            {{ $notice->created_at->format('d M Y') }}
+                                        </div>
                                     </div>
 
-                                    <div class="text-gray-700 fw-semibold fs-6">
-                                        Trande License
-                                    </div>
-
-                                    <div class="text-gray-500 fw-semibold fs-7">
-                                        Lead by
-                                        <a href="#" class="text-primary opacity-75-hover fw-semibold">Minhajul
-                                            Islam</a>
-                                    </div>
+                                    <a class="btn btn-sm btn-light" href="javascript:void(0)" data-bs-toggle="modal"
+                                        data-bs-target="#noticeDetails">View</a>
+                                    {{-- noticeDetails Modal --}}
                                 </div>
-
-                                <a class="btn btn-sm btn-light" href="javascript:void(0)" data-bs-toggle="modal"
-                                    data-bs-target="#create-meeting">View</a>
-                            </div>
+                            @empty
+                                <div class="mb-6 d-flex align-items-center">
+                                    <h5 class="text-gray-500">No Notices Available</h5>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
-                </div> --}}
-                <div class="mt-5 table-responsive">
-                    <ul class="ms-0 ps-5" style="list-style-type: none">
-                        @foreach ($notices as $notice)
-                            <li class="mb-3 d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center">
-                                    <div class="pe-3">
-                                        <i class="fa-regular fa-message badge-icons"></i>
-                                    </div>
-                                    <div>
-                                        <h6 class="p-0 m-0" style="font-size: 14px;color: #3b3f5c">
-                                            <a href="{{ route('noticeboard') }}">{{ $notice->title }}</a>
-                                        </h6>
-                                        <p class="p-0 m-0" style="font-size: 12px; font-weight: 600; color: #888ea8">
-                                            {{ $notice->created_at->format('d M Y') }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        @endforeach
-
-                    </ul>
                 </div>
             </div>
         </div>
