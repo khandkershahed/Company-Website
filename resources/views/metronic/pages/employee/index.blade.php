@@ -597,13 +597,13 @@
                                     </div>
                                     <div class="col-lg-4 mb-4">
                                         {{-- last_evaluation_date --}}
-                                        <label for="last_evaluation_date">Last Evaluation Date</label>
+                                        <label class="form-label" for="last_evaluation_date">Last Evaluation Date</label>
                                         <input id="last_evaluation_date" type="date" name="last_evaluation_date" class="form-control"
                                             value="{{ $employee->last_evaluation_date }}">
                                     </div>
                                     <div class="col-lg-4 mb-4">
                                         {{-- next_evaluation_date --}}
-                                        <label for="next_evaluation_date">Next Evaluation Date</label>
+                                        <label class="form-label" for="next_evaluation_date">Next Evaluation Date</label>
                                         <input id="next_evaluation_date" type="date" name="next_evaluation_date" class="form-control"
                                             value="{{ $employee->next_evaluation_date }}">
                                     </div>

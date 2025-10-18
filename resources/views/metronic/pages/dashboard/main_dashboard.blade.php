@@ -34,7 +34,7 @@
                                         <div class="m-0 d-flex align-items-center">
                                             <span class="text-primary fw-semibold ps-3">Last Evaluation :</span>
 
-                                            <span class="text-black fw-semibold ps-3">N/A</span>
+                                            <span class="text-black fw-semibold ps-3">{{ Auth::user()->last_evaluation_date ?? 'N/A' }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                         <div class="m-0 d-flex align-items-center">
                                             <span class="text-primary fw-semibold ps-3">Next Evaluation :</span>
 
-                                            <span class="text-black fw-semibold ps-3">N/A</span>
+                                            <span class="text-black fw-semibold ps-3">{{ Auth::user()->next_evaluation_date ?? 'N/A' }}</span>
                                         </div>
                                     </div>
                                 </div>
