@@ -7,9 +7,7 @@
                         <div class="symbol symbol-200px symbol-fixed position-relative">
                             <img src="{{ !empty($user->photo) && file_exists(public_path('storage/' . $user->photo)) ? asset('storage/' . $user->photo) : asset('https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name)) }}"
                                 alt="image">
-                            <div
-                                class="bottom-0 mb-6 border-4 position-absolute translate-middle start-100 bg-success rounded-circle border-body h-20px w-20px">
-                            </div>
+
                         </div>
                     </div>
 
@@ -19,8 +17,9 @@
                                 <div class="mb-2 d-flex align-items-center">
                                     <a href="#"
                                         class="text-gray-900 text-hover-primary fs-2 fw-bold me-1">{{ $user->name }}</a>
-                                    <a href="#"><i class="ki-duotone ki-verify fs-1 text-primary"><span
-                                                class="path1"></span><span class="path2"></span></i></a>
+                                    <div
+                                        class="bottom-0 border-4 ms-4 translate-middle start-100 bg-success rounded-circle border-body h-20px w-20px">
+                                    </div>
                                 </div>
 
                                 <div class="mb-4 fw-semibold fs-6 pe-2">
@@ -320,9 +319,7 @@
                                                             <label class="form-label" for="photo">Profile
                                                                 Picture</label>
                                                             <x-metronic.file-input id="photo" name="photo"
-                                                                :source="asset(
-                                                                    'storage/' . $user->photo,
-                                                                )"
+                                                                :source="asset('storage/' . $user->photo)"
                                                                 :value="old('photo')"></x-metronic.file-input>
 
                                                         </div>
@@ -504,12 +501,12 @@
                         <div class="row">
                             <div class="table-responsive">
                                 <table
-                                    class="table border data_table table-striped table-row-bordered gy-5 gs-7 rounded-3 dataTable">
+                                    class="table border table-striped table-row-bordered gy-5 gs-7 rounded-3 dataTable">
                                     <thead class="text-gray-500 fs-7">
                                         <tr class="px-5 text-gray-800 fw-bold fs-6">
                                             <th width="10%">Sl</th>
                                             <th width="65%">Document Name</th>
-                                            <th width="15%">Download</th>
+                                            <th width="15%">Show/Download</th>
                                             <th width="10%">Action</th>
                                         </tr>
                                     </thead>
@@ -565,7 +562,7 @@
                                             Password</label>
                                         <input type="password"
                                             class="form-control form-control-lg form-control-solid is-valid"
-                                            name="newpassword" id="newpassword">
+                                            name="password" id="newpassword">
                                         <div class="fv-plugins-message-container invalid-feedback"></div>
                                     </div>
                                 </div>

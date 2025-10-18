@@ -39,8 +39,8 @@ class StaffMeetingController extends Controller
             'date' => 'required|date',
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
-            'participants' => 'nullable|array',
-            'participants.*' => 'exists:users,id',
+            // 'participants' => 'nullable|array',
+            // 'participants.*' => 'exists:users,id',
         ]);
 
         try {
@@ -61,7 +61,7 @@ class StaffMeetingController extends Controller
                 'date' => $validated['date'],
                 'start_time' => $startDateTime,
                 'end_time' => $endDateTime,
-                'participants' => $validated['participants'],
+                // 'participants' => $validated['participants'],
                 'type' => $validated['type'],
             ]);
             Session::flash('success',  'Meeting "' . $validated['title'] . '" created successfully.');
@@ -83,8 +83,8 @@ class StaffMeetingController extends Controller
             'date' => 'required|date',
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
-            'participants' => 'nullable|array',
-            'participants.*' => 'exists:users,id',
+            // 'participants' => 'nullable|array',
+            // 'participants.*' => 'exists:users,id',
         ]);
 
         try {
@@ -104,7 +104,7 @@ class StaffMeetingController extends Controller
                 'date' => $validated['date'],
                 'start_time' => $startDateTime,
                 'end_time' => $endDateTime,
-                'participants' => $validated['participants'],
+                // 'participants' => $validated['participants'],
                 'type' => $validated['type'],
             ]);
             Session::flash('success',  'Meeting "' . $validated['title'] . '" updated successfully.');

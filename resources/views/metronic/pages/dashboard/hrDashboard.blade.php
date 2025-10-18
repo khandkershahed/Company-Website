@@ -5,7 +5,8 @@
             <div class="col-lg-9">
                 <div class="row">
                     <div class="col-xl-4 col-md-6">
-                        <div class="mb-5 border shadow-none card card-flush min-h-100 mb-lg-0" style="background-image: linear-gradient(to top, #296088, #003B65);">
+                        <div class="mb-5 border shadow-none card card-flush min-h-100 mb-lg-0"
+                            style="background-image: linear-gradient(to top, #296088, #003B65);">
                             <div class="p-5 card-body">
                                 <div class="pt-1 d-flex flex-stack justify-content-between align-items-center">
                                     <div class="d-flex align-items-center rounded-3">
@@ -41,72 +42,75 @@
                         </div>
                     </div>
                     <div class="col-xl-4">
-                        @if(empty($tasks) || $tasks['total'] == 0)
-                        {{-- Coming Soon Placeholder --}}
-                        <div class="my-5 text-center border shadow-none p-15 card card-flush my-lg-0">
-                            <h4 class="mb-0 text-gray-600 fw-semibold">Coming Soon 🚧</h4>
-                        </div>
+                        @if (empty($tasks) || $tasks['total'] == 0)
+                            {{-- Coming Soon Placeholder --}}
+                            <div class="my-5 text-center border shadow-none p-15 card card-flush my-lg-0">
+                                <h4 class="mb-0 text-gray-600 fw-semibold">Coming Soon 🚧</h4>
+                            </div>
                         @else
-                        {{-- Task Card --}}
-                        <div class="border shadow-none card card-flush">
-                            <div class="p-5 card-body">
-                                <div class="pt-1 d-flex flex-stack justify-content-between align-items-center">
-                                    <div class="p-8 d-flex align-items-center me-3 w-50 rounded-3">
-                                        <a href="">
-                                            <span class="p-3 bg-light-primary rounded-3 me-3">
-                                                <i class="fa-solid text-primary fa-list-check fs-3" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                        <div class="flex-grow-1">
-                                            <a href="#" class="text-gray-800 fs-5 fw-bold lh-0">
-                                                My Task
-                                                <span class="pt-4 text-gray-500 fw-semibold d-block fs-6">
-                                                    Today
-                                                    <span class="text-primary">({{ $tasks['total'] ?? 0 }})</span>
+                            {{-- Task Card --}}
+                            <div class="border shadow-none card card-flush">
+                                <div class="p-5 card-body">
+                                    <div class="pt-1 d-flex flex-stack justify-content-between align-items-center">
+                                        <div class="p-8 d-flex align-items-center me-3 w-50 rounded-3">
+                                            <a href="">
+                                                <span class="p-3 bg-light-primary rounded-3 me-3">
+                                                    <i class="fa-solid text-primary fa-list-check fs-3"
+                                                        aria-hidden="true"></i>
                                                 </span>
                                             </a>
+                                            <div class="flex-grow-1">
+                                                <a href="#" class="text-gray-800 fs-5 fw-bold lh-0">
+                                                    My Task
+                                                    <span class="pt-4 text-gray-500 fw-semibold d-block fs-6">
+                                                        Today
+                                                        <span class="text-primary">({{ $tasks['total'] ?? 0 }})</span>
+                                                    </span>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="flex-column d-flex w-50">
-                                        <div class="d-flex align-items-center justify-content-between pe-3">
-                                            <span class="text-gray-500 fw-semibold">Critical</span>
-                                            <span class="px-2 text-white bg-primary fw-semibold ms-3 rounded-2">
-                                                {{ $tasks['critical'] ?? 0 }} Task
-                                            </span>
-                                        </div>
-                                        <div class="pt-2 d-flex align-items-center justify-content-between pe-3">
-                                            <span class="text-gray-500 fw-semibold">Pending</span>
-                                            <span class="px-2 text-white bg-primary fw-semibold ms-3 rounded-2">
-                                                {{ $tasks['pending'] ?? 0 }} Task
-                                            </span>
+                                        <div class="flex-column d-flex w-50">
+                                            <div class="d-flex align-items-center justify-content-between pe-3">
+                                                <span class="text-gray-500 fw-semibold">Critical</span>
+                                                <span class="px-2 text-white bg-primary fw-semibold ms-3 rounded-2">
+                                                    {{ $tasks['critical'] ?? 0 }} Task
+                                                </span>
+                                            </div>
+                                            <div class="pt-2 d-flex align-items-center justify-content-between pe-3">
+                                                <span class="text-gray-500 fw-semibold">Pending</span>
+                                                <span class="px-2 text-white bg-primary fw-semibold ms-3 rounded-2">
+                                                    {{ $tasks['pending'] ?? 0 }} Task
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endif
                     </div>
                     <div class="col-xl-4 col-md-6">
-                        <div class="mb-5 border shadow-none card card-flush min-h-100 mb-lg-0" style="background-image: linear-gradient(to top, #296088, #003B65);">
+                        <div class="mb-5 border shadow-none card card-flush min-h-100 mb-lg-0"
+                            style="background-image: linear-gradient(to top, #296088, #003B65);">
                             <div class="p-5 card-body">
                                 <div class="pt-1 d-flex flex-stack justify-content-between align-items-center">
                                     <div class="d-flex align-items-center me-3 w-50 rounded-3">
                                         <a href="">
                                             <span class="p-3 bg-light-primary rounded-3 me-3">
-                                                <i class="fa-solid text-primary fa-bell fs-3"
-                                                    aria-hidden="true"></i>
+                                                <i class="fa-solid text-primary fa-bell fs-3" aria-hidden="true"></i>
                                             </span>
                                         </a>
-                                        <div class="flex-grow-1"><a href="#" class="text-white fs-5 fw-bold lh-0">Notification
-                                                <span class="pt-4 text-gray-500 fw-semibold d-block fs-6">Quick Status</span>
+                                        <div class="flex-grow-1"><a href="#"
+                                                class="text-white fs-5 fw-bold lh-0">Notification
+                                                <span class="pt-4 text-gray-500 fw-semibold d-block fs-6">Quick
+                                                    Status</span>
                                             </a>
                                         </div>
                                     </div>
                                     @php
-                                    $notifications = Auth::user()->notifications();
-                                    $ncount = $notifications->count();
-                                    $nunreadCount = Auth::user()->unreadNotifications()->count();
+                                        $notifications = Auth::user()->notifications();
+                                        $ncount = $notifications->count();
+                                        $nunreadCount = Auth::user()->unreadNotifications()->count();
                                     @endphp
                                     <div class="flex-column d-flex w-50">
                                         <div class="px-3 py-2 mb-3 bg-white d-flex rounded-1 justify-content-between">
@@ -130,28 +134,33 @@
                     </div>
                     <div class="col-xl-12">
                         <div class="mt-5 border shadow-none card">
-                            <div class="pt-4 bg-white border-0 card-header d-flex justify-content-between align-items-center">
+                            <div
+                                class="pt-4 bg-white border-0 card-header d-flex justify-content-between align-items-center">
                                 <h1 class="text-center card-title text-lg-start mobile-card">
                                     Attendace &amp; Leave History
                                 </h1>
                                 <!-- Tabs -->
                                 <div>
-                                    <ul class="nav nav-pills nav-pills-custom d-flex justify-content-center align-items-center w-100" id="attendanceTabs" role="tablist">
+                                    <ul class="nav nav-pills nav-pills-custom d-flex justify-content-center align-items-center w-100"
+                                        id="attendanceTabs" role="tablist">
                                         <li class="mt-0 nav-item mt-lg-auto" role="presentation">
-                                            <a class="p-3 mt-2 overflow-hidden mt-lg-5 nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0 active" id="today-tab" data-bs-toggle="tab" href="#allAttendance" role="tab"
+                                            <a class="p-3 mt-2 overflow-hidden mt-lg-5 nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0 active"
+                                                id="today-tab" data-bs-toggle="tab" href="#allAttendance" role="tab"
                                                 aria-controls="allAttendance" aria-selected="true">
                                                 Today Attendances
                                             </a>
                                         </li>
                                         <li class="mt-0 nav-item mt-lg-auto" role="presentation">
-                                            <a class="p-3 mt-2 overflow-hidden mt-lg-5 nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0" id="leave-tab" data-bs-toggle="tab" href="#allLeave" role="tab"
+                                            <a class="p-3 mt-2 overflow-hidden mt-lg-5 nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0"
+                                                id="leave-tab" data-bs-toggle="tab" href="#allLeave" role="tab"
                                                 aria-controls="allLeave" aria-selected="false">
                                                 Leave
                                             </a>
                                         </li>
                                         <li class="mt-0 nav-item mt-lg-auto" role="presentation">
-                                            <a class="p-3 mt-2 overflow-hidden mt-lg-5 nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0" id="month-tab" data-bs-toggle="tab" href="#allMovement" role="tab"
-                                                aria-controls="allMovement" aria-selected="false">
+                                            <a class="p-3 mt-2 overflow-hidden mt-lg-5 nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0"
+                                                id="month-tab" data-bs-toggle="tab" href="#monthlyAttendance"
+                                                role="tab" aria-controls="allMovement" aria-selected="false">
                                                 Month Wise Attendances
                                             </a>
                                         </li>
@@ -180,67 +189,67 @@
                                                     </thead>
                                                     <tbody>
                                                         @foreach ($attendances as $today_attendance)
-                                                        <tr>
-                                                            <td>{{ $loop->iteration }}</td>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="me-5 position-relative">
+                                                            <tr>
+                                                                <td>{{ $loop->iteration }}</td>
+                                                                <td>
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="me-5 position-relative">
+                                                                            <div
+                                                                                class="symbol symbol-35px symbol-circle">
+                                                                                <img alt="Pic"
+                                                                                    src="{{ !empty(optional($today_attendance->user)->photo) && file_exists(public_path('storage/' . optional($today_attendance->user)->photo)) ? asset('storage/' . optional($today_attendance->user)->photo) : asset('https://ui-avatars.com/api/?name=' . urlencode(optional($today_attendance->user)->name)) }}">
+                                                                            </div>
+
+                                                                        </div>
                                                                         <div
-                                                                            class="symbol symbol-35px symbol-circle">
-                                                                            <img alt="Pic"
-                                                                                src="{{ !empty(optional($today_attendance->user)->photo) && file_exists(public_path('storage/' . optional($today_attendance->user)->photo)) ? asset('storage/' . optional($today_attendance->user)->photo) : asset('https://ui-avatars.com/api/?name=' . urlencode(optional($today_attendance->user)->name)) }}">
-                                                                        </div>
+                                                                            class="d-flex flex-column justify-content-center">
+                                                                            <a href=""
+                                                                                class="text-gray-800 fs-6 text-hover-primary">{{ optional($today_attendance->user)->name }}</a>
 
-                                                                    </div>
-                                                                    <div
-                                                                        class="d-flex flex-column justify-content-center">
-                                                                        <a href=""
-                                                                            class="text-gray-800 fs-6 text-hover-primary">{{ optional($today_attendance->user)->name }}</a>
-
-                                                                        <div class="text-gray-500 fw-semibold">
-                                                                            {{ optional($today_attendance->user)->designation }}
+                                                                            <div class="text-gray-500 fw-semibold">
+                                                                                {{ optional($today_attendance->user)->designation }}
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                @if (optional($today_attendance)->check_in !== 'N/A')
-                                                                @php
-                                                                $checkIn = Carbon\Carbon::parse(
-                                                                $today_attendance->check_in,
-                                                                );
-                                                                @endphp
+                                                                </td>
+                                                                <td>
+                                                                    @if (optional($today_attendance)->check_in !== 'N/A')
+                                                                        @php
+                                                                            $checkIn = Carbon\Carbon::parse(
+                                                                                $today_attendance->check_in,
+                                                                            );
+                                                                        @endphp
 
-                                                                @if ($checkIn > Carbon\Carbon::parse('09:06:00') && $checkIn < Carbon\Carbon::parse('10:01:00'))
-                                                                    <span
-                                                                    class="text-white badge badge-danger">L</span>
-                                                                    @elseif ($checkIn >= Carbon\Carbon::parse('10:01:00') && $checkIn < Carbon\Carbon::parse('13:00:00'))
-                                                                        <span
-                                                                        class="text-white badge badge-danger">LL</span>
+                                                                        @if ($checkIn > Carbon\Carbon::parse('09:06:00') && $checkIn < Carbon\Carbon::parse('10:01:00'))
+                                                                            <span
+                                                                                class="text-white badge badge-danger">L</span>
+                                                                        @elseif ($checkIn >= Carbon\Carbon::parse('10:01:00') && $checkIn < Carbon\Carbon::parse('13:00:00'))
+                                                                            <span
+                                                                                class="text-white badge badge-danger">LL</span>
                                                                         @elseif($checkIn < Carbon\Carbon::parse('09:05:00'))
                                                                             <span
-                                                                            class="text-black badge badge-light-primary">On
-                                                                            Time</span>
-                                                                            @endif
-                                                                            @else
-                                                                            <p class="p-0 mb-0 text-danger fw-bold">
-                                                                                {{ optional($today_attendance)->absent_note }}
-                                                                            </p>
-                                                                            @endif
-                                                            </td>
-                                                            <td>
-                                                                <span
-                                                                    class="text-white badge bg-info">{{ optional($today_attendance->user)->getCategoryName() }}</span>
-                                                            </td>
-                                                            <td>
-                                                                <span
-                                                                    class="badge bg-primary">{{ $today_attendance->check_in }}</span>
-                                                            </td>
-                                                            <td class="text-start">
-                                                                <span
-                                                                    class="bg-black badge">{{ $today_attendance->check_out }}</span>
-                                                            </td>
-                                                            {{-- <td class="text-center">
+                                                                                class="text-black badge badge-light-primary">On
+                                                                                Time</span>
+                                                                        @endif
+                                                                    @else
+                                                                        <p class="p-0 mb-0 text-danger fw-bold">
+                                                                            {{ optional($today_attendance)->absent_note }}
+                                                                        </p>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    <span
+                                                                        class="text-white badge bg-info">{{ optional($today_attendance->user)->getCategoryName() }}</span>
+                                                                </td>
+                                                                <td>
+                                                                    <span
+                                                                        class="badge bg-primary">{{ $today_attendance->check_in }}</span>
+                                                                </td>
+                                                                <td class="text-start">
+                                                                    <span
+                                                                        class="bg-black badge">{{ $today_attendance->check_out }}</span>
+                                                                </td>
+                                                                {{-- <td class="text-center">
                                                                     <a class="btn btn-sm btn-icon btn-primary text-hover-primary btn-active-color-primary"
                                                                         href="/super-admin/single-profile"
                                                                         target="_blank">
@@ -250,7 +259,7 @@
                                                                             class="sr-only">Show Profile</span>
                                                                     </a>
                                                                 </td> --}}
-                                                        </tr>
+                                                            </tr>
                                                         @endforeach
 
                                                     </tbody>
@@ -290,37 +299,41 @@
                                                     {{-- Sick Leaves --}}
                                                     <div class="tab-pane fade show active" id="sickLeave"
                                                         role="tabpanel">
-                                                        @include('metronic.pages.attendance.partials.leave_table',
-                                                        [
-                                                        'leaves' => $sicks,
-                                                        ]
+                                                        @include(
+                                                            'metronic.pages.attendance.partials.leave_table',
+                                                            [
+                                                                'leaves' => $sicks,
+                                                            ]
                                                         )
                                                     </div>
 
                                                     {{-- Earned Leaves --}}
                                                     <div class="tab-pane fade" id="earnedLeave" role="tabpanel">
-                                                        @include('metronic.pages.attendance.partials.leave_table',
-                                                        [
-                                                        'leaves' => $earneds,
-                                                        ]
+                                                        @include(
+                                                            'metronic.pages.attendance.partials.leave_table',
+                                                            [
+                                                                'leaves' => $earneds,
+                                                            ]
                                                         )
                                                     </div>
 
                                                     {{-- Casual Leaves --}}
                                                     <div class="tab-pane fade" id="casualLeave" role="tabpanel">
-                                                        @include('metronic.pages.attendance.partials.leave_table',
-                                                        [
-                                                        'leaves' => $casuals,
-                                                        ]
+                                                        @include(
+                                                            'metronic.pages.attendance.partials.leave_table',
+                                                            [
+                                                                'leaves' => $casuals,
+                                                            ]
                                                         )
                                                     </div>
 
                                                     {{-- Pending Leaves --}}
                                                     <div class="tab-pane fade" id="pendingLeave" role="tabpanel">
-                                                        @include('metronic.pages.attendance.partials.leave_table',
-                                                        [
-                                                        'leaves' => $pendings,
-                                                        ]
+                                                        @include(
+                                                            'metronic.pages.attendance.partials.leave_table',
+                                                            [
+                                                                'leaves' => $pendings,
+                                                            ]
                                                         )
                                                     </div>
 
@@ -328,7 +341,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="allmovement" role="tabpanel">
+                                    <div class="tab-pane fade" id="monthlyAttendance" role="tabpanel">
                                         <div class="card">
                                             <form action="{{ route('admin.hr-and-admin.index') }}" method="get">
                                                 <div class="py-2 card-header align-items-center">
@@ -341,10 +354,10 @@
                                                             data-placeholder="Staff" name="user_id" id="userID"
                                                             onchange="form.submit()">
                                                             @foreach ($users as $user)
-                                                            <option value="{{ $user->id }}"
-                                                                @selected($selectedUser===$user->id)>
-                                                                {{ $user->name }}
-                                                            </option>
+                                                                <option value="{{ $user->id }}"
+                                                                    @selected($selectedUser === $user->id)>
+                                                                    {{ $user->name }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -353,10 +366,10 @@
                                                             data-placeholder="Month" name="month" id="filterMonth"
                                                             onchange="form.submit()">
                                                             @foreach ($months as $month)
-                                                            <option value="{{ $month }}"
-                                                                @selected($selectedMonth===$month)>
-                                                                {{ $month }}
-                                                            </option>
+                                                                <option value="{{ $month }}"
+                                                                    @selected($selectedMonth === $month)>
+                                                                    {{ $month }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -380,43 +393,43 @@
                                                             <tbody class="fs-6">
 
                                                                 @foreach ($total_attendances as $attendance)
-                                                                <tr>
-                                                                    <td>{{ $attendance['date'] }}</td>
-                                                                    <td>{{ $attendance['user_name'] }}</td>
+                                                                    <tr>
+                                                                        <td>{{ $attendance['date'] }}</td>
+                                                                        <td>{{ $attendance['user_name'] }}</td>
 
-                                                                    <td>{{ $attendance['check_in'] ?? 'N/A' }}</td>
+                                                                        <td>{{ $attendance['check_in'] ?? 'N/A' }}</td>
 
-                                                                    <td>{{ $attendance['check_out'] ?? 'N/A' }}
-                                                                    </td>
+                                                                        <td>{{ $attendance['check_out'] ?? 'N/A' }}
+                                                                        </td>
 
-                                                                    <td>
-                                                                        @if (!empty($attendance['check_in']) && $attendance['check_in'] !== 'N/A')
-                                                                        @php
-                                                                        $checkIn = \Carbon\Carbon::parse(
-                                                                        $attendance['check_in'],
-                                                                        );
-                                                                        @endphp
+                                                                        <td>
+                                                                            @if (!empty($attendance['check_in']) && $attendance['check_in'] !== 'N/A')
+                                                                                @php
+                                                                                    $checkIn = \Carbon\Carbon::parse(
+                                                                                        $attendance['check_in'],
+                                                                                    );
+                                                                                @endphp
 
-                                                                        @if ($checkIn > \Carbon\Carbon::parse('09:06:00') && $checkIn < \Carbon\Carbon::parse('10:01:00'))
-                                                                            <span
-                                                                            class="text-white badge badge-warning">L</span>
-                                                                            @elseif($checkIn >= \Carbon\Carbon::parse('10:01:00') && $checkIn < \Carbon\Carbon::parse('15:00:00'))
-                                                                                <span
-                                                                                class="text-white badge badge-danger">LL</span>
+                                                                                @if ($checkIn > \Carbon\Carbon::parse('09:06:00') && $checkIn < \Carbon\Carbon::parse('10:01:00'))
+                                                                                    <span
+                                                                                        class="text-white badge badge-warning">L</span>
+                                                                                @elseif($checkIn >= \Carbon\Carbon::parse('10:01:00') && $checkIn < \Carbon\Carbon::parse('15:00:00'))
+                                                                                    <span
+                                                                                        class="text-white badge badge-danger">LL</span>
                                                                                 @else
-                                                                                <span
-                                                                                    class="text-white badge badge-success">On
-                                                                                    Time</span>
+                                                                                    <span
+                                                                                        class="text-white badge badge-success">On
+                                                                                        Time</span>
                                                                                 @endif
-                                                                                @elseif ($attendance['status'] === 'Friday')
+                                                                            @elseif ($attendance['status'] === 'Friday')
                                                                                 <span
                                                                                     class="text-white badge badge-info">Friday</span>
-                                                                                @else
+                                                                            @else
                                                                                 <span
                                                                                     class="text-white badge badge-danger">Absent</span>
-                                                                                @endif
-                                                                    </td>
-                                                                </tr>
+                                                                            @endif
+                                                                        </td>
+                                                                    </tr>
                                                                 @endforeach
 
                                                             </tbody>
@@ -566,7 +579,8 @@
                         </p>
                     </div>
                     <div class="card-header">
-                        <ul class="nav nav-pills nav-pills-custom d-flex justify-content-center align-items-center w-100" role="tablist">
+                        <ul class="nav nav-pills nav-pills-custom d-flex justify-content-center align-items-center w-100"
+                            role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a class="p-3 mt-5 overflow-hidden nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0 active"
                                     id="kt_stats_widget_16_tab_link_4" data-bs-toggle="pill" href="#meetings"
@@ -605,235 +619,235 @@
                                     <ul class="px-3 mb-8 nav nav-stretch nav-pills nav-pills-custom nav-pills-active-custom d-flex justify-content-between"
                                         role="tablist">
                                         @foreach ($dateRange as $index => $day)
-                                        @php
-                                        $dateKey = $day['date_key'];
-                                        // Decide which tab should be "active" by default
-                                        $isActive =
-                                        $dateKey == $activeDayDateKey ||
-                                        ($loop->first && !isset($activeDayDateKey));
-                                        $tabTarget = "timeline_tab_content_{$index}";
-                                        @endphp
-                                        <li class="p-0 mx-0 nav-item" role="presentation">
-                                            <a class="px-3 py-4 nav-link btn d-flex flex-column flex-center rounded-pill min-w-35px btn-active-danger {{ $isActive ? 'active' : '' }}"
-                                                data-bs-toggle="tab" href="#{{ $tabTarget }}" role="tab"
-                                                aria-selected="{{ $isActive ? 'true' : 'false' }}">
-                                                <span class="fs-7 fw-semibold">{{ $day['day_short'] }}</span>
-                                                <span class="fs-6 fw-bold">{{ $day['day_num'] }}</span>
-                                            </a>
-                                        </li>
+                                            @php
+                                                $dateKey = $day['date_key'];
+                                                // Decide which tab should be "active" by default
+                                                $isActive =
+                                                    $dateKey == $activeDayDateKey ||
+                                                    ($loop->first && !isset($activeDayDateKey));
+                                                $tabTarget = "timeline_tab_content_{$index}";
+                                            @endphp
+                                            <li class="p-0 mx-0 nav-item" role="presentation">
+                                                <a class="px-3 py-4 nav-link btn d-flex flex-column flex-center rounded-pill min-w-35px btn-active-danger {{ $isActive ? 'active' : '' }}"
+                                                    data-bs-toggle="tab" href="#{{ $tabTarget }}" role="tab"
+                                                    aria-selected="{{ $isActive ? 'true' : 'false' }}">
+                                                    <span class="fs-7 fw-semibold">{{ $day['day_short'] }}</span>
+                                                    <span class="fs-6 fw-bold">{{ $day['day_num'] }}</span>
+                                                </a>
+                                            </li>
                                         @endforeach
                                     </ul>
 
                                     {{-- Tab contents per day --}}
                                     <div class="px-4 mb-2 tab-content" style="height:730px; overflow:auto;">
                                         @foreach ($dateRange as $index => $day)
-                                        @php
-                                        $dateKey = $day['date_key'];
-                                        $paneId = "timeline_tab_content_{$index}";
-                                        $isPaneActive =
-                                        $dateKey == $activeDayDateKey ||
-                                        ($loop->first && !isset($activeDayDateKey));
-                                        $dailyMeetings = $meetingsForWeek[$dateKey] ?? collect();
-                                        @endphp
+                                            @php
+                                                $dateKey = $day['date_key'];
+                                                $paneId = "timeline_tab_content_{$index}";
+                                                $isPaneActive =
+                                                    $dateKey == $activeDayDateKey ||
+                                                    ($loop->first && !isset($activeDayDateKey));
+                                                $dailyMeetings = $meetingsForWeek[$dateKey] ?? collect();
+                                            @endphp
 
-                                        <div class="tab-pane fade {{ $isPaneActive ? 'show active' : '' }}"
-                                            id="{{ $paneId }}" role="tabpanel">
-                                            @forelse ($dailyMeetings as $meeting)
-                                            <div class="mb-6 d-flex align-items-center">
-                                                <span data-kt-element="bullet"
-                                                    class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-{{ $meeting->end_time->isPast() ? 'light-secondary' : 'success' }}"></span>
-                                                <div class="flex-grow-1 me-5">
-                                                    <div class="text-gray-800 fw-semibold fs-2">
-                                                        {{ $meeting->start_time->format('H:i') }} -
-                                                        {{ $meeting->end_time->format('H:i') }}
-                                                        <span class="text-gray-500 fw-semibold fs-7">
-                                                            {{ $meeting->start_time->format('A') }}
-                                                        </span>
-                                                    </div>
-                                                    <div class="text-gray-700 fw-semibold fs-6">
-                                                        {{ $meeting->title }}
-                                                    </div>
-                                                    <div class="text-gray-500 fw-semibold fs-7">
-                                                        Lead by
-                                                        <a href="#"
-                                                            class="text-primary opacity-75-hover fw-semibold">
-                                                            {{ $meeting->leader->name ?? 'N/A' }}
+                                            <div class="tab-pane fade {{ $isPaneActive ? 'show active' : '' }}"
+                                                id="{{ $paneId }}" role="tabpanel">
+                                                @forelse ($dailyMeetings as $meeting)
+                                                    <div class="mb-6 d-flex align-items-center">
+                                                        <span data-kt-element="bullet"
+                                                            class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-{{ $meeting->end_time->isPast() ? 'light-secondary' : 'success' }}"></span>
+                                                        <div class="flex-grow-1 me-5">
+                                                            <div class="text-gray-800 fw-semibold fs-2">
+                                                                {{ $meeting->start_time->format('H:i') }} -
+                                                                {{ $meeting->end_time->format('H:i') }}
+                                                                <span class="text-gray-500 fw-semibold fs-7">
+                                                                    {{ $meeting->start_time->format('A') }}
+                                                                </span>
+                                                            </div>
+                                                            <div class="text-gray-700 fw-semibold fs-6">
+                                                                {{ $meeting->title }}
+                                                            </div>
+                                                            <div class="text-gray-500 fw-semibold fs-7">
+                                                                Lead by
+                                                                <a href="#"
+                                                                    class="text-primary opacity-75-hover fw-semibold">
+                                                                    {{ $meeting->leader->name ?? 'N/A' }}
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <a class="btn btn-sm btn-light me-3" href="javascript:void(0)"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#meetingDetails_{{ $meeting->id }}">
+                                                            <i class="fas fa-eye"></i>
                                                         </a>
-                                                    </div>
-                                                </div>
-                                                <a class="btn btn-sm btn-light me-3" href="javascript:void(0)"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#meetingDetails_{{ $meeting->id }}">
-                                                    <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a class="btn btn-sm btn-light" href="javascript:void(0)"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#meetingEdit_{{ $meeting->id }}">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </a>
+                                                        <a class="btn btn-sm btn-light" href="javascript:void(0)"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#meetingEdit_{{ $meeting->id }}">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </a>
 
-                                                {{-- Meeting Details Modal --}}
-                                                <div class="modal fade"
-                                                    id="meetingDetails_{{ $meeting->id }}" tabindex="-1"
-                                                    aria-labelledby="meetingDetailsLabel_{{ $meeting->id }}"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title"
-                                                                    id="meetingDetailsLabel_{{ $meeting->id }}">
-                                                                    Meeting Details
-                                                                </h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <h3 class="mb-3 fw-bold">{{ $meeting->title }}
-                                                                </h3>
-                                                                <p><strong>Date:</strong>
-                                                                    {{ $meeting->date->format('l, F j, Y') }}
-                                                                </p>
-                                                                <p><strong>Time:</strong>
-                                                                    {{ $meeting->start_time->format('h:i A') }}
-                                                                    -
-                                                                    {{ $meeting->end_time->format('h:i A') }}
-                                                                </p>
-                                                                <p><strong>Type:</strong> {{ $meeting->type }}
-                                                                </p>
-                                                                <p><strong>Lead By:</strong>
-                                                                    <a href="#"
-                                                                        class="text-primary opacity-75-hover fw-semibold">
-                                                                        {{ $meeting->leader->name ?? 'N/A' }}
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button"
-                                                                    class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close</button>
+                                                        {{-- Meeting Details Modal --}}
+                                                        <div class="modal fade"
+                                                            id="meetingDetails_{{ $meeting->id }}" tabindex="-1"
+                                                            aria-labelledby="meetingDetailsLabel_{{ $meeting->id }}"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title"
+                                                                            id="meetingDetailsLabel_{{ $meeting->id }}">
+                                                                            Meeting Details
+                                                                        </h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <h3 class="mb-3 fw-bold">{{ $meeting->title }}
+                                                                        </h3>
+                                                                        <p><strong>Date:</strong>
+                                                                            {{ $meeting->date->format('l, F j, Y') }}
+                                                                        </p>
+                                                                        <p><strong>Time:</strong>
+                                                                            {{ $meeting->start_time->format('h:i A') }}
+                                                                            -
+                                                                            {{ $meeting->end_time->format('h:i A') }}
+                                                                        </p>
+                                                                        <p><strong>Type:</strong> {{ $meeting->type }}
+                                                                        </p>
+                                                                        <p><strong>Lead By:</strong>
+                                                                            <a href="#"
+                                                                                class="text-primary opacity-75-hover fw-semibold">
+                                                                                {{ $meeting->leader->name ?? 'N/A' }}
+                                                                            </a>
+                                                                        </p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button"
+                                                                            class="btn btn-secondary"
+                                                                            data-bs-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
 
-                                                {{-- Meeting Edit Modal --}}
-                                                <div class="modal fade" id="meetingEdit_{{ $meeting->id }}"
-                                                    tabindex="-1"
-                                                    aria-labelledby="meetingEditLabel_{{ $meeting->id }}"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog modal-lg">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title"
-                                                                    id="meetingEditLabel_{{ $meeting->id }}">
-                                                                    Edit Meeting: {{ $meeting->title }}
-                                                                </h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal"></button>
+                                                        {{-- Meeting Edit Modal --}}
+                                                        <div class="modal fade" id="meetingEdit_{{ $meeting->id }}"
+                                                            tabindex="-1"
+                                                            aria-labelledby="meetingEditLabel_{{ $meeting->id }}"
+                                                            aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title"
+                                                                            id="meetingEditLabel_{{ $meeting->id }}">
+                                                                            Edit Meeting: {{ $meeting->title }}
+                                                                        </h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"></button>
+                                                                    </div>
+                                                                    <form
+                                                                        action="{{ route('admin.staff-meetings.update', $meeting->id) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        @method('PUT')
+                                                                        <div class="modal-body">
+                                                                            <div class="mb-4 row">
+                                                                                <div class="col-md-12">
+                                                                                    <label class="form-label">Meeting
+                                                                                        Title</label>
+                                                                                    <input type="text"
+                                                                                        name="title"
+                                                                                        class="form-control" required
+                                                                                        value="{{ $meeting->title }}">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="mb-4 row">
+                                                                                <div class="col-md-6">
+                                                                                    <label class="form-label">Lead
+                                                                                        By</label>
+                                                                                    <select name="lead_by"
+                                                                                        data-control="select2"
+                                                                                        data-allow-clear="true"
+                                                                                        class="form-select" required>
+                                                                                        <option value="">Select
+                                                                                            Leader</option>
+                                                                                        {{-- Assuming $users is available and we check the lead_by ID --}}
+                                                                                        @foreach ($users as $user)
+                                                                                            <option
+                                                                                                value="{{ $user->id }}"
+                                                                                                {{ $user->id == $meeting->lead_by ? 'selected' : '' }}>
+                                                                                                {{ $user->name }}
+                                                                                            </option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <label class="form-label">Meeting
+                                                                                        Type</label>
+                                                                                    <select name="type"
+                                                                                        data-control="select2"
+                                                                                        data-allow-clear="true"
+                                                                                        class="form-select" required>
+                                                                                        <option value="office"
+                                                                                            {{ $meeting->type == 'office' ? 'selected' : '' }}>
+                                                                                            In Office</option>
+                                                                                        <option value="out_of_office"
+                                                                                            {{ $meeting->type == 'out_of_office' ? 'selected' : '' }}>
+                                                                                            Out Of Office</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="mb-4 row">
+                                                                                <div class="col-md-4">
+                                                                                    <label
+                                                                                        class="form-label">Date</label>
+                                                                                    <input type="date"
+                                                                                        name="date"
+                                                                                        class="form-control" required
+                                                                                        value="{{ $meeting->date->format('Y-m-d') }}">
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <label class="form-label">Start
+                                                                                        Time</label>
+                                                                                    <input type="time"
+                                                                                        name="start_time"
+                                                                                        class="form-control" required
+                                                                                        value="{{ $meeting->start_time->format('H:i') }}">
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <label class="form-label">End
+                                                                                        Time</label>
+                                                                                    <input type="time"
+                                                                                        name="end_time"
+                                                                                        class="form-control" required
+                                                                                        value="{{ $meeting->end_time->format('H:i') }}">
+                                                                                </div>
+                                                                            </div>
+                                                                            {{-- Add other input fields (date, type, times, participants) here --}}
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn btn-secondary"
+                                                                                data-bs-dismiss="modal">Cancel</button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-primary">Update</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
                                                             </div>
-                                                            <form
-                                                                action="{{ route('admin.staff-meetings.update', $meeting->id) }}"
-                                                                method="POST">
-                                                                @csrf
-                                                                @method('PUT')
-                                                                <div class="modal-body">
-                                                                    <div class="mb-4 row">
-                                                                        <div class="col-md-12">
-                                                                            <label class="form-label">Meeting
-                                                                                Title</label>
-                                                                            <input type="text"
-                                                                                name="title"
-                                                                                class="form-control" required
-                                                                                value="{{ $meeting->title }}">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="mb-4 row">
-                                                                        <div class="col-md-6">
-                                                                            <label class="form-label">Lead
-                                                                                By</label>
-                                                                            <select name="lead_by"
-                                                                                data-control="select2"
-                                                                                data-allow-clear="true"
-                                                                                class="form-select" required>
-                                                                                <option value="">Select
-                                                                                    Leader</option>
-                                                                                {{-- Assuming $users is available and we check the lead_by ID --}}
-                                                                                @foreach ($users as $user)
-                                                                                <option
-                                                                                    value="{{ $user->id }}"
-                                                                                    {{ $user->id == $meeting->lead_by ? 'selected' : '' }}>
-                                                                                    {{ $user->name }}
-                                                                                </option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <label class="form-label">Meeting
-                                                                                Type</label>
-                                                                            <select name="type"
-                                                                                data-control="select2"
-                                                                                data-allow-clear="true"
-                                                                                class="form-select" required>
-                                                                                <option value="office"
-                                                                                    {{ $meeting->type == 'office' ? 'selected' : '' }}>
-                                                                                    In Office</option>
-                                                                                <option value="out_of_office"
-                                                                                    {{ $meeting->type == 'out_of_office' ? 'selected' : '' }}>
-                                                                                    Out Of Office</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="mb-4 row">
-                                                                        <div class="col-md-4">
-                                                                            <label
-                                                                                class="form-label">Date</label>
-                                                                            <input type="date"
-                                                                                name="date"
-                                                                                class="form-control" required
-                                                                                value="{{ $meeting->date->format('Y-m-d') }}">
-                                                                        </div>
-                                                                        <div class="col-md-4">
-                                                                            <label class="form-label">Start
-                                                                                Time</label>
-                                                                            <input type="time"
-                                                                                name="start_time"
-                                                                                class="form-control" required
-                                                                                value="{{ $meeting->start_time->format('H:i') }}">
-                                                                        </div>
-                                                                        <div class="col-md-4">
-                                                                            <label class="form-label">End
-                                                                                Time</label>
-                                                                            <input type="time"
-                                                                                name="end_time"
-                                                                                class="form-control" required
-                                                                                value="{{ $meeting->end_time->format('H:i') }}">
-                                                                        </div>
-                                                                    </div>
-                                                                    {{-- Add other input fields (date, type, times, participants) here --}}
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button"
-                                                                        class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Cancel</button>
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary">Update</button>
-                                                                </div>
-                                                            </form>
                                                         </div>
-                                                    </div>
-                                                </div>
 
+                                                    </div>
+                                                @empty
+                                                    <div class="py-5 text-center">
+                                                        <p class="text-gray-500">No meetings scheduled for
+                                                            {{ $day['carbon_date']->format('l, M d') }}.
+                                                        </p>
+                                                    </div>
+                                                @endforelse
                                             </div>
-                                            @empty
-                                            <div class="py-5 text-center">
-                                                <p class="text-gray-500">No meetings scheduled for
-                                                    {{ $day['carbon_date']->format('l, M d') }}.
-                                                </p>
-                                            </div>
-                                            @endforelse
-                                        </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -843,7 +857,7 @@
                             <div class="tab-pane fade" id="notice" role="tabpanel" aria-labelledby="notice">
                                 <div class="card card-flush h-lg-100">
                                     <div class="pt-3 card-body p-9">
-                                        <div class="table-responsive">
+                                        {{-- <div class="table-responsive">
                                             <ul class="ms-0 ps-0" style="list-style-type: none">
                                                 @foreach ($notices as $notice)
                                                 <li class="mb-3 d-flex justify-content-between align-items-center">
@@ -867,7 +881,65 @@
                                                 @endforeach
 
                                             </ul>
-                                        </div>
+                                        </div> --}}
+                                        @forelse ($notices as $notice)
+                                            <div class="mb-6 d-flex align-items-center">
+                                                <span data-kt-element="bullet"
+                                                    class="bullet bullet-vertical d-flex align-items-center min-h-70px mh-100 me-4 bg-success"></span>
+
+                                                <div class="flex-grow-1 me-5">
+                                                    <div class="text-gray-800 fw-semibold fs-4">
+                                                        {{ $notice->title }}
+                                                    </div>
+
+                                                    <div class="text-gray-700 fw-semibold fs-6">
+                                                        <i class="fa-solid fa-calendar-days me-3"></i>
+                                                        {{ $notice->created_at->format('d M Y') }}
+                                                    </div>
+                                                </div>
+
+                                                <a class="btn btn-sm btn-light" href="javascript:void(0)"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#noticeDetails-{{ $notice->id }}">View</a>
+                                                {{-- noticeDetails Modal --}}
+                                                <div class="modal fade" id="noticeDetails-{{ $notice->id }}"
+                                                    tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg modal-dialog-scrollable"
+                                                        role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="modalTitleId">
+                                                                    {{ $notice->title }}
+                                                                </h5>
+                                                                <button type="button" class="btn-close bg-danger"
+                                                                    data-bs-dismiss="modal" aria-label="Close">
+                                                                    <i class="fas fa-x-marks text-danger fs-6"></i>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div>
+                                                                    <p class="mb-5">Date:
+                                                                        {{ Carbon\Carbon::parse($notice->publish_date)->format('d M, Y') }}
+                                                                    </p>
+                                                                    <p class="mb-5">{!! $notice->content !!}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger"
+                                                                    data-bs-dismiss="modal">
+                                                                    Close
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @empty
+                                            <div class="mb-6 d-flex align-items-center">
+                                                <h5 class="text-gray-500">No Notices Available</h5>
+                                            </div>
+                                        @endforelse
                                     </div>
                                 </div>
 
