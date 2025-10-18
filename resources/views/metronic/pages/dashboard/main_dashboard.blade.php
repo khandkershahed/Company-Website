@@ -140,10 +140,9 @@
         </div>
     </div>
     <div class="mt-5 row">
-        <div class="col-xl-4 min-h-100">
-            <div class="p-5 bg-white rounded-3">
-
-                <div class="py-5 mt-5 d-flex justify-content-between align-items-center">
+        <div class="col-xl-4">
+            <div class="card rounded-3 min-h-100">
+                <div class="py-4 card-header justify-content-between align-items-center">
                     <a href="javascript:void(0);" class="text-gray-800 text-hover-primary fs-3 fw-bold">My Hr Releted
                         Documents</a>
                     <div>
@@ -151,7 +150,7 @@
                             data-bs-target="#addDocuments">+ Add Document</button>
                     </div>
                 </div>
-                <div class="mt-5">
+                <div class="mt-3 card-body">
                     @forelse (Auth::user()->staffDocuments as $document)
                         <div class="mb-5 d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center">
@@ -528,8 +527,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 min-h-100">
-            <div class="border shadow-none card card-flush">
+        <div class="col-xl-4">
+            <div class="border shadow-none card card-flush min-h-100">
                 <div class="card-header py-7">
                     <div class="m-0">
                         <h1>Performance Tracker</h1> <br />
