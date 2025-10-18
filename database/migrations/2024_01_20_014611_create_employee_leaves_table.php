@@ -29,7 +29,7 @@ return new class extends Migration
             $table->integer('medical_leave_due_as_on')->default('0')->nullable();  //New
             $table->integer('medical_leave_availed')->default('0')->nullable();  //New
             $table->integer('medical_balance_due')->default('0')->nullable();  //New
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 

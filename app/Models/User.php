@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
+use App\Models\Admin\EmployeeLeave;
 use App\Models\Admin\RfqOrderStatus;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Admin\EmployeeCategory;
@@ -127,5 +128,9 @@ class User extends Authenticatable
     public function staffDocuments()
     {
        return $this->hasMany(StaffDocument::class, 'user_id');
+    }
+    public function employeeLeave()
+    {
+       return $this->hasOne(EmployeeLeave::class, 'employee_id');
     }
 }

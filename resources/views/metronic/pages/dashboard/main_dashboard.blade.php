@@ -15,7 +15,7 @@
 
                                     <span class="position-relative d-inline-block">
                                         <a href="javascript:void(0);"
-                                            class="mb-1 link-white opacity-75-hover fw-bold d-block">4 remaining leave
+                                            class="mb-1 link-white opacity-75-hover fw-bold d-block">{{ optional(Auth::user()->employeeLeave)->total_leave }} remaining leave
                                             days</a>
 
                                         <span
@@ -62,13 +62,13 @@
                         <div class="col-sm-6" style="border-right: 1px solid #eee;">
                             <div class="mb-3 d-flex justify-content-between align-items-center">
                                 <span class="text-gray-500 fw-semibold">Yearly Total Leave:</span>
-                                <span class="px-4 py-3 text-white bg-primary rounded-circle">24</span>
+                                <span class="px-4 py-3 text-white bg-primary rounded-circle">{{ optional(Auth::user()->employeeLeave)->total_leave }}</span>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mb-3 d-flex justify-content-between align-items-center">
                                 <span class="text-gray-500 fw-semibold">This Month Total:</span>
-                                <span class="px-4 py-3 text-white bg-primary rounded-circle">24</span>
+                                <span class="px-4 py-3 text-white bg-primary rounded-circle">{{ optional(Auth::user()->employeeLeave)->total_leave }}</span>
                             </div>
                         </div>
                     </div>
@@ -76,13 +76,13 @@
                         <div class="col-sm-6" style="border-right: 1px solid #eee;">
                             <div class="mt-3 d-flex justify-content-between align-items-center">
                                 <span class="text-gray-500 fw-semibold">This Year Taken:</span>
-                                <span class="px-4 py-3 text-white bg-primary rounded-circle">24</span>
+                                <span class="px-4 py-3 text-white bg-primary rounded-circle">{{ optional(Auth::user()->employeeLeave)->casual_leave_availed + optional(Auth::user()->employeeLeave)->earned_leave_availed + optional(Auth::user()->employeeLeave)->medical_leave_availed }}</span>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mt-3 d-flex justify-content-between align-items-center">
                                 <span class="text-gray-500 fw-semibold">This Month Taken:</span>
-                                <span class="px-4 py-3 text-white bg-primary rounded-circle">24</span>
+                                <span class="px-4 py-3 text-white bg-primary rounded-circle">0</span>
                             </div>
                         </div>
                     </div>
