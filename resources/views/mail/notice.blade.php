@@ -21,7 +21,7 @@
                             <a href="https://www.ngenitltd.com/" target="_blank"
                                 data-saferedirecturl="https://www.google.com/url?q=https://www.ngenitltd.com/&amp;source=gmail&amp;ust=1683110822015000&amp;usg=AOvVaw1oh2knrZ8dutUp_6pTWSeQ">
                                 <img src="https://www.ngenitltd.com/upload/logoimage/1764773615798059.png"
-                                    height="45px" width="110px" alt="NgenIt" border="0" class="CToWUd"
+                                    height="45px" width="110px" alt="" border="0" class="CToWUd"
                                     data-bit="iit">
                             </a>
                         </div>

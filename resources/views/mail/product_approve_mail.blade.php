@@ -19,7 +19,7 @@
                         <a href="https://www.ngenitltd.com/" target="_blank"
                             data-saferedirecturl="https://www.google.com/url?q=https://www.ngenitltd.com/&amp;source=gmail&amp;ust=1683110822015000&amp;usg=AOvVaw1oh2knrZ8dutUp_6pTWSeQ">
                             <img src="http://ngenitltd.com/upload/logoimage/1764773615798059.png"
-                              height="70px" width="130px"  alt="NgenIt" border="0" class="CToWUd" data-bit="iit">
+                              height="70px" width="130px"  alt="" border="0" class="CToWUd" data-bit="iit">
                         </a>
                     </td>
 

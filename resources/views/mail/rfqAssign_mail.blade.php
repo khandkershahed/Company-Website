@@ -62,7 +62,7 @@
                                 <tr>
                                     <td align="left" style="vertical-align:top;">
                                         <a href="https://ngenitltd.com" target="_blank">
-                                            <img src="{{ asset('images/NGen-Logo-white.png') }}" alt="NGEN IT"
+                                            <img src="{{ asset('images/NGen-Logo-white.png') }}" alt=""
                                                 style="display:block; max-width:110px; height:auto;">
                                         </a>
                                     </td>

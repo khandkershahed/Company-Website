@@ -17,7 +17,7 @@
                     <tr>
                         <td>
                             <a href="https://ngenitltd.com">
-                                <img src="{{ asset('images/NGen-Logo-white.png') }}" alt="Ngen IT" style="max-width:110px;height:auto;display:block;">
+                                <img src="{{ asset('images/NGen-Logo-white.png') }}" alt="" style="max-width:110px;height:auto;display:block;">
                             </a>
                         </td>
                         <td style="font-size:24px;font-weight:bold;text-align:right;">{{$data['quotation_title']}}</td>

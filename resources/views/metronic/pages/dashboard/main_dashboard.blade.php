@@ -4,7 +4,6 @@
             <div class="border shadow-none tns rounded-2" style="direction: ltr">
                 <div data-tns="true" data-tns-nav-position="bottom" data-tns-mouse-drag="true" data-tns-controls="false"
                     data-tns-speed="2000">
-                    <!-- Items -->
                     <div class="shadow-none card card-flush h-100"
                         style="background-image: linear-gradient(to top, #296088, #003B65);">
                         <div class="card-header">
@@ -141,7 +140,7 @@
         </div>
     </div>
     <div class="mt-5 row">
-        <div class="col-xl-4">
+        <div class="col-xl-4 min-h-100">
             <div class="p-5 bg-white rounded-3">
 
                 <div class="py-5 mt-5 d-flex justify-content-between align-items-center">
@@ -529,7 +528,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-4">
+        <div class="col-xl-4 min-h-100">
             <div class="border shadow-none card card-flush">
                 <div class="card-header py-7">
                     <div class="m-0">
