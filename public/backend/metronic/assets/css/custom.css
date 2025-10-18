@@ -56,6 +56,16 @@
     top: 48px;
 }
 @media (max-width: 600px) {
+    .mobile-card{
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100%;
+    }
+    .dataTables_length{
+        display: none !important;
+    }
     #clock,
     .breadcrumb,
     .fa-file {
