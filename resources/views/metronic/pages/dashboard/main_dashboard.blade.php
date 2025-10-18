@@ -853,6 +853,7 @@
         </div>
     @endif
 
+    @include('metronic.pages.attendance.partials.leave_modal')
 
     @push('scripts')
     @endpush
