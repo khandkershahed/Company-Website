@@ -5,10 +5,10 @@
             <div class="col-lg-9">
                 <div class="row">
                     <div class="col-xl-4 col-md-6">
-                        <div class="border shadow-none card card-flush min-h-100" style="background-image: linear-gradient(to top, #296088, #003B65);">
-                            <div class="p-0 card-body">
-                                <div class="d-flex flex-stack justify-content-between">
-                                    <div class="p-8 d-flex align-items-center me-3 rounded-3">
+                        <div class="mb-5 border shadow-none card card-flush min-h-100 mb-lg-0" style="background-image: linear-gradient(to top, #296088, #003B65);">
+                            <div class="p-5 card-body">
+                                <div class="pt-1 d-flex flex-stack justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center rounded-3">
                                         <a href="">
                                             <span class="p-3 bg-light-primary rounded-3 me-3"><i
                                                     class="fa-solid text-primary fa-clipboard-user fs-3"
@@ -22,16 +22,16 @@
                                         </div>
 
                                     </div>
-                                    <div>
-                                        <div class="d-flex justify-content-between">
-                                            <span class="pb-2 text-white main_text_color fw-bold">Todays Presents</span>
-                                            <span class="px-4 text-white fw-semibold">
+                                    <div class="me-4">
+                                        <div class="px-3 py-2 mb-3 bg-white d-flex rounded-1 justify-content-between">
+                                            <span class="text-black main_text_color fw-bold">Todays Presents</span>
+                                            <span class="text-black ps-4 fw-semibold">
                                                 {{ $attendances->count() }}
                                             </span>
                                         </div>
-                                        <div class="d-flex justify-content-between">
-                                            <span class="pb-2 text-white main_text_color fw-bold">Todays Absents</span>
-                                            <span class="px-4 text-white fw-semibold text-end">
+                                        <div class="px-3 py-2 bg-white d-flex rounded-1 justify-content-between">
+                                            <span class="text-black main_text_color fw-bold">Todays Absents</span>
+                                            <span class="text-black ps-4 fw-semibold">
                                                 {{ 12 - $attendances->count() }}
                                             </span>
                                         </div>
@@ -43,14 +43,14 @@
                     <div class="col-xl-4">
                         @if(empty($tasks) || $tasks['total'] == 0)
                         {{-- Coming Soon Placeholder --}}
-                        <div class="py-10 text-center border shadow-none card card-flush">
+                        <div class="my-5 text-center border shadow-none p-15 card card-flush my-lg-0">
                             <h4 class="mb-0 text-gray-600 fw-semibold">Coming Soon 🚧</h4>
                         </div>
                         @else
                         {{-- Task Card --}}
                         <div class="border shadow-none card card-flush">
-                            <div class="p-0 card-body">
-                                <div class="d-flex flex-stack justify-content-between">
+                            <div class="p-5 card-body">
+                                <div class="pt-1 d-flex flex-stack justify-content-between align-items-center">
                                     <div class="p-8 d-flex align-items-center me-3 w-50 rounded-3">
                                         <a href="">
                                             <span class="p-3 bg-light-primary rounded-3 me-3">
@@ -88,10 +88,10 @@
                         @endif
                     </div>
                     <div class="col-xl-4 col-md-6">
-                        <div class="border shadow-none card card-flush min-h-100" style="background-image: linear-gradient(to top, #296088, #003B65);">
-                            <div class="p-0 card-body">
-                                <div class="d-flex flex-stack justify-content-between">
-                                    <div class="p-8 d-flex align-items-center me-3 w-50 rounded-3">
+                        <div class="mb-5 border shadow-none card card-flush min-h-100 mb-lg-0" style="background-image: linear-gradient(to top, #296088, #003B65);">
+                            <div class="p-5 card-body">
+                                <div class="pt-1 d-flex flex-stack justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center me-3 w-50 rounded-3">
                                         <a href="">
                                             <span class="p-3 bg-light-primary rounded-3 me-3">
                                                 <i class="fa-solid text-primary fa-bell fs-3"
@@ -109,17 +109,17 @@
                                     $nunreadCount = Auth::user()->unreadNotifications()->count();
                                     @endphp
                                     <div class="flex-column d-flex w-50">
-                                        <div class="d-flex align-items-center justify-content-between pe-3">
-                                            <span class="text-white fw-semibold">
+                                        <div class="px-3 py-2 mb-3 bg-white d-flex rounded-1 justify-content-between">
+                                            <span class="text-black fw-semibold">
                                                 Total</span>
-                                            <span class="px-2 text-white fw-semibold ms-3 rounded-2">
+                                            <span class="text-black fw-semibold ms-3 rounded-2">
                                                 {{ $ncount }}
                                             </span>
                                         </div>
-                                        <div class="pt-2 d-flex align-items-center justify-content-between pe-3">
-                                            <span class="text-white fw-semibold">
+                                        <div class="px-3 py-2 bg-white d-flex rounded-1 justify-content-between">
+                                            <span class="text-black fw-semibold">
                                                 Unread</span>
-                                            <span class="px-2 text-white fw-semibold ms-3 rounded-2">
+                                            <span class="px-2 text-black fw-semibold ms-3 rounded-2">
                                                 {{ $nunreadCount }}
                                             </span>
                                         </div>
@@ -130,27 +130,27 @@
                     </div>
                     <div class="col-xl-12">
                         <div class="mt-5 border shadow-none card">
-                            <div class="pt-4 bg-white border-0 card-header align-items-center">
-                                <h1 class="card-title">
+                            <div class="pt-4 bg-white border-0 card-header d-flex justify-content-between align-items-center">
+                                <h1 class="text-center card-title text-lg-start mobile-card">
                                     Attendace &amp; Leave History
                                 </h1>
                                 <!-- Tabs -->
                                 <div>
                                     <ul class="nav nav-pills nav-pills-custom d-flex justify-content-center align-items-center w-100" id="attendanceTabs" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <a class="p-3 mt-5 overflow-hidden nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0 active" id="today-tab" data-bs-toggle="tab" href="#allAttendance" role="tab"
+                                        <li class="mt-0 nav-item mt-lg-auto" role="presentation">
+                                            <a class="p-3 mt-2 overflow-hidden mt-lg-5 nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0 active" id="today-tab" data-bs-toggle="tab" href="#allAttendance" role="tab"
                                                 aria-controls="allAttendance" aria-selected="true">
                                                 Today Attendances
                                             </a>
                                         </li>
-                                        <li class="nav-item" role="presentation">
-                                            <a class="p-3 mt-5 overflow-hidden nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0" id="leave-tab" data-bs-toggle="tab" href="#allLeave" role="tab"
+                                        <li class="mt-0 nav-item mt-lg-auto" role="presentation">
+                                            <a class="p-3 mt-2 overflow-hidden mt-lg-5 nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0" id="leave-tab" data-bs-toggle="tab" href="#allLeave" role="tab"
                                                 aria-controls="allLeave" aria-selected="false">
                                                 Leave
                                             </a>
                                         </li>
-                                        <li class="nav-item" role="presentation">
-                                            <a class="p-3 mt-5 overflow-hidden nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0" id="month-tab" data-bs-toggle="tab" href="#allMovement" role="tab"
+                                        <li class="mt-0 nav-item mt-lg-auto" role="presentation">
+                                            <a class="p-3 mt-2 overflow-hidden mt-lg-5 nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0" id="month-tab" data-bs-toggle="tab" href="#allMovement" role="tab"
                                                 aria-controls="allMovement" aria-selected="false">
                                                 Month Wise Attendances
                                             </a>
@@ -558,8 +558,8 @@
                 </div>
             </div>
             <div class="col-lg-3">
-                <div class="p-4 border shadow-none card">
-                    <div class="p-3 border-0 card-header align-items-center">
+                <div class="p-4 mt-5 border shadow-none card w-100 mt-lg-0">
+                    <div class="p-3 border-0 card-header align-items-center w-100 mobile-card">
                         <h1 class="mb-0">Today's Schedule</h1>
                         <p class="mb-0 text-gray-400">
                             Check Your Shedule from here
