@@ -1,26 +1,26 @@
 {{-- resources/views/partials/leave_table.blade.php --}}
 <div class="card">
-    <div class="px-2 card-body hover-scroll-overlay-y" style="height: 450px">
+    <div class="px-2 pt-0 card-body hover-scroll-overlay-y" style="height: 450px">
         <table class="table border table-striped gs-7 rounded-3">
             <thead>
                 @if (Route::currentRouteName() === 'admin.hrDashboard.index' || Route::currentRouteName() === 'hr-and-admin.index')
                     <tr class="text-gray-800 fw-bold fs-6 px-7">
-                        <th width="12%">Type</th>
-                        <th width="12%">Staff</th>
-                        <th width="20%">Off Day</th>
-                        <th width="12%">Job Status</th>
-                        <th width="12%">Status</th>
-                        <th width="18%">Substitute</th>
-                        <th width="12%" class="text-center">Action</th>
+                        <th>Type</th>
+                        <th>Staff</th>
+                        <th>Off Day</th>
+                        <th>Job Status</th>
+                        <th width="20%">Status</th>
+                        <th>Substitute</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 @else
                     <tr class="text-gray-800 fw-bold fs-6 px-7">
-                        <th width="15%">Type</th>
-                        <th width="22%">Off Day</th>
-                        <th width="15%">Job Status</th>
-                        <th width="13%">Status</th>
-                        <th width="20%">Substitute</th>
-                        <th width="15%" class="text-center">Action</th>
+                        <th>Type</th>
+                        <th>Off Day</th>
+                        <th>Job Status</th>
+                        <th width="20%">Status</th>
+                        <th>Substitute</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 @endif
             </thead>
@@ -58,7 +58,7 @@
                         <td>{{ optional($leave->substitute)->name ?? '—' }}</td>
                         <td class="text-center">
                             <a href="javascript:void(0)"
-                                class="btn btn-sm btn-icon btn-primary btn-active-color-primary mb-3"
+                                class="mb-3 btn btn-sm btn-icon btn-primary btn-active-color-primary"
                                 data-bs-toggle="modal" data-bs-target="#showLeaveApplication_{{ $leave->id }}"
                                 data-id="{{ $leave->id }}" title="Show Application">
                                 <i class="text-white fa-solid fa-eye fs-6"></i>
@@ -72,7 +72,7 @@
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header bg-primary text-white">
+                                        <div class="text-white modal-header bg-primary">
                                             <h5 class="modal-title">Leave Application Details</h5>
                                             <button type="button" class="btn-close btn-close-white"
                                                 data-bs-dismiss="modal" aria-label="Close"></button>
@@ -106,31 +106,31 @@
 
                                             <!-- Signatures -->
                                             <div class="row">
-                                                <div class="col-md-3 text-center">
+                                                <div class="text-center col-md-3">
                                                     <p>Substitute</p>
                                                     <img src="{{ asset('storage/' . $leave->substitute_signature) }}"
                                                         width="100" alt="Sub Signature">
-                                                    <p class="fw-bold mt-2">
+                                                    <p class="mt-2 fw-bold">
                                                         {{ optional($leave->substitute)->name ?? '—' }}</p>
                                                 </div>
-                                                <div class="col-md-3 text-center">
+                                                <div class="text-center col-md-3">
                                                     <p>Supervisor</p>
                                                     <img src="{{ asset('storage/' . $leave->supervisor_signature) }}"
                                                         width="100" alt="Sup Signature">
-                                                    <p class="fw-bold mt-2">
+                                                    <p class="mt-2 fw-bold">
                                                         {{ optional($leave->supervisor)->name ?? '—' }}</p>
                                                 </div>
-                                                <div class="col-md-3 text-center">
+                                                <div class="text-center col-md-3">
                                                     <p>HR</p>
                                                     <img src="{{ asset('storage/' . $leave->hr_signature) }}"
                                                         width="100" alt="HR Signature">
-                                                    <p class="fw-bold mt-2">HR/Admin</p>
+                                                    <p class="mt-2 fw-bold">HR/Admin</p>
                                                 </div>
-                                                <div class="col-md-3 text-center">
+                                                <div class="text-center col-md-3">
                                                     <p>CEO</p>
                                                     <img src="{{ asset('storage/' . $leave->ceo_signature) }}"
                                                         width="100" alt="CEO Signature">
-                                                    <p class="fw-bold mt-2">CEO</p>
+                                                    <p class="mt-2 fw-bold">CEO</p>
                                                 </div>
                                             </div>
 
@@ -176,7 +176,7 @@
                             </div>
 
                             <a href="javascript:void(0);"
-                                class="btn btn-sm btn-icon btn-primary btn-active-color-primary mb-3"
+                                class="mb-3 btn btn-sm btn-icon btn-primary btn-active-color-primary"
                                 title="Edit Application" data-bs-toggle="modal"
                                 data-bs-target="#editLeaveApplication-{{ $leave->id }}">
                                 <i class="text-white fa-solid fa-pen fs-6"></i>
@@ -200,12 +200,12 @@
                                             @method('PATCH')
                                             @csrf
                                             <div class="modal-body scroll-y px-15">
-                                                <div class="card rounded-0 shadow-none border-0 mb-0">
-                                                    <div class="card-body p-0">
+                                                <div class="mb-0 border-0 shadow-none card rounded-0">
+                                                    <div class="p-0 card-body">
                                                         <div class="row text-start">
-                                                            <div class="col-lg-3 mb-5">
+                                                            <div class="mb-5 col-lg-3">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Applicant Name:
+                                                                    <label class="mb-0 form-label">Applicant Name:
                                                                         <span class="text-danger">*</span></label>
                                                                     <input type="text" name="name" disabled
                                                                         value="{{ $leave->name }}"
@@ -214,9 +214,9 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-lg-3 mb-5">
+                                                            <div class="mb-5 col-lg-3">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Type Of Leave:
+                                                                    <label class="mb-0 form-label">Type Of Leave:
                                                                         <span class="text-danger">*</span>
                                                                     </label>
                                                                     <select name="type_of_leave"
@@ -239,9 +239,9 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-3 mb-5">
+                                                            <div class="mb-5 col-lg-3">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Designation: <span
+                                                                    <label class="mb-0 form-label">Designation: <span
                                                                             class="text-danger">*</span>
                                                                     </label>
                                                                     <input type="text" name="designation"
@@ -250,9 +250,9 @@
                                                                         placeholder="Enter Your Designation" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-3 mb-5">
+                                                            <div class="mb-5 col-lg-3">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Company:</label>
+                                                                    <label class="mb-0 form-label">Company:</label>
                                                                     <input type="text" name="company"
                                                                         value="NGEN IT" disabled
                                                                         value="{{ $leave->company }}"
@@ -260,9 +260,9 @@
                                                                         placeholder="NGEN IT">
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-3 mb-5">
+                                                            <div class="mb-5 col-lg-3">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Leave Start Date:
+                                                                    <label class="mb-0 form-label">Leave Start Date:
                                                                         <span class="text-danger">*</span></label>
                                                                     <input type="date" name="leave_start_date"
                                                                         class="form-control form-control-sm"
@@ -270,9 +270,9 @@
                                                                         placeholder="Leave Start Date" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-3 mb-5">
+                                                            <div class="mb-5 col-lg-3">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Leave End Date:
+                                                                    <label class="mb-0 form-label">Leave End Date:
                                                                         <span class="text-danger">*</span></label>
                                                                     <input type="date" name="leave_end_date"
                                                                         class="form-control form-control-sm"
@@ -280,9 +280,9 @@
                                                                         placeholder="Leave End Date" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-3 mb-5">
+                                                            <div class="mb-5 col-lg-3">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Total Days: <span
+                                                                    <label class="mb-0 form-label">Total Days: <span
                                                                             class="text-danger">*</span></label>
                                                                     <input type="number" name="total_days"
                                                                         class="form-control form-control-sm"
@@ -290,9 +290,9 @@
                                                                         placeholder="Enter Total Dayes" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-3 mb-5">
+                                                            <div class="mb-5 col-lg-3">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Job Status <span
+                                                                    <label class="mb-0 form-label">Job Status <span
                                                                             class="text-danger">*</span></label>
                                                                     <input type="text" name="job_status"
                                                                         class="form-control form-control-sm"
@@ -300,9 +300,9 @@
                                                                         placeholder="Enter Job Status" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-3 mb-5">
+                                                            <div class="mb-5 col-lg-3">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Reporting On <span
+                                                                    <label class="mb-0 form-label">Reporting On <span
                                                                             class="text-danger">*</span></label>
                                                                     <input type="date" name="reporting_on"
                                                                         class="form-control form-control-sm"
@@ -310,17 +310,17 @@
                                                                         placeholder="Reporting On" required>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-6 mb-5">
+                                                            <div class="mb-5 col-lg-6">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Leave Explanation
+                                                                    <label class="mb-0 form-label">Leave Explanation
                                                                         <span class="text-danger">*</span></label>
                                                                     <textarea name="leave_explanation" class="form-control form-control-sm" id="" cols="30"
                                                                         rows="3"placeholder="Enter Leave Explanation" required>{{ $leave->leave_explanation }}</textarea>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-3 mb-5">
+                                                            <div class="mb-5 col-lg-3">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Substitute During
+                                                                    <label class="mb-0 form-label">Substitute During
                                                                         Leave <span
                                                                             class="text-danger">*</span></label>
                                                                     <select name="substitute_id"
@@ -340,17 +340,17 @@
                                                                         substitute.</div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-3 mb-5">
+                                                            <div class="mb-5 col-lg-3">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Leave
+                                                                    <label class="mb-0 form-label">Leave
                                                                         Address</label>
                                                                     <textarea name="leave_address" class="form-control form-control-sm" id="" cols="30" rows="1"
                                                                         placeholder="Leave Address">{{ $leave->leave_address }}</textarea>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-2 mb-5">
+                                                            <div class="mb-5 col-lg-2">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Is Between
+                                                                    <label class="mb-0 form-label">Is Between
                                                                         Holiday</label>
                                                                     <div class="d-flex align-items-center">
                                                                         <div class="form-check">
@@ -378,9 +378,9 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-3 mb-5">
+                                                            <div class="mb-5 col-lg-3">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Leave Contact
+                                                                    <label class="mb-0 form-label">Leave Contact
                                                                         Number</label>
                                                                     <input type="text" name="leave_contact_no"
                                                                         class="form-control form-control-sm"
@@ -388,9 +388,9 @@
                                                                         placeholder="Enter Enter Leave Contact Number">
                                                                 </div>
                                                             </div>
-                                                            <div class="col-lg-4 mb-5">
+                                                            <div class="mb-5 col-lg-4">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Include Open
+                                                                    <label class="mb-0 form-label">Include Open
                                                                         Saturday (If none
                                                                         enter: 0)</label>
                                                                     <input type="number"
@@ -400,17 +400,17 @@
                                                                         placeholder="Enter Include Open Saturday">
                                                                 </div>
                                                             </div>
-                                                            {{-- <div class="col-lg-4 mb-5">
+                                                            {{-- <div class="mb-5 col-lg-4">
                                                                     <div class="mb-7">
-                                                                        <label class="form-label mb-0">Substitute Signature <span
+                                                                        <label class="mb-0 form-label">Substitute Signature <span
                                                                                 class="text-danger">*</span></label>
                                                                         <input type="file" name="substitute_signature"
                                                                             class="form-control form-control-sm" required>
                                                                     </div>
                                                                 </div> --}}
-                                                            <div class="col-lg-12 mb-5">
+                                                            <div class="mb-5 col-lg-12">
                                                                 <div class="mb-7">
-                                                                    <label class="form-label mb-0">Applicant
+                                                                    <label class="mb-0 form-label">Applicant
                                                                         Signature</label>
                                                                     <input type="file" name="applicant_signature"
                                                                         value="{{ $leave->applicant_signature }}"

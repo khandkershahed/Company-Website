@@ -7,7 +7,7 @@
                     <div class="shadow-none card card-flush h-100"
                         style="background-image: linear-gradient(to top, #296088, #003B65);">
                         <div class="card-header">
-                            <h3 class="text-white card-title align-items-start flex-column">
+                            <h3 class="pt-4 text-white card-title align-items-start flex-column">
                                 <span class="mb-3 fw-bold fs-2x">{{ Auth::user()->name }}</span>
 
                                 <div class="text-white fs-4">
@@ -16,7 +16,7 @@
                                     <span class="position-relative d-inline-block">
                                         <a href="javascript:void(0);"
                                             class="mb-1 link-white opacity-75-hover fw-bold d-block">4 remaining leave
-                                            days</a>
+                                            days</a> </span>
 
                                         <span
                                             class="bottom-0 border-2 opacity-50 position-absolute start-0 border-body border-bottom w-100"></span>
@@ -27,7 +27,7 @@
                             </h3>
                         </div>
 
-                        <div class="card-body">
+                        <div class="mt-1 card-body">
                             <div class="row g-3 g-lg-6">
                                 <div class="col-6">
                                     <div class="p-2 bg-gray-100 bg-opacity-70 rounded-2">

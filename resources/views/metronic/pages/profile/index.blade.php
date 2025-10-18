@@ -1,9 +1,8 @@
 <x-admin-app-layout :title="'My Profile'">
     <div class="px-0 container-fluid">
-
         <div class="mb-5 shadow-sm card mb-xl-10">
             <div class="pb-0 card-body pt-9">
-                <div class="flex-wrap d-flex flex-sm-nowrap">
+                <div class="flex-wrap d-flex flex-sm-nowrap mobile-card">
                     <div class="mb-4 me-7">
                         <div class="symbol symbol-200px symbol-fixed position-relative">
                             <img src="{{ !empty($user->photo) && file_exists(public_path('storage/' . $user->photo)) ? asset('storage/' . $user->photo) : asset('https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name)) }}"
@@ -15,7 +14,7 @@
                     </div>
 
                     <div class="flex-grow-1">
-                        <div class="flex-wrap mb-2 d-flex justify-content-between align-items-start">
+                        <div class="flex-wrap mb-2 d-flex justify-content-between align-items-start mobile-card">
                             <div class="d-flex flex-column">
                                 <div class="mb-2 d-flex align-items-center">
                                     <a href="#"
@@ -44,70 +43,57 @@
                                             {{ $user->email }}
                                         </a>
                                     </div>
-                                    {{-- <div
-                                        class="px-4 py-3 mt-5 mb-3 border border-gray-300 border-dashed rounded min-w-125px me-6">
-                                        <div class="d-flex align-items-center">
-                                            <i class="ki-duotone ki-arrow-up fs-3 text-success me-2"><span
-                                                    class="path1"></span><span class="path2"></span></i>
-                                            <div class="fs-2 fw-bold counted" data-kt-countup="true"
-                                                data-kt-countup-value="4500" data-kt-countup-prefix="$"
-                                                data-kt-initialized="1">
-                                                $4,500
-                                            </div>
-                                        </div>
-
-                                        <div class="text-gray-500 fw-semibold fs-6">
-                                            Earnings
-                                        </div>
-                                    </div> --}}
                                 </div>
                             </div>
 
-                            <div class="d-flex w-75">
+                            <div class="d-flex w-100 w-lg-75">
                                 <div class="border-transparent card w-100" data-bs-theme="light"
                                     style="background-color: #1C325E;">
-                                    <div class="card-body d-flex ps-xl-15 h-125px">
-                                        <div class="m-0">
+                                    <div class="card-body d-flex ps-xl-15 h-200px align-items-center">
+                                        <div class="m-0 text-white fs-1 fw-semibold">
+                                            Welcome Back, Boss 👋
+                                            <div class="mt-2 fs-6 text-white-50">
+                                                Keep track of your progress and manage your tasks efficiently today.
+                                            </div>
                                         </div>
                                         <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/illustrations/sigma-1/17-dark.png"
-                                            class="bottom-0 position-absolute me-3 end-0 h-200px" alt="">
+                                            class="bottom-0 position-absolute me-3 end-0 h-200px d-lg-block d-none" alt="">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <!-- Tabs Nav -->
                 <ul class="border-transparent nav nav-stretch nav-line-tabs nav-line-tabs-2x fs-5 fw-bold"
                     id="supplyChainTabs" role="tablist">
                     <li class="mt-2 nav-item" role="presentation">
-                        <a class="py-5 nav-link text-active-primary ms-0 me-10 active" id="overview-tab"
+                        <a class="py-5 nav-link text-active-primary ms-0 me-0 me-lg-10 active" id="overview-tab"
                             data-bs-toggle="tab" href="#overview" role="tab" aria-controls="overview"
                             aria-selected="true">
                             Overview
                         </a>
                     </li>
                     <li class="mt-2 nav-item" role="presentation">
-                        <a class="py-5 nav-link text-active-primary ms-0 me-10" id="documents-tab" data-bs-toggle="tab"
+                        <a class="py-5 nav-link text-active-primary ms-0 me-0 me-lg-10" id="documents-tab" data-bs-toggle="tab"
                             href="#documents" role="tab" aria-controls="documents" aria-selected="false">
                             Documents
                         </a>
                     </li>
                     <li class="mt-2 nav-item" role="presentation">
-                        <a class="py-5 nav-link text-active-primary ms-0 me-10" id="security-tab" data-bs-toggle="tab"
+                        <a class="py-5 nav-link text-active-primary ms-0 me-0 me-lg-10" id="security-tab" data-bs-toggle="tab"
                             href="#security" role="tab" aria-controls="security" aria-selected="false">
                             Security
                         </a>
                     </li>
                     <li class="mt-2 nav-item" role="presentation">
-                        <a class="py-5 nav-link text-active-primary ms-0 me-10" id="attendance-tab" data-bs-toggle="tab"
+                        <a class="py-5 nav-link text-active-primary ms-0 me-0 me-lg-10" id="attendance-tab" data-bs-toggle="tab"
                             href="#attendance" role="tab" aria-controls="attendance" aria-selected="false">
                             Attendance
                         </a>
                     </li>
                     <li class="mt-2 nav-item" role="presentation">
-                        <a class="py-5 nav-link text-active-primary ms-0 me-10" id="leaves-tab" data-bs-toggle="tab"
+                        <a class="py-5 nav-link text-active-primary ms-0 me-0 me-lg-10" id="leaves-tab" data-bs-toggle="tab"
                             href="#leaves" role="tab" aria-controls="leaves" aria-selected="false">
                             Leaves
                         </a>
@@ -115,12 +101,11 @@
                 </ul>
             </div>
         </div>
-
         <!-- Tabs Content -->
         <div class="mt-5 tab-content" id="supplyChainTabsContent">
             <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                 <div class="mb-5 shadow-sm card mb-xl-10" id="kt_profile_details_view">
-                    <div class="cursor-pointer card-header">
+                    <div class="py-5 cursor-pointer card-header">
                         <div class="m-0 card-title">
                             <h3 class="m-0 fw-bold">Profile Details</h3>
                         </div>
@@ -203,10 +188,10 @@
                                                                 data-placeholder="Choose Employee Category">
                                                                 <option></option>
                                                                 @foreach ($employeeCategories as $employeeCategory)
-                                                                    <option value="{{ $employeeCategory->id }}"
-                                                                        @selected($user->category_id == $employeeCategory->id)>
-                                                                        {{ $employeeCategory->name }}
-                                                                    </option>
+                                                                <option value="{{ $employeeCategory->id }}"
+                                                                    @selected($user->category_id == $employeeCategory->id)>
+                                                                    {{ $employeeCategory->name }}
+                                                                </option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -251,9 +236,9 @@
                                                                 data-enable-filtering="true"
                                                                 data-enable-case-insensitive-filtering="true" required>
                                                                 @php
-                                                                    $employeeIds = isset($user->department)
-                                                                        ? json_decode($user->department, true)
-                                                                        : [];
+                                                                $employeeIds = isset($user->department)
+                                                                ? json_decode($user->department, true)
+                                                                : [];
                                                                 @endphp
                                                                 <option value="admin" @selected(is_array($employeeIds) && in_array('admin', $employeeIds))>
                                                                     Admin
@@ -314,10 +299,10 @@
                                                                 data-allow-clear="true" required>
                                                                 <option></option>
                                                                 @foreach ($employees as $supervisor)
-                                                                    <option value="{{ $supervisor->id }}"
-                                                                        @selected(old('supervisor_id', $user->supervisor_id) == $supervisor->id)>
-                                                                        {{ $supervisor->name }}
-                                                                    </option>
+                                                                <option value="{{ $supervisor->id }}"
+                                                                    @selected(old('supervisor_id', $user->supervisor_id) == $supervisor->id)>
+                                                                    {{ $supervisor->name }}
+                                                                </option>
                                                                 @endforeach
                                                             </select>
                                                             <div class="invalid-feedback"> Please Enter Supervisor.
@@ -393,12 +378,12 @@
                                 <div class="mb-7">
                                     <label class="fw-semibold text-muted form-label d-block">Departments</label>
                                     @if (!empty($user->department) && is_array(json_decode($user->department, true)))
-                                        @foreach (json_decode($user->department, true) as $dept)
-                                            <span
-                                                class="mb-1 badge badge-light-primary me-1 text-capitalize">{{ $dept }}</span>
-                                        @endforeach
+                                    @foreach (json_decode($user->department, true) as $dept)
+                                    <span
+                                        class="mb-1 badge badge-light-primary me-1 text-capitalize">{{ $dept }}</span>
+                                    @endforeach
                                     @else
-                                        <span class="text-muted">N/A</span>
+                                    <span class="text-muted">N/A</span>
                                     @endif
                                 </div>
 
@@ -410,9 +395,9 @@
                                         <span
                                             class="text-gray-800 fw-bold fs-6 me-2">{{ $user->phone ?? 'N/A' }}</span>
                                         @if ($user->email_verified_at)
-                                            <span class="badge badge-success">Verified</span>
+                                        <span class="badge badge-success">Verified</span>
                                         @else
-                                            <span class="badge badge-secondary">Unverified</span>
+                                        <span class="badge badge-secondary">Unverified</span>
                                         @endif
                                     </div>
                                 </div>
@@ -521,7 +506,7 @@
                                 <table
                                     class="table border data_table table-striped table-row-bordered gy-5 gs-7 rounded-3 dataTable">
                                     <thead class="text-gray-500 fs-7">
-                                        <tr class="text-gray-800 fw-bold fs-6 px-5">
+                                        <tr class="px-5 text-gray-800 fw-bold fs-6">
                                             <th width="10%">Sl</th>
                                             <th width="65%">Document Name</th>
                                             <th width="15%">Download</th>
@@ -531,27 +516,27 @@
                                     <tbody class="fs-6">
 
                                         @foreach ($user->staffDocuments as $document)
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>
-                                                    {{ $document->document_name }}
-                                                </td>
-                                                <td>
-                                                    <a href="{{ asset('storage/' . $document->document_file) }}"
-                                                        target="_blank"
-                                                        class="p-2 me-3 btn btn-icon btn-light btn-sm rounded-circle">
-                                                        <i class="fas fa-download fs-4" aria-hidden="true"></i>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('admin.staff-documents.destroy', $document->id) }}"
-                                                        target="_blank"
-                                                        class="delete p-2 btn btn-icon btn-light btn-sm rounded-circle">
-                                                        <i class="fas fa-trash-alt fs-4 text-danger"
-                                                            aria-hidden="true"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>
+                                                {{ $document->document_name }}
+                                            </td>
+                                            <td>
+                                                <a href="{{ asset('storage/' . $document->document_file) }}"
+                                                    target="_blank"
+                                                    class="p-2 me-3 btn btn-icon btn-light btn-sm rounded-circle">
+                                                    <i class="fas fa-download fs-4" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('admin.staff-documents.destroy', $document->id) }}"
+                                                    target="_blank"
+                                                    class="p-2 delete btn btn-icon btn-light btn-sm rounded-circle">
+                                                    <i class="fas fa-trash-alt fs-4 text-danger"
+                                                        aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
                                         @endforeach
 
                                     </tbody>
@@ -565,7 +550,7 @@
             <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
 
                 <div class="card">
-                    <div class="card-header py-4">
+                    <div class="py-4 card-header">
                         <h4 class="mb-3 fw-bold">Security</h4>
                     </div>
                     <div class="card-body">
@@ -576,7 +561,7 @@
                             <div class="row">
                                 <div class="col-lg-6 offset-lg-3">
                                     <div class="fv-row mb-7 fv-plugins-icon-container fv-plugins-bootstrap5-row-valid">
-                                        <label for="newpassword" class="form-label fs-6 fw-bolder mb-3">New
+                                        <label for="newpassword" class="mb-3 form-label fs-6 fw-bolder">New
                                             Password</label>
                                         <input type="password"
                                             class="form-control form-control-lg form-control-solid is-valid"
@@ -586,8 +571,8 @@
                                 </div>
                                 <div class="col-lg-6 offset-lg-3">
                                     <div
-                                        class="fv-row mb-0 fv-plugins-icon-container fv-plugins-bootstrap5-row-invalid">
-                                        <label for="confirmpassword" class="form-label fs-6 fw-bolder mb-3">Confirm
+                                        class="mb-0 fv-row fv-plugins-icon-container fv-plugins-bootstrap5-row-invalid">
+                                        <label for="confirmpassword" class="mb-3 form-label fs-6 fw-bolder">Confirm
                                             New Password</label>
                                         <input type="password"
                                             class="form-control form-control-lg form-control-solid is-invalid"
@@ -609,7 +594,7 @@
 
             <div class="tab-pane fade" id="attendance" role="tabpanel" aria-labelledby="attendance-tab">
                 <div class="card">
-                    <div class="card-header align-items-center py-2">
+                    <div class="py-2 card-header align-items-center">
                         <div>
                             <h1 class="card-title">Attendance Details</h1>
                         </div>
@@ -618,9 +603,9 @@
                                 <select class="form-select" data-control="select2" data-placeholder="Month"
                                     name="month" id="filterMonth" onchange="form.submit()">
                                     @foreach ($months as $month)
-                                        <option value="{{ $month }}" @selected($selectedMonth === $month)>
-                                            {{ $month }}
-                                        </option>
+                                    <option value="{{ $month }}" @selected($selectedMonth===$month)>
+                                        {{ $month }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </form>
@@ -632,7 +617,7 @@
                                 <table
                                     class="table border data_table table-striped table-row-bordered gy-5 gs-7 rounded-3 dataTable">
                                     <thead class="text-gray-500 fs-7">
-                                        <tr class="text-gray-800 fw-bold fs-6 px-5">
+                                        <tr class="px-5 text-gray-800 fw-bold fs-6">
                                             <th width="30%">Date</th>
                                             <th width="25%">Check In</th>
                                             <th width="25%">Check Out</th>
@@ -643,33 +628,33 @@
                                     <tbody class="fs-6">
 
                                         @foreach ($attendances as $attendance)
-                                            <tr>
-                                                <td>{{ $attendance['date'] }}</td>
+                                        <tr>
+                                            <td>{{ $attendance['date'] }}</td>
 
-                                                <td>{{ $attendance['check_in'] ?? 'N/A' }}</td>
+                                            <td>{{ $attendance['check_in'] ?? 'N/A' }}</td>
 
-                                                <td>{{ $attendance['check_out'] ?? 'N/A' }}</td>
+                                            <td>{{ $attendance['check_out'] ?? 'N/A' }}</td>
 
-                                                <td>
-                                                    @if (!empty($attendance['check_in']) && $attendance['check_in'] !== 'N/A')
-                                                        @php
-                                                            $checkIn = \Carbon\Carbon::parse($attendance['check_in']);
-                                                        @endphp
+                                            <td>
+                                                @if (!empty($attendance['check_in']) && $attendance['check_in'] !== 'N/A')
+                                                @php
+                                                $checkIn = \Carbon\Carbon::parse($attendance['check_in']);
+                                                @endphp
 
-                                                        @if ($checkIn > \Carbon\Carbon::parse('09:06:00') && $checkIn < \Carbon\Carbon::parse('10:01:00'))
-                                                            <span class="text-white badge badge-warning">L</span>
-                                                        @elseif ($checkIn >= \Carbon\Carbon::parse('10:01:00') && $checkIn < \Carbon\Carbon::parse('15:00:00'))
-                                                            <span class="text-white badge badge-danger">LL</span>
+                                                @if ($checkIn > \Carbon\Carbon::parse('09:06:00') && $checkIn < \Carbon\Carbon::parse('10:01:00'))
+                                                    <span class="text-white badge badge-warning">L</span>
+                                                    @elseif ($checkIn >= \Carbon\Carbon::parse('10:01:00') && $checkIn < \Carbon\Carbon::parse('15:00:00'))
+                                                        <span class="text-white badge badge-danger">LL</span>
                                                         @else
-                                                            <span class="text-white badge badge-success">On Time</span>
+                                                        <span class="text-white badge badge-success">On Time</span>
                                                         @endif
-                                                    @elseif ($attendance['status'] === 'Friday')
+                                                        @elseif ($attendance['status'] === 'Friday')
                                                         <span class="text-white badge badge-info">Friday</span>
-                                                    @else
+                                                        @else
                                                         <span class="text-white badge badge-danger">Absent</span>
-                                                    @endif
-                                                </td>
-                                            </tr>
+                                                        @endif
+                                            </td>
+                                        </tr>
                                         @endforeach
 
                                     </tbody>
@@ -708,28 +693,28 @@
                             {{-- Sick Leaves --}}
                             <div class="tab-pane fade show active" id="sickLeave" role="tabpanel">
                                 @include('metronic.pages.attendance.partials.leave_table', [
-                                    'leaves' => $sicks,
+                                'leaves' => $sicks,
                                 ])
                             </div>
 
                             {{-- Earned Leaves --}}
                             <div class="tab-pane fade" id="earnedLeave" role="tabpanel">
                                 @include('metronic.pages.attendance.partials.leave_table', [
-                                    'leaves' => $earneds,
+                                'leaves' => $earneds,
                                 ])
                             </div>
 
                             {{-- Casual Leaves --}}
                             <div class="tab-pane fade" id="casualLeave" role="tabpanel">
                                 @include('metronic.pages.attendance.partials.leave_table', [
-                                    'leaves' => $casuals,
+                                'leaves' => $casuals,
                                 ])
                             </div>
 
                             {{-- Pending Leaves --}}
                             <div class="tab-pane fade" id="pendingLeave" role="tabpanel">
                                 @include('metronic.pages.attendance.partials.leave_table', [
-                                    'leaves' => $pendings,
+                                'leaves' => $pendings,
                                 ])
                             </div>
 
@@ -738,66 +723,65 @@
                 </div>
             </div>
         </div>
-
     </div>
     @push('scripts')
-        <script>
-            $(document).ready(function() {
-                function validatePasswords() {
-                    const newPassword = $('#newpassword').val();
-                    const confirmPassword = $('#confirmpassword').val();
+    <script>
+        $(document).ready(function() {
+            function validatePasswords() {
+                const newPassword = $('#newpassword').val();
+                const confirmPassword = $('#confirmpassword').val();
 
-                    // Reset classes and messages
-                    $('#newpassword, #confirmpassword')
-                        .removeClass('is-valid is-invalid');
+                // Reset classes and messages
+                $('#newpassword, #confirmpassword')
+                    .removeClass('is-valid is-invalid');
 
-                    $('#newpassword').siblings('.fv-plugins-message-container').html('');
-                    $('#confirmpassword').siblings('.fv-plugins-message-container').html('');
+                $('#newpassword').siblings('.fv-plugins-message-container').html('');
+                $('#confirmpassword').siblings('.fv-plugins-message-container').html('');
 
-                    let isValid = true;
+                let isValid = true;
 
-                    // New Password Validation
-                    if (!newPassword) {
-                        $('#newpassword').addClass('is-invalid');
-                        $('#newpassword').siblings('.fv-plugins-message-container')
-                            .html('<div class="invalid-feedback d-block">Password is required.</div>');
-                        isValid = false;
-                    } else {
-                        $('#newpassword').addClass('is-valid');
-                    }
-
-                    // Confirm Password Validation
-                    if (!confirmPassword) {
-                        $('#confirmpassword').addClass('is-invalid');
-                        $('#confirmpassword').siblings('.fv-plugins-message-container')
-                            .html('<div class="invalid-feedback d-block">Please confirm your password.</div>');
-                        isValid = false;
-                    } else if (newPassword !== confirmPassword) {
-                        $('#confirmpassword').addClass('is-invalid');
-                        $('#confirmpassword').siblings('.fv-plugins-message-container')
-                            .html(
-                                '<div class="invalid-feedback d-block">The password and its confirm are not the same.</div>'
-                            );
-                        isValid = false;
-                    } else {
-                        $('#confirmpassword').addClass('is-valid');
-                    }
-
-                    return isValid;
+                // New Password Validation
+                if (!newPassword) {
+                    $('#newpassword').addClass('is-invalid');
+                    $('#newpassword').siblings('.fv-plugins-message-container')
+                        .html('<div class="invalid-feedback d-block">Password is required.</div>');
+                    isValid = false;
+                } else {
+                    $('#newpassword').addClass('is-valid');
                 }
 
-                // Validate on typing
-                $('#newpassword, #confirmpassword').on('input', function() {
-                    validatePasswords();
-                });
+                // Confirm Password Validation
+                if (!confirmPassword) {
+                    $('#confirmpassword').addClass('is-invalid');
+                    $('#confirmpassword').siblings('.fv-plugins-message-container')
+                        .html('<div class="invalid-feedback d-block">Please confirm your password.</div>');
+                    isValid = false;
+                } else if (newPassword !== confirmPassword) {
+                    $('#confirmpassword').addClass('is-invalid');
+                    $('#confirmpassword').siblings('.fv-plugins-message-container')
+                        .html(
+                            '<div class="invalid-feedback d-block">The password and its confirm are not the same.</div>'
+                        );
+                    isValid = false;
+                } else {
+                    $('#confirmpassword').addClass('is-valid');
+                }
 
-                // Validate on form submit
-                $('#securityForm').on('submit', function(e) {
-                    if (!validatePasswords()) {
-                        e.preventDefault();
-                    }
-                });
+                return isValid;
+            }
+
+            // Validate on typing
+            $('#newpassword, #confirmpassword').on('input', function() {
+                validatePasswords();
             });
-        </script>
+
+            // Validate on form submit
+            $('#securityForm').on('submit', function(e) {
+                if (!validatePasswords()) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
     @endpush
 </x-admin-app-layout>
