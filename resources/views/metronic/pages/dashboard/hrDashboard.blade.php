@@ -172,10 +172,7 @@
                                                                             <div
                                                                                 class="symbol symbol-35px symbol-circle">
                                                                                 <img alt="Pic"
-                                                                                    src="{{ !empty(optional($today_attendance->user)->photo) &&
-                                                                                    file_exists(public_path('upload/Profile/admin/' . optional($today_attendance->user)->photo))
-                                                                                        ? asset('upload/Profile/admin/' . optional($today_attendance->user)->photo)
-                                                                                        : 'https://ui-avatars.com/api/?name=' . urlencode(optional($today_attendance->user)->name) }}">
+                                                                                    src="{{ !empty(optional($today_attendance->user)->photo) && file_exists(public_path('storage/' . optional($today_attendance->user)->photo)) ? asset('storage/' . optional($today_attendance->user)->photo) : asset('https://ui-avatars.com/api/?name=' . urlencode(optional($today_attendance->user)->name)) }}">
                                                                             </div>
 
                                                                         </div>

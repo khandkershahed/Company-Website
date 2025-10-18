@@ -7,7 +7,7 @@
                         <div class="d-flex flex-stack justify-content-center align-items-center h-268px">
                             <div>
                                 <img class="img-fluid rounded-circle h-100px w-100px" style="border: 2px solid #296088;"
-                                    src="{{ asset('https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name)) }}"
+                                    src="{{ !empty(Auth::user()->photo) && file_exists(public_path('storage/' . Auth::user()->photo)) ? asset('storage/' . Auth::user()->photo) : asset('https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name)) }}"
                                     alt="">
                             </div>
                             <div class="p-8 me-3 text-start">
