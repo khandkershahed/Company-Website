@@ -680,45 +680,12 @@
                         </p>
 
                     </div>
-                    <!-- Add Notice Button -->
-<div>
-    <button type="button" class="btn btn-light rounded-pill" data-bs-toggle="modal" data-bs-target="#addNoticeModal">
-        + Add Notice
-    </button>
-</div>
-
-<!-- Add Notice Modal -->
-<div class="modal fade" id="addNoticeModal" tabindex="-1" aria-labelledby="addNoticeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addNoticeModalLabel">Add New Notice</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
-            </div>
-
-            <form action="" method="POST">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="noticeTitle" class="form-label">Title</label>
-                        <input type="text" name="title" id="noticeTitle" class="form-control" placeholder="Enter notice title" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="noticeDescription" class="form-label">Description</label>
-                        <textarea name="description" id="noticeDescription" rows="4" class="form-control" placeholder="Enter notice details" required></textarea>
+                    <div>
+                        <button class="rounded-pill btn btn-light" data-bs-toggle="modal"
+                            data-bs-target="#makeleave">+ Apply Leave</button>
                     </div>
                 </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save Notice</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-                </div>
-                {{-- <div>
+                <div>
                     <div class="px-4 mb-2 ">
                         <div class="tab-pane fade show active" id="kt_timeline_widget_3_tab_content_1"
                             role="tabpanel">
@@ -739,8 +706,37 @@
                                     </div>
 
                                     <a class="btn btn-sm btn-light" href="javascript:void(0)" data-bs-toggle="modal"
-                                        data-bs-target="#noticeDetails">View</a>
+                                        data-bs-target="#noticeDetails-{{ $notice->id }}">View</a>
                                     {{-- noticeDetails Modal --}}
+                                    <div class="modal fade" id="noticeDetails-{{ $notice->id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="modalTitleId" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg modal-dialog-scrollable"
+                                            role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalTitleId">
+                                                        {{ $notice->title }}
+                                                    </h5>
+                                                    <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <i class="fas fa-x-marks text-danger fs-6"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div>
+                                                        <p class="mb-5">Date: {{ Carbon\Carbon::parse($notice->publish_date)->format('d M, Y') }}</p>
+                                                        <p class="mb-5">{!! $notice->content !!}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger"
+                                                        data-bs-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             @empty
                                 <div class="mb-6 d-flex align-items-center">

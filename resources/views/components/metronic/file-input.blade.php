@@ -2,9 +2,8 @@
 
 <div class="row gx-1">
     <div class="col-10">
-        <input id="{{ $id ?? 'file-input' }}" type="file" class="form-control form-control-solid @error($name)is-invalid @enderror"
-            name="{{ $name }}" accept="" {{ $attributes }} onchange="previewFile(this)" />
-            {{-- name="{{ $name }}" accept="image/*" {{ $attributes }} onchange="previewFile(this)" /> --}}
+        <input id="{{ $id ?? 'file-input' }}" type="file" class="form-control @error($name)is-invalid @enderror"
+            name="{{ $name }}" accept="image/*" {{ $attributes }} onchange="previewFile(this)" />
 
         @error($name)
             <div class="invalid-feedback">
@@ -13,9 +12,8 @@
         @enderror
     </div>
     <div class="col-2 mt-n7">
-        <img id="{{ $id ?? 'file-input' }}-preview" src="{{ !empty($source) ? $source : asset('images/no_image.png') }}"
-            alt="Image Preview" class="" style="display: {{ !empty($source) ? 'block' : 'none' }};" width="100%"
-            height="100%">
+        <img id="{{ $id ?? 'file-input' }}-preview" src="{{ !empty($source) ? $source : asset('upload/no_image.jpg') }}"
+            alt="Image Preview" class="img-thumbnail" style="display: {{ !empty($source) ? 'block' : 'none' }};height: 65px;">
     </div>
 </div>
 

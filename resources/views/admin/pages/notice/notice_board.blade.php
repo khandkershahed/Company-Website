@@ -309,7 +309,7 @@
                         <p>Post Date: {{ $notice->publish_date }}</p>
                         <p>{!! $notice->content !!}</p>
                     </div> --}}
-                    <div>
+                    <div> 
 
                         <p class="mb-0">Date: 24th December'23</p>
                         <p class="mb-0">CIRCULAR</p>

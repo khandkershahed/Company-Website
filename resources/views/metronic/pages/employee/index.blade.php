@@ -413,13 +413,13 @@
                                 <!-- Profile Picture -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <label class="form-label">Profile Picture</label>
-                                    <input type="file" class="form-control " name="photo">
+                                    <x-metronic.file-input name="photo" class="form-control" ></x-metronic.file-input>
                                 </div>
 
                                 <!-- Sign -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <label class="form-label">Sign</label>
-                                    <input type="file" class="form-control " name="sign">
+                                    <x-metronic.file-input name="sign" class="form-control" ></x-metronic.file-input>
                                 </div>
 
                                 <!-- Password -->
@@ -597,35 +597,17 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-3">
-                                            <label class="form-label" for="basicpill-firstname-input">Profile
+                                            <label class="form-label" for="photo">Profile
                                                 Picture</label>
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <input id="image" type="file" class="form-control "
-                                                        id="basicpill-firstname-input" name="photo" />
-                                                </div>
-                                                <div class="col-2">
-                                                    <img id="showImage"
-                                                        src="{{ !file_exists($employee->photo) ? url('upload/no_image.jpg') : url('storage/' . $employee->photo) }}"
-                                                        alt="Admin" style="width:40px; height: 40px;" />
-                                                </div>
-                                            </div>
+                                                <x-metronic.file-input id="photo" name="photo" :source="asset('storage/' . $employee->photo)" class="form-control" ></x-metronic.file-input>
+
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-4">
-                                            <label class="form-label" for="basicpill-firstname-input">Sign</label>
-                                            <div class="row">
-                                                <div class="col-10">
-                                                    <input id="image" type="file" class="form-control "
-                                                        id="basicpill-firstname-input" name="sign" />
-                                                </div>
-                                                <div class="col-2">
-                                                    <img id="showImage"
-                                                        src="{{ !file_exists($employee->sign) ? url('upload/no_image.jpg') : url('storage/' . $employee->photo) }}"
-                                                        alt="Sign" style="width:40px; height: 40px;" />
-                                                </div>
-                                            </div>
+                                            <label class="form-label" for="sign">Sign</label>
+                                            <x-metronic.file-input id="sign" name="sign" class="form-control" :source="asset('storage/' . $employee->sign)" ></x-metronic.file-input>
+
 
                                         </div>
                                     </div>
