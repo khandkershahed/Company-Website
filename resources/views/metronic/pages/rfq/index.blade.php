@@ -1,384 +1,549 @@
+
 <x-admin-app-layout :title="'RFQ Dashboard'">
-    <div class="row gx-xl-5">
-        <div class="col-xl-4">
-            <div class="p-3 card" dir="ltr">
-                <div class="card-body d-flex flex-column flex-center">
-                    <div class="mb-2">
-                        <h1 class="text-center text-gray-800 fw-semibold lh-lg">
-                            Quick form to <br>
-                            <span class="fw-bolder">
-                                Make a New Work Order</span>
-                        </h1>
+    @include('metronic.pages.rfq.partials.rfq_css')
+    <!-- Main Content Start -->
 
-                        <div class="py-10 text-center">
-                            <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/3.svg" class="theme-light-show w-200px" alt="">
-                            <img src="https://preview.keenthemes.com/metronic8/demo1/assets/media/svg/illustrations/easy/3-dark.svg" class="theme-dark-show w-200px" alt="">
+    <div class="mb-5 row">
+        <div class="col-lg-4 ps-3 ps-lg-0">
+            <div class="mb-3 shadow-none card rfq-box mb-lg-0">
+                <div class="w-100 rfq-status-card" style="overflow: hidden;">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8 col-8">
+                            <div class="">
+                                <h1>Total RFQ</h1>
+                                <p>{{ date('d M , Y') }}</p>
+                                <div class="d-flex align-items-center">
+                                    <a href="javascript:void" class="text-gray-800 fs-1 fw-bold lh-0">
+                                        <span class="pt-4 mb-2 text-gray-500 fw-semibold d-block fs-6 text-start">
+                                            This Month: {{ $this_month }}
+                                            @if ($last_month > 0)
+                                                @if ($percentage_change > 0)
+                                                    <span class="text-success ms-2">
+                                                        ▲ {{ $percentage_change }}%
+                                                    </span>
+                                                @elseif ($percentage_change < 0)
+                                                    <span class="text-danger ms-2">
+                                                        ▼ {{ abs($percentage_change) }}%
+                                                    </span>
+                                                @else
+                                                    <span class="text-muted ms-2">—</span>
+                                                @endif
+                                            @endif
+                                        </span>
+                                        <span class="pt-4 text-gray-500 fw-semibold d-block fs-6 text-start">
+                                            Last Month: {{ $last_month }}
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="mb-1 text-center">
-                        <a class="btn btn-sm btn-primary me-2" data-bs-target="#kt_modal_bidding" data-bs-toggle="modal">
-                            Add New WO
-                        </a>
-
-                        <a class="btn btn-sm btn-light" href="https://preview.keenthemes.com/metronic8/demo1/apps/invoices/view/invoice-2.html">
-                            Add New PO
-                        </a>
+                        <div class="col-lg-4 col-4">
+                            <div class="rfq-amount">
+                                <h1 class="value">{{ $rfq_count }}</h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mb-10 col-xl-8">
-            <div class="row g-lg-5 g-xl-5">
-                <div class="col-lg-12">
-                    <div class="card card-flush" style="background-color: #1C325E;">
-                        <div class="card-body d-flex ps-xl-15">
-                            <div class="m-0">
-                                <div class="text-white position-relative fs-2x z-index-2 fw-bold mb-7">
-                                    <span class="me-2">
-                                        Strengthen your
-                                        <span class="position-relative d-inline-block text-danger">
-                                            <a href="	https://preview.keenthemes.com/metronic8/demo1/pages/user-profile/overview.html" class="text-danger opacity-75-hover">supply chain</a>
-                                            <span class="bottom-0 border-4 opacity-50 position-absolute start-0 border-danger border-bottom w-100"></span>
-                                        </span>
-                                    </span>
-                                    network<br>
-                                    with smarter management tools.
-                                </div>
-
-                                <div class="mb-3">
-                                    <a href="#" class="btn btn-danger fw-semibold me-2" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">
-                                        Get Reward
-                                    </a>
-
-                                    <a href="	https://preview.keenthemes.com/metronic8/demo1/apps/support-center/overview.html" class="bg-white btn btn-color-white bg-opacity-15 bg-hover-opacity-25 fw-semibold">
-                                        How to
-                                    </a>
-                                </div>
+        <div class="col-lg-4">
+            <div class="mb-3 shadow-none card rfq-status mb-lg-0">
+                <div class="w-100 rfq-status-card">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-6">
+                            <div class="rfq-icon">
+                                <img src="{{ asset('backend/assets/images/rfq/Total_RFQ.svg') }}" alt="">
                             </div>
-
-                            <img src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/illustrations/sigma-1/17-dark.png" class="bottom-0 position-absolute me-3 end-0 h-200px" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-6">
-                    <div class=card card-flush ">
-                        <div class=" card-body d-flex align-items-center justify-content-between">
-                        <div class="">
-                            <div class="card-title d-flex flex-column">
-                                <span class="text-gray-900 fs-2hx fw-bold me-2 lh-1 ls-n2">69</span>
-                                <span class="pt-1 text-gray-500 fw-semibold fs-6">Total Agent</span>
+                            <div class="mt-4">
+                                <h1 class="mb-0">RFQ</h1>
+                                <p class="mb-0 rfq-para">Status</p>
                             </div>
                         </div>
-                        <div class="flex-wrap d-flex align-items-center" style="height: 150px; overflow-y: scroll;">
-                            <div class="d-flex flex-column content-justify-center flex-grow-1">
-                                <div class="p-2 mb-1 d-flex fs-6 fw-semibold align-items-center bg-light rounded-3">
-                                    <div class="bullet w-8px h-6px rounded-2 bg-success me-3"></div>
-
-                                    <div class="flex-shrink-0 text-gray-500 fs-6 fw-semibold">
-                                        John Carter
-                                    </div>
-
-                                    <div class="mx-2 separator separator-dashed min-w-10px flex-grow-1"></div>
-
-                                    <div class="text-gray-700 ms-auto fw-bolder text-end">
-                                        Senior Agent
-                                    </div>
-                                </div>
-
-                                <div class="p-2 mb-1 d-flex fs-6 fw-semibold align-items-center bg-light rounded-3">
-                                    <div class="bullet w-8px h-6px rounded-2 bg-primary me-3"></div>
-
-                                    <div class="flex-shrink-0 text-gray-500 fs-6 fw-semibold">
-                                        Maria Gomez
-                                    </div>
-
-                                    <div class="mx-2 separator separator-dashed min-w-10px flex-grow-1"></div>
-
-                                    <div class="text-gray-700 ms-auto fw-bolder text-end">
-                                        Logistics Manager
-                                    </div>
-                                </div>
-
-                                <div class="p-2 mb-1 d-flex fs-6 fw-semibold align-items-center bg-light rounded-3">
-                                    <div class="bullet w-8px h-6px rounded-2 bg-warning me-3"></div>
-
-                                    <div class="flex-shrink-0 text-gray-500 fs-6 fw-semibold">
-                                        Liam Brown
-                                    </div>
-
-                                    <div class="mx-2 separator separator-dashed min-w-10px flex-grow-1"></div>
-
-                                    <div class="text-gray-700 ms-auto fw-bolder text-end">
-                                        Field Supervisor
-                                    </div>
-                                </div>
-
-                                <div class="p-2 mb-1 d-flex fs-6 fw-semibold align-items-center bg-light rounded-3">
-                                    <div class="bullet w-8px h-6px rounded-2 bg-info me-3"></div>
-
-                                    <div class="flex-shrink-0 text-gray-500 fs-6 fw-semibold">
-                                        Sarah Lee
-                                    </div>
-
-                                    <div class="mx-2 separator separator-dashed min-w-10px flex-grow-1"></div>
-
-                                    <div class="text-gray-700 ms-auto fw-bolder text-end">
-                                        Regional Coordinator
-                                    </div>
-                                </div>
-
-                                <div class="p-2 mb-1 d-flex fs-6 fw-semibold align-items-center bg-light rounded-3">
-                                    <div class="bullet w-8px h-6px rounded-2 bg-danger me-3"></div>
-
-                                    <div class="flex-shrink-0 text-gray-500 fs-6 fw-semibold">
-                                        David Wilson
-                                    </div>
-
-                                    <div class="mx-2 separator separator-dashed min-w-10px flex-grow-1"></div>
-
-                                    <div class="text-gray-700 ms-auto fw-bolder text-end">
-                                        Assistant Agent
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-lg-6 col-6">
+                            <ul class="mb-0 border-0 mb-lg-3 nav nav-tabs nav-line-tabs fs-6 rfq-tabs w-100">
+                                <li class="mb-2 nav-item w-100">
+                                    <a class="nav-link w-100 {{ empty($tab_status) || $tab_status == 'pending' ? 'active' : '' }} rfq-pending"
+                                        data-bs-toggle="tab" href="#pending" data-status="pending">
+                                        <div class="d-flex justify-content-between w-100 align-items-center">
+                                            <p class="mb-0">Pending</p>
+                                            <p class="mb-0">{{ $rfqs->count() }}</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="mb-2 nav-item w-100">
+                                    <a class="nav-link w-100 {{ !empty($tab_status) && $tab_status == 'quoted' ? 'active' : '' }} rfq-quoted"
+                                        data-bs-toggle="tab" href="#quoted" data-status="quoted">
+                                        <div class="d-flex justify-content-between w-100 align-items-center">
+                                            <p class="mb-0">Quoted</p>
+                                            <p class="mb-0">{{ $quoteds->count() }}</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="mb-2 nav-item w-100">
+                                    <a class="nav-link w-100 {{ !empty($tab_status) && $tab_status == 'lost' ? 'active' : '' }} rfq-failed"
+                                        data-bs-toggle="tab" href="#failed" data-status="lost">
+                                        <div class="d-flex justify-content-between w-100 align-items-center">
+                                            <p class="mb-0">Lost</p>
+                                            <p class="mb-0">{{ $losts->count() }}</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
 
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-xl-6">
-                <div class=card card-flush">
-                    <div class="pt-5 card-header">
-                        <div class="card-title d-flex justify-content-between w-100">
-                            <span class="pt-1 text-black fw-semibold fs-2">New Agent This Month</span>
-                            <span class="text-gray-900 fs-2hx fw-bold me-2 lh-1 ls-n2">06</span>
-                        </div>
+        </div>
+        <div class="col-lg-4 pe-3 pe-lg-3">
+            <div class="p-3 shadow-none card rfq-status-card">
+                <div class="px-2 border-0 card-header w-100">
+                    <div class="text-white rounded position-relative me-2 d-flex align-items-center"
+                        style="width: 100%; position: relative; z-index: 5;">
+                        <i
+                            class="fa-solid fa-magnifying-glass fs-3 position-absolute top-50 translate-middle-y ms-4"></i>
+                        <input type="text" id="searchCountryQuery" data-kt-table-widget-4="search"
+                            class="form-control form-control-solid w-100 fs-7 ps-12 searchQuery"
+                            placeholder="RFQ By Country" />
                     </div>
-
-                    <div class="pt-15 card-body d-flex flex-column justify-content-end pe-0">
-                        <span class="mb-2 text-gray-800 fs-6 fw-bolder d-block">Top Agent</span>
-
-                        <div class="symbol-group symbol-hover flex-nowrap">
-                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" data-bs-original-title="Alan Warden" data-kt-initialized="1">
-                                <span class="symbol-label bg-warning text-inverse-warning fw-bold">A</span>
+                </div>
+                <div class="px-3 pt-2 rfq-status-card w-100">
+                    <div id="countryList">
+                        @forelse ($countryWiseRfqs as $country)
+                            <div class="country-wrapper">
+                                <div class="d-flex align-items-center justify-content-between country-item">
+                                    <div class="d-flex align-items-center">
+                                        <h5 class="mb-0 fw-normal ps-3">{{ $country->country }}</h5>
+                                    </div>
+                                    <div>
+                                        <span>{{ $country->total }}</span>
+                                    </div>
+                                </div>
+                                <hr>
                             </div>
-                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" aria-label="Michael Eberon" data-bs-original-title="Michael Eberon" data-kt-initialized="1">
-                                <img alt="Pic" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-11.jpg">
-                            </div>
-                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" data-bs-original-title="Susan Redwood" data-kt-initialized="1">
-                                <span class="symbol-label bg-primary text-inverse-primary fw-bold">S</span>
-                            </div>
-                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" aria-label="Melody Macy" data-bs-original-title="Melody Macy" data-kt-initialized="1">
-                                <img alt="Pic" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-2.jpg">
-                            </div>
-                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" data-bs-original-title="Perry Matthew" data-kt-initialized="1">
-                                <span class="symbol-label bg-danger text-inverse-danger fw-bold">P</span>
-                            </div>
-                            <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip" aria-label="Barry Walter" data-bs-original-title="Barry Walter" data-kt-initialized="1">
-                                <img alt="Pic" src="https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-12.jpg">
-                            </div>
-                            <a href="#" class="symbol symbol-35px symbol-circle" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users">
-                                <span class="text-gray-400 symbol-label bg-light fs-8 fw-bold">+42</span>
+                        @empty
+                            <p class="text-center text-muted">No countries found.</p>
+                        @endforelse
+                    </div>
+                    {{-- Hidden message for "No results found" --}}
+                    <p id="noResults" class="mt-4 text-center text-muted" style="display: none;">No countries match
+                        your search.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-5 row">
+        <div class="mb-3 col-12 col-lg-8 ps-3 ps-lg-0">
+            <div class="shadow-none card card-flush" style="overflow-x: hidden !important;">
+                <div class="p-4 card-body p-lg-7">
+                    <div class="row align-items-center">
+                        <!-- Left Title Section -->
+                        <div class="col-lg-3">
+                            <a href="#allRFQ" class="mb-2 text-decoration-none mb-lg-0">
+                                <span class="rfq-e-title d-block fw-bold">RFQ Filtered</span>
+                                <span class="rfq-p-title text-muted small">All RFQ history here</span>
                             </a>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="row gx-xl-5">
-        <!-- Middle Left Area -->
-        <div class="col-md-4">
-            <div class=card h-100">
-                <div class="text-center card-body">
-                    <div class="p-3 mb-2 text-primary fw-bold rounded-2 fs-1">
-                        SUPPLY CHAIN
-                    </div>
-                    <div class="p-3 bg-light text-dark fw-semibold rounded-2 fs-1">
-                        FY 25
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Middle Middle Area -->
-        <div class="col-md-4">
-            <div class=card h-100">
-                <div class="text-center border card-header bg-light fw-bold aligh-items-center">
-                    <div class="pt-2 fs-1">
-                        Supply Status
-                    </div>
-                </div>
-                <div class="p-0 card-body">
-                    <table class="table mb-0 text-center align-middle">
-                        <tbody>
-                            <tr class="border">
-                                <td class="fw-semibold text-dark text-start ps-10">Current Work Orders</td>
-                                <td>100</td>
-                            </tr>
-                            <tr class="border">
-                                <td class="fw-semibold text-dark text-start ps-10">Current Purchase Order</td>
-                                <td>50</td>
-                            </tr>
-                            <tr class="border">
-                                <td class="fw-semibold text-dark text-start ps-10">On Shipments</td>
-                                <td>103</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Middle Right Area -->
-        <div class="col-md-4">
-            <div class=card h-100">
-                <div class="text-center border card-header bg-light fw-bold aligh-items-center">
-                    <div class="pt-2 fs-1">
-                        Delivery Status
-                    </div>
-                </div>
-                <div class="p-0 card-body">
-                    <table class="table mb-0 text-center align-middle">
-                        <tbody>
-                            <tr class="border">
-                                <td class="fw-semibold text-dark text-start ps-10">Payment Processing</td>
-                                <td>$500</td>
-                            </tr>
-                            <tr class="border">
-                                <td class="fw-semibold text-dark text-start ps-10">Freight On Board</td>
-                                <td>600</td>
-                            </tr>
-                            <tr class="border">
-                                <td class="fw-semibold text-dark text-start ps-10">Delivered</td>
-                                <td>1050</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="mt-8 row gx-xl-5">
-        <div class="col-lg-12">
-            <div class="card card-flush">
-                <div class="mt-10 card-header">
-                    <div class="d-flex justify-content-between w-100 align-items-center">
-                        <div class="d-flex align-items-center">
-                            <div class="input-group input-group-sm me-3">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">
-                                    <i class="fab fa-sistrix"></i>
-                                </span>
-                                <input type="text" class="py-3 form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
-                            </div>
-                            <div>
-                                <input type="datetime-local" class="form-control form-control-solid w-100" placeholder="Pick date rage" id="kt_daterangepicker_2" />
+                        <!-- Right Filters Section -->
+                        <div class="col-12 col-lg-9 rfq-query-filter">
+                            <div class="row g-2">
+                                <!-- Country -->
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                                    <select class="form-select filterCountry w-100" data-control="select2"
+                                        data-placeholder="Country" data-allow-clear="true" id="filterCountry"
+                                        name="country">
+                                        <option></option>
+                                        @foreach ($countryWiseRfqs as $country)
+                                        <option value="{{ $country->country }}">{{ $country->country }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <!-- Salesman -->
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                                    <select class="form-select filterSalesman w-100" data-control="select2"
+                                        data-placeholder="Salesmanager" data-allow-clear="true"
+                                        data-enable-filtering="true" id="filterSalesman" name="salesman">
+                                        <option></option>
+                                        @foreach ($users as $user)
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <!-- Company -->
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                                    <select class="form-select filterCompany w-100" data-control="select2"
+                                        data-placeholder="Company" data-allow-clear="true"
+                                        data-enable-filtering="true" id="filterCompany" name="company">
+                                        <option></option>
+                                        @foreach ($companies as $company)
+                                        <option value="{{ $company }}">{{ $company }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <!-- Search -->
+                                <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+                                    <i
+                                        class="fa-solid fa-magnifying-glass search-icons fs-5 position-absolute translate-middle-y ms-3 text-muted"></i>
+                                    <input type="text" id="searchQuery" data-kt-table-widget-4="search"
+                                        class="form-control ps-10 pe-30 searchQuery" placeholder="Search" />
+                                    <button type="button"
+                                        class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2 d-none"
+                                        id="clearSearch" style="z-index: 2;">
+                                        <i class="fas fa-times text-muted"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <select
-                                class="form-select form-select-solid form-select-sm"
-                                data-control="select2"
-                                data-hide-search="true">
-                                <option value="1">Bangladesh</option>
-                                <option value="2" selected="selected">United States</option>
-                                <option value="3">United Kingdom</option>
-                                <option value="4">Canada</option>
-                                <option value="5">Australia</option>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 col-12 col-md-6 col-lg-4">
+            <div class="shadow-none card card-flush">
+                <div class="card-body rfq-query-filter">
+                    <div class="flex-wrap gap-2 d-flex justify-content-between align-items-center">
+                        <!-- Year Select -->
+                        <div class="flex-grow-1 min-w-100 min-w-md-auto">
+                            <select class="form-select" data-control="select2" data-allow-clear="true"
+                                data-placeholder="Year" name="year" id="filterYear">
+                                <option value="{{ date('Y') }}">2025</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
                             </select>
                         </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <table class="table border rounded data_table table-striped table-row-bordered gy-5 gs-7">
-                        <thead>
-                            <tr class="text-gray-800 fw-bold fs-6 px-7">
-                                <th>Sl</th>
-                                <th>Order ID</th>
-                                <th>Client Name</th>
-                                <th>Product</th>
-                                <th>FoB</th>
-                                <th>Order Processing</th>
-                                <th>Principal Payment</th>
-                                <th>Client Payment</th>
-                                <th>C&F Agent</th>
-                                <th>Logistics Agent</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>#ORD-10234</td>
-                                <td>Global Textiles Ltd.</td>
-                                <td>Cotton Fabric Rolls</td>
-                                <td>Chittagong Port</td>
-                                <td><span class="badge bg-success">Completed</span></td>
-                                <td>$45,000</td>
-                                <td>$46,500</td>
-                                <td>TransWorld C&F</td>
-                                <td>BlueLine Logistics</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>#ORD-10235</td>
-                                <td>Nova Electronics</td>
-                                <td>LED Panels</td>
-                                <td>Singapore Port</td>
-                                <td><span class="badge bg-warning text-dark">In Progress</span></td>
-                                <td>$68,000</td>
-                                <td>$70,200</td>
-                                <td>SkyPort Agency</td>
-                                <td>Global Freight Ltd.</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>#ORD-10236</td>
-                                <td>Bright Foods Co.</td>
-                                <td>Processed Rice Bags</td>
-                                <td>Port of Colombo</td>
-                                <td><span class="badge bg-info text-dark">Pending</span></td>
-                                <td>$25,000</td>
-                                <td>$26,000</td>
-                                <td>SeaTrade Express</td>
-                                <td>OceanMove Cargo</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>#ORD-10237</td>
-                                <td>Elite Garments</td>
-                                <td>Denim Jeans</td>
-                                <td>Port of Dhaka</td>
-                                <td><span class="badge bg-success">Completed</span></td>
-                                <td>$38,500</td>
-                                <td>$39,000</td>
-                                <td>FastClear Agency</td>
-                                <td>RoadLink Logistics</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>#ORD-10238</td>
-                                <td>Metro Plastics</td>
-                                <td>Plastic Containers</td>
-                                <td>Dubai Port</td>
-                                <td><span class="badge bg-danger">Delayed</span></td>
-                                <td>$19,000</td>
-                                <td>$20,000</td>
-                                <td>ClearMove C&F</td>
-                                <td>AirSea Freight</td>
-                            </tr>
-                        </tbody>
-                    </table>
 
+                        <!-- Month Select -->
+                        <div class="flex-grow-1 min-w-100 min-w-md-auto">
+                            <select class="form-select" data-control="select2" data-placeholder="Month"
+                                name="month" id="filterMonth">
+                                @foreach ($months as $month)
+                                        <option value="{{ $month }}" @selected(\Carbon\Carbon::now()->format('F') === $month)>{{ $month }}</option>
+                                    @endforeach
+                            </select>
+                        </div>
+
+                        <!-- Link Button -->
+                        <div class="text-center flex-grow-1 min-w-100 min-w-md-auto">
+                            @if (!Route::is('admin.archived.rfq'))
+                                <a href="{{ route('admin.archived.rfq') }}" class="btn btn-outline-primary w-100">
+                                    Archived <i class="fas fa-arrow-right"></i>
+                                </a>
+                            @else
+                                <a href="{{ route('admin.rfq.index') }}" class="btn btn-outline-primary w-100">
+                                    Recent RFQs <i class="fas fa-arrow-right"></i>
+                                </a>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <!-- Container for the filtered RFQ queries -->
+        <div class="tab-content" id="myTabContent">
+            @include('metronic.pages.rfq.partials.rfq_queries')
+        </div>
+    </div>
+    @include('metronic.pages.rfq.partials.assign-modal')
     @push('scripts')
-    <script>
+        <script>
+            $(".data_table").DataTable({
+                language: {
+                    lengthMenu: "Show _MENU_",
+                },
+                dom: "<'row mb-2'" +
+                    "<'col-sm-6 d-flex align-items-center justify-conten-start dt-toolbar'l>" +
+                    "<'col-sm-6 d-flex align-items-center justify-content-end dt-toolbar'f>" +
+                    ">" +
+                    "<'table-responsive'tr>" +
+                    "<'row'" +
+                    "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+                    "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+                    ">",
+            });
+        </script>
+        {{-- <script>
 
-    </script>
+            $(document).ready(function() {
+                function fetchRfqData() {
+                    var year = $('#filterYear').val();
+                    var month = $('#filterMonth').val();
+                    var company = $('#filterCompany').val();
+                    var country = $('#filterCountry').val();
+                    var search = $('#searchQuery').val();
+                    var activeTab = $('.rfq-tabs .nav-link.active');
+                    var status = activeTab.data('status');
+
+                    // Show loading spinner
+                    $('#myTabContent').html(`
+                <div class="py-5 text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            `);
+
+                    $.ajax({
+                        url: '{{ route('admin.rfq.filter') }}',
+                        type: 'GET',
+                        data: {
+                            year: year,
+                            month: month,
+                            status: status,
+                            country: country,
+                            company: company,
+                            search: search
+                        },
+                        success: function(response) {
+                            if (response.view) {
+                                $('#myTabContent').html(response.view);
+
+                                // Restore filter values
+                                $('#filterYear').val(year);
+                                $('#filterMonth').val(month);
+                                $('#filterCompany').val(company).trigger('change');
+                                $('#filterCountry').val(country).trigger('change');
+                                $('#searchQuery').val(search);
+
+                                // Rebind events after DOM update
+                                bindFilterEvents();
+
+                                // Restore active tab state
+                                $('.rfq-tabs .nav-link').removeClass('active');
+                                activeTab.addClass('active');
+                            } else {
+                                console.error('No view content returned');
+                            }
+                        },
+                        error: function() {
+                            $('#myTabContent').html(`
+                        <div class="my-4 text-center alert alert-danger">
+                            Error fetching data. Please try again.
+                        </div>
+                    `);
+                        }
+                    });
+                }
+
+                function bindFilterEvents() {
+                    $('#filterYear, #filterMonth, #filterCompany, #filterCountry')
+                        .off('input change')
+                        .on('input change', function() {
+                            fetchRfqData();
+                        });
+
+                    $('#searchQuery, .searchQuery').off('keypress').on('keypress', function(e) {
+                        if (e.which === 13) {
+                            fetchRfqData();
+                        }
+                    });
+                }
+
+                // Initial event bindings
+                bindFilterEvents();
+            });
+        </script> --}}
+
+        <script>
+            $(document).ready(function() {
+                function initSelect2() {
+                    $('select[data-control="select2"]').each(function() {
+                        const placeholder = $(this).data('placeholder') || 'Select an option';
+                        $(this).select2({
+                            placeholder: placeholder,
+                            allowClear: true,
+                            width: 'resolve',
+                        });
+                    });
+                }
+
+
+                function fetchRfqData() {
+                    var year = $('#filterYear').val();
+                    var month = $('#filterMonth').val();
+                    var company = $('#filterCompany').val();
+                    var country = $('#filterCountry').val();
+                    var salesman = $('#filterSalesman').val();
+                    var search = $('#searchQuery').val();
+                    var activeTab = $('.rfq-tabs .nav-link.active');
+                    var status = activeTab.data('status');
+
+                    // Show loading spinner
+                    $('#myTabContent').html(`
+                            <div class="py-5 text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        `);
+
+                    $.ajax({
+                        url: '{{ route('admin.rfq.filter') }}',
+                        type: 'GET',
+                        data: {
+                            year: year,
+                            month: month,
+                            status: status,
+                            country: country,
+                            company: company,
+                            salesman: salesman,
+                            search: search
+                        },
+                        success: function(response) {
+                            if (response.view) {
+                                $('#myTabContent').html(response.view);
+                                initSelect2();
+                                bindFilterEvents();
+
+                                // Restore active tab
+                                $('.rfq-tabs .nav-link').removeClass('active');
+                                activeTab.addClass('active');
+                            } else {
+                                $('#myTabContent').html(`
+                                <div class="my-4 text-center alert alert-danger">
+                                    Error fetching data. Please try again.
+                                </div>
+                            `);
+                                console.error('No view content returned');
+                            }
+                        },
+                        error: function() {
+                            $('#myTabContent').html(`
+                                <div class="my-4 text-center alert alert-danger">
+                                    Error fetching data. Please try again.
+                                </div>
+                            `);
+                        }
+                    });
+                }
+
+                function bindFilterEvents() {
+                    $('#filterYear, #filterMonth, #filterCompany, #filterCountry, #filterSalesman')
+                        .off('change')
+                        .on('change', fetchRfqData);
+
+                    $('#searchQuery').off('input keypress').on('input keypress', function(e) {
+                        const searchVal = $(this).val();
+                        if (searchVal.length > 0) {
+                            $('#clearSearch').removeClass('d-none');
+                        } else {
+                            $('#clearSearch').addClass('d-none');
+                        }
+
+                        if (e.which === 13) {
+                            fetchRfqData();
+                        }
+                    });
+
+                    $('#clearSearch').off('click').on('click', function() {
+                        $('#searchQuery').val('').trigger('input');
+                        $(this).addClass('d-none');
+                        fetchRfqData();
+                    });
+                }
+
+
+                // Init on page load
+                initSelect2();
+                bindFilterEvents();
+            });
+        </script>
+
+        <script>
+            $(document).ready(function() {
+                $(document).on('change', '.pendingRFQ, .quotedRFQ, .lostRFQ', function() {
+                    const selectedValue = $(this).val();
+                    const selectElement = $(this);
+                    const rfqId = selectedValue.split('_').pop(); // Get ID at the end
+
+                    // Handle "track_tab" or "message_tab"
+                    const trackContainer = document.getElementById(`track_container_${rfqId}`);
+                    const messageContainer = document.getElementById(`message_container_${rfqId}`);
+
+                    if (trackContainer && messageContainer) {
+                        if (selectedValue.startsWith('track_tab')) {
+                            trackContainer.style.display = 'block';
+                            messageContainer.style.display = 'none';
+                        } else if (selectedValue.startsWith('message_tab')) {
+                            trackContainer.style.display = 'none';
+                            messageContainer.style.display = 'block';
+                        }
+                    }
+
+                    // Handle "delete"
+                    if (selectedValue.startsWith('delete_')) {
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: 'This will permanently delete the RFQ.',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Yes, delete it!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: '{{ route('admin.rfq.destroy', ['rfq' => '__rfq_id__']) }}'
+                                        .replace('__rfq_id__', rfqId),
+                                    type: 'DELETE',
+                                    data: {
+                                        _token: '{{ csrf_token() }}'
+                                    },
+                                    success: function(response) {
+                                        Swal.fire({
+                                            title: 'Deleted!',
+                                            text: 'The RFQ has been deleted.',
+                                            icon: 'success',
+                                            timer: 2000,
+                                            showConfirmButton: false
+                                        }).then(() => {
+                                            location.reload();
+                                        });
+                                    },
+                                    error: function(xhr) {
+                                        Swal.fire({
+                                            title: 'Error!',
+                                            text: 'Failed to delete RFQ: ' + xhr
+                                                .responseText,
+                                            icon: 'error'
+                                        });
+                                    }
+                                });
+                            } else {
+                                // Reset dropdown if user cancels deletion
+                                selectElement.val('');
+                            }
+                        });
+                    }
+                });
+            });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('#searchCountryQuery').on('input', function() {
+                    const query = $(this).val().toLowerCase();
+                    let anyVisible = false;
+
+                    $('.country-wrapper').each(function() {
+                        const countryName = $(this).find('.country-item h5').text().toLowerCase();
+
+                        if (countryName.includes(query)) {
+                            $(this).show();
+                            anyVisible = true;
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+
+                    // Show or hide "No results" message
+                    $('#noResults').toggle(!anyVisible);
+                });
+            });
+        </script>
     @endpush
 </x-admin-app-layout>
 <!-- RFQ Dashboard End -->
