@@ -97,7 +97,7 @@ class AttendanceController extends Controller
         $monthInput = $request->input('month', now()->format('F')); // e.g. “October” or “10”
         $year = now()->year;  // default to current year
 
-        // Convert month name/format into numeric month (1–12)
+        // Convert month name/format into numeric month (1–12) 
         if (is_numeric($monthInput)) {
             $month = intval($monthInput);
             if ($month < 1 || $month > 12) {
@@ -123,7 +123,7 @@ class AttendanceController extends Controller
 
 
 
-        return view('metronic.pages.attendance.attendanceHistory', [ 
+        return view('metronic.pages.attendance.attendanceHistory', [
             'attendances'   => $attendances,
             'selectedMonth' => $monthInput,
             'sicks'         => $sicks,

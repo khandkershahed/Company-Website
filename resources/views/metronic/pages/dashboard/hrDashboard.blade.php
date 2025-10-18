@@ -150,7 +150,7 @@
                                             </a>
                                         </li>
                                         <li class="mt-0 nav-item mt-lg-auto" role="presentation">
-                                            <a class="p-3 mt-2 overflow-hidden mt-lg-5 nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0" id="month-tab" data-bs-toggle="tab" href="#allMovement" role="tab"
+                                            <a class="p-3 mt-2 overflow-hidden mt-lg-5 nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0" id="month-tab" data-bs-toggle="tab" href="#monthlyAttendance" role="tab"
                                                 aria-controls="allMovement" aria-selected="false">
                                                 Month Wise Attendances
                                             </a>
@@ -328,7 +328,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="allmovement" role="tabpanel">
+                                    <div class="tab-pane fade" id="monthlyAttendance" role="tabpanel">
                                         <div class="card">
                                             <form action="{{ route('admin.hr-and-admin.index') }}" method="get">
                                                 <div class="py-2 card-header align-items-center">
