@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Admin\EmployeeCategory;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\EmployeeAdd as MailEmployeeAdd;
-use App\Models\Admin\EmployeeCategory;
 use Illuminate\Support\Facades\Session as TosterSession;
 
 class EmployeeController extends Controller
@@ -57,42 +58,24 @@ class EmployeeController extends Controller
     {
         // dd($request->all());
 
-        $mainFilePhoto                 = $request->file('photo');
-        $mainFileSign                  = $request->file('sign');
-        $mainFileCeoSign               = $request->file('ceo_sign');
-        $mainFileOperationDirectorSign = $request->file('operation_director_sign');
-        $mainFileManagingDirectorSign  = $request->file('managing_director_sign');
-
-        $filePathPhoto = storage_path('app/public/employee/photo/');
-        $filePathSign = storage_path('app/public/employee/sign/');
-        $filePathCeoSign = storage_path('app/public/employee/ceoSign/');
-        $filePathOperationDirectorSign = storage_path('app/public/employee/operationDirectorSign/');
-        $filePathManagingDirectorSign = storage_path('app/public/employee/managingDirectorSign/');
-
-        if (!empty($mainFilePhoto)) {
-            $globalFunPhoto  = Helper::customUpload($mainFilePhoto, $filePathPhoto);
-        } else {
-            $globalFunPhoto = ['status' => 0];
-        }
-        if (!empty($mainFileSign)) {
-            $globalFunSign  = Helper::customUpload($mainFileSign, $filePathSign);
-        } else {
-            $globalFunSign = ['status' => 0];
-        }
-        if (!empty($mainFileCeoSign)) {
-            $globalFunCeoSign  = Helper::customUpload($mainFileCeoSign, $filePathCeoSign);
-        } else {
-            $globalFunCeoSign = ['status' => 0];
-        }
-        if (!empty($mainFileOperationDirectorSign)) {
-            $globalFunOperationDirectorSign  = Helper::customUpload($mainFileOperationDirectorSign, $filePathOperationDirectorSign);
-        } else {
-            $globalFunOperationDirectorSign = ['status' => 0];
-        }
-        if (!empty($mainFileManagingDirectorSign)) {
-            $globalFunManagingDirectorSign  = Helper::customUpload($mainFileManagingDirectorSign, $filePathManagingDirectorSign);
-        } else {
-            $globalFunManagingDirectorSign = ['status' => 0];
+        $files = [
+            'photo'                   => $request->file('photo'),
+            'sign'                    => $request->file('sign'),
+            'ceo_sign'                => $request->file('ceo_sign'),
+            'operation_director_sign' => $request->file('operation_director_sign'),
+            'managing_director_sign'  => $request->file('managing_director_sign'),
+        ];
+        $uploadedFiles = [];
+        foreach ($files as $key => $file) {
+            if (!empty($file)) {
+                $filePath = 'employee/' . $key;
+                $uploadedFiles[$key] = Helper::imageUpload($file, $filePath);
+                if ($uploadedFiles[$key]['status'] === 0) {
+                    return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
+                }
+            } else {
+                $uploadedFiles[$key] = ['status' => 0];
+            }
         }
 
         User::create([
@@ -101,7 +84,11 @@ class EmployeeController extends Controller
             'name'                                          => $request->name,
             'username'                                      => $request->username,
             'email'                                         => $request->email,
-            'photo'                                         => $globalFunPhoto['status'] == 1 ? $globalFunPhoto['file_name'] : null,
+            'photo'                                         => $uploadedFiles['photo']['status'] == 1 ? $uploadedFiles['photo']['file_path'] : null,
+            'sign'                                          => $uploadedFiles['sign']['status'] == 1 ? $uploadedFiles['sign']['file_path'] : null,
+            'ceo_sign'                                      => $uploadedFiles['ceo_sign']['status'] == 1 ? $uploadedFiles['ceo_sign']['file_path'] : null,
+            'operation_director_sign'                       => $uploadedFiles['operation_director_sign']['status'] == 1 ? $uploadedFiles['operation_director_sign']['file_path'] : null,
+            'managing_director_sign'                        => $uploadedFiles['managing_director_sign']['status'] == 1 ? $uploadedFiles['managing_director_sign']['file_path'] : null,
             'phone'                                         => $request->phone,
             'designation'                                   => $request->designation,
             'address'                                       => $request->address,
@@ -187,10 +174,6 @@ class EmployeeController extends Controller
             'sisters_total'                                 => $request->sisters_total,
             'siblings_contact_info_one'                     => $request->siblings_contact_info_one,
             'siblings_contact_info_two'                     => $request->siblings_contact_info_two,
-            'sign'                                          => $globalFunSign['status'] == 1 ? $globalFunSign['file_name'] : null,
-            'ceo_sign'                                      => $globalFunCeoSign['status'] == 1 ? $globalFunCeoSign['file_name'] : null,
-            'operation_director_sign'                       => $globalFunOperationDirectorSign['status'] == 1 ? $globalFunOperationDirectorSign['file_name'] : null,
-            'managing_director_sign'                        => $globalFunManagingDirectorSign['status'] == 1 ? $globalFunManagingDirectorSign['file_name'] : null,
             'sign_date'                                     => $request->sign_date,
             'evaluation_date'                               => $request->evaluation_date,
             'casual_leave_due_as_on'                        => $request->casual_leave_due_as_on,
@@ -244,82 +227,29 @@ class EmployeeController extends Controller
         // dd($request->all());
         $admin = User::findOrFail($id);
 
-        $mainFilePhoto                 = $request->file('photo');
-        $mainFileSign                  = $request->file('sign');
-        $mainFileCeoSign               = $request->file('ceo_sign');
-        $mainFileOperationDirectorSign = $request->file('operation_director_sign');
-        $mainFileManagingDirectorSign  = $request->file('managing_director_sign');
+        $files = [
+            'photo'                   => $request->file('photo'),
+            'sign'                    => $request->file('sign'),
+            'ceo_sign'                => $request->file('ceo_sign'),
+            'operation_director_sign' => $request->file('operation_director_sign'),
+            'managing_director_sign'  => $request->file('managing_director_sign'),
+        ];
+        $uploadedFiles = [];
+        foreach ($files as $key => $file) {
+            if (!empty($file)) {
+                $filePath = 'employee/' . $key;
+                $oldFile = $document->$key ?? null;
 
-        $filePathPhoto = storage_path('app/public/employee/photo/');
-        $filePathSign = storage_path('app/public/employee/sign/');
-        $filePathCeoSign = storage_path('app/public/employee/ceoSign/');
-        $filePathOperationDirectorSign = storage_path('app/public/employee/operationDirectorSign/');
-        $filePathManagingDirectorSign = storage_path('app/public/employee/managingDirectorSign/');
-
-        if (!empty($mainFilePhoto)) {
-            $globalFunPhoto  = Helper::customUpload($mainFilePhoto, $filePathPhoto);
-            $paths = [
-                storage_path("app/public/employee/photo/{$admin->photo}"),
-            ];
-            foreach ($paths as $path) {
-                if (File::exists($path)) {
-                    File::delete($path);
+                if ($oldFile) {
+                    Storage::delete("public/" . $oldFile);
                 }
-            }
-        } else {
-            $globalFunPhoto = ['status' => 0];
-        }
-        if (!empty($mainFileSign)) {
-            $globalFunSign  = Helper::customUpload($mainFileSign, $filePathSign);
-            $paths = [
-                storage_path("app/public/employee/sign/{$admin->sign}"),
-            ];
-            foreach ($paths as $path) {
-                if (File::exists($path)) {
-                    File::delete($path);
+                $uploadedFiles[$key] = Helper::imageUpload($file, $filePath);
+                if ($uploadedFiles[$key]['status'] === 0) {
+                    return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
                 }
+            } else {
+                $uploadedFiles[$key] = ['status' => 0];
             }
-        } else {
-            $globalFunSign = ['status' => 0];
-        }
-        if (!empty($mainFileCeoSign)) {
-            $globalFunCeoSign  = Helper::customUpload($mainFileCeoSign, $filePathCeoSign);
-            $paths = [
-                storage_path("app/public/employee/ceoSign/{$admin->ceo_sign}"),
-            ];
-            foreach ($paths as $path) {
-                if (File::exists($path)) {
-                    File::delete($path);
-                }
-            }
-        } else {
-            $globalFunCeoSign = ['status' => 0];
-        }
-        if (!empty($mainFileOperationDirectorSign)) {
-            $globalFunOperationDirectorSign  = Helper::customUpload($mainFileOperationDirectorSign, $filePathOperationDirectorSign);
-            $paths = [
-                storage_path("app/public/employee/operationDirectorSign/{$admin->operation_director_sign}"),
-            ];
-            foreach ($paths as $path) {
-                if (File::exists($path)) {
-                    File::delete($path);
-                }
-            }
-        } else {
-            $globalFunOperationDirectorSign = ['status' => 0];
-        }
-        if (!empty($mainFileManagingDirectorSign)) {
-            $globalFunManagingDirectorSign  = Helper::customUpload($mainFileManagingDirectorSign, $filePathManagingDirectorSign);
-            $paths = [
-                storage_path("app/public/employee/managingDirectorSign/{$admin->managing_director_sign}"),
-            ];
-            foreach ($paths as $path) {
-                if (File::exists($path)) {
-                    File::delete($path);
-                }
-            }
-        } else {
-            $globalFunManagingDirectorSign = ['status' => 0];
         }
 
         $admin->update([
@@ -328,7 +258,11 @@ class EmployeeController extends Controller
             'name'                                          => $request->name,
             'username'                                      => $request->username,
             'email'                                         => $request->email,
-            'photo'                                         => $globalFunPhoto['status'] == 1 ? $globalFunPhoto['file_name'] : $admin->photo,
+            'photo'                                         => $uploadedFiles['photo']['status'] == 1 ? $uploadedFiles['photo']['file_path'] : $admin->photo,
+            'sign'                                          => $uploadedFiles['sign']['status'] == 1 ? $uploadedFiles['sign']['file_path'] : $admin->sign,
+            'ceo_sign'                                      => $uploadedFiles['ceo_sign']['status'] == 1 ? $uploadedFiles['ceo_sign']['file_path'] : $admin->ceo_sign,
+            'operation_director_sign'                       => $uploadedFiles['operation_director_sign']['status'] == 1 ? $uploadedFiles['operation_director_sign']['file_path'] : $admin->operation_director_sign,
+            'managing_director_sign'                        => $uploadedFiles['managing_director_sign']['status'] == 1 ? $uploadedFiles['managing_director_sign']['file_path'] : $admin->managing_director_sign,
             'phone'                                         => $request->phone,
             'designation'                                   => $request->designation,
             'address'                                       => $request->address,
@@ -415,10 +349,6 @@ class EmployeeController extends Controller
             'sisters_total'                                 => $request->sisters_total,
             'siblings_contact_info_one'                     => $request->siblings_contact_info_one,
             'siblings_contact_info_two'                     => $request->siblings_contact_info_two,
-            'sign'                                          => $globalFunSign['status'] == 1 ? $globalFunSign['file_name'] : $admin->sign,
-            'ceo_sign'                                      => $globalFunCeoSign['status'] == 1 ? $globalFunCeoSign['file_name'] : $admin->ceo_sign,
-            'operation_director_sign'                       => $globalFunOperationDirectorSign['status'] == 1 ? $globalFunOperationDirectorSign['file_name'] : $admin->operation_director_sign,
-            'managing_director_sign'                        => $globalFunManagingDirectorSign['status'] == 1 ? $globalFunManagingDirectorSign['file_name'] : $admin->managing_director_sign,
             'sign_date'                                     => $request->sign_date,
             'evaluation_date'                               => $request->evaluation_date,
             'casual_leave_due_as_on'                        => $request->casual_leave_due_as_on,

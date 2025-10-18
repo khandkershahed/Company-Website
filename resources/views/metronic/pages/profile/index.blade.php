@@ -6,7 +6,7 @@
                 <div class="flex-wrap d-flex flex-sm-nowrap">
                     <div class="mb-4 me-7">
                         <div class="symbol symbol-200px symbol-fixed position-relative">
-                            <img src="{{ !empty($user->photo) && file_exists(public_path('upload/Profile/admin/' . $user->photo)) ? asset('upload/Profile/admin/' . $user->photo) : asset('https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name)) }}"
+                            <img src="{{ !empty($user->photo) && file_exists(public_path('storage/' . $user->photo)) ? asset('storage/' . $user->photo) : asset('https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name)) }}"
                                 alt="image">
                             <div
                                 class="bottom-0 mb-6 border-4 position-absolute translate-middle start-100 bg-success rounded-circle border-body h-20px w-20px">
@@ -136,8 +136,10 @@
                                         <h5 class="modal-title" id="profileeditLabel">
                                             Profile Details
                                         </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
+                                        <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <i class="fas fa-xmark fs-4 text-danger"></i>
+                                        </button>
                                     </div>
                                     <form id="myform" method="post"
                                         action="{{ route('employee.update', $user->id) }}"
@@ -334,7 +336,7 @@
                                                                 Picture</label>
                                                             <x-metronic.file-input id="photo" name="photo"
                                                                 :source="asset(
-                                                                    'upload/Profile/admin/' . $user->photo,
+                                                                    'storage/' . $user->photo,
                                                                 )"
                                                                 :value="old('photo')"></x-metronic.file-input>
 
@@ -344,7 +346,7 @@
                                                         <div class="mb-4">
                                                             <label class="form-label" for="sign">Sign</label>
                                                             <x-metronic.file-input id="sign" name="sign"
-                                                                :source="asset('upload/Profile/admin/' . $user->sign)"
+                                                                :source="asset('storage/' . $user->sign)"
                                                                 :value="old('sign')"></x-metronic.file-input>
                                                         </div>
                                                     </div>
@@ -567,7 +569,7 @@
                         <h4 class="mb-3 fw-bold">Security</h4>
                     </div>
                     <div class="card-body">
-                        <form id="myform" method="post" action="{{ route('employee.update', $user->id) }}"
+                        <form id="securityForm" method="post" action="{{ route('employee.update', $user->id) }}"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -790,7 +792,7 @@
                 });
 
                 // Validate on form submit
-                $('form').on('submit', function(e) {
+                $('#securityForm').on('submit', function(e) {
                     if (!validatePasswords()) {
                         e.preventDefault();
                     }
