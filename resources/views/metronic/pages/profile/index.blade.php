@@ -12,7 +12,7 @@
                     </div>
 
                     <div class="flex-grow-1">
-                        <div class="flex-wrap mb-2 d-flex justify-content-between align-items-start mobile-card">
+                        <div class="flex-wrap mb-2 d-flex justify-content-between align-items-center mobile-card">
                             <div class="d-flex flex-column">
                                 <div class="mb-2 d-flex align-items-center">
                                     <a href="#"
@@ -24,20 +24,20 @@
 
                                 <div class="mb-4 fw-semibold fs-6 pe-2">
                                     <a href="#"
-                                        class="mb-2 text-gray-500 d-flex align-items-center text-hover-primary me-5">
+                                        class="mb-2 text-black d-flex align-items-center text-hover-primary me-5">
                                         <i class="fas fa-user fs-4 me-1" aria-hidden="true"></i>
                                         {{ $user->designation }}
                                     </a>
                                     <div>
                                         <a href="#"
-                                            class="mb-2 text-gray-500 d-flex align-items-center text-hover-primary me-5">
+                                            class="mb-2 text-black d-flex align-items-center text-hover-primary me-5">
                                             <i class="fas fa-location-dot fs-4 me-1" aria-hidden="true"></i>
                                             {{ $user->address }}
                                         </a>
                                     </div>
                                     <div>
                                         <a href="mailto:{{ $user->email }}"
-                                            class="mb-2 text-gray-500 d-flex align-items-center text-hover-primary">
+                                            class="mb-2 text-black d-flex align-items-center text-hover-primary">
                                             <i class="fas fa-envelope fs-4 pe-2" aria-hidden="true"></i>
                                             {{ $user->email }}
                                         </a>
@@ -502,7 +502,7 @@
                             <div class="table-responsive">
                                 <table
                                     class="table border table-striped table-row-bordered gy-5 gs-7 rounded-3 dataTable">
-                                    <thead class="text-gray-500 fs-7">
+                                    <thead class="text-black fs-7">
                                         <tr class="px-5 text-gray-800 fw-bold fs-6">
                                             <th width="10%">Sl</th>
                                             <th width="65%">Document Name</th>
@@ -613,7 +613,7 @@
                             <div class="table-responsive">
                                 <table
                                     class="table border data_table table-striped table-row-bordered gy-5 gs-7 rounded-3 dataTable">
-                                    <thead class="text-gray-500 fs-7">
+                                    <thead class="text-black fs-7">
                                         <tr class="px-5 text-gray-800 fw-bold fs-6">
                                             <th width="30%">Date</th>
                                             <th width="25%">Check In</th>

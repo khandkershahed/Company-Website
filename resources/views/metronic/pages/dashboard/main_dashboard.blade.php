@@ -34,7 +34,7 @@
                                         <div class="m-0 d-flex align-items-center">
                                             <span class="text-primary fw-semibold ps-3">Last Evaluation :</span>
 
-                                            <span class="text-gray-500 fw-semibold ps-3">N/A</span>
+                                            <span class="text-black fw-semibold ps-3">N/A</span>
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                         <div class="m-0 d-flex align-items-center">
                                             <span class="text-primary fw-semibold ps-3">Next Evaluation :</span>
 
-                                            <span class="text-gray-500 fw-semibold ps-3">N/A</span>
+                                            <span class="text-black fw-semibold ps-3">N/A</span>
                                         </div>
                                     </div>
                                 </div>
@@ -61,13 +61,13 @@
                     <div class="row gx-9">
                         <div class="col-sm-6" style="border-right: 1px solid #eee;">
                             <div class="mb-3 d-flex justify-content-between align-items-center">
-                                <span class="text-gray-500 fw-semibold">Yearly Total Leave:</span>
+                                <span class="text-black fw-semibold">Yearly Total Leave:</span>
                                 <span class="px-4 py-3 text-white bg-primary rounded-circle">24</span>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mb-3 d-flex justify-content-between align-items-center">
-                                <span class="text-gray-500 fw-semibold">This Month Total:</span>
+                                <span class="text-black fw-semibold">This Month Total:</span>
                                 <span class="px-4 py-3 text-white bg-primary rounded-circle">24</span>
                             </div>
                         </div>
@@ -75,13 +75,13 @@
                     <div class="row gx-9 border-top">
                         <div class="col-sm-6" style="border-right: 1px solid #eee;">
                             <div class="mt-3 d-flex justify-content-between align-items-center">
-                                <span class="text-gray-500 fw-semibold">This Year Taken:</span>
+                                <span class="text-black fw-semibold">This Year Taken:</span>
                                 <span class="px-4 py-3 text-white bg-primary rounded-circle">24</span>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mt-3 d-flex justify-content-between align-items-center">
-                                <span class="text-gray-500 fw-semibold">This Month Taken:</span>
+                                <span class="text-black fw-semibold">This Month Taken:</span>
                                 <span class="px-4 py-3 text-white bg-primary rounded-circle">24</span>
                             </div>
                         </div>
@@ -96,14 +96,14 @@
                     <div class="row gx-9">
                         <div class="col-sm-6" style="border-right: 1px solid #eee;">
                             <div class="mb-5 d-flex justify-content-between align-items-center">
-                                <span class="text-gray-500 fw-semibold">Today Check In:</span>
+                                <span class="text-black fw-semibold">Today Check In:</span>
                                 <span
                                     class="p-3 text-white bg-primary rounded-pill">{{ !empty($todayAttendance->check_in) ? $todayAttendance->check_in : 'Absent' }}</span>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mb-5 d-flex justify-content-between align-items-center">
-                                <span class="text-gray-500 fw-semibold">Today Check Out:</span>
+                                <span class="text-black fw-semibold">Today Check Out:</span>
                                 <span
                                     class="p-3 text-white bg-primary rounded-pill">{{ !empty($todayAttendance->check_in) ? (!empty($todayAttendance->check_out) ? $todayAttendance->check_out : 'N/A') : 'Absent' }}</span>
                             </div>
@@ -112,7 +112,7 @@
                     <div class="row gx-9 border-top">
                         <div class="col-sm-12">
                             <div class="mt-7 d-flex justify-content-between align-items-center">
-                                <span class="text-gray-500 fw-semibold">Status</span>
+                                <span class="text-black fw-semibold">Status</span>
                                 <span class="p-4 text-info fs-5 badge badge-light-primary rounded-pill">
                                     L:
                                     {{ $attendances->filter(fn($a) => $a['check_in'] > '09:06:00' && $a['check_in'] <= '10:00:00')->count() }}
@@ -130,7 +130,7 @@
                         </div>
                         {{-- <div class="col-sm-6">
                             <div class="mt-7 d-flex justify-content-between align-items-center">
-                                <span class="text-gray-500 fw-semibold">Your Critical Point:</span>
+                                <span class="text-black fw-semibold">Your Critical Point:</span>
                                 <span class="p-5 text-white badge badge-circle badge-danger">24</span>
                             </div>
                         </div> --}}
@@ -163,7 +163,7 @@
                                     <a class="text-gray-900 fs-6 fw-bold text-hover-primary" href="javascript:void(0);">
                                         {{ $document->document_name }}
                                     </a>
-                                    <div class="text-gray-500">
+                                    <div class="text-black">
                                         {{ $document->created_at->diffForHumans() }}
                                     </div>
                                 </div>
@@ -183,7 +183,7 @@
                         </div>
                     @empty
                         <div class="my-5 text-center">
-                            <h5 class="text-gray-500">No Documents Found</h5>
+                            <h5 class="text-black">No Documents Found</h5>
                         </div>
                     @endforelse
                 </div>
@@ -295,14 +295,14 @@
                                                             <div class="text-gray-800 fw-semibold fs-2">
                                                                 {{ $meeting->start_time->format('H:i') }} -
                                                                 {{ $meeting->end_time->format('H:i') }}
-                                                                <span class="text-gray-500 fw-semibold fs-7">
+                                                                <span class="text-black fw-semibold fs-7">
                                                                     {{ $meeting->start_time->format('A') }}
                                                                 </span>
                                                             </div>
                                                             <div class="text-gray-700 fw-semibold fs-6">
                                                                 {{ $meeting->title }}
                                                             </div>
-                                                            <div class="text-gray-500 fw-semibold fs-7">
+                                                            <div class="text-black fw-semibold fs-7">
                                                                 Lead by
                                                                 <a href="#"
                                                                     class="text-primary opacity-75-hover fw-semibold">
@@ -514,7 +514,7 @@
                                                     </div>
                                                 @empty
                                                     <div class="py-5 text-center">
-                                                        <p class="text-gray-500">No {{ strtolower($tabTitle) }}
+                                                        <p class="text-black">No {{ strtolower($tabTitle) }}
                                                             scheduled for {{ $day['carbon_date']->format('l, M d') }}.
                                                         </p>
                                                     </div>
@@ -534,7 +534,7 @@
                 <div class="card-header py-7">
                     <div>
                         <h1 class="text-gray-800 text-hover-primary fs-3 fw-bold">Performance Tracker</h1>
-                        <span class="text-gray-500 fs-6 fw-semibold">Performance in this year</span>
+                        <span class="text-black fs-6 fw-semibold">Performance in this year</span>
                     </div>
                     <div class="mb-2 d-flex align-items-center">
                         <span class="text-gray-800 fs-2hx fw-bold me-2 lh-1 ls-n2">0%</span>
@@ -563,7 +563,7 @@
                                         <a href="#" class="text-gray-800 fw-bold text-hover-primary fs-6">HR
                                             Performance</a>
 
-                                        <span class="text-gray-500 fw-semibold fs-7 d-block text-start ps-0">Direct
+                                        <span class="text-black fw-semibold fs-7 d-block text-start ps-0">Direct
                                             link
                                             clicks</span>
                                     </div>
@@ -618,7 +618,7 @@
                         <div class="table-responsive">
                             <table
                                 class="table border data_table table-striped table-row-bordered gy-5 gs-7 rounded-3 dataTable">
-                                <thead class="text-gray-500 fs-7">
+                                <thead class="text-black fs-7">
                                     <tr class="px-5 text-gray-800 fw-bold fs-6">
                                         <th width="30%">Date</th>
                                         <th width="25%">Check In</th>
@@ -740,7 +740,7 @@
                                 </div>
                             @empty
                                 <div class="mb-6 d-flex align-items-center">
-                                    <h5 class="text-gray-500">No Notices Available</h5>
+                                    <h5 class="text-black">No Notices Available</h5>
                                 </div>
                             @endforelse
                         </div>
