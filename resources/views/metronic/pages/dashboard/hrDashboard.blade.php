@@ -4,8 +4,8 @@
             <!-- Attendance -->
             <div class="col-lg-9">
                 <div class="row">
-                    <div class="col-xl-6">
-                        <div class="border shadow-none card card-flush">
+                    <div class="col-xl-4 col-md-6">
+                        <div class="border shadow-none card card-flush min-h-100" style="background-image: linear-gradient(to top, #296088, #003B65);">
                             <div class="p-0 card-body">
                                 <div class="d-flex flex-stack justify-content-between">
                                     <div class="p-8 d-flex align-items-center me-3 rounded-3">
@@ -79,8 +79,8 @@
                             </div>
                         </div>
                     </div> --}}
-                    <div class="col-xl-6">
-                        <div class="border shadow-none card card-flush">
+                    <div class="col-xl-4 col-md-6">
+                        <div class="border shadow-none card card-flush min-h-100" style="background-image: linear-gradient(to top, #296088, #003B65);">
                             <div class="p-0 card-body">
                                 <div class="d-flex flex-stack justify-content-between">
                                     <div class="p-8 d-flex align-items-center me-3 w-50 rounded-3">

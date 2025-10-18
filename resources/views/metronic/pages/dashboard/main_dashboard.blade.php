@@ -188,8 +188,8 @@
             </div>
         </div>
         <div class="col-xl-4">
-            <div class="p-5 border shadow-none card">
-                <div class="p-2 py-5 d-flex justify-content-between align-items-center">
+            <div class="card">
+                <div class="py-4 card-header justify-content-between align-items-center">
                     <div>
                         <h1 class="mb-0">Meeting List</h1>
                         <p class="mb-0 text-gray-400">
@@ -212,7 +212,7 @@
                     $tabIndex = 0;
                 @endphp
 
-                <div class="p-0 border-0 card-header" style="min-height: 50px">
+                <div class="border-0 card-header" style="min-height: 52px">
                     <ul class="border-0 nav nav-pills nav-pills-custom" role="tablist">
                         @foreach ($mainTabs as $id => $title)
                             <li class="m-0 nav-item rounded-pill" role="presentation">
@@ -528,10 +528,12 @@
             </div>
         </div>
         <div class="col-xl-4">
-            <div class="border shadow-none card card-flush min-h-100">
+            <div class="card card-flush min-h-100">
                 <div class="card-header py-7">
-                    <div class="m-0">
-                        <h1>Performance Tracker</h1> <br />
+                        <div>
+                            <h1>Performance Tracker</h1>
+                            <span class="text-gray-500 fs-6 fw-semibold">Performance in this year</span>
+                        </div>
                         <div class="mb-2 d-flex align-items-center">
                             <span class="text-gray-800 fs-2hx fw-bold me-2 lh-1 ls-n2">0%</span>
 
@@ -541,9 +543,6 @@
                                 0%
                             </span> --}}
                         </div>
-
-                        <span class="text-gray-500 fs-6 fw-semibold">Performance in this year</span>
-                    </div>
                 </div>
 
                 <div class="pt-0 card-body">
