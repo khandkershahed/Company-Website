@@ -145,7 +145,7 @@
                                                                 <td>{{ ++$key }}</td>
                                                                 <!-- Employee Image -->
                                                                 <td>
-                                                                    <img src="{{ !file_exists($employee->photo) ? url('upload/no_image.jpg') : url('upload/admin/' . $employee->photo) }}"
+                                                                    <img src="{{ !empty($employee->photo) && file_exists(public_path('storage/' . $employee->photo)) ? asset('storage/' . $employee->photo)  : url('upload/no_image.jpg') }}"
                                                                         alt="" width="40px" height="40px"
                                                                         style="border-radius: 50%">
                                                                 </td>
@@ -229,9 +229,9 @@
                                                                     <td>{{ ++$key }}</td>
                                                                     <!-- Employee Image -->
                                                                     <td>
-                                                                        <img src="{{ !file_exists($employee->photo) ? url('upload/no_image.jpg') : url('upload/admin/' . $employee->photo) }}"
+                                                                        <img src="{{ !empty($employee->photo) && file_exists(public_path('storage/' . $employee->photo)) ? asset('storage/' . $employee->photo)  : url('upload/no_image.jpg') }}"
                                                                             alt="" width="40px"
-                                                                            height="40px" style="border-radius: 50%">
+                                                                            height="40px">
                                                                     </td>
                                                                     <!-- Employee Name -->
                                                                     <td>{{ $employee->name }}</td>
@@ -599,14 +599,14 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="photo_edit">Profile
                                                 Picture</label>
-                                                <x-metronic.file-input id="photo_edit" name="photo" :source="asset('storage/' . $employee->photo)" ></x-metronic.file-input>
+                                                <x-metronic.file-input id="photo_edit" name="photo" :source="asset('storage/'.$employee->photo)" ></x-metronic.file-input>
 
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="mb-4">
                                             <label class="form-label" for="sign_edit">Sign</label>
-                                            <x-metronic.file-input id="sign_edit" name="sign" class="form-control" :source="asset('storage/' . $employee->sign)" ></x-metronic.file-input>
+                                            <x-metronic.file-input id="sign_edit" name="sign" class="form-control" :source="asset('storage/'.$employee->sign)" ></x-metronic.file-input>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
