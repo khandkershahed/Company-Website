@@ -669,6 +669,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
     Route::post('notifiy/bulk-delete', [NotificationController::class, 'multiDelete'])->name('notifiy.multi-delete');
+
     Route::controller(EffortRatingController::class)->group(function () {
         Route::get('/effort/ajax/{id}', 'GetEffortRating')->name('get.effort.ajax');
     });
