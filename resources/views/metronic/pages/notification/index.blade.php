@@ -1,185 +1,234 @@
-<x-admin-app-layout :title="'All Notiufications'">
-    <div class="card card-flush">
-        <div class="card-header bg-light-primary align-items-center">
-            <h3 class="card-title text-black">All Notifications ({{ $notifications->count() }})</h3>
-            <div>
-                <a href="{{ route('notification.create') }}" class="btn btn-sm btn-success">
-                    <div class="d-flex align-items-center">
-                        <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
-                            data-bs-placement="top" title="Add Solution Details">
-                            <i class="ph-plus icons_design"></i> </span>
-                        <span class="ms-1 " style="color: #247297;">Add</span>
+<x-admin-app-layout :title="'All Notifications'">
+
+    <div class="mb-4 row">
+        {{-- Summary Cards --}}
+        <div class="col-md-3 col-sm-6">
+            <div class="p-10 bg-white border shadow-sm card position-relative">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-start">
+                        <h6 class="fw-semibold text-primary">Total Notifications</h6>
+                        <small class="text-muted">All-time records</small>
                     </div>
-                </a>
-                <a href="javascript:void(0);" id="delete-selected-records"
-                    class="btn btn-sm btn-delete">
-                    <div class="d-flex align-items-center">
-                        <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
-                            data-bs-placement="top" title="Add Solution Details">
-                            <i class="fa-solid fa-trash text-danger icons_design" style="font-size: 14px;"></i>
-                        </span>
-                        <span class="ms-1 " style="color: #247297;">Delete All</span>
+                    <div class="position-relative">
+                        <div class="p-3 rounded-circle bg-primary bg-opacity-10 d-flex justify-content-center align-items-center" style="width: 80px; height: 80px;">
+                            <h1 class="mb-0 fw-bold text-primary">{{ $notifications->count() }}</h1>
+                        </div>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
-        <div class="card-body">
+
+        <div class="col-md-3 col-sm-6">
+            <div class="p-10 bg-white border shadow-sm card position-relative">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-start">
+                        <h6 class="fw-semibold text-success">This Month</h6>
+                        <small class="text-muted">Notifications in {{ now()->format('F') }}</small>
+                    </div>
+                    <div class="position-relative">
+                        <div class="p-3 rounded-circle bg-success bg-opacity-10 d-flex justify-content-center align-items-center" style="width: 80px; height: 80px;">
+                            <h3 class="mb-0 fw-bold text-success">{{ $notifications->whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])->count() }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="p-10 bg-white border shadow-sm card position-relative">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-start">
+                        <h6 class="fw-semibold text-warning">This Year</h6>
+                        <small class="text-muted">Yearly total ({{ now()->year }})</small>
+                    </div>
+                    <div class="position-relative">
+                        <div class="p-3 rounded-circle bg-warning bg-opacity-10 d-flex justify-content-center align-items-center" style="width: 80px; height: 80px;">
+                            <h3 class="mb-0 fw-bold text-warning">{{ $notifications->whereBetween('created_at', [now()->startOfYear(), now()->endOfYear()])->count() }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <div class="p-10 bg-white border shadow-sm card position-relative">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="text-start">
+                        <h6 class="fw-semibold text-danger">Unread</h6>
+                        <small class="text-muted">Pending attention</small>
+                    </div>
+                    <div class="position-relative">
+                        <div class="p-3 rounded-circle bg-danger bg-opacity-10 d-flex justify-content-center align-items-center" style="width: 80px; height: 80px;">
+                            <h3 class="mb-0 fw-bold text-danger">{{ $notifications->whereNull('read_at')->count() }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Notifications Table --}}
+    <div class="card card-flush">
+        <div class="p-5 bg-white card-header d-flex justify-content-between align-items-center">
+            <h3 class="text-black card-title">All Notifications ({{ $notifications->count() }})</h3>
+            <div class="gap-2 d-flex">
+                <a href="{{ route('notification.create') }}" class="btn btn-sm btn-success">
+                    <i class="fa-solid fa-plus me-1"></i> Add
+                </a>
+                <button id="deleteSelected" class="btn btn-sm btn-danger" style="display:none;">
+                    <i class="fa-solid fa-trash me-1"></i> Delete Selected
+                </button>
+            </div>
+        </div>
+
+        <div class="pt-0 card-body">
             <div class="table-responsive">
-                <table class="table dataTable table-bordered table-striped text-center">
-                    <thead>
+                <table id="notificationTable" class="table text-center align-middle border dataTable table-bordered">
+                    <thead class="bg-light">
                         <tr>
-                            <th width="10%">
-                                <input id="select-all-checkbox" type="checkbox" class="form-check-input">
+                            <th width="5%">
+                                <input type="checkbox" id="selectAll" class="form-check-input" />
                             </th>
-                            <th width="25%">Name</th>
-                            <th width="40%">Message</th>
-                            <th width="15%">Created Time</th>
+                            <th width="20%" class="text-start">Name</th>
+                            <th width="35%" class="text-start">Message</th>
+                            <th width="15%" class="text-start">Created At</th>
+                            <th width="15%" class="text-start">Extra Data</th>
                             <th width="10%" class="text-center">Actions</th>
+                            {{-- Optional extra column example --}}
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($notifications as $notification)
-                            @php
-                                $notificationObject = json_decode($notification->data, true);
-                                // $notificationObject = cache()->remember("notification.{$notification->id}", now()->addHour(), function () use ($notification) {
-                                //     return json_decode($notification->data, true);
-                                // });
-                                //dd($notificationObject['link']);
-                            @endphp
-                            <tr>
-                                <td class="text-center">
-                                    <input type="checkbox" name="id[]" class="form-check-input"
-                                        value="{{ $notification->id }}" />
-                                </td>
-                                <td>{{ $notificationObject['name'] }}</td>
-                                <td>
-                                    @if (isset($notificationObject['message1']))
-                                        @if (!empty($notification->read_at))
-                                            <span>
-                                                {{ $notificationObject['name'] }}
-                                                {{ $notificationObject['message1'] }}
-                                                <a href="{{ $notificationObject['link'] }}"
-                                                    data-id="{{ $notification->id }}" class="fw-semibold mark-as-read">
-                                                    {{ $notificationObject['message2'] }}
-                                            </span>
-                                        @else
-                                            <span class="text-danger">
-                                                {{ $notificationObject['name'] }}
-                                                {{ $notificationObject['message1'] }}
-                                                <a href="{{ $notificationObject['link'] }}"
-                                                    data-id="{{ $notification->id }}" class="fw-semibold mark-as-read">
-                                                    {{ $notificationObject['message2'] }}
-                                            </span>
-                                        @endif
-                                    @endif
-                                </td>
-                                <td>
-                                    {{ Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}
-                                </td>
-                                <td class="text-center">
-                                    <a href="{{ route('notification.destroy', [$notification->id]) }}"
-                                        class="text-danger delete mx-2">
-                                        <i class="fa-solid fa-trash p-1 rounded-circle text-danger"></i>
+                        @forelse ($notifications as $notification)
+                        @php $data = json_decode($notification->data, true); @endphp
+                        <tr style="border-bottom: 1px solid #e7e7e7;">
+                            <td>
+                                <input type="checkbox" class="row-checkbox form-check-input" value="{{ $notification->id }}" />
+                            </td>
+                            <td class="text-start">{{ $data['name'] ?? 'N/A' }}</td>
+                            <td class="text-start">
+                                @if (isset($data['message1']))
+                                <span class="{{ $notification->read_at ? '' : 'text-danger fw-semibold' }}">
+                                    {{ $data['name'] ?? '' }} {{ $data['message1'] ?? '' }}
+                                    <a href="{{ $data['link'] ?? '#' }}" data-id="{{ $notification->id }}" class="fw-semibold mark-as-read">
+                                        {{ $data['message2'] ?? '' }}
                                     </a>
-                                </td>
-                            </tr>
-                        @endforeach
+                                </span>
+                                @endif
+                            </td>
+                            <td class="text-start">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</td>
+                            {{-- Extra Data column example --}}
+                            <td class="text-start">
+                            {{ \Carbon\Carbon::parse($notification->created_at)->format('d M Y, h:i A') }}
+                            </td>
+                            <td class="text-center">
+                                <a href="{{ route('notification.destroy', $notification->id) }}" class="text-danger delete">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="6" class="text-center">No notifications found.</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
         </div>
+    </div>
 
-        @push('scripts')
-            {{-- <script type="text/javascript">
-                $('.newsLetterDt').DataTable({
-                    dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
-                    "iDisplayLength": 10,
-                    "lengthMenu": [10, 25, 30, 50],
-                    columnDefs: [{
-                        orderable: false,
-                        targets: [0, 4],
-                    }, ],
-                });
-            </script> --}}
-            <script type="text/javascript">
-                const selectAllCheckbox = $('#select-all-checkbox');
-                const tableBody = $('#notificationTable tbody');
+    {{-- Optional CSS --}}
+    <style>
+        #notificationTable td.text-start {
+            word-break: break-word;
+            white-space: normal;
+        }
 
-                // Instead of selecting all the checkboxes again and again, we can cache them and reuse the selection.
-                const allCheckboxes = $('input[type="checkbox"]');
+        .rounded-circle h3 {
+            position: relative;
+            z-index: 2;
+        }
 
-                // Simplify click event handler since we already have cached all checkboxes.
-                selectAllCheckbox.on('click', function() {
-                    allCheckboxes.prop('checked', this.checked);
-                });
+        .rounded-circle::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3), transparent);
+            z-index: 1;
+        }
+    </style>
 
-                // Change to document instead of table body to simplify the code & reduce operations.
-                $(document).on('change', 'input[type="checkbox"]', function() {
-                    if (this.checked) {
-                        // Check if all checkboxes are checked or not, update selectAllCheckbox accordingly.
-                        if (allCheckboxes.not(':checked').length === 0) {
-                            selectAllCheckbox.prop('checked', true);
-                        } else {
-                            selectAllCheckbox.prop('checked', false);
-                        }
-                    } else {
-                        // If any checkbox is unchecked, uncheck selectAllCheckbox.
-                        selectAllCheckbox.prop('checked', false);
-                    }
+    @push('scripts')
+    <script>
+        $(document).ready(function() {
+            const selectAll = $('#selectAll');
+            const deleteSelected = $('#deleteSelected');
 
-                    // check if any checkbox is unchecked after checking selectAllCheckbox and set indeterminate state accordingly.
-                    if (!this.checked && selectAllCheckbox.prop('checked') && ('indeterminate' in selectAllCheckbox[0])) {
-                        selectAllCheckbox.prop('indeterminate', true);
-                    }
-                });
+            // Toggle all row checkboxes
+            selectAll.on('change', function() {
+                const isChecked = $(this).is(':checked');
+                $('.row-checkbox').prop('checked', isChecked);
+                toggleDeleteButton();
+            });
 
-                $('#delete-selected-records').on('click', function() {
-                    const id = [];
-                    $('input[name="id[]"]:checked').each(function() {
-                        id.push($(this).val());
-                    });
-                    if (id.length > 0) {
-                        const url = "{{ route('notifiy.multi-delete') }}";
+            // Toggle delete button when any row checkbox changes
+            $(document).on('change', '.row-checkbox', function() {
+                const total = $('.row-checkbox').length;
+                const checked = $('.row-checkbox:checked').length;
+
+                selectAll.prop('checked', total === checked);
+                toggleDeleteButton();
+            });
+
+            // Show/hide delete button
+            function toggleDeleteButton() {
+                const count = $('.row-checkbox:checked').length;
+                deleteSelected.toggle(count > 0);
+            }
+
+            // Delete Selected
+            deleteSelected.on('click', function() {
+                const selectedIds = $('.row-checkbox:checked').map(function() {
+                    return $(this).val();
+                }).get();
+
+                if (selectedIds.length === 0) return;
+
+                Swal.fire({
+                    title: `Delete ${selectedIds.length} notifications?`,
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete",
+                    cancelButtonText: "Cancel",
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#6c757d"
+                }).then((result) => {
+                    if (result.isConfirmed) {
                         $.ajax({
-                            url: url,
-                            type: 'POST',
+                            url: "{{ route('notifiy.multi-delete') }}",
+                            type: "POST",
                             data: {
-                                '_token': "{{ csrf_token() }}",
-                                'id': id
+                                _token: "{{ csrf_token() }}",
+                                id: selectedIds
                             },
-                            success: function(data) {
-                                swalInit.fire({
-                                    title: "Deleted!",
-                                    text: "This data has been deleted!",
-                                    confirmButtonColor: "#66BB6A",
-                                    icon: "success",
-                                    type: "success",
-                                    preConfirm: function() {
-                                        location.reload();
-                                    },
+                            success: function() {
+                                Swal.fire("Deleted!", "Notifications deleted successfully.", "success");
+                                $('.row-checkbox:checked').closest('tr').fadeOut(300, function() {
+                                    $(this).remove();
+                                    toggleDeleteButton();
                                 });
+                                selectAll.prop('checked', false);
                             },
                             error: function() {
-                                swalInit.fire({
-                                    title: "Error",
-                                    icon: 'error',
-                                    text: "Please refresh your form & try again",
-                                    icon: "error",
-                                    allowEscapeKey: false,
-                                    allowEnterKey: false,
-                                });
-                            },
+                                Swal.fire("Error", "Something went wrong. Try again.", "error");
+                            }
                         });
-                    } else {
-                        swalInit.fire({
-                            icon: 'warning',
-                            title: "Oops...",
-                            text: "Please select at least one record to delete.",
-                            confirmButtonColor: "#66BB6A",
-                            timer: 150000
-                        })
                     }
                 });
-            </script>
-        @endpush
+            });
+        });
+    </script>
+    @endpush
+
 </x-admin-app-layout>
