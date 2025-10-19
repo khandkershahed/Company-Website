@@ -595,7 +595,19 @@
                                             <div class="invalid-feedback"> Please Enter Supervisor.</div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 mb-4">
+                                        {{-- last_evaluation_date --}}
+                                        <label class="form-label" for="last_evaluation_date">Last Evaluation Date</label>
+                                        <input id="last_evaluation_date" type="date" name="last_evaluation_date" class="form-control"
+                                            value="{{ $employee->last_evaluation_date }}">
+                                    </div>
+                                    <div class="col-lg-4 mb-4">
+                                        {{-- next_evaluation_date --}}
+                                        <label class="form-label" for="next_evaluation_date">Next Evaluation Date</label>
+                                        <input id="next_evaluation_date" type="date" name="next_evaluation_date" class="form-control"
+                                            value="{{ $employee->next_evaluation_date }}">
+                                    </div>
+                                    <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="photo_edit">Profile
                                                 Picture</label>
@@ -603,7 +615,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-6">
                                         <div class="mb-4">
                                             <label class="form-label" for="sign_edit">Sign</label>
                                             <x-metronic.file-input id="sign_edit" name="sign" class="form-control" :source="asset('storage/'.$employee->sign)" ></x-metronic.file-input>

@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <!-- /content area End-->
+        <!-- /content area End--> 
 
     </div>
 @endsection

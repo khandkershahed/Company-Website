@@ -25,7 +25,7 @@ class LeaveController extends Controller
     public function leaveDashboard()
     {
 
-            $data = [];
+            $data = []; 
             $data['user'] = User::where('id', Auth::user()->id)->first();
             $data = [
                 'user' => $data['user'],
