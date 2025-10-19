@@ -157,7 +157,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-xl-6">
-                <div class=card card-flush">
+                <div class="card card-flush">
                         <div class="pt-5 card-header">
                             <div class="card-title d-flex justify-content-between w-100">
                                 <span class="pt-1 text-black fw-semibold fs-2">New Agent This Month</span>

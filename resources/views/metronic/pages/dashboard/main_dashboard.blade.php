@@ -846,8 +846,14 @@
                                     <input type="time" name="end_time" class="form-control" required>
                                 </div>
                             </div>
+                            <div class="mb-4 row">
+                                <div class="col-md-12">
+                                    <label class="form-label">Link</label>
+                                    <input type="link" name="link" class="form-control" required>
+                                </div>
+                            </div>
 
-                            {{-- <div class="mb-4 row">
+                            <div class="mb-4 row">
                                 <div class="col-md-12">
                                     <label class="form-label">Participants (Select Multiple)</label>
                                     <select name="participants[]" class="form-select" data-control="select2" data-allow-clear="true" multiple>
@@ -857,7 +863,7 @@
                                     </select>
                                     <small class="text-muted">Hold CTRL/CMD to select multiple participants.</small>
                                 </div>
-                            </div> --}}
+                            </div>
 
                         </div>
                         <div class="modal-footer">
