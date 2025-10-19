@@ -111,6 +111,7 @@
                             'icon' => 'fa-light fa-truck-field fs-3',
                             'routes' => [
                                 'admin.brand.index',
+                                'admin.supplychain.index',
                                 'admin.brand.create',
                                 'admin.brand.edit',
                                 'admin.categories.index',
@@ -124,6 +125,11 @@
                                 'product-sourcing.edit',
                             ],
                             'subMenu' => [
+                                [
+                                    'title' => 'Supply Chain Dashboard',
+                                    'routes' => ['admin.supplychain.index'],
+                                    'route' => 'admin.supplychain.index',
+                                ],
                                 [
                                     'title' => 'Brand Management',
                                     'routes' => ['admin.brand.index', 'admin.brand.create', 'admin.brand.edit'],

@@ -77,6 +77,7 @@ use App\Http\Controllers\Salary\AttributeController;
 use App\Http\Controllers\Admin\ClientStoryController;
 use App\Http\Controllers\Admin\DocumentPdfController;
 use App\Http\Controllers\Admin\ExpenseTypeController;
+use App\Http\Controllers\Admin\SupplyChainController;
 use App\Http\Controllers\Attendance\ZktecoController;
 use App\Http\Controllers\Salary\SalaryFormController;
 use App\Http\Controllers\Admin\EffortRatingController;
@@ -85,6 +86,7 @@ use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\PresentationController;
 use App\Http\Controllers\Admin\SalesForcastController;
 use App\Http\Controllers\Admin\SolutionCardController;
+use App\Http\Controllers\Admin\StaffMeetingController;
 use App\Http\Controllers\Admin\TrainingPageController;
 use App\Http\Controllers\Admin\WhatWeDoPageController;
 use App\Http\Controllers\Client\SupportCaseController;
@@ -93,6 +95,7 @@ use App\Http\Controllers\Admin\PortfolioPageController;
 use App\Http\Controllers\Admin\PortfolioTeamController;
 use App\Http\Controllers\Admin\SalesForecastController;
 use App\Http\Controllers\Admin\ShowCaseVideoController;
+use App\Http\Controllers\Admin\StaffDocumentController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Event\EventCategoryController;
 use App\Http\Controllers\KPI\EmployeeProjectController;
@@ -140,8 +143,6 @@ use App\Http\Controllers\Admin\PolicyAcknowledgmentsController;
 use App\Http\Controllers\Client\ClientSupportMessageController;
 use App\Http\Controllers\Admin\FrontendNavbarMenuItemController;
 use App\Http\Controllers\Admin\PortfolioClientFeedbackController;
-use App\Http\Controllers\Admin\StaffDocumentController;
-use App\Http\Controllers\Admin\StaffMeetingController;
 use App\Http\Controllers\Marketing\MarketingTeamTargetController;
 use App\Http\Controllers\Marketing\MarketingManagerRoleController;
 
@@ -181,7 +182,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::delete('marketing-dmar/multi-delete', [MarketingDmarController::class, 'multiDelete'])->name('marketing-dmar.multi-delete');
     Route::get('marketing-target/{user_id}/edit/{month}', [MarketingTargetController::class, 'editMonth'])->name('marketing-target.edit-month');
 
-
+    Route::controller(SupplyChainController::class)->group(function () {
+        Route::get('/supplychain', 'index')->name('supplychain.index');
+    });
 
     Route::get('/sales-forecast/filter', [SalesForecastController::class, 'filterForecast'])->name('forecast.filter');
 
@@ -429,6 +432,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
     // Report All Route
+
     Route::controller(ReportController::class)->group(function () {
 
         Route::get('/report/view', 'ReportView')->name('report.view');
