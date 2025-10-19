@@ -286,7 +286,6 @@
                                 <div class="step" data-step="1">
                                     <div class="step-label">
                                         <span class="">Company Info</span>
-                                        <span class="">Company</span>
                                     </div>
                                     <div class="pt-1 circle ps-2">
                                         <i class="fas fa-check"></i>
@@ -295,7 +294,6 @@
                                 <div class="step" data-step="2">
                                     <div class="step-label">
                                         <span class="">Shipping Details</span>
-                                        <span class="">Shipping</span>
                                     </div>
                                     <div class="pt-1 circle ps-2">
                                         <i class="fas fa-check"></i>
@@ -304,7 +302,6 @@
                                 <div class="step" data-step="3">
                                     <div class="step-label">
                                         <span class="">End User Info</span>
-                                        <span class="">End User</span>
                                     </div>
                                     <div class="pt-1 circle ps-2">
                                         <i class="fas fa-check"></i>
@@ -313,7 +310,6 @@
                                 <div class="step" data-step="4">
                                     <div class="step-label">
                                         <span class="">Additional Details</span>
-                                        <span class="">Additional</span>
                                     </div>
                                     <div class="pt-1 circle ps-2">
                                         <i class="fas fa-check"></i>
