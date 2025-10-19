@@ -522,6 +522,11 @@
                                                 <a href="{{ asset('storage/' . $document->document_file) }}"
                                                     target="_blank"
                                                     class="p-2 me-3 btn btn-icon btn-light btn-sm rounded-circle">
+                                                    <i class="fas fa-eye fs-4" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="{{ asset('storage/' . $document->document_file) }}"
+                                                    target="_blank" download
+                                                    class="p-2 me-3 btn btn-icon btn-light btn-sm rounded-circle">
                                                     <i class="fas fa-download fs-4" aria-hidden="true"></i>
                                                 </a>
                                             </td>
