@@ -97,8 +97,8 @@
         <div class="col-xl-4">
             <div class="border shadow-none card card-flush"
                 style="background-image: linear-gradient(to right, #ffff, #F2FFF8);">
-                <div class="p-12 card-body pb-7">
-                    <div class="row gx-9">
+                <div class="p-12 card-body">
+                    <div class="pb-3 row gx-9">
                         <div class="col-sm-6" style="border-right: 1px solid #eee;">
                             <div class="mb-5 d-flex justify-content-between align-items-center">
                                 <span class="text-black fw-semibold">Today Check In:</span>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="row gx-9 border-top">
                         <div class="col-sm-12">
-                            <div class="mt-7 d-flex justify-content-between align-items-center">
+                            <div class="mt-6 d-flex justify-content-between align-items-center">
                                 <span class="text-black fw-semibold">Status</span>
                                 <span class="p-4 py-2 text-white badge badge-info rounded-pill">
                                     L:
