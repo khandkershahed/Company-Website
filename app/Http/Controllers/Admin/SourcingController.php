@@ -42,8 +42,23 @@ class SourcingController extends Controller
     public function index()
     {
         $data['products'] = Product::where('product_status', 'sourcing')->where('action_status', '!=', 'save')->latest('id', 'desc')
+            ->get(['id', 'slug', 'thumbnail', 'price', 'discount', 'name', 'stock', 'action_status', 'price_status', 'added_by']);
+        // return view('admin.pages.product_sourcing.sourced_products', $data);
+        return view('metronic.pages.product.index', $data);
+    }
+    public function savedProducts()
+    {
+        $data['saved_products'] = Product::where('product_status', 'sourcing')->where('action_status', 'save')->latest('id', 'desc')
             ->get(['id', 'slug', 'thumbnail', 'price', 'discount', 'name', 'stock', 'source_one_price', 'source_two_price', 'action_status', 'price_status', 'added_by']);
-        return view('admin.pages.product_sourcing.sourced_products', $data);
+        return view('metronic.pages.product.saved_products', $data);
+        // return view('admin.pages.product_sourcing.saved_products', $data);
+    }
+    public function approvedProducts()
+    {
+        $data['real_products'] = Product::where('product_status', 'product')->latest('id', 'desc')
+            ->get(['id', 'slug', 'thumbnail', 'price', 'name', 'stock', 'action_status', 'price_status', 'added_by']);
+        return view('metronic.pages.product.completed_products', $data);
+        // return view('admin.pages.product_sourcing.completed_products', $data);
     }
     // public function index(Request $request)
     // {
@@ -81,18 +96,7 @@ class SourcingController extends Controller
     //     return view('admin.pages.product_sourcing.sourced_products');
     // }
 
-    public function savedProducts()
-    {
-        $data['saved_products'] = Product::where('product_status', 'sourcing')->where('action_status', 'save')->latest('id', 'desc')
-            ->get(['id', 'slug', 'thumbnail', 'price', 'discount', 'name', 'stock', 'source_one_price', 'source_two_price', 'action_status', 'price_status', 'added_by']);
-        return view('admin.pages.product_sourcing.saved_products', $data);
-    }
-    public function approvedProducts()
-    {
-        $data['real_products'] = Product::where('product_status', 'product')->latest('id', 'desc')
-            ->get(['id', 'slug', 'thumbnail', 'price', 'name', 'stock', 'action_status', 'price_status', 'added_by']);
-        return view('admin.pages.product_sourcing.completed_products', $data);
-    }
+
     // public function approvedProducts(Request $request)
     // {
     //     if ($request->ajax()) {
@@ -135,11 +139,11 @@ class SourcingController extends Controller
         $data = [
             'brands'           => Brand::select('id', 'title')->latest()->get(),
             'categories'       => Category::select('id', 'title')->orderBy('id', 'DESC')->get(),
-            'sub_cats'         => SubCategory::orderBy('id', 'DESC')->get(),
-            'sub_sub_cats'     => SubSubCategory::orderBy('id', 'DESC')->get(),
-            'sub_sub_sub_cats' => SubSubSubCategory::orderBy('id', 'DESC')->get(),
-            'industrys'        => Industry::orderBy('id', 'DESC')->get(),
-            'solutions'        => SolutionDetail::orderBy('id', 'DESC')->get(),
+            'sub_cats'         => SubCategory::select('id', 'title')->select('id', 'title')->orderBy('id', 'DESC')->get(),
+            'sub_sub_cats'     => SubSubCategory::select('id', 'title')->select('id', 'title')->orderBy('id', 'DESC')->get(),
+            'sub_sub_sub_cats' => SubSubSubCategory::select('id', 'title')->select('id', 'title')->orderBy('id', 'DESC')->get(),
+            'industrys'        => Industry::select('id', 'title')->orderBy('id', 'DESC')->get(),
+            'solutions'        => SolutionDetail::select('id', 'name')->orderBy('id', 'DESC')->get(),
         ];
         // $data['brands']              = Brand::select('id', 'title')->latest()->get();
         // $data['categories']          = Category::select('id', 'title')->orderBy('id', 'DESC')->get();
@@ -543,20 +547,34 @@ class SourcingController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::with(['solutions:id', 'industries:id'])->findOrFail($id);
+        $product = Product::findOrFail($id);
 
-        $data['products']            = $product;
-        $data['multiImgs']           = MultiImage::where('product_id', $id)->get(['id', 'product_id', 'photo']);
-        $data['brands']              = Brand::select('id', 'title')->latest('id')->get();
-        $data['categories']          = Category::select('id', 'title')->latest('id')->get();
-        $data['sub_cats']            = SubCategory::select('id', 'title')->latest('id')->get();
-        $data['sub_sub_cats']        = SubSubCategory::select('id', 'title')->latest('id')->get();
-        $data['sub_sub_sub_cats']    = SubSubSubCategory::select('id', 'title')->latest('id')->get();
-        $data['industrys']           = Industry::select('id', 'title')->latest('id')->get();
-        $data['solutions']           = SolutionDetail::select('id', 'name')->latest('id')->get();
-        $data['selectedSolutions']   = $product->solutions->pluck('id')->toArray();
-        $data['selectedIndustries']  = $product->industries->pluck('id')->toArray();
+        $data = [
+            'products'           => $product,
+            'multiImgs'          => MultiImage::where('product_id', $id)->get(['id', 'product_id', 'photo']),
+            'brands'             => Brand::select('id', 'title')->latest()->get(),
+            'categories'         => Category::select('id', 'title')->orderBy('id', 'DESC')->get(),
+            'sub_cats'           => SubCategory::select('id', 'title')->select('id', 'title')->orderBy('id', 'DESC')->get(),
+            'sub_sub_cats'       => SubSubCategory::select('id', 'title')->select('id', 'title')->orderBy('id', 'DESC')->get(),
+            'sub_sub_sub_cats'   => SubSubSubCategory::select('id', 'title')->select('id', 'title')->orderBy('id', 'DESC')->get(),
+            'industrys'          => Industry::select('id', 'title')->orderBy('id', 'DESC')->get(),
+            'solutions'          => SolutionDetail::select('id', 'name')->orderBy('id', 'DESC')->get(),
+            'selectedSolutions'  => $product->solutions->pluck('id')->toArray(),
+            'selectedIndustries' => $product->industries->pluck('id')->toArray(),
+        ];
+        // $data['products']            = $product;
+        // $data['multiImgs']           = MultiImage::where('product_id', $id)->get(['id', 'product_id', 'photo']);
+        // $data['brands']              = Brand::select('id', 'title')->latest('id')->get();
+        // $data['categories']          = Category::select('id', 'title')->latest('id')->get();
+        // $data['sub_cats']            = SubCategory::select('id', 'title')->latest('id')->get();
+        // $data['sub_sub_cats']        = SubSubCategory::select('id', 'title')->latest('id')->get();
+        // $data['sub_sub_sub_cats']    = SubSubSubCategory::select('id', 'title')->latest('id')->get();
+        // $data['industrys']           = Industry::select('id', 'title')->latest('id')->get();
+        // $data['solutions']           = SolutionDetail::select('id', 'name')->latest('id')->get();
+        // $data['selectedSolutions']   = $product->solutions->pluck('id')->toArray();
+        // $data['selectedIndustries']  = $product->industries->pluck('id')->toArray();
 
+        return view('metronic.pages.product.edit', $data);
         return view('admin.pages.product_sourcing.edit', $data);
     }
 
