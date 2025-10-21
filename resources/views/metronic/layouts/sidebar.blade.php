@@ -145,7 +145,7 @@
                                     'route' => 'admin.category.index',
                                 ],
                                 [
-                                    'title' => 'Sourcing',
+                                    'title' => 'Product Sourcing',
                                     'routes' => [
                                         'product-sourcing.index',
                                         'product.saved',
