@@ -646,11 +646,11 @@
                                     <div class="col-lg-4 mb-3">
                                         <x-metronic.label for="status" class="fw-bold fs-6 required">Select
                                             Status</x-metronic.label>
-                                        <x-metronic.select-option id="status" name="status"
+                                        <x-metronic.select-option id="status" name="status" data-control="select2"
                                             data-hide-search="true" data-placeholder="Choose status">
                                             <option></option>
                                             <option value="active" @selected($employee->status == 'active')>Active</option>
-                                            <option value="inactive" @selected($employee->status == 'inactive')>Inactive</option>
+                                            <option value="inactive" @selected($employee->status == 'inactive')>Suspended</option>
                                         </x-metronic.select-option>
                                     </div>
                                     <div class="mt-5 col-12 text-end">
