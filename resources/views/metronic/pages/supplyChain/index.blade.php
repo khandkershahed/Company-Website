@@ -2,42 +2,6 @@
     <div class="row gx-xl-5">
         <div class="mb-5 col-xl-12">
             <div class="row g-lg-5 g-xl-5">
-                <div class="col-lg-12">
-                    <div class="card card-flush" style="background-image: linear-gradient(to right, #FFFBF2, #F2FFF8);">
-                        <div class="card-body d-flex ps-xl-15">
-                            <div class="m-0">
-                                <div class="text-black position-relative fs-2x z-index-2 fw-bold mb-7">
-                                    <span class="me-2">
-                                        Strengthen your
-                                        <span class="position-relative d-inline-block text-danger">
-                                            <a href="https://preview.keenthemes.com/metronic8/demo1/pages/user-profile/overview.html"
-                                                class="text-uppercase text-danger opacity-75-hover">supply chain</a>
-                                            <span
-                                                class="bottom-0 border-4 opacity-50 position-absolute start-0 border-danger border-bottom w-100"></span>
-                                        </span>
-                                    </span>
-                                    network<br>
-                                    with smarter management tools.
-                                </div>
-
-                                <div class="mb-3">
-                                    <a href="#" class="btn btn-danger fw-semibold me-2" data-bs-toggle="modal"
-                                        data-bs-target="#kt_modal_upgrade_plan">
-                                        + Add WO
-                                    </a>
-
-                                    <a href="https://preview.keenthemes.com/metronic8/demo1/apps/support-center/overview.html"
-                                        class="bg-black btn btn-color-white fw-semibold">
-                                        + Add PO
-                                    </a>
-                                </div>
-                            </div>
-
-                            <img src="	https://preview.keenthemes.com/metronic8/demo1/assets/media/illustrations/sigma-1/17-dark.png"
-                                class="bottom-0 position-absolute me-3 end-0 h-200px" alt="">
-                        </div>
-                    </div>
-                </div>
                 <!-- Middle Left Area -->
                 <div class="col-md-3">
                     <div class="card h-100" style="background-image: linear-gradient(to right, #ffff, #FFFBF2);">
@@ -102,12 +66,12 @@
                         </div>
                     </div>
                 </div>
-                
+
 
                 <!-- Middle Middle Area -->
                 <div class="col-md-3">
                     <div class="card h-100" style="background-image: linear-gradient(to right, #ffff, #FFFBF2);">
-                        <div class="text-center border-0 card-header fw-bold aligh-items-center" >
+                        <div class="text-center border-0 card-header fw-bold aligh-items-center">
                             <div class="pt-2 fs-1 ">
                                 Supply Status
                             </div>
@@ -164,6 +128,52 @@
             </div>
         </div>
     </div>
+    <div class="mb-5 row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body d-flex align-items-center justify-content-between">
+                    <div class="">
+                        <a href="#" class="btn btn-danger fw-semibold me-2" data-bs-toggle="modal"
+                            data-bs-target="#kt_modal_upgrade_plan">
+                            + Add WO
+                        </a>
+
+                        <a href="https://preview.keenthemes.com/metronic8/demo1/apps/support-center/overview.html"
+                            class="bg-black btn btn-color-white fw-semibold">
+                            + Add PO
+                        </a>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class=" me-3">
+                            <div class=" input-group input-group-sm me-3">
+                                <span class="border-0 input-group-text form-control-solid" id="inputGroup-sizing-sm">
+                                    <i class="fab fa-sistrix"></i>
+                                </span>
+                                <input type="text" class="py-4 form-control form-control-solid" aria-label="Sizing example input"
+                                    aria-describedby="inputGroup-sizing-sm" placeholder="Search" style="border-left: 0px;" />
+                            </div>
+                        </div>
+                        <div class="me-3">
+                            <div>
+                                <input type="date" class="form-control form-control-solid w-100"
+                                    placeholder="Pick date rage" id="kt_daterangepicker_2" />
+                            </div>
+                        </div>
+                        <div>
+                            <select class="py-4 form-select form-select-solid form-select-sm" data-control="select2"
+                                data-hide-search="true" placeholder="Select">
+                                <option value="1">Bangladesh</option>
+                                <option value="2" selected="selected">United States</option>
+                                <option value="3">United Kingdom</option>
+                                <option value="4">Canada</option>
+                                <option value="5">Australia</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row gx-xl-5">
         <div class="col-lg-12">
             <div class="card card-flush">
@@ -176,33 +186,6 @@
                             <small>
                                 Check the list to get order information
                             </small>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <div class=" me-3">
-                                <div class=" input-group input-group-sm me-3">
-                                    <span class="border-0 input-group-text form-control-solid" id="inputGroup-sizing-sm">
-                                        <i class="fab fa-sistrix"></i>
-                                    </span>
-                                    <input type="text" class="py-4 form-control form-control-solid" aria-label="Sizing example input"
-                                        aria-describedby="inputGroup-sizing-sm"  placeholder="Search" style="border-left: 0px;"/>
-                                </div>
-                            </div>
-                            <div class="me-3">
-                                <div>
-                                    <input type="date" class="form-control form-control-solid w-100"
-                                        placeholder="Pick date rage" id="kt_daterangepicker_2" />
-                                </div>
-                            </div>
-                            <div>
-                                <select class="py-4 form-select form-select-solid form-select-sm" data-control="select2"
-                                    data-hide-search="true" placeholder="Select">
-                                    <option value="1">Bangladesh</option>
-                                    <option value="2" selected="selected">United States</option>
-                                    <option value="3">United Kingdom</option>
-                                    <option value="4">Canada</option>
-                                    <option value="5">Australia</option>
-                                </select>
-                            </div>
                         </div>
                     </div>
                 </div>
