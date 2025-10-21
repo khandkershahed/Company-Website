@@ -132,14 +132,24 @@ class SourcingController extends Controller
      */
     public function create()
     {
-        $data['brands']              = Brand::latest()->get();
-        $data['categories']          = Category::orderBy('id', 'DESC')->get();
-        $data['sub_cats']            = SubCategory::orderBy('id', 'DESC')->get();
-        $data['sub_sub_cats']        = SubSubCategory::orderBy('id', 'DESC')->get();
-        $data['sub_sub_sub_cats']    = SubSubSubCategory::orderBy('id', 'DESC')->get();
-        $data['industrys']           = Industry::orderBy('id', 'DESC')->get();
-        $data['solutions']           = SolutionDetail::orderBy('id', 'DESC')->get();
-        return view('admin.pages.product_sourcing.add', $data);
+        $data = [
+            'brands'           => Brand::select('id', 'title')->latest()->get(),
+            'categories'       => Category::select('id', 'title')->orderBy('id', 'DESC')->get(),
+            'sub_cats'         => SubCategory::orderBy('id', 'DESC')->get(),
+            'sub_sub_cats'     => SubSubCategory::orderBy('id', 'DESC')->get(),
+            'sub_sub_sub_cats' => SubSubSubCategory::orderBy('id', 'DESC')->get(),
+            'industrys'        => Industry::orderBy('id', 'DESC')->get(),
+            'solutions'        => SolutionDetail::orderBy('id', 'DESC')->get(),
+        ];
+        // $data['brands']              = Brand::select('id', 'title')->latest()->get();
+        // $data['categories']          = Category::select('id', 'title')->orderBy('id', 'DESC')->get();
+        // $data['sub_cats']            = SubCategory::orderBy('id', 'DESC')->get();
+        // $data['sub_sub_cats']        = SubSubCategory::orderBy('id', 'DESC')->get();
+        // $data['sub_sub_sub_cats']    = SubSubSubCategory::orderBy('id', 'DESC')->get();
+        // $data['industrys']           = Industry::orderBy('id', 'DESC')->get();
+        // $data['solutions']           = SolutionDetail::orderBy('id', 'DESC')->get();
+        // return view('admin.pages.product_sourcing.add', $data);
+        return view('metronic.pages.product.create', $data);
     }
 
     /**
