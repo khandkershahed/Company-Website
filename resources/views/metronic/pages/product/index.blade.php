@@ -13,7 +13,7 @@
         [
         'title' => 'Pending',
         'subtitle' => 'Pending Approval',
-        'count' => $products->where('action_status', 'pending')->count(),
+        'count' => $products->where('action_status', 'seek_approval')->count(),
         'bg' => 'linear-gradient(to right, #FFFFE0, #FFD700)',
         'textColor' => 'text-dark',
         ],
@@ -62,18 +62,18 @@
                             </small>
                         </span>
                     </div>
-                    <a href="{{ route('product-sourcing.create') }}" class="btn btn-info d-flex align-items-center rounded-pill">
+                    <a href="{{ route('product-sourcing.create') }}" class="btn btn-light d-flex align-items-center rounded-pill">
                         <i class="fas fa-plus"></i>
                         Add Product
                     </a>
                 </div>
                 <div class="pt-0 card-body">
-                    <table class="table text-center border dataTable table-bordered">
+                    <table class="table text-center border dataTable table-bordered rounded-3">
                         <thead class="bg-light">
                             <tr>
                                 <th width="5%">Sl</th>
                                 <th width="10%">Thumbnail</th>
-                                <th width="40%">Name</th>
+                                <th width="40%" class="text-start">Name</th>
                                 <th width="15%">Added By</th>
                                 <th width="10%">Price Status</th>
                                 <th width="10%">Action Status</th>

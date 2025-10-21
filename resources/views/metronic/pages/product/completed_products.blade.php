@@ -13,26 +13,27 @@
         [
         'title' => 'Pending',
         'subtitle' => 'Pending Approval',
-        'count' => $real_products->where('action_status', 'pending')->count(),
+        'count' => (clone $real_products)->where('action_status', 'listed')->count(),
         'bg' => 'linear-gradient(to right, #FFFFE0, #FFD700)',
         'textColor' => 'text-dark',
         ],
         [
         'title' => 'Approved',
         'subtitle' => 'Listed Products',
-        'count' => $real_products->where('action_status', 'listed')->count(),
+        'count' => (clone $real_products)->where('action_status', 'product_approved')->count(),
         'bg' => 'linear-gradient(to right, #E0FFE0, #00A65A)',
         'textColor' => 'text-dark',
         ],
         [
         'title' => 'Rejected',
         'subtitle' => 'Rejected Products',
-        'count' => $real_products->where('action_status', 'rejected')->count(),
+        'count' => (clone $real_products)->where('action_status', 'rejected')->count(),
         'bg' => 'linear-gradient(to right, #FFE0E0, #FF3B30)',
         'textColor' => 'text-dark',
         ],
         ];
         @endphp
+
 
         @foreach ($cards as $card)
         <div class="col-md-3">
@@ -51,7 +52,7 @@
         </div>
         @endforeach
     </div>
-    {{-- ===== Pending Products Table ===== --}}
+    {{-- ===== Approved Products Table ===== --}}
     <div class="row gx-4">
         <div class="col-lg-12">
             <div class="card card-flash">

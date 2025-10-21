@@ -13,14 +13,14 @@
         [
         'title' => 'Pending',
         'subtitle' => 'Pending Approval',
-        'count' => $saved_products->where('action_status', 'pending')->count(),
+        'count' => $saved_products->where('action_status', 'seek_approval')->count(),
         'bg' => 'linear-gradient(to right, #FFFFE0, #FFD700)',
         'textColor' => 'text-dark',
         ],
         [
         'title' => 'Approved',
         'subtitle' => 'Listed Products',
-        'count' => $saved_products->where('action_status', 'listed')->count(),
+        'count' => $saved_products->where('action_status', 'product_approved')->count(),
         'bg' => 'linear-gradient(to right, #E0FFE0, #00A65A)',
         'textColor' => 'text-dark',
         ],
@@ -62,7 +62,7 @@
                             </small>
                         </span>
                     </div>
-                    <a href="{{ route('product-sourcing.create') }}" class="btn btn-info d-flex align-items-center rounded-pill">
+                    <a href="{{ route('product-sourcing.create') }}" class="btn btn-light d-flex align-items-center rounded-pill">
                         <i class="fas fa-plus"></i>
                         Add Product
                     </a>
@@ -73,7 +73,7 @@
                             <tr>
                                 <th width="5%">Sl</th>
                                 <th width="10%">Thumbnail</th>
-                                <th width="40%">Name</th>
+                                <th width="40%" class="text-start">Name</th>
                                 <th width="15%">Added By</th>
                                 <th width="10%">Price Status</th>
                                 <th width="10%">Action Status</th>
