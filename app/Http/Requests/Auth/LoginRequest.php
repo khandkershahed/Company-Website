@@ -42,22 +42,35 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    // public function authenticate()
+
+    // public function authenticate(): void
     // {
     //     $this->ensureIsNotRateLimited();
 
-    //     if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-    //         RateLimiter::hit($this->throttleKey());
+    //     $credentials = $this->only('email', 'password');
+    //     $remember = $this->boolean('remember');
 
-    //         throw ValidationException::withMessages([
-    //             // 'email' => trans('auth.failed'),
-    //             'email' => trans('Email ID is not correct'),
-    //             'password' => trans('Password is not correct'),
-    //         ]);
+    //     if (!Auth::attempt($credentials, $remember)) {
+    //         // $errors = ['email' => trans('These credentials do not match our records.')];
+
+    //         // You can check if the email and password are incorrect and provide specific error messages.
+    //         if (!User::where('email', $credentials['email'])->exists()) {
+    //             $errors['email'] = trans('Email ID is not correct');
+    //         } else if (!Auth::validate($credentials)) {
+    //             $errors['password'] = trans('Password is not correct');
+    //         } else if (User::where('email', $credentials['email'])->status != 'active') {
+    //             $errors['email'] = trans('Your Account is not active. Please contact support.');
+    //         }
+
+    //         // If you want to throw a validation exception with the custom error messages.
+    //         throw ValidationException::withMessages($errors);
     //     }
 
     //     RateLimiter::clear($this->throttleKey());
     // }
+
+    // app/Http/Requests/Auth/LoginRequest.php
+
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
@@ -65,22 +78,32 @@ class LoginRequest extends FormRequest
         $credentials = $this->only('email', 'password');
         $remember = $this->boolean('remember');
 
-        if (!Auth::attempt($credentials, $remember)) {
-            // $errors = ['email' => trans('These credentials do not match our records.')];
+        $user = User::where('email', $credentials['email'])->first();
 
-            // You can check if the email and password are incorrect and provide specific error messages.
-            if (!User::where('email', $credentials['email'])->exists()) {
-                $errors['email'] = trans('Email ID is not correct');
-            } else if (!Auth::validate($credentials)) {
-                $errors['password'] = trans('Password is not correct');
-            }
-
-            // If you want to throw a validation exception with the custom error messages.
-            throw ValidationException::withMessages($errors);
+        if (!$user) {
+            throw ValidationException::withMessages([
+                'email' => trans('Email ID is not correct'),
+            ]);
         }
+
+        if (!Auth::validate($credentials)) {
+            throw ValidationException::withMessages([
+                'password' => trans('Password is not correct'),
+            ]);
+        }
+
+        if ($user->status !== 'active') {
+            throw ValidationException::withMessages([
+                'email' => trans('Your Account is not active. Please contact support.'),
+            ]);
+        }
+
+        Auth::attempt($credentials, $remember);
 
         RateLimiter::clear($this->throttleKey());
     }
+
+
     /**
      * Ensure the login request is not rate limited.
      *
