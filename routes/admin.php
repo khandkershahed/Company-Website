@@ -156,6 +156,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
             'category'     => CategoryController::class,
             'blog'         => BlogController::class,
             'job-post'     => JobController::class,
+            // 'products'     => ProductController::class,
         ]
     );
     Route::resources(

@@ -27,6 +27,14 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
+    public function index()
+    {
+        $data['products'] = Product::where('product_status', 'sourcing')->where('action_status', '!=', 'save')->latest('id', 'desc')
+            ->get(['id', 'slug', 'thumbnail', 'price', 'discount', 'name', 'stock', 'source_one_price', 'source_two_price', 'action_status', 'price_status', 'added_by']);
+        // return view('admin.pages.product_sourcing.sourced_products', $data);
+        return view('metronic.pages.product.index', $data);
+    }
+
     public function AllProduct()
     {
         $products = Product::where('product_status', 'product')->latest()->get();

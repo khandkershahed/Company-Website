@@ -19,7 +19,13 @@ use App\Http\Controllers\Attendance\AttendanceController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::group(['prefix' => 'api/resource/'], function () {
-    // Route::apiResource('rfqAPI', RfqApiController::class);
-    Route::get('attendance', [AttendanceController::class, 'attendanceApi'])->name('attendance.api');
-});
+// Route::group(['prefix' => 'api/resource/'], function () {
+//     // Route::apiResource('rfqAPI', RfqApiController::class);
+//     Route::get('v1/attendance', [AttendanceController::class, 'attendanceApi'])->name('attendance.api.v1.testunique');
+
+
+// });
+
+// Route::prefix('api/resource')->group(function () {
+//     Route::get('v1/attendance-api', [AttendanceController::class, 'attendanceApi'])->name('attendance.api.v1');
+// });

@@ -324,7 +324,7 @@ Route::get('/tech-glossy', [HomeController::class, 'AllTechGlossy'])->name('all.
 Route::get('/tech-glossy/{slug}', [HomeController::class, 'TechGlossyDetails'])->name('techglossy.details');
 
 // Feedback
-Route::resource('feedback', FeedbackController::class)->only(['create']);
+// Route::resource('feedback', FeedbackController::class)->only(['create']);
 Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.add');
 
 Route::get('/shop.html', [HomeController::class, 'shop_html'])->name('shop.html');
