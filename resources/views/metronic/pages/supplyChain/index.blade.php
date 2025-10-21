@@ -241,7 +241,7 @@
                                 <td>Nova Electronics</td>
                                 <td>LED Panels</td>
                                 <td>Singapore Port</td>
-                                <td><span class="badge bg-warning text-dark">In Progress</span></td>
+                                <td><span class="text-white badge bg-warning">In Progress</span></td>
                                 <td>$68,000</td>
                                 <td>$70,200</td>
                                 <td>SkyPort Agency</td>

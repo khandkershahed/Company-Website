@@ -8079,7 +8079,7 @@ fieldset:disabled .btn {
 }
 
 .border-primary {
-    border-color: #500066 !important;
+    border-color: #296088 !important;
 }
 
 .border-secondary {
@@ -31842,12 +31842,12 @@ fieldset:disabled .btn {
 }
 
 .bg-primary {
-    background-color: #500066 !important;
+    background-color: #296088 !important;
     --bg-color: 0, 158, 247 !important;
 }
 
 .bg-primary.hoverable:hover {
-    background-color: #500066 !important;
+    background-color: #296088 !important;
 }
 
 .bg-hover-light-primary {
@@ -31873,12 +31873,12 @@ fieldset:disabled .btn {
 
 .bg-hover-primary:hover {
     --bg-color: 0, 158, 247;
-    background-color: #500066 !important;
+    background-color: #296088 !important;
 }
 
 .bg-active-primary.active {
     --bg-color: 0, 158, 247;
-    background-color: #500066 !important;
+    background-color: #296088 !important;
 }
 
 .bg-state-primary {
@@ -31888,7 +31888,7 @@ fieldset:disabled .btn {
 .bg-state-primary.active,
 .bg-state-primary:hover {
     --bg-color: 0, 158, 247;
-    background-color: #500066 !important;
+    background-color: #296088 !important;
 }
 
 .bg-secondary {
@@ -32679,11 +32679,11 @@ fieldset:disabled .btn {
 }
 
 .border-hover-primary:hover {
-    border-color: #500066 !important;
+    border-color: #296088 !important;
 }
 
 .border-active-primary.active {
-    border-color: #500066 !important;
+    border-color: #296088 !important;
 }
 
 .border-hover-secondary:hover {
@@ -33114,7 +33114,7 @@ fieldset:disabled .btn {
 }
 
 .text-primary {
-    color: #500066 !important;
+    color: #296088 !important;
 }
 
 .text-inverse-primary {
@@ -33135,16 +33135,16 @@ fieldset:disabled .btn {
 
 .text-hover-primary:hover {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #500066 !important;
+    color: #296088 !important;
 }
 
 .text-hover-primary:hover i {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #500066 !important;
+    color: #296088 !important;
 }
 
 .text-hover-primary:hover .svg-icon {
-    color: #500066 !important;
+    color: #296088 !important;
 }
 
 .text-hover-inverse-primary {
@@ -33179,16 +33179,16 @@ fieldset:disabled .btn {
 
 .text-active-primary.active {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #500066 !important;
+    color: #296088 !important;
 }
 
 .text-active-primary.active i {
     transition: color 0.2s ease, background-color 0.2s ease;
-    color: #500066 !important;
+    color: #296088 !important;
 }
 
 .text-active-primary.active .svg-icon {
-    color: #500066 !important;
+    color: #296088 !important;
 }
 
 .text-active-inverse-primary {
@@ -34992,7 +34992,7 @@ a:hover {
 
 .separator.separator-content.border-primary::after,
 .separator.separator-content.border-primary::before {
-    border-color: #500066 !important;
+    border-color: #296088 !important;
 }
 
 .separator.separator-content.border-secondary::after,
@@ -35133,7 +35133,7 @@ a:hover {
 }
 
 .carousel.carousel-custom .carousel-indicators-active-primary li.active:after {
-    background-color: #500066 !important;
+    background-color: #296088 !important;
 }
 
 .carousel.carousel-custom
@@ -41239,7 +41239,7 @@ a:hover {
 .show > .btn.btn-primary {
     color: #fff;
     border-color: #1f212a;
-    background-color: #500066 !important;
+    background-color: #296088 !important;
 }
 
 .btn-check:active + .btn.btn-primary .svg-icon,
@@ -41297,7 +41297,7 @@ a:hover {
 .show > .btn.btn-light-primary {
     color: #fff;
     border-color: #500066;
-    background-color: #500066 !important;
+    background-color: #296088 !important;
 }
 
 .btn-check:active + .btn.btn-light-primary .svg-icon,
@@ -41422,7 +41422,7 @@ a:hover {
 }
 
 .btn.btn-active-light-primary.btn-outline:not(.btn-outline-default) {
-    border-color: #500066 !important;
+    border-color: #296088 !important;
 }
 
 .btn.btn-secondary {
@@ -41873,7 +41873,7 @@ a:hover {
 .show > .btn.btn-active-info {
     color: #fff;
     border-color: #500066;
-    background-color: #500066 !important;
+    background-color: #296088 !important;
 }
 
 .btn-check:active + .btn.btn-active-info .svg-icon,
@@ -54453,7 +54453,7 @@ label.rating-label:hover ~ .rating-label > i {
 
 .stepper.stepper-pills .stepper-item .stepper-icon .stepper-number {
     font-weight: 600;
-    color: #500066 !important;
+    color: #296088 !important;
     font-size: 1.25rem;
 }
 
@@ -54512,7 +54512,7 @@ label.rating-label:hover ~ .rating-label > i {
     .stepper-item.current:last-child
     .stepper-icon
     .stepper-check {
-    color: #500066 !important;
+    color: #296088 !important;
     display: inline-block;
 }
 
@@ -55542,7 +55542,7 @@ body {
 .btn-check:checked + .aside.aside-dark .btn-custom,
 .show > .aside.aside-dark .btn-custom {
     color: #fff;
-    background-color: #500066 !important;
+    background-color: #296088 !important;
 }
 
 .aside.aside-dark .btn-custom .btn-icon,

@@ -55,6 +55,9 @@
 .search-icons {
     top: 48px;
 }
+td{
+    color: #7b7b7b !important;
+}
 @media (max-width: 600px) {
     .mobile-card{
         display: flex !important;
