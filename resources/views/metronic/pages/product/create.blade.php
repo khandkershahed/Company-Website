@@ -87,25 +87,25 @@
                                         </div>
 
                                         {{-- Product Tags --}}
-                                        <!-- <div class="col-lg-4 col-md-6">
+                                        <div class="col-lg-4 col-md-6">
                                             <label for="tags" class="form-label">Product Tags</label>
-                                            <input type="text" name="tags" class="form-control visually-hidden" data-role="tagsinput"
+                                            <input type="text" name="tags" class="form-control form-control-solid tagify_input" data-role="tagsinput"
                                                 placeholder="Product Tags">
-                                        </div> -->
+                                        </div>
 
                                         {{-- Product Sizes --}}
-                                        <!-- <div class="col-lg-4 col-md-6">
+                                        <div class="col-lg-4 col-md-6">
                                             <label for="size" class="form-label">Product Sizes</label>
-                                            <input type="text" name="size" class="form-control visually-hidden" data-role="tagsinput"
+                                            <input type="text" name="size" class="form-control form-control-solid tagify_input" data-role="tagsinput"
                                                 placeholder="Product Sizes">
-                                        </div> -->
+                                        </div>
 
                                         {{-- Product Colors --}}
-                                        <!-- <div class="col-lg-4 col-md-6">
+                                        <div class="col-lg-4 col-md-6">
                                             <label for="color" class="form-label">Product Colors</label>
-                                            <input type="text" name="color" class="form-control visually-hidden" data-role="tagsinput"
+                                            <input type="text" name="color" class="form-control form-control-solid tagify_input" data-role="tagsinput"
                                                 placeholder="Product Colors">
-                                        </div> -->
+                                        </div>
 
                                         {{-- Product Code --}}
                                         <div class="col-lg-4 col-md-6">
@@ -174,7 +174,8 @@
                                         </div>
 
 
-                                        <div class="col-lg-4 col-md-6" id="dealExpand" style="display:none">
+                                        <div class="col-lg-12 col-md-6" id="dealExpand" style="display:none">
+                                            <label class="mt-3 form-label">Deals Info <span class="text-danger">*</span></label>
                                             <input type="text" name="deal" class="form-control form-control-solid" placeholder="Enter Deals">
                                         </div>
 
@@ -880,22 +881,33 @@
         });
     </script>
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Select all elements with this class
-        const editors = document.querySelectorAll(".ckeditor_classic");
+        document.addEventListener("DOMContentLoaded", function() {
+            // Select all elements with this class
+            const editors = document.querySelectorAll(".ckeditor_classic");
 
-        // Loop through and initialize each editor
-        editors.forEach((element) => {
-            ClassicEditor
-                .create(element)
-                .then(editor => {
-                    console.log("Editor initialized for:", element);
-                })
-                .catch(error => {
-                    console.error("Error initializing editor for:", element, error);
-                });
+            // Loop through and initialize each editor
+            editors.forEach((element) => {
+                ClassicEditor
+                    .create(element)
+                    .then(editor => {
+                        console.log("Editor initialized for:", element);
+                    })
+                    .catch(error => {
+                        console.error("Error initializing editor for:", element, error);
+                    });
+            });
         });
-    });
-</script>
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Select all inputs with this class
+            const tagifyInputs = document.querySelectorAll(".tagify_input");
+
+            // Loop through each and initialize Tagify
+            tagifyInputs.forEach((input) => {
+                new Tagify(input);
+            });
+        });
+    </script>
     @endpush
 </x-admin-app-layout>
