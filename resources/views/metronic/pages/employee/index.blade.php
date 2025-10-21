@@ -145,14 +145,14 @@
                                                                 <td>{{ ++$key }}</td>
                                                                 <!-- Employee Image -->
                                                                 <td>
-                                                                    <img src="{{ !empty($employee->photo) && file_exists(public_path('storage/' . $employee->photo)) ? asset('storage/' . $employee->photo)  : url('upload/no_image.jpg') }}"
+                                                                    <img src="{{ !empty($employee->photo) && file_exists(public_path('storage/' . $employee->photo)) ? asset('storage/' . $employee->photo) : url('upload/no_image.jpg') }}"
                                                                         alt="" width="40px" height="40px"
                                                                         style="border-radius: 50%">
                                                                 </td>
                                                                 <!-- Employee Name -->
                                                                 <td>{{ $employee->name }}</td>
                                                                 <td>
-                                                                    {{ optional($employee->employeeStatus)->name ?? 'No Job Status Assigned'}}
+                                                                    {{ optional($employee->employeeStatus)->name ?? 'No Job Status Assigned' }}
 
                                                                 </td>
                                                                 <!-- Employee Email -->
@@ -229,7 +229,7 @@
                                                                     <td>{{ ++$key }}</td>
                                                                     <!-- Employee Image -->
                                                                     <td>
-                                                                        <img src="{{ !empty($employee->photo) && file_exists(public_path('storage/' . $employee->photo)) ? asset('storage/' . $employee->photo)  : url('upload/no_image.jpg') }}"
+                                                                        <img src="{{ !empty($employee->photo) && file_exists(public_path('storage/' . $employee->photo)) ? asset('storage/' . $employee->photo) : url('upload/no_image.jpg') }}"
                                                                             alt="" width="40px"
                                                                             height="40px">
                                                                     </td>
@@ -413,13 +413,15 @@
                                 <!-- Profile Picture -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <label class="form-label">Profile Picture</label>
-                                    <x-metronic.file-input name="photo" class="form-control" ></x-metronic.file-input>
+                                    <x-metronic.file-input name="photo"
+                                        class="form-control"></x-metronic.file-input>
                                 </div>
 
                                 <!-- Sign -->
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <label class="form-label">Sign</label>
-                                    <x-metronic.file-input name="sign" class="form-control" ></x-metronic.file-input>
+                                    <x-metronic.file-input name="sign"
+                                        class="form-control"></x-metronic.file-input>
                                 </div>
 
                                 <!-- Password -->
@@ -597,38 +599,42 @@
                                     </div>
                                     <div class="col-lg-4 mb-4">
                                         {{-- last_evaluation_date --}}
-                                        <label class="form-label" for="last_evaluation_date">Last Evaluation Date</label>
-                                        <input id="last_evaluation_date" type="date" name="last_evaluation_date" class="form-control"
-                                            value="{{ $employee->last_evaluation_date }}">
+                                        <label class="form-label" for="last_evaluation_date">Last Evaluation
+                                            Date</label>
+                                        <input id="last_evaluation_date" type="date" name="last_evaluation_date"
+                                            class="form-control" value="{{ $employee->last_evaluation_date }}">
                                     </div>
                                     <div class="col-lg-4 mb-4">
                                         {{-- next_evaluation_date --}}
-                                        <label class="form-label" for="next_evaluation_date">Next Evaluation Date</label>
-                                        <input id="next_evaluation_date" type="date" name="next_evaluation_date" class="form-control"
-                                            value="{{ $employee->next_evaluation_date }}">
+                                        <label class="form-label" for="next_evaluation_date">Next Evaluation
+                                            Date</label>
+                                        <input id="next_evaluation_date" type="date" name="next_evaluation_date"
+                                            class="form-control" value="{{ $employee->next_evaluation_date }}">
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="photo_edit">Profile
                                                 Picture</label>
-                                                <x-metronic.file-input id="photo_edit" name="photo" :source="asset('storage/'.$employee->photo)" ></x-metronic.file-input>
+                                            <x-metronic.file-input id="photo_edit" name="photo"
+                                                :source="asset('storage/' . $employee->photo)"></x-metronic.file-input>
 
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-4">
                                             <label class="form-label" for="sign_edit">Sign</label>
-                                            <x-metronic.file-input id="sign_edit" name="sign" class="form-control" :source="asset('storage/'.$employee->sign)" ></x-metronic.file-input>
+                                            <x-metronic.file-input id="sign_edit" name="sign" class="form-control"
+                                                :source="asset('storage/' . $employee->sign)"></x-metronic.file-input>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label class="form-label" for="basicpill-firstname-input">Password</label>
                                             <input type="password" class="form-control " id="password"
                                                 name="password">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-4">
                                         <div class="mb-3">
                                             <label class="form-label" for="basicpill-firstname-input">Confirm
                                                 Password</label>
@@ -636,6 +642,16 @@
                                                 name="confirm_password">
                                             <div id="message"></div>
                                         </div>
+                                    </div>
+                                    <div class="col-lg-4 mb-3">
+                                        <x-metronic.label for="status" class="fw-bold fs-6 required">Select
+                                            Status</x-metronic.label>
+                                        <x-metronic.select-option id="status" name="status"
+                                            data-hide-search="true" data-placeholder="Choose status">
+                                            <option></option>
+                                            <option value="active" @selected($employee->status == 'active')>Active</option>
+                                            <option value="inactive" @selected($employee->status == 'inactive')>Inactive</option>
+                                        </x-metronic.select-option>
                                     </div>
                                     <div class="mt-5 col-12 text-end">
                                         <button type="submit" class="submit_btn btn btn-primary">Update

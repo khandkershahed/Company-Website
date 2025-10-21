@@ -73,6 +73,8 @@ class LoginRequest extends FormRequest
                 $errors['email'] = trans('Email ID is not correct');
             } else if (!Auth::validate($credentials)) {
                 $errors['password'] = trans('Password is not correct');
+            } else if (User::where('email', $credentials['email'])->status != 'active') {
+                $errors['email'] = trans('Your Account is not active. Please contact support.');
             }
 
             // If you want to throw a validation exception with the custom error messages.
