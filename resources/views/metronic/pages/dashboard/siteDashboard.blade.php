@@ -155,36 +155,48 @@
     <div class="row gx-5">
         @php
         $builders = [
-        ['title' => 'Common Page Builder', 'links' => [
-        ['index' => '#', 'create' => '#', 'title' => 'Row Builder'],
-        ['index' => '#', 'create' => '#', 'title' => 'Solution Card'],
-        ['index' => '#', 'create' => '#', 'title' => 'Homepage'],
-        ['index' => '#', 'create' => '#', 'title' => 'Learnmore Page'],
-        ['index' => '#', 'create' => '#', 'title' => 'What We Do'],
-        ['index' => '#', 'create' => '#', 'title' => 'About Us'],
-        ]],
-        ['title' => 'Software & Hardware Builder', 'links' => [
-        ['index' => '#', 'create' => '#', 'title' => 'Software Info'],
-        ['index' => '#', 'create' => '#', 'title' => 'Software Common'],
-        ['index' => '#', 'create' => '#', 'title' => 'Hardware Info'],
-        ['index' => '#', 'create' => '#', 'title' => 'Hardware Common'],
-        ['index' => '#', 'create' => '#', 'title' => 'Industry'],
-        ['index' => '#', 'create' => '#', 'title' => 'Industry Details'],
-        ]],
-        ['title' => 'Portfolio', 'links' => [
-        ['index' => '#', 'create' => '#', 'title' => 'Portfolio Category'],
-        ['index' => '#', 'create' => '#', 'title' => 'Portfolio Clients'],
-        ['index' => '#', 'create' => '#', 'title' => 'Portfolio Team'],
-        ['index' => '#', 'create' => '#', 'title' => 'Portfolio Choose'],
-        ['index' => '#', 'create' => '#', 'title' => 'Portfolio Page'],
-        ['index' => '#', 'create' => '#', 'title' => 'Portfolio Details'],
-        ]],
-        ['title' => 'Others Page Builder', 'links' => [
-        ['index' => '#', 'create' => '#', 'title' => 'Brand Page'],
-        ['index' => '#', 'create' => '#', 'title' => 'Training Page'],
-        ['index' => '#', 'create' => '#', 'title' => 'Solution Details'],
-        ['index' => '#', 'create' => '#', 'title' => 'Client Feedback'],
-        ]],
+        [
+        'title' => 'Common Page Builder',
+        'links' => [
+        ['index' => route('row.index'), 'create' => route('row.create'), 'title' => 'Row Builder'],
+        ['index' => route('solutionCard.index'), 'create' => route('solutionCard.create'), 'title' => 'Solution Card'],
+        ['index' => route('homepage.index'), 'create' => route('homepage.create'), 'title' => 'Homepage'],
+        ['index' => route('learnMore.index'), 'create' => route('learnMore.create'), 'title' => 'Learnmore Page'],
+        ['index' => route('what-we-do-page.index'), 'create' => route('what-we-do-page.create'), 'title' => 'What We Do'],
+        ['index' => route('about-us.index'), 'create' => route('about-us.create'), 'title' => 'About Us'],
+        ],
+        ],
+        [
+        'title' => 'Software & Hardware Builder',
+        'links' => [
+        ['index' => route('software-info-page.index'), 'create' => route('software-info-page.create'), 'title' => 'Software Info'],
+        ['index' => route('software-common-page.index'), 'create' => route('software-common-page.create'), 'title' => 'Software Common'],
+        ['index' => route('hardware-info-page.index'), 'create' => route('hardware-info-page.create'), 'title' => 'Hardware Info'],
+        ['index' => route('hardware-common-page.index'), 'create' => route('hardware-common-page.create'), 'title' => 'Hardware Common'],
+        ['index' => route('industry.index'), 'create' => route('industry.create'), 'title' => 'Industry'],
+        ['index' => route('industryPage.index'), 'create' => route('industryPage.create'), 'title' => 'Industry Details'],
+        ],
+        ],
+        [
+        'title' => 'Portfolio',
+        'links' => [
+        ['index' => route('portfolio-category.index'), 'create' => route('portfolio-category.create'), 'title' => 'Portfolio Category'],
+        ['index' => route('portfolio-client.index'), 'create' => route('portfolio-client.create'), 'title' => 'Portfolio Clients'],
+        ['index' => route('portfolio-team.index'), 'create' => route('portfolio-team.create'), 'title' => 'Portfolio Team'],
+        ['index' => route('portfolio-choose-us.index'), 'create' => route('portfolio-choose-us.create'), 'title' => 'Portfolio Choose'],
+        ['index' => route('portfolio-page.index'), 'create' => route('portfolio-page.create'), 'title' => 'Portfolio Page'],
+        ['index' => route('portfolio-detail.index'), 'create' => route('portfolio-detail.create'), 'title' => 'Portfolio Details'],
+        ],
+        ],
+        [
+        'title' => 'Others Page Builder',
+        'links' => [
+        ['index' => route('brandPage.index'), 'create' => route('brandPage.create'), 'title' => 'Brand Page'],
+        ['index' => route('training-page.index'), 'create' => route('training-page.create'), 'title' => 'Training Page'],
+        ['index' => route('solutionDetails.index'), 'create' => route('solutionDetails.create'), 'title' => 'Solution Details'],
+        ['index' => route('portfolio-client-feedback.index'), 'create' => route('portfolio-client-feedback.create'), 'title' => 'Client Feedback'],
+        ],
+        ],
         ];
         @endphp
 
