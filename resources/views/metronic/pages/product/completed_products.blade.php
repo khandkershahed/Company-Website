@@ -5,7 +5,7 @@
              <div class="card-title">Real Products (Approved )</div>
              <div class="card-toolbar">
 
-                 <a href="{{ route('product-sourcing.index') }}" class="btn btn-light-info">
+                 <a href="{{ route('product-sourcing.create') }}" class="btn btn-light-info">
 
                      <span class="svg-icon svg-icon-3">
                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -18,8 +18,7 @@
                                  fill="currentColor" />
                          </svg>
                      </span>
-
-                     Back to the list
+                     Add
                  </a>
              </div>
          </div>
