@@ -81,6 +81,7 @@
                         <th class="py-5">Image</th>
                         <th class="py-5">Brand Id</th>
                         <th class="py-5">Name</th>
+                        <th class="py-5">Slug</th>
                         <th class="py-5">Category</th>
                         <th class="py-5">Status</th>
                         <th class="py-5">Action</th>
@@ -94,7 +95,7 @@
 
                         {{-- Brand Image --}}
                         <td>
-                            <div class="mx-auto overflow-hidden border shadow-sm symbol symbol-60px symbol-circle">
+                            <div class="mx-auto overflow-hidden border symbol symbol-40px symbol-circle">
                                 <img class="object-fit-cover"
                                     src="{{ !empty($brand->image) && file_exists(public_path('storage/' . $brand->image))
                                  ? asset('storage/' . $brand->image)
@@ -104,6 +105,9 @@
                         </td>
 
                         {{-- Brand Name --}}
+                        <td class="text-gray-800 fw-bold">
+                            <span class="text-muted small">{{ $brand->slug }}</span>
+                        </td>
                         <td class="text-gray-800 fw-bold">
                             <span class="text-muted small">#{{ $brand->id }}</span>
                         </td>
@@ -136,19 +140,23 @@
                         {{-- Action Buttons --}}
                         <td>
                             <div class="gap-2 d-flex justify-content-center">
+                                {{-- Edit Button --}}
                                 <a href="{{ route('admin.brand.edit', $brand->id) }}"
-                                    class="py-5 text-center pe-4 btn btn-sm btn-light rounded-circle"
-                                    data-bs-toggle="tooltip" title="Edit">
-                                    <i class="fa-solid fa-pen"></i>
+                                    class="btn btn-light btn-sm d-flex align-items-center justify-content-center rounded-circle"
+                                    style="width: 38px; height: 38px;" data-bs-toggle="tooltip" title="Edit">
+                                    <i class="fa-solid fa-pen text-primary ps-1"></i>
                                 </a>
 
+                                {{-- Delete Button --}}
                                 <a href="{{ route('admin.brand.destroy', $brand->id) }}"
-                                    class="py-5 text-center pe-4 btn btn-sm btn-light rounded-circle delete"
-                                    data-kt-docs-table-filter="delete_row" data-bs-toggle="tooltip" title="Delete">
-                                    <i class="fa-solid fa-trash-can"></i>
+                                    class="btn btn-light btn-sm d-flex align-items-center justify-content-center rounded-circle delete"
+                                    style="width: 38px; height: 38px;" data-kt-docs-table-filter="delete_row"
+                                    data-bs-toggle="tooltip" title="Delete">
+                                    <i class="fa-solid fa-trash-can text-danger ps-1"></i>
                                 </a>
                             </div>
                         </td>
+
                     </tr>
                     @endforeach
                 </tbody>
