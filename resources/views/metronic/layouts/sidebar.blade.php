@@ -69,7 +69,6 @@
                             ],
                             'route' => 'admin.marketing.dashboard',
                             'subMenu' => [
-
                                 [
                                     'title' => 'Marketing DMAR',
                                     'routes' => [
@@ -123,6 +122,10 @@
                                 'product.approved',
                                 'product-sourcing.create',
                                 'product-sourcing.edit',
+                                'purchase.index',
+                                'purchase.create',
+                                'purchase.edit',
+                                'purchase.show',
                             ],
                             'subMenu' => [
                                 [
@@ -155,6 +158,11 @@
                                         'product-sourcing.edit',
                                     ],
                                     'route' => 'product-sourcing.index',
+                                ],
+                                [
+                                    'title' => 'Purchase Management',
+                                    'routes' => ['purchase.index', 'purchase.create', 'purchase.edit', 'purchase.show'],
+                                    'route' => 'purchase.index',
                                 ],
                             ],
                         ],
@@ -302,7 +310,7 @@
                         [
                             'title' => 'HR & Admin',
                             'icon' => 'fa-duotone fa-user-tie fs-3',
-                            'routes' => ['admin.hrDashboard.index', 'employee.index','admin.attendance.history'],
+                            'routes' => ['admin.hrDashboard.index', 'employee.index', 'admin.attendance.history'],
                             'subMenu' => [
                                 [
                                     'title' => 'HR Admin Dashboard',

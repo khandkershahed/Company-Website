@@ -11,6 +11,8 @@ use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use App\Models\Admin\AccountsPayable;
 use App\Models\Admin\PurchaseProduct;
+use App\Models\Admin\RfqPurchase;
+use App\Models\Admin\RfqPurchaseProduct;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -23,9 +25,10 @@ class PurchaseController extends Controller
      */
     public function index()
     {
-        $data['rfqs'] = Rfq::select('rfqs.id', 'rfqs.name')->get();
-        $data['purchases'] = Purchase::get();
-        return view('admin.pages.purchase.all', $data);
+        $data['rfqs'] = Rfq::select('id', 'name')->get();
+        $data['purchases'] = RfqPurchase::with(['rfq', 'purchaseProducts'])->latest()->get();
+        // return view('admin.pages.purchase.all', $data);
+        return view('metronic.pages.purchase.index', $data);
     }
 
     /**
@@ -35,6 +38,10 @@ class PurchaseController extends Controller
      */
     public function create()
     {
+        $data['rfqs'] = Rfq::select('id', 'name')->get();
+        $data['purchases'] = [];
+        // return view('admin.pages.purchase.all', $data);
+        return view('metronic.pages.purchase.create', $data);
     }
 
     /**
@@ -52,7 +59,7 @@ class PurchaseController extends Controller
             ],
         );
         if ($validator->passes()) {
-            $purchase_id = Purchase::insertGetId([
+            $purchase_id = RfqPurchase::insertGetId([
                 'rfq_id'                   => $request->rfq_id,
                 'pq_number'                => $request->pq_number,
                 'pq_reference'             => $request->pq_reference,
@@ -123,17 +130,19 @@ class PurchaseController extends Controller
                 ];
 
                 // DB::table('colors')->insert($datasave);
-                PurchaseProduct::insert($datasave);
+                RfqPurchaseProduct::insert($datasave);
             }
 
             Toastr::success('Data Insert Successfully');
+            return redirect()->route('purchase.index');
         } else {
             $messages = $validator->messages();
             foreach ($messages->all() as $message) {
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
+            return redirect()->back()->withInput();
         }
-        return redirect()->back();
+
     }
 
     /**
@@ -144,8 +153,9 @@ class PurchaseController extends Controller
      */
     public function show($id)
     {
-        $data['purchase'] = Purchase::find($id);
-        return view('admin.pages.purchase.show', $data);
+        $data['purchase'] = RfqPurchase::with(['rfq', 'purchaseProducts'])->find($id);
+        // return view('admin.pages.purchase.show', $data);
+        return view('metronic.pages.purchase.show', $data);
     }
 
     /**
@@ -157,8 +167,9 @@ class PurchaseController extends Controller
     public function edit($id)
     {
         $data['rfqs'] = Rfq::select('rfqs.id', 'rfqs.name')->get();
-        $data['purchase'] = Purchase::find($id);
-        return view('admin.pages.purchase.edit', $data);
+        $data['purchase'] = RfqPurchase::with(['rfq', 'purchaseProducts'])->find($id);
+        // return view('admin.pages.purchase.edit', $data);
+        return view('metronic.pages.purchase.edit', $data);
     }
 
     /**
@@ -176,12 +187,12 @@ class PurchaseController extends Controller
             ],
         );
         if ($validator->passes()) {
-            Purchase::find($id)->update([
+            RfqPurchase::find($id)->update([
                 'rfq_id'                   => $request->rfq_id,
                 'pq_number'                => $request->pq_number,
                 'pq_reference'             => $request->pq_reference,
                 'po_number'                => $request->po_number,
-                'po_date'     => date('Y-m-d H:i:s', strtotime($request->po_date)),
+                'po_date'                  => date('Y-m-d H:i:s', strtotime($request->po_date)),
                 'po_reference'             => $request->po_reference,
                 'purchase_by'              => $request->purchase_by,
                 'principal_name'           => $request->principal_name,
@@ -240,6 +251,6 @@ class PurchaseController extends Controller
      */
     public function destroy($id)
     {
-        Purchase::find($id)->delete();
+        RfqPurchase::find($id)->delete();
     }
 }

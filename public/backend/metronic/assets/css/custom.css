@@ -502,3 +502,96 @@ th {
     padding: 1rem 0;
     background-color: #fff;
 }
+
+
+/* Purchase Order Details */
+/*== purchase order details css start== */
+.purchase-order-area {
+    min-height: 900px;
+    background-color: #fff;
+    width: 100%;
+}
+
+.header-top {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.header-top-right h4 {
+    padding: 5px;
+    font-size: 32px;
+    border: 1px solid #ddd;
+    background: gray;
+    color: #8e0000;
+}
+
+.header-top-two {
+    padding-top: 10px !important;
+}
+
+.tableCustomiceForPurchaseOrderHeader tr,
+.tableCustomiceForPurchaseOrderHeader th,
+.tableCustomiceForPurchaseOrderHeader td {
+    line-height: 15px;
+    font-weight: 600;
+    padding-top: 2px;
+}
+
+.vendor-billto-shipcustomer-header {
+    min-height: 50px;
+    width: 100%;
+    /* background-color: #ddd; */
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    position: relative;
+    background-color: #fff;
+}
+
+.vendor-billto-shipcustomer-header p {
+    font-size: 13px;
+}
+
+.vendor-bill-customer-title {
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    background: #ddd;
+    padding: 0px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 15px;
+}
+
+.purchase-product-order-area {
+    width: 100%;
+    min-height: 250px;
+    background-color: fff;
+}
+
+.purchase-product-order-area h3 {
+    background: #ddd;
+    min-height: 40px;
+    line-height: 40px;
+}
+
+.purchase-product-order-table {
+    width: 100%;
+}
+
+.purchase-product-order-table tr,
+.purchase-product-order-table th,
+.purchase-product-order-table td {
+    padding: 5px;
+    border: 1px solid #ddd;
+    font-size: 12px;
+}
+.star::after {
+    content: "*";
+    color: red; /* Your desired styles for the star */
+    font-size: 1.2em;
+    margin-right: 3px; /* Optional: Add some space to the right of the star */
+}
+
+/* Purchase Order Details */

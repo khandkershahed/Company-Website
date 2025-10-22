@@ -9,8 +9,8 @@
                             <div class="p-3 text-black fw-bold rounded-2 fs-1">
                                 SUPPLY CHAIN
                             </div>
-                            <div class="p-3 mx-auto text-black w-50 fw-semibold rounded-2" style="font-size: 50px;">
-                                FY 25
+                            <div class="p-3 mx-auto text-black w-50 fw-semibold rounded-2 fs-1">
+                                FY {{ date('Y') }}
                             </div>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
                         <div class="pt-5 card-header">
                             <div class="card-title d-flex justify-content-between w-100">
                                 <span class="pt-1 text-black fw-semibold fs-2">New Agent</span>
-                                <span class="text-gray-900 fs-2hx fw-bold me-2 lh-1 ls-n2">06</span>
+                                <span class="text-gray-900 fs-2hx fw-bold me-2 lh-1 ls-n2">00</span>
                             </div>
                         </div>
 
@@ -28,40 +28,17 @@
                             <span class="mb-2 text-gray-800 fs-6 fw-bolder d-block">Top Agent</span>
 
                             <div class="symbol-group symbol-hover flex-nowrap">
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
-                                    data-bs-original-title="Alan Warden" data-kt-initialized="1">
-                                    <span class="symbol-label bg-warning text-inverse-warning fw-bold">A</span>
-                                </div>
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
+
+                                {{-- <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
                                     aria-label="Michael Eberon" data-bs-original-title="Michael Eberon"
                                     data-kt-initialized="1">
                                     <img alt="Pic"
                                         src="https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-11.jpg">
                                 </div>
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
-                                    data-bs-original-title="Susan Redwood" data-kt-initialized="1">
-                                    <span class="symbol-label bg-primary text-inverse-primary fw-bold">S</span>
-                                </div>
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
-                                    aria-label="Melody Macy" data-bs-original-title="Melody Macy"
-                                    data-kt-initialized="1">
-                                    <img alt="Pic"
-                                        src="https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-2.jpg">
-                                </div>
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
-                                    data-bs-original-title="Perry Matthew" data-kt-initialized="1">
-                                    <span class="symbol-label bg-danger text-inverse-danger fw-bold">P</span>
-                                </div>
-                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
-                                    aria-label="Barry Walter" data-bs-original-title="Barry Walter"
-                                    data-kt-initialized="1">
-                                    <img alt="Pic"
-                                        src="https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-12.jpg">
-                                </div>
                                 <a href="#" class="symbol symbol-35px symbol-circle" data-bs-toggle="modal"
                                     data-bs-target="#kt_modal_view_users">
                                     <span class="text-gray-400 symbol-label bg-light fs-8 fw-bold">+42</span>
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                     </div>
@@ -149,8 +126,9 @@
                                 <span class="border-0 input-group-text form-control-solid" id="inputGroup-sizing-sm">
                                     <i class="fab fa-sistrix"></i>
                                 </span>
-                                <input type="text" class="py-4 form-control form-control-solid" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-sm" placeholder="Search" style="border-left: 0px;" />
+                                <input type="text" class="py-4 form-control form-control-solid"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                                    placeholder="Search" style="border-left: 0px;" />
                             </div>
                         </div>
                         <div class="me-3">
@@ -206,66 +184,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>#ORD-10234</td>
-                                <td>Global Textiles Ltd.</td>
-                                <td>Cotton Fabric Rolls</td>
-                                <td>Chittagong Port</td>
-                                <td><span class="badge bg-success">Completed</span></td>
-                                <td>$45,000</td>
-                                <td>$46,500</td>
-                                <td>TransWorld C&F</td>
-                                <td>BlueLine Logistics</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>#ORD-10235</td>
-                                <td>Nova Electronics</td>
-                                <td>LED Panels</td>
-                                <td>Singapore Port</td>
-                                <td><span class="text-white badge bg-warning">In Progress</span></td>
-                                <td>$68,000</td>
-                                <td>$70,200</td>
-                                <td>SkyPort Agency</td>
-                                <td>Global Freight Ltd.</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>#ORD-10236</td>
-                                <td>Bright Foods Co.</td>
-                                <td>Processed Rice Bags</td>
-                                <td>Port of Colombo</td>
-                                <td><span class="text-white badge bg-info">Pending</span></td>
-                                <td>$25,000</td>
-                                <td>$26,000</td>
-                                <td>SeaTrade Express</td>
-                                <td>OceanMove Cargo</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>#ORD-10237</td>
-                                <td>Elite Garments</td>
-                                <td>Denim Jeans</td>
-                                <td>Port of Dhaka</td>
-                                <td><span class="badge bg-success">Completed</span></td>
-                                <td>$38,500</td>
-                                <td>$39,000</td>
-                                <td>FastClear Agency</td>
-                                <td>RoadLink Logistics</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>#ORD-10238</td>
-                                <td>Metro Plastics</td>
-                                <td>Plastic Containers</td>
-                                <td>Dubai Port</td>
-                                <td><span class="badge bg-danger">Delayed</span></td>
-                                <td>$19,000</td>
-                                <td>$20,000</td>
-                                <td>ClearMove C&F</td>
-                                <td>AirSea Freight</td>
-                            </tr>
+                            @foreach ($orders as $order)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $order->rfq_code }}</td>
+                                    <td>{{ $order->company_name }}</td>
+                                    <td class="text-start">
+                                        @foreach ($order->rfqProducts as $product)
+                                            <span
+                                                class="my-1">{{ $loop->iteration . ' . ' . $product->product_name }}</span>
+                                            <br>
+                                        @endforeach
+                                    </td>
+                                    <td>Chittagong Port</td>
+                                    <td><span class="badge bg-success">Completed</span></td>
+                                    <td>$45,000</td>
+                                    <td>$46,500</td>
+                                    <td>TransWorld C&F</td>
+                                    <td>BlueLine Logistics</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
 
@@ -274,7 +212,7 @@
         </div>
     </div>
     @push('scripts')
-    <script></script>
+        <script></script>
     @endpush
 </x-admin-app-layout>
 <!-- RFQ Dashboard End -->

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Rfq;
 use Illuminate\Http\Request;
 
 class SupplyChainController extends Controller
@@ -12,7 +13,10 @@ class SupplyChainController extends Controller
      */
     public function index()
     {
-        return view('metronic.pages.supplyChain.index');
+        $data = [
+            'orders' => Rfq::where('rfq_type','order')->latest()->get(),
+        ];
+        return view('metronic.pages.supplyChain.index', $data);
     }
 
     /**
