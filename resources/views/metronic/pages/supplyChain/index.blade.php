@@ -19,8 +19,110 @@
                     <div class="card card-flush" style="background-image: linear-gradient(to right, #ffff, #F2FFF8);">
                         <div class="pt-5 card-header">
                             <div class="card-title d-flex justify-content-between w-100">
-                                <span class="pt-1 text-black fw-semibold fs-2">New Agent</span>
+                                <span class="pt-1 text-black fw-semibold fs-2">
+                                    <a class="d-flex align-items-center" href="javascript:void(0);"
+                                        data-bs-toggle="modal" data-bs-target="#agentModal">New
+                                        Agent <i class="ms-3 fas fa-plus-circle fs-2"></i></a>
+                                </span>
                                 <span class="text-gray-900 fs-2hx fw-bold me-2 lh-1 ls-n2">00</span>
+                            </div>
+                        </div>
+                        <!-- Agent Modal -->
+                        <div class="modal fade" id="agentModal" tabindex="-1" aria-labelledby="agentModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="agentModalLabel">Create New Agent</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <form>
+                                            <!-- Agent Type -->
+                                            <div class="mb-3">
+                                                <label for="agentType" class="form-label">Agent Type</label>
+                                                <select class="form-select" data-control="select2" id="agentType" required>
+                                                    <option selected disabled>Choose an agent type</option>
+                                                    <option>C&amp;F Agent</option>
+                                                    <option>Logistics Agent</option>
+                                                    <option>Procurement Agent</option>
+                                                    <option>Third-Party Logistics (3PL) Agent</option>
+                                                    <option>Trade Agent</option>
+                                                    <option>Shipping Agent</option>
+                                                </select>
+                                            </div>
+
+                                            <!-- Country -->
+                                            <div class="mb-3">
+                                                <label for="country" class="form-label">Country</label>
+                                                <select class="form-select" data-control="select2" id="country" required>
+                                                    <option selected disabled>Select country</option>
+                                                    <option>Bangladesh</option>
+                                                    <option>Singapore</option>
+                                                    <option>UAE</option>
+                                                    <option>Portugal</option>
+                                                    <!-- Add more countries as needed -->
+                                                </select>
+                                            </div>
+
+                                            <!-- Email (Locked) -->
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">Email</label>
+                                                <div class="input-group">
+                                                    <input type="password" class="form-control" id="email"
+                                                        placeholder="******@domain.com" disabled>
+                                                    <span class="input-group-text" id="emailToggle"
+                                                        style="cursor:pointer;">
+                                                        <i class="bi bi-eye-slash"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <!-- Contact Number (Locked) -->
+                                            <div class="mb-3">
+                                                <label for="contact" class="form-label">Contact Number</label>
+                                                <div class="input-group">
+                                                    <input type="password" class="form-control" id="contact"
+                                                        placeholder="***********" disabled>
+                                                    <span class="input-group-text" id="contactToggle"
+                                                        style="cursor:pointer;">
+                                                        <i class="bi bi-eye-slash"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <!-- Details -->
+                                            <div class="mb-3">
+                                                <label for="details" class="form-label">Details</label>
+                                                <textarea class="form-control" id="details" rows="3" placeholder="Enter agent details..."></textarea>
+                                            </div>
+
+                                            <!-- Placeholder: Super Admin Control -->
+                                            <div class="mb-3">
+                                                <label for="viewPermission" class="form-label">Salesperson (who can view
+                                                    email & contact)</label>
+                                                <select class="form-select" data-control="select2" id="viewPermission">
+                                                    <option selected disabled>Select Salesperson</option>
+                                                    <!-- Populate dynamically based on admin role -->
+                                                    @foreach ($users as $user)
+                                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                        </form>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-primary">Create Agent</button>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
 
@@ -58,15 +160,15 @@
                                 <tbody>
                                     <tr class="border">
                                         <td class="fw-semibold text-dark text-start ps-10">Current Work Orders</td>
-                                        <td class="pe-5">100</td>
+                                        <td class="pe-5">0</td>
                                     </tr>
                                     <tr class="border">
                                         <td class="fw-semibold text-dark text-start ps-10">Current Purchase Order</td>
-                                        <td class="pe-5">50</td>
+                                        <td class="pe-5">0</td>
                                     </tr>
                                     <tr class="border">
                                         <td class="fw-semibold text-dark text-start ps-10">On Shipments</td>
-                                        <td class="pe-5">103</td>
+                                        <td class="pe-5">0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -91,11 +193,11 @@
                                     </tr> -->
                                     <tr class="border">
                                         <td class="fw-semibold text-dark text-start ps-10">Freight On Board</td>
-                                        <td>600</td>
+                                        <td>0</td>
                                     </tr>
                                     <tr class="border">
                                         <td class="fw-semibold text-dark text-start ps-10">Delivered</td>
-                                        <td>1050</td>
+                                        <td>0</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -115,9 +217,11 @@
                             + Add WO
                         </a>
 
-                        <a href="https://preview.keenthemes.com/metronic8/demo1/apps/support-center/overview.html"
-                            class="bg-black btn btn-color-white fw-semibold">
+                        <a href="javascript:void(0);" class="bg-black btn btn-color-white fw-semibold">
                             + Add PO
+                        </a>
+                        <a href="javascript:void(0);" class="bg-black btn btn-color-white fw-semibold">
+                            + Add Agent
                         </a>
                     </div>
                     <div class="d-flex align-items-center">
@@ -196,12 +300,12 @@
                                             <br>
                                         @endforeach
                                     </td>
-                                    <td>Chittagong Port</td>
+                                    <td>--</td>
                                     <td><span class="badge bg-success">Completed</span></td>
-                                    <td>$45,000</td>
-                                    <td>$46,500</td>
-                                    <td>TransWorld C&F</td>
-                                    <td>BlueLine Logistics</td>
+                                    <td>$5,000</td>
+                                    <td>$6,500</td>
+                                    <td>--</td>
+                                    <td>--</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -212,7 +316,35 @@
         </div>
     </div>
     @push('scripts')
-        <script></script>
+        <script>
+            document.getElementById("emailToggle").addEventListener("click", function() {
+                let emailInput = document.getElementById("email");
+                let icon = this.querySelector("i");
+                if (emailInput.type === "password") {
+                    emailInput.type = "text";
+                    icon.classList.remove("bi-eye-slash");
+                    icon.classList.add("bi-eye");
+                } else {
+                    emailInput.type = "password";
+                    icon.classList.remove("bi-eye");
+                    icon.classList.add("bi-eye-slash");
+                }
+            });
+
+            document.getElementById("contactToggle").addEventListener("click", function() {
+                let contactInput = document.getElementById("contact");
+                let icon = this.querySelector("i");
+                if (contactInput.type === "password") {
+                    contactInput.type = "text";
+                    icon.classList.remove("bi-eye-slash");
+                    icon.classList.add("bi-eye");
+                } else {
+                    contactInput.type = "password";
+                    icon.classList.remove("bi-eye");
+                    icon.classList.add("bi-eye-slash");
+                }
+            });
+        </script>
     @endpush
 </x-admin-app-layout>
 <!-- RFQ Dashboard End -->
