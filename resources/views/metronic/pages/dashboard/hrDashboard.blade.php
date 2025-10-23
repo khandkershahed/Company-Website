@@ -357,7 +357,7 @@
                                                             onchange="form.submit()">
                                                             @foreach ($users as $user)
                                                                 <option value="{{ $user->id }}"
-                                                                    @selected($selectedUser === $user->id)>
+                                                                    @selected($selectedUser == $user->id)>
                                                                     {{ $user->name }}
                                                                 </option>
                                                             @endforeach

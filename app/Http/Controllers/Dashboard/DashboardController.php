@@ -84,7 +84,7 @@ class DashboardController extends Controller
 
     //     // Try connecting to the ZKTeco device
     //     try {
-    //         $zk = new ZKTeco($deviceip, 4370); 
+    //         $zk = new ZKTeco($deviceip, 4370);
     //         if ($zk->connect()) {
     //             $zk->enableDevice();
     //             $attendances = $zk->getAttendance(2);
@@ -161,7 +161,7 @@ class DashboardController extends Controller
     public function hrDashboard(Request $request)
     {
         // $documents = $user->staffDocuments;
-        $userId = $request->input('user_id') ?? Auth::user()->id;
+        $userId = $request->input('user_id') ? $request->input('user_id') : Auth::user()->id;
         $user_name = User::find($userId)->name;
         $monthInput = $request->input('month', now()->format('F')); // e.g. “October” or “10”
         $year = $request->input('year', now()->year); // default to current year
