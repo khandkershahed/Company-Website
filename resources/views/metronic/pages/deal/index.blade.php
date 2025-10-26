@@ -18,11 +18,10 @@
                         <th width="8%">Salesman</th>
                         <th width="8%">Partner/Client</th>
                         <th width="8%">Country</th>
-                        <th width="8%">PQ#</th>
                         <th width="35%">Product Description</th>
-                        <th width="8%">Deal Type</th>
                         <th width="8%">Contact Person</th>
                         <th width="8%">Status</th>
+                        <th width="8%">Action</th>
                     </tr>
                 </thead>
                 <tbody class="text-center" align="center">
@@ -34,16 +33,28 @@
                             </td>
                             <td>{{ ucfirst($deal->client_type) ?? 'Unknown' }}</td>
                             <td>{{ ucfirst($deal->country) }}</td>
-                            <td>N/A</td>
                             <td class="text-start">
                                 @foreach ($deal->rfqProducts as $product)
                                     <span class="my-1">{{ $loop->iteration . ' . ' . $product->product_name }}</span>
                                     <br>
                                 @endforeach
                             </td>
-                            <td>New</td>
                             <td>{{ ucfirst($deal->name) }}</td>
                             <td>{{ Str::of($deal->status)->replace('_', ' ')->title() }}</td>
+                            <td>
+                                <a href="{{ route('deal.edit', $deal->id) }}"
+                                    class="fs-3 me-3" style="width: 38px; height: 38px;"
+                                    data-bs-toggle="tooltip" title="Edit">
+                                    <i class="fa-solid fa-pen text-primary ps-1"></i>
+                                </a>
+
+                                {{-- Delete Button --}}
+                                <a href="{{ route('deal.destroy', $deal->id) }}"
+                                    class="fs-3 delete"
+                                    style="width: 38px; height: 38px;" data-bs-toggle="tooltip" title="Delete">
+                                    <i class="fa-solid fa-trash-can text-danger ps-1"></i>
+                                </a>
+                            </td>
                         </tr>
                     @empty
                         <tr>

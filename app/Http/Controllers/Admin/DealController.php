@@ -612,9 +612,6 @@ class DealController extends Controller
     public function edit($id)
     {
         $rfq = RFQ::with('rfqProducts')->findOrFail($id);
-
-        // Pass the $rfq data to the *same view* you use for 'create'
-        // Make sure the view file is named 'deal.create-edit'
         return view('metronic.pages.deal.edit', compact('rfq'));
     }
 
