@@ -9,7 +9,7 @@
                     <div class="py-3 border card-header d-flex justify-content-between align-items-center"
                         style="background-color: #ae0a46">
                         <h3 class="mb-0 text-white card-title rfq-title fw-normal">
-                            Request for Quotation
+                            Request for Quotation 
                         </h3>
                         <div class="text-white d-flex align-items-center">
                             <p class="mb-0 pe-2 case-title">RFQ by case</p>
