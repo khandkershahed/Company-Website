@@ -786,12 +786,15 @@ class DealController extends Controller
                 $imagePath = null;
 
                 if ($image) {
-                    $upload = Helper::imageUpload($image, 'rfq_products/image');
-                    if ($upload['status'] === 1) {
-                        $imagePath = $upload['file_path'];
+                    // $upload = Helper::imageUpload($image, 'rfq_products/image');
+
+                    $uploadedFiles['image'] = Helper::imageUpload($image, 'rfq_products/image');
+                    if (($uploadedFiles['image']['status'] ?? 1) === 1) {
+                        $imagePath = $uploadedFiles['image']['file_path'];
                         $newImagePaths[] = $imagePath;
                     } else {
-                        Toastr::error('Error uploading product image: ' . $upload['error_message']);
+                        $msg = $uploadedFiles['image']['error_message'] ?? 'File upload failed.';
+                        Toastr::error('Error uploading product image: ' . $msg);
                         return redirect()->back()->withInput();
                     }
                 }
