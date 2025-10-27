@@ -9,34 +9,31 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class RFQNotificationAdminMail extends Mailable
+class DealNotificationAdminMail extends Mailable
 {
     use Queueable, SerializesModels;
     public array $data;
-    public string $rfq_code;
-
-    public function __construct(array $data, string $rfq_code)
+    public string $deal_creator;
+    /**
+     * Create a new message instance.
+     */
+    public function __construct(array $data, string $deal_creator)
     {
         $this->data = $data;
-        $this->rfq_code = $rfq_code;
+        $this->deal_creator = $deal_creator;
     }
-    /**
-     * Get the message envelope.
-     *
-     * @return \Illuminate\Mail\Mailables\Envelope
-     */
 
      public function build()
     {
         return $this->from('support@ngenit.com', 'NGEN-Business')
-                    ->view('mail.rfqNotificationAdminMail', ['data' => $this->data])
-                    ->subject("A RFQ#{$this->rfq_code} has been received and need to reply.");
+                    ->view('mail.dealNotificationAdminMail', ['data' => $this->data])
+                    ->subject("{$this->deal_creator} has been created a deal.");
     }
 
     public function envelope()
     {
         return new Envelope(
-            subject: "A RFQ#{$this->rfq_code} has been received and need to reply.",
+            subject: "{$this->deal_creator} has been created a deal.",
         );
     }
 

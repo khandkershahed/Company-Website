@@ -33,6 +33,10 @@ class Rfq extends Model
         return !empty($this->sales_man_id_L1) || !empty($this->sales_man_id_T1) || !empty($this->sales_man_id_T2);
     }
     // Salesman L1
+    public function dealCreator()
+    {
+        return $this->belongsTo(User::class, 'deal_creator_id');
+    }
     public function salesmanL1()
     {
         return $this->belongsTo(User::class, 'sales_man_id_L1');

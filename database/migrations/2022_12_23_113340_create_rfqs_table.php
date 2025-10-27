@@ -89,7 +89,9 @@ return new class extends Migration
             $table->string('approximate_delivery_time', 150)->nullable();
             $table->string('client_po', 191)->nullable();
             $table->string('client_payment_pdf', 191)->nullable();
-            $table->string('deal_code', 100)->unique(); 
+            $table->string('deal_code', 100)->unique();
+
+            $table->foreignId('deal_creator_id')->nullable()->constrained('users')->cascadeOnUpdate()->nullOnDelete();
 
             $table->foreign('sales_man_id_L1')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('sales_man_id_T1')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
