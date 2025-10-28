@@ -83,7 +83,7 @@
                                     Dear <strong>Sales Manager</strong>,
                                 </p>
                                 <p style="font-size:16px; margin-top:0;">
-                                   {{ $data['deal_creator']}} has been created a deal right now. Please respond immediately for best customer service and
+                                   {{ $data['deal_creator']}} has created a deal right now. Please respond immediately for best customer service and
                                     reputation.
                                 </p>
                             </div>

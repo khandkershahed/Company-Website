@@ -27,13 +27,13 @@ class DealNotificationAdminMail extends Mailable
     {
         return $this->from('support@ngenit.com', 'NGEN-Business')
                     ->view('mail.dealNotificationAdminMail', ['data' => $this->data])
-                    ->subject("{$this->deal_creator} has been created a deal.");
+                    ->subject("{$this->deal_creator} has created a deal.");
     }
 
     public function envelope()
     {
         return new Envelope(
-            subject: "{$this->deal_creator} has been created a deal.",
+            subject: "{$this->deal_creator} has created a deal.",
         );
     }
 
