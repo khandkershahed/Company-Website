@@ -33,7 +33,7 @@ class DealController extends Controller
 
     public function index()
     {
-        $data['deals'] = Rfq::where('rfq_type', 'deal')->latest('id')->get();
+        $data['deals'] = Rfq::where('rfq_type', 'deal')->latest()->get();
         return view('metronic.pages.deal.index', $data);
     }
 
@@ -429,6 +429,7 @@ class DealController extends Controller
 
         // --- 5. SAVE RFQ (Set status based on draft) ---
         $rfq_status = $is_draft ? 'deal' : 'rfq_created'; // ✅ Set status
+        $rfq_type = $is_draft ? 'deal' : 'rfq'; // ✅ Set status
         $files = [
             'image' => $request->file('tender_image'),
         ];
@@ -491,6 +492,7 @@ class DealController extends Controller
             'approximate_delivery_time' => $request->approximate_delivery_time,
             'image'                 => $uploadedFiles['image']['status'] == 1 ? $uploadedFiles['image']['file_path'] : null,
             'status'                => $rfq_status, // ✅ Use dynamic status
+            'rfq_type'              =>  $rfq_type, // ✅ Use dynamic status
             'deal_creator_id'       => Auth::user()->id, // ✅ Use dynamic status
             'deal_type'             => 'new',
             'created_at'            => now(),
@@ -502,7 +504,6 @@ class DealController extends Controller
                 $productName = $contact['product_name'] ?? null;
                 $qty = $contact['qty'] ?? null;
 
-                // This check will skip empty draft rows
                 if (!$productName || !$qty) {
                     continue;
                 }
@@ -718,6 +719,7 @@ class DealController extends Controller
 
         // --- 5️⃣ DETERMINE STATUS ---
         $rfq_status = $is_draft ? 'deal' : ($rfq->status === 'deal' ? 'deal' : 'rfq_created');
+        $rfq_type  = $is_draft ? 'deal' : ($rfq->rfq_type === 'deal' ? 'deal' : 'rfq');
 
         // --- 6️⃣ UPDATE RFQ FIELDS ---
         $rfq->update([
@@ -765,6 +767,7 @@ class DealController extends Controller
             'project_status'         => $request->project_status,
             'approximate_delivery_time' => $request->approximate_delivery_time,
             'status'                 => $rfq_status,
+            'rfq_type'               =>  $rfq_type,
             'updated_at'             => now(),
             // Optionally, reassign deal creator if desired:
             // 'deal_creator_id' => Auth::check() ? Auth::id() : $rfq->deal_creator_id,
@@ -772,6 +775,10 @@ class DealController extends Controller
 
         // --- 7️⃣ PRODUCTS: Delete + Reinsert ---
         $oldImages = $rfq->rfqProducts()->pluck('image')->filter();
+        // delete existing image products from storage
+        foreach ($oldImages as $oldImage) {
+            Storage::disk('public')->delete($oldImage);
+        }
         $rfq->rfqProducts()->delete();
         QuotationProduct::where('rfq_id', $rfq->id)->delete();
         $newImagePaths = [];
@@ -782,22 +789,26 @@ class DealController extends Controller
                 $qty = $contact['qty'] ?? null;
                 if (!$productName || !$qty) continue;
 
-                $image = $contact['image'] ?? null;
+               $image = $contact['image'] ?? null;
                 $imagePath = null;
 
-                if ($image) {
-                    // $upload = Helper::imageUpload($image, 'rfq_products/image');
+                $files = [
+                    'image'  => $image,
+                ];
+                $uploadedFiles = [];
 
-                    $uploadedFiles['image'] = Helper::imageUpload($image, 'rfq_products/image');
-                    if (($uploadedFiles['image']['status'] ?? 1) === 1) {
-                        $imagePath = $uploadedFiles['image']['file_path'];
-                        $newImagePaths[] = $imagePath;
+                foreach ($files as $key => $file) {
+                    if (!empty($file)) {
+                        $filePath = 'rfq_products/' . $key;
+                        $uploadedFiles[$key] = Helper::imageUpload($file, $filePath);
+                        if ($uploadedFiles[$key]['status'] === 0) {
+                            return redirect()->back()->with('error', $uploadedFiles[$key]['error_message']);
+                        }
                     } else {
-                        $msg = $uploadedFiles['image']['error_message'] ?? 'File upload failed.';
-                        Toastr::error('Error uploading product image: ' . $msg);
-                        return redirect()->back()->withInput();
+                        $uploadedFiles[$key] = ['status' => 0];
                     }
                 }
+                $imagePath = $uploadedFiles['image']['status']  == 1 ? $uploadedFiles['image']['file_path'] : null;
 
                 $data = [
                     'rfq_id'                  => $rfq->id,

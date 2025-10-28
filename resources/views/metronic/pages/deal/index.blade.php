@@ -14,6 +14,7 @@
             <table class="table my-datatable table-striped table-row-bordered gy-5 gs-7 border rounded">
                 <thead class="text-center" align="center">
                     <tr class="text-gray-800 fw-bold fs-6 px-7 text-center">
+                        <th width="5%" class="ps-2">Sl.</th>
                         <th width="8%" class="ps-2">Date</th>
                         <th width="8%">Salesman</th>
                         <th width="8%">Partner/Client</th>
@@ -27,6 +28,7 @@
                 <tbody class="text-center" align="center">
                     @forelse ($deals as $deal)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
                             <td class="ps-2">{{ \Carbon\Carbon::parse($deal->create_date)->format('d-M-Y') }}
                             </td>
                             <td>{{ optional($deal->salesmanL1)->name ?? (optional($deal->salesmanT1)->name ?? optional($deal->salesmanT2)->name) }}
