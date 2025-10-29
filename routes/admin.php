@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\TenderSiteController;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -143,6 +144,9 @@ use App\Http\Controllers\Admin\PolicyAcknowledgmentsController;
 use App\Http\Controllers\Client\ClientSupportMessageController;
 use App\Http\Controllers\Admin\FrontendNavbarMenuItemController;
 use App\Http\Controllers\Admin\PortfolioClientFeedbackController;
+use App\Http\Controllers\Admin\TenderAccessPassController;
+use App\Http\Controllers\Admin\TenderSecurity;
+use App\Http\Controllers\Admin\TenderSecurityController;
 use App\Http\Controllers\Marketing\MarketingTeamTargetController;
 use App\Http\Controllers\Marketing\MarketingManagerRoleController;
 
@@ -708,6 +712,32 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/device-shutdown', [BioMetricController::class, 'device_shutdown'])->name('machine.deviceshutdown');
 
 
-    ///
 
+
+    // All Tender Site routes under /admin/tender-sites
+    Route::prefix('tender-sites')->name('tender-sites.')->group(function () {
+        Route::get('/', [TenderSiteController::class, 'index'])->name('index');
+        Route::get('/create', [TenderSiteController::class, 'create'])->name('create');
+        Route::post('/', [TenderSiteController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [TenderSiteController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [TenderSiteController::class, 'update'])->name('update');
+        Route::delete('/{id}', [TenderSiteController::class, 'destroy'])->name('destroy');
+    });
+    // All Tender Access Pass routes under /admin/tender-access-pass
+    Route::prefix('tender-access-pass')->name('tender-access-pass.')->group(function () {
+        Route::get('/', [TenderAccessPassController::class, 'index'])->name('index');
+        Route::get('/create', [TenderAccessPassController::class, 'create'])->name('create');
+        Route::post('/', [TenderAccessPassController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [TenderAccessPassController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [TenderAccessPassController::class, 'update'])->name('update');
+        Route::delete('/{id}', [TenderAccessPassController::class, 'destroy'])->name('destroy');
+    });
+    Route::prefix('tender-security')->name('tender-security.')->group(function () {
+        Route::get('/', [TenderSecurityController::class, 'index'])->name('index');
+        Route::get('/create', [TenderSecurityController::class, 'create'])->name('create');
+        Route::post('/', [TenderSecurityController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [TenderSecurityController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [TenderSecurityController::class, 'update'])->name('update');
+        Route::delete('/{id}', [TenderSecurityController::class, 'destroy'])->name('destroy');
+    });
 });
