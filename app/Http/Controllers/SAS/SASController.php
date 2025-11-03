@@ -28,9 +28,9 @@ class SASController extends Controller
 
     public function index()
     {
-        $data['pending_products'] = Product::where('action_status','listed')->orderBy('id','desc')->get(['id','ref_code','thumbnail','name','slug','price_status']);
-        $data['pending_approvals'] = Product::where('action_status','seek_approval')->orderBy('id','desc')->get(['id','ref_code','thumbnail','name','slug','price_status']);
-        $data['products'] = Product::where('product_status','product')->orderBy('id','desc')->get(['id','ref_code','thumbnail','name','slug','price_status']);
+        $data['pending_products'] = Product::where('action_status', 'listed')->orderBy('id', 'desc')->get(['id', 'ref_code', 'thumbnail', 'name', 'slug', 'price_status']);
+        $data['pending_approvals'] = Product::where('action_status', 'seek_approval')->orderBy('id', 'desc')->get(['id', 'ref_code', 'thumbnail', 'name', 'slug', 'price_status']);
+        $data['products'] = Product::where('product_status', 'product')->orderBy('id', 'desc')->get(['id', 'ref_code', 'thumbnail', 'name', 'slug', 'price_status']);
         return view('admin.pages.sas.all', $data);
     }
 
@@ -84,23 +84,19 @@ class SASController extends Controller
                 'net_profit'        => $request->net_profit,
                 'gross_profit'      => $request->gross_profit,
                 'net_profit_amount' => $request->net_profit_amount,
-                'gross_profit_amount'=> $request->gross_profit_amount,
+                'gross_profit_amount' => $request->gross_profit_amount,
             ]);
             Product::findOrFail($request->product_id)->update([
                 'action_status'  => 'seek_approval',
                 'ref_code'       => $request->ref_code,
             ]);
-            $data['product'] = Product::where('id', $request->product_id)->first(['slug','name','sku_code','cat_id','brand_id']);
+            $data['product'] = Product::where('id', $request->product_id)->first(['slug', 'name', 'sku_code', 'cat_id', 'brand_id']);
             $name = Auth::user()->name;
-            $slug =$data['product']->slug;
-            $users = User::where(function ($query) {
-                $query->whereJsonContains('department', 'business')
-                    ->orwhereJsonContains('department', 'logistics');
-            })->where('role', 'admin')->get();
-            $user_emails = User::where(function ($query) {
-                $query->whereJsonContains('department', 'business')
-                    ->orwhereJsonContains('department', 'logistics');
-            })->where('role', 'admin')->pluck('email')->toArray();
+            $slug = $data['product']->slug;
+            $users = User::inDepartments(['site', 'super_admin'])
+                ->orderBy('id', 'DESC')
+                ->get(['id', 'name']);
+            $user_emails = $this->sourcing_emails;
             // $user_emails = 'khandkershahed23@gmail.com';
 
 
@@ -114,16 +110,15 @@ class SASController extends Controller
                 'product_id' => $data['product']->slug,
 
             ];
-            Notification::send($users, new SASNotification($name , $slug));
+            Notification::send($users, new SASNotification($name, $slug));
             $mail = Mail::to($user_emails);
-                if ($mail) {
-                    $mail->send(new ProductSAS($data));
-                    Toastr::success('SAS has created Successfully');
-                } else {
-                    Toastr::error('Email Failed to send', ['timeOut' => 30000]);
-                    return redirect()->back();
-                }
-
+            if ($mail) {
+                $mail->send(new ProductSAS($data));
+                Toastr::success('SAS has created Successfully');
+            } else {
+                Toastr::error('Email Failed to send', ['timeOut' => 30000]);
+                return redirect()->back();
+            }
         } else {
             $messages = $validator->messages();
             foreach ($messages->all() as $message) {
@@ -136,16 +131,16 @@ class SASController extends Controller
     public function show($id)
     {
 
-        $data['product'] = Product::where('slug' , $id)->first();
-        $data['sourcing'] = Sas::where('product_id' , $data['product']->id)->first();
+        $data['product'] = Product::where('slug', $id)->first();
+        $data['sourcing'] = Sas::where('product_id', $data['product']->id)->first();
         //dd($data['sourcing']);
         return view('admin.pages.sas.sas_approve', $data);
     }
 
     public function edit($id)
     {
-        $data['product'] = Product::where('slug' , $id)->first(['id','name','ref_code']);
-        $data['sourcing'] = Sas::where('product_id' , $data['product']->id)->first();
+        $data['product'] = Product::where('slug', $id)->first(['id', 'name', 'ref_code']);
+        $data['sourcing'] = Sas::where('product_id', $data['product']->id)->first();
         //dd($data['sourcing']);
         return view('admin.pages.sas.sourcing_sas_edit', $data);
     }
@@ -153,7 +148,7 @@ class SASController extends Controller
     public function update(Request $request, $id)
     {
         //dd($id);
-        $sas = Sas::where('id',$id)->first();
+        $sas = Sas::where('id', $id)->first();
         //dd($sas);
         $validator = Validator::make(
             $request->all(),
@@ -199,7 +194,7 @@ class SASController extends Controller
                 'net_profit'        => $request->net_profit,
                 'gross_profit'      => $request->gross_profit,
                 'net_profit_amount' => $request->net_profit_amount,
-                'gross_profit_amount'=> $request->gross_profit_amount,
+                'gross_profit_amount' => $request->gross_profit_amount,
             ]);
             Toastr::success('SAS Updated Successfully.');
         } else {
@@ -210,23 +205,19 @@ class SASController extends Controller
         }
         $product = Product::where('id', $sas->product_id)->first();
         // dd($sas);
-        if(($product->product_status) != 'product'){
+        if (($product->product_status) != 'product') {
             Product::findOrFail($sas->product_id)->update([
                 'price'           => $request->sales_price,
                 'action_status'   => 'product_approved',
                 'product_status'  => 'product',
             ]);
-            $data['product'] = Product::where('id', $sas->product_id)->first(['slug','name','sku_code','cat_id','brand_id']);
+            $data['product'] = Product::where('id', $sas->product_id)->first(['slug', 'name', 'sku_code', 'cat_id', 'brand_id']);
             $name = Auth::user()->name;
-            $slug =$data['product']->slug;
-            $users = User::where(function ($query) {
-                $query->whereJsonContains('department', 'business')
-                    ->orwhereJsonContains('department', 'logistics');
-            })->where('role', 'admin')->get();
-            $user_emails = User::where(function ($query) {
-                $query->whereJsonContains('department', 'business')
-                    ->orwhereJsonContains('department', 'logistics');
-            })->where('role', 'admin')->pluck('email')->toArray();
+            $slug = $data['product']->slug;
+            $users = User::inDepartments(['site', 'super_admin'])
+                ->orderBy('id', 'DESC')
+                ->get(['id', 'name']);
+            $user_emails = $this->sourcing_emails;
             // $user_emails = 'khandkershahed23@gmail.com';
 
 
@@ -240,17 +231,16 @@ class SASController extends Controller
                 'product_id' => $data['product']->slug,
 
             ];
-            Notification::send($users, new ProductApprove($name , $slug));
+            Notification::send($users, new ProductApprove($name, $slug));
             $mail = Mail::to($user_emails);
-                if ($mail) {
-                    $mail->send(new MailProductApprove($data));
-                } else {
-                    Toastr::error('Email Failed to send', ['timeOut' => 30000]);
-                    return redirect()->back();
-                }
-                Toastr::success('Product has been approved Successfully');
-
-        }else {
+            if ($mail) {
+                $mail->send(new MailProductApprove($data));
+            } else {
+                Toastr::error('Email Failed to send', ['timeOut' => 30000]);
+                return redirect()->back();
+            }
+            Toastr::success('Product has been approved Successfully');
+        } else {
             Product::findOrFail($sas->product_id)->update([
                 'price'           => $request->sales_price,
                 'action_status'   => 'product_approved',
@@ -278,16 +268,12 @@ class SASController extends Controller
         ]);
 
 
-            $name = Auth::user()->name;
-            $users = User::where(function ($query) {
-                $query->whereJsonContains('department', 'business')
-                    ->orwhereJsonContains('department', 'logistics');
-            })->where('role', 'admin')->get();
-            $user_emails = User::where(function ($query) {
-                $query->whereJsonContains('department', 'business')
-                    ->orwhereJsonContains('department', 'logistics');
-            })->where('role', 'admin')->pluck('email')->toArray();
-            // $user_emails = 'khandkershahed23@gmail.com';
+        $name = Auth::user()->name;
+        $users = User::inDepartments(['site', 'super_admin'])
+                ->orderBy('id', 'DESC')
+                ->get(['id', 'name']);
+            $user_emails = $this->sourcing_emails;
+        // $user_emails = 'khandkershahed23@gmail.com';
 
         $data = [
 
@@ -306,18 +292,15 @@ class SASController extends Controller
         // dd($data);
 
         $mail = Mail::to($user_emails);
-            if ($mail) {
-                $mail->send(new RejectSas($data));
-
-            } else {
-                Toastr::error('Email Failed to send', ['timeOut' => 30000]);
-                return redirect()->back();
-            }
+        if ($mail) {
+            $mail->send(new RejectSas($data));
+        } else {
+            Toastr::error('Email Failed to send', ['timeOut' => 30000]);
+            return redirect()->back();
+        }
 
         // Notification::send($users, new RejectProductSASNotification($name , $slug));
         Toastr::success('Product Rejected');
         return redirect()->route('product-sourcing.index');
     }
-
-
 }

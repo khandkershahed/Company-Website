@@ -39,7 +39,8 @@ class DealController extends Controller
 
     public function create()
     {
-        $data['users'] = User::whereJsonContains('department', 'business')->orderBy('id', 'DESC')->get(['id', 'name']);
+        // $data['users'] = User::whereJsonContains('department', 'business')->orderBy('id', 'DESC')->get(['id', 'name']);
+        $data['users'] = $this->sales_managers;
         return view('metronic.pages.deal.create', $data);
     }
 
@@ -554,10 +555,7 @@ class DealController extends Controller
         // --- 7. NOTIFICATIONS & EMAILS (Only for final submit) ---
         if (!$is_draft) {
             $name = $request->name;
-            $user_emails = User::where(function ($query) {
-                $query->whereJsonContains('department', 'business')
-                    ->orWhereJsonContains('department', 'logistics');
-            })->where('role', 'admin')->pluck('email')->toArray();
+            $user_emails = $this->rfq_user_emails;
 
             Notification::send(
                 User::whereIn('email', $user_emails)->get(),
@@ -605,14 +603,8 @@ class DealController extends Controller
             $rfq_code = $rfq->rfq_code;
 
             try {
-                // Mail::to($request->email)->send(new RFQNotificationClientMail($data));
-                $user_emails = User::where(function ($query) {
-                    $query->whereJsonContains('department', 'business')
-                        ->orWhereJsonContains('department', 'logistics');
-                })->whereIn('role', ['admin', 'manager'])
-                    ->pluck('email')
-                    ->toArray();
 
+                $user_emails = $this->rfq_user_emails;
                 foreach ($user_emails as $email) {
                     Mail::to($email)->send(new DealNotificationAdminMail($data, $deal_creator));
                 }
@@ -789,7 +781,7 @@ class DealController extends Controller
                 $qty = $contact['qty'] ?? null;
                 if (!$productName || !$qty) continue;
 
-               $image = $contact['image'] ?? null;
+                $image = $contact['image'] ?? null;
                 $imagePath = null;
 
                 $files = [

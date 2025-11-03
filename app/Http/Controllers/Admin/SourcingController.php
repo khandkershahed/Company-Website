@@ -482,15 +482,9 @@ class SourcingController extends Controller
                 $data['product'] = Product::where('id', $product_id)->first();
 
                 $name = Auth::user()->name;
-                $users = User::where(function ($query) {
-                    $query->whereJsonContains('department', 'business')
-                        ->orwhereJsonContains('department', 'logistics');
-                })->where('role', 'admin')->get();
+                $users = $this->sales_managers;
                 $slug = $data['slug'];
-                $user_emails = User::where(function ($query) {
-                    $query->whereJsonContains('department', 'business')
-                        ->orwhereJsonContains('department', 'logistics');
-                })->where('role', 'admin')->pluck('email')->toArray();
+                $user_emails = $this->sourcing_emails;
                 // $user_emails = 'khandkershahed23@gmail.com';
 
 

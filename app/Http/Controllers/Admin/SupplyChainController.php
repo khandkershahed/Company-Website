@@ -15,9 +15,7 @@ class SupplyChainController extends Controller
     public function index()
     {
         $data = [
-            'users' => User::where(function ($query) {
-                $query->whereJsonContains('department', 'business');
-            })->select('id', 'name')->orderBy('id', 'DESC')->get(),
+            'users' => $this->sales_managers,
             'orders' => Rfq::where('rfq_type', 'order')->latest()->get(),
         ];
         return view('metronic.pages.supplyChain.index', $data);

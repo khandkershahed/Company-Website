@@ -50,44 +50,6 @@
 
                 {{-- Site Content  --}}
                 @php
-                    // $menuItems = [];
-                    // if (Auth::user()->isBusinessAdminOrManager()) {
-                    //    $menuItems = [
-                    //         'title' => 'Business',
-                    //         'icon' => 'fa-light fa-business-time fs-3',
-                    //         'routes' => [
-                    //             'admin.brands.index',
-                    //             'admin.brands.create',
-                    //             'admin.brands.edit',
-                    //             'admin.categories.index',
-                    //             'admin.categories.create',
-                    //             'admin.categories.edit',
-                    //             'admin.rfq.index',
-                    //             'admin.rfq.create',
-                    //             'admin.rfq.edit',
-                    //             'single-rfq.quoation_mail',
-                    //             'admin.sales.forecast',
-                    //             'admin.sales.report',
-                    //             'deal.index',
-                    //             'deal.create',
-                    //             'deal.edit',
-                    //             'admin.sales-dashboard.index',
-                    //             'admin.tender.index',
-                    //             'admin.marketing.dashboard',
-                    //             'marketing-dmar.index',
-                    //             'marketing-dmar.create',
-                    //             'marketing-dmar.edit',
-                    //             'admin.marketing-emar.index',
-                    //             'admin.marketing-plan.index',
-                    //             'admin.marketing-plan.create',
-                    //             'admin.marketing-plan.edit',
-                    //             'admin.marketing-target.index',
-                    //             'admin.marketing-target.create',
-                    //         ],
-                    //     ]
-                    // }
-
-
                     $marketingMenu = [];
 
                     if (Auth::user()->isBusinessAdminOrManager()) {

@@ -32,7 +32,7 @@ class RFQManageController extends Controller
 
     public function index()
     {
-        $data['users'] = User::whereJsonContains('department', 'business')->where('role', 'manager')->latest('id')->get(['id', 'name']);
+        $data['users'] = $this->sales_managers;
         $data['rfqs'] = Rfq::with('rfqProducts')->latest('id')->where('rfq_type', 'rfq')->get();
         // dd($data['rfqs']);
         return view('admin.pages.rfq-manage.rfq_index', $data);
@@ -40,7 +40,7 @@ class RFQManageController extends Controller
 
     public function dealList()
     {
-        $data['users'] = User::whereJsonContains('department', 'business')->where('role', 'manager')->latest('id')->get(['id', 'name']);
+        $data['users'] = $this->sales_managers;
         $data['deals'] = Rfq::with('rfqProducts')->where('rfq_type', '!=', 'rfq')->orderBy('rfqs.updated_at', 'desc')->latest('id')->get();
         return view('admin.pages.rfq-manage.deal_index', $data);
     }
@@ -48,9 +48,7 @@ class RFQManageController extends Controller
 
     public function show($id)
     {
-        $data['users'] = User::where(function ($query) {
-            $query->whereJsonContains('department', 'business');
-        })->select('id', 'name')->orderBy('id', 'DESC')->get();
+        $data['users'] = $this->sales_managers;
         $data['rfq_details'] = Rfq::with('rfqProducts')->where('rfq_code', $id)->first();
         $data['deal_products'] = DealSas::where('rfq_code', $data['rfq_details']->rfq_code)->get();
         // $data['commercial_document'] = CommercialDocument::where('rfq_id', $data['rfq_details']->id)->first();
@@ -70,10 +68,7 @@ class RFQManageController extends Controller
         }
 
         // Prepare base data
-        $users = User::whereJsonContains('department', 'business')->where('role', 'manager')
-            ->select('id', 'name')
-            ->orderByDesc('id')
-            ->get();
+        $users = $this->sales_managers;
 
         $email = trim($rfq->email);
 

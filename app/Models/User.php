@@ -33,7 +33,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'email_verified_at' => 'datetime',
-        // 'department' => 'array',
+        'department' => 'array',
     ];
 
     protected static function booted()
@@ -46,6 +46,20 @@ class User extends Authenticatable
             Cache::forget('all_employees');
         });
     }
+
+    public function scopeInDepartments($query, $departments)
+    {
+        $departments = (array) $departments;
+
+        return $query->where(function ($q) use ($departments) {
+            collect($departments)->each(function ($dept, $i) use ($q) {
+                $method = $i === 0 ? 'whereJsonContains' : 'orWhereJsonContains';
+                $q->{$method}('department', $dept);
+            });
+        });
+    }
+
+
     public static function getpermissionGroups()
     {
 
@@ -127,10 +141,10 @@ class User extends Authenticatable
 
     public function staffDocuments()
     {
-       return $this->hasMany(StaffDocument::class, 'user_id');
+        return $this->hasMany(StaffDocument::class, 'user_id');
     }
     public function employeeLeave()
     {
-       return $this->hasOne(EmployeeLeave::class, 'employee_id');
+        return $this->hasOne(EmployeeLeave::class, 'employee_id');
     }
 }

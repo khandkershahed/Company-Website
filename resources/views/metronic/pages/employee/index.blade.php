@@ -1,56 +1,12 @@
 <x-admin-app-layout :title="'All Employees'">
     <div class="content-wrapper">
-        <!-- Page header -->
-        <!-- <div class="bg-white rounded-2">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="page-header-content">
-                    <div class="px-2 d-flex">
-                        <div class="py-2 breadcrumb">
-                            <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"></a>
-                            <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                            <a href="{{ route('admin.hr-and-admin.index') }}" class="breadcrumb-item">Hr and Admin</a>
-                            <a href="{{ route('employee.index') }}" class="breadcrumb-item">
-                                <span class="breadcrumb-item active">Employees</span>
-                            </a>
-                        </div>
-                        <a href="#breadcrumb_elements"
-                            class="p-0 border-transparent btn btn-light align-self-center collapsed d-lg-none rounded-pill ms-auto"
-                            data-bs-toggle="collapse">
-                            <i class="m-1 ph-caret-down collapsible-indicator ph-sm"></i>
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <a href="{{ route('employee-category.index') }}" class="btn navigation_btn">
-                        <div class="d-flex align-items-center ">
-                            <i class="fa-solid fa-nfc-magnifying-glass me-1"></i>
-                            <span>Employee Category</span>
-                        </div>
-                    </a>
-                    <a href="{{ route('employee-department.index') }}" class="btn navigation_btn">
-                        <div class="d-flex align-items-center ">
-                            <i class="fa-solid fa-nfc-magnifying-glass me-1"></i>
-                            <span>Department</span>
-                        </div>
-                    </a>
-                    <a href="{{ route('employee-department.index') }}" data-bs-toggle="modal"
-                        data-bs-target="#addEmployee" class="btn navigation_btn">
-                        <div class="d-flex align-items-center ">
-                            <i class="fa-solid fa-nfc-magnifying-glass me-1"></i>
-                            <span>Add</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div> -->
-        <!-- page header -->
         <!-- Sales Chain Page -->
         <div class="p-1 my-3 content">
             <div class="border-0 row nav-tabs" id="myTab" role="tablist">
                 <div class="col-lg-12">
                     <div class="row gx-3">
                         <div class="mb-3 col-lg-3 col-md-6 col-sm-6">
-                            <div class="text-white border-0 card rounded-1 active " style="background-color: #0b6476;"
+                            <div class="text-white border-0 card rounded-1 active" style="background-color: #0b6476;"
                                 id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"
                                 aria-controls="home" aria-selected="true">
                                 <div class="card-body">
@@ -68,7 +24,7 @@
                             <div class="mb-3 col-lg-3 col-md-6 col-sm-6">
                                 <div class="text-white border-0 card rounded-1" style="background-color: #0b6476;"
                                     id="profile-tab" data-bs-toggle="tab"
-                                    data-bs-target="#profile-{{ $employeeCategory->id }}" type="button" role="tab"
+                                    data-bs-target="#profile_{{ $employeeCategory->id }}" type="button" role="tab"
                                     aria-controls="profile" aria-selected="false">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center">
@@ -128,13 +84,14 @@
                                                     style="border-bottom: 1px solid #247297; background-color: #eee;">
                                                     <tr class="fw-bold">
                                                         <th width="5%">SL</th>
-                                                        <th width="10%">Image</th>
-                                                        <th width="20%">Name</th>
-                                                        <th width="15%">Job Status</th>
-                                                        <th width="20%">Email</th>
-                                                        <th width="15%">Designation</th>
+                                                        <th width="8%">Image</th>
+                                                        <th width="18%">Name</th>
+                                                        <th width="10%">Job Status</th>
+                                                        <th width="18%">Email</th>
+                                                        <th width="10%">Designation</th>
+                                                        <th width="16%">Department</th>
                                                         {{-- <th width="23%">Department</th> --}}
-                                                        <th width="15%" class="text-center">Actions</th>
+                                                        <th width="12%" class="text-center">Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -142,24 +99,24 @@
                                                         @foreach ($employees as $key => $employee)
                                                             <tr style="border-bottom: 1px solid #eee;">
                                                                 <!-- Serial Number -->
-                                                                <td>{{ ++$key }}</td>
+                                                                <td class="text-center">{{ $loop->iteration }}</td>
                                                                 <!-- Employee Image -->
                                                                 <td>
                                                                     <img src="{{ !empty($employee->photo) && file_exists(public_path('storage/' . $employee->photo)) ? asset('storage/' . $employee->photo) : url('upload/no_image.jpg') }}"
                                                                         alt="" width="40px" height="40px"
                                                                         style="border-radius: 50%">
                                                                 </td>
-                                                                <!-- Employee Name -->
                                                                 <td>{{ $employee->name }}</td>
                                                                 <td>
                                                                     {{ optional($employee->employeeStatus)->name ?? 'No Job Status Assigned' }}
-
                                                                 </td>
-                                                                <!-- Employee Email -->
                                                                 <td>{{ $employee->email }}</td>
-                                                                <!-- Employee Designation -->
                                                                 <td>{{ $employee->designation }}</td>
-                                                                <!-- Employee Actions -->
+                                                                <td>
+                                                                    @foreach ($employee->department as $department)
+                                                                        <span class="badge badge-secondary mb-2">{{ $department }}</span>
+                                                                    @endforeach
+                                                                </td>
                                                                 <td class="text-center">
                                                                     <a href="{{ route('attendance.single.lastMonth', $employee->id) }}"
                                                                         hover-tooltip="Last month Attendance"
@@ -198,7 +155,7 @@
                             </div>
                         </div>
                         @foreach ($employeeCategories as $employeeCategory)
-                            <div class="tab-pane" id="profile-{{ $employeeCategory->id }}" role="tabpanel"
+                            <div class="tab-pane" id="profile_{{ $employeeCategory->id }}" role="tabpanel"
                                 aria-labelledby="home-tab">
                                 <div class="col-lg-12">
                                     <h6 class="p-1 m-0 text-center"
@@ -374,13 +331,16 @@
                                     <select name="department[]" class="form-select" data-control="select2"
                                         data-placeholder="Select an option" data-allow-clear="true"
                                         multiple="multiple" required>
-                                        <option value="admin">Admin</option>
-                                        <option value="business">Business</option>
+                                        <option value="super_admin">Super Admin</option>
+                                        <option value="sales">Sales</option>
+                                        <option value="marketing">Marketing</option>
                                         <option value="accounts">Accounts</option>
                                         <option value="site">Site & Contents</option>
-                                        <option value="logistics">Logistics</option>
-                                        <option value="support">Support</option>
+                                        <option value="supplychain">Supply Chain</option>
+                                        <option value="crm">CRM</option>
                                         <option value="hr">HR</option>
+                                        {{-- <option value="supplychain">Supply Chain</option> --}}
+                                        <option value="business">Business</option>
                                     </select>
                                     <div class="invalid-feedback"> Please Enter Department.</div>
                                 </div>
@@ -543,10 +503,22 @@
                                                 data-allow-clear="true" multiple="multiple" required>
                                                 @php
                                                     $employeeIds = isset($employee->department)
-                                                        ? json_decode($employee->department, true)
+                                                        ? $employee->department
                                                         : [];
                                                 @endphp
-                                                <option value="admin" @selected(is_array($employeeIds) && in_array('admin', $employeeIds))>Admin</option>
+                                                <option value="super_admin" @selected(is_array($employeeIds) && in_array('super_admin', $employeeIds))>Super Admin
+                                                </option>
+                                                <option value="sales" @selected(is_array($employeeIds) && in_array('sales', $employeeIds))>Sales</option>
+                                                <option value="marketing" @selected(is_array($employeeIds) && in_array('marketing', $employeeIds))>Marketing
+                                                </option>
+                                                <option value="accounts" @selected(is_array($employeeIds) && in_array('accounts', $employeeIds))>Accounts</option>
+                                                <option value="site" @selected(is_array($employeeIds) && in_array('site', $employeeIds))>Site & Contents
+                                                </option>
+                                                <option value="supplychain" @selected(is_array($employeeIds) && in_array('supplychain', $employeeIds))>Supply Chain
+                                                </option>
+                                                <option value="crm" @selected(is_array($employeeIds) && in_array('crm', $employeeIds))>CRM</option>
+                                                <option value="hr" @selected(is_array($employeeIds) && in_array('hr', $employeeIds))>HR</option>
+                                                {{-- <option value="admin" @selected(is_array($employeeIds) && in_array('admin', $employeeIds))>Admin</option>
                                                 <option value="business" @selected(is_array($employeeIds) && in_array('business', $employeeIds))>Business
                                                 </option>
                                                 <option value="accounts" @selected(is_array($employeeIds) && in_array('accounts', $employeeIds))>Accounts
@@ -557,7 +529,7 @@
                                                 <option value="logistics" @selected(is_array($employeeIds) && in_array('logistics', $employeeIds))>Logistics
                                                 </option>
                                                 <option value="support" @selected(is_array($employeeIds) && in_array('support', $employeeIds))>Support
-                                                </option>
+                                                </option> --}}
                                             </select>
                                             <div class="invalid-feedback"> Please Enter Department.</div>
                                         </div>
@@ -646,8 +618,9 @@
                                     <div class="col-lg-4 mb-3">
                                         <x-metronic.label for="status" class="fw-bold fs-6 required">Select
                                             Status</x-metronic.label>
-                                        <x-metronic.select-option id="status" name="status" data-control="select2"
-                                            data-hide-search="true" data-placeholder="Choose status">
+                                        <x-metronic.select-option id="status" name="status"
+                                            data-control="select2" data-hide-search="true"
+                                            data-placeholder="Choose status">
                                             <option></option>
                                             <option value="active" @selected($employee->status == 'active')>Active</option>
                                             <option value="inactive" @selected($employee->status == 'inactive')>Suspended</option>

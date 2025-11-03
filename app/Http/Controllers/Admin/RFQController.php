@@ -48,11 +48,7 @@ class RFQController extends Controller
 
     public function index(Request $request)
     {
-        $users = User::whereJsonContains('department', 'business')
-            ->where('role', 'manager')
-            ->select('id', 'name')
-            ->orderBy('id', 'DESC')
-            ->get();
+        $users = $this->sales_managers ;
 
         // Base RFQ query
         $baseQuery = Rfq::where('rfq_type', 'rfq');
@@ -138,11 +134,7 @@ class RFQController extends Controller
     public function archivedRFQ(Request $request)
     {
         // Fetch users with 'business' department and 'manager' role
-        $users = User::whereJsonContains('department', 'business')
-            ->where('role', 'manager')
-            ->select('id', 'name')
-            ->orderBy('id', 'DESC')
-            ->get();
+        $users =$this->sales_managers;
 
         // Base RFQ query
         $baseQuery = Rfq::where('rfq_type', 'rfq');
@@ -279,11 +271,8 @@ class RFQController extends Controller
             $quoteds = $rfqs->where('status', 'quoted');
             $losts = $rfqs->where('status', 'lost');
 
-            $users = User::whereJsonContains('department', 'business')
-                ->where('role', 'manager')
-                ->select('id', 'name')
-                ->orderByDesc('id')
-                ->get();
+            $users = $this->sales_managers;
+
             if ($rfqs->isEmpty()) {
                 return response()->json([
                     'view' => '<div class="my-4 text-center text-white alert bg-danger">
@@ -315,9 +304,7 @@ class RFQController extends Controller
 
     public function create()
     {
-        $data['users'] = User::where(function ($query) {
-            $query->whereJsonContains('department', 'business');
-        })->where('role', 'manager')->select('id', 'name')->orderBy('id', 'DESC')->get();
+        $data['users'] = $this->sales_managers;
         $data['products'] = Product::latest()->get();
         $data['solution_details'] = SolutionDetail::select('solution_details.id', 'solution_details.name')->get();
         $data['clients'] = Client::select('clients.id', 'clients.name')->get();
@@ -505,10 +492,7 @@ class RFQController extends Controller
 
         // Notify users and send emails
         $name = $request->name;
-        $user_emails = User::where(function ($query) {
-            $query->whereJsonContains('department', 'business')
-                ->orWhereJsonContains('department', 'logistics');
-        })->where('role', 'admin')->pluck('email')->toArray();
+        $user_emails = $this->rfq_user_emails;
 
         Notification::send(
             User::whereIn('email', $user_emails)->get(),
@@ -561,12 +545,6 @@ class RFQController extends Controller
                     Mail::to($email)->send(new RFQConfirmationMail($data, $rfq_code));
                 }
             } else {
-                $user_emails = User::where(function ($query) {
-                    $query->whereJsonContains('department', 'business')
-                        ->orWhereJsonContains('department', 'logistics');
-                })->whereIn('role', ['admin', 'manager'])
-                    ->pluck('email')
-                    ->toArray();
                 Mail::to($request->email)->send(new RFQNotificationClientMail($data));
                 foreach ($user_emails as $email) {
                     Mail::to($email)->send(new RFQNotificationAdminMail($data, $rfq->rfq_code));
@@ -596,9 +574,7 @@ class RFQController extends Controller
      */
     public function edit($id)
     {
-        $data['users'] = User::where(function ($query) {
-            $query->whereJsonContains('department', 'business');
-        })->where('role', 'manager')->select('id', 'name')->orderBy('id', 'DESC')->get();
+        $data['users'] = $this->sales_managers;
         $data['products'] = Product::select('products.id', 'products.name')->get();
         $data['solution_details'] = SolutionDetail::select('solution_details.id', 'solution_details.name')->get();
         $data['clients'] = Client::select('clients.id', 'clients.name')->get();
@@ -945,9 +921,7 @@ class RFQController extends Controller
 
     public function DealConvert($id)
     {
-        $data['users']        = User::where(function ($query) {
-            $query->whereJsonContains('department', 'business');
-        })->select('id', 'name')->orderBy('id', 'DESC')->get();
+        $data['users']        = $this->sales_managers;
         // $data['products'] = Product::select('products.id', 'products.name')->where('product_status','product')->get();
         // $data['solution_details'] = SolutionDetail::select('solution_details.id', 'solution_details.name')->get();
         $data['clients']      = Client::where('user_type', 'client')->select('clients.id', 'clients.name')->get();

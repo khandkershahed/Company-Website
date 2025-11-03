@@ -96,7 +96,7 @@ class EmployeeController extends Controller
             'postal'                                        => $request->postal,
             'last_seen'                                     => $request->last_seen,
             'role'                                          => $request->role,
-            'department'                                    => json_encode($request->department),
+            'department'                                    => $request->department,
             'status'                                        => 'active',
             'password'                                      => Hash::make($request->password),
             'category_id'                                   => $request->category_id,
@@ -486,7 +486,7 @@ class EmployeeController extends Controller
 
         // Handle special fields
         if ($request->has('department')) {
-            $updateData['department'] = json_encode($request->department);
+            $updateData['department'] = $request->department;
         }
 
         foreach ($fields as $field) {

@@ -55,7 +55,7 @@ class DealControllerOld extends Controller
      */
     public function create()
     {
-        $data['users'] = User::whereJsonContains('department', 'business')->orderBy('id', 'DESC')->get(['id', 'name']);
+        $data['users'] = $this->sales_managers ;
         $data['clients'] = Client::select('clients.id', 'clients.name')->get();
         $data['partners'] = Partner::select('partners.id', 'partners.name')->get();
         return view('metronic.pages.deal.create', $data);
