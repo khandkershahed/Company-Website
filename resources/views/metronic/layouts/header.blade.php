@@ -103,12 +103,12 @@
                     @if (Route::currentRouteName() === 'admin.tender.create')
                         <a class="btn btn-md btn-info me-4" href="{{ route('admin.tender.index') }}">Tender Lists</a>
                     @endif
-                    @if (Route::currentRouteName() === 'marketing-dmar.create')
-                        <a class="btn btn-md btn-info me-4" href="{{ route('marketing-dmar.index') }}">Marketing
+                    @if (Route::currentRouteName() === 'admin.marketing-dmar.create')
+                        <a class="btn btn-md btn-info me-4" href="{{ route('admin.marketing-dmar.index') }}">Marketing
                             DMAR</a>
                     @endif
-                    @if (Route::currentRouteName() === 'marketing-dmar.index')
-                        <a class="btn btn-md btn-info me-4" href="{{ route('marketing-dmar.create') }}">Set DMAR</a>
+                    @if (Route::currentRouteName() === 'admin.marketing-dmar.index')
+                        <a class="btn btn-md btn-info me-4" href="{{ route('admin.marketing-dmar.create') }}">Set DMAR</a>
                     @endif
                     @if (Route::currentRouteName() === 'product.saved')
                         <a class="btn btn-md btn-info me-4" href="{{ route('product-sourcing.index') }}">Sourced Products</a>

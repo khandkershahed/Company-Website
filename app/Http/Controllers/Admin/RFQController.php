@@ -534,7 +534,7 @@ class RFQController extends Controller
             'project_status'            => $rfq->project_status,
             'approximate_delivery_time' => $rfq->approximate_delivery_time,
             'budget'                    => $rfq->budget,
-            'link'                      => route('single-rfq.show', $rfq->rfq_code),
+            'link'                      => route('admin.single-rfq.show', $rfq->rfq_code),
         ];
         $rfq_code = $rfq->rfq_code;
 
@@ -822,7 +822,7 @@ class RFQController extends Controller
         }
 
         Toastr::success('Salesman assigned and account created successfully.');
-        return redirect()->route('single-rfq.quoation_mail', $rfq->rfq_code);
+        return redirect()->route('admin.single-rfq.quoation_mail', $rfq->rfq_code);
     }
 
     public function AssignSalesManager(Request $request, $id)
@@ -884,7 +884,7 @@ class RFQController extends Controller
                     'project_status'        => $rfq->project_status,
                     'approximate_delivery_time' => $rfq->approximate_delivery_time,
                     'budget'                => $rfq->budget,
-                    'link'                  => route('single-rfq.show', $rfq->rfq_code),
+                    'link'                  => route('admin.single-rfq.show', $rfq->rfq_code),
                 ];
                 Mail::to($userEmails)->send(new RfqAssigned($data));
                 Toastr::success('Mail has been sent successfully.');
@@ -911,7 +911,7 @@ class RFQController extends Controller
             ));
 
             Toastr::success('Salesman assigned successfully.');
-            return redirect()->route('single-rfq.quoation_mail', $rfq->rfq_code);
+            return redirect()->route('admin.single-rfq.quoation_mail', $rfq->rfq_code);
         } catch (\Exception $e) {
             Toastr::error('Error Occured: ' . $e->getMessage());
             return redirect()->back();
@@ -1095,7 +1095,7 @@ class RFQController extends Controller
         }
 
         // return redirect()->route('deal.index');
-        return redirect()->route('single-rfq.show', $rfq_code);
+        return redirect()->route('admin.single-rfq.show', $rfq_code);
     }
 
     public function workOrderUpload(Request $request, $id)
@@ -1232,7 +1232,7 @@ class RFQController extends Controller
             'project_status'        => $rfq->project_status,
             'approximate_delivery_time' => $rfq->approximate_delivery_time,
             'budget'                => $rfq->budget,
-            'link'                  => route('single-rfq.show', $rfq->rfq_code),
+            'link'                  => route('admin.single-rfq.show', $rfq->rfq_code),
         ];
         try {
             $rfq->update(['confirmation' => 'approved']);

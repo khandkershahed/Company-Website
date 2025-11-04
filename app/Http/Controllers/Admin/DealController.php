@@ -328,7 +328,7 @@ class DealController extends Controller
     //         'project_status'            => $rfq->project_status,
     //         'approximate_delivery_time' => $rfq->approximate_delivery_time,
     //         'budget'                    => $rfq->budget,
-    //         'link'                      => route('single-rfq.show', $rfq->rfq_code),
+    //         'link'                      => route('admin.single-rfq.show', $rfq->rfq_code),
     //     ];
     //     $rfq_code = $rfq->rfq_code;
 
@@ -598,7 +598,7 @@ class DealController extends Controller
                 'approximate_delivery_time' => $rfq->approximate_delivery_time,
                 'budget'                    => $rfq->budget,
                 'deal_creator'              => $deal_creator,
-                'link'                      => route('single-rfq.show', $rfq->rfq_code),
+                'link'                      => route('admin.single-rfq.show', $rfq->rfq_code),
             ];
             $rfq_code = $rfq->rfq_code;
 

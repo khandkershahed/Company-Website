@@ -27,7 +27,7 @@
                     style="position: relative;
                     z-index: 999;
                     margin-bottom: -40px;">
-                    <a href="{{ route('marketing-dmar.create') }}">
+                    <a href="{{ route('admin.marketing-dmar.create') }}">
                         <div class="d-flex align-items-center">
                             <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
                                 data-bs-placement="top" title="Add Solution Details">
@@ -66,7 +66,7 @@
                                             class="text-primary">
                                             <i class="fa-solid fa-circle-info me-2 p-1 rounded-circle text-primary"></i>
                                         </a>
-                                        <a href="{{ route('marketing-dmar.edit', [$MarketingDmar->id]) }}"
+                                        <a href="{{ route('admin.marketing-dmar.edit', [$MarketingDmar->id]) }}"
                                             class="text-primary">
                                             <i class="fa-solid fa-pen-to-square me-2 p-1 rounded-circle text-primary"></i>
                                         </a>
@@ -136,7 +136,7 @@
                                                 <td>{{ ucfirst($MarketingDmar->comments_by_ceo) }}</td>
                                                 <td>{{ ucfirst($MarketingDmar->action_on_fail) }}</td>
                                                 <td>
-                                                    <a href="{{ route('marketing-dmar.edit', [$MarketingDmar->id]) }}"
+                                                    <a href="{{ route('admin.marketing-dmar.edit', [$MarketingDmar->id]) }}"
                                                         class="text-primary">
                                                         <i
                                                             class="fa-solid fa-pen-to-square me-2 p-1 rounded-circle text-primary"></i>

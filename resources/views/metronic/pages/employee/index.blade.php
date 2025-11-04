@@ -52,21 +52,21 @@
                                         <div class="d-flex justify-content-between align-items-center w-100">
                                             <h6 class="mb-0 text-center text-white">All Employee</h6>
                                             <div class="">
-                                                <a href="{{ route('employee-category.index') }}"
+                                                <a href="{{ route('admin.employee-category.index') }}"
                                                     class="bg-white border btn navigation_btn btn-sm">
                                                     <div class=" d-flex align-items-center">
                                                         <i class="fa-solid fa-nfc-magnifying-glass me-1"></i>
                                                         <span>Employee Category</span>
                                                     </div>
                                                 </a>
-                                                <a href="{{ route('employee-department.index') }}"
+                                                <a href="{{ route('admin.employee-department.index') }}"
                                                     class="bg-white border btn navigation_btn btn-sm">
                                                     <div class=" d-flex align-items-center">
                                                         <i class="fa-solid fa-nfc-magnifying-glass me-1"></i>
                                                         <span>Department</span>
                                                     </div>
                                                 </a>
-                                                <a href="{{ route('employee-department.index') }}"
+                                                <a href="{{ route('admin.employee-department.index') }}"
                                                     data-bs-toggle="modal" data-bs-target="#addEmployee"
                                                     class="bg-white border btn navigation_btn btn-sm">
                                                     <div class=" d-flex align-items-center">
@@ -138,7 +138,7 @@
                                                                         <i
                                                                             class="fa-solid fa-pen-to-square dash-icons"></i>
                                                                     </a>
-                                                                    <a href="{{ route('employee.destroy', [$employee->id]) }}"
+                                                                    <a href="{{ route('admin.employee.destroy', [$employee->id]) }}"
                                                                         class="mx-2 text-danger delete">
                                                                         <i
                                                                             class="delete fa-solid fa-trash dash-icons"></i>
@@ -226,7 +226,7 @@
                                                                             <i
                                                                                 class="fa-solid fa-pen-to-square dash-icons"></i>
                                                                         </a>
-                                                                        <a href="{{ route('employee.destroy', [$employee->id]) }}"
+                                                                        <a href="{{ route('admin.employee.destroy', [$employee->id]) }}"
                                                                             class="mx-2 text-danger delete">
                                                                             <i
                                                                                 class="delete fa-solid fa-trash dash-icons"></i>
@@ -259,7 +259,7 @@
                     </div>
                     <div class="p-5 modal-body">
                         <form id="myform" method="post" class="needs-validation"
-                            action="{{ route('employee.store') }}" enctype="multipart/form-data" novalidate>
+                            action="{{ route('admin.employee.store') }}" enctype="multipart/form-data" novalidate>
                             @csrf
                             <div class="p-5 row g-3">
                                 <!-- Full Name -->
@@ -423,7 +423,7 @@
                         </div>
                         <div class="p-5 modal-body">
                             <form id="myform" method="post"
-                                action="{{ route('employee.update', $employee->id) }}" enctype="multipart/form-data">
+                                action="{{ route('admin.employee.update', $employee->id) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="p-5 row g-3">

@@ -272,7 +272,7 @@ class DealControllerOld extends Controller
             $name = User::where('id', $request->sales_man_id_L1)->value('name');
             Notification::send($user, new DealRegister($name, $rfq_code = $data['rfq_code']));
             Toastr::success('Deal Registered Successfully');
-            return redirect()->route('single-rfq.show', $data['rfq_code']);
+            return redirect()->route('admin.single-rfq.show', $data['rfq_code']);
         } else {
 
             $messages = $validator->messages();
@@ -280,7 +280,7 @@ class DealControllerOld extends Controller
                 Toastr::error($message, 'Failed', ['timeOut' => 30000]);
             }
         }
-        return redirect()->route('deal.list');
+        return redirect()->route('admin.deal.list');
     }
 
     /**
@@ -403,7 +403,7 @@ class DealControllerOld extends Controller
             }
         }
         // return redirect()->route('deal.index');
-        return redirect()->route('deal.list');
+        return redirect()->route('admin.deal.list');
     }
 
     /**

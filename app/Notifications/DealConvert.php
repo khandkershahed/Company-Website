@@ -59,7 +59,7 @@ class DealConvert extends Notification
     {
         return [
             'name' => $this->name,
-            'link'=> route('single-rfq.show',$this->rfq_code),
+            'link'=> route('admin.single-rfq.show',$this->rfq_code),
             'message1' => 'has converted this '.$this->rfq_code.' to Deal. Need to ',
             'message2'=> 'make SAS for this Deal.',
         ];

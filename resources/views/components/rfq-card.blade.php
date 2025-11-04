@@ -118,7 +118,7 @@
                         {{ $rfq->isAssigned() ? 'Already Assigned' : 'Assign' }}
                     </button>
                     <button class="btn btn-sm btn-primary" style="background-color: #296088;"
-                        onclick="window.location.href='{{ route('single-rfq.quoation_mail', $rfq->rfq_code) }}';">
+                        onclick="window.location.href='{{ route('admin.single-rfq.quoation_mail', $rfq->rfq_code) }}';">
                         Quote
                     </button>
                 </div>

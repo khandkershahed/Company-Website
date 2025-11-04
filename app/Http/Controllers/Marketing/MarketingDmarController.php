@@ -92,7 +92,7 @@ class MarketingDmarController extends Controller
             MarketingDmar::create($data);
 
             Session::flash('success', 'Marketing DMAR created successfully.');
-            return redirect()->route('marketing-dmar.index');
+            return redirect()->route('admin.marketing-dmar.index');
         } catch (Exception $e) {
             return redirect()->back()->withInput()
                 ->with('error', 'Failed to create Marketing DMAR: ' . $e->getMessage());
@@ -135,7 +135,7 @@ class MarketingDmarController extends Controller
             $data = $request->validate($this->validationRules());
             $marketing_dmar->update($data);
             Session::flash('success', 'Marketing DMAR updated successfully.');
-            return redirect()->route('marketing-dmar.index');
+            return redirect()->route('admin.marketing-dmar.index');
         } catch (Exception $e) {
             Session::flash('error', 'Failed to update Marketing DMAR: ' . $e->getMessage());
             return redirect()->back()->withInput();

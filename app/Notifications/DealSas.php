@@ -59,7 +59,7 @@ class DealSas extends Notification
     {
         return [
             'name' => $this->name,
-            'link'=>route('single-rfq.show',$this->rfq_id),
+            'link'=>route('admin.single-rfq.show',$this->rfq_id),
             'message1' => 'has created ',
             'message2' => 'a SAS for Deal '.$this->rfq_id.' SAS need to be checked and Approved',
         ];

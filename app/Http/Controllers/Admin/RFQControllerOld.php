@@ -526,7 +526,7 @@ class RFQControllerOld extends Controller
             'rfq_code'      => $rfq->rfq_code,
             'email'         => $rfq->email,
             'country'       => $rfq->country,
-            'link'          => route('single-rfq.show', $rfq->rfq_code),
+            'link'          => route('admin.single-rfq.show', $rfq->rfq_code),
         ];
         try {
             // Mail::to($request->email)->send(new RFQNotificationClientMail($data));
@@ -754,7 +754,7 @@ class RFQControllerOld extends Controller
             'project_status'            => $rfq->project_status,
             'approximate_delivery_time' => $rfq->approximate_delivery_time,
             'budget'                    => $rfq->budget,
-            'link'                      => route('single-rfq.show', $rfq->rfq_code),
+            'link'                      => route('admin.single-rfq.show', $rfq->rfq_code),
         ];
         $rfq_code = $rfq->rfq_code;
 
@@ -932,7 +932,7 @@ class RFQControllerOld extends Controller
     //             'message'      => $request->message,
     //             'rfq_code'     => $rfq_code,
     //             'email'        => $request->email,
-    //             'link'         => route('single-rfq.show', $rfq_code),
+    //             'link'         => route('admin.single-rfq.show', $rfq_code),
 
     //         ];
     //         Mail::to($request->input('email'))->send(new RFQNotificationClientMail($data));
@@ -1240,7 +1240,7 @@ class RFQControllerOld extends Controller
         }
 
         Toastr::success('Salesman assigned and account created successfully.');
-        return redirect()->route('single-rfq.quoation_mail', $rfq->rfq_code);
+        return redirect()->route('admin.single-rfq.quoation_mail', $rfq->rfq_code);
     }
 
     public function AssignSalesManager(Request $request, $id)
@@ -1302,7 +1302,7 @@ class RFQControllerOld extends Controller
                     'project_status'        => $rfq->project_status,
                     'approximate_delivery_time' => $rfq->approximate_delivery_time,
                     'budget'                => $rfq->budget,
-                    'link'                  => route('single-rfq.show', $rfq->rfq_code),
+                    'link'                  => route('admin.single-rfq.show', $rfq->rfq_code),
                 ];
                 Mail::to($userEmails)->send(new RfqAssigned($data));
                 Toastr::success('Mail has been sent successfully.');
@@ -1329,7 +1329,7 @@ class RFQControllerOld extends Controller
             ));
 
             Toastr::success('Salesman assigned successfully.');
-            return redirect()->route('single-rfq.quoation_mail', $rfq->rfq_code);
+            return redirect()->route('admin.single-rfq.quoation_mail', $rfq->rfq_code);
         } catch (\Exception $e) {
             Toastr::error('Error Occured: ' . $e->getMessage());
             return redirect()->back();
@@ -1515,7 +1515,7 @@ class RFQControllerOld extends Controller
         }
 
         // return redirect()->route('deal.index');
-        return redirect()->route('single-rfq.show', $rfq_code);
+        return redirect()->route('admin.single-rfq.show', $rfq_code);
     }
 
     public function workOrderUpload(Request $request, $id)
@@ -1626,7 +1626,7 @@ class RFQControllerOld extends Controller
     //                 'rfq_code'      => $rfq->rfq_code,
     //                 'email'         => $rfq->email,
     //                 'country'       => $rfq->country,
-    //                 'link'          => route('single-rfq.show', $rfq->rfq_code),
+    //                 'link'          => route('admin.single-rfq.show', $rfq->rfq_code),
     //             ];
 
     //             try {
@@ -1704,7 +1704,7 @@ class RFQControllerOld extends Controller
             'project_status'        => $rfq->project_status,
             'approximate_delivery_time' => $rfq->approximate_delivery_time,
             'budget'                => $rfq->budget,
-            'link'                  => route('single-rfq.show', $rfq->rfq_code),
+            'link'                  => route('admin.single-rfq.show', $rfq->rfq_code),
         ];
         try {
             $rfq->update(['confirmation' => 'approved']);

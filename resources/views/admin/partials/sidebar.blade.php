@@ -152,7 +152,7 @@
                             </li>
                             <li class="nav-item"><a href="{{ route('attendance.dashboard') }}"
                                     class="nav-link">Attendance</a></li>
-                            <li class="nav-item"><a href="{{ route('employee.index') }}"
+                            <li class="nav-item"><a href="{{ route('admin.employee.index') }}"
                                     class="nav-link">Employees</a>
                             </li>
                             <li class="nav-item"><a href="{{ route('admin.job-post.index') }}" class="nav-link">Job Post</a>

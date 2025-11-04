@@ -34,7 +34,7 @@
                     </td>
                     <td class="text-center">
                         <!-- Go to Details Link -->
-                        <a href="{{ route('single-rfq.show', $rfq->rfq_code) }}" class="text-success"
+                        <a href="{{ route('admin.single-rfq.show', $rfq->rfq_code) }}" class="text-success"
                             title="Go to Details">
                             <i class="fa-solid fa-display dash-icons me-3"></i>
                         </a>

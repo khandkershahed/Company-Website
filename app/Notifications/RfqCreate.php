@@ -59,7 +59,7 @@ class RfqCreate extends Notification
     {
         return [
             'name' => $this->name,
-            'link'=> route('single-rfq.show',$this->rfq_code),
+            'link'=> route('admin.single-rfq.show',$this->rfq_code),
             'message1' => 'has created',
             'message2' => 'A New RFQ/Deal.',
         ];

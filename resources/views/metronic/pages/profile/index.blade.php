@@ -126,7 +126,7 @@
                                         </button>
                                     </div>
                                     <form id="myform" method="post"
-                                        action="{{ route('employee.update', $user->id) }}"
+                                        action="{{ route('admin.employee.update', $user->id) }}"
                                         enctype="multipart/form-data">
                                         @csrf
                                         @method('PUT')
@@ -556,7 +556,7 @@
                         <h4 class="mb-3 fw-bold">Security</h4>
                     </div>
                     <div class="card-body">
-                        <form id="securityForm" method="post" action="{{ route('employee.update', $user->id) }}"
+                        <form id="securityForm" method="post" action="{{ route('admin.employee.update', $user->id) }}"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')

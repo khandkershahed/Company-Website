@@ -59,7 +59,7 @@ class SasApprove extends Notification
     {
         return [
             'name' => $this->name,
-            'link'=> route('single-rfq.show',$this->rfq_code),
+            'link'=> route('admin.single-rfq.show',$this->rfq_code),
             'message1' => 'has Approved SAS for Deal No : '.$this->rfq_code,
             'message2'=> '. Check and Send Quotation',
         ];

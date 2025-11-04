@@ -82,13 +82,13 @@
                     </a>
                 </div>
                 <div class="d-lg-block d-sm-none">
-                    <a href="{{ route('rfq.list') }}" class="btn navigation_btn">
+                    <a href="{{ route('admin.rfq.list') }}" class="btn navigation_btn">
                         <div class="d-flex align-items-center">
                             <i class="fa-solid fa-business-time me-1" style="font-size: 12px;"></i>
                             <span>RFQ List</span>
                         </div>
                     </a>
-                    <a href="{{ route('deal.list') }}" class="btn navigation_btn">
+                    <a href="{{ route('admin.deal.list') }}" class="btn navigation_btn">
                         <div class="d-flex align-items-center">
                             <i class="fa-solid fa-business-time me-1" style="font-size: 12px;"></i>
                             <span>Deal List</span>
@@ -1040,7 +1040,7 @@
                                                     <h3>Exploring Direct Quotations without going step by step </h3>
 
                                                 </div>
-                                                <a href="{{ route('single-rfq.quoation_mail', $rfq_details->rfq_code) }}"
+                                                <a href="{{ route('admin.single-rfq.quoation_mail', $rfq_details->rfq_code) }}"
                                                     target="_blank" class="text-center main_color fw-bolder py-3">Go to Direct
                                                     Quotation <i class="fa-solid fa-arrow-right ps-2"></i></a>
                                             </div>

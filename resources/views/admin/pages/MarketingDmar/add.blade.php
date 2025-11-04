@@ -12,7 +12,7 @@
                 <div class="d-flex">
                     <div class="breadcrumb py-2">
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
-                        <a href="{{ route('marketing-dmar.index') }}" class="breadcrumb-item">Marketing Dmar Management</a>
+                        <a href="{{ route('admin.marketing-dmar.index') }}" class="breadcrumb-item">Marketing Dmar Management</a>
                         <a href="" class="breadcrumb-item">Add</a>
                     </div>
                     <a href="#breadcrumb_elements"
@@ -34,7 +34,7 @@
                         <div class="col-lg-4 col-sm-12">
                             <div>
                                 <a class="btn btn-primary btn-rounded rounded-circle btn-icon back-btn"
-                                    href="{{ route('marketing-dmar.index') }}">
+                                    href="{{ route('admin.marketing-dmar.index') }}">
                                     <i class="fa-solid fa-arrow-left main_color"></i>
                                 </a>
                             </div>

@@ -152,28 +152,9 @@ use App\Http\Controllers\Marketing\MarketingManagerRoleController;
 
 // Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
-    Route::resources(
-        [
-            'rfq'          => RFQController::class,
-            'solution-cms' => SolutionCMSController::class,
-            'brand'        => BrandController::class,
-            'category'     => CategoryController::class,
-            'blog'         => BlogController::class,
-            'job-post'     => JobController::class,
-            // 'products'     => ProductController::class,
-        ]
-    );
-    Route::resources(
-        [
-            'contact'          => ContactController::class,
-            'tender'           => TenderController::class,
-            'marketing-emar'   => MarketingEmarController::class,
-            'marketing-plan'   => MarketingPlanController::class,
-            'marketing-target' => MarketingTargetController::class,
-            'staff-documents'  => StaffDocumentController::class,
-        ],
-        ['except' => ['show']]
-    );
+
+
+
     Route::resources(
         [
             'staff-documents'  => StaffDocumentController::class,
@@ -182,28 +163,164 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         ['except' => ['show', 'index', 'create']]
     );
 
-    Route::post('/marketing-plan/{id}/toggle-status', [MarketingPlanController::class, 'toggleStatus'])->name('marketing-plan.toggleStatus');
-    Route::get('admin/marketing-dmar/filter', [MarketingDmarController::class, 'filter'])->name('marketing-dmar.filter');
-    Route::delete('marketing-dmar/multi-delete', [MarketingDmarController::class, 'multiDelete'])->name('marketing-dmar.multi-delete');
-    Route::get('marketing-target/{user_id}/edit/{month}', [MarketingTargetController::class, 'editMonth'])->name('marketing-target.edit-month');
+    // Sales Department
+    Route::middleware(['department:sales'])->group(function () {
+        Route::get('sales/dashboard', [DashboardController::class, 'salesDashboard'])->name('sales-dashboard.index');
 
-    Route::controller(SupplyChainController::class)->group(function () {
-        Route::get('/supplychain', 'index')->name('supplychain.index');
+        Route::resources(
+            [
+                'rfq'          => RFQController::class,
+            ]
+        );
+
+        Route::get('/sales-forecast/filter', [SalesForecastController::class, 'filterForecast'])->name('forecast.filter');
+        Route::get('sales-forecast', [SalesForecastController::class, 'salesForecast'])->name('sales.forecast');
+        Route::get('sales-report', [SalesForecastController::class, 'salesReport'])->name('sales.report');
+        Route::get('archived/rfq', [RfqController::class, 'archivedRFQ'])->name('archived.rfq');
+        Route::get('/rfqFilter', [RfqController::class, 'filterRFQ'])->name('rfq.filter');
+
+        Route::controller(RFQManageController::class)->group(function () {
+            Route::get('/rfq/list', 'index')->name('rfq.list');
+            Route::get('/deal/list', 'dealList')->name('deal.list');
+            Route::get('/single-rfq/{id}', 'show')->name('single-rfq.show');
+            Route::get('/single-rfq/{id}/quotation', 'quotationMail')->name('single-rfq.quoation_mail');
+        });
     });
 
-    Route::get('/sales-forecast/filter', [SalesForecastController::class, 'filterForecast'])->name('forecast.filter');
+    // Marketing Department
+    Route::middleware(['department:marketing'])->group(function () {
+        Route::resources(
+            [
+                'contact'          => ContactController::class,
+                'tender'           => TenderController::class,
+                'marketing-dmar'   => MarketingDmarController::class,
+                'marketing-emar'   => MarketingEmarController::class,
+                'marketing-plan'   => MarketingPlanController::class,
+                'marketing-target' => MarketingTargetController::class,
+                'staff-documents'  => StaffDocumentController::class,
+            ],
+            ['except' => ['show']]
+        );
+        Route::resources(
+            [
+                'tender-sites'     => TenderSiteController::class,
+            ],
+            ['except' => ['show']]
+        );
 
-    Route::get('sales-forecast', [SalesForecastController::class, 'salesForecast'])->name('sales.forecast');
-    Route::get('sales-report', [SalesForecastController::class, 'salesReport'])->name('sales.report');
+        Route::get('marketing/dashboard', [DashboardController::class, 'marketingDashboard'])->name('marketing.dashboard');
+        Route::post('/marketing-plan/{id}/toggle-status', [MarketingPlanController::class, 'toggleStatus'])->name('marketing-plan.toggleStatus');
+        Route::get('admin/marketing-dmar/filter', [MarketingDmarController::class, 'filter'])->name('marketing-dmar.filter');
+        Route::delete('marketing-dmar/multi-delete', [MarketingDmarController::class, 'multiDelete'])->name('marketing-dmar.multi-delete');
+        Route::get('marketing-target/{user_id}/edit/{month}', [MarketingTargetController::class, 'editMonth'])->name('marketing-target.edit-month');
 
-    Route::get('archived/rfq', [RfqController::class, 'archivedRFQ'])->name('archived.rfq');
+        // All Tender Site routes under /admin/tender-sites
+    Route::prefix('tender-sites')->name('tender-sites.')->group(function () {
+        Route::get('/', [TenderSiteController::class, 'index'])->name('index');
+        Route::get('/create', [TenderSiteController::class, 'create'])->name('create');
+        Route::post('/', [TenderSiteController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [TenderSiteController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [TenderSiteController::class, 'update'])->name('update');
+        Route::delete('/{id}', [TenderSiteController::class, 'destroy'])->name('destroy');
+    });
+    // All Tender Access Pass routes under /admin/tender-access-pass
+    Route::prefix('tender-access-pass')->name('tender-access-pass.')->group(function () {
+        Route::get('/', [TenderAccessPassController::class, 'index'])->name('index');
+        Route::get('/create', [TenderAccessPassController::class, 'create'])->name('create');
+        Route::post('/', [TenderAccessPassController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [TenderAccessPassController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [TenderAccessPassController::class, 'update'])->name('update');
+        Route::delete('/{id}', [TenderAccessPassController::class, 'destroy'])->name('destroy');
+    });
+    Route::prefix('tender-security')->name('tender-security.')->group(function () {
+        Route::get('/', [TenderSecurityController::class, 'index'])->name('index');
+        Route::get('/create', [TenderSecurityController::class, 'create'])->name('create');
+        Route::post('/', [TenderSecurityController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [TenderSecurityController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [TenderSecurityController::class, 'update'])->name('update');
+        Route::delete('/{id}', [TenderSecurityController::class, 'destroy'])->name('destroy');
+    });
+
+    });
+
+
+
+    // Accounts Department
+    Route::middleware(['department:accounts'])->group(function () {});
+
+
+
+    // Site Department
+    Route::middleware(['department:site'])->group(function () {
+
+        Route::resources(
+            [
+                'solution-cms' => SolutionCMSController::class,
+                'brand'        => BrandController::class,
+                'category'     => CategoryController::class,
+                'blog'         => BlogController::class,
+                'job-post'     => JobController::class,
+            ]
+        );
+
+        Route::get('web-setting', [WebSettingController::class, 'index'])->name('setting.index');
+        Route::put('seo/setting', [WebSettingController::class, 'seo'])->name('seo.setting');
+        Route::put('smtp/setting', [WebSettingController::class, 'smtp'])->name('smtp.setting');
+        Route::put('site/setting', [WebSettingController::class, 'site'])->name('site.setting');
+        Route::put('run/tools', [WebSettingController::class, 'runTools'])->name('tools.run');
+    });
+
+    // Supply Chain Department
+    Route::middleware(['department:supplychain'])->group(function () {
+        Route::controller(SupplyChainController::class)->group(function () {
+            Route::get('/supplychain', 'index')->name('supplychain.index');
+        });
+    });
+
+    // CRM Department
+    Route::middleware(['department:crm'])->group(function () {
+        Route::resources(
+            [
+                'contact'          => ContactController::class,
+            ],
+            ['except' => ['show']]
+        );
+    });
+
+    // HR Department
+    Route::middleware(['department:hr'])->group(function () {
+        Route::resources([
+            'employee'                  => EmployeeController::class,
+            'employee-category'         => EmployeeCategoryController::class, // fully done
+            'employee-department'       => EmployeeDepartmentController::class, //  fully done
+            'employeement'              => EmploymentController::class, // done
+            'evaluation'                => EvaluationController::class,
+            'salary'                    => SalaryController::class,
+            'employee-task'             => EmployeeTaskController::class,
+            'employee-project'          => EmployeeProjectController::class,
+            'task'                      => TaskController::class,
+        ]);
+    });
+    Route::resources([
+        'employee'                  => EmployeeController::class,
+        'employee-category'         => EmployeeCategoryController::class, // fully done
+        'employee-department'       => EmployeeDepartmentController::class,
+    ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
     Route::post('template/store', [SolutionCMSController::class, 'templateStore'])->name('solution.template.add');
-    Route::get('/rfqFilter', [RfqController::class, 'filterRFQ'])->name('rfq.filter');
-    Route::get('web-setting', [WebSettingController::class, 'index'])->name('setting.index');
-    Route::put('seo/setting', [WebSettingController::class, 'seo'])->name('seo.setting');
-    Route::put('smtp/setting', [WebSettingController::class, 'smtp'])->name('smtp.setting');
-    Route::put('site/setting', [WebSettingController::class, 'site'])->name('site.setting');
-    Route::put('run/tools', [WebSettingController::class, 'runTools'])->name('tools.run');
+
     Route::get('hr/dashboard', [DashboardController::class, 'hrDashboard'])->name('hrDashboard.index');
     Route::get('hr-and-admin', [DashboardController::class, 'hrDashboard'])->name('hr-and-admin.index');
     Route::get('attendance-history', [AttendanceController::class, 'attendanceHistory'])->name('attendance.history');
@@ -220,8 +337,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('site-setting', 'siteSetting')->name('site-setting.index');
         Route::get('accounts-finance', 'accountsFinance')->name('accounts-finance.index');
         Route::get('business', 'business')->name('business.index');
-        Route::get('sales-dashboard', 'salesDashboard')->name('sales-dashboard.index');
-        Route::get('marketing-dashboard', 'marketingDashboard')->name('marketing.dashboard');
     });
 
     Route::controller(DealController::class)->group(function () {
@@ -235,8 +350,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
-
-    $userDepartment = auth()->check() ? json_decode(auth()->user()->department, true) : [];
 
 
     Route::post('/mark-as-read', [AdminController::class, 'markNotification'])->name('markNotification');
@@ -257,8 +370,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::put('/edit/admin/{id}',  [AdminController::class, 'AdminUserUpdate'])->name('update.admin');
     Route::post('/admin/user/store', [AdminController::class, 'AdminUserStore'])->name('admin.user.store');
     Route::post('admin-status',     [AdminController::class, 'AdminStatus'])->name('admin.status');
-    Route::post('employee-store',     [AdminController::class, 'employeeStore'])->name('add.employee');
-    Route::put('/edit/employee/{id}',  [AdminController::class, 'editEmployee'])->name('edit.employee');
 
 
 
@@ -278,12 +389,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
     // All RFQ Routes
-    Route::controller(RFQManageController::class)->group(function () {
-        Route::get('/rfq/list', 'index')->name('rfq.list');
-        Route::get('/deal/list', 'dealList')->name('deal.list');
-        Route::get('/single-rfq/{id}', 'show')->name('single-rfq.show');
-        Route::get('/single-rfq/{id}/quotation', 'quotationMail')->name('single-rfq.quoation_mail');
-    });
+
 
     Route::put('assign-salesmanager/{id}', [RFQController::class, 'AssignSalesManager'])->name('assign.salesmanager');
     Route::put('assign-salesman/{id}', [RFQController::class, 'AssignSalesMan'])->name('assign.salesman');
@@ -532,7 +638,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'effort-ratings'             => EffortRatingController::class,
             'marketing-manager-role'     => MarketingManagerRoleController::class,
             'marketing-team-target'      => MarketingTeamTargetController::class,
-            'marketing-dmar'             => MarketingDmarController::class,
+            // 'marketing-dmar'             => MarketingDmarController::class,
             'notification'               => NotificationController::class,
             'technology-data'            => TechnologyDataController::class,
             'knowledge'                  => KnowledgeController::class,
@@ -601,17 +707,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'frontend-navbar-menu-items' => FrontendNavbarMenuItemController::class,
 
             'cmar'                      => CmarController::class,
-            'employee'                  => EmployeeController::class,
             'faq'                       => FaqController::class,
             'document'                  => DocumentPdfController::class,
 
-            'employee-category'         => EmployeeCategoryController::class, // fully done
-            'employee-department'       => EmployeeDepartmentController::class, //  fully done
+
+
             'notice'                    => NoticeController::class, // persially done => notice show like sticy note
             'policy-category'           => PolicyCategoryController::class, //  fully done
             'hr-policy'                 => HrPolicyController::class, //  fully done
             'policy-acknowledgment'     => PolicyAcknowledgmentsController::class, // done
-            'employeement'              => EmploymentController::class, // done
             'leave-application'         => LeaveApplicationController::class, // done
             'formBuilder'               => FormBuilderController::class, // done
             'event'                     => EventController::class, // done
@@ -624,11 +728,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'client-support'            => ClientSupportController::class, // back done
             'support-case'              => SupportCaseController::class, // back done
             'project'                   => ProjectController::class,
-            'evaluation'                => EvaluationController::class,
-            'salary'                    => SalaryController::class,
-            'employee-task'             => EmployeeTaskController::class,
-            'task'                      => TaskController::class,
-            'employee-project'          => EmployeeProjectController::class,
+
         ],
         [
             // 'frontend-navbar-menu'->except(['show','create','edit']),
@@ -638,17 +738,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             // you can set here other options e.g. 'only', 'except', 'names', 'middleware'
         ]
     );
-    if (in_array('admin', $userDepartment)) {
-        Route::resource('employee', EmployeeController::class)->names([
-            'index'   => 'employee.index',
-            'create'  => 'employee.create',
-            'store'   => 'employee.store',
-            'show'    => 'employee.show',
-            'edit'    => 'employee.edit',
-            'update'  => 'employee.update',
-            'destroy' => 'employee.destroy',
-        ]);
-    }
+
 
 
     Route::post('admin/case/message',  [ClientSupportMessageController::class, 'store'])->name('admin.message.store');
@@ -714,30 +804,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 
-    // All Tender Site routes under /admin/tender-sites
-    Route::prefix('tender-sites')->name('tender-sites.')->group(function () {
-        Route::get('/', [TenderSiteController::class, 'index'])->name('index');
-        Route::get('/create', [TenderSiteController::class, 'create'])->name('create');
-        Route::post('/', [TenderSiteController::class, 'store'])->name('store');
-        Route::get('/{id}/edit', [TenderSiteController::class, 'edit'])->name('edit');
-        Route::put('/{id}', [TenderSiteController::class, 'update'])->name('update');
-        Route::delete('/{id}', [TenderSiteController::class, 'destroy'])->name('destroy');
-    });
-    // All Tender Access Pass routes under /admin/tender-access-pass
-    Route::prefix('tender-access-pass')->name('tender-access-pass.')->group(function () {
-        Route::get('/', [TenderAccessPassController::class, 'index'])->name('index');
-        Route::get('/create', [TenderAccessPassController::class, 'create'])->name('create');
-        Route::post('/', [TenderAccessPassController::class, 'store'])->name('store');
-        Route::get('/{id}/edit', [TenderAccessPassController::class, 'edit'])->name('edit');
-        Route::put('/{id}', [TenderAccessPassController::class, 'update'])->name('update');
-        Route::delete('/{id}', [TenderAccessPassController::class, 'destroy'])->name('destroy');
-    });
-    Route::prefix('tender-security')->name('tender-security.')->group(function () {
-        Route::get('/', [TenderSecurityController::class, 'index'])->name('index');
-        Route::get('/create', [TenderSecurityController::class, 'create'])->name('create');
-        Route::post('/', [TenderSecurityController::class, 'store'])->name('store');
-        Route::get('/{id}/edit', [TenderSecurityController::class, 'edit'])->name('edit');
-        Route::put('/{id}', [TenderSecurityController::class, 'update'])->name('update');
-        Route::delete('/{id}', [TenderSecurityController::class, 'destroy'])->name('destroy');
-    });
+    
 });

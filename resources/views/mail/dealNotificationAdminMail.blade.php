@@ -308,7 +308,7 @@
 
                             <!-- Button -->
                             <div style="text-align:center; margin-top:30px;">
-                                <a href="{{ route('single-rfq.quoation_mail', $data['rfq_code']) }}"
+                                <a href="{{ route('admin.single-rfq.quoation_mail', $data['rfq_code']) }}"
                                     style="background-color:#ae0a46; color:#fff; padding:12px 35px; font-size:16px; display:inline-block; border-radius:4px; text-decoration:none;">
                                     Quote
                                 </a>

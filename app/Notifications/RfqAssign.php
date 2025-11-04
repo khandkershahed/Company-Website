@@ -63,7 +63,7 @@ class RfqAssign extends Notification
     {
         return [
             'name' => 'Site Admin ',
-            'link'=> route('single-rfq.show',$this->rfq_code),
+            'link'=> route('admin.single-rfq.show',$this->rfq_code),
             'message1' => 'has assigned this ',
             'message2'=> $this->rfq_code.' to '.$this->name1.', '.$this->name2.', '. $this->name3.'. Check it',
         ];

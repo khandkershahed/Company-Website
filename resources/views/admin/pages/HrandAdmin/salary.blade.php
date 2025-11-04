@@ -88,7 +88,7 @@
 
                     <!-- Basic tabs -->
                     <div class="px-3">
-                        <a href="{{ route('employee.index') }}" class="btn navigation_btn">
+                        <a href="{{ route('admin.employee.index') }}" class="btn navigation_btn">
                             <div class="d-flex align-items-center ">
                                 <i class="fa-solid fa-users me-1" style="font-size: 12px;"></i>
                                 <span>Employees</span>

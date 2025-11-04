@@ -46,7 +46,7 @@
 
                     </td>
                     <td>
-                        <a href="{{ route('single-rfq.show', $deal->rfq_code) }}" class="text-success"
+                        <a href="{{ route('admin.single-rfq.show', $deal->rfq_code) }}" class="text-success"
                             title="Go to Details">
                             <i class="fa-solid fa-display text-info dash-icons me-2"></i>
                         </a>

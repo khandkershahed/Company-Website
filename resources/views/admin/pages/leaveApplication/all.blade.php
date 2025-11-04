@@ -13,7 +13,7 @@
         }
 
         .info-details {
-            border-top: 1px solid #ae0a46; 
+            border-top: 1px solid #ae0a46;
         }
     </style>
     <div class="content-wrapper">
@@ -74,7 +74,7 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <h6 class="m-0 p-1 text-center card-main-title">Leave Info</h6>
-                                <a href="{{ route('employee.index') }}">
+                                <a href="{{ route('admin.employee.index') }}">
                                     <div class="card rounded-0">
                                         <div class="card-body p-2">
                                             <div class="row align-items-center">

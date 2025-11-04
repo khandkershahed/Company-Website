@@ -15,7 +15,7 @@
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
                         <a href="{{ route('admin.hr-and-admin.index') }}" class="breadcrumb-item">Hr and Admin</a>
-                        <a href="{{ route('employee.index') }}" class="breadcrumb-item">Employees</a>
+                        <a href="{{ route('admin.employee.index') }}" class="breadcrumb-item">Employees</a>
                         <a href="{{ route('entity.index') }}" class="breadcrumb-item">Entity</a>
                     </div>
                     <a href="#breadcrumb_elements"

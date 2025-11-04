@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\StaffDocument;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin\EmployeeLeave;
@@ -59,6 +60,34 @@ class User extends Authenticatable
         });
     }
 
+    public function myDepartments(array $departments): bool
+    {
+        // Convert departments field (stored as JSON) into array
+        $userDepartments = $this->department;
+
+        if (is_string($userDepartments)) {
+            $userDepartments = json_decode($userDepartments, true) ?: [];
+        }
+
+        $userDepartments = array_map('strtolower', (array) $userDepartments);
+        $departments = array_map('strtolower', $departments);
+
+        return count(array_intersect($userDepartments, $departments)) > 0;
+    }
+
+    public function myDepartmentsInstance($departments)
+    {
+        $departments = (array) $departments;
+
+        // Assuming 'department' is stored as JSON array in DB
+        foreach ($departments as $dept) {
+            if (in_array($dept, $this->department ?? [])) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public static function getpermissionGroups()
     {

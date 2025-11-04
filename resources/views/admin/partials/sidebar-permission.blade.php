@@ -215,7 +215,7 @@ style="background: url('{{ asset('images/mandala-bg.jpg') }}') no-repeat center 
                                     <span>Marketing Team Target</span>
                                 </a>
                             </li>
-                            <li class="nav-item"><a href="{{ route('marketing-dmar.index') }}" class="nav-link"><i
+                            <li class="nav-item"><a href="{{ route('admin.marketing-dmar.index') }}" class="nav-link"><i
                                         class="ph-layout"></i>
                                     <span>Marketing DMAR</span>
                                 </a>

@@ -11,7 +11,7 @@
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house"></i></a>
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
                         <a href="{{ route('admin.hr-and-admin.index') }}" class="breadcrumb-item">Hr and Admin</a>
-                        <a href="{{ route('employee.index') }}" class="breadcrumb-item">
+                        <a href="{{ route('admin.employee.index') }}" class="breadcrumb-item">
                             <span class="breadcrumb-item active">Employees</span>
                         </a>
                     </div>
@@ -246,7 +246,7 @@
                 </div>
                 <div class="pt-0 modal-body">
                     <form id="myform" method="post" class="needs-validation"
-                        action="{{ route('employee.store') }}" enctype="multipart/form-data" novalidate>
+                        action="{{ route('admin.employee.store') }}" enctype="multipart/form-data" novalidate>
                         @csrf
                         <div class="container pt-2">
                             <div class="row">
@@ -447,7 +447,7 @@
                     </a>
                 </div>
                 <div class="pt-0 modal-body">
-                    <form id="myform" method="post" action="{{ route('employee.update', $employee->id) }}"
+                    <form id="myform" method="post" action="{{ route('admin.employee.update', $employee->id) }}"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')

@@ -58,7 +58,7 @@ class WorkOrder extends Notification
     {
         return [
             'name' => $this->name,
-            'link'=> route('single-rfq.show',$this->rfq_code),
+            'link'=> route('admin.single-rfq.show',$this->rfq_code),
             'message1' => 'has uploaded Work order for Deal No: '.$this->rfq_code,
             'message2'=> '. Check and Send Invoice',
         ];

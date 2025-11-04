@@ -131,7 +131,7 @@ class SupportCaseController extends Controller
             //     'message'      => $request->message,
             //     'code'         => $code,
             //     'email'        => $request->email,
-            //     'link'         => route('single-rfq.show', $code),
+            //     'link'         => route('admin.single-rfq.show', $code),
             // ];
             // Mail::to($request->email)->send(new MailClientSupport($data));
             // if (!empty($user_emails)) {

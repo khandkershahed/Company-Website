@@ -426,7 +426,7 @@
                                                         </div>
                                                         <!---Category Update modal--->
                                                     </td>
-                                                    <a href="{{ route('single-rfq.show', $rfq->rfq_code) }}"
+                                                    <a href="{{ route('admin.single-rfq.show', $rfq->rfq_code) }}"
                                                         class="text-success mx-3 float-start" title="Go to Details">
                                                         <i class="mi-airplay mi-1x"></i>
                                                     </a>
@@ -1205,7 +1205,7 @@
                                                         </div>
                                                         <!---Category Update modal--->
                                                     </td>
-                                                    <a href="{{ route('single-rfq.show', $rfq->rfq_code) }}"
+                                                    <a href="{{ route('admin.single-rfq.show', $rfq->rfq_code) }}"
                                                         class="text-success mx-3 float-start" title="Go to Details">
                                                         <i class="mi-airplay mi-1x"></i>
                                                     </a>
