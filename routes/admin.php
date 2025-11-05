@@ -209,6 +209,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         );
 
         Route::get('marketing/dashboard', [DashboardController::class, 'marketingDashboard'])->name('marketing.dashboard');
+
         Route::post('/marketing-plan/{id}/toggle-status', [MarketingPlanController::class, 'toggleStatus'])->name('marketing-plan.toggleStatus');
         Route::get('admin/marketing-dmar/filter', [MarketingDmarController::class, 'filter'])->name('marketing-dmar.filter');
         Route::delete('marketing-dmar/multi-delete', [MarketingDmarController::class, 'multiDelete'])->name('marketing-dmar.multi-delete');
@@ -310,7 +311,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
 
 
-
+Route::get('business/dashboard', [DashboardController::class, 'businessDashboard'])->name('business.dashboard');
 
 
 
@@ -804,5 +805,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
 
-    
+
 });

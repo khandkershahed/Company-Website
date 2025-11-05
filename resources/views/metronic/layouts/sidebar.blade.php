@@ -47,9 +47,7 @@
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </div>
-                @if (
-                    (Auth::user()->myDepartmentsInstance(['sales', 'marketing']) && Auth::user()->role === 'admin') ||
-                        Auth::user()->myDepartmentsInstance(['super_admin']))
+                {{-- @if ((Auth::user()->myDepartmentsInstance(['sales', 'marketing']) && Auth::user()->role === 'admin') || Auth::user()->myDepartmentsInstance(['super_admin']))
                     <div class="menu-item">
                         <a class="menu-link {{ Route::is('admin.dashboard') ? 'active' : '' }}"
                             href="{{ route('admin.dashboard') }}">
@@ -65,15 +63,15 @@
                             <span class="menu-title">Business Dashboard</span>
                         </a>
                     </div>
-                @endif
+                @endif --}}
 
 
                 @php
                     $menuItems = [
                         [
-                            'title' => 'Sales',
-                            'icon' => 'fa-solid fa-badge-dollar fs-3',
-                            'allowed_departments' => ['sales', 'super_admin'],
+                            'title' => 'Business',
+                            'icon' => 'fa-solid fa-suitcase fs-3',
+                            'allowed_departments' => ['sales', 'marketing', 'super_admin'],
                             'routes' => [
                                 'admin.rfq.index',
                                 'admin.rfq.create',
@@ -85,50 +83,6 @@
                                 'deal.create',
                                 'deal.edit',
                                 'admin.sales-dashboard.index',
-                            ],
-                            'subMenu' => [
-                                [
-                                    'title' => 'Sales Dashboard',
-                                    'routes' => ['admin.sales-dashboard.index'],
-                                    'allowed_departments' => ['sales', 'super_admin'],
-                                    'route' => 'admin.sales-dashboard.index',
-                                ],
-                                [
-                                    'title' => 'RFQ Dashboard',
-                                    'routes' => [
-                                        'admin.rfq.index',
-                                        'admin.rfq.create',
-                                        'admin.rfq.edit',
-                                        'admin.single-rfq.quoation_mail',
-                                    ],
-                                    'allowed_departments' => ['sales', 'super_admin'],
-                                    'route' => 'admin.rfq.index',
-                                ],
-                                [
-                                    'title' => 'Deals Drafts',
-                                    'routes' => ['deal.index', 'deal.create', 'deal.edit'],
-                                    'allowed_departments' => ['sales', 'super_admin'],
-                                    'route' => 'deal.index',
-                                ],
-                                [
-                                    'title' => 'Sales Forecast',
-                                    'routes' => ['admin.sales.forecast'],
-                                    'allowed_departments' => ['sales', 'super_admin'],
-                                    'route' => 'admin.sales.forecast',
-                                ],
-                                [
-                                    'title' => 'Sales Report',
-                                    'routes' => ['admin.sales.report'],
-                                    'allowed_departments' => ['sales', 'super_admin'],
-                                    'route' => 'admin.sales.report',
-                                ],
-                            ],
-                        ],
-                        [
-                            'title' => 'Marketing',
-                            'icon' => 'fa-light fa-business-time fs-3',
-                            'allowed_departments' => ['marketing', 'super_admin'],
-                            'routes' => [
                                 'admin.marketing.dashboard',
                                 'admin.marketing-dmar.index',
                                 'admin.marketing-dmar.create',
@@ -143,101 +97,293 @@
                             ],
                             'subMenu' => [
                                 [
-                                    'title' => 'Marketing Dashboard',
-                                    'allowed_departments' => ['marketing', 'super_admin'],
-                                    'routes' => ['admin.marketing.dashboard'],
-                                    'route' => 'admin.marketing.dashboard',
+                                    'title' => 'Business Dashboard',
+                                    'icon' => 'fa-solid fa-chart-simple fs-3',
+                                    'allowed_departments' => ['sales', 'marketing', 'super_admin'],
+                                    'routes' => ['admin.business.dashboard'],
+                                    'route' => 'admin.business.dashboard',
                                 ],
                                 [
-                                    'title' => 'Marketing DMAR',
+                                    'title' => 'Sales',
+                                    'icon' => 'fa-solid fa-badge-dollar fs-3',
+                                    'allowed_departments' => ['sales', 'super_admin'],
+                                    'routes' => [
+                                        'admin.rfq.index',
+                                        'admin.rfq.create',
+                                        'admin.rfq.edit',
+                                        'admin.single-rfq.quoation_mail',
+                                        'admin.sales.forecast',
+                                        'admin.sales.report',
+                                        'deal.index',
+                                        'deal.create',
+                                        'deal.edit',
+                                        'admin.sales-dashboard.index',
+                                    ],
+                                    'subMenu' => [
+                                        [
+                                            'title' => 'Sales Dashboard',
+                                            'routes' => ['admin.sales-dashboard.index'],
+                                            'allowed_departments' => ['sales', 'super_admin'],
+                                            'route' => 'admin.sales-dashboard.index',
+                                        ],
+                                        [
+                                            'title' => 'RFQ Dashboard',
+                                            'routes' => [
+                                                'admin.rfq.index',
+                                                'admin.rfq.create',
+                                                'admin.rfq.edit',
+                                                'admin.single-rfq.quoation_mail',
+                                            ],
+                                            'allowed_departments' => ['sales', 'super_admin'],
+                                            'route' => 'admin.rfq.index',
+                                        ],
+                                        [
+                                            'title' => 'Deals Drafts',
+                                            'routes' => ['deal.index', 'deal.create', 'deal.edit'],
+                                            'allowed_departments' => ['sales', 'super_admin'],
+                                            'route' => 'deal.index',
+                                        ],
+                                        [
+                                            'title' => 'Sales Forecast',
+                                            'routes' => ['admin.sales.forecast'],
+                                            'allowed_departments' => ['sales', 'super_admin'],
+                                            'route' => 'admin.sales.forecast',
+                                        ],
+                                        [
+                                            'title' => 'Sales Report',
+                                            'routes' => ['admin.sales.report'],
+                                            'allowed_departments' => ['sales', 'super_admin'],
+                                            'route' => 'admin.sales.report',
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'title' => 'Marketing',
+                                    'icon' => 'fa-light fa-business-time fs-3',
                                     'allowed_departments' => ['marketing', 'super_admin'],
                                     'routes' => [
+                                        'admin.marketing.dashboard',
                                         'admin.marketing-dmar.index',
                                         'admin.marketing-dmar.create',
                                         'admin.marketing-dmar.edit',
-                                    ],
-                                    'route' => 'admin.marketing-dmar.index',
-                                ],
-                                [
-                                    'title' => 'Marketing EMAR',
-                                    'allowed_departments' => ['marketing', 'super_admin'],
-                                    'routes' => ['admin.marketing-emar.index'],
-                                    'route' => 'admin.marketing-emar.index',
-                                ],
-                                [
-                                    'title' => 'Marketing Plan',
-                                    'allowed_departments' => ['marketing', 'super_admin'],
-                                    'routes' => [
+                                        'admin.marketing-emar.index',
                                         'admin.marketing-plan.index',
                                         'admin.marketing-plan.create',
                                         'admin.marketing-plan.edit',
-                                    ],
-                                    'route' => 'admin.marketing-plan.index',
-                                ],
-                                [
-                                    'title' => 'Marketing Target',
-                                    'allowed_departments' => ['marketing', 'super_admin'],
-                                    'routes' => [
                                         'admin.marketing-target.index',
                                         'admin.marketing-target.create',
                                         'admin.marketing-target.edit',
                                     ],
-                                    'route' => 'admin.marketing-target.index',
-                                ],
-                                [
-                                    'title' => 'Tender',
-                                    'allowed_departments' => ['marketing', 'super_admin'],
                                     'subMenu' => [
                                         [
-                                            'title' => 'Tender Records',
+                                            'title' => 'Marketing Dashboard',
                                             'allowed_departments' => ['marketing', 'super_admin'],
-                                            'routes' => ['admin.hrDashboard.index'],
-                                            'route' => 'admin.hrDashboard.index',
+                                            'routes' => ['admin.marketing.dashboard'],
+                                            'route' => 'admin.marketing.dashboard',
                                         ],
                                         [
-                                            'title' => 'Tenderer Sites',
+                                            'title' => 'Marketing DMAR',
                                             'allowed_departments' => ['marketing', 'super_admin'],
-                                            'routes' => ['admin.attendance.history'],
-                                            'route' => 'admin.attendance.history',
+                                            'routes' => [
+                                                'admin.marketing-dmar.index',
+                                                'admin.marketing-dmar.create',
+                                                'admin.marketing-dmar.edit',
+                                            ],
+                                            'route' => 'admin.marketing-dmar.index',
                                         ],
                                         [
-                                            'title' => 'Tenderer eAccess',
+                                            'title' => 'Marketing EMAR',
                                             'allowed_departments' => ['marketing', 'super_admin'],
-                                            'routes' => ['admin.employee.index'],
-                                            'route' => 'admin.employee.index',
+                                            'routes' => ['admin.marketing-emar.index'],
+                                            'route' => 'admin.marketing-emar.index',
                                         ],
                                         [
-                                            'title' => 'Tender Securities',
+                                            'title' => 'Marketing Plan',
                                             'allowed_departments' => ['marketing', 'super_admin'],
-                                            'routes' => ['admin.hrDashboard.index'],
-                                            'route' => 'admin.hrDashboard.index',
+                                            'routes' => [
+                                                'admin.marketing-plan.index',
+                                                'admin.marketing-plan.create',
+                                                'admin.marketing-plan.edit',
+                                            ],
+                                            'route' => 'admin.marketing-plan.index',
                                         ],
                                         [
-                                            'title' => 'Tender Compliances',
+                                            'title' => 'Marketing Target',
                                             'allowed_departments' => ['marketing', 'super_admin'],
-                                            'routes' => ['admin.attendance.history'],
-                                            'route' => 'admin.attendance.history',
+                                            'routes' => [
+                                                'admin.marketing-target.index',
+                                                'admin.marketing-target.create',
+                                                'admin.marketing-target.edit',
+                                            ],
+                                            'route' => 'admin.marketing-target.index',
                                         ],
                                         [
-                                            'title' => 'Tender Submissions',
+                                            'title' => 'Tender',
                                             'allowed_departments' => ['marketing', 'super_admin'],
-                                            'routes' => ['admin.employee.index'],
-                                            'route' => 'admin.employee.index',
+                                            'subMenu' => [
+                                                [
+                                                    'title' => 'Tender Records',
+                                                    'allowed_departments' => ['marketing', 'super_admin'],
+                                                    'routes' => ['admin.hrDashboard.index'],
+                                                    'route' => 'admin.hrDashboard.index',
+                                                ],
+                                                [
+                                                    'title' => 'Tenderer Sites',
+                                                    'allowed_departments' => ['marketing', 'super_admin'],
+                                                    'routes' => ['admin.attendance.history'],
+                                                    'route' => 'admin.attendance.history',
+                                                ],
+                                                [
+                                                    'title' => 'Tenderer eAccess',
+                                                    'allowed_departments' => ['marketing', 'super_admin'],
+                                                    'routes' => ['admin.employee.index'],
+                                                    'route' => 'admin.employee.index',
+                                                ],
+                                                [
+                                                    'title' => 'Tender Securities',
+                                                    'allowed_departments' => ['marketing', 'super_admin'],
+                                                    'routes' => ['admin.hrDashboard.index'],
+                                                    'route' => 'admin.hrDashboard.index',
+                                                ],
+                                                [
+                                                    'title' => 'Tender Compliances',
+                                                    'allowed_departments' => ['marketing', 'super_admin'],
+                                                    'routes' => ['admin.attendance.history'],
+                                                    'route' => 'admin.attendance.history',
+                                                ],
+                                                [
+                                                    'title' => 'Tender Submissions',
+                                                    'allowed_departments' => ['marketing', 'super_admin'],
+                                                    'routes' => ['admin.employee.index'],
+                                                    'route' => 'admin.employee.index',
+                                                ],
+                                            ],
+                                        ],
+                                        [
+                                            'title' => 'Contact Informations',
+                                            'allowed_departments' => ['marketing', 'super_admin'],
+                                            'routes' => [
+                                                'admin.marketing-target.index',
+                                                'admin.marketing-target.create',
+                                                'admin.marketing-target.edit',
+                                            ],
+                                            'route' => 'admin.marketing-target.index',
                                         ],
                                     ],
-                                ],
-                                [
-                                    'title' => 'Contact Informations',
-                                    'allowed_departments' => ['marketing', 'super_admin'],
-                                    'routes' => [
-                                        'admin.marketing-target.index',
-                                        'admin.marketing-target.create',
-                                        'admin.marketing-target.edit',
-                                    ],
-                                    'route' => 'admin.marketing-target.index',
                                 ],
                             ],
                         ],
+
+                        [
+                            'title' => 'Site CRM',
+                            'icon' => 'fa-duotone fa-sitemap fs-3',
+                            'allowed_departments' => ['super_admin', 'site', 'crm'],
+                            'routes' => [
+                                'admin.brand.index',
+                                'admin.supplychain.index',
+                                'admin.brand.create',
+                                'admin.brand.edit',
+                                'admin.categories.index',
+                                'admin.categories.create',
+                                'admin.categories.edit',
+                                'product-sourcing.index',
+                                'product.saved',
+                                'product.sourced',
+                                'product.approved',
+                                'product-sourcing.create',
+                                'product-sourcing.edit',
+                                'purchase.index',
+                                'purchase.create',
+                                'purchase.edit',
+                                'purchase.show',
+                            ],
+                            'subMenu' => [
+                                [
+                                    'title' => 'Site',
+                                    'allowed_departments' => ['super_admin', 'site'],
+                                    'routes' => [
+                                        'admin.brand.index',
+                                        'admin.supplychain.index',
+                                        'admin.brand.create',
+                                        'admin.brand.edit',
+                                        'admin.categories.index',
+                                        'admin.categories.create',
+                                        'admin.categories.edit',
+                                        'product.saved',
+                                        'product.sourced',
+                                        'product.approved',
+                                        'product-sourcing.index',
+                                        'product-sourcing.create',
+                                        'product-sourcing.edit',
+                                        'purchase.index',
+                                        'purchase.create',
+                                        'purchase.edit',
+                                        'purchase.show',
+                                    ],
+                                    'route' => 'purchase.index',
+                                    'subMenu' => [
+                                        [
+                                            'title' => 'Brand Management',
+                                            'routes' => ['admin.brand.index', 'admin.brand.create', 'admin.brand.edit'],
+                                            'route' => 'admin.brand.index',
+                                        ],
+                                        [
+                                            'title' => 'Category Management',
+                                            'routes' => [
+                                                'admin.category.index',
+                                                'admin.category.create',
+                                                'admin.category.edit',
+                                            ],
+                                            'route' => 'admin.category.index',
+                                        ],
+                                        [
+                                            'title' => 'Product Sourcing',
+                                            'routes' => [
+                                                'product-sourcing.index',
+                                                'product.saved',
+                                                'product.sourced',
+                                                'product.approved',
+                                                'product-sourcing.create',
+                                                'product-sourcing.edit',
+                                            ],
+                                            'route' => 'product-sourcing.index',
+                                        ],
+                                        [
+                                            'title' => 'Content Management',
+                                            'routes' => [
+                                                'admin.site-content.index',
+                                                'admin.job-post.index',
+                                                'admin.job-post.create',
+                                                'admin.job-post.edit',
+                                            ],
+                                            'route' => 'admin.site-content.index',
+                                        ],
+                                        [
+                                            'title' => 'Solution CMS',
+                                            'routes' => [
+                                                'admin.solution-cms.index',
+                                                'admin.solution-cms.create',
+                                                'admin.solution-cms.edit',
+                                            ],
+                                            'route' => 'admin.solution-cms.index',
+                                        ],
+
+                                    ],
+                                    [
+                                        'title' => 'CRM',
+                                        'allowed_departments' => ['super_admin', 'crm'],
+                                        'routes' => [
+                                            'purchase.index',
+                                            'purchase.create',
+                                            'purchase.edit',
+                                            'purchase.show',
+                                        ],
+                                        'route' => 'purchase.index',
+                                    ],
+                                ],
+                            ],
+                        ],
+
                         [
                             'title' => 'HR & Admin',
                             'icon' => 'fa-duotone fa-users fs-3',
@@ -272,14 +418,16 @@
                             'subMenu' => [
                                 [
                                     'title' => 'Purchase Management',
+                                    'allowed_departments' => ['super_admin', 'supplychain'],
                                     'routes' => ['purchase.index', 'purchase.create', 'purchase.edit', 'purchase.show'],
                                     'route' => 'purchase.index',
                                 ],
                             ],
                         ],
+
                         [
                             'title' => 'Accounts',
-                            'icon' => 'fa-duotone fa-users fs-3',
+                            'icon' => '	fas fa-chart-pie fs-3',
                             'allowed_departments' => ['super_admin', 'accounts'],
                             'routes' => ['admin.hrDashboard.index', 'admin.employee.index', 'admin.attendance.history'],
                             // 'subMenu' => [
@@ -332,7 +480,7 @@
                         ],
                         [
                             'title' => 'My HR',
-                            'icon' => 'fa-duotone fa-users fs-3',
+                            'icon' => 'fa-duotone fa-clock fs-3',
                             'allowed_departments' => [
                                 'super_admin',
                                 'sales',
@@ -346,7 +494,7 @@
                             'routes' => ['admin.hrDashboard.index', 'admin.employee.index', 'admin.attendance.history'],
                             'subMenu' => [
                                 [
-                                    'title' => 'HR Admin Dashboard',
+                                    'title' => 'My Tasks',
                                     'allowed_departments' => [
                                         'super_admin',
                                         'sales',
@@ -361,7 +509,7 @@
                                     'route' => 'admin.hrDashboard.index',
                                 ],
                                 [
-                                    'title' => 'Attendance, Leave , Movement History',
+                                    'title' => 'My Attendance',
                                     'allowed_departments' => [
                                         'super_admin',
                                         'sales',
@@ -376,7 +524,67 @@
                                     'route' => 'admin.attendance.history',
                                 ],
                                 [
-                                    'title' => 'Employee List',
+                                    'title' => 'My Leave',
+                                    'allowed_departments' => [
+                                        'super_admin',
+                                        'sales',
+                                        'marketing',
+                                        'accounts',
+                                        'site',
+                                        'supplychain',
+                                        'crm',
+                                        'hr',
+                                    ],
+                                    'routes' => ['admin.employee.index'],
+                                    'route' => 'admin.employee.index',
+                                ],
+                                [
+                                    'title' => 'My KPI',
+                                    'allowed_departments' => [
+                                        'super_admin',
+                                        'sales',
+                                        'marketing',
+                                        'accounts',
+                                        'site',
+                                        'supplychain',
+                                        'crm',
+                                        'hr',
+                                    ],
+                                    'routes' => ['admin.hrDashboard.index'],
+                                    'route' => 'admin.hrDashboard.index',
+                                ],
+                                [
+                                    'title' => 'My Evalution',
+                                    'allowed_departments' => [
+                                        'super_admin',
+                                        'sales',
+                                        'marketing',
+                                        'accounts',
+                                        'site',
+                                        'supplychain',
+                                        'crm',
+                                        'hr',
+                                    ],
+                                    'routes' => ['admin.attendance.history'],
+                                    'route' => 'admin.attendance.history',
+                                ],
+                                [
+                                    'title' => 'My Remuneration',
+                                    'allowed_departments' => [
+                                        'super_admin',
+                                        'sales',
+                                        'marketing',
+                                        'accounts',
+                                        'site',
+                                        'supplychain',
+                                        'crm',
+                                        'hr',
+                                    ],
+                                    'routes' => ['admin.employee.index'],
+                                    'route' => 'admin.employee.index',
+                                ],
+                                [
+                                    'title' => 'My Profile',
                                     'allowed_departments' => [
                                         'super_admin',
                                         'sales',
@@ -439,19 +647,38 @@
                                 @foreach ($item['subMenu'] as $subItem)
                                     @if (!empty($subItem['subMenu']))
                                         {{-- Nested Submenu --}}
-                                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                                        <div data-kt-menu-trigger="click"
+                                            class="menu-item menu-accordion {{ Route::is(...$subItem['routes'] ?? []) ? 'here show' : '' }}">
                                             <span class="menu-link">
-                                                <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
+                                                @if (isset($subItem['icon']))
+                                                    <span class="menu-icon">
+                                                        <span class="svg-icon svg-icon-2">
+                                                            <i class="{{ $subItem['icon'] }}"></i>
+                                                        </span>
+                                                    </span>
+                                                @else
+                                                    <span class="menu-bullet"><span
+                                                            class="bullet bullet-dot"></span></span>
+                                                @endif
                                                 <span class="menu-title">{{ $subItem['title'] }}</span>
                                                 <span class="menu-arrow"></span>
                                             </span>
                                             <div class="menu-sub menu-sub-accordion">
                                                 @foreach ($subItem['subMenu'] as $subSubItem)
                                                     <div class="menu-item">
-                                                        <a class="menu-link {{ Route::is($subSubItem['route']) ? 'active' : '' }}"
-                                                            href="{{ route($subSubItem['route']) }}">
-                                                            <span class="menu-bullet"><span
-                                                                    class="bullet bullet-dot"></span></span>
+                                                        <a class="menu-link {{ isset($subSubItem['route']) && Route::is($subSubItem['route']) ? 'active' : '' }}"
+                                                            href="{{ isset($subSubItem['route']) ? route($subSubItem['route']) : '#' }}">
+
+                                                            @if (isset($subSubItem['icon']))
+                                                                <span class="menu-icon">
+                                                                    <span class="svg-icon svg-icon-2">
+                                                                        <i class="{{ $subSubItem['icon'] }}"></i>
+                                                                    </span>
+                                                                </span>
+                                                            @else
+                                                                <span class="menu-bullet"><span
+                                                                        class="bullet bullet-dot"></span></span>
+                                                            @endif
                                                             <span class="menu-title">{{ $subSubItem['title'] }}</span>
                                                         </a>
                                                     </div>
@@ -460,9 +687,18 @@
                                         </div>
                                     @else
                                         <div class="menu-item">
-                                            <a class="menu-link {{ Route::is(...$subItem['routes']) ? 'active' : '' }}"
-                                                href="{{ route($subItem['route']) }}">
-                                                <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
+                                            <a class="menu-link {{ isset($subItem['route']) && Route::is($subItem['route']) ? 'active' : '' }}"
+                                                href="{{ isset($subItem['route']) ? route($subItem['route']) : '#' }}">
+                                                @if (isset($subItem['icon']))
+                                                    <span class="menu-icon">
+                                                        <span class="svg-icon svg-icon-2">
+                                                            <i class="{{ $subItem['icon'] }}"></i>
+                                                        </span>
+                                                    </span>
+                                                @else
+                                                    <span class="menu-bullet"><span
+                                                            class="bullet bullet-dot"></span></span>
+                                                @endif
                                                 <span class="menu-title">{{ $subItem['title'] }}</span>
                                             </a>
                                         </div>
