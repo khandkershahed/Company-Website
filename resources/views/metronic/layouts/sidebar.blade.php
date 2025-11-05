@@ -319,16 +319,24 @@
                                         'purchase.create',
                                         'purchase.edit',
                                         'purchase.show',
+                                        'admin.solution-cms.index',
+                                        'admin.solution-cms.create',
+                                        'admin.solution-cms.edit',
+                                        'admin.site-content.index',
+                                        'admin.job-post.index',
+                                        'admin.job-post.create',
+                                        'admin.job-post.edit',
                                     ],
-                                    'route' => 'purchase.index',
                                     'subMenu' => [
                                         [
                                             'title' => 'Brand Management',
+                                            'allowed_departments' => ['super_admin', 'site'],
                                             'routes' => ['admin.brand.index', 'admin.brand.create', 'admin.brand.edit'],
                                             'route' => 'admin.brand.index',
                                         ],
                                         [
                                             'title' => 'Category Management',
+                                            'allowed_departments' => ['super_admin', 'site'],
                                             'routes' => [
                                                 'admin.category.index',
                                                 'admin.category.create',
@@ -338,6 +346,7 @@
                                         ],
                                         [
                                             'title' => 'Product Sourcing',
+                                            'allowed_departments' => ['super_admin', 'site'],
                                             'routes' => [
                                                 'product-sourcing.index',
                                                 'product.saved',
@@ -350,6 +359,7 @@
                                         ],
                                         [
                                             'title' => 'Content Management',
+                                            'allowed_departments' => ['super_admin', 'site'],
                                             'routes' => [
                                                 'admin.site-content.index',
                                                 'admin.job-post.index',
@@ -360,6 +370,7 @@
                                         ],
                                         [
                                             'title' => 'Solution CMS',
+                                            'allowed_departments' => ['super_admin', 'site'],
                                             'routes' => [
                                                 'admin.solution-cms.index',
                                                 'admin.solution-cms.create',
@@ -367,7 +378,6 @@
                                             ],
                                             'route' => 'admin.solution-cms.index',
                                         ],
-
                                     ],
                                     [
                                         'title' => 'CRM',
@@ -378,7 +388,6 @@
                                             'purchase.edit',
                                             'purchase.show',
                                         ],
-                                        'route' => 'purchase.index',
                                     ],
                                 ],
                             ],
