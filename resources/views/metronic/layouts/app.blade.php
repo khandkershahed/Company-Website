@@ -48,7 +48,7 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <link href="{{ asset('backend/metronic/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
-    <link href="{{ asset('backend/metronic/assets/css/custom.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/metronic/assets/css/custom.css?v=' . time()) }}" rel="stylesheet" type="text/css" />
     <style>
         .aside-dark .menu .menu-item.here>.menu-link .menu-icon,
         .aside-dark .menu .menu-item.here>.menu-link .menu-icon .svg-icon,
