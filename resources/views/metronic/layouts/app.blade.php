@@ -171,7 +171,7 @@
         // });
         $(document).ready(function() {
             $('.ckeditor').summernote({
-                placeholder: "Short Description",
+                placeholder: "Description",
                 toolbar: [
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],

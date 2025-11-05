@@ -36,7 +36,7 @@
                         <h6 class="text-white p-0 m-0 fw-bold"> Edit Solution Details</h6>
                     </div>
                     <div style="margin-left: 11rem;">
-                        <a href="{{ route('row.index') }}" class="btn navigation_btn">
+                        <a href="{{ route('admin.row.index') }}" class="btn navigation_btn">
                             <div class="d-flex align-items-center ">
                                 <i class="fa-solid fa-nfc-magnifying-glass me-1" style="font-size: 10px;"></i>
                                 <span>Row Builder</span>
@@ -54,7 +54,7 @@
                     {{-- <div class="d-flex justify-content-between align-items-center p-0" style="margin-left: 13rem;">
                         <ul class="nav nav-tabs border-0">
                             <li class="nav-item ">
-                                <a href="{{route('row.index')}}" class="btn nav-link active cat-tab1 p-1">
+                                <a href="{{route('admin.row.index')}}" class="btn nav-link active cat-tab1 p-1">
                                     <p class="m-0 p-1 text-white">
                                         <i class="ph-plus icons_design"></i> </span>
                                         Row Builder <span class="ms-2">|</span></p>

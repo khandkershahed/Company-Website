@@ -15,13 +15,15 @@ class RowController extends Controller
 
     public function index()
     {
-        $data['rows'] = Row::orderBy('id' , 'desc')->select('rows.title','rows.image','rows.id')->get();
-        return view('admin.pages.row.all', $data);
+        $data['rows'] = Row::orderBy('id' , 'desc')->select('title','image','id','list_title')->get();
+        return view('metronic.pages.row.index', $data);
+        // return view('admin.pages.row.all', $data);
     }
 
     public function create()
     {
-        return view('admin.pages.row.add');
+        // return view('admin.pages.row.add');
+        return view('metronic.pages.row.create');
     }
 
 
@@ -81,7 +83,8 @@ class RowController extends Controller
     public function edit($id)
     {
         $data['row'] = Row::find($id);
-        return view('admin.pages.row.edit', $data);
+        return view('metronic.pages.row.edit', $data);
+        // return view('admin.pages.row.edit', $data);
     }
 
 

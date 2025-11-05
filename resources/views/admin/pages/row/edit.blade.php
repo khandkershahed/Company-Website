@@ -11,7 +11,7 @@
                             <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
                             <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
                             <a href="{{ route('admin.site-content.index') }}" class="breadcrumb-item">Site Contents</a>
-                            <a href="{{ route('row.index') }}" class="breadcrumb-item">Row Builder</a>
+                            <a href="{{ route('admin.row.index') }}" class="breadcrumb-item">Row Builder</a>
                             <span class="breadcrumb-item active">Edit</span>
                         </div>
                         <a href="#breadcrumb_elements"
@@ -34,7 +34,7 @@
                             <div class="d-flex align-items-center justify-content-start main_bg py-1 rounded-1">
                                 <div class="ms-2">
                                     <a class="btn btn-primary btn-rounded-0 rounded-circle btn-icon back-btn"
-                                        href="{{ route('row.index') }}">
+                                        href="{{ route('admin.row.index') }}">
                                         <i class="fa-solid fa-arrow-left main_color"></i>
                                     </a>
                                 </div>
@@ -46,7 +46,7 @@
                         </div>
                         @if (!empty($row->list_title))
                             <div>
-                                <form id="myform2" method="post" action="{{ route('row.update', $row->id) }}"
+                                <form id="myform2" method="post" action="{{ route('admin.row.update', $row->id) }}"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
@@ -177,7 +177,7 @@
                             </div>
                         @else
                             <div>
-                                <form id="myform1" method="post" action="{{ route('row.update', $row->id) }}"
+                                <form id="myform1" method="post" action="{{ route('admin.row.update', $row->id) }}"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')

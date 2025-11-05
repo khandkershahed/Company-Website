@@ -158,7 +158,7 @@
         [
         'title' => 'Common Page Builder',
         'links' => [
-        ['index' => route('row.index'), 'create' => route('row.create'), 'title' => 'Row Builder'],
+        ['index' => route('admin.row.index'), 'create' => route('admin.row.create'), 'title' => 'Row Builder'],
         ['index' => route('solutionCard.index'), 'create' => route('solutionCard.create'), 'title' => 'Solution Card'],
         ['index' => route('homepage.index'), 'create' => route('homepage.create'), 'title' => 'Homepage'],
         ['index' => route('learnMore.index'), 'create' => route('learnMore.create'), 'title' => 'Learnmore Page'],

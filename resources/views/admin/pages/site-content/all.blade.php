@@ -280,14 +280,14 @@
                                             {{-- Link Start --}}
                                             <div class="row gx-1">
                                                 <div class="col-lg-12 mb-1">
-                                                    <a href="{{ route('row.index') }}">
+                                                    <a href="{{ route('admin.row.index') }}">
                                                         <div
                                                             class="box_details d-flex justify-content-between align-items-center bg-light p-1 rounded-0 border-right">
                                                             <div>
                                                                 <span class="link_title_admin text-muted"> Row
                                                                     Builder</span>
                                                             </div>
-                                                            <a href="{{ route('row.create') }}">
+                                                            <a href="{{ route('admin.row.create') }}">
                                                                 <button type="button"
                                                                     class="btn btn-default btn-circle"><i
                                                                         class="ph ph-plus"></i>

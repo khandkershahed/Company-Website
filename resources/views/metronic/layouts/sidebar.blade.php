@@ -96,13 +96,13 @@
                                 'admin.marketing-target.edit',
                             ],
                             'subMenu' => [
-                                [
-                                    'title' => 'Business Dashboard',
-                                    'icon' => 'fa-solid fa-chart-simple fs-3',
-                                    'allowed_departments' => ['sales', 'marketing', 'super_admin'],
-                                    'routes' => ['admin.business.dashboard'],
-                                    'route' => 'admin.business.dashboard',
-                                ],
+                                // [
+                                //     'title' => 'Business Dashboard',
+                                //     'icon' => 'fa-solid fa-chart-simple fs-3',
+                                //     'allowed_departments' => ['sales', 'marketing', 'super_admin'],
+                                //     'routes' => ['admin.business.dashboard'],
+                                //     'route' => 'admin.business.dashboard',
+                                // ],
                                 [
                                     'title' => 'Sales',
                                     'icon' => 'fa-solid fa-badge-dollar fs-3',
@@ -303,6 +303,9 @@
                                 'admin.job-post.index',
                                 'admin.job-post.create',
                                 'admin.job-post.edit',
+                                'admin.row.index',
+                                'admin.row.create',
+                                'admin.row.edit','admin.setting.index'
                             ],
                             'subMenu' => [
                                 [
@@ -333,26 +336,20 @@
                                         'admin.job-post.index',
                                         'admin.job-post.create',
                                         'admin.job-post.edit',
+                                        'admin.row.index',
+                                        'admin.row.create',
+                                        'admin.row.edit','admin.setting.index',
                                     ],
                                     'subMenu' => [
                                         [
-                                            'title' => 'Brand Management',
+                                            'title' => 'Site Management',
                                             'allowed_departments' => ['super_admin', 'site'],
                                             'routes' => ['admin.brand.index', 'admin.brand.create', 'admin.brand.edit'],
                                             'route' => 'admin.brand.index',
                                         ],
+
                                         [
-                                            'title' => 'Category Management',
-                                            'allowed_departments' => ['super_admin', 'site'],
-                                            'routes' => [
-                                                'admin.category.index',
-                                                'admin.category.create',
-                                                'admin.category.edit',
-                                            ],
-                                            'route' => 'admin.category.index',
-                                        ],
-                                        [
-                                            'title' => 'Product Sourcing',
+                                            'title' => 'Product Management',
                                             'allowed_departments' => ['super_admin', 'site'],
                                             'routes' => [
                                                 'product-sourcing.index',
@@ -369,12 +366,37 @@
                                             'allowed_departments' => ['super_admin', 'site'],
                                             'routes' => [
                                                 'admin.site-content.index',
-                                                'admin.job-post.index',
-                                                'admin.job-post.create',
-                                                'admin.job-post.edit',
+                                                'admin.row.index',
+                                                'admin.row.create',
+                                                'admin.row.edit',
                                             ],
                                             'route' => 'admin.site-content.index',
                                         ],
+                                        [
+                                            'title' => 'SEO Management',
+                                            'allowed_departments' => ['super_admin', 'site'],
+                                            'routes' => [
+                                                'admin.setting.index',
+                                            ],
+                                            'route' => 'admin.setting.index',
+                                        ],
+                                        [
+                                            'title' => 'Brand Management',
+                                            'allowed_departments' => ['super_admin', 'site'],
+                                            'routes' => ['admin.brand.index', 'admin.brand.create', 'admin.brand.edit'],
+                                            'route' => 'admin.brand.index',
+                                        ],
+                                        [
+                                            'title' => 'Category Management',
+                                            'allowed_departments' => ['super_admin', 'site'],
+                                            'routes' => [
+                                                'admin.category.index',
+                                                'admin.category.create',
+                                                'admin.category.edit',
+                                            ],
+                                            'route' => 'admin.category.index',
+                                        ],
+
                                         [
                                             'title' => 'Solution CMS',
                                             'allowed_departments' => ['super_admin', 'site'],
@@ -703,7 +725,7 @@
                                         </div>
                                     @else
                                         <div class="menu-item">
-                                            <a class="menu-link {{ isset($subItem['route']) && Route::is($subItem['route']) ? 'active' : '' }}"
+                                            <a class="menu-link {{ isset($subItem['route']) && Route::is($subItem['route']) ? 'active' : (isset($subItem['routes']) && Route::is(...$subItem['routes'] ?? []) ? 'active' : '') }}"
                                                 href="{{ isset($subItem['route']) ? route($subItem['route']) : '#' }}">
                                                 @if (isset($subItem['icon']))
                                                     <span class="menu-icon">

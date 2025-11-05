@@ -9,7 +9,7 @@
                     <div class="breadcrumb py-2">
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
                         <a href="{{ route('admin.site-content.index') }}" class="breadcrumb-item">Site Contents</a>
-                        <a href="{{ route('row.index') }}" class="breadcrumb-item">Row Builder</a>
+                        <a href="{{ route('admin.row.index') }}" class="breadcrumb-item">Row Builder</a>
                     </div>
                     <a href="#breadcrumb_elements"
                         class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
@@ -28,7 +28,7 @@
                             <h5 class="mb-0 text-white">All Rows</h5>
                         </div>
                         <div>
-                            <a href="{{ route('row.create') }}">
+                            <a href="{{ route('admin.row.create') }}">
                                 <div class="d-flex align-items-center">
                                     <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
                                         data-bs-placement="top" title="Add Rows">
@@ -65,10 +65,10 @@
                                             <td>{{ $row->title }}</td>
                                             <td>{{ $row->list_title}}</td>
                                             <td>
-                                                <a href="{{ route('row.edit', $row->id) }}" class="text-primary">
+                                                <a href="{{ route('admin.row.edit', $row->id) }}" class="text-primary">
                                                     <i class="fa-solid fa-pen-to-square me-2 dash-icons text-primary"></i>
                                                 </a>
-                                                <a href="{{ route('row.destroy', [$row->id]) }}" class="text-danger delete">
+                                                <a href="{{ route('admin.row.destroy', [$row->id]) }}" class="text-danger delete">
                                                     <i class="fa-solid fa-trash dash-icons text-danger"></i>
                                                 </a>
                                             </td>

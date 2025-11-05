@@ -39,7 +39,7 @@
                         <p class="text-white p-0 m-0 fw-bold">About Us Page Builder</p>
                     </div>
                     <div style="margin-left: 14rem;">
-                        <a href="{{ route('row.index') }}" class="btn navigation_btn">
+                        <a href="{{ route('admin.row.index') }}" class="btn navigation_btn">
                             <div class="d-flex align-items-center ">
                                 <i class="fa-solid fa-nfc-magnifying-glass me-1" style="font-size: 10px;"></i>
                                 <span>Row Builder</span>

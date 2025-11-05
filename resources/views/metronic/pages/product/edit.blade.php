@@ -352,26 +352,26 @@
                                     <div class="row px-2 gx-1">
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <textarea name="short_desc" class="form-control" id="short_desc" rows="3"
+                                                <textarea name="short_desc" class="form-control form-control-solid ckeditor" id="short_desc" rows="3"
                                                     style=" font-size: 12px; font-weight: 500;">{!! $products->short_desc !!}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="mb-2">
-                                                <textarea class="form-control" name="overview" id="overview" style=" font-size: 12px; font-weight: 500;">{!! $products->overview !!}</textarea>
+                                                <textarea class="form-control form-control-solid ckeditor" name="overview" id="overview" style=" font-size: 12px; font-weight: 500;">{!! $products->overview !!}</textarea>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row px-2 gx-1">
                                         <div class="col-lg-6 col-sm-12">
                                             <div class="mb-2">
-                                                <textarea class="form-control" rows="8" name="specification" id="specification"
+                                                <textarea class="form-control form-control-solid ckeditor" rows="8" name="specification" id="specification"
                                                     style=" font-size: 12px; font-weight: 500; height:20rem;">{!! $products->specification !!}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-12">
                                             <div class="mb-2">
-                                                <textarea class="form-control" name="accessories" id="accessories" style=" font-size: 12px; font-weight: 500;">{!! $products->accessories !!}</textarea>
+                                                <textarea class="form-control form-control-solid ckeditor" name="accessories" id="accessories" style=" font-size: 12px; font-weight: 500;">{!! $products->accessories !!}</textarea>
                                             </div>
                                         </div>
                                     </div>

@@ -45,7 +45,7 @@
                                     <p class="text-white p-0 m-0 fw-bold"> Add Brand Page Form </p>
                                 </div>
                                 <div class="col-lg-4 col-sm-12 d-flex justify-content-end">
-                                    <a href="{{ route('row.create') }}" class="btn navigation_btn">
+                                    <a href="{{ route('admin.row.create') }}" class="btn navigation_btn">
                                         <div class="d-flex align-items-center ">
                                             <i class="fa-solid fa-nfc-magnifying-glass me-1" style="font-size: 10px;"></i>
                                             <span>Row</span>

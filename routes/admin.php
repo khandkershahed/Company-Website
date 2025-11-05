@@ -216,32 +216,31 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('marketing-target/{user_id}/edit/{month}', [MarketingTargetController::class, 'editMonth'])->name('marketing-target.edit-month');
 
         // All Tender Site routes under /admin/tender-sites
-    Route::prefix('tender-sites')->name('tender-sites.')->group(function () {
-        Route::get('/', [TenderSiteController::class, 'index'])->name('index');
-        Route::get('/create', [TenderSiteController::class, 'create'])->name('create');
-        Route::post('/', [TenderSiteController::class, 'store'])->name('store');
-        Route::get('/{id}/edit', [TenderSiteController::class, 'edit'])->name('edit');
-        Route::put('/{id}', [TenderSiteController::class, 'update'])->name('update');
-        Route::delete('/{id}', [TenderSiteController::class, 'destroy'])->name('destroy');
-    });
-    // All Tender Access Pass routes under /admin/tender-access-pass
-    Route::prefix('tender-access-pass')->name('tender-access-pass.')->group(function () {
-        Route::get('/', [TenderAccessPassController::class, 'index'])->name('index');
-        Route::get('/create', [TenderAccessPassController::class, 'create'])->name('create');
-        Route::post('/', [TenderAccessPassController::class, 'store'])->name('store');
-        Route::get('/{id}/edit', [TenderAccessPassController::class, 'edit'])->name('edit');
-        Route::put('/{id}', [TenderAccessPassController::class, 'update'])->name('update');
-        Route::delete('/{id}', [TenderAccessPassController::class, 'destroy'])->name('destroy');
-    });
-    Route::prefix('tender-security')->name('tender-security.')->group(function () {
-        Route::get('/', [TenderSecurityController::class, 'index'])->name('index');
-        Route::get('/create', [TenderSecurityController::class, 'create'])->name('create');
-        Route::post('/', [TenderSecurityController::class, 'store'])->name('store');
-        Route::get('/{id}/edit', [TenderSecurityController::class, 'edit'])->name('edit');
-        Route::put('/{id}', [TenderSecurityController::class, 'update'])->name('update');
-        Route::delete('/{id}', [TenderSecurityController::class, 'destroy'])->name('destroy');
-    });
-
+        Route::prefix('tender-sites')->name('tender-sites.')->group(function () {
+            Route::get('/', [TenderSiteController::class, 'index'])->name('index');
+            Route::get('/create', [TenderSiteController::class, 'create'])->name('create');
+            Route::post('/', [TenderSiteController::class, 'store'])->name('store');
+            Route::get('/{id}/edit', [TenderSiteController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [TenderSiteController::class, 'update'])->name('update');
+            Route::delete('/{id}', [TenderSiteController::class, 'destroy'])->name('destroy');
+        });
+        // All Tender Access Pass routes under /admin/tender-access-pass
+        Route::prefix('tender-access-pass')->name('tender-access-pass.')->group(function () {
+            Route::get('/', [TenderAccessPassController::class, 'index'])->name('index');
+            Route::get('/create', [TenderAccessPassController::class, 'create'])->name('create');
+            Route::post('/', [TenderAccessPassController::class, 'store'])->name('store');
+            Route::get('/{id}/edit', [TenderAccessPassController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [TenderAccessPassController::class, 'update'])->name('update');
+            Route::delete('/{id}', [TenderAccessPassController::class, 'destroy'])->name('destroy');
+        });
+        Route::prefix('tender-security')->name('tender-security.')->group(function () {
+            Route::get('/', [TenderSecurityController::class, 'index'])->name('index');
+            Route::get('/create', [TenderSecurityController::class, 'create'])->name('create');
+            Route::post('/', [TenderSecurityController::class, 'store'])->name('store');
+            Route::get('/{id}/edit', [TenderSecurityController::class, 'edit'])->name('edit');
+            Route::put('/{id}', [TenderSecurityController::class, 'update'])->name('update');
+            Route::delete('/{id}', [TenderSecurityController::class, 'destroy'])->name('destroy');
+        });
     });
 
 
@@ -261,9 +260,13 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
                 'category'     => CategoryController::class,
                 'blog'         => BlogController::class,
                 'job-post'     => JobController::class,
+                'row'          => RowController::class,
+
             ]
         );
-
+        Route::controller(DashboardController::class)->group(function () {
+            Route::get('site-dashboard', 'siteDashboard')->name('site-content.index');
+        });
         Route::get('web-setting', [WebSettingController::class, 'index'])->name('setting.index');
         Route::put('seo/setting', [WebSettingController::class, 'seo'])->name('seo.setting');
         Route::put('smtp/setting', [WebSettingController::class, 'smtp'])->name('smtp.setting');
@@ -311,7 +314,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
 
 
-Route::get('business/dashboard', [DashboardController::class, 'businessDashboard'])->name('business.dashboard');
+    Route::get('business/dashboard', [DashboardController::class, 'businessDashboard'])->name('business.dashboard');
 
 
 
@@ -656,7 +659,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'partnerPermission'          => PartnerPermission::class,
             'homepage'                   => HomepageController::class,
             'blog'                       => BlogController::class,
-            'row'                        => RowController::class,
             'rowWithCol'                 => RowWithColController::class,
             'clientstory'                => ClientStoryController::class,
             'techglossy'                 => TechGlossyController::class,
@@ -801,9 +803,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/device-data/clear-attendance', [BioMetricController::class, 'device_data_clear_attendance'])->name('machine.devicedata.clear.attendance');
     Route::get('/device-restart', [BioMetricController::class, 'device_restart'])->name('machine.devicerestart');
     Route::get('/device-shutdown', [BioMetricController::class, 'device_shutdown'])->name('machine.deviceshutdown');
-
-
-
-
-
 });

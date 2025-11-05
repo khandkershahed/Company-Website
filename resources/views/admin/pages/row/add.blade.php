@@ -11,7 +11,7 @@
                             <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
                             <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
                             <a href="{{ route('admin.site-content.index') }}" class="breadcrumb-item">Site Contents</a>
-                            <a href="{{ route('row.index') }}" class="breadcrumb-item">Row Builder</a>
+                            <a href="{{ route('admin.row.index') }}" class="breadcrumb-item">Row Builder</a>
                             <span class="breadcrumb-item active">Add</span>
                         </div>
                         <a href="#breadcrumb_elements"
@@ -32,7 +32,7 @@
                         <div class="card-header row p-2 align-items-center bg-info">
                             <div class="col-lg-2 col-1 text-center">
                                 <a class="btn btn-sm btn-info btn-rounded rounded-circle btn-icon p-2"
-                                    href="{{ route('row.index') }}">
+                                    href="{{ route('admin.row.index') }}">
                                     <i class="fa fa-arrow-left text-black"></i>
                                 </a>
                             </div>
@@ -56,7 +56,7 @@
                         <div class="card-body">
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="row-with-image" role="tabpanel">
-                                    <form action="{{ route('row.store') }}" class="needs-validation" method="POST"
+                                    <form action="{{ route('admin.row.store') }}" class="needs-validation" method="POST"
                                         novalidate enctype="multipart/form-data">
                                         @csrf
                                         <div class="row">
@@ -130,7 +130,7 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="row-with-list" role="tabpanel">
-                                    <form action="{{ route('row.store') }}" class="needs-validation" method="POST"
+                                    <form action="{{ route('admin.row.store') }}" class="needs-validation" method="POST"
                                         novalidate enctype="multipart/form-data">
                                         @csrf
                                         <div class="row">
@@ -242,7 +242,7 @@
                     <div class="col-lg-10 offset-lg-1">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="row-with-image" role="tabpanel">
-                                <form action="{{ route('row.store') }}" class="needs-validation" method="POST"
+                                <form action="{{ route('admin.row.store') }}" class="needs-validation" method="POST"
                                     novalidate enctype="multipart/form-data">
                                     @csrf
                                     <div class="container px-0">
@@ -354,7 +354,7 @@
                             </div>
 
                             <div class="tab-pane fade" id="row-with-list" role="tabpanel">
-                                <form action="{{ route('row.store') }}" class="needs-validation" method="POST"
+                                <form action="{{ route('admin.row.store') }}" class="needs-validation" method="POST"
                                     novalidate enctype="multipart/form-data">
                                     @csrf
                                     <div class="container px-0">
@@ -495,7 +495,7 @@
                             </div>
                         </div>
                         <div>
-                            <form id="myform1" method="post" action="{{ route('row.store') }}"
+                            <form id="myform1" method="post" action="{{ route('admin.row.store') }}"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="card pb-1">

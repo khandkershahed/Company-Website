@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="col-lg-4 col-sm-12 d-flex justify-content-end">
-                            <a href="{{ route('row.index') }}" class="btn navigation_btn">
+                            <a href="{{ route('admin.row.index') }}" class="btn navigation_btn">
                                 <div class="d-flex align-items-center ">
                                     <i class="fa-solid fa-nfc-magnifying-glass me-1" style="font-size: 10px;"></i>
                                     <span>Row</span>

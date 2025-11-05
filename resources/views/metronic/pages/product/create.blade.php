@@ -286,7 +286,7 @@
                                     <div class="p-2 mb-3 row gx-0">
                                         <div class="px-0 mb-1 row gx-1">
                                             <div class="col-lg-12">
-                                                <div class="mb-2 form-group">
+                                                <div class="mb-2 form-group"> 
                                                     <label for="warranty" class="form-label">Short Description</label>
                                                     <textarea name="short_desc" class="form-control form-control-solid ckeditor_classic" placeholder="Product Short Description" id="short_desc" rows="4"
                                                         style=" font-size: 12px; font-weight: 500;"></textarea>
