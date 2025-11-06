@@ -8,7 +8,7 @@
                     <div class="breadcrumb py-2">
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
                         <a href="{{ route('admin.site-content.index') }}" class="breadcrumb-item">Site Content</a>
-                        <a href="{{ route('blog.index') }}" class="breadcrumb-item">Blog Management</a>
+                        <a href="{{ route('admin.blog.index') }}" class="breadcrumb-item">Blog Management</a>
                         <a href="" class="breadcrumb-item">Add</a>
                     </div>
                     <a href="#breadcrumb_elements"
@@ -45,7 +45,7 @@
                         <div class="col-lg-12 col-sm-12 px-3 d-flex justify-content-between align-items-center">
                             <div class="">
                                 <a class="btn btn-primary btn-rounded rounded-circle btn-icon back-btn"
-                                    href="{{ route('blog.index') }}">
+                                    href="{{ route('admin.blog.index') }}">
                                     <i class="fa-solid fa-arrow-left main_color"></i>
                                 </a>
                             </div>

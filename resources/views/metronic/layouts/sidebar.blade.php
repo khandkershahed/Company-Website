@@ -94,6 +94,9 @@
                                 'admin.marketing-target.index',
                                 'admin.marketing-target.create',
                                 'admin.marketing-target.edit',
+                                'admin.tender-security.index',
+                                'admin.tender-security.create',
+                                'admin.tender-security.edit',
                             ],
                             'subMenu' => [
                                 // [
@@ -173,6 +176,9 @@
                                         'admin.marketing-target.index',
                                         'admin.marketing-target.create',
                                         'admin.marketing-target.edit',
+                                        'admin.tender-security.index',
+                                        'admin.tender-security.create',
+                                        'admin.tender-security.edit',
                                     ],
                                     'subMenu' => [
                                         [
@@ -220,6 +226,11 @@
                                         [
                                             'title' => 'Tender',
                                             'allowed_departments' => ['marketing', 'super_admin'],
+                                            'routes' => [
+                                                'admin.tender-security.index',
+                                                'admin.tender-security.create',
+                                                'admin.tender-security.edit',
+                                            ],
                                             'subMenu' => [
                                                 [
                                                     'title' => 'Tender Records',
@@ -242,8 +253,12 @@
                                                 [
                                                     'title' => 'Tender Securities',
                                                     'allowed_departments' => ['marketing', 'super_admin'],
-                                                    'routes' => ['admin.hrDashboard.index'],
-                                                    'route' => 'admin.hrDashboard.index',
+                                                    'routes' => [
+                                                        'admin.tender-security.index',
+                                                        'admin.tender-security.create',
+                                                        'admin.tender-security.edit',
+                                                    ],
+                                                    'route' => 'admin.tender-security.index',
                                                 ],
                                                 [
                                                     'title' => 'Tender Compliances',
@@ -305,7 +320,11 @@
                                 'admin.job-post.edit',
                                 'admin.row.index',
                                 'admin.row.create',
-                                'admin.row.edit','admin.setting.index'
+                                'admin.row.edit',
+                                'admin.blog.index',
+                                'admin.blog.create',
+                                'admin.blog.edit',
+                                'admin.setting.index',
                             ],
                             'subMenu' => [
                                 [
@@ -338,7 +357,11 @@
                                         'admin.job-post.edit',
                                         'admin.row.index',
                                         'admin.row.create',
-                                        'admin.row.edit','admin.setting.index',
+                                        'admin.row.edit',
+                                        'admin.setting.index',
+                                        'admin.blog.index',
+                                        'admin.blog.create',
+                                        'admin.blog.edit',
                                     ],
                                     'subMenu' => [
                                         [
@@ -369,15 +392,16 @@
                                                 'admin.row.index',
                                                 'admin.row.create',
                                                 'admin.row.edit',
+                                                'admin.blog.index',
+                                                'admin.blog.create',
+                                                'admin.blog.edit',
                                             ],
                                             'route' => 'admin.site-content.index',
                                         ],
                                         [
                                             'title' => 'SEO Management',
                                             'allowed_departments' => ['super_admin', 'site'],
-                                            'routes' => [
-                                                'admin.setting.index',
-                                            ],
+                                            'routes' => ['admin.setting.index'],
                                             'route' => 'admin.setting.index',
                                         ],
                                         [
@@ -666,86 +690,55 @@
                     $filteredMenu = filterMenuByDepartment($menuItems);
                 @endphp
 
+                {{-- Recursive menu rendering --}}
+                @include('metronic.layouts.menu-recursive', ['items' => $filteredMenu])
+
                 {{-- --- RENDER MENU (Metronic-compatible) --- --}}
-                @foreach ($filteredMenu as $item)
-                    <div data-kt-menu-trigger="click"
-                        class="menu-item menu-accordion {{ Route::is(...$item['routes'] ?? []) ? 'here show' : '' }}">
-                        <span class="menu-link">
-                            <span class="menu-icon">
-                                <span class="svg-icon svg-icon-2">
-                                    <i class="{{ $item['icon'] }}"></i>
-                                </span>
+                {{-- @foreach ($menuItems as $item)
+                    @php
+                        $isActive = isset($item['route']) && Route::is($item['route']);
+                        $hasSubMenu = !empty($item['subMenu']);
+                    @endphp
+
+                    @if ($hasSubMenu)
+                        <div data-kt-menu-trigger="click"
+                            class="menu-item menu-accordion {{ Route::is(...$item['routes'] ?? []) ? 'here show' : '' }}">
+                            <span class="menu-link">
+                                @if (isset($item['icon']))
+                                    <span class="menu-icon">
+                                        <span class="svg-icon svg-icon-2">
+                                            <i class="{{ $item['icon'] }}"></i>
+                                        </span>
+                                    </span>
+                                @else
+                                    <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
+                                @endif
+                                <span class="menu-title">{{ $item['title'] }}</span>
+                                <span class="menu-arrow"></span>
                             </span>
-                            <span class="menu-title">{{ $item['title'] }}</span>
-                            <span class="menu-arrow"></span>
-                        </span>
 
-                        @if (!empty($item['subMenu']))
                             <div class="menu-sub menu-sub-accordion">
-                                @foreach ($item['subMenu'] as $subItem)
-                                    @if (!empty($subItem['subMenu']))
-                                        {{-- Nested Submenu --}}
-                                        <div data-kt-menu-trigger="click"
-                                            class="menu-item menu-accordion {{ Route::is(...$subItem['routes'] ?? []) ? 'here show' : '' }}">
-                                            <span class="menu-link">
-                                                @if (isset($subItem['icon']))
-                                                    <span class="menu-icon">
-                                                        <span class="svg-icon svg-icon-2">
-                                                            <i class="{{ $subItem['icon'] }}"></i>
-                                                        </span>
-                                                    </span>
-                                                @else
-                                                    <span class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span>
-                                                @endif
-                                                <span class="menu-title">{{ $subItem['title'] }}</span>
-                                                <span class="menu-arrow"></span>
-                                            </span>
-                                            <div class="menu-sub menu-sub-accordion">
-                                                @foreach ($subItem['subMenu'] as $subSubItem)
-                                                    <div class="menu-item">
-                                                        <a class="menu-link {{ isset($subSubItem['route']) && Route::is($subSubItem['route']) ? 'active' : '' }}"
-                                                            href="{{ isset($subSubItem['route']) ? route($subSubItem['route']) : '#' }}">
-
-                                                            @if (isset($subSubItem['icon']))
-                                                                <span class="menu-icon">
-                                                                    <span class="svg-icon svg-icon-2">
-                                                                        <i class="{{ $subSubItem['icon'] }}"></i>
-                                                                    </span>
-                                                                </span>
-                                                            @else
-                                                                <span class="menu-bullet"><span
-                                                                        class="bullet bullet-dot"></span></span>
-                                                            @endif
-                                                            <span class="menu-title">{{ $subSubItem['title'] }}</span>
-                                                        </a>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    @else
-                                        <div class="menu-item">
-                                            <a class="menu-link {{ isset($subItem['route']) && Route::is($subItem['route']) ? 'active' : (isset($subItem['routes']) && Route::is(...$subItem['routes'] ?? []) ? 'active' : '') }}"
-                                                href="{{ isset($subItem['route']) ? route($subItem['route']) : '#' }}">
-                                                @if (isset($subItem['icon']))
-                                                    <span class="menu-icon">
-                                                        <span class="svg-icon svg-icon-2">
-                                                            <i class="{{ $subItem['icon'] }}"></i>
-                                                        </span>
-                                                    </span>
-                                                @else
-                                                    <span class="menu-bullet"><span
-                                                            class="bullet bullet-dot"></span></span>
-                                                @endif
-                                                <span class="menu-title">{{ $subItem['title'] }}</span>
-                                            </a>
-                                        </div>
-                                    @endif
-                                @endforeach
+                                @include('components.menu-recursive', ['items' => $item['subMenu']])
                             </div>
-                        @endif
-                    </div>
-                @endforeach
+                        </div>
+                    @else
+                        <div class="menu-item">
+                            <a class="menu-link {{ $isActive ? 'active' : '' }}"
+                                href="{{ isset($item['route']) ? route($item['route']) : '#' }}">
+                                @if (isset($item['icon']))
+                                    <span class="menu-icon">
+                                        <span class="svg-icon svg-icon-2">
+                                            <i class="{{ $item['icon'] }}"></i>
+                                        </span>
+                                    </span>
+                                @else
+                                    <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
+                                @endif
+                                <span class="menu-title">{{ $item['title'] }}</span>
+                            </a>
+                        </div>
+                    @endif
+                @endforeach --}}
 
 
             </div>

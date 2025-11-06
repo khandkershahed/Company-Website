@@ -48,6 +48,7 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <link href="{{ asset('backend/metronic/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+    <link href="{{ asset('backend/assets/input-tags/css/tagsinput.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/metronic/assets/css/custom.css?v=' . time()) }}" rel="stylesheet" type="text/css" />
     <style>
         .aside-dark .menu .menu-item.here>.menu-link .menu-icon,
@@ -130,6 +131,7 @@
     <script src="{{ asset('backend/metronic/assets/plugins/custom/tinymce/tinymce.bundle.js') }}"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script src="{{ asset('backend/assets/input-tags/js/tagsinput.js') }}"></script>
     <script src="{{ asset('backend/metronic/js/custom.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     {{-- @include('toastr') --}}

@@ -9,6 +9,12 @@ class Blog extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $casts = [
+        'category_id' => 'array',
+        'brand_id'    => 'array',
+        'industry_id' => 'array',
+        'solution_id' => 'array',
+    ];
     protected static function booted()
     {
         static::saved(function () {

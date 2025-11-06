@@ -13,7 +13,7 @@
                     <div class="breadcrumb py-2">
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
                         <a href="{{ route('admin.site-content.index') }}" class="breadcrumb-item">Site Content</a>
-                        <a href="{{ route('brandPage.index') }}" class="breadcrumb-item">Brand Page Management</a>
+                        <a href="{{ route('admin.brandPage.index') }}" class="breadcrumb-item">Brand Page Management</a>
                         <span class="breadcrumb-item active">Edit</span>
                     </div>
                     <a href="#breadcrumb_elements"
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div class="card">
-                        <form method="post" action="{{ route('brandPage.update', $brandPage->id) }}" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('admin.brandPage.update', $brandPage->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <!--Banner Section-->

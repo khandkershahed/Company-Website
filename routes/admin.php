@@ -233,7 +233,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
             Route::put('/{id}', [TenderAccessPassController::class, 'update'])->name('update');
             Route::delete('/{id}', [TenderAccessPassController::class, 'destroy'])->name('destroy');
         });
-        Route::prefix('tender-security')->name('tender-security.')->group(function () {
+        Route::prefix('tender/security')->name('tender-security.')->group(function () {
             Route::get('/', [TenderSecurityController::class, 'index'])->name('index');
             Route::get('/create', [TenderSecurityController::class, 'create'])->name('create');
             Route::post('/', [TenderSecurityController::class, 'store'])->name('store');
@@ -261,6 +261,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
                 'blog'         => BlogController::class,
                 'job-post'     => JobController::class,
                 'row'          => RowController::class,
+                'brandPage'    => BrandPageController::class,
 
             ]
         );
@@ -658,7 +659,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'newsLetter'                 => NewsLetterController::class,
             'partnerPermission'          => PartnerPermission::class,
             'homepage'                   => HomepageController::class,
-            'blog'                       => BlogController::class,
             'rowWithCol'                 => RowWithColController::class,
             'clientstory'                => ClientStoryController::class,
             'techglossy'                 => TechGlossyController::class,
@@ -669,7 +669,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'solutionDetails'            => SolutionDetailsController::class,
             'policy'                     => PolicyController::class,
             'feature'                    => FeatureController::class,
-            'brandPage'                  => BrandPageController::class,
             'country'                    => CountryController::class,
             'region'                     => RegionController::class,
             'sas'                        => SASController::class,

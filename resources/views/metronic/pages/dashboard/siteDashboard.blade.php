@@ -112,7 +112,7 @@
 
     <div class="mt-5 row gx-5">
         <div class="col-lg-12">
-            <div class="mb-5 card" style="background-image: linear-gradient(to right, #003b6514, #003B65);">
+            <div class="mb-5 card" style="background-image: linear-gradient(to right, #003b659e, #003B65)">
                 <div class="flex-wrap p-5 d-flex align-items-center justify-content-between">
                     {{-- Left side text --}}
                     <div class="me-3 fw-bold fs-3">
@@ -124,7 +124,7 @@
                         @php
                         $allLinks = [
                         ['url' => route('admin.job-post.index'), 'title' => 'Job Post'],
-                        ['url' => route('blog.index'), 'title' => 'Blog'],
+                        ['url' => route('admin.blog.index'), 'title' => 'Blog'],
                         ['url' => route('techglossy.index'), 'title' => 'Techglossy'],
                         ['url' => route('feature.index'), 'title' => 'Feature'],
                         ['url' => route('clientstory.index'), 'title' => 'Client Story'],
@@ -133,7 +133,7 @@
                         ['url' => route('admin.brand.index'), 'title' => 'Brand'],
                         ['url' => route('admin.category.index'), 'title' => 'Category'],
                         ['url' => route('product-sourcing.index'), 'title' => 'Sourcing'],
-                        ['url' => route('learnMore.index'), 'title' => 'Lear-nmore'],
+                        ['url' => route('learnMore.index'), 'title' => 'Learn-nmore'],
                         ['url' => 'https://ngenitltd.com/admin/business', 'title' => 'Business'],
                         ['url' => route('admin.solution-cms.index'), 'title' => 'Solution'],
                         ['url' => route('sas.index'), 'title' => 'SAS'],

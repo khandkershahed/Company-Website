@@ -646,9 +646,10 @@ class HomeController extends Controller
 
     public function AllBlog()
     {
+        $blogs = DB::table('blogs')->all();
         $data['tag'] = DB::table('blogs')->pluck('tags');
         $data['tag_items'] = json_decode($data['tag'], true);
-        $data['featured_storys'] = Blog::where('featured', '=', '1')->inRandomOrder()->limit(4)->get();
+        $data['featured_storys'] = $blogs->where('featured', '=', '1')->inRandomOrder()->limit(4)->get();
         $data['client_storys'] = Blog::orderBy('id', 'Desc')->paginate(3);
         $data['industries'] = Industry::latest()->select('id', 'title')->limit(6)->get();
         $data['categories'] = Category::latest()->select('id', 'title', 'slug')->limit(6)->get();

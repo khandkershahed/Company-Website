@@ -294,7 +294,7 @@ style="background: url('{{ asset('images/mandala-bg.jpg') }}') no-repeat center 
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('blog.index') }}" class="nav-link">
+                                <a href="{{ route('admin.blog.index') }}" class="nav-link">
                                     <i class="ph-tree"></i>
                                     <span>
                                         Blog

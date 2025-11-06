@@ -29,7 +29,7 @@ class BlogController extends Controller
     public function index()
     {
         $data['blogs'] = Blog::latest()->get();
-        return view('admin.pages.blog.all', $data);
+        // return view('admin.pages.blog.all', $data);
         return view('metronic.pages.blog.index', $data);
     }
 
@@ -40,13 +40,14 @@ class BlogController extends Controller
      */
     public function create()
     {
-        $data['products'] = Product::select('products.id', 'products.name')->get();
-        $data['categories'] = Category::select('categories.id', 'categories.title')->get();
-        $data['brands'] = Brand::select('brands.id', 'brands.title')->get();
-        $data['industries'] = Industry::select('industries.id', 'industries.title')->get();
-        $data['solutionDetails'] = SolutionDetail::select('solution_details.id','solution_details.name')->get();
+        $data['products'] = Product::select('id', 'name')->get();
+        $data['categories'] = Category::select('id', 'title')->get();
+        $data['brands'] = Brand::select('id', 'title')->get();
+        $data['industries'] = Industry::select('id', 'title')->get();
+        $data['solutionDetails'] = SolutionDetail::select('id','name')->get();
 
-        return view('admin.pages.blog.add', $data);
+        // return view('admin.pages.blog.add', $data);
+        return view('metronic.pages.blog.create', $data);
     }
 
     /**
@@ -84,10 +85,10 @@ class BlogController extends Controller
             }
 
                 Blog::create([
-                    'category_id' => json_encode($request->category_id),
-                    'brand_id'    => json_encode($request->brand_id),
-                    'industry_id' => json_encode($request->industry_id),
-                    'solution_id' => json_encode($request->solution_id),
+                    'category_id' => $request->category_id,
+                    'brand_id'    => $request->brand_id,
+                    'industry_id' => $request->industry_id,
+                    'solution_id' => $request->solution_id,
                     'featured'    => $request->featured,
                     'badge'       => $request->badge,
                     'title'       => $request->title,
@@ -134,11 +135,12 @@ class BlogController extends Controller
     {
         $data['blog'] = Blog::find($id);
         $data['products'] = Product::select('products.id', 'products.name')->get();
-        $data['brands'] = Brand::select('brands.id', 'brands.title')->get();
-        $data['categories'] = Category::select('categories.id', 'categories.title')->get();
-        $data['industries'] = Industry::select('industries.id', 'industries.title')->get();
-        $data['solutionDetails'] = SolutionDetail::select('solution_details.id','solution_details.name')->get();
-        return view('admin.pages.blog.edit', $data);
+        $data['brands'] = Brand::select('id', 'title')->get();
+        $data['categories'] = Category::select('id', 'title')->get();
+        $data['industries'] = Industry::select('id', 'title')->get();
+        $data['solutions'] = SolutionDetail::select('id','name')->get();
+        // return view('admin.pages.blog.edit', $data);
+        return view('metronic.pages.blog.edit', $data);
     }
 
     /**
@@ -197,10 +199,10 @@ class BlogController extends Controller
                 }
 
                 $blog->update([
-                        'category_id' => json_encode($request->category_id),
-                        'brand_id'    => json_encode($request->brand_id),
-                        'industry_id' => json_encode($request->industry_id),
-                        'solution_id' => json_encode($request->solution_id),
+                        'category_id' => $request->category_id,
+                        'brand_id'    => $request->brand_id,
+                        'industry_id' => $request->industry_id,
+                        'solution_id' => $request->solution_id,
                         'featured'    => $request->featured,
                         'badge'       => $request->badge,
                         'title'       => $request->title,

@@ -9,7 +9,7 @@
                     <div class="breadcrumb py-2">
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
                         <a href="{{ route('admin.site-content.index') }}" class="breadcrumb-item">Site Content</a>
-                        <a href="{{ route('blog.index') }}" class="breadcrumb-item">Blog Management</a>
+                        <a href="{{ route('admin.blog.index') }}" class="breadcrumb-item">Blog Management</a>
                     </div>
                     <a href="#breadcrumb_elements"
                         class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
@@ -19,7 +19,7 @@
                 </div>
                 <div>
                     <!-- Leave Dashboard link -->
-                    <a href="{{ route('blog.create') }}" class="btn navigation_btn">
+                    <a href="{{ route('admin.blog.create') }}" class="btn navigation_btn">
                         <div class="d-flex align-items-center ">
                             <i class="ph-plus me-1" style="font-size: 10px;"></i>
                             <span>Add Blogs</span>

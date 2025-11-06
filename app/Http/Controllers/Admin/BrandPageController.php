@@ -23,8 +23,9 @@ class BrandPageController extends Controller
      */
     public function index()
     {
-        $data['brandPages'] = BrandPage::orderBy('id' , 'desc')->get();
-        return view('admin.pages.brandPage.all', $data);
+        $data['brandPages'] = BrandPage::with('brand')->select('brand_id','header','id')->latest('id')->get();
+        // return view('admin.pages.brandPage.all', $data);
+        return view('metronic.pages.brandPage.index', $data);
     }
 
     /**
@@ -34,11 +35,12 @@ class BrandPageController extends Controller
      */
     public function create()
     {
-        $data['brands'] = Brand::select('brands.id', 'brands.title')->latest('id','DESC')->get();
-        $data['solution_cards'] = SolutionCard::select('solution_cards.id', 'solution_cards.title')->latest('id','DESC')->get();
-        $data['rows'] = Row::whereNotNull('image')->select('rows.id', 'rows.title')->latest('id','DESC')->get();
-        $data['row_with_cols'] = Row::whereNull('image')->select('rows.id', 'rows.title')->latest('id','DESC')->get();
-        return view('admin.pages.brandPage.add', $data);
+        $data['brands'] = Brand::select('id', 'title')->latest('id')->get();
+        $data['solution_cards'] = SolutionCard::select('id', 'title')->latest('id')->get();
+        $data['rows'] = Row::whereNotNull('image')->select('id', 'title')->latest('id')->get();
+        $data['row_with_cols'] = Row::whereNull('image')->select('id', 'title')->latest('id')->get();
+        // return view('admin.pages.brandPage.add', $data);
+        return view('metronic.pages.brandPage.create', $data);
     }
 
     /**
@@ -139,11 +141,12 @@ class BrandPageController extends Controller
     public function edit($id)
     {
         $data['brandPage'] = BrandPage::find($id);
-        $data['brands'] = Brand::select('brands.id', 'brands.title')->latest('id','DESC')->get();
-        $data['solution_cards'] = SolutionCard::select('solution_cards.id', 'solution_cards.title')->get();
-        $data['rows'] = Row::whereNotNull('image')->select('rows.id', 'rows.title')->latest('id','DESC')->get();
-        $data['row_with_cols'] = Row::whereNull('image')->select('rows.id', 'rows.title')->latest('id','DESC')->get();
-        return view('admin.pages.brandPage.edit', $data);
+        $data['brands'] = Brand::select('id', 'title')->latest('id')->get();
+        $data['solution_cards'] = SolutionCard::select('id', 'title')->latest('id')->get();
+        $data['rows'] = Row::whereNotNull('image')->select('id', 'title')->latest('id')->get();
+        $data['row_with_cols'] = Row::whereNull('image')->select('id', 'title')->latest('id')->get();
+        // return view('admin.pages.brandPage.edit', $data);
+        return view('metronic.pages.brandPage.edit', $data);
     }
 
     /**
