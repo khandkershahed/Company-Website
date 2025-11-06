@@ -97,6 +97,9 @@
                                 'admin.tender-security.index',
                                 'admin.tender-security.create',
                                 'admin.tender-security.edit',
+                                'admin.tender.index',
+                                'admin.tender-sites.index',
+                                'admin.tender-access-pass.index',
                             ],
                             'subMenu' => [
                                 // [
@@ -179,6 +182,9 @@
                                         'admin.tender-security.index',
                                         'admin.tender-security.create',
                                         'admin.tender-security.edit',
+                                        'admin.tender.index',
+                                        'admin.tender-sites.index',
+                                        'admin.tender-access-pass.index',
                                     ],
                                     'subMenu' => [
                                         [
@@ -230,6 +236,9 @@
                                                 'admin.tender-security.index',
                                                 'admin.tender-security.create',
                                                 'admin.tender-security.edit',
+                                                'admin.tender.index',
+                                                'admin.tender-sites.index',
+                                                'admin.tender-access-pass.index',
                                             ],
                                             'subMenu' => [
                                                 [
