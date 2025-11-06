@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="pt-0 card-body">
-            <form action="{{ route('marketing-dmar.store') }}" method="POST">
+            <form action="{{ route('admin.marketing-dmar.store') }}" method="POST">
                 @csrf
                 @include('metronic.pages.marketingDmar.partials.form')
                 <div class="mt-3 text-end">

@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="pt-0 card-body">
-            <form action="{{ route('marketing-dmar.update', $marketingDmar->id) }}" method="POST">
+            <form action="{{ route('admin.marketing-dmar.update', $marketingDmar->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 @include('metronic.pages.marketingDmar.partials.form',['marketingDmar' => $marketingDmar])

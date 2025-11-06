@@ -63,7 +63,7 @@
             </div>
 
             <div class="card">
-                <form method="post" action="{{ route('marketing-dmar.store') }}">
+                <form method="post" action="{{ route('admin.marketing-dmar.store') }}">
                     @csrf
                     <!--Banner Section-->
                     <div class="container">
