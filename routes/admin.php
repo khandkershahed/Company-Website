@@ -191,7 +191,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['department:marketing'])->group(function () {
         Route::resources(
             [
-                'contact'          => ContactController::class,
+                
                 'tender'           => TenderController::class,
                 'marketing-dmar'   => MarketingDmarController::class,
                 'marketing-emar'   => MarketingEmarController::class,
