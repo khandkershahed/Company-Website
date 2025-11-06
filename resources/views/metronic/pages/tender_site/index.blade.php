@@ -89,7 +89,7 @@
                         <option>NGO</option>
                         <option>International NGOs</option>
                     </select>
-                    <a href="{{ route('tender-sites.create') }}" class="py-4 btn btn-primary btn-sm w-100 ms-3">
+                    <a href="{{ route('admin.tender-sites.create') }}" class="py-4 btn btn-primary btn-sm w-100 ms-3">
                         <i class="bi bi-plus-lg"></i> Add Site
                     </a>
                 </div>

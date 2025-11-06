@@ -7,12 +7,12 @@
                         <div>
                             <h1 class="mb-1 fw-semibold">Create Tender Site</h1>
                         </div>
-                        <a href="{{ route('tender-sites.index') }}" class="bg-transparent text-danger btn btn-primary">
+                        <a href="{{ route('admin.tender-sites.index') }}" class="bg-transparent text-danger btn btn-primary">
                             <i class="bi bi-arrow-left text-danger"></i> Back to List
                         </a>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('tender-sites.store') }}" method="POST">
+                        <form action="{{ route('admin.tender-sites.store') }}" method="POST">
                             @csrf
                             <div class="row g-3">
                                 <!-- Organization Name -->
