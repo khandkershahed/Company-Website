@@ -7,21 +7,67 @@
         }
     </style>
     <div class="px-0 container-fluid">
-        <div class="mb-10 row">
+        <div class="mb-5 row">
             <div class="col-xl-3">
                 <div class="shadow-none card card-flush card-rounded" style="background-color: #296088;">
-                    <div class="p-0 card-body">
+                    <div class="p-0 py-2 card-body">
                         <div class="p-5 text-center me-3">
-                            <h2 class="text-white" style="font-size: 57.801px;">Sales
-                                Forecast</h2>
+                            <h1 class="text-white" style="font-size: 40px;">Sales
+                                Forecast</h1>
                             <p class="mb-0 text-white">Year {{ date('Y') }}</p>
+                            <div class="mt-3 d-flex justify-content-between">
+                                <select name="product_type" data-control="select2"
+                                    class="form-select form-select-sm form-select-solid me-3" required>
+                                    <option value="" disabled selected>Select Country</option>
+                                    <option value="usa">United States</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="canada">Canada</option>
+                                    <option value="australia">Australia</option>
+                                    <option value="germany">Germany</option>
+                                    <option value="bangladesh">Bangladesh</option>
+                                    <option value="india">India</option>
+                                </select>
+                                <select name="product_type" data-control="select2"
+                                    class="form-select form-select-sm form-select-solid ms-3" required>
+                                    <option value="" disabled selected>Select Role</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="manager">Manager</option>
+                                    <option value="developer">Developer</option>
+                                    <option value="designer">Designer</option>
+                                    <option value="student">Student</option>
+                                    <option value="customer">Customer</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-xl-3">
-                <div class="shadow-none card card-flush card-rounded" style="background-color: #E8E9FF;">
-                    <div class="p-0 card-body">
+                <div class="shadow-none card card-flush card-rounded" style="background-color: #FFCD94;">
+                    <div class="p-0 py-8 card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="">
+                                <div class="p-3 bg-white rounded-circle ms-10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                        viewBox="0 0 30 30" fill="none">
+                                        <path
+                                            d="M19.3769 12.2926L16.6695 15L19.3769 17.7074C19.5983 17.9288 19.7227 18.2291 19.7227 18.5422C19.7227 18.8553 19.5983 19.1555 19.3769 19.3769C19.1555 19.5983 18.8552 19.7227 18.5421 19.7227C18.229 19.7227 17.9288 19.5983 17.7074 19.3769L15 16.6695L12.2926 19.3769C12.1832 19.487 12.0531 19.5743 11.9098 19.6339C11.7666 19.6934 11.613 19.7241 11.4578 19.7241C11.3026 19.7241 11.149 19.6934 11.0058 19.6339C10.8625 19.5743 10.7324 19.487 10.623 19.3769C10.5133 19.2674 10.4262 19.1373 10.3668 18.994C10.3074 18.8508 10.2768 18.6972 10.2768 18.5422C10.2768 18.3871 10.3074 18.2336 10.3668 18.0903C10.4262 17.9471 10.5133 17.817 10.623 17.7074L13.3304 15L10.623 12.2926C10.4016 12.0712 10.2773 11.7709 10.2773 11.4578C10.2773 11.1447 10.4016 10.8445 10.623 10.6231C10.8444 10.4017 11.1447 10.2773 11.4578 10.2773C11.7709 10.2773 12.0712 10.4017 12.2926 10.6231L15 13.3305L17.7074 10.6231C17.9288 10.4017 18.229 10.2773 18.5421 10.2773C18.8552 10.2773 19.1555 10.4017 19.3769 10.6231C19.5983 10.8445 19.7227 11.1447 19.7227 11.4578C19.7227 11.7709 19.5983 12.0712 19.3769 12.2926ZM29.1686 15C29.1686 22.8128 22.8128 29.1687 15 29.1687C7.18713 29.1687 0.831299 22.8128 0.831299 15C0.831299 7.18716 7.18713 0.831329 15 0.831329C22.8128 0.831329 29.1686 7.18716 29.1686 15ZM26.8072 15C26.8072 8.4895 21.5105 3.19278 15 3.19278C8.48947 3.19278 3.19274 8.4895 3.19274 15C3.19274 21.5105 8.48947 26.8072 15 26.8072C21.5105 26.8072 26.8072 21.5105 26.8072 15Z"
+                                            fill="#F0A857" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="p-4 text-start me-3">
+                                <p class="mb-0 text-black">Closed Deals</p>
+                                <h4 class="pt-3 text-black" style="font-size: 28px;">1.25M $</h4>
+                                <span>(Target YTD: $1.5M - 80%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="shadow-none card card-flush card-rounded" style="background-color: #CFC4FF;">
+                    <div class="p-0 py-8 card-body">
                         <div class="d-flex align-items-center">
                             <div class="">
                                 <div class="p-3 bg-white rounded-circle ms-10">
@@ -35,55 +81,16 @@
                             </div>
                             <div class="p-4 text-start me-3">
                                 <p class="mb-0 text-black">Quoted</p>
-                                <h4 class="pt-3 text-black" style="font-size: 28px;">{{ $quoted_amount }} $</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-3 shadow-none card card-flush card-rounded" style="background-color: #CFC4FF;">
-                    <div class="p-0 card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="">
-                                <div class="p-3 bg-white rounded-circle ms-10">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                        viewBox="0 0 30 30" fill="none">
-                                        <path
-                                            d="M29.1686 15C29.1686 22.8164 22.8164 29.1687 15 29.1687C7.18359 29.1687 0.831299 22.8164 0.831299 15C0.831299 7.18362 7.18359 0.831329 15 0.831329C15.8619 0.831329 16.7356 0.91398 17.5739 1.06747C18.2115 1.18555 18.6366 1.79952 18.5185 2.43711C18.4005 3.0747 17.7865 3.49976 17.1489 3.38169C16.4523 3.25181 15.7202 3.19278 15 3.19278C8.49419 3.19278 3.19274 8.49422 3.19274 15C3.19274 21.5058 8.49419 26.8072 15 26.8072C21.5058 26.8072 26.8072 21.5058 26.8072 15C26.8072 14.2798 26.7364 13.5595 26.6183 12.8511C26.5002 12.2135 26.9253 11.5995 27.5629 11.4815C28.2123 11.3634 28.8144 11.7884 28.9325 12.426C29.086 13.2643 29.1686 14.1381 29.1686 15ZM16.0154 7.98651C16.6648 8.08097 17.2552 7.63229 17.3496 6.9829C17.4441 6.3335 16.9954 5.74314 16.346 5.64868C15.8973 5.58964 15.4486 5.55422 15 5.55422C9.79298 5.55422 5.55419 9.79302 5.55419 15C5.55419 20.207 9.79298 24.4458 15 24.4458C20.207 24.4458 24.4458 20.207 24.4458 15C24.4458 14.5513 24.4103 14.1027 24.3513 13.654C24.3303 13.5002 24.279 13.352 24.2005 13.2181C24.1219 13.0842 24.0175 12.9673 23.8935 12.8739C23.7694 12.7806 23.6281 12.7128 23.4777 12.6744C23.3272 12.6361 23.1707 12.6279 23.0171 12.6504C22.3677 12.7448 21.919 13.3352 22.0135 13.9846C22.1581 14.9903 22.085 16.0153 21.7989 16.9902C21.5129 17.9652 21.0206 18.8672 20.3555 19.6353C19.6905 20.4034 18.868 21.0196 17.944 21.4422C17.02 21.8647 16.016 22.0837 15 22.0843C11.0918 22.0843 7.91564 18.9082 7.91564 15C7.91628 13.984 8.13529 12.9799 8.55782 12.0559C8.98035 11.1319 9.59654 10.3095 10.3646 9.64443C11.1327 8.97934 12.0348 8.4871 13.0097 8.20106C13.9847 7.91501 15.0097 7.84185 16.0154 7.98651ZM13.4296 13.2407C13.5451 13.1376 13.6392 13.0128 13.7065 12.8733C13.7737 12.7338 13.8129 12.5825 13.8216 12.4279C13.8304 12.2733 13.8086 12.1185 13.7576 11.9723C13.7065 11.8261 13.6272 11.6914 13.5241 11.5759C13.421 11.4604 13.2961 11.3663 13.1566 11.2991C13.0172 11.2318 12.8658 11.1927 12.7112 11.1839C12.5566 11.1751 12.4018 11.1969 12.2556 11.2479C12.1095 11.299 11.9748 11.3783 11.8593 11.4815C11.3891 11.912 11.0111 12.4333 10.7479 13.014C10.4847 13.5946 10.3418 14.2225 10.3278 14.8598C10.3138 15.4972 10.4291 16.1308 10.6665 16.7224C10.904 17.314 11.2589 17.8514 11.7096 18.3022C12.1604 18.7529 12.6978 19.1078 13.2894 19.3452C13.881 19.5827 14.5146 19.698 15.1519 19.684C15.7893 19.67 16.4172 19.5271 16.9978 19.2639C17.5784 19.0007 18.0998 18.6226 18.5303 18.1525C18.6334 18.037 18.7128 17.9023 18.7639 17.7561C18.8149 17.61 18.8367 17.4552 18.8279 17.3006C18.8191 17.146 18.78 16.9946 18.7127 16.8551C18.6455 16.7157 18.5514 16.5908 18.4359 16.4877C18.3204 16.3846 18.1857 16.3053 18.0395 16.2542C17.8933 16.2031 17.7385 16.1814 17.5839 16.1901C17.4293 16.1989 17.278 16.2381 17.1385 16.3053C16.999 16.3726 16.8742 16.4667 16.7711 16.5822C16.3224 17.0781 15.6848 17.3733 15.0118 17.3733C13.713 17.3733 12.6503 16.3106 12.6503 15.0118C12.6503 14.3388 12.9337 13.7012 13.4414 13.2525L13.4296 13.2407ZM15.3542 12.981C15.1894 13.1459 15.0774 13.356 15.0323 13.5847C14.9872 13.8134 15.0111 14.0503 15.1009 14.2654C15.1907 14.4805 15.3425 14.6641 15.5368 14.7928C15.7312 14.9214 15.9594 14.9895 16.1925 14.9882C16.4995 14.9882 16.7947 14.8701 17.0308 14.6458L22.592 9.08458H25.6501C25.9689 9.08458 26.2641 8.9547 26.4884 8.74217L28.8499 6.38073C29.1923 6.03832 29.2867 5.53061 29.1096 5.09374C28.9325 4.65687 28.4956 4.36169 28.0233 4.36169H25.6619V2.01205C25.6619 1.53976 25.3785 1.1029 24.9299 0.925787C24.7142 0.834259 24.4758 0.810088 24.2461 0.856445C24.0165 0.902802 23.8062 1.01752 23.6429 1.18555L21.2814 3.54699C21.1715 3.65693 21.0845 3.7877 21.0257 3.93164C20.9669 4.07559 20.9375 4.22982 20.939 4.38531V7.44338L15.3778 13.0046L15.3542 12.981Z"
-                                            fill="#6C53DF" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="p-4 text-start me-3">
-                                <p class="mb-0 text-black">Target</p>
-                                <h4 class="pt-3 text-black" style="font-size: 28px;">0 $</h4>
+                                <h4 class="pt-3 text-black" style="font-size: 28px;">1.25M $</h4>
+                                <span>(Total : $2.5M EU: 30% Asia: 70%)</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-2">
-                <div class="shadow-none card card-flush card-rounded" style="background-color: #FFCD94;">
-                    <div class="p-0 card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="">
-                                <div class="p-3 bg-white rounded-circle ms-10">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                        viewBox="0 0 30 30" fill="none">
-                                        <path
-                                            d="M19.3769 12.2926L16.6695 15L19.3769 17.7074C19.5983 17.9288 19.7227 18.2291 19.7227 18.5422C19.7227 18.8553 19.5983 19.1555 19.3769 19.3769C19.1555 19.5983 18.8552 19.7227 18.5421 19.7227C18.229 19.7227 17.9288 19.5983 17.7074 19.3769L15 16.6695L12.2926 19.3769C12.1832 19.487 12.0531 19.5743 11.9098 19.6339C11.7666 19.6934 11.613 19.7241 11.4578 19.7241C11.3026 19.7241 11.149 19.6934 11.0058 19.6339C10.8625 19.5743 10.7324 19.487 10.623 19.3769C10.5133 19.2674 10.4262 19.1373 10.3668 18.994C10.3074 18.8508 10.2768 18.6972 10.2768 18.5422C10.2768 18.3871 10.3074 18.2336 10.3668 18.0903C10.4262 17.9471 10.5133 17.817 10.623 17.7074L13.3304 15L10.623 12.2926C10.4016 12.0712 10.2773 11.7709 10.2773 11.4578C10.2773 11.1447 10.4016 10.8445 10.623 10.6231C10.8444 10.4017 11.1447 10.2773 11.4578 10.2773C11.7709 10.2773 12.0712 10.4017 12.2926 10.6231L15 13.3305L17.7074 10.6231C17.9288 10.4017 18.229 10.2773 18.5421 10.2773C18.8552 10.2773 19.1555 10.4017 19.3769 10.6231C19.5983 10.8445 19.7227 11.1447 19.7227 11.4578C19.7227 11.7709 19.5983 12.0712 19.3769 12.2926ZM29.1686 15C29.1686 22.8128 22.8128 29.1687 15 29.1687C7.18713 29.1687 0.831299 22.8128 0.831299 15C0.831299 7.18716 7.18713 0.831329 15 0.831329C22.8128 0.831329 29.1686 7.18716 29.1686 15ZM26.8072 15C26.8072 8.4895 21.5105 3.19278 15 3.19278C8.48947 3.19278 3.19274 8.4895 3.19274 15C3.19274 21.5105 8.48947 26.8072 15 26.8072C21.5105 26.8072 26.8072 21.5105 26.8072 15Z"
-                                            fill="#F0A857" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="p-4 text-start me-3">
-                                <p class="mb-0 text-black">Closed</p>
-                                <h4 class="pt-3 text-black" style="font-size: 28px;">0 $</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-3 shadow-none card card-flush card-rounded" style="background-color: #9ABFD9;">
-                    <div class="p-0 card-body">
+            <div class="col-xl-3">
+                <div class="shadow-none card card-flush card-rounded" style="background-color: #9ABFD9;">
+                    <div class="p-0 py-8 card-body">
                         <div class="d-flex align-items-center">
                             <div class="">
                                 <div class="p-3 bg-white rounded-circle ms-10">
@@ -96,128 +103,275 @@
                                 </div>
                             </div>
                             <div class="p-4 text-start me-3">
-                                <p class="mb-0 text-black">Closed</p>
-                                <h4 class="pt-3 text-black" style="font-size: 28px;">0 $</h4>
+                                <p class="mb-0 text-black">Weighted Forecast</p>
+                                <h4 class="pt-3 text-black" style="font-size: 28px;">1.8M $</h4>
+                                <span>(Quoted X Prob % + Forecast Acc %)</span>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4">
-                <div class="shadow-none card card-flush card-rounded">
-                    <div class="card-body">
-                        <div
-                            id="kt_charts_widget_16_chart"
-                            class="w-100 h-150px">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row g-5 gx-xl-10">
-            <div class="col-xl-12">
-                <div class="shadow-sm card h-md-100">
-                    <div class="pt-5 border-0 card-header">
+        <div class="mb-5 row">
+            <div class="col-xl-3">
+                <div class="shadow-none card card-flush h-xl-100">
+                    <div class="card-header pt-7 mb-7">
                         <div>
-                            <div class="py-2 mt-3 bg-white d-flex align-items-center me-3 rounded-2">
-                                <div class="form-check form-check-custom form-check-solid form-check-sm me-3">
-                                    <input class="form-check-input filterCountry" type="radio" name="country"
-                                        value="bangladesh" id="bangladesh" checked>
-                                    <label class="form-check-label pe-3" for="bangladesh">
-                                        Bangladesh
-                                    </label>
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-gray-800 card-label fw-bold">Contribution</span>
+                            </h3>
+                            <span class="mt-1 text-gray-500">Last 30 days</span>
+                        </div>
+
+                        <div class="card-toolbar">
+                            <a
+                                href="#"
+                                class="btn btn-sm btn-light">Bangladesh</a>
+                        </div>
+                    </div>
+
+                    <div class="card-body d-flex justify-content-between flex-column">
+                        <div class="flex-wrap gap-5 mb-10 d-flex d-grid">
+                            <div
+                                class="border-gray-300 border-end-dashed border-end pe-xxl-7 me-xxl-5">
+                                <div class="mb-2 d-flex">
+                                    <span class="text-gray-500 fs-4 fw-semibold me-1">$</span>
+                                    <span class="text-gray-800 fs-2hx fw-bold me-2 lh-1 ls-n2">8,035</span>
                                 </div>
-                                <div class="form-check form-check-custom form-check-solid form-check-sm me-3">
-                                    <input class="form-check-input filterCountry" type="radio" name="country"
-                                        value="singapore" id="singapore">
-                                    <label class="form-check-label pe-3" for="singapore">
-                                        Singapore
-                                    </label>
+
+                                <span class="text-gray-500 fs-6 fw-semibold">Product</span>
+                            </div>
+
+                            <div class="m-0">
+                                <div class="mb-2 d-flex align-items-center">
+                                    <span class="text-gray-500 fs-4 fw-semibold align-self-start me-1">$</span>
+
+                                    <span class="text-gray-800 fs-2hx fw-bold me-2 lh-1 ls-n2">4,684</span>
+
+                                    <span class="badge badge-light-success fs-base">
+                                        <i class="ki-duotone ki-arrow-up fs-5 text-success ms-n1"><span class="path1"></span><span class="path2"></span></i>
+                                        4.5%
+                                    </span>
                                 </div>
-                                <div class="form-check form-check-custom form-check-solid form-check-sm me-3">
-                                    <input class="form-check-input filterCountry" type="radio" name="country"
-                                        value="portugal" id="portugal">
-                                    <label class="form-check-label pe-3" for="portugal">
-                                        Portugal
-                                    </label>
-                                </div>
-                                {{-- <div class="form-check form-check-custom form-check-solid form-check-sm me-3">
-                                    <label class="form-check-label pe-3" for="radioHash">
-                                        Q4
-                                    </label>
-                                    <input class="form-check-input" type="radio" name="group3" value="#"
-                                        id="radioHash">
-                                </div> --}}
+
+                                <span class="text-gray-500 fs-6 fw-semibold">Category</span>
                             </div>
                         </div>
+
+                        <div id="kt_charts_widget_30_chart" class="w-100 h-200px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="shadow-none card card-flush h-xl-100">
+                    <div class="card-header pt-7">
+                        <div>
+                            <h3 class="card-title align-items-start flex-column">
+                                <span class="text-gray-900 card-label fw-bold">Sales Statistics</span>
+                            </h3>
+                            <span>
+                                Forecast vs
+                                Actual vs
+                                Target
+                            </span>
+                        </div>
                         <div class="card-toolbar">
-                            <div class="me-2">
-                                <select
-                                    class="py-4 form-select form-select-sm me-2 rounded-3 filterCountry min-w-200px"
-                                    data-control="select2" data-allow-clear="true" data-enable-filtering="true"
-                                    id="filterCountry" name="country">
-                                    <option value="">All Country</option>
-                                    @foreach ($countryWiseRfqs as $country)
-                                    <option value="{{ $country->country }}">{{ $country->country }}
-                                    </option>
-                                    @endforeach
-                                </select>
+                            <select name="month" data-control="select2"
+                                class="form-select form-select-sm form-select-solid me-3" required>
+                                <option value="" disabled>Select Month</option>
+                                <option value="january" selected>January</option>
+                                <option value="february">February</option>
+                                <option value="march">March</option>
+                                <option value="april">April</option>
+                                <option value="may">May</option>
+                                <option value="june">June</option>
+                                <option value="july">July</option>
+                                <option value="august">August</option>
+                                <option value="september">September</option>
+                                <option value="october">October</option>
+                                <option value="november">November</option>
+                                <option value="december">December</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div id="kt_charts_widget_16_chart" class="w-100 h-350px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="card card-flush h-md-100">
+                    <div class="card-header pt-7 align-items-center">
+                        <div>
+                            <h3 class="card-title align-items-start flex-column w-100">
+                                <span class="text-gray-900 card-label fw-bold">Country Wise Pipeline</span>
+                            </h3>
+                            <span class="text-gray-600">Bangladesh</span>
+                        </div>
+
+                        <!-- Tabs -->
+                        <ul class="nav nav-stretch nav-pills nav-pills-custom nav-pills-active-custom d-flex justify-content-start align-items-center" role="tablist">
+                            <li class="p-0 nav-item ms-0">
+                                <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary active h-30px" data-bs-toggle="tab" href="#quoted_tab" role="tab">Quoted</a>
+                            </li>
+                            <li class="p-0 nav-item ms-0">
+                                <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary h-30px" data-bs-toggle="tab" href="#closed_tab" role="tab">Closed</a>
+                            </li>
+                            <li class="p-0 nav-item ms-0">
+                                <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary h-30px" data-bs-toggle="tab" href="#lost_tab" role="tab">Lost</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <div class="tab-content flex-grow-1">
+                            <!-- Quoted Tab -->
+                            <div class="tab-pane fade show active" id="quoted_tab" role="tabpanel">
+                                <div class="d-flex flex-center h-100">
+                                    <div id="kt_maps_widget_1_map" class="w-100 h-350px"></div>
+                                </div>
+                            </div>
+
+                            <!-- Closed Tab -->
+                            <div class="tab-pane fade" id="closed_tab" role="tabpanel">
+                                <div class="d-flex flex-center h-100">
+                                    <div id="closed_map" class="w-100 h-350px">
+                                        <p class="pt-5 text-center text-muted">Closed Sales Map or Data Here</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Lost Tab -->
+                            <div class="tab-pane fade" id="lost_tab" role="tabpanel">
+                                <div class="d-flex flex-center h-100">
+                                    <div id="lost_map" class="w-100 h-350px">
+                                        <p class="pt-5 text-center text-muted">Lost Sales Map or Data Here</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="px-0 py-4 pt-4 card-body">
-                        <div class="py-4 d-flex justify-content-between" style="background-color: #F6F8FA;">
-                            <ul class="px-5 nav nav-stretch nav-pills nav-pills-custom nav-pills-active-custom d-flex justify-content-start align-items-center"
-                                role="tablist">
-                                <li class="p-0 nav-item ms-0" role="presentation">
-                                    <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary active h-40px"
-                                        data-bs-toggle="tab" href="#potentialTab" aria-selected="true"
-                                        role="tab">
-                                        <span class="fs-6 fw-bold"> Potential </span>
-                                    </a>
-                                </li>
-                                <li class="p-0 nav-item ms-0" role="presentation">
-                                    <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary h-40px"
-                                        data-bs-toggle="tab" href="#forecastTab" aria-selected="false"
-                                        role="tab" tabindex="-1">
-                                        <span class="fs-6 fw-bold"> Forecast </span>
-                                    </a>
-                                </li>
-                                <li class="p-0 nav-item ms-0" role="presentation">
-                                    <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary h-40px"
-                                        data-bs-toggle="tab" href="#dealsTab" aria-selected="false" role="tab"
-                                        tabindex="-1">
-                                        <span class="fs-6 fw-bold"> Deals </span>
-                                    </a>
-                                </li>
-                                <li class="p-0 nav-item ms-0" role="presentation">
-                                    <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary h-40px"
-                                        data-bs-toggle="tab" href="#closedTab" aria-selected="false" role="tab"
-                                        tabindex="-1">
-                                        <span class="fs-6 fw-bold"> Closed </span>
-                                    </a>
-                                </li>
-                                <li class="p-0 nav-item ms-0 float-end" role="presentation">
-                                    <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary h-40px"
-                                        data-bs-toggle="tab" href="#lostTab" aria-selected="false" role="tab"
-                                        tabindex="-1">
-                                        <span class="fs-6 fw-bold"> Lost </span>
-                                    </a>
-                                </li>
-                            </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row gx-2">
+            <div class="col-lg-1">
+                <div class="rounded-3" style="background-color: #fff; background-image: url('https://preview.keenthemes.com/metronic8/demo1/assets/media/stock/900x600/42.png'); background-position: right;">
+                    <div class="rounded-3 " style="height: 415px; overflow-y:hidden;">
+                        <ul class="flex-row px-2 pt-3 text-center nav nav-tabs nav-pills flex-md-column fs-6 h-100" role="tablist">
+                            <li class="mb-2 bg-white w-100 nav-item me-0" role="presentation">
+                                <a class="py-3 rounded nav-link active" data-bs-toggle="tab" href="#ForecastDeals" aria-selected="true" role="tab">Forecast</a>
+                            </li>
+                            <li class="mb-2 bg-white rounded w-100 nav-item me-0" role="presentation">
+                                <a class="py-3 rounded nav-link" data-bs-toggle="tab" href="#PerformanceDeals" aria-selected="false" role="tab" tabindex="-1">Performance</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-11">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade active show" id="ForecastDeals" role="tabpanel">
+                        <div class="row g-5 gx-xl-10">
+                            <div class="pe-0 col-xl-12">
+                                <div class="shadow-none card h-md-100">
+                                    <div class="px-0 pt-5 border-0 card-header align-items-center">
+                                        <div class="ps-3">
+                                            <h1 class="mb-0">Forecast Details</h1>
+                                            <span>All forecast details are here</span>
+                                        </div>
+                                        <div>
+                                            <div class="d-flex justify-content-between">
+                                                <ul class="px-5 nav nav-stretch nav-pills nav-pills-custom nav-pills-active-custom d-flex justify-content-start align-items-center"
+                                                    role="tablist">
+                                                    <li class="p-0 nav-item ms-0" role="presentation">
+                                                        <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary active h-40px"
+                                                            data-bs-toggle="tab" href="#quotesDeals" aria-selected="true"
+                                                            role="tab">
+                                                            <span class="fs-6 fw-bold"> Quotes </span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="p-0 nav-item ms-0" role="presentation">
+                                                        <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary h-40px"
+                                                            data-bs-toggle="tab" href="#mainDeals" aria-selected="false"
+                                                            role="tab" tabindex="-1">
+                                                            <span class="fs-6 fw-bold"> Deals </span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="p-0 nav-item ms-0" role="presentation">
+                                                        <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary h-40px"
+                                                            data-bs-toggle="tab" href="#lostDeals" aria-selected="false" role="tab"
+                                                            tabindex="-1">
+                                                            <span class="fs-6 fw-bold"> Lost </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
 
-                        </div>
-                        <div class="px-3 mb-2 tab-content" id="filteredContainer">
-                            <div id="spinnerLoader" style="display: none;" class="py-5 text-center">
-                                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;"
-                                    role="status">
-                                    <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="px-0 py-0 card-body">
+                                        <div class="px-3 mb-2 tab-content" id="filteredContainer">
+                                            <div id="spinnerLoader" style="display: none;" class="py-5 text-center">
+                                                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;"
+                                                    role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                            </div>
+                                            @include('metronic.pages.sales.partials.forecastFiltered')
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
-
-                            @include('metronic.pages.sales.partials.forecastFiltered')
                         </div>
+                    </div>
+                    <div class="tab-pane fade" id="PerformanceDeals" role="tabpanel">
+                        <div class="row g-5 gx-xl-10">
+                            <div class="pe-0 col-xl-12">
+                                <div class="shadow-none card h-md-100">
+                                    <div class="px-0 pt-5 border-0 card-header align-items-center">
+                                        <div class="ps-3">
+                                            <h1 class="mb-0">Performance Details</h1>
+                                            <span>All performance details are here</span>
+                                        </div>
+                                        <div>
+                                            <div class="d-flex justify-content-between">
+                                                <ul class="px-5 nav nav-stretch nav-pills nav-pills-custom nav-pills-active-custom d-flex justify-content-start align-items-center"
+                                                    role="tablist">
+                                                    <li class="p-0 nav-item ms-0" role="presentation">
+                                                        <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary active h-40px"
+                                                            data-bs-toggle="tab" href="#countryDeals" aria-selected="true"
+                                                            role="tab">
+                                                            <span class="fs-6 fw-bold"> Country </span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="p-0 nav-item ms-0" role="presentation">
+                                                        <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary h-40px"
+                                                            data-bs-toggle="tab" href="#salespersonDeals" aria-selected="false"
+                                                            role="tab" tabindex="-1">
+                                                            <span class="fs-6 fw-bold"> Salesperson </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="px-0 py-0 card-body">
+                                        <div class="px-3 mb-2 tab-content" id="filteredContainer">
+                                            <div id="spinnerLoader" style="display: none;" class="py-5 text-center">
+                                                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;"
+                                                    role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                            </div>
+                                            @include('metronic.pages.sales.partials.performanceFiltered')
+                                        </div>
 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -310,53 +464,17 @@
                                     l =
                                     (t.get("colors"),
                                         [{
-                                                country: "US",
-                                                visits: 725
+                                                country: "Forecast",
+                                                visits: 700
                                             },
                                             {
-                                                country: "UK",
-                                                visits: 625
+                                                country: "Actual",
+                                                visits: 750
                                             },
                                             {
-                                                country: "China",
-                                                visits: 602
-                                            },
-                                            {
-                                                country: "Japan",
-                                                visits: 509
-                                            },
-                                            {
-                                                country: "Germany",
-                                                visits: 322
-                                            },
-                                            {
-                                                country: "France",
-                                                visits: 214
-                                            },
-                                            {
-                                                country: "India",
-                                                visits: 204
-                                            },
-                                            {
-                                                country: "Spain",
-                                                visits: 198
-                                            },
-                                            {
-                                                country: "Italy",
-                                                visits: 165
-                                            },
-                                            {
-                                                country: "Russia",
-                                                visits: 130
-                                            },
-                                            {
-                                                country: "Norway",
-                                                visits: 93
-                                            },
-                                            {
-                                                country: "Canada",
-                                                visits: 41
-                                            },
+                                                country: "Target",
+                                                visits: 800
+                                            }
                                         ]);
                                 !(function() {
                                     for (var e = 0, a = 0; a < l.length; a++) {
