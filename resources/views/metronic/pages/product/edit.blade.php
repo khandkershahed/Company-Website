@@ -18,12 +18,11 @@
                                 fill="currentColor" />
                         </svg>
                     </span>
-
                     Back to the list
                 </a>
             </div>
         </div>
-        <div class="card-body pt-0">
+        <div class="pt-0 card-body">
             <div class="row gx-0">
                 <div class="col-lg-2">
                     <ul class="nav nav-tabs flex-column" id="myTabs" role="tablist">
@@ -54,21 +53,21 @@
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <div class="tab-content bg-white p-2 pt-0" id="myTabContent">
+                        <div class="p-2 pt-0 bg-white tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="tab1" role="tabpanel"
                                 aria-labelledby="tab1-tab">
                                 <h6 class="mb-0 text-info">Basic Information</h6>
-                                <div class="row mb-3 gx-0 border border-secondary bg-light">
-                                    <div class="col-lg-7 p-2">
-                                        <div class="row mb-2">
+                                <div class="mb-3 border row gx-0 border-secondary bg-light">
+                                    <div class="p-2 col-lg-7">
+                                        <div class="mb-2 row">
                                             <div class="col-lg-6 col-sm-12">
-                                                <label for="product_name" class="form-label mb-0">Product Name <span
+                                                <label for="product_name" class="mb-0 form-label">Product Name <span
                                                         class="text-danger">*</span></label>
                                                 <textarea class="form-control" name="name" id="product_name" cols="350" rows="1"
                                                     style="font-size: 12px; font-weight: 600;" placeholder="Product Name" required>{!! $products->name !!}</textarea>
                                             </div>
                                             <div class="col-lg-3 col-sm-12">
-                                                <label for="sku_code" class="form-label mb-0">SKU Code <span
+                                                <label for="sku_code" class="mb-0 form-label">SKU Code <span
                                                         class="text-danger">*</span></label>
                                                 <input type="text" name="sku_code"
                                                     value="{{ $products->sku_code }}"
@@ -77,7 +76,7 @@
                                                     style=" font-size: 12px; font-weight: 500;" required>
                                             </div>
                                             <div class="col-lg-3 col-sm-12">
-                                                <label for="mf_code" class="form-label mb-0">Manufacturing
+                                                <label for="mf_code" class="mb-0 form-label">Manufacturing
                                                     Code</label>
                                                 <input type="text" name="mf_code" value="{{ $products->mf_code }}"
                                                     class="form-control form-control-sm" id="mf_code"
@@ -85,9 +84,9 @@
                                                     style=" font-size: 12px; font-weight: 500;">
                                             </div>
                                         </div>
-                                        <div class="row mb-2">
+                                        <div class="mb-2 row">
                                             <div class="col-lg-12">
-                                                <label for="tags" class="form-label mb-0">Product Tags
+                                                <label for="tags" class="mb-0 form-label">Product Tags
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <input type="text" name="tags" value="{{ $products->tags }}"
@@ -95,21 +94,21 @@
                                                     data-role="tagsinput" placeholder="Product Tags">
                                             </div>
                                             <div class="col-lg-3">
-                                                <label for="size" class="form-label mb-0">Product
+                                                <label for="size" class="mb-0 form-label">Product
                                                     Sizes</label>
                                                 <input type="text" name="size" value="{{ $products->size }}"
                                                     class="form-control form-control-sm visually-hidden"
                                                     data-role="tagsinput" placeholder="Product Sizes">
                                             </div>
                                             <div class="col-lg-3">
-                                                <label for="color" class="form-label mb-0">Product
+                                                <label for="color" class="mb-0 form-label">Product
                                                     Colors</label>
                                                 <input type="text" name="color" value="{{ $products->color }}"
                                                     class="form-control form-control-sm visually-hidden"
                                                     data-role="tagsinput" placeholder="Product Color">
                                             </div>
                                             <div class="col-lg-3">
-                                                <label for="product_code" class="form-label mb-0">Product
+                                                <label for="product_code" class="mb-0 form-label">Product
                                                     Code</label>
                                                 <input type="text" name="product_code"
                                                     value="{{ $products->product_code }}"
@@ -119,13 +118,13 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-3">
-                                                <label for="weight" class="form-label mb-0">Weight (KG)</label>
+                                                <label for="weight" class="mb-0 form-label">Weight (KG)</label>
                                                 <input type="text" name="weight" value="{{ $products->weight }}"
                                                     class="form-control form-control-sm" id="weight"
                                                     placeholder="0.1kg,0.5kg,1kg,2kg">
                                             </div>
                                             <div class="form-group col-lg-3 basic-form">
-                                                <label for="product_type" class="form-label mb-0">Product
+                                                <label for="product_type" class="mb-0 form-label">Product
                                                     Type</label>
                                                 <select name="product_type" data-placeholder="Select Product Type.."
                                                     id="product_type" class="form-control select" required>
@@ -148,7 +147,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="form-group basic-form">
-                                                            <label class="form-label mb-0">Stock <span
+                                                            <label class="mb-0 form-label">Stock <span
                                                                     class="text-danger">*</span></label>
                                                             <select class="form-control select stock_select"
                                                                 name="stock"
@@ -171,7 +170,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 qty_display d-none">
-                                                        <label for="qty" class="form-label mb-0">Quantity
+                                                        <label for="qty" class="mb-0 form-label">Quantity
                                                             <span class="text-danger">*</span></label>
                                                         <input type="text" name="qty"
                                                             value="{{ $products->qty }}"
@@ -181,7 +180,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row mt-3 mb-2">
+                                        <div class="mt-3 mb-2 row">
                                             <div class="col-lg-4">
                                                 <div class="form-check">
                                                     <label class="form-check-label checkbox_label"
@@ -205,10 +204,10 @@
                                                     style=" font-size: 12px; font-weight: 500;">
                                             </div>
                                         </div>
-                                        <div class="row mt-1">
+                                        <div class="mt-1 row">
                                             <div class="col-lg-12">
                                                 <div class="mb-1">
-                                                    <label for="weight" class="form-label mb-0">Product
+                                                    <label for="weight" class="mb-0 form-label">Product
                                                         Warrenty</label>
                                                     <textarea class="form-control" name="warranty" rows="2" style=" font-size: 12px; font-weight: 500;"
                                                         placeholder="Product Warrenty"></textarea>
@@ -216,10 +215,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-5 p-2">
-                                        <div class="row mb-2">
+                                    <div class="p-2 col-lg-5">
+                                        <div class="mb-2 row">
                                             <div class="form-group col-md-6 basic-form">
-                                                <label for="weight" class="form-label mb-0">Notification
+                                                <label for="weight" class="mb-0 form-label">Notification
                                                     Day <span class="text-danger">*</span></label>
                                                 <input class="form-control form-control-sm allow_decimal"
                                                     type="text" name="notification_days"
@@ -227,7 +226,7 @@
                                                     placeholder="Notification Day" required>
                                             </div>
                                             <div class="form-group col-md-6 basic-form">
-                                                <label for="weight" class="form-label mb-0">Brand
+                                                <label for="weight" class="mb-0 form-label">Brand
                                                 </label>
                                                 <select class="form-control select" name="brand_id"
                                                     data-placeholder="Select Brand...">
@@ -240,9 +239,9 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="row mb-2">
+                                        <div class="mb-2 row">
                                             <div class="form-group col-md-6 basic-form">
-                                                <label for="weight" class="form-label mb-0">Category
+                                                <label for="weight" class="mb-0 form-label">Category
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <select class="form-control select" name="cat_id"
@@ -257,7 +256,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-6 basic-form">
-                                                <label for="weight" class="form-label mb-0">Sub Category</label>
+                                                <label for="weight" class="mb-0 form-label">Sub Category</label>
                                                 <select class="form-control select" name="sub_cat_id"
                                                     data-allow-clear="true" data-placeholder="Select Sub Category...">
                                                     <option></option>
@@ -269,9 +268,9 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="row mb-2">
+                                        <div class="mb-2 row">
                                             <div class="form-group col-md-6 basic-form">
-                                                <label for="weight" class="form-label mb-0">Sub Sub
+                                                <label for="weight" class="mb-0 form-label">Sub Sub
                                                     Category</label>
                                                 <select name="sub_sub_cat_id" class="form-control select"
                                                     data-allow-clear="true"
@@ -285,7 +284,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-6 basic-form">
-                                                <label for="weight" class="form-label mb-0">Sub Sub Sub
+                                                <label for="weight" class="mb-0 form-label">Sub Sub Sub
                                                     Category</label>
                                                 <select name="sub_sub_sub_cat_id" class="form-control select"
                                                     data-allow-clear="true" id="inputCollection"
@@ -299,9 +298,9 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="row mb-2">
+                                        <div class="mb-2 row">
                                             <div class="form-group col-md-6 basic-form">
-                                                <label for="solution_id" class="form-label mb-0">Solution <span
+                                                <label for="solution_id" class="mb-0 form-label">Solution <span
                                                         class="text-danger">*</span></label>
                                                 <select name="solution_id[]" data-control="select2"
                                                     data-allow-clear="true" data-enable-filtering="true"
@@ -317,7 +316,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-6 basic-form">
-                                                <label for="industry_id" class="form-label mb-0">Industry <span
+                                                <label for="industry_id" class="mb-0 form-label">Industry <span
                                                         class="text-danger">*</span></label>
                                                 <select name="industry_id[]" data-control="select2"
                                                     data-allow-clear="true" data-enable-filtering="true"
@@ -339,7 +338,7 @@
                                     <div class="col-lg-12 text-end">
                                         <button type="submit" class="btn btn-success" name="action" id="submitbtn"
                                             value="save">Save<i class="ph-paper-plane-tilt"></i></button>
-                                        <a href="javascript:void(0);" class="btn btn-info rounded-0 p-2 px-2"
+                                        <a href="javascript:void(0);" class="p-2 px-2 btn btn-info rounded-0"
                                             id="nextTabButton">Next
                                             <i class="ph-arrow-circle-right"></i>
                                         </a>
@@ -348,8 +347,8 @@
                             </div>
                             <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
                                 <h6 class="mb-0 text-info">Product Description</h6>
-                                <div class="row  gx-0 pt-2 border border-secondary bg-light">
-                                    <div class="row px-2 gx-1">
+                                <div class="pt-2 border row gx-0 border-secondary bg-light">
+                                    <div class="px-2 row gx-1">
                                         <div class="col-lg-6">
                                             <div class="form-group">
                                                 <textarea name="short_desc" class="form-control form-control-solid ckeditor" id="short_desc" rows="3"
@@ -362,7 +361,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row px-2 gx-1">
+                                    <div class="px-2 row gx-1">
                                         <div class="col-lg-6 col-sm-12">
                                             <div class="mb-2">
                                                 <textarea class="form-control form-control-solid ckeditor" rows="8" name="specification" id="specification"
@@ -380,7 +379,7 @@
                                     <div class="col-lg-12 text-end">
                                         <button type="submit" class="btn btn-success" name="action" id="submitbtn"
                                             value="save">Save<i class="ph-paper-plane-tilt"></i></button>
-                                        <a href="javascript:void(0);" class="btn btn-info rounded-0 p-2 px-2"
+                                        <a href="javascript:void(0);" class="p-2 px-2 btn btn-info rounded-0"
                                             id="nextTabButton3">Next
                                             <i class="ph-arrow-circle-right"></i>
                                         </a>
@@ -389,12 +388,12 @@
                             </div>
                             <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
                                 {{-- <h5>Tab 3 Content</h5> --}}
-                                <h6 class="ms-1 mb-0 text-info">Source Details</h6>
-                                <div class="row mb-3 gx-0 border border-secondary bg-light">
-                                    <div class="m-1 p-1">
-                                        <div class="row mb-3">
+                                <h6 class="mb-0 ms-1 text-info">Source Details</h6>
+                                <div class="mb-3 border row gx-0 border-secondary bg-light">
+                                    <div class="p-1 m-1">
+                                        <div class="mb-3 row">
                                             <div class="col-lg-3 col-sm-6">
-                                                <label for="weight" class="form-label mb-0"> Product
+                                                <label for="weight" class="mb-0 form-label"> Product
                                                     Price</label>
                                                 <select name="price_status"
                                                     data-placeholder="Select Product Price Status"
@@ -412,7 +411,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-lg-3 col-sm-6">
-                                                <label for="weight" class="form-label mb-0">Price For
+                                                <label for="weight" class="mb-0 form-label">Price For
                                                     SAS</label>
                                                 <div class="">
                                                     <input class="form-control form-control-sm" type="text"
@@ -561,7 +560,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row mt-2 gx-1">
+                                        <div class="mt-2 row gx-1">
                                             <div class="col-lg-5 col-sm-12">
                                                 <div class="table-responsive">
                                                     <table class="table table-bordered table-hover">
@@ -608,8 +607,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-3 col-sm-12">
-                                                <div class="card shadow-none">
-                                                    <div class="card-body border">
+                                                <div class="shadow-none card">
+                                                    <div class="border card-body">
                                                         <div class="col-sm-12">
                                                             <h6 class="mb-0 text-info"> Source Contact Details</h6>
                                                         </div>
@@ -706,13 +705,13 @@
                                             </div>
 
                                         </div>
-                                        <div class="row mt-5 text-end">
+                                        <div class="mt-5 row text-end">
                                             <div class="col-lg-4"></div>
                                             <div class="col-lg-8">
                                                 <button type="submit" class="btn btn-success" name="action"
                                                     id="submitbtn" value="save">Save<i
                                                         class="ph-paper-plane-tilt"></i></button>
-                                                <button type="submit" class="btn btn-primary mx-3" name="action"
+                                                <button type="submit" class="mx-3 btn btn-primary" name="action"
                                                     id="submitbtn" value="approval"> Submit
                                                     <i class="ph-paper-plane-tilt"></i>
                                                 </button>
@@ -723,15 +722,15 @@
                             </div>
                     </form>
                     <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
-                        <h6 class="ms-1 mb-0 text-info">Product Image Section</h6>
-                        <div class="row mb-3 p-3 mx-1 border border-secondary bg-light">
+                        <h6 class="mb-0 ms-1 text-info">Product Image Section</h6>
+                        <div class="p-3 mx-1 mb-3 border row border-secondary bg-light">
                             <div class="col-lg-6">
-                                <h5 class="mb-0 text-uppercase text-center">Update Thumbnail Image
+                                <h5 class="mb-0 text-center text-uppercase">Update Thumbnail Image
                                 </h5>
                                 <form method="post" action="{{ route('update.product.thambnail') }}"
                                     enctype="multipart/form-data">
                                     @csrf
-                                    <div class="bg-white p-2">
+                                    <div class="p-2 bg-white">
                                         <input type="hidden" name="id" value="{{ $products->id }}">
                                         <input type="hidden" name="thumbnail" value="{{ $products->thumbnail }}">
                                         <div class="row">
@@ -751,7 +750,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg">
-                                                <button class="btn btn-primary rounded-0 px-1" type="submit">
+                                                <button class="px-1 btn btn-primary rounded-0" type="submit">
                                                     Save Changes
                                                 </button>
                                             </div>
@@ -760,11 +759,11 @@
                                 </form>
                             </div>
                             <div class="col-lg-6">
-                                <h5 class="mb-0 text-uppercase text-center">Update Multi Image
+                                <h5 class="mb-0 text-center text-uppercase">Update Multi Image
                                 </h5>
-                                <div class="row mb-4">
+                                <div class="mb-4 row">
                                     <div class="col-lg-12">
-                                        <div class="d-flex flex-row align-items-center" style="cursor:pointer"
+                                        <div class="flex-row d-flex align-items-center" style="cursor:pointer"
                                             onclick="$('#multiImg').click()">
                                             <div>
                                                 <h5 class="mb-0">Multiple Images</h5>
@@ -773,7 +772,7 @@
                                                 <i class="ph ph-plus-circle"></i>
                                             </div>
                                         </div>
-                                        <div class="d-flex flex-row">
+                                        <div class="flex-row d-flex">
                                             <input class="form-control form-control-sm" name="multi_img[]"
                                                 type="file" id="multiImg" multiple="" style="display:none">
                                             <div class="col" id="preview_img"></div>
@@ -800,11 +799,11 @@
                                                         </td>
                                                         <td class="text-center">
                                                             <a href="javascript:void(0);"
-                                                                class="btn text-primary px-1" data-bs-toggle="modal"
+                                                                class="px-1 btn text-primary" data-bs-toggle="modal"
                                                                 data-bs-target="#update_multi_img_{{ $img->id }}">
                                                                 <i class="icon-pencil"></i></a>
                                                             <a href="{{ route('product.multiimg.delete', [$img->id]) }}"
-                                                                class="btn text-danger delete px-1">
+                                                                class="px-1 btn text-danger delete">
                                                                 <i class="delete icon-trash"></i>
                                                             </a>
                                                         </td>
@@ -814,7 +813,7 @@
                                                         <div class="modal-dialog modal-dialog-scrollable">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title text-center">
+                                                                    <h5 class="text-center modal-title">
                                                                         Multi Image
                                                                         Update</h5>
                                                                     <button type="button" class="btn-close"
@@ -835,7 +834,7 @@
                                                                     <input type="hidden" name="old_img"
                                                                         value="{{ $img->photo }}">
                                                                     <div class="modal-body">
-                                                                        <div class="row mb-3">
+                                                                        <div class="mb-3 row">
                                                                             <div class="col-sm-3">
                                                                                 <h6 class="mb-0">
                                                                                     Image </h6>
@@ -890,7 +889,7 @@
                                 <div class="col-lg-12 text-end">
                                     <button type="submit" class="btn btn-success" name="action" id="submitbtn"
                                         value="save">Save<i class="ph-paper-plane-tilt"></i></button>
-                                    <a href="javascript:void(0);" class="btn btn-info rounded-0 p-2 px-2"
+                                    <a href="javascript:void(0);" class="p-2 px-2 btn btn-info rounded-0"
                                         id="nextTabButton2">Next
                                         <i class="ph-arrow-circle-right"></i>
                                     </a>
