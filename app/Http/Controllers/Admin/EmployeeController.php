@@ -253,6 +253,9 @@ class EmployeeController extends Controller
                 $uploadedFiles[$key] = ['status' => 0];
             }
         }
+        if ($request->filled('password')) {
+            $admin->password = Hash::make($request->password);
+        }
 
         // $admin->update([
         //     'department_id'                                 => $request->department_id ?? $admin->department_id,
