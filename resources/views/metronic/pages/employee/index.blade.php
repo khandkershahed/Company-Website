@@ -114,7 +114,8 @@
                                                                 <td>{{ $employee->designation }}</td>
                                                                 <td>
                                                                     @foreach ($employee->department as $department)
-                                                                        <span class="badge badge-secondary mb-2">{{ $department }}</span>
+                                                                        <span
+                                                                            class="badge badge-secondary mb-2">{{ $department }}</span>
                                                                     @endforeach
                                                                 </td>
                                                                 <td class="text-center">
@@ -423,7 +424,8 @@
                         </div>
                         <div class="p-5 modal-body">
                             <form id="myform" method="post"
-                                action="{{ route('admin.employee.update', $employee->id) }}" enctype="multipart/form-data">
+                                action="{{ route('admin.employee.update', $employee->id) }}"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="p-5 row g-3">
@@ -600,21 +602,36 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basicpill-firstname-input">Password</label>
-                                            <input type="password" class="form-control " id="password"
-                                                name="password">
+                                        <div class="mb-3 position-relative">
+                                            <label class="form-label" for="password">Password</label>
+                                            <div class="input-group">
+                                                <input type="password" class="form-control" id="password"
+                                                    name="password"
+                                                    placeholder="Enter new password (leave blank to keep existing)"
+                                                    autocomplete="new-password">
+                                                <span class="input-group-text" id="togglePassword"
+                                                    style="cursor: pointer;">
+                                                    <i class="fas fa-eye"></i>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="basicpill-firstname-input">Confirm
-                                                Password</label>
-                                            <input type="password" class="form-control " id="confirm_password"
-                                                name="confirm_password">
-                                            <div id="message"></div>
+                                        <div class="mb-3 position-relative">
+                                            <label class="form-label" for="confirm_password">Confirm Password</label>
+                                            <div class="input-group">
+                                                <input type="password" class="form-control" id="confirm_password"
+                                                    name="confirm_password" placeholder="Confirm new password"
+                                                    autocomplete="new-password">
+                                                <span class="input-group-text" id="toggleConfirmPassword"
+                                                    style="cursor: pointer;">
+                                                    <i class="fas fa-eye"></i>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
+
                                     <div class="col-lg-4 mb-3">
                                         <x-metronic.label for="status" class="fw-bold fs-6 required">Select
                                             Status</x-metronic.label>
@@ -638,4 +655,26 @@
             </div>
         @endforeach
     </div>
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const togglePassword = document.querySelector('#togglePassword');
+                const password = document.querySelector('#password');
+                const toggleConfirmPassword = document.querySelector('#toggleConfirmPassword');
+                const confirmPassword = document.querySelector('#confirm_password');
+
+                togglePassword.addEventListener('click', function() {
+                    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                    password.setAttribute('type', type);
+                    this.querySelector('i').classList.toggle('fa-eye-slash');
+                });
+
+                toggleConfirmPassword.addEventListener('click', function() {
+                    const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+                    confirmPassword.setAttribute('type', type);
+                    this.querySelector('i').classList.toggle('fa-eye-slash');
+                });
+            });
+        </script>
+    @endpush
 </x-admin-app-layout>
