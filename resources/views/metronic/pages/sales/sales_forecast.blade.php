@@ -22,7 +22,7 @@
             <div class="col-xl-9">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="mb-5 card">
+                        <div class="mb-5 card bg-gr-b">
                             <div class="p-5 card-body">
                                 <div class="d-flex justify-content-between">
                                     <div class="me-3 w-100">
@@ -59,7 +59,7 @@
                                             <option value="developer">YTD</option>
                                         </select>
                                     </div>
-                                    <div class="py-2 bg-white d-flex align-items-center ms-3 rounded-2">
+                                    <div class="py-2 d-flex align-items-center ms-3 rounded-2">
                                         <div class="form-check form-check-custom form-check-solid form-check-sm me-3">
                                             <input class="form-check-input filterCountry" type="radio" name="country"
                                                 value="bangladesh" id="bangladesh" checked>
@@ -131,7 +131,7 @@
                         </div>
                     </div>
                     <div class="col-xl-4">
-                        <div class="shadow-none card card-flush card-rounded" style="background-color: #9ABFD9;">
+                        <div class="shadow-none card card-flush card-rounded bg-gr-g">
                             <div class="p-0 py-4 card-body">
                                 <div class="d-flex align-items-center">
                                     <div class="">
@@ -157,8 +157,8 @@
         </div>
         <div class="mb-5 row">
             <div class="col-xl-4">
-                <div class="shadow-none card card-flush h-xl-100">
-                    <div class="card-header pt-7 mb-7">
+                <div class="shadow-none card card-flush h-xl-100 bg-gr-b">
+                    <div class="mb-5 card-header pt-7">
                         <div>
                             <h3 class="card-title align-items-start flex-column">
                                 <span class="text-gray-800 card-label fw-bold">Contribution</span>
@@ -167,7 +167,20 @@
                         </div>
 
                         <div class="card-toolbar">
-                            <span class="text-gray-600 text-primary">Bangladesh</span>
+                            <div class="gap-2 d-flex align-items-center">
+                                <img
+                                    src="https://flagcdn.com/w20/bd.png"
+                                    alt="Bangladesh Flag"
+                                    class="object-cover shadow-sm rounded-1 w-40px">
+                                <img
+                                    src="https://flagcdn.com/w20/sg.png"
+                                    alt="Bangladesh Flag"
+                                    class="object-cover shadow-sm rounded-1 w-40px">
+                                <img
+                                    src="https://flagcdn.com/w20/pt.png"
+                                    alt="Bangladesh Flag"
+                                    class="object-cover shadow-sm rounded-1 w-40px">
+                            </div>
                         </div>
                     </div>
 
@@ -204,7 +217,7 @@
                 </div>
             </div>
             <div class="col-xl-4">
-                <div class="shadow-none card card-flush h-xl-100">
+                <div class="shadow-none card card-flush h-xl-100 bg-gr-g">
                     <div class="card-header pt-7">
                         <div>
                             <h3 class="card-title align-items-start flex-column">
@@ -242,7 +255,7 @@
                 </div>
             </div>
             <div class="col-xl-4">
-                <div class="card card-flush h-md-100">
+                <div class="card card-flush h-md-100 bg-gr-b">
                     <div class="card-header pt-7 align-items-center">
                         <div>
                             <h3 class="card-title align-items-start flex-column w-100">
@@ -251,15 +264,15 @@
                         </div>
 
                         <!-- Tabs -->
-                        <ul class="nav nav-stretch nav-pills nav-pills-custom nav-pills-active-custom d-flex justify-content-start align-items-center" role="tablist">
-                            <li class="p-0 nav-item ms-0">
-                                <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary active h-30px" data-bs-toggle="tab" href="#quoted_tab" role="tab">Quoted</a>
+                        <ul class="nav nav-tabs nav-line-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link show active" data-bs-toggle="tab" href="#quoted_tab" role="tab">Quoted</a>
                             </li>
                             <li class="p-0 nav-item ms-0">
-                                <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary h-30px" data-bs-toggle="tab" href="#closed_tab" role="tab">Closed</a>
+                                <a class="nav-link" data-bs-toggle="tab" href="#closed_tab" role="tab">Closed</a>
                             </li>
                             <li class="p-0 nav-item ms-0">
-                                <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary h-30px" data-bs-toggle="tab" href="#lost_tab" role="tab">Lost</a>
+                                <a class="nav-link" data-bs-toggle="tab" href="#lost_tab" role="tab">Lost</a>
                             </li>
                         </ul>
                     </div>
@@ -296,40 +309,55 @@
         </div>
         <div class="mb-5 row g-5 gx-xl-10">
             <div class="pe-0 col-xl-12">
-                <div class="shadow-none card h-md-100">
-                    <div class="px-0 pt-5 border-0 card-header align-items-center">
-                        <div class="ps-3">
-                            <h1 class="mb-0">Forecast Details</h1>
-                            <span>All forecast details are here</span>
-                        </div>
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <ul class="px-5 nav nav-stretch nav-pills nav-pills-custom nav-pills-active-custom d-flex justify-content-start align-items-center"
+                <div class="shadow-none card h-md-100 bg-gr-b">
+                    <div class="pt-5 border-0 ps-0 pe-3 card-header align-items-center">
+                        <div class="ps-3 d-flex align-items-center">
+                            <div>
+                                <h1 class="mb-0">Forecast Details</h1>
+                                <span>All forecast details are here</span>
+                            </div>
+                            <div class="d-flex justify-content-between ms-5">
+                                <ul class="nav nav-tabs nav-line-tabs"
                                     role="tablist">
-                                    <li class="p-0 nav-item ms-0" role="presentation">
-                                        <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary active h-40px"
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link show active"
                                             data-bs-toggle="tab" href="#quotesDeals" aria-selected="true"
                                             role="tab">
                                             <span class="fs-6 fw-bold"> Quotes </span>
                                         </a>
                                     </li>
-                                    <li class="p-0 nav-item ms-0" role="presentation">
-                                        <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary h-40px"
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link"
                                             data-bs-toggle="tab" href="#mainDeals" aria-selected="false"
                                             role="tab" tabindex="-1">
                                             <span class="fs-6 fw-bold"> Deals </span>
                                         </a>
                                     </li>
-                                    <li class="p-0 nav-item ms-0" role="presentation">
-                                        <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary h-40px"
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link"
                                             data-bs-toggle="tab" href="#lostDeals" aria-selected="false" role="tab"
                                             tabindex="-1">
                                             <span class="fs-6 fw-bold"> Lost </span>
                                         </a>
                                     </li>
                                 </ul>
-
                             </div>
+                        </div>
+                        <div>
+                            <form
+                                class="mb-5 d-none d-lg-block w-100 mb-lg-0 position-relative"
+                                autocomplete="off">
+
+                                <i class="text-gray-500 fab fa-sistrix fs-2 position-absolute top-50 translate-middle-y ms-4"></i>
+
+                                <input
+                                    type="text"
+                                    class="border-gray-200 form-control form-control-solid h-40px ps-13 fs-7"
+                                    name="search"
+                                    value=""
+                                    placeholder="Search..."
+                                    data-kt-search-element="input" />
+                            </form>
                         </div>
                     </div>
                     <div class="px-0 py-0 card-body">
@@ -342,32 +370,31 @@
                             </div>
                             @include('metronic.pages.sales.partials.forecastFiltered')
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
         <div class="row g-5 gx-xl-10">
             <div class="pe-0 col-xl-12">
-                <div class="shadow-none card h-md-100">
-                    <div class="px-0 pt-5 border-0 card-header align-items-center">
-                        <div class="ps-3">
-                            <h1 class="mb-0">Performance Details</h1>
-                            <span>All performance details are here</span>
-                        </div>
-                        <div>
-                            <div class="d-flex justify-content-between">
-                                <ul class="px-5 nav nav-stretch nav-pills nav-pills-custom nav-pills-active-custom d-flex justify-content-start align-items-center"
+                <div class="shadow-none card h-md-100 bg-gr-b">
+                    <div class="pt-5 border-0 ps-0 pe-3 card-header align-items-center">
+                        <div class="ps-3 d-flex align-items-center">
+                            <div>
+                                <h1 class="mb-0">Performance Details</h1>
+                                <span>All performance details are here</span>
+                            </div>
+                            <div class="d-flex justify-content-between ms-5">
+                                <ul class="nav nav-tabs nav-line-tabs"
                                     role="tablist">
-                                    <li class="p-0 nav-item ms-0" role="presentation">
-                                        <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary active h-40px"
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link show active"
                                             data-bs-toggle="tab" href="#countryDeals" aria-selected="true"
                                             role="tab">
                                             <span class="fs-6 fw-bold"> Country </span>
                                         </a>
                                     </li>
-                                    <li class="p-0 nav-item ms-0" role="presentation">
-                                        <a class="nav-link btn d-flex rounded-2 flex-column flex-center btn-active-primary h-40px"
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link"
                                             data-bs-toggle="tab" href="#salespersonDeals" aria-selected="false"
                                             role="tab" tabindex="-1">
                                             <span class="fs-6 fw-bold"> Salesperson </span>
@@ -375,6 +402,22 @@
                                     </li>
                                 </ul>
                             </div>
+                        </div>
+                        <div>
+                            <form
+                                class="mb-5 d-none d-lg-block w-100 mb-lg-0 position-relative"
+                                autocomplete="off">
+
+                                <i class="text-gray-500 fab fa-sistrix fs-2 position-absolute top-50 translate-middle-y ms-4"></i>
+
+                                <input
+                                    type="text"
+                                    class="border-gray-200 form-control form-control-solid h-40px ps-13 fs-7"
+                                    name="search"
+                                    value=""
+                                    placeholder="Search..."
+                                    data-kt-search-element="input" />
+                            </form>
                         </div>
                     </div>
                     <div class="px-0 py-0 card-body">
@@ -387,7 +430,6 @@
                             </div>
                             @include('metronic.pages.sales.partials.performanceFiltered')
                         </div>
-
                     </div>
                 </div>
             </div>
