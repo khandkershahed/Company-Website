@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-9">
             <div class="table-responsive" style="max-height: 630px; overflow-y: auto;">
-                <table class="table border rounded table-row-bordered dataTable">
+                <table class="table mb-5 border rounded table-row-bordered">
                     <thead class="bg-light">
                         <tr class="text-center text-gray-800 fw-bold fs-6 px-7">
                             <th width="10%" class="ps-2">Quoted</th>
@@ -55,6 +55,35 @@
                             <td>75%</td>
                             <td>৳3,500/€28,00</td>
                         </tr>
+                        <tr>
+                            <td class="ps-2">$15,000</td>
+                            <td>$10,000</td>
+                            <td>$5,000</td>
+                            <td>$20,000</td>
+                            <td>92%</td>
+                            <td>66%</td>
+                            <td>৳1,850/€9,000</td>
+                        </tr>
+
+                        <tr>
+                            <td class="ps-2">$25,000</td>
+                            <td>$20,000</td>
+                            <td>$2,000</td>
+                            <td>$30,000</td>
+                            <td>95%</td>
+                            <td>80%</td>
+                            <td>৳2,000/€18,400</td>
+                        </tr>
+
+                        <tr>
+                            <td class="ps-2">$10,000</td>
+                            <td>$6,500</td>
+                            <td>$3,500</td>
+                            <td>$12,000</td>
+                            <td>89%</td>
+                            <td>65%</td>
+                            <td>৳1,200/€6,000</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -79,7 +108,7 @@
     <div class="row">
         <div class="col-lg-9">
             <div class="table-responsive" style="max-height: 630px; overflow-y: auto;">
-                <table class="table border rounded table-row-bordered dataTable">
+                <table class="table border rounded table-row-bordered">
                     <thead class="bg-light">
                         <tr class="text-center text-gray-800 fw-bold fs-6 px-7">
                             <th width="16%" class="ps-2">Country</th>
@@ -133,6 +162,38 @@
                             <td>$40,000.00</td>
                             <td>
                                 <span class="badge bg-danger">62%</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ps-2">USA</td>
+                            <td>$80,000.00</td>
+                            <td>$65,000.00</td>
+                            <td>81%</td>
+                            <td>$75,000.00</td>
+                            <td>
+                                <span class="badge bg-success">87%</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="ps-2">UK</td>
+                            <td>$60,000.00</td>
+                            <td>$40,000.00</td>
+                            <td>67%</td>
+                            <td>$55,000.00</td>
+                            <td>
+                                <span class="badge bg-primary">73%</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="ps-2">Canada</td>
+                            <td>$50,000.00</td>
+                            <td>$30,000.00</td>
+                            <td>60%</td>
+                            <td>$45,000.00</td>
+                            <td>
+                                <span class="badge bg-warning text-dark">67%</span>
                             </td>
                         </tr>
                     </tbody>

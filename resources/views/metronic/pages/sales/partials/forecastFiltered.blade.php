@@ -1,6 +1,6 @@
 <div class="mt-4 tab-pane fade active show" id="quotesDeals" role="tabpanel">
     <div class="table-responsive" style="max-height: 630px; overflow-y: auto;">
-        <table class="table border rounded table-row-bordered dataTable">
+        <table class="table border rounded table-row-bordered">
             <thead class="bg-light">
                 <tr class="text-center text-gray-800 fw-bold fs-6 px-7">
                     <th width="8%" class="ps-2">Date</th>
@@ -95,7 +95,7 @@
     <div class="row">
         <div class="col-lg-9">
             <div class="table-responsive" style="max-height: 630px; overflow-y: auto;">
-                <table class="table border rounded table-row-bordered dataTable">
+                <table class="table border rounded table-row-bordered">
                     <thead class="bg-light">
                         <tr class="text-center text-gray-800 fw-bold fs-6 px-7">
                             <th width="12%" class="ps-2">Client</th>
@@ -110,6 +110,57 @@
                     </thead>
 
                     <tbody class="text-center" style="color: #7B7B7B;">
+                        <tr>
+                            <td class="ps-2">TechCorp</td>
+                            <td>Software License</td>
+                            <td>$15,000.00</td>
+                            <td>USA</td>
+                            <td>New project</td>
+                            <td>
+                                <span class="badge bg-warning text-dark">Pending</span>
+                            </td>
+                            <td>09-Nov-2025</td>
+                            <td>John Doe</td>
+                        </tr>
+
+                        <tr>
+                            <td class="ps-2">Global Inc.</td>
+                            <td>Consulting</td>
+                            <td>$50,000.00</td>
+                            <td>UK</td>
+                            <td>Expansion</td>
+                            <td>
+                                <span class="badge bg-primary">Negotiation</span>
+                            </td>
+                            <td>05-Nov-2025</td>
+                            <td>Jane Smith</td>
+                        </tr>
+
+                        <tr>
+                            <td class="ps-2">Alpha LLC</td>
+                            <td>Hardware</td>
+                            <td>$20,000.00</td>
+                            <td>Canada</td>
+                            <td>Renewal</td>
+                            <td>
+                                <span class="badge bg-success">Won</span>
+                            </td>
+                            <td>01-Nov-2025</td>
+                            <td>John Doe</td>
+                        </tr>
+
+                        <tr>
+                            <td class="ps-2">Beta Co.</td>
+                            <td>Service</td>
+                            <td>$5,000.00</td>
+                            <td>Australia</td>
+                            <td>Price</td>
+                            <td>
+                                <span class="badge bg-danger">Lost</span>
+                            </td>
+                            <td>28-Oct-2025</td>
+                            <td>Mike Lee</td>
+                        </tr>
                         <tr>
                             <td class="ps-2">TechCorp</td>
                             <td>Software License</td>
@@ -202,7 +253,7 @@
     <div class="row">
         <div class="col-lg-9">
             <div class="table-responsive" style="max-height: 530px; overflow-y: auto;">
-                <table class="table border rounded table-row-bordered dataTable">
+                <table class="table border rounded table-row-bordered">
                     <thead class="bg-light">
                         <tr class="text-center text-gray-800 fw-bold fs-6 px-7">
                             <th width="12.5%" class="ps-2">Client</th>

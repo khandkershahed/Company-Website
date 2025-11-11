@@ -41334,6 +41334,47 @@ a:hover {
     border-color: #500066;
     background-color: #500066;
 }
+/* Base: remove borders/outlines everywhere */
+.nav-tabs .nav-link {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+.bg-gr-b{
+    background-image: linear-gradient(to right, #ffff, #FFFBF2);
+}
+.bg-gr-g{
+    background-image: linear-gradient(to right, #ffff, #F2FFF8);
+}
+.bg-gr-g{
+    background-image: linear-gradient(to right, #ffff, #F2FFF8);
+}
+.bg-gr-blu{
+    background-image: linear-gradient(to right, #ffff, #CFC4FF);
+}
+.bg-gr-war{
+    background-image: linear-gradient(to right, #ffff, #FFCD94);
+}
+
+/* Hover: no border, no background */
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus-visible {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+/* Active state: show 2px bottom border only */
+.nav-line-tabs .nav-item .nav-link.active,
+.nav-line-tabs .nav-item.show .nav-link {
+  border: 0 !important;
+  border-bottom: 2px solid var(--bs-primary) !important;
+  color: var(--bs-primary) !important;
+  background-color: transparent !important;
+  transition: color 0.2s ease;
+}
 
 .btn-check:active + .btn.btn-active-primary,
 .btn-check:checked + .btn.btn-active-primary,
@@ -41346,6 +41387,20 @@ a:hover {
     color: #fff;
     border-color: #500066;
     background-color: #296088 !important;
+}
+.btn-check:active + .btn.btn-active-primary,
+.btn-check:checked + .btn.btn-active-primary,
+.btn.btn-active-forecast-primary.active,
+.btn.btn-active-forecast-primary.show,
+.btn.btn-active-forecast-primary:active:not(.btn-active),
+.btn.btn-active-forecast-primary:focus:not(.btn-active),
+.btn.btn-active-forecast-primary:hover:not(.btn-active),
+.show > .btn.btn-active-forecast-primary {
+    color: #500066;
+    border-color: #500066 !important;
+    background-color: transparent !important;
+    border-bottom: 2px solid #500066 !important;
+    border-radius: 0 !important;
 }
 
 .btn-check:active + .btn.btn-active-primary .svg-icon,
