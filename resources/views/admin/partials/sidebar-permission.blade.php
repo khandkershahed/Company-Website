@@ -470,7 +470,7 @@ style="background: url('{{ asset('images/mandala-bg.jpg') }}') no-repeat center 
                             <li class="nav-item"><a href="{{ route('industryPage.index') }}" class="nav-link"><i
                                         class="mi-message"></i>
                                     <span>Industry Page</span></a></li>
-                            <li class="nav-item"><a href="{{ route('brandPage.index') }}" class="nav-link"><i
+                            <li class="nav-item"><a href="{{ route('admin.brandPage.index') }}" class="nav-link"><i
                                         class="mi-message"></i>
                                     <span>Brand Page</span></a></li>
                         </ul>

@@ -503,13 +503,13 @@
 
                                             <div class="row gx-1">
                                                 <div class="col-lg-12">
-                                                    <a href="{{ route('brandPage.index') }}">
+                                                    <a href="{{ route('admin.brandPage.index') }}">
                                                         <div
                                                             class="box_details d-flex justify-content-between align-items-center bg-light p-1 rounded-0 border-right">
                                                             <div>
                                                                 <span class="link_title_admin text-muted">Brand Page</span>
                                                             </div>
-                                                            <a href="{{ route('brandPage.create') }}">
+                                                            <a href="{{ route('admin.brandPage.create') }}">
                                                                 <button type="button"
                                                                     class="btn btn-default btn-circle"><i
                                                                         class="ph ph-plus"></i>

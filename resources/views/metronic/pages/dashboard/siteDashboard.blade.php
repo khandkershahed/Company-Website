@@ -191,7 +191,7 @@
         [
         'title' => 'Others Page Builder',
         'links' => [
-        ['index' => route('brandPage.index'), 'create' => route('brandPage.create'), 'title' => 'Brand Page'],
+        ['index' => route('admin.brandPage.index'), 'create' => route('admin.brandPage.create'), 'title' => 'Brand Page'],
         ['index' => route('training-page.index'), 'create' => route('training-page.create'), 'title' => 'Training Page'],
         ['index' => route('solutionDetails.index'), 'create' => route('solutionDetails.create'), 'title' => 'Solution Details'],
         ['index' => route('portfolio-client-feedback.index'), 'create' => route('portfolio-client-feedback.create'), 'title' => 'Client Feedback'],

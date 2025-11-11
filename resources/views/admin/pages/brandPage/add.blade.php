@@ -13,7 +13,7 @@
                     <div class="breadcrumb py-2">
                         <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item"><i class="ph-house me-2"></i> Home</a>
                         <a href="{{ route('admin.site-content.index') }}" class="breadcrumb-item">Site Content</a>
-                        <a href="{{ route('brandPage.index') }}" class="breadcrumb-item">Brand Page Management</a>
+                        <a href="{{ route('admin.brandPage.index') }}" class="breadcrumb-item">Brand Page Management</a>
                         <span class="breadcrumb-item active">Add</span>
                     </div>
                     <a href="#breadcrumb_elements"
@@ -34,7 +34,7 @@
                             <div class="row main_bg py-1 rounded-1 d-flex align-items-center gx-0 px-2">
                                 <div class="col-lg-4 col-sm-12">
                                     <div>
-                                        <a href="{{ route('brandPage.index') }}"
+                                        <a href="{{ route('admin.brandPage.index') }}"
                                             class="btn btn-primary btn-rounded rounded-circle btn-icon back-btn"
                                             href="">
                                             <i class="fa-solid fa-arrow-left main_color"></i>
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="card">
-                        <form id="myform" method="post" action="{{ route('brandPage.store') }}"
+                        <form id="myform" method="post" action="{{ route('admin.brandPage.store') }}"
                             enctype="multipart/form-data">
                             @csrf
                             <!--Banner Section-->

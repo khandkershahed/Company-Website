@@ -28,7 +28,7 @@
                     style="position: relative;
                     z-index: 999;
                     margin-bottom: -40px;">
-                    <a href="{{ route('brandPage.create') }}">
+                    <a href="{{ route('admin.brandPage.create') }}">
                         <div class="d-flex align-items-center">
                             <span class="ms-2 icon_btn" style="font-weight: 800;" data-bs-toggle="tooltip"
                                 data-bs-placement="top" title="Add Solution Details">
@@ -71,10 +71,10 @@
                                         alt="" style="width: 40px; height: 40px;">
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ route('brandPage.edit', [$brandPage->id]) }}" class="text-primary">
+                                        <a href="{{ route('admin.brandPage.edit', [$brandPage->id]) }}" class="text-primary">
                                             <i class="fa-solid fa-pen-to-square rounded-circle text-primary mx-1"></i>
                                         </a>
-                                        <a href="{{ route('brandPage.destroy', [$brandPage->id]) }}"
+                                        <a href="{{ route('admin.brandPage.destroy', [$brandPage->id]) }}"
                                             class="text-danger delete">
                                            <i class="fa-solid fa-trash rounded-circle text-danger mx-1"></i>
                                         </a>
