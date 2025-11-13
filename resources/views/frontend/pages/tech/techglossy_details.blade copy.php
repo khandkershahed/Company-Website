@@ -97,7 +97,7 @@
                     @foreach ($storys as $item)
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="related-item">
-                                <a href="{{ route('techglossy.details', $item->id) }}">
+                                <a href="{{ route('techglossy.details', $item->slug) }}">
                                     <div>
                                         <img class="img-fluid"
                                             src="{{ !empty($item->image) && file_exists(public_path('storage/' . $item->image)) ? asset('storage/' . $item->image) : asset('frontend/images/no-row-img(580-326).png') }}"
@@ -129,7 +129,7 @@
                 @foreach ($storys as $item)
                     <div class="col-lg-3 col-md-6 col-sm-12">
                         <div class="related-item">
-                            <a href="{{ route('techglossy.details', $item->id) }}">
+                            <a href="{{ route('techglossy.details', $item->slug) }}">
                                 <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}" alt=""
                                     style=" width:250px; height:150px;">
                                 <h4>{{ $item->badge }}</h6>

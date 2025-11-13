@@ -229,7 +229,7 @@
                         @foreach ($client_storys as $item)
                             <div class="p-3 border shadow-lg mt-2"
                                 style="background-color: #fff;border-radius: 5px;">
-                                <a class="text-black" href="{{route('story.details',$item->id)}}">
+                                <a class="text-black" href="{{route('story.details',$item->slug)}}">
                                     <div class="p-3">
                                         {{-- Blog Image --}}
                                         <img src="{{asset('storage/'.$item->image)}}" class="img-fluid" alt="">
@@ -272,7 +272,7 @@
                             @if ($featured_storys)
                                 @foreach ($featured_storys as $item)
                                     <div class="pt-3 pb-3 d-flex justify-content-between popular_post">
-                                        <a href="{{route('story.details',$item->id)}}" class="d-flex justify-content-between">
+                                        <a href="{{route('story.details',$item->slug)}}" class="d-flex justify-content-between">
                                             <img class="rounded-circle img-fluid"
                                                 src="{{asset('storage/'.$item->image)}}" alt="" style="">
                                             <p class="ml-2">{{ Str::limit($item->title, 30) }}</p>

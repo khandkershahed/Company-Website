@@ -407,7 +407,7 @@
                                     {!! Str::words(strip_tags($techglossy->short_des), 50) !!}
                                     {{-- {{ $techglossy->header }} --}}
                                 </p>
-                                <a href="{{ route('techglossy.details', $techglossy->id) }}"
+                                <a href="{{ route('techglossy.details', $techglossy->slug) }}"
                                     class="pt-3 business_item_button d-flex justify-content-start">
                                     <span>Read More</span>
                                     <span class="business_item_button_icon">

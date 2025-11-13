@@ -1,265 +1,237 @@
 @extends('frontend.master')
 @section('content')
+    @include('frontend.pages.blogs.style_partial')
+    <main style="background-color: #dcecfa" class="py-0 py-lg-5 pb-5">
+        <div class="container pb-5" style="background-color: #dcecfa" class="py-0 py-lg-5 pb-5">
+            <div class="row py-5">
+                <div class="col-lg-12">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <span><a href="{{ route('all.blog') }}" class="breadcrumbs-blogs">Blog</a></span>
+                            <span>/</span>
+                            <span><a href="javascript:void(0);" class="breadcrumbs-blogs">{{ $blog->title }}</a></span>
+                        </div>
+                        <div>
+                            <button id="subscribeBtn" class="btn btn-subscibe rounded-pill">Subscribe</button>
+                            <form id="subscriptionForm" action="{{ route('newsletter.store') }}" method="post"
+                                style="display: none;">
+                                @csrf
+                                <div class="d-flex">
+                                    <input type="email" name="email" class="form-control me-2"
+                                        placeholder="Enter your email" required>
+                                    <button type="submit" class="btn btn-subscibe rounded-pill">Submit</button>
+                                </div>
+                            </form>
 
-    {{-- Blog Updated  --}}
-    <style>
-        .blog_header {
-            background-image: url(../images/buy-category-hero.jpg);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            /* padding: 180px 0px; */
-            height: 360px;
-        }
-
-        .special_character {
-            color: #ae0a46;
-            font-weight: bold;
-        }
-
-        .date_blog {
-            font-family: 'Poppins', sans-serif !important;
-        }
-
-        .blog_feature_description {
-            border-left: 5px solid #ae0a46;
-            border-right: 5px solid #ae0a46;
-            padding: 20px 20px 20px;
-            overflow-wrap: break-word;
-            text-align: justify;
-            background-color: #f7f6f5;
-        }
-
-        .blog_feature_extra {
-            text-align: justify;
-        }
-
-        .tag_btn {
-            background-color: #f7f6f5;
-            color: black;
-            font-size: 13px;
-            padding: 5px;
-        }
-
-        .tag_title {
-            background-color: #ae0a46;
-            color: #fff;
-        }
-
-        .blogins_tags a {
-            color: #808080;
-        }
-    </style>
-
-    <!--======// Header Title //======-->
-    <section class="blog_header" style="background-image: url('{{ asset('storage/' . $blog->image) }}');">
-        <h1 class="text-center text-white pt-5">{{ $blog->badge }}</h1>
-        <div class="container ">
-            <div class="row ">
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-    <!----------End--------->
-    @php
-        $all_tags = $blog->tags;
-        $tags = explode(',', $all_tags);
-        $industry_ids = json_decode($blog->industry_id);
-        $category_ids = json_decode($blog->category_id);
-        $brand_ids = json_decode($blog->brand_id);
-        $solution_ids = json_decode($blog->solution_id);
-        $without_last_tags = array_slice($tags, 0, -1);
-        $last_word = end($tags);
-        // dd($without_last_tags);
-    @endphp
-    <!--======// Home Cart Section //======-->
-    <section class="">
-        <div class="container">
-            <!-- wrapper -->
-            <div class="row m-0">
-                <!-- home card item -->
-                <div class="col-lg-12 col-sm-12 shadow-lg px-5 py-3 text-center  bg-white" style="margin-top: -4.5rem; ">
-                    <h1> {{ $blog->title }}</h1>
-                    <div class="d-flex justify-content-between">
-
-                        <p>By
-                            <span class="special_character">{{ $blog->created_by }}</span>
-                            <span class="date_blog">/ {{ $blog->created_at->format('Y-m-d') }} /
-                            </span>
-                            @if (!empty($blog->tags))
-                                Topics :
-                                @foreach ($without_last_tags as $item)
-                                    <span class="special_character"><i class="fa-regular fa-bookmark"></i>
-                                        {{ $item }} , </span>
-                                @endforeach
-                                <span class="special_character"><i class="fa-regular fa-bookmark"></i> {{ $last_word }}
-                                </span>
+            <div class="row blog-details">
+                <div class="col-lg-12">
+                    <div class="card contents">
+                        <h1>
+                            {{ $blog->title }}
+                        </h1>
+                        <div class="autors">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    {{-- <img width="40" class="img-fluid rounded-circle"
+                                        src="https://www.tenable.com/sites/default/files/pictures/2024-10/Shelly-Raban.jpg"
+                                        alt="" /> --}}
+                                    @if (!empty($blog->created_by))
+                                        <span class="ps-3">By {{ $blog->created_by }}</span>
+                                    @endif
+                                </div>
+                                <div class="blog-create">
+                                    <span>{{ $blog->created_at->format('M d, Y') }}</span>
+                                </div>
+                                <div>
+                                    <div class="bySocial">
+                                        <ul class="social-icon-links pull-right" style="font-size: 1.5rem;">
+                                            {!! Share::page(url('/blogs/' . $blog->slug))->facebook()->twitter()->whatsapp() !!}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog-main-content">
+                            <p>
+                                {{ $blog->header }}
+                            </p>
+                            @if (!empty($blog->image) && file_exists(storage_path('app/public/' . $blog->image)))
+                                <div class="text-center">
+                                    <img class="img-fluid rounded-3" src="{{ asset('storage/' . $blog->image) }}"
+                                        alt="" />
+                                </div>
                             @endif
-                        </p>
-                        <div class="bySocial col-3">
-                            <ul class="social-icon-links pull-right" style="font-size: 1.5rem;">
-                                {!! Share::page(url('/blog/' . $blog->id . '/details'))->facebook()->twitter()->whatsapp() !!}
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- home card end -->
-    <section>
-        <div class="container mt-5 px-2">
-            <div class="row m-0">
-                <div class="col-4 d-flex justify-content-start ms-2" style="border-top: 4px dotted red">
-
-                </div>
-            </div>
-            <div class="row m-0 px-3">
-                <div class="col-12 d-flex justify-content-center border-top-info">
-                    <h4 class="text-center py-4">{!! $blog->header !!}</h4>
-                </div>
-            </div>
-            <div class="row m-0">
-                <div class="col-4 ">
-
-                </div>
-                <div class="col-4 ">
-
-                </div>
-
-                <div class="col-4" style="border-bottom: 4px dotted red">
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <section>
-        <div class="container mt-5 mb-3">
-            <div class="row">
-                <div class="col-lg-9 col-md-9 col-sm-12">
-                    <div class="blog_feature_description">
-                        <p>{!! $blog->short_des !!}</p>
-                    </div>
-                    <div>
-                        <div class="blog_feature_extra py-5">
-                            <p>{!! $blog->long_des !!}</p>
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <div class="callout m-0 p-4 text-center">
-                            <p><strong>{!! $blog->footer !!} </strong></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 ">
-                    {{-- Releted Industry --}}
-                    <div class="border my-3">
-                        <h4 class="text-center py-1 tag_title">Releted Industry</h4>
-                        <div class="d-flex flex-wrap justify-content-center">
-                            <div class="col">
-                                @if ($industry_ids)
-                                    @foreach ($industry_ids as $item)
-                                        @php
-                                            $item = str_replace('"', '', $item);
-                                        @endphp
-                                        <a href=""
-                                            class="btn tag_btn">{{ App\Models\Admin\Industry::where('id', $item)->value('title') }}</a>
-                                    @endforeach
-                                @endif
+                            <div class="blog-sub-content">
+                                <p>
+                                    {!! $blog->short_des !!}
+                                </p>
                             </div>
+                            <div class="blog-title-content">
 
-                        </div>
-                    </div>
-                    {{-- Releted Categories --}}
-                    <div class="border my-3">
-                        <img class="img-fluid" src="https://source.unsplash.com/random/580x360" alt="">
-                    </div>
-                    {{-- Releted Brand --}}
-                    <div class="border my-3">
-                        <h4 class="text-center py-1 tag_title">Releted Categories</h4>
-                        <div class="d-flex flex-wrap justify-content-center">
-                            <div class="col">
-                                @if ($category_ids)
-                                    @foreach ($category_ids as $item)
-                                        @php
-                                            $item = str_replace('"', '', $item);
-                                        @endphp
-                                        <a href=""
-                                            class="btn tag_btn">{{ App\Models\Admin\Category::where('id', $item)->value('title') }}</a>
-                                    @endforeach
-                                @endif
-                            </div>
+                                {!! $blog->long_des !!}
 
-                        </div>
-                    </div>
-                    {{-- Releted Categories --}}
-                    <div class="border my-3">
-                        <h4 class="text-center py-1 tag_title">Releted Brand</h4>
-                        <div class="d-flex flex-wrap justify-content-center">
-                            <div class="col">
-                                @if ($brand_ids)
-                                    @foreach ($brand_ids as $item)
-                                        @php
-                                            $item = str_replace('"', '', $item);
-                                        @endphp
-                                        <a href=""
-                                            class="btn tag_btn">{{ App\Models\Admin\Brand::where('id', $item)->value('title') }}</a>
-                                    @endforeach
-                                @endif
-                            </div>
-
-                        </div>
-                    </div>
-                    {{-- Add Image --}}
-                    <div class="border my-3">
-                        <img class="img-fluid" src="https://source.unsplash.com/random/480x360" alt="">
-                    </div>
-
-                    {{-- Releted Solution --}}
-                    <div class="border my-3 ">
-                        <h4 class="text-center py-1 tag_title">Releted Solution</h4>
-                        <div class="d-flex flex-wrap justify-content-center">
-                            <div class="col">
-                                @if ($solution_ids)
-                                    @foreach ($solution_ids as $item)
-                                        @php
-                                            $item = str_replace('"', '', $item);
-                                            $data = App\Models\Admin\SolutionDetail::where('id', $item)->first([
-                                                'name',
-                                                'slug',
-                                            ]);
-                                        @endphp
-                                        @if ($data)
-                                            <a href="{{ route('solution.details', $data->slug) }}"
-                                                class="btn tag_btn">{{ $data->name }}</a>
-                                        @endif
-                                    @endforeach
-                                @endif
+                                <div class="my-5 p-4 text-center"
+                                    style="border-top: 1px dotted #f00; border-bottom: 1px dotted #f00;">
+                                    <p><strong>{!! $blog->footer !!} </strong></p>
+                                </div>
 
                             </div>
-
                         </div>
-                    </div>
-                    {{-- Add Image --}}
-                    <div class="border my-3">
-                        <img class="img-fluid" src="https://source.unsplash.com/random/680x360" alt="">
-                    </div>
-                    {{-- Releted Solution --}}
-                    @if (!empty($blog->tags))
-                        <div class="border my-3 ">
-                            <h4 class="text-center py-1 tag_title">TAGS</h4>
-                            <div class="text-start p-2">
-                                @foreach ($tags as $item)
-                                    <a href="" class=" text-black">#{{ $item }}</a>
+                        <div class="d-flex justify-content-center">
+                            <div class="bySocial">
+                                <ul class="social-icon-links pull-right" style="font-size: 1.5rem;">
+                                    {!! Share::page(url('/blogs/' . $blog->slug))->facebook()->twitter()->whatsapp() !!}
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Pagination -->
+                        {{-- <div style="background-color: #408bea1a" class="w-75 mx-auto p-4 my-5 rounded-3 autor-boxes">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <img width="100" class="img-fluid rounded-3"
+                                        src="https://staticfiles.acronis.com/images/content/4001b7fac80a9a9ed6a3a01dec591360.webp"
+                                        alt="" />
+                                </div>
+                                <div class="ps-4">
+                                    <p class="mb-0">Author</p>
+                                    <h2 class="mb-0">{{ $blog->created_by }}</h2>
+                                    <p class="mb-0">Content Marketing Creator, Cybersecurity</p>
+                                </div>
+                            </div>
+                        </div> --}}
+                        <div class="pt-5">
+                            <div class="d-flex justify-content-between align-items-center single-pagination">
+                                @if ($previous)
+                                    <a class="text-start" href="{{ route('blog.details', $previous->slug) }}">
+                                        <p>{{ Str::limit($previous->title, 40) }}</p>
+                                        <p>
+                                            <i class="fas fa-arrow-left"></i>
+                                            Previous Post
+                                        </p>
+                                    </a>
+                                @else
+                                    <span></span>
+                                @endif
+
+                                @if ($next)
+                                    <a class="text-end" href="{{ route('blog.details', $next->slug) }}">
+                                        <p>{{ Str::limit($next->title, 40) }}</p>
+                                        <p>
+                                            Next Post
+                                            <i class="fas fa-arrow-right"></i>
+                                        </p>
+                                    </a>
+                                @else
+                                    <span></span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                        <div class="pt-5">
+                            <div class="tags tags_bottom" data-v-5bdddea5="">
+                                @php
+                                    $tags = array_filter(array_map('trim', explode(',', $blog->tags)));
+                                @endphp
+                                @foreach ($tags as $tag)
+                                    <a target="_self" href="javascript:void(0)" tabindex="0"
+                                        class="a-link tag a-link_type_regular a-link_size_body a-link_glyph_right"
+                                        data-v-5bdddea5="">
+                                        <span class="a-link__content">
+                                            <span class="">{{ $tag }}</span>
+                                        </span>
+                                    </a>
                                 @endforeach
                             </div>
                         </div>
-                    @endif
+                        <div class="mt-5">
+                            <div class="row w-75 mx-auto subscribe-boxes align-items-center">
+                                <div class="col-lg-6">
+                                    <h3>Stay up-to-date</h3>
+                                    <p>Subscribe now for tips, tools and news.</p>
+                                </div>
+                                <div class="col-lg-6 p-4 rounded-3" style="background-color: #dcecfa">
+                                    <div>
+                                        <form action="{{ route('newsletter.store') }}" method="post">
+                                            @csrf
+                                            <div>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control rounded-2 py-2"
+                                                        placeholder="Email Address" aria-label="Email Address"
+                                                        aria-describedby="button-addon2" name="email" />
+                                                    <button class="btn btn-outline-secondary rounded-2 ms-2" type="button"
+                                                        id="button-addon2">
+                                                        Subscribe
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="1"
+                                                    name="privacy_policy" id="flexCheckDefault" required />
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    i agree to the
+                                                    <a href="{{ route('privacy.policy') }}">NGEN IT Privacy Statement</a>
+                                                </label>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </main>
+    <section style="background-color: #f5f8fc">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="fw-bold">Related Blogs</h2>
+                </div>
+            </div>
+            <div class="row pt-4">
+                @foreach ($related_blogs as $related_blog)
+                    <div class="col-lg-3 mb-2">
+                        <div class="card recent-blogs">
+                            @if (!empty($related_blog->image) && file_exists(storage_path('app/public/' . $related_blog->image)))
+                                <img class="card-img-top" height="180px" width="100%"
+                                    src="{{ asset('storage/' . $related_blog->image) }}"
+                                    alt="{{ $related_blog->title }}">
+                            @endif
+                            <div class="card-body" style="height: 8rem; padding: 8px 15px;">
+                                <p class="card-title date">
+                                    {{ $related_blog->created_at ? $related_blog->created_at->format('F d, Y') : '' }}</p>
+                                <h6 class="card-title recent-items">
+                                    <a href="{{ route('blog.details', $related_blog->slug) }}" class="text-dark">
+                                        {{ Str::limit($related_blog->title, 60) }}
+                                    </a>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </section>
-
-
-
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const subscribeBtn = document.getElementById("subscribeBtn");
+            const subscriptionForm = document.getElementById("subscriptionForm");
+
+            if (subscribeBtn && subscriptionForm) {
+                subscribeBtn.addEventListener("click", function() {
+                    this.style.display = "none"; // Hide the button
+                    subscriptionForm.style.display = "block"; // Show the form
+                });
+            }
+        });
+    </script>
+@endpush

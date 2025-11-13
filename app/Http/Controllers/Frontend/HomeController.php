@@ -637,7 +637,7 @@ class HomeController extends Controller
     public function StoryDetails($slug)
     {
         $data['blog'] = ClientStory::where('slug', $slug)->firstOrFail();
-        $data['storys'] = ClientStory::inRandomOrder()->limit(4)->get();
+        $data['storys'] = ClientStory::inRandomOrder()->where('id', '!=', $data['blog']->id)->limit(4)->get();
         return view('frontend.pages.story.story_details', $data);
     }
 
@@ -646,23 +646,115 @@ class HomeController extends Controller
 
     public function AllBlog()
     {
-        $blogs = DB::table('blogs')->all();
-        $data['tag'] = DB::table('blogs')->pluck('tags');
-        $data['tag_items'] = json_decode($data['tag'], true);
-        $data['featured_storys'] = $blogs->where('featured', '=', '1')->inRandomOrder()->limit(4)->get();
-        $data['client_storys'] = Blog::orderBy('id', 'Desc')->paginate(3);
-        $data['industries'] = Industry::latest()->select('id', 'title')->limit(6)->get();
-        $data['categories'] = Category::latest()->select('id', 'title', 'slug')->limit(6)->get();
-        $data['brands'] = Brand::latest()->select('id', 'title', 'slug')->where('status', 'active')->limit(6)->get();
-        return view('frontend.pages.blogs.blogs_all', $data);
+        // Initialize an array to track used blog IDs
+        $usedBlogIds = [];
+
+        // Base blog query with necessary columns
+        $blogsQuery = Blog::select('id', 'title', 'slug', 'tags', 'header', 'featured', 'created_at', 'image', 'short_des');
+
+        // --- 1. Featured stories (limit 5) ---
+        $featured_storys = (clone $blogsQuery)
+            ->where('featured', 1)
+            ->inRandomOrder()
+            ->limit(5)
+            ->get();
+
+        // Track IDs of featured stories
+        $usedBlogIds = $featured_storys->pluck('id')->toArray();
+
+        // --- 2. Latest blogs (paginated) excluding already used blogs ---
+        $latestblogs = (clone $blogsQuery)
+            ->whereNotIn('id', $usedBlogIds)
+            ->latest('id')
+            ->paginate(6);
+
+        // Add paginated IDs to used list
+        $usedBlogIds = array_merge($usedBlogIds, $latestblogs->pluck('id')->toArray());
+
+        // --- 3. Client stories (limit 4) excluding already used blogs ---
+        $client_storys = ClientStory::select('id', 'title', 'slug', 'image')
+            ->latest('id')
+            ->inRandomOrder()
+            ->limit(4)
+            ->get();
+
+        $usedBlogIds = array_merge($usedBlogIds, $client_storys->pluck('id')->toArray());
+
+        // --- 4. Tech glossys (limit 4) excluding already used blogs ---
+        $tech_glossys = TechGlossy::select('id', 'title', 'slug', 'image')
+            ->latest('id')
+            ->inRandomOrder()
+            ->limit(4)
+            ->get();
+
+        $usedBlogIds = array_merge($usedBlogIds, $tech_glossys->pluck('id')->toArray());
+
+        // --- 5. Categories with blogs (limit 3 per category) excluding already used blogs ---
+        $categories = Category::where('status', 'active')
+            ->select('id', 'title', 'slug')
+            ->get();
+
+        // Fetch all blogs for categories in one query to avoid N+1
+        $categoryIds = $categories->pluck('id')->map(fn($id) => (string)$id)->toArray();
+
+        $blogsByCategory = Blog::select('id', 'title', 'slug', 'image', 'short_des', 'category_id')
+            ->whereNotIn('id', $usedBlogIds)
+            ->where(function ($query) use ($categoryIds) {
+                foreach ($categoryIds as $id) {
+                    $query->orWhereRaw('JSON_CONTAINS(category_id, ?)', [json_encode($id)]);
+                }
+            })
+            ->inRandomOrder()
+            ->get();
+
+        // Assign blogs to categories
+        $categories->transform(function ($category) use ($blogsByCategory, &$usedBlogIds) {
+            $category->blogs = $blogsByCategory->filter(function ($blog) use ($category) {
+                // Ensure $blog->category_id is an array
+                $categoryIds = is_array($blog->category_id) ? $blog->category_id : json_decode($blog->category_id, true);
+                return in_array($category->id, $categoryIds);
+            })->take(3);
+
+            // Track used blog IDs
+            $usedBlogIds = array_merge($usedBlogIds, $category->blogs->pluck('id')->toArray());
+
+            return $category;
+        });
+
+        return view('frontend.pages.blogs.blogs_all', compact(
+            'categories',
+            'featured_storys',
+            'latestblogs',
+            'client_storys',
+            'tech_glossys'
+        ));
     }
 
-    public function BlogDetails($id)
+
+
+    public function BlogDetails($slug)
     {
-        $data['blog'] = Blog::where('id', $id)->firstOrFail();
-        $data['storys'] = Blog::inRandomOrder()->limit(4)->get();
-        return view('frontend.pages.blogs.blog_details', $data);
+        $blog = Blog::where('slug', $slug)->firstOrFail();
+
+        // Get previous and next posts (by ID)
+        $previous = Blog::where('id', '<', $blog->id)
+            ->orderBy('id', 'desc')
+            ->select('id', 'slug', 'title')
+            ->first();
+
+        $next = Blog::where('id', '>', $blog->id)
+            ->orderBy('id', 'asc')
+            ->select('id', 'slug', 'title')
+            ->first();
+
+        $related_blogs = Blog::inRandomOrder()
+            ->where('id', '!=', $blog->id)
+            ->limit(4)
+            ->get(['id', 'title', 'slug', 'image']);
+
+        return view('frontend.pages.blogs.blog_details', compact('blog', 'related_blogs', 'previous', 'next'));
     }
+
 
     //Tech Glossy All Controller
 
@@ -678,12 +770,12 @@ class HomeController extends Controller
         return view('frontend.pages.tech.techglossy_all', $data);
     }
 
-    public function TechGlossyDetails($id)
+    public function TechGlossyDetails($slug)
     {
-        $data['techglossy'] = TechGlossy::where('id', $id)->first();
+        $data['techglossy'] = TechGlossy::where('slug', $slug)->first();
         //$data['industry'] = Industry::where('id',$id)->first();
         //$data['industry_page'] = IndustryPage::where('industry_id', $data['industry']->id)->get();
-        $data['storys'] = TechGlossy::inRandomOrder()->limit(7)->get();
+        $data['storys'] = TechGlossy::inRandomOrder()->where('id', '!=', $data['techglossy']->id)->limit(7)->get();
         return view('frontend.pages.tech.techglossy_details', $data);
     }
 

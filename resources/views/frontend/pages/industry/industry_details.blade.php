@@ -299,7 +299,7 @@
                     <div class="col-lg-6 col-sm-12 account_benefits_section">
                         <h5>{{ $techglossy->badge }}</h5>
                         <p>{{ $techglossy->title }}</p>
-                        <a href="{{ route('techglossy.details', $techglossy->id) }}" class="common_button">Read More</a>
+                        <a href="{{ route('techglossy.details', $techglossy->slug) }}" class="common_button">Read More</a>
                     </div>
                 </div>
             </div>
@@ -428,7 +428,7 @@
                     @foreach ($storys as $item)
                         <div class="col-lg-3 col-md-6 col-sm-12">
                             <div class="related-item">
-                                <a href="{{ route('blog.details', $item->id) }}">
+                                <a href="{{ route('blog.details', $item->slug) }}">
                                     <img class="img-fluid" src="{{ asset('storage/' . $item->image) }}" alt=""
                                         style="height:140px; ">
                                     <h4>{{ $item->badge }}</h6>

@@ -341,7 +341,7 @@
                                             <p class="mb-1">{{ $story1->header }}</p>
                                             <p>{!! Str::words(strip_tags($story1->short_des), 45) !!}</p>
                                         </div>
-                                        <a href="{{ route('blog.details', $story1->id) }}" class="icon-btns"><span
+                                        <a href="{{ route('blog.details', $story1->slug) }}" class="icon-btns"><span
                                                 class="fw-bold">Read
                                                 Details</span> <i class="fa-solid fa-chevron-right"></i></a>
                                     </div>
@@ -365,7 +365,7 @@
                                             <p class="mb-1">{{ $story2->header }}</p>
                                             <p>{!! Str::words(strip_tags($story2->short_des), 45) !!}</p>
                                         </div>
-                                        <a href="{{ route('blog.details', $story2->id) }}" class="icon-btns"><span
+                                        <a href="{{ route('blog.details', $story2->slug) }}" class="icon-btns"><span
                                                 class="fw-bold">Read
                                                 Details</span> <i class="fa-solid fa-chevron-right"></i></a>
                                     </div>
@@ -389,7 +389,7 @@
                                             <p class="mb-1">{{ $story3->header }}</p>
                                             <p>{!! Str::words(strip_tags($story3->short_des), 45) !!}</p>
                                         </div>
-                                        <a href="{{ route('story.details', $story3->id) }}" class="icon-btns"><span
+                                        <a href="{{ route('story.details', $story3->slug) }}" class="icon-btns"><span
                                                 class="fw-bold">Read
                                                 Details</span> <i class="fa-solid fa-chevron-right"></i></a>
                                     </div>
@@ -413,7 +413,7 @@
                                             <p class="mb-1">{{ $story4->header }}</p>
                                             <p>{!! Str::words(strip_tags($story4->short_des), 50) !!}</p>
                                         </div>
-                                        <a href="{{ route('story.details', $story4->id) }}" class="icon-btns">
+                                        <a href="{{ route('story.details', $story4->slug) }}" class="icon-btns">
                                             <span class="fw-bold">Read Details</span>
                                             <i class="fa-solid fa-chevron-right"></i>
                                         </a>

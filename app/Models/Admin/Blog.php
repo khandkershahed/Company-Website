@@ -9,6 +9,7 @@ class Blog extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $slugSourceColumn = 'title';
     protected $casts = [
         'category_id' => 'array',
         'brand_id'    => 'array',

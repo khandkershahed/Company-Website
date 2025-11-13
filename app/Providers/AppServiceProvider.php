@@ -43,8 +43,22 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Share default nulls
-        $viewVars = [
+        // 🧭 Use Bootstrap for pagination
+        Paginator::useBootstrap();
+
+        // 🛡️ Force HTTPS in production
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
+
+        // ✂️ Custom Blade directive (word limiter)
+        Blade::directive('limit_words', function ($expression) {
+            [$string, $limit] = explode(',', $expression);
+            return "<?php echo implode(' ', array_slice(explode(' ', $string), 0, $limit)); ?>";
+        });
+
+        // ⚙️ Shared default variables to avoid undefined notices
+        $sharedVars = [
             'all_employees',
             'limit_words',
             'setting',
@@ -56,49 +70,35 @@ class AppServiceProvider extends ServiceProvider
             'header_blog',
             'header_techglossy'
         ];
-        foreach ($viewVars as $var) {
+        foreach ($sharedVars as $var) {
             View::share($var, null);
         }
 
-        // Force HTTPS in production
-        if (app()->environment('production')) {
-            URL::forceScheme('https');
-        }
-
-        // Custom Blade directive (defined only once)
-        Blade::directive('limit_words', function ($expression) {
-            [$string, $limit] = explode(',', $expression);
-            return "<?php echo implode(' ', array_slice(explode(' ', $string), 0, $limit)); ?>";
-        });
-
-        // Use Bootstrap pagination
-        Paginator::useBootstrap();
+        // 🧩 Cache duration (1 hour)
+        $cacheDuration = 60 * 60;
 
         try {
-            // Combine table checks
-            $requiredTables = [
+            // ✅ Check which tables exist (to avoid breaking on missing migrations)
+            $tables = [
                 'sites',
                 'industries',
                 'solution_details',
                 'categories',
                 'brands',
                 'features',
-                'blog',
-                'techglossy',
+                'blogs',
+                'tech_glossies',
                 'users',
                 'products'
             ];
+            $existing = collect($tables)->filter(fn($t) => Schema::hasTable($t))->flip();
 
-            $existingTables = collect($requiredTables)->filter(fn($table) => Schema::hasTable($table))->flip();
-
-            // Helper function to cache shared data
-            $cacheDuration = 60 * 60; // 1 hour
-
-            if ($existingTables->has('sites')) {
+            // ✅ Share global cached data only for existing tables
+            if ($existing->has('sites')) {
                 View::share('setting', Cache::remember('site_setting', $cacheDuration, fn() => Site::first()));
             }
 
-            if ($existingTables->has('industries')) {
+            if ($existing->has('industries')) {
                 View::share('header_industrys', Cache::remember(
                     'header_industries',
                     $cacheDuration,
@@ -107,16 +107,16 @@ class AppServiceProvider extends ServiceProvider
                 ));
             }
 
-            if ($existingTables->has('solution_details')) {
+            if ($existing->has('solution_details')) {
                 View::share('header_solutions', Cache::remember(
                     'header_solutions',
                     $cacheDuration,
                     fn() =>
-                    SolutionDetail::inRandomOrder()->where('status', 'active')->limit(4)->get(['id', 'name', 'slug'])
+                    SolutionDetail::where('status', 'active')->inRandomOrder()->limit(4)->get(['id', 'name', 'slug'])
                 ));
             }
 
-            if ($existingTables->has('categories')) {
+            if ($existing->has('categories')) {
                 View::share('header_categories', Cache::remember(
                     'header_categories',
                     $cacheDuration,
@@ -126,43 +126,69 @@ class AppServiceProvider extends ServiceProvider
                 ));
             }
 
-            if ($existingTables->has('brands')) {
+            if ($existing->has('brands')) {
                 View::share('header_brands', Cache::remember(
                     'header_brands',
                     $cacheDuration,
                     fn() =>
-                    Brand::with('brandPage')->inRandomOrder()->limit(20)->get(['id', 'slug', 'title'])
+                    Brand::with('brandPage')->where('status', 'active')
+                        ->inRandomOrder()->limit(20)->get(['id', 'slug', 'title'])
                 ));
             }
 
-            if ($existingTables->has('features')) {
+            if ($existing->has('features')) {
                 View::share('header_features', Cache::remember(
                     'header_features',
                     $cacheDuration,
                     fn() =>
-                    Feature::inRandomOrder()->limit(4)->get(['id', 'slug', 'title', 'image', 'created_at', 'badge'])
+                    Feature::inRandomOrder()->limit(4)
+                        ->get(['id', 'slug', 'title', 'image', 'created_at', 'badge'])
                 ));
             }
 
-            if ($existingTables->has('blog')) {
+            if ($existing->has('blogs')) {
                 View::share('header_blog', Cache::remember(
                     'header_blog',
                     $cacheDuration,
                     fn() =>
-                    Blog::where('featured', '1')->inRandomOrder()->first(['id', 'badge', 'title', 'image', 'created_at', 'created_by'])
+                    Blog::where('featured', '1')->inRandomOrder()
+                        ->first(['id', 'slug', 'badge', 'title', 'image', 'created_at', 'created_by'])
                 ));
             }
 
-            if ($existingTables->has('techglossy')) {
+            if ($existing->has('tech_glossies')) {
                 View::share('header_techglossy', Cache::remember(
                     'header_techglossy',
                     $cacheDuration,
-                    fn() =>
-                    TechGlossy::where('featured', '1')->inRandomOrder()->first(['id', 'badge', 'title', 'image', 'created_at', 'created_by'])
+                    fn() =>TechGlossy::where('featured', '1')->inRandomOrder()
+                        ->first(['id', 'badge', 'slug', 'title', 'image', 'created_at', 'created_by'])
                 ));
             }
 
-            $months = [
+            if ($existing->has('users')) {
+                View::share('all_employees', Cache::remember('all_employees', $cacheDuration, fn() => User::all()));
+            }
+
+            if ($existing->has('products')) {
+                View::share('productCount', Cache::remember(
+                    'productCount',
+                    $cacheDuration,
+                    fn() =>
+                    Product::where('product_status', 'product')->count()
+                ));
+            }
+
+            if ($existing->has('brands')) {
+                View::share('brandCount', Cache::remember(
+                    'brandCount',
+                    $cacheDuration,
+                    fn() =>
+                    Brand::count()
+                ));
+            }
+
+            // 🗓️ Shared static data (months, sectors)
+            View::share('months', [
                 'January',
                 'February',
                 'March',
@@ -174,17 +200,23 @@ class AppServiceProvider extends ServiceProvider
                 'September',
                 'October',
                 'November',
-                'December',
-            ];
+                'December'
+            ]);
 
-            View::share('months', $months);
+            View::share('sectors', [
+                'Banks',
+                'Group of Companies',
+                'Small & Medium',
+                'NGOs',
+                'Government',
+                'Education',
+                'Enterprises',
+                'Garments',
+                'Manufacturing'
+            ]);
 
-            $sectors = ['Banks', 'Group of Companies', 'Small & Medium', 'NGOs', 'Government', 'Education', 'Enterprises', 'Garments', 'Manufacturing'];
-
-            View::share('sectors', $sectors);
-
-            // Global view data
-            if ($existingTables->has('users') && $existingTables->has('products')) {
+            // 🌍 Load additional global data service if relevant tables exist
+            if ($existing->has('users') && $existing->has('products')) {
                 $globalData = Cache::remember(
                     'global_view_data',
                     $cacheDuration,
@@ -195,8 +227,8 @@ class AppServiceProvider extends ServiceProvider
                     View::share($key, $value);
                 }
             }
-        } catch (\Exception $e) {
-            // Log::error('AppServiceProvider boot error: ' . $e->getMessage());
+        } catch (\Throwable $e) {
+            \Log::error('AppServiceProvider boot error: ' . $e->getMessage());
         }
     }
 }

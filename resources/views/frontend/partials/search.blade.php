@@ -120,7 +120,7 @@
                         <h5 class="pb-2 fw-bold border-bottom">Blogs</h5>
                         @foreach ($blogs as $blog)
                             <h6>
-                                <a class="search_titles"href="{{ route('blog.details', $blog->id) }}">
+                                <a class="search_titles"href="{{ route('blog.details', $blog->slug) }}">
                                     {{-- {{ $blog->title }} --}}
                                     {{-- {{ Illuminate\Support\Str::limit($blog->title, $limit = 11, $end = '...') }} --}}
                                     {{ implode(' ', array_slice(str_word_count($blog->title, 1), 0, 9)) }}...
@@ -145,7 +145,7 @@
                     <div class="mt-2 mb-4 row">
                         <h5 class="pb-2 fw-bold border-bottom">Tech Glossary</h5>
                         @foreach ($tech_glossys as $tech_glossy)
-                            <h6><a class="search_titles" href="{{ route('techglossy.details', $tech_glossy->id) }}">
+                            <h6><a class="search_titles" href="{{ route('techglossy.details', $tech_glossy->slug) }}">
                                     {{-- {{ $tech_glossy->title }} --}}
                                     {{ implode(' ', array_slice(str_word_count($tech_glossy->title, 1), 0, 9)) }}...
                                 </a>

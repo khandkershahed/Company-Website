@@ -851,7 +851,7 @@
                                                 </p>
 
                                                 <p class="mb-0 hover-2-description text-uppercase">
-                                                    <a href="{{ route('techglossy.details', $tech_glossy1->id) }}"
+                                                    <a href="{{ route('techglossy.details', $tech_glossy1->slug) }}"
                                                         class="text-white">read more</a>
                                                 </p>
                                             </div>
@@ -873,7 +873,7 @@
                                                 </p>
 
                                                 <p class="mb-0 hover-2-description text-uppercase">
-                                                    <a href="{{ route('techglossy.details', $tech_glossy2->id) }}"
+                                                    <a href="{{ route('techglossy.details', $tech_glossy2->slug) }}"
                                                         class="text-white">read more</a>
                                                 </p>
                                             </div>
@@ -896,7 +896,7 @@
                                                 </span>
                                             </p>
                                             <p class="mb-0 hover-4-description text-uppercase">
-                                                <a href="{{ route('techglossy.details', $tech_glossy3->id) }}"
+                                                <a href="{{ route('techglossy.details', $tech_glossy3->slug) }}"
                                                     class="text-white">read more</a>
                                             </p>
                                         </div>
@@ -916,7 +916,7 @@
                         @if ($blogs)
                             @foreach ($blogs as $blog)
                                 <div class="pt-2 pb-3">
-                                    <a href="{{ route('blog.details', $blog->id) }}">
+                                    <a href="{{ route('blog.details', $blog->slug) }}">
                                         <h6 class="pb-2 mb-0 block_blog_badge">{{ $blog->badge }}</h6>
                                         <p class="mb-0">{{ Str::words($blog->title, 8) }}</p>
                                     </a>

@@ -28,7 +28,7 @@
                         <div class="col-lg-3 px-0 mx-3 mb-3">
                             <div class="container-area-brand">
                                 <div class="content-brand">
-                                    <a href="{{ route('techglossy.details', $techglossy->id) }}" target="_blank">
+                                    <a href="{{ route('techglossy.details', $techglossy->slug) }}" target="_blank">
                                         <div class="content-overlay-brand"></div>
                                         <div>
                                             {{-- <img class="content-image" src="{{ asset('storage/' . $techglossy->image) }}"
@@ -48,7 +48,7 @@
                                             <p>{!! $techglossy->header !!}</p>
                                            </div>
                                             <div class="description-footer-brand inline-center text-white pt-2">
-                                                <a href="{{ route('techglossy.details', $techglossy->id) }}"
+                                                <a href="{{ route('techglossy.details', $techglossy->slug) }}"
                                                     class="link text-white"><i class="fa fa-plus-circle me-2"></i>More
                                                     information</a>
                                             </div>
@@ -79,7 +79,7 @@
                         <div class="col-lg-3 px-0 mx-3 mb-3 content-sections">
                             <div class="container-area-brand">
                                 <div class="content-brand">
-                                    <a href="{{ route('blog.details', $blog->id) }}" target="_blank">
+                                    <a href="{{ route('blog.details', $blog->slug) }}" target="_blank">
                                         <div class="content-overlay-brand"></div>
                                         <div>
                                             {{-- <img class="content-image" src="{{ asset('storage/' . $blog->image) }}"
@@ -99,7 +99,7 @@
                                                 <p>{!! $blog->header !!}</p>
                                             </div>
                                             <div class="description-footer-brand inline-center text-white pt-2">
-                                                <a href="{{ route('blog.details', $blog->id) }}" class="link text-white"><i
+                                                <a href="{{ route('blog.details', $blog->slug) }}" class="link text-white"><i
                                                         class="fa fa-plus-circle me-2"></i>More information</a>
                                             </div>
 
@@ -113,7 +113,7 @@
                         <div class="col-lg-3 px-0 mx-3 mb-3">
                             <div class="container-area-brand">
                                 <div class="content-brand">
-                                    <a href="{{ route('story.details', $clientStory->id) }}" target="_blank">
+                                    <a href="{{ route('story.details', $clientStory->slug) }}" target="_blank">
                                         <div class="content-overlay-brand"></div>
                                         <div>
                                             <img class="img-fluid site-main-logo-contents"
@@ -129,7 +129,7 @@
                                             <hr class="p-1 pt-1 m-0 text-white">
                                             <p>{!! $clientStory->header !!}</p>
                                             <div class="description-footer-brand inline-center text-white pt-2">
-                                                <a href="{{ route('story.details', $clientStory->id) }}"
+                                                <a href="{{ route('story.details', $clientStory->slug) }}"
                                                     class="link text-white"><i class="fa fa-plus-circle me-2"></i>More
                                                     information</a>
                                             </div>
