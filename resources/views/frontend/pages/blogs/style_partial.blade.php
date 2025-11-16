@@ -9,7 +9,8 @@
         border: 1px solid transparent;
         padding: 0;
         border-radius: 60px;
-        font-size: 11px;
+        font-size: 0.9em;
+        ;
         font-weight: 400;
         color: var(--white);
         background: transparent;
@@ -24,17 +25,20 @@
         border: 1px solid transparent;
         padding: 0;
         border-radius: 60px;
-        font-size: 11px;
+        font-size: 0.9em;
+        ;
         font-weight: 400;
         color: var(--white);
         background: transparent;
+        margin-bottom: 5px;
     }
 
     .nav-tabs .nav-item .nav-link:hover {
         border: 1px solid transparent;
         padding: 0;
         border-radius: 60px;
-        font-size: 11px;
+        font-size: 0.9em;
+        ;
         font-weight: 400;
         color: var(--white);
         background: transparent;
@@ -70,33 +74,33 @@
     }
 
     .banner-content {
-        border-left: 3px solid #00a687;
-        border-left: 3px solid #00a687;
+        border-left: 3px solid #ae0a46;
+        border-left: 3px solid #ae0a46;
         background: none;
         border: 0;
     }
 
     .search-inputs:focus {
         box-shadow: none;
-        border-color: #00a687;
+        border-color: #ae0a46;
     }
 
     .search-btn {
-        border: 1px solid #00a687;
+        border: 1px solid #ae0a46;
         border-right: 1px solid white !important;
     }
 
     .search-inputs {
-        border: 1px solid #00a687;
+        border: 1px solid #ae0a46;
         border-radius: 0;
     }
 
     .blog-color {
-        color: #00a687;
+        color: #ae0a46;
     }
 
     .blog-bg-color {
-        background-color: #00a687 !important;
+        background-color: #ae0a46 !important;
     }
 
     .blogs-icons {
@@ -222,8 +226,8 @@
     }
 
     .blog-footer {
-        border-top: 1px solid #00a687;
-        border-bottom: 1px solid #00a687;
+        border-top: 1px solid #ae0a46;
+        border-bottom: 1px solid #ae0a46;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -234,7 +238,7 @@
     }
 
     .blog-more:hover {
-        border-bottom: 2px solid #00a687;
+        border-bottom: 2px solid #ae0a46;
     }
 
     .blog-list-content p {
@@ -286,7 +290,7 @@
     }
 
     .blog-link-icons {
-        background-color: #00a687;
+        background-color: #ae0a46;
     }
 
     .research-alert-box {
@@ -570,4 +574,28 @@
     }
 
     /* Blogs End*/
+    .hover-scale {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hover-scale:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .overlay {
+        transition: all 0.3s ease;
+    }
+
+    .card:hover .overlay {
+        opacity: 1;
+    }
+
+    .text-truncate a {
+        display: inline-block;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 </style>
