@@ -654,7 +654,7 @@ class HomeController extends Controller
 
         // --- 1. Featured stories (limit 5) ---
         $featured_storys = (clone $blogsQuery)
-            ->where('featured', 1)
+            ->where('featured', '1')
             ->inRandomOrder()
             ->limit(5)
             ->get();
@@ -713,7 +713,7 @@ class HomeController extends Controller
                 // Ensure $blog->category_id is an array
                 $categoryIds = is_array($blog->category_id) ? $blog->category_id : json_decode($blog->category_id, true);
                 return in_array($category->id, $categoryIds);
-            })->take(3);
+            })->take(2);
 
             // Track used blog IDs
             $usedBlogIds = array_merge($usedBlogIds, $category->blogs->pluck('id')->toArray());

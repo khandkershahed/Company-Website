@@ -4,47 +4,47 @@
 <div>
     <section class="blogs-banners" style="background-image: url('{{ asset('frontend/images/blog.jpg') }}');">
 
-    </section>
-    @if ($featured_storys->count())
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="bg-white shadow-sm card research-alert-box">
-                        <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-end" style="padding: 5px 1.5rem;">
-                                <h2 class="mb-0 fw-bold">Recent Blogs</h2>
-                                <div class="research-page__research-alerts-header-threat d-flex">
-                                    Today's Landscape
-                                    <div style="margin-top: -12px" class="ps-2">
-                                        <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 31.998 29.996">
-                                            <g id="Group_7171" data-name="Group 7171"
-                                                transform="translate(0.002 -1.004)">
-                                                <path id="Path_12136" data-name="Path 12136"
-                                                    d="M31.633,26.522,18.683,2.6a3.053,3.053,0,0,0-5.366,0L.367,26.522A3,3,0,0,0,.43,29.514,3.024,3.024,0,0,0,3.05,31h25.9a3.038,3.038,0,0,0,2.683-4.478ZM17.848,11l-.714,10h-2L14.42,11ZM16.134,27a1.778,1.778,0,1,1,1.778-1.778A1.778,1.778,0,0,1,16.134,27Z"
-                                                    fill="#ff8e3d" />
-                                            </g>
-                                        </svg>
+        </section>
+        @if ($featured_storys->count())
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="bg-white shadow-sm card research-alert-box">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-end" style="padding: 5px 1.5rem;">
+                                        <h2 class="mb-0 fw-bold">Featured Blogs</h2>
+                                        <div class="research-page__research-alerts-header-threat d-flex">
+                                            {{-- Today's Landscape
+                                            <div style="margin-top: -12px" class="ps-2">
+                                                <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 31.998 29.996">
+                                                    <g id="Group_7171" data-name="Group 7171"
+                                                        transform="translate(0.002 -1.004)">
+                                                        <path id="Path_12136" data-name="Path 12136"
+                                                            d="M31.633,26.522,18.683,2.6a3.053,3.053,0,0,0-5.366,0L.367,26.522A3,3,0,0,0,.43,29.514,3.024,3.024,0,0,0,3.05,31h25.9a3.038,3.038,0,0,0,2.683-4.478ZM17.848,11l-.714,10h-2L14.42,11ZM16.134,27a1.778,1.778,0,1,1,1.778-1.778A1.778,1.778,0,0,1,16.134,27Z"
+                                                            fill="#ff8e3d" />
+                                                    </g>
+                                                </svg>
+                                            </div> --}}
+                                        </div>
                                     </div>
+                                    <ul class="research-page__research-alerts-list" style="padding: 5px 1.5rem;">
+                                        @foreach ($featured_storys as $featured_story)
+                                            <li>
+                                                <a href="{{ route('blog.details', $featured_story->slug) }}" class="text-muted">
+                                                    {{ $featured_story->title }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                             </div>
-                            <ul class="research-page__research-alerts-list" style="padding: 5px 1.5rem;">
-                                @foreach ($featured_storys as $featured_story)
-                                <li>
-                                    <a href="{{ route('blog.details', $featured_story->slug) }}" class="text-muted">
-                                        {{ $featured_story->title }}
-                                    </a>
-                                </li>
-                                @endforeach
-                            </ul>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-    @endif
+            </section>
+        @endif
 
     <section>
         <div class="container">
@@ -84,39 +84,39 @@
                                     id="tab-{{ $category->slug }}" role="tabpanel"
                                     aria-labelledby="tab-{{ $category->slug }}-tab">
 
-                                    @if ($category->blogs->count())
-                                    @foreach ($category->blogs as $blog)
-                                    <div class="mb-4 row ps-0 ps-lg-5">
-                                        <div class="col-lg-6">
-                                            <div>
-                                                <img class="img-fluid rounded-2"
-                                                    src="{{ asset($blog->image ?? 'frontend/img/default.jpg') }}"
-                                                    alt="{{ $blog->title }}">
-                                            </div>
+                                            @if ($category->blogs->count())
+                                                @foreach ($category->blogs as $blog)
+                                                    <div class="mb-4 row ps-0 ps-lg-5">
+                                                        <div class="col-lg-6">
+                                                            <div>
+                                                                <img class="img-fluid rounded-2"
+                                                                    src="{{ asset("storage/{$blog->image}" ?? 'frontend/img/default.jpg') }}"
+                                                                    alt="{{ $blog->title }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <p class="pt-4 ps-lg-4 ps-0">
+                                                                {{ Str::words($blog->title, 10) }}
+                                                            </p>
+                                                            <p class="pt-4 ps-lg-4 ps-0">
+                                                                {{ Str::limit(strip_tags($blog->short_des), 200) }}
+                                                            </p>
+                                                            <a href="{{ route('blog.details', $blog->slug) }}"
+                                                                class="text-primary fw-semibold ps-lg-4 ps-0">
+                                                                <small>Read More</small>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @else
+                                                <p class="text-muted ps-lg-4">No blogs available under this category yet.
+                                                </p>
+                                            @endif
                                         </div>
-                                        <div class="col-lg-6">
-                                            <p class="pt-4 ps-lg-4 ps-0">
-                                                {{ Str::words($blog->title, 10) }}
-                                            </p>
-                                            <p class="pt-4 ps-lg-4 ps-0">
-                                                {{ Str::limit(strip_tags($blog->short_des), 200) }}
-                                            </p>
-                                            <a href="{{ route('blog.details', $blog->slug) }}"
-                                                class="text-primary fw-semibold ps-lg-4 ps-0">
-                                                <small>Read More</small>
-                                            </a>
-                                        </div>
-                                    </div>
                                     @endforeach
-                                    @else
-                                    <p class="text-muted ps-lg-4">No blogs available under this category yet.
-                                    </p>
-                                    @endif
                                 </div>
-                                @endforeach
                             </div>
                         </div>
-                    </div>
 
                 </div>
             </div>
@@ -159,50 +159,48 @@
             <div class="row">
                 <div class="order-2 col-md-8 order-md-1 offset-md-2">
 
-                    @foreach ($latestblogs as $latestblog)
-                    <div class="mb-5">
-                        <a href="{{ route('blog.details', $latestblog->slug) }}">
-                            <div class="row align-items-center">
-                                <div class="col-lg-6">
-                                    <div class="blog-list-img">
-
-                                        <img class="img-fluid rounded-2"
-                                            src="{{ asset('storage/' . $latestblog->image) }}"
-                                            alt="{{ $latestblog->title }}"
-                                            onerror="this.onerror=null; this.src='https://www.ngenitltd.com/storage/k06EW1KUagU4qQ5O1694857982.jpg';">
-
-                                        <div class="overlay-blogs">
-                                            <div class="text-center">
-                                                <div class="pb-4 blog-link-icons">
-                                                    <i class="text-white fas fa-paperclip fs-1"></i>
+                        @foreach ($latestblogs as $latestblog)
+                            <div class="mb-5">
+                                <a href="{{ route('blog.details', $latestblog->slug) }}">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-5">
+                                            <div class="blog-list-img">
+                                                @if (!empty($latestblog->image) && file_exists(storage_path('app/public/' . $latestblog->image)))
+                                                    <img class="img-fluid rounded-2"
+                                                        src="{{ asset('storage/' . $latestblog->image) }}"
+                                                        alt="{{ $latestblog->title }}" />
+                                                @endif
+                                                <div class="overlay-blogs">
+                                                    <div class="text-center">
+                                                        <div class="pb-4 blog-link-icons">
+                                                            <i class="text-white fas fa-paperclip fs-1"></i>
+                                                        </div>
+                                                        <p>{{ $latestblog->title }}</p>
+                                                        <span class="text-black fw-normal">{{ $latestblog->badge }}</span>
+                                                    </div>
                                                 </div>
-                                                <p>{{ $latestblog->title }}</p>
-                                                <span class="text-black fw-normal">Explosion Protection</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <div class="blog-list-content">
+                                                <h4 class="text-black fw-bold">{{ $latestblog->title }}</h4>
+                                                <p class="pt-4 text-muted">{{ $latestblog->header }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="blog-list-content">
-                                        <h4 class="text-black fw-bold">{{ $latestblog->title }}</h4>
-                                        <p class="pt-4 text-muted">{{ $latestblog->header }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-
-                        <div class="mt-5 row">
-                            <div class="col-lg-12">
-                                <div class="blog-footer text-start">
-                                    <p class="py-2 mb-0">
-                                        @if (!empty($latestblog->created_by))
-                                        By <span class="blog-color">
-                                            <a href="{{ route('blog.details', $latestblog->slug) }}"
-                                                class="blog-color links">
-                                                {{ $latestblog->created_by }}
-                                            </a>
-                                        </span> |
-                                        @endif
+                                </a>
+                                <div class="mt-5 row">
+                                    <div class="col-lg-12">
+                                        <div class="blog-footer text-start">
+                                            <p class="py-2 mb-0">
+                                                @if (!empty($latestblog->created_by))
+                                                    By <span class="blog-color">
+                                                        <a href="{{ route('blog.details', $latestblog->slug) }}"
+                                                            class="blog-color links">
+                                                            {{ $latestblog->created_by }}
+                                                        </a>
+                                                    </span> |
+                                                @endif
 
                                         @if ($latestblog->created_at)
                                         <span>{{ $latestblog->created_at->format('Y-m-d') }}</span> |
