@@ -191,7 +191,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['department:marketing'])->group(function () {
         Route::resources(
             [
-                
+
                 'tender'           => TenderController::class,
                 'marketing-dmar'   => MarketingDmarController::class,
                 'marketing-emar'   => MarketingEmarController::class,
@@ -262,7 +262,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
                 'job-post'     => JobController::class,
                 'row'          => RowController::class,
                 'brandPage'    => BrandPageController::class,
-
+                'catalogues'   => DocumentPdfController::class,
             ]
         );
         Route::controller(DashboardController::class)->group(function () {
@@ -710,7 +710,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
             'cmar'                      => CmarController::class,
             'faq'                       => FaqController::class,
-            'document'                  => DocumentPdfController::class,
+
+
 
 
 

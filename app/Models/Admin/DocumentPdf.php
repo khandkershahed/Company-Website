@@ -18,45 +18,27 @@ class DocumentPdf extends Model
     // Relationship to Brand
     public function brand()
     {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsTo(Brand::class, 'brand_id');
     }
 
     // Relationship to Product
     public function product()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
     // Relationship to Industry
     public function industry()
     {
-        return $this->belongsTo(Industry::class);
+        return $this->belongsTo(Industry::class, 'industry_id');
     }
 
     // Relationship to Solution
     public function solution()
     {
-        return $this->belongsTo(Solution::class);
+        return $this->belongsTo(Solution::class, 'solution_id');
     }
 
     // Helper methods for Blade conditional logic
-    public function getBrandName()
-    {
-        return optional($this->brand)->name;
-    }
-
-    public function getProductName()
-    {
-        return optional($this->product)->name;
-    }
-
-    public function getIndustryName()
-    {
-        return optional($this->industry)->name;
-    }
-
-    public function getSolutionName()
-    {
-        return optional($this->solution)->name;
-    }
+   
 }
