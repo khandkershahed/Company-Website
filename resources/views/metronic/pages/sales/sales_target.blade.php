@@ -520,7 +520,7 @@
     </div>
     <div class="mb-4 row g-4">
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-primary bg-gr-g">
+            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-primary ">
                 <div class="text-center card-body d-flex flex-column align-items-center justify-content-center">
                     <i class="mb-2 fa fa-globe-americas quick-stat-icon text-primary"></i>
                     <div class="quick-stat-value text-primary">USA</div>
@@ -529,64 +529,64 @@
             </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-warning bg-gr-b">
+            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-warning ">
                 <div class="text-center card-body d-flex flex-column align-items-center justify-content-center">
-                    <i class="mb-2 fas fa-up-long quick-stat-icon text-warning"></i>
-                    <div class="quick-stat-value text-warning">S. Mehta</div>
+                    <i class="mb-2 fas fa-up-long quick-stat-icon text-primary"></i>
+                    <div class="quick-stat-value text-primary">S. Mehta</div>
                     <div class="mt-1 quick-stat-label">Top Performing Salesperson</div>
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-info bg-gr-blu">
+            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-info lu">
                 <div class="text-center card-body d-flex flex-column align-items-center justify-content-center">
-                    <i class="mb-2 fas fa-box-tissue quick-stat-icon text-info"></i>
-                    <div class="quick-stat-value text-info">Gadgets</div>
+                    <i class="mb-2 fas fa-box-tissue quick-stat-icon text-primary"></i>
+                    <div class="quick-stat-value text-primary">Gadgets</div>
                     <div class="mt-1 quick-stat-label">Top Performing Product</div>
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-warning bg-gr-b">
+            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-warning ">
                 <div class="text-center card-body d-flex flex-column align-items-center justify-content-center">
-                    <i class="mb-2 fas fa-down-long quick-stat-icon text-warning"></i>
-                    <div class="quick-stat-value text-warning">B. Khan</div>
+                    <i class="mb-2 fas fa-down-long quick-stat-icon text-primary"></i>
+                    <div class="quick-stat-value text-primary">B. Khan</div>
                     <div class="mt-1 quick-stat-label">Lowest Performer</div>
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-warning bg-gr-b">
+            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-warning ">
                 <div class="text-center card-body d-flex flex-column align-items-center justify-content-center">
-                    <i class="mb-2 bi bi-graph-up-arrow quick-stat-icon text-warning"></i>
-                    <div class="quick-stat-value text-warning">91.5%</div>
+                    <i class="mb-2 bi bi-graph-up-arrow quick-stat-icon text-primary"></i>
+                    <div class="quick-stat-value text-primary">91.5%</div>
                     <div class="mt-1 quick-stat-label">Average Achievement Rate (%)</div>
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-success bg-gr-g">
+            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-success ">
                 <div class="text-center card-body d-flex flex-column align-items-center justify-content-center">
-                    <i class="mb-2 bi bi-funnel-fill quick-stat-icon text-success"></i>
-                    <div class="quick-stat-value text-success">1.2x</div>
+                    <i class="mb-2 bi bi-funnel-fill quick-stat-icon text-primary"></i>
+                    <div class="quick-stat-value text-primary">1.2x</div>
                     <div class="mt-1 quick-stat-label">Overall Pipeline to Target Ratio</div>
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-warning bg-gr-b">
+            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-warning ">
                 <div class="text-center card-body d-flex flex-column align-items-center justify-content-center">
-                    <i class="mb-2 bi bi-calendar-range-fill quick-stat-icon text-warning"></i>
-                    <div class="quick-stat-value text-warning">35 Days</div>
+                    <i class="mb-2 bi bi-calendar-range-fill quick-stat-icon text-primary"></i>
+                    <div class="quick-stat-value text-primary">35 Days</div>
                     <div class="mt-1 quick-stat-label">Average Sales Cycle (Days)</div>
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-success bg-gr-g">
+            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-success ">
                 <div class="text-center card-body d-flex flex-column align-items-center justify-content-center">
-                    <i class="mb-2 bi bi-graph-up quick-stat-icon text-success"></i>
-                    <div class="quick-stat-value text-success">+8.2%</div>
+                    <i class="mb-2 bi bi-graph-up quick-stat-icon text-primary"></i>
+                    <div class="quick-stat-value text-primary">+8.2%</div>
                     <div class="mt-1 quick-stat-label">YoY Target Growth %</div>
                 </div>
             </div>

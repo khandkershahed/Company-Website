@@ -1,7 +1,7 @@
 @extends('frontend.master')
 @section('content')
 @include('frontend.pages.blogs.style_partial')
-<section class="blogs-banners" style="background-image: url('{{ asset('frontend/images/blog.jpg') }}');"></section>
+<section class="blogs-banners" style="background-image: url('{{ asset('frontend/images/NGen-IT-Blog-Page-Banner.png') }}');"></section>
 @if ($featured_storys->count())
 <section>
     <div class="container">
@@ -198,7 +198,7 @@
                         <ul class="pagination justify-content-end">
                             {{-- Previous Page Link --}}
                             <li class="page-item {{ $latestblogs->onFirstPage() ? 'disabled' : '' }}">
-                                <a class="text-black page-link blog-bg-color"
+                                <a class="text-black page-link"
                                     href="{{ $latestblogs->previousPageUrl() ?? '#' }}">
                                     Previous
                                 </a>
