@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('expense_types', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('expense_category_id')->nullable()->constrained('expense_categories')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('name')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('status')->nullable();
+            $table->string('comments')->nullable();
+            $table->string('notes')->nullable();
+            $table->string('custom')->nullable();
             $table->timestamps();
         });
     }

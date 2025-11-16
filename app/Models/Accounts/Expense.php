@@ -9,4 +9,12 @@ class Expense extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function expenseCategory()
+    {
+        return $this->belongsTo(ExpenseCategory::class,'expense_category','id');
+    }
+    public function expenseType()
+    {
+        return $this->belongsTo(ExpenseType::class,'expense_type','id');
+    }
 }

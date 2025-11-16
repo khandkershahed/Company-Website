@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
-use App\Models\Admin\ExpenseCategory;
+use App\Models\Accounts\ExpenseCategory;
 use Illuminate\Support\Facades\Validator;
 
 class ExpenseCategoryController extends Controller
@@ -19,7 +19,8 @@ class ExpenseCategoryController extends Controller
     public function index()
     {
         $data['expenseCategories'] = ExpenseCategory::latest()->get();
-        return view('admin.pages.expenseCategory.all', $data);
+        return view('metronic.pages.expenseCategory.index', $data);
+        // return view('admin.pages.expenseCategory.all', $data);
     }
 
     /**

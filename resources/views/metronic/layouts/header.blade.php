@@ -124,6 +124,10 @@
                         <a class="btn btn-md btn-info me-4" href="{{ route('product-sourcing.index') }}">Sourced Products</a>
                         <a class="btn btn-md btn-info me-4" href="{{ route('product.saved') }}">Drafts</a>
                     @endif
+                    @if (Route::currentRouteName() === 'admin.expenses.index')
+                        <a class="btn btn-md btn-info me-4" href="{{ route('admin.expense-categories.index') }}">Expense Category</a>
+                        <a class="btn btn-md btn-info me-4" href="{{ route('admin.expense-types.index') }}">Expense Type</a>
+                    @endif
                     {{-- <div class="btn btn-icon btn-icon-muted btn-active-light btn-active-color-primary w-30px h-30px w-md-40px h-md-40px"
                         data-kt-menu-trigger="click" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">
                         <span class="svg-icon svg-icon-1">

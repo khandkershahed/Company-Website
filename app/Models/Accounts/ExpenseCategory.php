@@ -14,6 +14,14 @@ class ExpenseCategory extends Model
      *
      * @var array
      */
-    protected sour
+    protected $slugSourceColumn = 'name';
     protected $guarded = [];
+    public function expenseTypes()
+    {
+        return $this->hasMany(ExpenseType::class,'expense_category_id','id');
+    }
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class,'expense_category','id');
+    }
 }
