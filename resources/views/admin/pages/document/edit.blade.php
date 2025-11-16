@@ -1,5 +1,5 @@
 @extends('admin.master')
-@section('content')
+@section('content') 
     <div class="content-wrapper">
         <section class="shadow-sm">
             <div class="d-flex justify-content-between align-items-center">

@@ -1159,7 +1159,7 @@ class HomeController extends Controller
 
             $data['blogs'] = Blog::where('title', 'LIKE', '%' . $query . '%')
                 ->limit(5)
-                ->get(['id', 'title']);
+                ->get(['id', 'title', 'slug']);
 
             $data['categorys'] = Category::where('title', 'LIKE', '%' . $query . '%')
                 ->limit(2)
@@ -1184,7 +1184,7 @@ class HomeController extends Controller
 
             $data['tech_glossys'] = TechGlossy::where('title', 'LIKE', '%' . $query . '%')
                 ->limit(5)
-                ->get(['id', 'title']);
+                ->get(['id', 'title', 'slug']);
 
             return response()->json(view('frontend.partials.search', $data)->render());
         } catch (\Exception $e) {

@@ -143,7 +143,7 @@
                 @endif
                 @if (is_countable($tech_glossys) && count($tech_glossys) > 0)
                     <div class="mt-2 mb-4 row">
-                        <h5 class="pb-2 fw-bold border-bottom">Tech Glossary</h5>
+                        <h5 class="pb-2 fw-bold border-bottom">Tech Glossary</h5> 
                         @foreach ($tech_glossys as $tech_glossy)
                             <h6><a class="search_titles" href="{{ route('techglossy.details', $tech_glossy->slug) }}">
                                     {{-- {{ $tech_glossy->title }} --}}

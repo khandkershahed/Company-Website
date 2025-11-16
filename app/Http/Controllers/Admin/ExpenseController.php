@@ -6,7 +6,7 @@ use Helper;
 use App\Models\Admin\Rfq;
 use App\Models\Admin\Income;
 use Illuminate\Http\Request;
-use App\Models\Admin\Expense;
+use App\Models\Accounts\Expense;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\File;
@@ -21,7 +21,8 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $data['expenses'] = Expense::get();
+        $data['expenses'] = Expense::latest('id')->get();
+        return view('metronic.pages.expense.index', $data);
         return view('admin.pages.expense.all', $data);
     }
 

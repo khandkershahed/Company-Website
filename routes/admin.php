@@ -193,7 +193,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['department:marketing'])->group(function () {
         Route::resources(
             [
-                
+
                 'tender'           => TenderController::class,
                 'marketing-dmar'   => MarketingDmarController::class,
                 'marketing-emar'   => MarketingEmarController::class,
@@ -248,7 +248,21 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
 
     // Accounts Department
-    Route::middleware(['department:accounts'])->group(function () {});
+    Route::middleware(['department:accounts'])->group(function () {
+        Route::resources(
+            [
+                'expense-categories' => ExpenseCategoryController::class,
+                'expense-types'      => ExpenseTypeController::class,
+                'expenses'           => ExpenseController::class,
+            ]
+        );
+        // Route::resources(
+        //     [
+        //         'contact'          => ContactController::class,
+        //     ],
+        //     ['except' => ['show']]
+        // );
+    });
 
 
 
@@ -264,7 +278,7 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
                 'job-post'     => JobController::class,
                 'row'          => RowController::class,
                 'brandPage'    => BrandPageController::class,
-
+                'catalogues'   => DocumentPdfController::class,
             ]
         );
         Route::controller(DashboardController::class)->group(function () {
@@ -308,11 +322,11 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
             'task'                      => TaskController::class,
         ]);
     });
-    Route::resources([
-        'employee'                  => EmployeeController::class,
-        'employee-category'         => EmployeeCategoryController::class, // fully done
-        'employee-department'       => EmployeeDepartmentController::class,
-    ]);
+    // Route::resources([
+    //     'employee'                  => EmployeeController::class,
+    //     'employee-category'         => EmployeeCategoryController::class, // fully done
+    //     'employee-department'       => EmployeeDepartmentController::class,
+    // ]);
 
 
 
@@ -679,8 +693,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
             'revised-deal'               => RevisedDealController::class,
             'partner-account'            => PartnerController::class,
             'sales-account'              => SalesAccountController::class,
-            'expense-category'           => ExpenseCategoryController::class,
-            'expense-type'               => ExpenseTypeController::class,
             'tax-vat'                    => TaxVatController::class,
             'delivery'                   => DeliveryController::class,
             'offer-price'                => OfferPriceController::class,
@@ -694,9 +706,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
             'training-page'             => TrainingPageController::class, // done
             'tax-vat'                   => TaxVatController::class, // done
-            'expense-category'          => ExpenseCategoryController::class, // done
             'about-us'                  => AboutUsController::class, //pending
-            'expense-type'              => ExpenseTypeController::class, //done
             'tier-calculation'          => TierCalculationController::class, //done
             'portfolio-client'          => PortfolioClientController::class, //done
             'portfolio-team'            => PortfolioTeamController::class, //done
@@ -712,7 +722,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
             'cmar'                      => CmarController::class,
             'faq'                       => FaqController::class,
-            'document'                  => DocumentPdfController::class,
+
+
 
 
 

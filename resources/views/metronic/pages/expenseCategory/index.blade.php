@@ -1,46 +1,16 @@
-@extends('admin.master')
-@section('content')
-    <div class="content-wrapper">
-        <!-- Inner content -->
-        <!-- Page header -->
-        <div class="page-header page-header-light shadow">
-            <div class="page-header-content d-flex justify-content-between align-items-center border-top">
-                <div class="d-flex">
-                    <div class="breadcrumb py-2">
-                        <a href="index.html" class="breadcrumb-item"><i class="ph-house"></i></a>
-                        <a href="{{ route('admin.dashboard') }}" class="breadcrumb-item">Home</a>
-                        <a href="{{ route('expense-category.index') }}" class="breadcrumb-item">Expence Category</a>
-                    </div>
-                    <a href="#breadcrumb_elements"
-                        class="btn btn-light align-self-center collapsed d-lg-none border-transparent rounded-pill p-0 ms-auto"
-                        data-bs-toggle="collapse">
-                        <i class="ph-caret-down collapsible-indicator ph-sm m-1"></i>
-                    </a>
-                </div>
-                <div>
-                    <a href="javascript:void()" class="btn navigation_btn">
-                        <div class="d-flex align-items-center " data-bs-toggle="modal" data-bs-target="#expenceCategoryAdd">
-                            <i class="ph-plus me-1" style="font-size: 10px;"></i>
-                            <span>Add Expence Category</span>
-                        </div> 
-                    </a>
+<x-admin-app-layout :title="'All Expense Categories'">
+    <div class="container-xl">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title text-info text-center"> List</h3>
+                <div class="card-toolbar">
+                    <a href="{{ route('admin.expense-categories.create') }}"
+                        class="btn btn-outline btn-outline-info btn-active-light-info">Add </a>
                 </div>
             </div>
-        </div>
-        <!-- /page header -->
-        <!-- Content area -->
-        <div class="content">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="d-flex justify-content-center align-items-center py-1 px-4 mt-3 rounded-1"
-                        style="background-color: #247297">
-                        <div>
-                            <h5 class="mb-0 text-white">Expence Category List</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8 offset-lg-2">
-                    <table class="table expCategoryDT table-bordered table-hover datatable-highlight text-center ">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table dataTable table-rounded table-striped table-hover border gy-7 gs-7">
                         <thead>
                             <tr>
                                 <th width="5%">Id</th>
@@ -82,7 +52,7 @@
                                                             </div>
                                                             <div class="modal-body p-0 px-2">
                                                                 <form
-                                                                    action="{{ route('expense-category.update', $expenseCategorie->id) }}"
+                                                                    action="{{ route('admin.expense-categories.update', $expenseCategorie->id) }}"
                                                                     method="post"
                                                                     class="from-prevent-multiple-submits pt-2">
                                                                     @csrf
@@ -96,7 +66,8 @@
                                                                                     value="{{ $expenseCategorie->name }}"
                                                                                     maxlength="50" type="text"
                                                                                     class="form-control form-control-sm"
-                                                                                    placeholder="Enter Your Name" required>
+                                                                                    placeholder="Enter Your Name"
+                                                                                    required>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-lg-12 d-flex pt-1">
@@ -106,7 +77,8 @@
                                                                                 class="form-control form-select-sm select"
                                                                                 data-container-css-class="select-sm"
                                                                                 data-minimum-results-for-search="Infinity"
-                                                                                data-placeholder="Chose status" required>
+                                                                                data-placeholder="Chose status"
+                                                                                required>
                                                                                 <option></option>
                                                                                 <option @selected($expenseCategorie->status == 'active')
                                                                                     value="active">Active</option>
@@ -138,7 +110,7 @@
                                                 </div>
                                                 {{-- Edit Tax Modal End --}}
                                             </a>
-                                            <a href="{{ route('expense-category.destroy', $expenseCategorie->id) }}"
+                                            <a href="{{ route('admin.expense-categories.destroy', $expenseCategorie->id) }}"
                                                 class="text-danger delete">
                                                 <i class="fa-solid fa-trash p-1 rounded-circle text-white"
                                                     style="color: #247297 !important;"></i>
@@ -152,72 +124,5 @@
                 </div>
             </div>
         </div>
-        <!-- /content area End-->
-        {{-- Add Expense Modal --}}
-        <!-- Basic modal -->
-        <div id="expenceCategoryAdd" class="modal fade" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header p-1 px-3">
-                        <h6 class="modal-title text-white mb-0">Add Expense Category</h6>
-                        <a type="button" data-bs-dismiss="modal">
-                            <i class="ph ph-x text-white"></i>
-                        </a>
-                    </div>
-                    <div class="modal-body p-0 px-2">
-                        <form action="{{ route('expense-category.store') }}" method="post"
-                            class="from-prevent-multiple-submits pt-2">
-                            @csrf
-                            <div class="row">
-                                <div class="col-lg-12 d-flex pt-1">
-                                    <label class="col-form-label col-lg-2 p-0 text-start text-black">Name</label>
-                                    <div class="input-group">
-                                        <input name="name" maxlength="50" type="text"
-                                            class="form-control form-control-sm" placeholder="Enter Your Name" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 d-flex pt-1">
-                                    <label class="col-form-label col-lg-2 p-0 text-start text-black">Status</label>
-                                    <select name="status" class="form-control form-select-sm select"
-                                        data-container-css-class="select-sm" data-minimum-results-for-search="Infinity"
-                                        data-placeholder="Chose status" required>
-                                        <option></option>
-                                        <option value="active">Active</option>
-                                        <option value="in_active">In Active</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-12 d-flex pt-1">
-                                    <label class="col-form-label col-lg-2 p-0 text-start text-black">Notes</label>
-                                    <input name="notes" type="text" maxlength="200"
-                                        class="form-control form-control-sm" placeholder="Enter Your Notes" required>
-                                </div>
-                            </div>
-                            <div class="modal-footer border-0 pt-3 pb-0 pe-0">
-                                <button type="submit" class="submit_btn from-prevent-multiple-submits"
-                                    style="padding: 5px;">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /basic modal -->
-        {{-- Add Expense Modal End --}}
     </div>
-@endsection
-
-@once
-    @push('scripts')
-        <script type="text/javascript">
-            $('.expCategoryDT').DataTable({
-                dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
-                "iDisplayLength": 10,
-                "lengthMenu": [10, 25, 30, 50],
-                columnDefs: [{
-                    orderable: false,
-                    targets: [4],
-                }, ],
-            });
-        </script>
-    @endpush
-@endonce
+</x-admin-app-layout>

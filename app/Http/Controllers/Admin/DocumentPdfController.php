@@ -25,8 +25,8 @@ class DocumentPdfController extends Controller
     public function index()
     {
         $data['pdfs'] = DocumentPdf::latest()->get();
-
-        return view('admin.pages.document.index', $data);
+        return view('metronic.pages.catalogue.index', $data);
+        // return view('admin.pages.document.index', $data);
     }
 
     /**
@@ -40,7 +40,8 @@ class DocumentPdfController extends Controller
         $data['products'] = Product::latest()->get(['id', 'name']);
         $data['industries'] = Industry::latest()->get(['id', 'title']);
         $data['solutions'] = SolutionDetail::latest()->get(['id', 'name']);
-        return view('admin.pages.document.create', $data);
+        return view('metronic.pages.catalogue.create', $data);
+        // return view('admin.pages.document.create', $data);
     }
 
     /**
@@ -142,7 +143,8 @@ class DocumentPdfController extends Controller
         $data['products'] = Product::latest()->get(['id', 'name']);
         $data['industries'] = Industry::latest()->get(['id', 'title']);
         $data['solutions'] = SolutionDetail::latest()->get(['id', 'name']);
-        return view('admin.pages.document.edit', $data);
+        return view('metronic.pages.catalogue.edit', $data);
+        // return view('admin.pages.document.edit', $data);
     }
 
     /**
