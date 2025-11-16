@@ -100,7 +100,7 @@ class Homepage extends Model
     public function techglossy()
     {
         return $this->belongsTo(TechGlossy::class, 'techglossy_id')
-            ->select(['id', 'badge', 'title', 'short_des', 'image'])
+            ->select(['id', 'badge', 'title', 'slug', 'short_des', 'image'])
             ->withDefault();
     }
 }
