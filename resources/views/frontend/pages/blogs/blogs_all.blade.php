@@ -90,7 +90,7 @@
                                                         <div class="col-lg-6">
                                                             <div>
                                                                 <img class="img-fluid rounded-2"
-                                                                    src="{{ asset($blog->image ?? 'frontend/img/default.jpg') }}"
+                                                                    src="{{ asset("storage/{$blog->image}" ?? 'frontend/img/default.jpg') }}"
                                                                     alt="{{ $blog->title }}">
                                                             </div>
                                                         </div>
@@ -176,7 +176,7 @@
                                                             <i class="fas fa-paperclip fs-1 text-white"></i>
                                                         </div>
                                                         <p>{{ $latestblog->title }}</p>
-                                                        <span class="text-black fw-normal">Explosion Protection</span>
+                                                        <span class="text-black fw-normal">{{ $latestblog->badge }}</span>
                                                     </div>
                                                 </div>
                                             </div>
