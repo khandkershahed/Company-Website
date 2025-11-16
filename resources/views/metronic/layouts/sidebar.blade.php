@@ -336,6 +336,9 @@
                                 'admin.brandPage.index',
                                 'admin.brandPage.create',
                                 'admin.brandPage.edit',
+                                'admin.catalogues.index',
+                                'admin.catalogues.create',
+                                'admin.catalogues.edit',
                                 'admin.setting.index',
                             ],
                             'subMenu' => [
@@ -377,6 +380,9 @@
                                         'admin.brandPage.index',
                                         'admin.brandPage.create',
                                         'admin.brandPage.edit',
+                                        'admin.catalogues.index',
+                                        'admin.catalogues.create',
+                                        'admin.catalogues.edit',
                                     ],
                                     'subMenu' => [
                                         [
@@ -413,6 +419,9 @@
                                                 'admin.brandPage.index',
                                                 'admin.brandPage.create',
                                                 'admin.brandPage.edit',
+                                                'admin.catalogues.index',
+                                                'admin.catalogues.create',
+                                                'admin.catalogues.edit',
                                             ],
                                             'route' => 'admin.site-content.index',
                                         ],
