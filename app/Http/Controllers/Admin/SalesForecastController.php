@@ -93,4 +93,11 @@ class SalesForecastController extends Controller
         ];
         return view('metronic.pages.sales.sales_report', $data);
     }
+    public function salesTarget(Request $request)
+    {
+        $data = [
+            'sales' =>Rfq::where('rfq_type', 'sales')->latest('id')->get(),
+        ];
+        return view('metronic.pages.sales.sales_target', $data);
+    }
 }

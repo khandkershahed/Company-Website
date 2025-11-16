@@ -41347,9 +41347,6 @@ a:hover {
 .bg-gr-g{
     background-image: linear-gradient(to right, #ffff, #F2FFF8);
 }
-.bg-gr-g{
-    background-image: linear-gradient(to right, #ffff, #F2FFF8);
-}
 .bg-gr-blu{
     background-image: linear-gradient(to right, #ffff, #CFC4FF);
 }
@@ -59130,3 +59127,203 @@ th {
     display: block;
     margin-top: 7px;
 }
+
+
+.modern-metric-card {
+        border-radius: 0.75rem; /* More rounded corners */
+        overflow: hidden; /* Ensures gradients/shadows are contained */
+        position: relative;
+        z-index: 1; /* For shadow layering */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* Default subtle shadow */
+    }
+
+    .modern-metric-card:hover {
+        transform: translateY(-10px); /* Lift further on hover */
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.25); /* More pronounced shadow on hover */
+    }
+
+    /* Background Gradients (re-using your existing ones) */
+    .metric-card-bg-blue {
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    }
+    .metric-card-bg-purple {
+        background: linear-gradient(135deg, #6f42c1 0%, #4a2f80 100%);
+    }
+    .metric-card-bg-green {
+        background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+    }
+
+    /* Icon Wrapper for refined icon look */
+    .modern-metric-icon-wrapper {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.15); /* Slightly transparent white circle */
+        backdrop-filter: blur(5px); /* Frosted glass effect */
+        -webkit-backdrop-filter: blur(5px); /* Safari support */
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .modern-metric-icon {
+        font-size: 2.2rem; /* Adjusted size for the wrapper */
+        color: white; /* Ensure icons are white */
+        opacity: 0.9;
+    }
+
+    /* Value and Label Styling */
+    .modern-metric-value {
+        font-size: 3.25rem !important; /* Larger and more dominant */
+        font-weight: 800; /* Bolder */
+        line-height: 1; /* Tighter line height */
+        color: #fff !important; /* Force white */
+        text-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Subtle text shadow */
+    }
+
+    .modern-metric-label {
+        font-size: 0.95rem; /* Slightly larger for readability */
+        color: rgba(255, 255, 255, 0.85) !important; /* Slightly brighter white-75 */
+        font-weight: 500;   
+        letter-spacing: 0.2px;
+        line-height: 1.3;
+    }
+
+    /* Sparkline SVG adjustments */
+    .sparkline-svg {
+        opacity: 0.8;
+        transform: translateY(5px); /* Slightly move up from bottom */
+    }
+
+    /* Ensuring consistent card body padding */
+    .modern-metric-card .card-body {
+        padding: 2rem !important; /* More generous padding */
+    }
+
+    /* Override previous metric-card-value to ensure modern-metric-value takes precedence */
+    .metric-card-value { /* Original style, might need to reset or ensure new one overrides */
+        font-size: 1rem; /* Reset to smaller to ensure .modern-metric-value is dominant */
+        color: transparent; /* Hide original if it's there */
+    }
+        .text-white-75 {
+            color: rgba(255, 255, 255, 0.75) !important;
+        }
+
+        .icon-xl {
+            font-size: 3rem;
+            opacity: 0.8;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            /* Adjust height as needed for all charts */
+            width: 100%;
+        }
+
+        .status-dot {
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        .filter-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 0;
+            margin-right: 4px;
+        }
+
+        .metric-card-value {
+            font-size: 2.25rem;
+            /* ~h2 size */
+            font-weight: 700;
+            color: #343a40;
+        }
+
+        .metric-card-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .quick-stat-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            background-color: #fff;
+            /* Ensure white background */
+        }
+
+        .quick-stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .quick-stat-value {
+            font-size: 1.75rem;
+            /* Slightly smaller than main metrics, but still prominent */
+            font-weight: 700;
+            color: #343a40;
+            /* Default dark text */
+        }
+
+        .quick-stat-label {
+            font-size: 0.85rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .quick-stat-icon {
+            font-size: 2.2rem;
+            /* Sizable icon */
+            opacity: 0.7;
+        }
+        .kpi-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            background-color: #fff;
+            /* Ensure white background */
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-8px);
+            /* More pronounced lift than quick stats */
+            box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.18) !important;
+            /* Stronger shadow */
+        }
+
+        /* KPI Card Icons */
+        .kpi-icon {
+            font-size: 2.5rem;
+            /* Larger icon for prominence */
+            opacity: 0.85;
+        }
+
+        /* Adjust card titles for consistency and readability */
+        .kpi-card .card-title {
+            font-size: 0.8rem;
+            /* Slightly smaller for subtitle */
+            font-weight: 600;
+            letter-spacing: 0.8px;
+        }
+
+        .kpi-card .card-text.fw-bold {
+            font-size: 2.5rem;
+            /* Make the main value even larger */
+            line-height: 1.1;
+        }
+
+        .kpi-card .card-text.small {
+            font-size: 0.75rem;
+            /* Smaller sub-text */
+            letter-spacing: 0.3px;
+            margin-top: 5px !important;
+            /* Ensure some space */
+        }
+
+        /* Ensure flexbox for vertical centering */
+        .kpi-card .card-body {
+            min-height: 120px;
+            /* Ensure a consistent minimum height for all KPI cards */
+        }

@@ -176,6 +176,8 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/sales-forecast/filter', [SalesForecastController::class, 'filterForecast'])->name('forecast.filter');
         Route::get('sales-forecast', [SalesForecastController::class, 'salesForecast'])->name('sales.forecast');
         Route::get('sales-report', [SalesForecastController::class, 'salesReport'])->name('sales.report');
+        Route::get('sales-target', [SalesForecastController::class, 'salesTarget'])->name('sales.target');
+        // Route::get('sales-report', [SalesForecastController::class, 'salesReport'])->name('sales.report');
         Route::get('archived/rfq', [RfqController::class, 'archivedRFQ'])->name('archived.rfq');
         Route::get('/rfqFilter', [RfqController::class, 'filterRFQ'])->name('rfq.filter');
 
