@@ -11,20 +11,6 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-end" style="padding: 5px 1.5rem;">
                             <h2 class="mb-0 fw-bold">Featured Blogs</h2>
-                            <div class="research-page__research-alerts-header-threat d-flex">
-                                Today's Landscape
-                                <div style="margin-top: -12px" class="ps-2">
-                                    <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 31.998 29.996">
-                                        <g id="Group_7171" data-name="Group 7171"
-                                            transform="translate(0.002 -1.004)">
-                                            <path id="Path_12136" data-name="Path 12136"
-                                                d="M31.633,26.522,18.683,2.6a3.053,3.053,0,0,0-5.366,0L.367,26.522A3,3,0,0,0,.43,29.514,3.024,3.024,0,0,0,3.05,31h25.9a3.038,3.038,0,0,0,2.683-4.478ZM17.848,11l-.714,10h-2L14.42,11ZM16.134,27a1.778,1.778,0,1,1,1.778-1.778A1.778,1.778,0,0,1,16.134,27Z"
-                                                fill="#ff8e3d" />
-                                        </g>
-                                    </svg>
-                                </div>
-                            </div>
                         </div>
                         <ul class="research-page__research-alerts-list" style="padding: 5px 1.5rem;">
                             @foreach ($featured_storys as $featured_story)
@@ -88,13 +74,14 @@
                                             <img class="img-fluid rounded-2"
                                                 src="{{ asset("storage/{$blog->image}" ?? 'frontend/img/default.jpg') }}"
                                                 alt="{{ $blog->title }}"
+                                                style="height:300px; width: 450px; object-fit: cover;"
                                                 onerror="this.onerror=null; this.src='https://www.ngenitltd.com/storage/k06EW1KUagU4qQ5O1694857982.jpg';">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
-                                        <p class="pt-4 ps-lg-4 ps-0">
+                                        <h4 class="pt-4 ps-lg-4 ps-0">
                                             {{ Str::words($blog->title, 10) }}
-                                        </p>
+                                        </h4>
                                         <p class="pt-4 ps-lg-4 ps-0">
                                             {{ Str::limit(strip_tags($blog->short_des), 200) }}
                                         </p>
@@ -130,22 +117,20 @@
                         <div class="row align-items-center">
                             <div class="col-lg-5">
                                 <div class="blog-list-img">
-
                                     <img class="img-fluid rounded-2"
                                         src="{{ asset('storage/' . $latestblog->image) }}"
                                         alt="{{ $latestblog->title }}"
+                                         style="height:300px; width: 450px; object-fit: cover;"
                                         onerror="this.onerror=null; this.src='https://www.ngenitltd.com/storage/k06EW1KUagU4qQ5O1694857982.jpg';" />
-
                                     <div class="overlay-blogs">
                                         <div class="text-center">
-                                            <div class="pb-4 blog-link-icons">
+                                            <!-- <div class="pb-4 blog-link-icons">
                                                 <i class="text-white fas fa-paperclip fs-1"></i>
-                                            </div>
+                                            </div> -->
                                             <p>{{ $latestblog->title }}</p>
                                             <span class="text-black fw-normal">{{ $latestblog->badge }}</span>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
 
@@ -282,9 +267,9 @@
                                 <p class="mb-1 text-muted fs-7">
                                     {{ $story->created_at ? $story->created_at->format('F d, Y') : 'Recent' }}
                                 </p>
-                                <h6 class="mb-0 card-title fw-bold text-truncate">
+                                <h6 class="mb-0 card-title fw-bold ">
                                     <a href="{{ route('story.details', $story->slug) }}" class="text-dark text-decoration-none">
-                                        {{ Str::limit($story->title, 120) }}
+                                        {{ Str::limit($story->title, 60) }}
                                     </a>
                                 </h6>
                             </div>
@@ -319,9 +304,9 @@
                                 <p class="mb-1 text-muted fs-7">
                                     {{ $tech->created_at ? $tech->created_at->format('F d, Y') : 'Recent' }}
                                 </p>
-                                <h6 class="mb-0 card-title fw-bold text-truncate">
+                                <h6 class="mb-0 card-title fw-bold ">
                                     <a href="{{ route('techglossy.details', $tech->slug) }}" class="text-dark text-decoration-none">
-                                        {{ Str::limit($tech->title, 120) }}
+                                        {{ Str::limit($tech->title, 60) }}
                                     </a>
                                 </h6>
                             </div>

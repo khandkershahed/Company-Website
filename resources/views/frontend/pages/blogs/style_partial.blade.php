@@ -6,14 +6,22 @@
     }
 
     .nav-tabs .nav-item .nav-link.active {
-        border: 1px solid transparent;
-        padding: 0;
-        border-radius: 60px;
+        border: 0px solid transparent;
+        border-radius: 10px;
         font-size: 0.9em;
-        ;
         font-weight: 400;
         color: var(--white);
-        background: transparent;
+        background: #ae0a46;
+        padding: 10px;
+    }
+    .nav-tabs .nav-item .nav-link.active:hover {
+        border: 0px solid transparent;
+        border-radius: 10px;
+        font-size: 0.9em;
+        font-weight: 400;
+        color: var(--white);
+        background: #ae0a46;
+        padding: 10px;
     }
 
     .page-item:not(:first-child) .page-link {
@@ -22,11 +30,10 @@
     }
 
     .nav-tabs .nav-item .nav-link {
-        border: 1px solid transparent;
-        padding: 0;
-        border-radius: 60px;
+        border: 0px solid transparent;
+        border-radius: 10px;
         font-size: 0.9em;
-        ;
+        padding: 10px;
         font-weight: 400;
         color: var(--white);
         background: transparent;
@@ -34,14 +41,13 @@
     }
 
     .nav-tabs .nav-item .nav-link:hover {
-        border: 1px solid transparent;
-        padding: 0;
-        border-radius: 60px;
+        border: 0px solid transparent;
+        border-radius: 10px;
         font-size: 0.9em;
-        ;
         font-weight: 400;
-        color: var(--white);
-        background: transparent;
+        color: var(--white) !important;
+        background: #ae0a46;
+        padding: 10px;
     }
 
     /* Blogs Start */
@@ -263,7 +269,8 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: #00a688ea;
+        background: #ae0a46;
+        color: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -272,7 +279,7 @@
     }
 
     .overlay-blogs p {
-        color: black;
+        color: #fff;
         font-size: 18px;
         font-weight: bold;
         opacity: 0;
@@ -345,6 +352,11 @@
         padding: 4px 0;
         text-decoration: none;
     }
+    .research-box-nav-btn span:hover {
+        color: #fff;
+        padding: 4px 0;
+        text-decoration: none;
+    }
 
     .research-box-nav-btn.active {
         border-top: 0;
@@ -353,8 +365,7 @@
     }
 
     .research-box-nav-btn.active span {
-        color: #2b405a !important;
-        border-bottom: 2px solid #0079dd !important;
+        color: #fff !important;
     }
 
     .research-box-nav-btn span:focus-visible {
