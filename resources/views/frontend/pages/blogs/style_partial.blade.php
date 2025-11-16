@@ -1,9 +1,54 @@
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
     body {
         font-family: "Poppins", sans-serif;
     }
 
+    .nav-tabs .nav-item .nav-link.active {
+        border: 0px solid transparent;
+        border-radius: 10px;
+        font-size: 0.9em;
+        font-weight: 400;
+        color: var(--white);
+        background: #ae0a46;
+        padding: 10px;
+    }
+    .nav-tabs .nav-item .nav-link.active:hover {
+        border: 0px solid transparent;
+        border-radius: 10px;
+        font-size: 0.9em;
+        font-weight: 400;
+        color: var(--white);
+        background: #ae0a46;
+        padding: 10px;
+    }
+
+    .page-item:not(:first-child) .page-link {
+        margin-left: -1px;
+        height: 47px;
+    }
+
+    .nav-tabs .nav-item .nav-link {
+        border: 0px solid transparent;
+        border-radius: 10px;
+        font-size: 0.9em;
+        padding: 10px;
+        font-weight: 400;
+        color: var(--white);
+        background: transparent;
+        margin-bottom: 5px;
+    }
+
+    .nav-tabs .nav-item .nav-link:hover {
+        border: 0px solid transparent;
+        border-radius: 10px;
+        font-size: 0.9em;
+        font-weight: 400;
+        color: var(--white) !important;
+        background: #ae0a46;
+        padding: 10px;
+    }
 
     /* Blogs Start */
     .blogs-banners {
@@ -35,33 +80,33 @@
     }
 
     .banner-content {
-        border-left: 3px solid #00a687;
-        border-left: 3px solid #00a687;
+        border-left: 3px solid #ae0a46;
+        border-left: 3px solid #ae0a46;
         background: none;
         border: 0;
     }
 
     .search-inputs:focus {
         box-shadow: none;
-        border-color: #00a687;
+        border-color: #ae0a46;
     }
 
     .search-btn {
-        border: 1px solid #00a687;
+        border: 1px solid #ae0a46;
         border-right: 1px solid white !important;
     }
 
     .search-inputs {
-        border: 1px solid #00a687;
+        border: 1px solid #ae0a46;
         border-radius: 0;
     }
 
     .blog-color {
-        color: #00a687;
+        color: #ae0a46;
     }
 
     .blog-bg-color {
-        background-color: #00a687 !important;
+        background-color: #ae0a46 !important;
     }
 
     .blogs-icons {
@@ -187,8 +232,8 @@
     }
 
     .blog-footer {
-        border-top: 1px solid #00a687;
-        border-bottom: 1px solid #00a687;
+        border-top: 1px solid #ae0a46;
+        border-bottom: 1px solid #ae0a46;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -199,7 +244,7 @@
     }
 
     .blog-more:hover {
-        border-bottom: 2px solid #00a687;
+        border-bottom: 2px solid #ae0a46;
     }
 
     .blog-list-content p {
@@ -224,7 +269,8 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: #00a688ea;
+        background: #ae0a46;
+        color: #fff;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -233,7 +279,7 @@
     }
 
     .overlay-blogs p {
-        color: black;
+        color: #fff;
         font-size: 18px;
         font-weight: bold;
         opacity: 0;
@@ -251,7 +297,7 @@
     }
 
     .blog-link-icons {
-        background-color: #00a687;
+        background-color: #ae0a46;
     }
 
     .research-alert-box {
@@ -306,6 +352,11 @@
         padding: 4px 0;
         text-decoration: none;
     }
+    .research-box-nav-btn span:hover {
+        color: #fff;
+        padding: 4px 0;
+        text-decoration: none;
+    }
 
     .research-box-nav-btn.active {
         border-top: 0;
@@ -314,8 +365,7 @@
     }
 
     .research-box-nav-btn.active span {
-        color: #2b405a !important;
-        border-bottom: 2px solid #0079dd !important;
+        color: #fff !important;
     }
 
     .research-box-nav-btn span:focus-visible {
@@ -535,5 +585,28 @@
     }
 
     /* Blogs End*/
+    .hover-scale {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
+    .hover-scale:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .overlay {
+        transition: all 0.3s ease;
+    }
+
+    .card:hover .overlay {
+        opacity: 1;
+    }
+
+    .text-truncate a {
+        display: inline-block;
+        max-width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 </style>
