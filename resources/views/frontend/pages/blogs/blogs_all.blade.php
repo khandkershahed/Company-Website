@@ -13,9 +13,9 @@
                             <div class="card research-alert-box bg-white shadow-sm">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-end" style="padding: 5px 1.5rem;">
-                                        <h2 class="mb-0 fw-bold">Recent Blogs</h2>
+                                        <h2 class="mb-0 fw-bold">Featured Blogs</h2>
                                         <div class="research-page__research-alerts-header-threat d-flex">
-                                            Today's Landscape
+                                            {{-- Today's Landscape
                                             <div style="margin-top: -12px" class="ps-2">
                                                 <svg width="32" height="32" xmlns="http://www.w3.org/2000/svg"
                                                     viewBox="0 0 31.998 29.996">
@@ -26,7 +26,7 @@
                                                             fill="#ff8e3d" />
                                                     </g>
                                                 </svg>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     <ul class="research-page__research-alerts-list" style="padding: 5px 1.5rem;">
