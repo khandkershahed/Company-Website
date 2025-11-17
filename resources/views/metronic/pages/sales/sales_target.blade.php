@@ -5,42 +5,18 @@
                 <div class="flex-wrap p-2 card-body d-flex justify-content-between align-items-center">
                     <h2 class="mb-0 h4 me-3">Summary KPIs - Sales</h2>
                     <div class="gap-5 d-flex align-items-center">
-                        <select class="form-select form-select-sm" data-control="select2">
-                            <option selected>Select Period</option>
+                        <select class="form-select form-select-solid form-select-sm" data-control="select2">
+                            <option selected>Period</option>
                             <option value="Month">Month</option>
                             <option value="Quarter">Quarter</option>
                             <option value="Year">Year</option>
                         </select>
-                        <!-- <select class="form-select form-select-sm" data-control="select2">
-                            <option selected>Currency</option>
-                            <option value="USD">USD</option>
-                            <option value="BDT">BDT</option>
-                            <option value="EUR">EUR</option>
-                        </select> -->
 
-                        <select class="form-select form-select-sm" data-control="select2">
-                            <option selected>Select Territory</option>
+                        <select class="form-select form-select-solid form-select-sm" data-control="select2">
+                            <option selected>Territory</option>
                             <option value="1">USA</option>
                             <option value="2">Bangladesh</option>
                         </select>
-
-                        <!-- <select class="form-select form-select-sm" data-control="select2">
-                            <option selected>Sales Team</option>
-                            <option value="1">Team Alpha</option>
-                            <option value="2">Team Beta</option>
-                        </select> -->
-
-                        <!-- <select class="form-select form-select-sm" data-control="select2">
-                            <option selected>Individual</option>
-                            <option value="1">Saju</option>
-                            <option value="2">Rahim</option>
-                        </select> -->
-
-                        <!-- <select class="form-select form-select-sm" data-control="select2">
-                            <option selected>Product Category</option>
-                            <option value="1">Electronics</option>
-                            <option value="2">Apparel</option>
-                        </select> -->
                     </div>
                 </div>
             </div>
@@ -48,32 +24,32 @@
     </div>
     <div class="mb-4 row g-4">
         <div class="col-md-6 col-lg-4 col-xl-2">
-            <div class="border-0 shadow-none card h-100 kpi-card border-bottom border-primary border-3 bg-gr-b">
+            <div class="border-0 shadow-none card h-100 kpi-card border-bottom border-primary border-3" style="background-color: #296088;">
                 <div class="text-center card-body d-flex flex-column justify-content-center align-items-center">
-                    <i class="mb-2 bi bi-tag-fill kpi-icon text-primary"></i>
-                    <h6 class="mb-1 card-title text-muted text-uppercase">Total Target</h6>
-                    <h3 class="my-2 card-text fw-bold">$500,000</h3>
-                    <div class="card-text text-muted small">Q4 Goal</div>
+                    <i class="mb-2 text-white bi bi-tag-fill kpi-icon"></i>
+                    <h6 class="mb-1 text-white card-title text-uppercase">Total Target</h6>
+                    <h3 class="my-2 text-white card-text fw-bold">$500,000</h3>
+                    <div class="text-white card-text small">Q4 Goal</div>
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-2">
-            <div class="border-0 shadow-none card h-100 kpi-card border-bottom border-info border-3 bg-gr-g">
+            <div class="border-0 shadow-none card h-100 kpi-card border-bottom border-info border-3" style="background-color: #FFCD94;">
                 <div class="text-center card-body d-flex flex-column justify-content-center align-items-center">
-                    <i class="mb-2 bi bi-currency-dollar kpi-icon text-info"></i>
-                    <h6 class="mb-1 card-title text-muted text-uppercase">Achieved Sales Value</h6>
-                    <h3 class="my-2 card-text fw-bold">$485,500</h3>
-                    <div class="card-text text-muted small">As of today</div>
+                    <i class="mb-2 text-black bi bi-currency-dollar kpi-icon"></i>
+                    <h6 class="mb-1 text-black card-title text-uppercase">Achieved Sales Value</h6>
+                    <h3 class="my-2 text-black card-text fw-bold">$485,500</h3>
+                    <div class="text-black card-text small">As of today</div>
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-2">
-            <div class="border-0 shadow-none card h-100 kpi-card border-bottom border-success border-3 bg-gr-b">
+            <div class="border-0 border-black shadow-none card h-100 kpi-card border-bottom border-3" style="background-color: #CFC4FF;">
                 <div class="text-center card-body d-flex flex-column justify-content-center align-items-center">
-                    <i class="mb-2 bi bi-graph-up-arrow kpi-icon text-success"></i>
-                    <h6 class="mb-1 card-title text-muted text-uppercase">Achievement Rate (%)</h6>
-                    <h3 class="my-2 card-text fw-bold text-success">97.1%</h3>
-                    <div class="card-text text-muted small">On track</div>
+                    <i class="mb-2 text-black bi bi-graph-up-arrow kpi-icon"></i>
+                    <h6 class="mb-1 text-black card-title text-uppercase">Achievement Rate (%)</h6>
+                    <h3 class="my-2 text-black card-text fw-bold">97.1%</h3>
+                    <div class="text-black card-text small">On track</div>
                 </div>
             </div>
         </div>
@@ -81,7 +57,7 @@
             <div class="border-0 shadow-none card h-100 kpi-card border-bottom border-danger border-3 bg-gr-g">
                 <div class="text-center card-body d-flex flex-column justify-content-center align-items-center">
                     <i class="mb-2 bi bi-exclamation-triangle-fill kpi-icon text-danger"></i>
-                    <h6 class="mb-1 card-title text-muted text-uppercase">Deficiency (Shortfall)</h6>
+                    <h6 class="mb-1 text-black fw-bold card-title text-uppercase">Deficiency (Shortfall)</h6>
                     <h3 class="my-2 card-text fw-bold text-danger">-$14,500</h3>
                     <div class="card-text text-muted small">Behind target</div>
                 </div>
@@ -91,7 +67,7 @@
             <div class="border-0 shadow-none card h-100 kpi-card border-bottom border-warning border-3 bg-gr-b">
                 <div class="text-center card-body d-flex flex-column justify-content-center align-items-center">
                     <i class="mb-2 bi bi-lightbulb-fill kpi-icon text-warning"></i>
-                    <h6 class="mb-1 card-title text-muted text-uppercase">Forecast Accuracy (%)</h6>
+                    <h6 class="mb-1 text-black fw-bold card-title text-uppercase">Forecast Accuracy (%)</h6>
                     <h3 class="my-2 card-text fw-bold">92.5%</h3>
                     <div class="card-text text-muted small">Last 30 days</div>
                 </div>
@@ -101,7 +77,7 @@
             <div class="border-0 shadow-none card h-100 kpi-card border-bottom border-success border-3 bg-gr-g">
                 <div class="text-center card-body d-flex flex-column justify-content-center align-items-center">
                     <i class="mb-2 bi bi-graph-up kpi-icon text-success"></i>
-                    <h6 class="mb-1 card-title text-muted text-uppercase">Growth vs Prev. Period</h6>
+                    <h6 class="mb-1 text-black fw-bold card-title text-uppercase">Growth vs Prev. Period</h6>
                     <h3 class="my-2 card-text fw-bold text-success">+5.2%</h3>
                     <div class="card-text text-muted small">Compared to Q3</div>
                 </div>
@@ -166,7 +142,7 @@
                             <div class="gap-3 d-flex">
                                 <!-- Industry Filter -->
                                 <select class="form-select form-select-solid form-select-sm w-100" data-control="select2">
-                                    <option selected>Select Industry</option>
+                                    <option selected>Industry</option>
                                     <option value="it">Information Technology</option>
                                     <option value="finance">Finance & Banking</option>
                                     <option value="healthcare">Healthcare</option>
@@ -177,7 +153,7 @@
 
                                 <!-- Solution Filter -->
                                 <select class="form-select form-select-solid form-select-sm w-100" data-control="select2">
-                                    <option selected>Select Solution</option>
+                                    <option selected>Solution</option>
                                     <option value="crm">CRM Software</option>
                                     <option value="erp">ERP System</option>
                                     <option value="pos">POS Management</option>
@@ -188,7 +164,7 @@
 
                                 <!-- Salesman Filter -->
                                 <select class="form-select form-select-solid form-select-sm w-100" data-control="select2">
-                                    <option selected>Select Salesman</option>
+                                    <option selected>Salesman</option>
                                     <option value="rahim">Rahim Uddin</option>
                                     <option value="karim">Karim Ahmed</option>
                                     <option value="nadia">Nadia Hasan</option>
@@ -453,7 +429,7 @@
                                     <div class="">
                                         <h5 class="card-title">Industry Information</h5>
                                         <div class="chart-container">
-                                            <div id="kt_charts_widget_1_chart" class="h-300px" style="min-height: 350px;">
+                                            <div id="kt_charts_widget_3" data-kt-chart-color="primary" class="h-300px"  style="min-height: 350px;">
                                             </div>
                                         </div>
                                     </div>
@@ -530,6 +506,18 @@
                                                         <span class="status-dot bg-success"></span> Achieved
                                                     </td>
                                                 </tr>
+                                                <tr class="border">
+                                                    <td class="ps-5">1</td>
+                                                    <td>A. Rahman</td>
+                                                    <td>Corporate Team</td>
+                                                    <td>Bangladesh</td>
+                                                    <td>$80 K</td>
+                                                    <td>$60 K</td>
+                                                    <td>75%</td>
+                                                    <td>
+                                                        <span class="status-dot bg-warning"></span> On Track
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -603,7 +591,7 @@
     </div>
     <div class="mb-4 row g-4">
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-info bg-gr-b">
+            <div class="border-4 shadow-none card quick-stat-card border-start border-info bg-gr-b">
                 <div class="text-center card-body d-flex flex-column align-items-center justify-content-center">
                     <i class="mb-2 fa fa-globe-americas quick-stat-icon text-primary"></i>
                     <div class="quick-stat-value text-primary">USA</div>
@@ -612,40 +600,37 @@
             </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-success bg-gr-g">
+            <div class="border-4 shadow-none card quick-stat-card border-start border-success bg-gr-g">
                 <div class="text-center card-body d-flex flex-column align-items-center justify-content-center">
                     <i class="mb-2 fas fa-up-long quick-stat-icon text-primary"></i>
                     <div class="quick-stat-value text-primary">#1 S. Mehta</div>
                     <div class="text-primary">Individual Ranking Leaderboard</div>
-                    <div class="mt-1 quick-stat-label">Next: A. Rahman (90%)</div>
 
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-primary bg-gr-b">
+            <div class="border-4 shadow-none card quick-stat-card border-start border-primary bg-gr-b">
                 <div class="text-center card-body d-flex flex-column align-items-center justify-content-center">
-                    <i class="mb-2 fas fa-down-long quick-stat-icon text-primary"></i>
-                    <div class="quick-stat-value text-primary">95%</div>
-                    <div class="text-primary">Team Total Target
-                    </div>
-                    <div class="mt-1 quick-stat-label">Avg. Team per Rep</div>
                     <svg width="100%" height="25" viewBox="0 0 100 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="sparkline-svg">
                         <path d="M0 5L20 15L40 0L60 20L80 10L100 15" stroke="black" stroke-width="2" />
                     </svg>
+                    <div class="quick-stat-value text-primary">95%</div>
+                    <div class="text-primary">Team Total Target
+                    </div>
+
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="border-4 shadow-none card h-100 quick-stat-card border-start border-secondary lu bg-gr-g">
+            <div class="border-4 shadow-none card quick-stat-card border-start border-secondary lu bg-gr-g">
                 <div class="text-center card-body d-flex flex-column align-items-center justify-content-center">
-                    <i class="mb-2 fas fa-box-tissue quick-stat-icon text-primary"></i>
-                    <div class="quick-stat-value text-primary">92%</div>
-                    <div class="text-primary">Achievement Target</div>
-                    <div class="mt-1 quick-stat-label">Avg. Achievement per Rep</div>
                     <svg width="100%" height="25" viewBox="0 0 100 25" fill="none" xmlns="http://www.w3.org/2000/svg" class="sparkline-svg">
                         <path d="M0 20L20 5L40 10L60 0L80 15L100 10" stroke="black" stroke-width="2" />
                     </svg>
+                    <div class="quick-stat-value text-primary">92%</div>
+                    <div class="text-primary">Achievement Target</div>
+
                 </div>
             </div>
         </div>
