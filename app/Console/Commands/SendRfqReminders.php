@@ -55,7 +55,7 @@ class SendRfqReminders extends Command
         foreach ($rfqs as $rfq) {
             try {
                 foreach ($this->getAdminEmails() as $recipient) {
-                    Mail::to($recipient)->send(new RfqReminderMail($rfq, $hours));
+                    Mail::to($recipient)->queue(new RfqReminderMail($rfq, $hours));
                 }
 
                 $rfq->update([$column => true]);

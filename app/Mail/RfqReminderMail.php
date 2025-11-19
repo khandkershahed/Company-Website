@@ -5,23 +5,22 @@ namespace App\Mail;
 use App\Models\Admin\Rfq;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class RfqReminderMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $rfq;
+    public $hours;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(Rfq $rfq)
+    public function __construct(Rfq $rfq, int $hours)
     {
         $this->rfq = $rfq;
+        $this->hours = $hours;
     }
 
     /**
@@ -29,10 +28,11 @@ class RfqReminderMail extends Mailable
      */
     public function build()
     {
-        return $this->subject(' Reminder: Quotation send Pending for RFQ - ' . $this->rfq->rfq_code)
+        return $this->subject("⏰ RFQ Reminder ({$this->hours}h): Pending Quotation for RFQ - {$this->rfq->rfq_code}")
             ->view('mail.rfq_reminder')
             ->with([
-                'rfq' => $this->rfq,
+                'rfq'   => $this->rfq,
+                'hours' => $this->hours,
             ]);
     }
 }
