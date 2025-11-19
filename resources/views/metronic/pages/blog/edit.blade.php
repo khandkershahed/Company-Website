@@ -13,7 +13,6 @@
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="card">
                         <!--Banner Section-->
                         <div class="container py-2">
                             <div class="row">
@@ -283,7 +282,6 @@
                                     id="submitbtn">Submit</button>
                             </div>
                         </div>
-                    </div>
                 </form>
             </div>
         </div>

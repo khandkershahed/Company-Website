@@ -24,12 +24,10 @@ class LeaveController extends Controller
 {
     public function leaveDashboard()
     {
-
-            $data = []; 
-            $data['user'] = User::where('id', Auth::user()->id)->first();
+            $user = User::where('id', Auth::user()->id)->first();
             $data = [
-                'user' => $data['user'],
-                'employeeCategory' => EmployeeCategory::whereId($data['user']->category_id)->first(),
+                'user' => $user,
+                'employeeCategory' => EmployeeCategory::whereId($user->category_id)->first(),
                 'leaveApplications' => LeaveApplication::where('employee_id', Auth::user()->id)->get(),
                 'employee_leave_due' => EmployeeLeave::where('employee_id', Auth::user()->id)->first(),
             ];
@@ -40,6 +38,7 @@ class LeaveController extends Controller
 
     public function substituteApproval(Request $request, $id)
     {
+        // dd($request->all());
         $rules = [
             'substitute_action'       => 'required|string',
         ];
@@ -103,7 +102,7 @@ class LeaveController extends Controller
 
             Toastr::success('Thank You for your Action.');
             // return redirect()->back();
-            return redirect()->route('leave.history');
+            return redirect()->route('admin.dashboard');
         } else {
             // Validation failed, display error messages
             $messages = $validator->messages();
@@ -179,7 +178,7 @@ class LeaveController extends Controller
                 }
             }
             Toastr::success('Thank You for your Action.');
-            return redirect()->route('leave.history');
+            return redirect()->route('admin.dashboard');
         } else {
             // Validation failed, display error messages
             $messages = $validator->messages();
@@ -284,7 +283,7 @@ class LeaveController extends Controller
                 }
             }
             Toastr::success('Thank You for your Action.');
-            return redirect()->route('leave.history');
+            return redirect()->route('leave-application.index');
         } else {
             // Validation failed, display error messages
             $messages = $validator->messages();
@@ -365,7 +364,7 @@ class LeaveController extends Controller
                 }
             }
             Toastr::success('Thank You for your Action.');
-            return redirect()->route('leave.history');
+            return redirect()->route('leave-application.index');
         } else {
             // Validation failed, display error messages
             $messages = $validator->messages();

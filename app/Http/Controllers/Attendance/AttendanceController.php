@@ -97,7 +97,7 @@ class AttendanceController extends Controller
         $monthInput = $request->input('month', now()->format('F')); // e.g. “October” or “10”
         $year = now()->year;  // default to current year
 
-        // Convert month name/format into numeric month (1–12) 
+        // Convert month name/format into numeric month (1–12)
         if (is_numeric($monthInput)) {
             $month = intval($monthInput);
             if ($month < 1 || $month > 12) {
@@ -111,7 +111,7 @@ class AttendanceController extends Controller
             }
             $month = intval(date('m', $timestamp));
         }
-        $leaveApplications = LeaveApplication::where('employee_id', $userId)->get();
+        $leaveApplications = LeaveApplication::latest('created_at')->where('employee_id', $userId)->get();
         $sicks = $leaveApplications->where('type_of_leave','sick');
         $earneds = $leaveApplications->where('type_of_leave','earned');
         $casuals = $leaveApplications->where('type_of_leave','casual');

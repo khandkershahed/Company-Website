@@ -226,7 +226,7 @@ class DashboardController extends Controller
             }
         }
         $attendances = collect($attendances);
-        $leaveApplications = LeaveApplication::get();
+        $leaveApplications = LeaveApplication::latest('created_at')->get();
         $sicks = $leaveApplications->where('type_of_leave', 'sick');
         $earneds = $leaveApplications->where('type_of_leave', 'earned');
         $casuals = $leaveApplications->where('type_of_leave', 'casual');

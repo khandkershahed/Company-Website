@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="mx-2 separator separator-dashed min-w-10px flex-grow-1"></div>
                                 <div class="ms-auto fw-bolder text-end text-primary">
-                                    2
+                                    0
                                     <i class="fa-solid fa-arrow-trend-up text-warning d-none d-lg-block"></i>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="mx-2 separator separator-dashed min-w-10px flex-grow-1"></div>
                                 <div class="ms-auto fw-bolder text-end text-primary">
-                                    2
+                                   0
                                     <i class="fa-solid fa-arrow-trend-down text-danger d-none d-lg-block"></i>
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="mx-2 separator separator-dashed min-w-10px flex-grow-1"></div>
                                 <div class="ms-auto fw-bolder text-end text-primary">
-                                    2
+                                    0
                                     <i class="fa-solid fa-arrow-trend-up text-warning d-none d-lg-block"></i>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="mx-2 separator separator-dashed min-w-10px flex-grow-1"></div>
                                 <div class="ms-auto fw-bolder text-end text-primary">
-                                    01
+                                    0
                                     <i class="fa-solid fa-arrow-trend-up text-primary"></i>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="mx-2 separator separator-dashed min-w-10px flex-grow-1"></div>
                                 <div class="ms-auto fw-bolder text-primary text-end">
-                                    05
+                                   0
                                     <i class="fa-solid fa-arrow-trend-up text-primary"></i>
                                 </div>
                             </div>
@@ -162,7 +162,7 @@
                                 </div>
                                 <div class="mx-2 separator separator-dashed min-w-10px flex-grow-1"></div>
                                 <div class="text-gray-700 ms-auto fw-bolder text-end">
-                                    27/28
+                                    0
                                     <i class="fa-solid fa-arrow-trend-up text-primary"></i>
                                 </div>
                             </div>
@@ -174,7 +174,7 @@
                                 </div>
                                 <div class="mx-2 separator separator-dashed min-w-10px flex-grow-1"></div>
                                 <div class="text-gray-700 ms-auto fw-bolder text-end">
-                                    01/28
+                                    0
                                     <i class="fa-solid fa-arrow-trend-up text-primary"></i>
                                 </div>
                             </div>
@@ -282,12 +282,7 @@
                                     Casual
                                 </a>
                             </li>
-                            <li class="mt-0 nav-item mt-lg-auto" role="presentation">
-                                <a class="p-3 py-2 mt-2 overflow-hidden rounded-2 mt-lg-5 nav-link btn btn-outline btn-flex btn-color-muted btn-active-color-primary flex-column rounded-0" id="pending-tab" data-bs-toggle="tab" href="#pendingLeave" role="tab"
-                                    aria-controls="pendingLeave" aria-selected="false">
-                                    Pending
-                                </a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -296,22 +291,22 @@
 
                         {{-- Sick Leaves --}}
                         <div class="tab-pane fade show active" id="sickLeave" role="tabpanel" aria-labelledby="sick-tab">
-                            @include('metronic.pages.attendance.partials.leave_table', ['leaves' => $sicks])
+                            @include('metronic.pages.attendance.partials.pending_leaves', ['leaves' => $sicks])
                         </div>
 
                         {{-- Earned Leaves --}}
                         <div class="tab-pane fade" id="earnedLeave" role="tabpanel" aria-labelledby="earned-tab">
-                            @include('metronic.pages.attendance.partials.leave_table', ['leaves' => $earneds])
+                            @include('metronic.pages.attendance.partials.pending_leaves', ['leaves' => $earneds])
                         </div>
 
                         {{-- Casual Leaves --}}
                         <div class="tab-pane fade" id="casualLeave" role="tabpanel" aria-labelledby="casual-tab">
-                            @include('metronic.pages.attendance.partials.leave_table', ['leaves' => $casuals])
+                            @include('metronic.pages.attendance.partials.pending_leaves', ['leaves' => $casuals])
                         </div>
 
                         {{-- Pending Leaves --}}
                         <div class="tab-pane fade" id="pendingLeave" role="tabpanel" aria-labelledby="pending-tab">
-                            @include('metronic.pages.attendance.partials.leave_table', ['leaves' => $pendings])
+                            @include('metronic.pages.attendance.partials.pending_leaves', ['leaves' => $pendings])
                         </div>
 
                     </div>

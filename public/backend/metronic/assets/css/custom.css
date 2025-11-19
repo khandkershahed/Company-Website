@@ -59,7 +59,8 @@
 }
 
 td {
-    color: #7b7b7b !important;
+    /* color: #7b7b7b !important; */
+    color: #262626 !important;
 }
 
 @media (max-width: 600px) {

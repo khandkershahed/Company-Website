@@ -30,10 +30,9 @@ class LeaveApplicationController extends Controller
      */
     public function index()
     {
-        $data = [
-            'users' => User::latest('id', 'DESC')->get(),
-        ];
-        return view('admin.pages.leaveApplication.all', $data);
+        $data['leaveApplications'] = LeaveApplication::latest('created_at')->get();
+        return view('metronic.pages.leaveApplication.index', $data);
+        // return view('admin.pages.leaveApplication.leave_history', $data);
     }
 
     /**
@@ -225,7 +224,8 @@ class LeaveApplicationController extends Controller
         ];
         $data['employee'] = User::where('id', $data['leave']->employee_id)->first();
         $data['employee_leave_due'] = EmployeeLeave::where('employee_id', $data['leave']->employee_id)->first();
-        return view('admin.pages.leaveApplication.edit', $data);
+        return view('metronic.pages.leaveApplication.edit', $data);
+        // return view('admin.pages.leaveApplication.edit', $data);
     }
 
     /**
@@ -407,8 +407,7 @@ class LeaveApplicationController extends Controller
     }
     public function leaveHistorys()
     {
-        $data['leaveApplications'] = LeaveApplication::orderBy('id', 'desc')->get();
-        return view('admin.pages.leaveApplication.leave_history', $data);
+
     }
     public function individualLeaves($id)
     {

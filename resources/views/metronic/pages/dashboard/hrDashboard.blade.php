@@ -287,11 +287,16 @@
                                                             <a class="nav-link" data-bs-toggle="tab"
                                                                 href="#casualLeave">Casual</a>
                                                         </li>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" data-bs-toggle="tab"
-                                                                href="#pendingLeave">Pending</a>
-                                                        </li>
+
                                                     </ul>
+                                                </div>
+                                                <div>
+                                                    <a href="{{ route('leave-application.index') }}"
+                                                        class="btn btn-outline btn-outline-info btn-active-light-info">
+                                                        Full Leave
+                                                        History
+                                                        <i class="fas fa-arrow-right ms-3"></i>
+                                                    </a>
                                                 </div>
                                             </div>
                                             <div class="card-body">
@@ -302,7 +307,7 @@
                                                     <div class="tab-pane fade show active" id="sickLeave"
                                                         role="tabpanel">
                                                         @include(
-                                                            'metronic.pages.attendance.partials.leave_table',
+                                                            'metronic.pages.attendance.partials.pending_leaves',
                                                             [
                                                                 'leaves' => $sicks,
                                                             ]
@@ -312,7 +317,7 @@
                                                     {{-- Earned Leaves --}}
                                                     <div class="tab-pane fade" id="earnedLeave" role="tabpanel">
                                                         @include(
-                                                            'metronic.pages.attendance.partials.leave_table',
+                                                            'metronic.pages.attendance.partials.pending_leaves',
                                                             [
                                                                 'leaves' => $earneds,
                                                             ]
@@ -322,22 +327,14 @@
                                                     {{-- Casual Leaves --}}
                                                     <div class="tab-pane fade" id="casualLeave" role="tabpanel">
                                                         @include(
-                                                            'metronic.pages.attendance.partials.leave_table',
+                                                            'metronic.pages.attendance.partials.pending_leaves',
                                                             [
                                                                 'leaves' => $casuals,
                                                             ]
                                                         )
                                                     </div>
 
-                                                    {{-- Pending Leaves --}}
-                                                    <div class="tab-pane fade" id="pendingLeave" role="tabpanel">
-                                                        @include(
-                                                            'metronic.pages.attendance.partials.leave_table',
-                                                            [
-                                                                'leaves' => $pendings,
-                                                            ]
-                                                        )
-                                                    </div>
+
 
                                                 </div>
                                             </div>
