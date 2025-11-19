@@ -41,6 +41,7 @@ class SendRfqReminders extends Command
         $rfqs = Rfq::where('status', 'rfq_created')
             ->whereRaw('TIMESTAMPDIFF(HOUR, created_at, NOW()) >= ?', [$hours])
             ->where($column, false)
+            ->where('created_at', '>=', '2025-11-01 00:00:00') // Only RFQs from Nov 2025
             ->get();
 
         if ($rfqs->isEmpty()) {
