@@ -25,8 +25,8 @@ class Kernel extends ConsoleKernel
             ->between('08:40', '22:15')
             ->withoutOverlapping();
         $schedule->command('rfq:send-reminders')
-            ->everyFourHours()
-            ->between('09:00', '22:15')
+            ->everyFiveMinutes()
+            // ->between('09:00', '22:15')
             ->timezone('Asia/Dhaka')
             ->withoutOverlapping();
 
