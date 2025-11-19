@@ -221,7 +221,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-lg-4 mb-7">
+                                                    {{-- <div class="col-lg-4 mb-7">
                                                         <div class="mb-5">
                                                             <label class="form-label star"
                                                                 for="basicpill-firstname-input">Department</label>
@@ -264,7 +264,7 @@
                                                             <div class="invalid-feedback"> Please Enter Department.
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                     {{-- <div class="col-lg-4 mb-7">
                                                             <div class="mb-5">
                                                                     <label class="form-label"
@@ -372,7 +372,7 @@
                                     <label class="fw-semibold text-muted form-label d-block">Full Name</label>
                                     <span class="text-gray-800 fw-bold fs-6 d-block">{{ $user->name }}</span>
                                 </div>
-                                <div class="mb-7">
+                                {{-- <div class="mb-7">
                                     <label class="fw-semibold text-muted form-label d-block">Departments</label>
                                     @if (!empty($user->department) && is_array(json_decode($user->department, true)))
                                     @foreach (json_decode($user->department, true) as $dept)
@@ -382,7 +382,7 @@
                                     @else
                                     <span class="text-muted">N/A</span>
                                     @endif
-                                </div>
+                                </div> --}}
 
                             </div>
                             <div class="mb-4 col-lg-2 col-md-4">
