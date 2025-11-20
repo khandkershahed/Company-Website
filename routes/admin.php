@@ -164,6 +164,12 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     );
 
     // Sales Department
+    Route::middleware(['department:super_admin'])->group(function () {
+        Route::get('php-info', function () {
+            phpinfo();
+        })->name('php.info');
+    });
+
     Route::middleware(['department:sales'])->group(function () {
         Route::get('sales/dashboard', [DashboardController::class, 'salesDashboard'])->name('sales-dashboard.index');
 
