@@ -14,11 +14,12 @@
              <div class="card-body">
                  <div class="table-responsive">
                      <table class="table dataTable table-rounded table-striped table-hover border gy-7 gs-7">
-                         <thead >
+                         <thead>
                              <tr>
                                  <th width="8%" class="text-center">Sl:</th>
-                                 <th width="25%">Applicant name</th>
-                                 <th width="20%">Type Of Leave</th>
+                                 <th width="20%">Applicant name</th>
+                                 <th width="15%">Leave Date</th>
+                                 <th width="12%">Type Of Leave</th>
                                  <th width="15%">Designation</th>
                                  <th width="15%">Status</th>
                                  <th width="15%" class="text-center">Action</th>
@@ -30,12 +31,19 @@
                                      <tr>
                                          <td class="text-center">{{ $loop->iteration }}</td>
                                          <td>{{ $leaveApplication->name }}</td>
+                                         <td>
+                                             <span
+                                                 class="text-info">{{ strtoupper(\Carbon\Carbon::parse($leaveApplication->leave_start_date)->format('j M y')) }}</span>
+                                             To
+                                             <span
+                                                 class="text-info">{{ strtoupper(\Carbon\Carbon::parse($leaveApplication->leave_end_date)->format('j M y')) }}</span>
+                                         </td>
                                          <td>{{ $leaveApplication->type_of_leave }}</td>
                                          <td>{{ $leaveApplication->designation }}</td>
                                          <td>
                                              <span
                                                  class="badge bg-{{ optional($leaveApplication)->application_status == 'approved' ? 'success' : (optional($leaveApplication)->application_status == 'rejected' ? 'danger' : 'warning') }}">
-                                                 {{ optional($leaveApplication)->application_status == 'approved' ? 'Approved' : (optional($leaveApplication)->application_status == 'rejected' ? 'Rejected' : ( Str::title(str_replace('_', ' ', $leaveApplication->application_status)))) }}
+                                                 {{ optional($leaveApplication)->application_status == 'approved' ? 'Approved' : (optional($leaveApplication)->application_status == 'rejected' ? 'Rejected' : Str::title(str_replace('_', ' ', $leaveApplication->application_status))) }}
                                              </span>
                                          </td>
                                          <td class="text-center">

@@ -191,8 +191,9 @@
                                                         {{-- <button class="search-btn-price" id="modal_view_left" data-bs-toggle="modal"
                                                             data-bs-target="#rfq_product{{ $sproduct->id }}">Ask For
                                                             Price</button> --}}
-                                                        <a href="{{ route('askForPrice', $sproduct->slug) }}" class="search-btn-price"
-                                                            {{-- id="modal_view_left" --}} {{-- data-bs-toggle="modal"
+                                                        <a href="{{ route('askForPrice', $sproduct->slug) }}"
+                                                            class="search-btn-price" {{-- id="modal_view_left" --}}
+                                                            {{-- data-bs-toggle="modal"
                                                             data-bs-target="#rfq_product{{ $sproduct->id }}" --}}>Ask
                                                             For Price</a>
                                                     </div>
@@ -239,7 +240,8 @@
                                             </div>
                                             <div class="text-end">
                                                 <p class="mb-0 list_price">Custom Pricing</p>
-                                                <a href="{{ route('askForPrice', $sproduct->slug) }}" {{-- data-bs-toggle="modal"
+                                                <a href="{{ route('askForPrice', $sproduct->slug) }}"
+                                                    {{-- data-bs-toggle="modal"
                                                     data-bs-target="#rfq_product{{ $sproduct->id }}" --}}>
                                                     <span class="fw-bold" style="color: #ae0a46;">Get A Quote</span>
                                                 </a>
@@ -639,20 +641,21 @@
                                                             {{ $brand_product->price }}</span>
                                                     @endif
                                                 </div>
+                                                @php
+                                                    $cart_items = Cart::content();
+                                                    $productInCart = false;
+
+                                                    foreach ($cart_items as $item) {
+                                                        if ($item->id == $brand_product->id) {
+                                                            $productInCart = true;
+                                                            break;
+                                                        }
+                                                    }
+                                                @endphp
                                                 {{-- <span style="font-size: 10px"><i class="fa-solid fa-tag"></i> KR 4 AGILUS</span> --}}
                                                 @if ($brand_product->rfq == 1)
                                                     <div class="d-flex justify-content-center">
-                                                        @php
-                                                            $cart_items = Cart::content();
-                                                            $productInCart = false;
 
-                                                            foreach ($cart_items as $item) {
-                                                                if ($item->id == $brand_product->id) {
-                                                                    $productInCart = true;
-                                                                    break;
-                                                                }
-                                                            }
-                                                        @endphp
 
                                                         <button
                                                             class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $brand_product->id }}"

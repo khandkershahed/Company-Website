@@ -19,6 +19,7 @@ use App\Models\Admin\SubCategory;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin\MultiIndustry;
 use App\Models\Admin\MultiSolution;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\SolutionDetail;
 use App\Models\Admin\SubSubCategory;
@@ -502,13 +503,13 @@ class SourcingController extends Controller
                 ];
 
                 Notification::send($users, new SourcingNotification($name, $slug));
-                $mail = Mail::to($user_emails)->send(new ProductSourcing($data));
+                try {
+                    Mail::to($user_emails)->queue(new ProductSourcing($data));
+                    Toastr::success('Email sent successfully');
+                    return back();
+                } catch (\Exception $e) {
+                    Log::error('Sourcing Email sending failed(SourcingController:513): ' . $e->getMessage());
 
-                if ($mail) {
-                    Toastr::success('Data has added Successfully');
-                } else {
-                    Toastr::error('Email Failed to send', ['timeOut' => 30000]);
-                    return redirect()->back();
                 }
             } else {
                 $messages = $validator->messages();

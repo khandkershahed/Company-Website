@@ -48,7 +48,7 @@ class RFQController extends Controller
 
     public function index(Request $request)
     {
-        $users = $this->sales_managers ;
+        $users = $this->sales_managers;
 
         // Base RFQ query
         $baseQuery = Rfq::where('rfq_type', 'rfq');
@@ -134,7 +134,7 @@ class RFQController extends Controller
     public function archivedRFQ(Request $request)
     {
         // Fetch users with 'business' department and 'manager' role
-        $users =$this->sales_managers;
+        $users = $this->sales_managers;
 
         // Base RFQ query
         $baseQuery = Rfq::where('rfq_type', 'rfq');
@@ -539,21 +539,23 @@ class RFQController extends Controller
         $rfq_code = $rfq->rfq_code;
 
         try {
-            // Mail::to($request->email)->send(new RFQNotificationClientMail($data));
-            if ($client_type = 'anonymous') {
+            if ($client_type === 'anonymous') {
                 foreach ($user_emails as $email) {
-                    Mail::to($email)->send(new RFQConfirmationMail($data, $rfq_code));
+                    Mail::to($email)->queue(new RFQConfirmationMail($data, $rfq_code));
                 }
             } else {
-                Mail::to($request->email)->send(new RFQNotificationClientMail($data));
+                Mail::to($request->email)->queue(new RFQNotificationClientMail($data));
+
                 foreach ($user_emails as $email) {
-                    Mail::to($email)->send(new RFQNotificationAdminMail($data, $rfq->rfq_code));
+                    Mail::to($email)->queue(new RFQNotificationAdminMail($data, $rfq->rfq_code));
                 }
             }
+            Toastr::success('Emails have been queued successfully.');
         } catch (\Exception $e) {
-            // Log::error('Email sending failed: ' . $e->getMessage()); // Log the error for debugging
-            Toastr::error('There was an error sending the email.', 'Error');
+            Log::error('RFQ Email sending failed: ' . $e->getMessage());
+            Toastr::error('There was an error queueing the email.', 'Error');
         }
+
 
         Cart::destroy();
         Toastr::success('Your RFQ has been submitted successfully.');
@@ -771,7 +773,7 @@ class RFQController extends Controller
 
         // Send RFQ assignment email
         try {
-            Mail::to($userEmails)->send(new RfqAssigned([
+            Mail::to($userEmails)->queue(new RfqAssigned([
                 'name'         => $rfq->name,
                 'product_name' => $product_name,
                 'phone'        => $rfq->phone,
@@ -784,6 +786,7 @@ class RFQController extends Controller
             ]));
             Toastr::success('Mail has been sent successfully.');
         } catch (\Exception $e) {
+            Log::error('AssignSalesMan Email sending failed(RFQController:787): ' . $e->getMessage());
             Toastr::error('Failed to send email. Please try again later.', 'Error', ['timeOut' => 30000]);
         }
 
@@ -809,7 +812,7 @@ class RFQController extends Controller
 
         // Send account creation email
         try {
-            Mail::to($client->email)->send(new AccountCreateMail([
+            Mail::to($client->email)->queue(new AccountCreateMail([
                 'name'      => $client->name,
                 'email'     => $client->email,
                 'phone'     => $client->phone,
@@ -818,6 +821,7 @@ class RFQController extends Controller
             ]));
             Toastr::success('Account creation mail has been sent successfully.');
         } catch (\Exception $e) {
+            Log::error('Account creation Email sending failed(RFQController:822): ' . $e->getMessage());
             Toastr::error('Failed to send account creation mail.', 'Error', ['timeOut' => 30000]);
         }
 
@@ -886,10 +890,11 @@ class RFQController extends Controller
                     'budget'                => $rfq->budget,
                     'link'                  => route('admin.single-rfq.show', $rfq->rfq_code),
                 ];
-                Mail::to($userEmails)->send(new RfqAssigned($data));
+                Mail::to($userEmails)->queue(new RfqAssigned($data));
                 Toastr::success('Mail has been sent successfully.');
             } catch (\Exception $e) {
-                Toastr::error('Email sending failed: ' . $e->getMessage());
+                Log::error('AssignSalesMan Email sending failed(RFQController:894): ' . $e->getMessage());
+                Toastr::error('Email sending failed:');
                 return redirect()->back();
             }
 
@@ -1237,14 +1242,14 @@ class RFQController extends Controller
         try {
             $rfq->update(['confirmation' => 'approved']);
             // Email client
-            Mail::to($rfq->email)->send(new RFQNotificationClientMail($data));
+            Mail::to($rfq->email)->queue(new RFQNotificationClientMail($data));
             // Email admins (you should ideally queue this)
             foreach ($user_emails as $email) {
-                Mail::to($email)->send(new RFQNotificationAdminMail($data, $rfq->rfq_code));
+                Mail::to($email)->queue(new RFQNotificationAdminMail($data, $rfq->rfq_code));
             }
             Session::flash('success', 'RFQ has been approved successfully.');
         } catch (\Exception $e) {
-            Log::error('Email sending failed: ' . $e->getMessage());
+            Log::error('rfqApprove Email sending failed:(RFQController:1250)' . $e->getMessage());
             Session::flash('error', 'RFQ approved, but email sending failed.');
         }
         return redirect()->route('admin.rfq.index');

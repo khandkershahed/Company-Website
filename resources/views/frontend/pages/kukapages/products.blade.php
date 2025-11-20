@@ -96,6 +96,17 @@
                                                         {{ $product->price }}</span>
                                                 @endif
                                             </div>
+                                            @php
+                                                $cart_items = Cart::content();
+                                                $productInCart = false;
+
+                                                foreach ($cart_items as $item) {
+                                                    if ($item->id == $product->id) {
+                                                        $productInCart = true;
+                                                        break;
+                                                    }
+                                                }
+                                            @endphp
                                             {{-- <span style="font-size: 10px"><i class="fa-solid fa-tag"></i> KR 4 AGILUS</span> --}}
                                             @if ($product->rfq == 1)
                                                 <div class="d-flex justify-content-center">
@@ -103,19 +114,10 @@
                                                         class="px-3 py-2 mt-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button"
                                                         data-bs-toggle="modal" data-bs-target="#rfq{{ $product->id }}">Ask
                                                         For Price</button> --}}
-                                                    @php
-                                                        $cart_items = Cart::content();
-                                                        $productInCart = false;
 
-                                                        foreach ($cart_items as $item) {
-                                                            if ($item->id == $product->id) {
-                                                                $productInCart = true;
-                                                                break;
-                                                            }
-                                                        }
-                                                    @endphp
 
-                                                    <button class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
+                                                    <button
+                                                        class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
                                                         data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                         data-quantity="1">
                                                         {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
@@ -127,7 +129,8 @@
                                                         class="px-3 py-2 mt-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button"
                                                         data-bs-toggle="modal" data-bs-target="#rfq{{ $product->id }}">Add to RFQ</a> --}}
 
-                                                    <button class="header_cart_button cart_button_text{{ $product->id }} search-btn-price cart_button_text{{ $product->id }}"
+                                                    <button
+                                                        class="header_cart_button cart_button_text{{ $product->id }} search-btn-price cart_button_text{{ $product->id }}"
                                                         data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                         data-quantity="1">
                                                         {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
@@ -136,10 +139,9 @@
                                             @elseif ($product->price_status && $product->price_status == 'offer_price')
                                                 <div class="d-flex justify-content-center">
                                                     <a href="{{ route('rfq') }}">
-                                                        <button class="btn-color special_btn"
-                                                        {{-- data-bs-toggle="modal"
-                                                            data-bs-target="#rfq{{ $product->id }}" --}}
-                                                            >Your Price</button>
+                                                        <button class="btn-color special_btn" {{-- data-bs-toggle="modal"
+                                                            data-bs-target="#rfq{{ $product->id }}" --}}>Your
+                                                            Price</button>
                                                     </a>
                                                 </div>
                                             @else
@@ -223,7 +225,8 @@
                                                         }
                                                     @endphp
 
-                                                    <button class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
+                                                    <button
+                                                        class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $product->id }}"
                                                         data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                         data-quantity="1">
                                                         {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
@@ -235,7 +238,8 @@
                                                         class="px-3 py-2 mt-2 text-black bg-transparent border btn-color cart_button_text746 popular_product-button"
                                                         data-bs-toggle="modal" data-bs-target="#rfq{{ $product->id }}">Ask
                                                         For Price</button> --}}
-                                                    <button class="header_cart_button cart_button_text{{ $product->id }} search-btn-price cart_button_text{{ $product->id }}"
+                                                    <button
+                                                        class="header_cart_button cart_button_text{{ $product->id }} search-btn-price cart_button_text{{ $product->id }}"
                                                         data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                         data-quantity="1">
                                                         {{ $productInCart ? '✓ Added' : '+ Add RFQ' }}
@@ -244,10 +248,9 @@
                                             @elseif ($product->price_status && $product->price_status == 'offer_price')
                                                 <div class="d-flex justify-content-center">
                                                     <a href="{{ route('rfq') }}">
-                                                        <button class="btn-color special_btn"
-                                                        {{-- data-bs-toggle="modal"
-                                                            data-bs-target="#rfq{{ $product->id }}" --}}
-                                                            >Your Price</button>
+                                                        <button class="btn-color special_btn" {{-- data-bs-toggle="modal"
+                                                            data-bs-target="#rfq{{ $product->id }}" --}}>Your
+                                                            Price</button>
                                                     </a>
                                                 </div>
                                             @else
@@ -334,7 +337,6 @@
     <!---------End -------->
 @endsection
 @section('scripts')
-    
     <script>
         $(window).on('hashchange', function() {
             if (window.location.hash) {

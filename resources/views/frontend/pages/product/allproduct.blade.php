@@ -711,6 +711,17 @@
                                                                         @endif
 
                                                                     </div>
+                                                                    @php
+                                                                        $cart_items = Cart::content();
+                                                                        $productInCart = false;
+
+                                                                        foreach ($cart_items as $item) {
+                                                                            if ($item->id == $product->id) {
+                                                                                $productInCart = true;
+                                                                                break;
+                                                                            }
+                                                                        }
+                                                                    @endphp
                                                                     @if ($product->rfq != 1)
                                                                         @php
                                                                             $cart = Cart::content();
@@ -728,17 +739,7 @@
                                                                         <div class="text-end">
                                                                             {{-- <a href="{{ route('product.details', $product->slug) }}"
                                                                                 class="common_button effect01">Details</a> --}}
-                                                                            @php
-                                                                                $cart_items = Cart::content();
-                                                                                $productInCart = false;
 
-                                                                                foreach ($cart_items as $item) {
-                                                                                    if ($item->id == $product->id) {
-                                                                                        $productInCart = true;
-                                                                                        break;
-                                                                                    }
-                                                                                }
-                                                                            @endphp
                                                                             <button
                                                                                 class="header_cart_button search-btn-price add_to_cart cart_button_text{{ $product->id }}"
                                                                                 data-id="{{ $product->id }}"

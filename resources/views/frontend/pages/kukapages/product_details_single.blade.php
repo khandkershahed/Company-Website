@@ -784,21 +784,20 @@
                                                             {{ $brand_product->price }}</span>
                                                     @endif
                                                 </div>
+                                                @php
+                                                    $cart_items = Cart::content();
+                                                    $productInCart = false;
+
+                                                    foreach ($cart_items as $item) {
+                                                        if ($item->id == $brand_product->id) {
+                                                            $productInCart = true;
+                                                            break;
+                                                        }
+                                                    }
+                                                @endphp
                                                 {{-- <span style="font-size: 10px"><i class="fa-solid fa-tag"></i> KR 4 AGILUS</span> --}}
                                                 @if ($brand_product->rfq == 1)
                                                     <div class="d-flex justify-content-center">
-                                                        @php
-                                                            $cart_items = Cart::content();
-                                                            $productInCart = false;
-
-                                                            foreach ($cart_items as $item) {
-                                                                if ($item->id == $brand_product->id) {
-                                                                    $productInCart = true;
-                                                                    break;
-                                                                }
-                                                            }
-                                                        @endphp
-
                                                         <button
                                                             class="px-3 py-2 btn-color popular_product-button add_to_cart cart_button_text{{ $brand_product->id }}"
                                                             data-id="{{ $brand_product->id }}"

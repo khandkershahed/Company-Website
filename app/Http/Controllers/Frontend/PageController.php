@@ -29,6 +29,10 @@ class PageController extends Controller
     {
         $brand = Brand::where('slug', $id)->where('status', '!=', 'inactive')->select('id', 'slug', 'title', 'image')->first();
         $data['brand'] = $brand;
+        if (!$brand) {
+            Toastr::error('Brand not found!');
+            return redirect()->back();
+        }
         $data['brandpage'] = BrandPage::where('brand_id', $data['brand']->id)->where('status', '!=', 'inactive')->first();
         if (!empty($data['brandpage'])) {
             if ($data['brandpage']) {

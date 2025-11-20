@@ -772,12 +772,23 @@ class HomeController extends Controller
 
     public function TechGlossyDetails($slug)
     {
-        $data['techglossy'] = TechGlossy::where('slug', $slug)->first();
-        //$data['industry'] = Industry::where('id',$id)->first();
-        //$data['industry_page'] = IndustryPage::where('industry_id', $data['industry']->id)->get();
-        $data['storys'] = TechGlossy::inRandomOrder()->where('id', '!=', $data['techglossy']->id)->limit(7)->get();
+        $techglossy = TechGlossy::where('slug', $slug)->first();
+
+        if (!$techglossy) {
+            Toastr::error('Tech Artticle not found!');
+            return redirect()->back();
+        }
+
+        $data['techglossy'] = $techglossy;
+
+        $data['storys'] = TechGlossy::inRandomOrder()
+            ->where('id', '!=', $techglossy->id)
+            ->limit(7)
+            ->get();
+
         return view('frontend.pages.tech.techglossy_details', $data);
     }
+
 
     //Shop All Controller
 
@@ -821,39 +832,43 @@ class HomeController extends Controller
     //Tech Deals
     public function TechDeal()
     {
-
-        $data['products'] = Product::where('refurbished', '1')->where('product_status', 'product')->paginate(10);
-        $data['brands'] = DB::table('brands')
-            ->join('products', 'brands.id', '=', 'products.brand_id')
-            ->where('products.refurbished', '=', '1')
-            ->select('brands.id', 'brands.slug', 'brands.title', 'brands.image')
-            ->where('brands.status', 'active')->distinct()->get();
-        $data['categories'] = DB::table('categories')
-            ->join('products', 'categories.id', '=', 'products.cat_id')
-            ->where('products.refurbished', '=', '1')
-            ->select('categories.id', 'categories.slug', 'categories.title', 'categories.image')
-            ->distinct()->get();
-        //dd($data['categories']);
-        $data['techdeal_products'] = Product::whereNotNull('deal')->where('product_status', 'product')->get();
-        return view('frontend.pages.tech.deal', $data);
+        Session::flash('warning','No Deals Found right now. Coming soon!');
+        return redirect()->back();
+        // $data['products'] = Product::where('refurbished', '1')->where('product_status', 'product')->paginate(10);
+        // $data['brands'] = DB::table('brands')
+        //     ->join('products', 'brands.id', '=', 'products.brand_id')
+        //     ->where('products.refurbished', '=', '1')
+        //     ->select('brands.id', 'brands.slug', 'brands.title', 'brands.image')
+        //     ->where('brands.status', 'active')->distinct()->get();
+        //     dd($data['brands']);
+        // $data['categories'] = DB::table('categories')
+        //     ->join('products', 'categories.id', '=', 'products.cat_id')
+        //     ->where('products.refurbished', '=', '1')
+        //     ->select('categories.id', 'categories.slug', 'categories.title', 'categories.image')
+        //     ->distinct()->get();
+        // //dd($data['categories']);
+        // $data['techdeal_products'] = Product::whereNotNull('deal')->where('product_status', 'product')->get();
+        // return view('frontend.pages.tech.deal', $data);
     }
 
     public function Refurbished()
     {
-        $data['products'] = Product::where('refurbished', '1')->where('product_status', 'product')->paginate(10);
-        $data['brands'] = DB::table('brands')
-            ->join('products', 'brands.id', '=', 'products.brand_id')
-            ->where('products.refurbished', '=', '1')
-            ->select('brands.id', 'brands.slug', 'brands.title', 'brands.image')
-            ->where('brands.status', 'active')->distinct()->get();
-        $data['categories'] = DB::table('categories')
-            ->join('products', 'categories.id', '=', 'products.cat_id')
-            ->where('products.refurbished', '=', '1')
-            ->select('categories.id', 'categories.slug', 'categories.title', 'categories.image')
-            ->distinct()->get();
-        //dd($data['categories']);
-        $data['techdeal_products'] = Product::whereNotNull('deal')->where('product_status', 'product')->get();
-        return view('frontend.pages.tech.refurbished', $data);
+        Session::flash('warning','No Refurbished Products Found right now. Coming soon!');
+        return redirect()->back();
+        // $data['products'] = Product::where('refurbished', '1')->where('product_status', 'product')->paginate(10);
+        // $data['brands'] = DB::table('brands')
+        //     ->join('products', 'brands.id', '=', 'products.brand_id')
+        //     ->where('products.refurbished', '=', '1')
+        //     ->select('brands.id', 'brands.slug', 'brands.title', 'brands.image')
+        //     ->where('brands.status', 'active')->distinct()->get();
+        // $data['categories'] = DB::table('categories')
+        //     ->join('products', 'categories.id', '=', 'products.cat_id')
+        //     ->where('products.refurbished', '=', '1')
+        //     ->select('categories.id', 'categories.slug', 'categories.title', 'categories.image')
+        //     ->distinct()->get();
+        // //dd($data['categories']);
+        // $data['techdeal_products'] = Product::whereNotNull('deal')->where('product_status', 'product')->get();
+        // return view('frontend.pages.tech.refurbished', $data);
     }
 
 
@@ -1361,7 +1376,7 @@ class HomeController extends Controller
 
             $message = $request->message;
             try {
-                Mail::to($request->email)->send(new TestMail($message));
+                Mail::to($request->email)->queue(new TestMail($message));
 
                 Session::flash('success', 'Test email sent successfully to ' . $request->email);
                 return redirect()->back();

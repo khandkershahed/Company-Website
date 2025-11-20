@@ -7,7 +7,7 @@
                     <tr class="text-gray-800 fw-bold fs-6 px-7">
                         <th>Type</th>
                         <th>Staff</th>
-                        <th>Off Day</th>
+                        <th>Leave Date</th>
                         <th>Job Status</th>
                         <th width="20%">Status</th>
                         <th>Substitute</th>
@@ -16,7 +16,7 @@
                 @else
                     <tr class="text-gray-800 fw-bold fs-6 px-7">
                         <th>Type</th>
-                        <th>Off Day</th>
+                        <th>Leave Date</th>
                         <th>Job Status</th>
                         <th width="20%">Status</th>
                         <th>Substitute</th>

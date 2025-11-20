@@ -30,7 +30,7 @@ class LeaveApplicationController extends Controller
      */
     public function index()
     {
-        $data['leaveApplications'] = LeaveApplication::latest('created_at')->get();
+        $data['leaveApplications'] = LeaveApplication::latest('id')->orderBy('created_at','DESC')->get();
         return view('metronic.pages.leaveApplication.index', $data);
         // return view('admin.pages.leaveApplication.leave_history', $data);
     }

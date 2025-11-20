@@ -5,7 +5,7 @@
 <!-- Title -->
 <title>{{ !empty($setting->site_name) ? $setting->site_name : 'NGen IT Ltd.' }}</title>
 @yield('styles')
-@if (Route::currentRouteName() === 'product.details')
+@if (Route::currentRouteName() === 'product.details' && isset($sproduct))
     @php
         $metaTitle = $sproduct->meta_title ?? $sproduct->name;
         $metaDescription = strip_tags(
