@@ -414,10 +414,98 @@
             </div>
         </div>
     </div>
+    <div id="TEST"></div>
 
     @push('scripts')
-    {{-- ApexCharts Logic --}}
-    <script>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    /* ----------------------------------------------------
+       1. GET DATA FROM LARAVEL (Convert PHP → JavaScript)
+    ------------------------------------------------------ */
+    const salesByCountry = @json($salesByCountry ?? []);
+    const salesByProduct = @json($salesByProduct ?? []);
+    const salesByClient  = @json($salesByClient ?? []);
+
+    /* ----------------------------------------------------
+       2. CLEAN DATA (Prevent NaN Errors)
+    ------------------------------------------------------ */
+    const cleanTotals = (arr, field = 'total') =>
+        arr.map(item => Number(item[field]) || 0);
+
+    const cleanLabels = (arr, field = 'name') =>
+        arr.map(item => item[field] || 'Unknown');
+
+    /* Country Chart Data */
+    const countryLabels = cleanLabels(salesByCountry, 'country');
+    const countryTotals = cleanTotals(salesByCountry, 'total');
+
+    /* Product Chart Data */
+    const productLabels = cleanLabels(salesByProduct, 'product_name');
+    const productTotals = cleanTotals(salesByProduct, 'total');
+
+    /* Client Chart Data */
+    const clientLabels = cleanLabels(salesByClient, 'client_name');
+    const clientTotals = cleanTotals(salesByClient, 'total');
+
+    /* ----------------------------------------------------
+       3. UNIVERSAL CHART FUNCTION
+    ------------------------------------------------------ */
+    function createBarChart(elementId, labels, data, name = "Sales") {
+        const el = document.querySelector(elementId);
+        if (!el) return; // element missing → skip chart
+
+        const options = {
+            chart: {
+                type: 'bar',
+                height: 320,
+                toolbar: { show: false }
+            },
+            series: [{
+                name: name,
+                data: data
+            }],
+            xaxis: {
+                categories: labels,
+                labels: { rotate: -45 }
+            },
+            dataLabels: { enabled: false },
+        };
+
+        new ApexCharts(el, options).render();
+    }
+
+    function createDonutChart(elementId, labels, data) {
+        const el = document.querySelector(elementId);
+        if (!el) return;
+
+        const options = {
+            chart: {
+                type: 'donut',
+                height: 340
+            },
+            labels: labels,
+            series: data,
+            legend: { position: 'bottom' }
+        };
+
+        new ApexCharts(el, options).render();
+    }
+
+    /* ----------------------------------------------------
+       4. RENDER ALL CHARTS
+    ------------------------------------------------------ */
+    createBarChart("#countryChart", countryLabels, countryTotals, "Sales by Country");
+    createDonutChart("#productChart", productLabels, productTotals);
+    createBarChart("#clientChart", clientLabels, clientTotals, "Sales by Client");
+
+});
+</script>
+
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function () {
             if (typeof ApexCharts === 'undefined') { return; }
 
@@ -454,6 +542,6 @@
                 }).render();
             }
         });
-    </script>
+    </script> --}}
     @endpush
 </x-admin-app-layout>

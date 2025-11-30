@@ -116,6 +116,7 @@
 
 
     {{-- <script src="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.js') }}"></script> --}}
+<script src="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('backend/metronic/assets/js/scripts.bundle.js') }}"></script>
 
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
@@ -135,7 +136,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script src="{{ asset('backend/assets/input-tags/js/tagsinput.js') }}"></script>
-    <script src="{{ asset('backend/metronic/js/custom.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     {{-- @include('toastr') --}}
     <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
@@ -149,9 +149,9 @@
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
         });
     </script>
-    <script src="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.js') }}"></script>
+    
 
-    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    {{-- <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
@@ -161,7 +161,8 @@
     <script src="https://cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
-    <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script> --}}
+    <script src="{{ asset('backend/metronic/js/custom.js') }}"></script>
 
     @stack('scripts')
     <script>
