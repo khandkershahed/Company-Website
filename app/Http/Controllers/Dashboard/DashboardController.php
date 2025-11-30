@@ -298,7 +298,7 @@ class DashboardController extends Controller
     public function salesDashboard()
     {
         // 1. Base Sales Query (Deals)
-        $salesQuery = Rfq::where('status', 'sales');
+        $salesQuery = Rfq::where('rfq_type', 'sales');
 
         // 2. Metrics
         $todaySales = (clone $salesQuery)->whereDate('sale_date', Carbon::today())->sum('total_price');
