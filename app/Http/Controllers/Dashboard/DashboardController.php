@@ -301,7 +301,7 @@ class DashboardController extends Controller
         $salesQuery = Rfq::where('rfq_type', 'sales');
 
         // 2. Metrics
-        $todaySales = (clone $salesQuery)->whereDate('sale_date', Carbon::today())->sum('total_price');
+        $todaySales = (clone $salesQuery)->whereDate('created_at', Carbon::today())->sum('total_price');
         $currentYearSales = (clone $salesQuery)->whereYear('sale_date', Carbon::now()->year)->sum('total_price');
 
         // 3. Target & Achievement (Example Logic)
