@@ -156,7 +156,7 @@
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" type="submit" class="btn btn-primary rounded-0">Save
+                                    <button type="submit" class="btn btn-primary rounded-0">Save
                                         changes</button>
                                 </div>
                             </div>
