@@ -90,48 +90,43 @@ class SalesForecastController extends Controller
 
     public function salesForecast(Request $request)
     {
-        // Base Query
-        $baseQuery = Rfq::with('rfqQuotation')->latest();
+        // FIX: Do NOT add ->latest() here. It causes the Group By error.
+        $baseQuery = Rfq::with('rfqQuotation');
 
         // Filter by status if provided
         if ($request->filled('status')) {
             $baseQuery->where('status', $request->status);
         }
 
-        $rfqs = (clone $baseQuery)->get();
+        // 1. Get Main List (Apply latest() ONLY here)
+        $rfqs = (clone $baseQuery)->latest()->get();
 
-        // 1. Categorize RFQs
+        // 2. Categorize RFQs (Using Collection methods to avoid DB queries)
         $pendings = $rfqs->where('status', 'rfq_created');
         $quoteds  = $rfqs->where('status', 'quoted');
         $losts    = $rfqs->where('status', 'lost');
-        $closeds  = $rfqs->where('status', 'closed'); // Or 'won'
+        $closeds  = $rfqs->where('status', 'closed');
         $deals    = $rfqs->whereIn('status', ['deal', 'won', 'order']);
 
-        // 2. Calculate Values
-        // Quoted Amount (Pipeline)
-        $quoted_amount = $quoteds->sum('quoted_price'); // Assuming 'quoted_price' column exists and is populated
+        // 3. Calculate Values
+        // Quoted Amount
+        $quoted_amount = $quoteds->sum('quoted_price');
         if ($quoted_amount == 0) {
-            // Fallback if column is empty, sum from relation
             $quoted_amount = $quoteds->flatMap(function ($rfq) {
                 return $rfq->rfqQuotation->pluck('total_final_total_price');
             })->sum();
         }
 
-        // Closed Deal Amount (Revenue)
+        // Closed Deal Amount
         $closed_amount = $deals->sum('total_price');
 
-        // 3. Weighted Forecast Logic (Example)
-        // Probability: Quoted (50%), Negotiating (80%), Won (100%)
-        // For now, let's just use the ratio of Won / (Won + Lost)
+        // Weighted Forecast Logic
         $total_opportunities = $deals->count() + $losts->count();
         $weighted_forecast_percent = $total_opportunities > 0 ? round(($deals->count() / $total_opportunities) * 100, 1) : 0;
 
-
-        // 4. Contribution (Top Products/Categories) for the Widget
-        // We need data for the chart and list
+        // 4. Contribution (Top Products)
         $contributionData = RfqProduct::select('brand_name', DB::raw('sum(total_price) as total'))
             ->whereHas('rfq', function ($q) {
-                // Filter for relevant RFQs (e.g., deals only or all pipeline)
                 $q->where('create_date', '>=', Carbon::now()->subDays(30));
             })
             ->groupBy('brand_name')
@@ -139,16 +134,15 @@ class SalesForecastController extends Controller
             ->take(5)
             ->get();
 
-        // 5. Chart Data (Forecast vs Actual vs Target) - Monthly
-        // This feeds the main bar chart
+        // 5. Chart Data (Forecast vs Actual vs Target)
         $months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        $forecastData = []; // Placeholder logic
+        $forecastData = [];
         $actualData = [];
         $targetData = [];
 
         foreach (range(1, 12) as $m) {
-            // Example Logic: Actual = Deals closed in month M
-            $actual = $rfqs->where('status', 'deal')->filter(function ($item) use ($m) {
+            // Actual Sales per Month
+            $actual = $rfqs->whereIn('status', ['deal'])->filter(function ($item) use ($m) {
                 return $item->sale_date && Carbon::parse($item->sale_date)->month == $m;
             })->sum('total_price');
 
@@ -157,8 +151,8 @@ class SalesForecastController extends Controller
             $targetData[] = 10000; // Dummy target
         }
 
-
-        // 6. Country Wise Data (For Map/List)
+        // 6. Country Wise Data
+        // FIX: We clone $baseQuery (which has NO ordering) so Group By works
         $countryWiseRfqs = (clone $baseQuery)
             ->whereNotNull('country')
             ->select('country', DB::raw('count(*) as total'), DB::raw('sum(total_price) as value'))
@@ -185,21 +179,18 @@ class SalesForecastController extends Controller
         ));
     }
 
-    // Filter Method (AJAX)
     public function filterForecast(Request $request)
     {
-        // This handles the AJAX reload for the main table tabs
         $baseQuery = Rfq::with('rfqQuotation');
 
         if ($request->filled('country')) {
             $baseQuery->where('country', $request->country);
         }
-        // Add other filters if needed
 
         $rfqs = $baseQuery->latest()->get();
 
         $quoteds  = $rfqs->where('status', 'quoted');
-        $deals    = $rfqs->whereIn('status', ['deal', 'won', 'order']);
+        $deals    = $rfqs->whereIn('status', ['deal']);
         $losts    = $rfqs->where('status', 'lost');
 
         return view('metronic.pages.sales.partials.forecastFiltered', compact('quoteds', 'deals', 'losts'));

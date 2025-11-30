@@ -14,7 +14,7 @@ class ClientContactController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        $isSuperAdmin = $user->myDepartments(['super_admin']); 
+        $isSuperAdmin = $user->myDepartments(['super_admin']);
 
         // 1. Start Query
         $query = ClientContact::with(['permittedUsers', 'sector', 'subSector'])->latest();
@@ -43,9 +43,9 @@ class ClientContactController extends Controller
             $query->where('designation', 'like', '%' . $request->designation . '%');
         }
         if ($request->filled('phone')) {
-            $query->where(function($q) use ($request) {
+            $query->where(function ($q) use ($request) {
                 $q->where('official_phone', 'like', '%' . $request->phone . '%')
-                  ->orWhere('personal_phone', 'like', '%' . $request->phone . '%');
+                    ->orWhere('personal_phone', 'like', '%' . $request->phone . '%');
             });
         }
 
@@ -58,7 +58,7 @@ class ClientContactController extends Controller
         // 6. Statistics & Dropdowns
         $totalClients = $allContacts->count();
         $totalCompanies = $groupedContacts->count();
-        
+
         $sectors = IndustrialSector::whereNull('parent_id')->where('status', 'active')->orderBy('name')->get();
         $subSectors = IndustrialSector::whereNotNull('parent_id')->where('status', 'active')->orderBy('name')->get();
         $users = $isSuperAdmin ? User::orderBy('name')->get() : collect([]);
@@ -67,8 +67,8 @@ class ClientContactController extends Controller
         $sectorStats = $allContacts->groupBy('sector_id')->map->count();
 
         return view('metronic.pages.clientContact.index', compact(
-            'groupedContacts', 
-            'totalClients', 
+            'groupedContacts',
+            'totalClients',
             'totalCompanies',
             'sectors',
             'subSectors',
@@ -87,8 +87,8 @@ class ClientContactController extends Controller
             ->distinct()
             ->limit(20)
             ->pluck('company_name');
-            
-        $results = $companies->map(function($name) {
+
+        $results = $companies->map(function ($name) {
             return ['id' => $name, 'text' => $name];
         });
 
@@ -105,39 +105,47 @@ class ClientContactController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'company_name' => 'required|string|max:255',
-            'sector_id' => 'nullable|exists:industrial_sectors,id',
-            'sub_sector_id' => 'nullable|exists:industrial_sectors,id',
-            'contact_person' => 'nullable|string',
-            'designation' => 'nullable|string',
-            'department' => 'nullable|string',
-            'official_phone' => 'nullable|string',
-            'personal_phone' => 'nullable|string',
-            'email' => 'nullable|email',
-            'area' => 'nullable|string',
-            'address' => 'nullable|string',
-            'status' => 'nullable|string',
-            'tier' => 'nullable|string',
-            'comments' => 'nullable|string',
-            'permitted_users' => 'nullable|array',
-            'permitted_users.*' => 'exists:users,id',
+            'company_name'       => 'required|string|max:255',
+            'sector_id'          => 'nullable|exists:industrial_sectors,id',
+            'sub_sector_id'      => 'nullable|exists:industrial_sectors,id',
+            'contact_person'     => 'nullable|string',
+            'designation'        => 'nullable|string',
+            'department'         => 'nullable|string',
+            'official_phone'     => 'nullable|string',
+            'personal_phone'     => 'nullable|string',
+            'email'              => 'nullable|email',
+            'area'               => 'nullable|string',
+            'address'            => 'nullable|string',
+            'status'             => 'nullable|string',
+            'tier'               => 'nullable|string',
+            'comments'           => 'nullable|string',
+
+            // This should NOT be saved to contacts table
+            'permitted_users'    => 'nullable|array',
+            'permitted_users.*'  => 'exists:users,id',
         ]);
 
+        // Remove permitted_users before inserting
+        $permittedUsers = $validated['permitted_users'] ?? [];
+        unset($validated['permitted_users']);
+
+        // Standardize company name
         $validated['company_name'] = $this->standardizeCompanyName($request->company_name);
 
+        // Insert contact
         $contact = ClientContact::create($validated);
 
-        if ($request->has('permitted_users')) {
-            $contact->permittedUsers()->sync($request->permitted_users);
-        }
+        // Save permitted users to pivot table
+        $contact->permittedUsers()->sync($permittedUsers);
 
         return redirect()->back()->with('success', 'Client contact added successfully.');
     }
 
+
     public function update(Request $request, $id)
     {
         $contact = ClientContact::findOrFail($id);
-        
+
         $validated = $request->validate([
             'company_name' => 'required|string|max:255',
             'sector_id' => 'nullable|exists:industrial_sectors,id',
