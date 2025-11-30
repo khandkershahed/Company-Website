@@ -13,7 +13,7 @@ class ExpenseType extends Model
     protected $guarded = [];
     public function expenseCategory()
     {
-        return $this->belongsTo(ExpenseCategory::class,'expense_category_id','id');
+        return $this->belongsTo(ExpenseCategory::class, 'expense_category_id');
     }
     public function expenses()
     {

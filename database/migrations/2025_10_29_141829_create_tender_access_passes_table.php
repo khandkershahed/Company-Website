@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('tender_access_passes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sector_id')->nullable()->constrained('industrial_sectors')->cascadeOnUpdate()->cascadeOnUpdate();  // Faisal
+            $table->string('organization')->nullable();
+            $table->string('login_url')->nullable();
+            $table->string('username')->nullable();
+            $table->string('password')->nullable();
+            $table->text('verification_details')->nullable();
+            $table->string('recovery_email')->nullable();
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

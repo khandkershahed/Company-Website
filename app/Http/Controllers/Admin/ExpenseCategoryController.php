@@ -11,35 +11,25 @@ use Illuminate\Support\Facades\Validator;
 
 class ExpenseCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $data['expenseCategories'] = ExpenseCategory::latest()->get();
         return view('metronic.pages.expenseCategory.index', $data);
-        // return view('admin.pages.expenseCategory.all', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validator = Validator::make(
             $request->all(),
             [
-                'name'     => 'required|string',
+                'name'     => 'required|string|max:255',
                 'status'   => 'required|string',
-                'notes'    => 'required|string',
+                'notes'    => 'nullable|string',
+                'comments' => 'nullable|string',
+                'custom'   => 'nullable|string',
             ],
             [
-                'required' => 'This :attribute field is needed.',
+                'required' => 'The :attribute field is required.',
             ]
         );
 
@@ -49,8 +39,10 @@ class ExpenseCategoryController extends Controller
                 'slug'     => Str::slug($request->name),
                 'status'   => $request->status,
                 'notes'    => $request->notes,
+                'comments' => $request->comments,
+                'custom'   => $request->custom,
             ]);
-            Toastr::success('Data Insert Successfully.');
+            Toastr::success('Expense Category Created Successfully.');
         } else {
             $messages = $validator->messages();
             foreach ($messages->all() as $message) {
@@ -60,24 +52,19 @@ class ExpenseCategoryController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $validator = Validator::make(
             $request->all(),
             [
-                'name'     => 'required|string',
+                'name'     => 'required|string|max:255',
                 'status'   => 'required|string',
-                'notes'    => 'required|string',
+                'notes'    => 'nullable|string',
+                'comments' => 'nullable|string',
+                'custom'   => 'nullable|string',
             ],
             [
-                'required' => 'This :attribute field is needed.',
+                'required' => 'The :attribute field is required.',
             ]
         );
 
@@ -87,8 +74,10 @@ class ExpenseCategoryController extends Controller
                 'slug'     => Str::slug($request->name),
                 'status'   => $request->status,
                 'notes'    => $request->notes,
+                'comments' => $request->comments,
+                'custom'   => $request->custom,
             ]);
-            Toastr::success('Data Updated Successfully.');
+            Toastr::success('Expense Category Updated Successfully.');
         } else {
             $messages = $validator->messages();
             foreach ($messages->all() as $message) {
@@ -98,14 +87,9 @@ class ExpenseCategoryController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        ExpenseCategory::find($id)->delete();
+        $category = ExpenseCategory::find($id);
+        $category->delete();
     }
 }

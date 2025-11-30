@@ -4,56 +4,50 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\Admin\ExpenseType;
 use App\Http\Controllers\Controller;
+use App\Models\Accounts\ExpenseType;
 use Brian2694\Toastr\Facades\Toastr;
-use App\Models\Admin\ExpenseCategory;
+use App\Models\Accounts\ExpenseCategory;
 use Illuminate\Support\Facades\Validator;
 
 class ExpenseTypeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $data['expenseCategorys'] = ExpenseCategory::select('expense_categories.id', 'expense_categories.name')->get();
-        $data['expenseTypes']     = ExpenseType::latest()->get();
-        return view('admin.pages.expenseType.all', $data);
+        $data['expenseCategorys'] = ExpenseCategory::select('id', 'name')->where('status', 'active')->get();
+        $data['expenseTypes'] = ExpenseType::with('expenseCategory')->latest()->get();
+        
+        return view('metronic.pages.expenseType.index', $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validator = Validator::make(
             $request->all(),
             [
-                'expense_category_id' => 'required|integer',
-                'name'                => 'required|string',
-                'status'              => 'required|string',
-                'notes'               => 'required|string',
+                'expense_category_id' => 'required|integer|exists:expense_categories,id',
+                'name'     => 'required|string|max:255',
+                'status'   => 'required|string',
+                'notes'    => 'nullable|string',
+                'comments' => 'nullable|string',
+                'custom'   => 'nullable|string',
             ],
             [
-                'required' => 'This :attribute field is needed.',
+                'required' => 'The :attribute field is required.',
             ]
         );
 
         if ($validator->passes()) {
             ExpenseType::create([
                 'expense_category_id' => $request->expense_category_id,
-                'name'                => $request->name,
-                'slug'                => Str::slug($request->name),
-                'status'              => $request->status,
-                'notes'               => $request->notes,
+                'name'     => $request->name,
+                'slug'     => Str::slug($request->name),
+                'status'   => $request->status,
+                'notes'    => $request->notes,
+                'comments' => $request->comments,
+                'custom'   => $request->custom,
             ]);
-            Toastr::success('Data Insert Successfully.');
+            Toastr::success('Expense Type Created Successfully.');
         } else {
             $messages = $validator->messages();
             foreach ($messages->all() as $message) {
@@ -63,37 +57,34 @@ class ExpenseTypeController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $validator = Validator::make(
             $request->all(),
             [
-                'expense_category_id' => 'required|integer',
-                'name'                => 'required|string',
-                'status'              => 'required|string',
-                'notes'               => 'required|string',
+                'expense_category_id' => 'required|integer|exists:expense_categories,id',
+                'name'     => 'required|string|max:255',
+                'status'   => 'required|string',
+                'notes'    => 'nullable|string',
+                'comments' => 'nullable|string',
+                'custom'   => 'nullable|string',
             ],
             [
-                'required' => 'This :attribute field is needed.',
+                'required' => 'The :attribute field is required.',
             ]
         );
 
         if ($validator->passes()) {
             ExpenseType::find($id)->update([
                 'expense_category_id' => $request->expense_category_id,
-                'name'                => $request->name,
-                'slug'                => Str::slug($request->name),
-                'status'              => $request->status,
-                'notes'               => $request->notes,
+                'name'     => $request->name,
+                'slug'     => Str::slug($request->name),
+                'status'   => $request->status,
+                'notes'    => $request->notes,
+                'comments' => $request->comments,
+                'custom'   => $request->custom,
             ]);
-            Toastr::success('Data Updated Successfully.');
+            Toastr::success('Expense Type Updated Successfully.');
         } else {
             $messages = $validator->messages();
             foreach ($messages->all() as $message) {
@@ -103,14 +94,11 @@ class ExpenseTypeController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        ExpenseType::find($id)->delete();
+        $type = ExpenseType::find($id);
+        $type->delete();
+        
+        return redirect()->back();
     }
 }

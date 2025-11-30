@@ -68,7 +68,7 @@ return new class extends Migration
             $table->json('solution')->nullable();
             $table->string('image')->nullable();
             $table->text('message')->nullable();
-            $table->enum('rfq_type', ['rfq', 'deal', 'sales', 'order', 'delivery'])->default('rfq')->nullable();
+            $table->enum('rfq_type', ['rfq', 'deal', 'sales', 'order', 'delivery', 'delivery_completed'])->default('rfq')->nullable();
             $table->enum('call', ['0', '1'])->default('0')->nullable();
             $table->enum('regular', ['0', '1'])->default('0')->nullable();
             $table->enum('special', ['0', '1'])->default('0')->nullable();

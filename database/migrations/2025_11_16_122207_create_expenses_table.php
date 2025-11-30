@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('expense_category')->nullable()->constrained('expense_categories')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('expense_type')->nullable()->constrained('expense_types')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('purchase_id')->nullable()->constrained('rfq_purchases')->cascadeOnUpdate()->cascadeOnDelete();
             $table->date('date')->nullable();
             $table->string('month')->nullable();
             $table->string('category')->nullable();

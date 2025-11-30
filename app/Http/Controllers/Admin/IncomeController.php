@@ -2,182 +2,131 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Admin\Rfq;
-use App\Models\Admin\Income;
-use Illuminate\Http\Request;
-use App\Models\Admin\Expense;
-use App\Models\Frontend\Order;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Rfq;
+use App\Models\Accounts\Income;
+use App\Models\Accounts\Expense;
+use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class IncomeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $data['incomes'] = Income::get();
-        $data['rfqs'] = Rfq::select('rfqs.id', 'rfqs.name')->get();
-        $data['orders'] = Order::select('orders.id', 'orders.order_number','orders.client_type','orders.client_id')->get();
-        return view('admin.pages.income.all', $data);
+        $data['incomes'] = Income::with('rfq')->latest()->get();
+        // Fetch RFQ data for dropdown
+        $data['rfqs'] = Rfq::select('id', 'rfq_code', 'name', 'company_name')
+                           ->where('rfq_type', 'delivery_completed')
+                           ->get();
+        return view('metronic.pages.income.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    // AJAX for autofill
+    public function getRfqDetails($id)
     {
-        //
+        $rfq = Rfq::find($id);
+        if ($rfq) {
+            return response()->json([
+                'success' => true,
+                'client_name' => $rfq->name,
+                'company_name' => $rfq->company_name,
+            ]);
+        }
+        return response()->json(['success' => false]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validator = Validator::make(
             $request->all(),
             [
-                'rfq_id'        => 'required',
-            ],
+                'date'         => 'required|date',
+                'rfq_id'       => 'nullable|exists:rfqs,id',
+                'amount'       => 'required|numeric|min:0',
+                'client_name'  => 'nullable|string|max:255',
+                'type'         => 'nullable|in:corporate,online', // Matches ENUM
+                'po_reference' => 'nullable|string|max:255',
+            ]
         );
 
         if ($validator->passes()) {
+            $monthName = Carbon::parse($request->date)->format('F');
+
             Income::create([
-                'rfq_id'         => $request->rfq_id,
-                'order_id'       => $request->order_id,
-                'date'           => date('Y-m-d H:i:s', strtotime($request->date)),
-                'month'          => $request->month,
-                'po_reference'   => $request->po_reference,
-                'type'           => $request->type,
-                'client_name'    => $request->client_name,
-                'amount'         => $request->amount,
-                'received_value' => $request->received_value,
+                'rfq_id'       => $request->rfq_id,
+                'date'         => $request->date,
+                'month'        => $monthName,
+                'po_reference' => $request->po_reference,
+                'type'         => $request->type,
+                'client_name'  => $request->client_name,
+                'amount'       => $request->amount,
             ]);
-            Toastr::success('Data Insert Successfully');
+            
+            Toastr::success('Income Added Successfully');
         } else {
-            $messages = $validator->messages();
-            foreach ($messages->all() as $message) {
-                Toastr::error($message, 'Failed', ['timeOut' => 30000]);
+            foreach ($validator->errors()->all() as $message) {
+                Toastr::error($message);
             }
         }
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $data['income'] = Income::find($id);
-        $data['rfqs'] = Rfq::select('rfqs.id', 'rfqs.name')->get();
-        $data['orders'] = Order::select('orders.id', 'orders.name')->get();
-        return view('admin.pages.income.edit', $data);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
+        $income = Income::findOrFail($id);
+
         $validator = Validator::make(
             $request->all(),
             [
-                'rfq_id'        => 'required',
-            ],
+                'date'         => 'required|date',
+                'rfq_id'       => 'nullable|exists:rfqs,id',
+                'amount'       => 'required|numeric|min:0',
+            ]
         );
 
         if ($validator->passes()) {
-            Income::find($id)->update([
-                'rfq_id'         => $request->rfq_id,
-                'order_id'       => $request->order_id,
-                'date'           => date('Y-m-d H:i:s', strtotime($request->date)),
-                'month'          => $request->month,
-                'po_reference'   => $request->po_reference,
-                'type'           => $request->type,
-                'client_name'    => $request->client_name,
-                'amount'         => $request->amount,
-                'received_value' => $request->received_value,
+            $monthName = Carbon::parse($request->date)->format('F');
+
+            $income->update([
+                'rfq_id'       => $request->rfq_id,
+                'date'         => $request->date,
+                'month'        => $monthName,
+                'po_reference' => $request->po_reference,
+                'type'         => $request->type,
+                'client_name'  => $request->client_name,
+                'amount'       => $request->amount,
             ]);
-            Toastr::success('Data updated Successfully');
+
+            Toastr::success('Income Updated Successfully');
         } else {
-            $messages = $validator->messages();
-            foreach ($messages->all() as $message) {
-                Toastr::error($message, 'Failed', ['timeOut' => 30000]);
+            foreach ($validator->errors()->all() as $message) {
+                Toastr::error($message);
             }
         }
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         Income::find($id)->delete();
+        // Toastr::success('Income Deleted Successfully');
+        // return redirect()->back();
     }
 
     public function Overview()
     {
-        $data['incomesTotalAmount']  = Income::pluck('amount')->sum();
-        $data['expensesTotalAmount'] = Expense::pluck('amount')->sum();
+        $data['incomesTotalAmount']  = Income::sum('amount');
+        $data['expensesTotalAmount'] = Expense::sum('amount');
 
-        $data['expenseJanuaryAmount']   = Expense::where('month', 'january')->pluck('amount');
-        $data['expenseFebruaryAmount']  = Expense::where('month', 'february')->pluck('amount');
-        $data['expenseMarchAmount']     = Expense::where('month', 'march')->pluck('amount');
-        $data['expenseAprilAmount']     = Expense::where('month', 'april')->pluck('amount');
-        $data['expenseMayAmount']       = Expense::where('month', 'may')->pluck('amount');
-        $data['expenseJuneAmount']      = Expense::where('month', 'june')->pluck('amount');
-        $data['expenseJulyAmount']      = Expense::where('month', 'july')->pluck('amount');
-        $data['expenseAugustAmount']    = Expense::where('month', 'august')->pluck('amount');
-        $data['expenseSeptemberAmount'] = Expense::where('month', 'september')->pluck('amount');
-        $data['expenseOctoberAmount']   = Expense::where('month', 'october')->pluck('amount');
-        $data['expenseNovemberAmount']  = Expense::where('month', 'november')->pluck('amount');
-        $data['expenseDecemberAmount']  = Expense::where('month', 'december')->pluck('amount');
+        $months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
+        
+        foreach ($months as $month) {
+            $data['expense' . ucfirst($month) . 'Amount'] = Expense::where('month', $month)->pluck('amount');
+            $data['income' . ucfirst($month) . 'Amount'] = Income::where('month', $month)->pluck('amount');
+        }
 
-        $data['incomeJanuaryAmount']   = Income::where('month', 'january')->pluck('amount');
-        $data['incomeFebruaryAmount']  = Income::where('month', 'february')->pluck('amount');
-        $data['incomeMarchAmount']     = Income::where('month', 'march')->pluck('amount');
-        $data['incomeAprilAmount']     = Income::where('month', 'april')->pluck('amount');
-        $data['incomeMayAmount']       = Income::where('month', 'may')->pluck('amount');
-        $data['incomeJuneAmount']      = Income::where('month', 'june')->pluck('amount');
-        $data['incomeJulyAmount']      = Income::where('month', 'july')->pluck('amount');
-        $data['incomeAugustAmount']    = Income::where('month', 'august')->pluck('amount');
-        $data['incomeSeptemberAmount'] = Income::where('month', 'september')->pluck('amount');
-        $data['incomeOctoberAmount']   = Income::where('month', 'october')->pluck('amount');
-        $data['incomeNovemberAmount']  = Income::where('month', 'november')->pluck('amount');
-        $data['incomeDecemberAmount']  = Income::where('month', 'december')->pluck('amount');
-
-        return view('admin.pages.income.overview', $data);
+        return view('metronic.pages.income.overview', $data);
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\TenderSiteController;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -16,6 +15,7 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CmarController;
 use App\Http\Controllers\Admin\DealController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\TenderSecurity;
 use App\Http\Controllers\KPI\SalaryController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
@@ -71,6 +71,7 @@ use App\Http\Controllers\Admin\NewsLetterController;
 use App\Http\Controllers\Admin\OfferPriceController;
 use App\Http\Controllers\Admin\RowWithColController;
 use App\Http\Controllers\Admin\TechGlossyController;
+use App\Http\Controllers\Admin\TenderSiteController;
 use App\Http\Controllers\Admin\WebSettingController;
 use App\Http\Controllers\KPI\EmployeeTaskController;
 use App\Http\Controllers\Order\AdminOrderController;
@@ -92,6 +93,7 @@ use App\Http\Controllers\Admin\TrainingPageController;
 use App\Http\Controllers\Admin\WhatWeDoPageController;
 use App\Http\Controllers\Client\SupportCaseController;
 use App\Http\Controllers\Sales\SalesAccountController;
+use App\Http\Controllers\Admin\ClientContactController;
 use App\Http\Controllers\Admin\PortfolioPageController;
 use App\Http\Controllers\Admin\PortfolioTeamController;
 use App\Http\Controllers\Admin\SalesForecastController;
@@ -101,6 +103,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Event\EventCategoryController;
 use App\Http\Controllers\KPI\EmployeeProjectController;
 use App\Http\Controllers\Marketing\BulkEmailController;
+use App\Http\Controllers\Admin\AccountsReportController;
 use App\Http\Controllers\Admin\ClientDatabaseController;
 use App\Http\Controllers\Admin\HardwareCommonController;
 use App\Http\Controllers\Admin\OfficeLocationController;
@@ -108,6 +111,7 @@ use App\Http\Controllers\Admin\PolicyCategoryController;
 use App\Http\Controllers\Admin\RfqOrderStatusController;
 use App\Http\Controllers\Admin\SoftwareCommonController;
 use App\Http\Controllers\Admin\TechnologyDataController;
+use App\Http\Controllers\Admin\TenderSecurityController;
 use App\Http\Controllers\Attendance\BioMetricController;
 use App\Http\Controllers\Client\ClientSupportController;
 use App\Http\Controllers\Solution\SolutionCMSController;
@@ -124,8 +128,10 @@ use App\Http\Controllers\Attendance\AttendanceController;
 use App\Http\Controllers\Admin\AdminMenuBuilderController;
 use App\Http\Controllers\Admin\EmployeeCategoryController;
 use App\Http\Controllers\Admin\HardwareInfoPageController;
+use App\Http\Controllers\Admin\IndustrialSectorController;
 use App\Http\Controllers\Admin\LeaveApplicationController;
 use App\Http\Controllers\Admin\SoftwareInfoPageController;
+use App\Http\Controllers\Admin\TenderAccessPassController;
 use App\Http\Controllers\Sales\SalesAchievementController;
 use App\Http\Controllers\Admin\PortfolioCategoryController;
 use App\Http\Controllers\Admin\PortfolioChooseUsController;
@@ -144,9 +150,6 @@ use App\Http\Controllers\Admin\PolicyAcknowledgmentsController;
 use App\Http\Controllers\Client\ClientSupportMessageController;
 use App\Http\Controllers\Admin\FrontendNavbarMenuItemController;
 use App\Http\Controllers\Admin\PortfolioClientFeedbackController;
-use App\Http\Controllers\Admin\TenderAccessPassController;
-use App\Http\Controllers\Admin\TenderSecurity;
-use App\Http\Controllers\Admin\TenderSecurityController;
 use App\Http\Controllers\Marketing\MarketingTeamTargetController;
 use App\Http\Controllers\Marketing\MarketingManagerRoleController;
 
@@ -199,7 +202,6 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['department:marketing'])->group(function () {
         Route::resources(
             [
-
                 'tender'           => TenderController::class,
                 'marketing-dmar'   => MarketingDmarController::class,
                 'marketing-emar'   => MarketingEmarController::class,
@@ -215,37 +217,31 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
             ],
             ['except' => ['show']]
         );
-
         Route::get('marketing/dashboard', [DashboardController::class, 'marketingDashboard'])->name('marketing.dashboard');
-
         Route::post('/marketing-plan/{id}/toggle-status', [MarketingPlanController::class, 'toggleStatus'])->name('marketing-plan.toggleStatus');
         Route::get('admin/marketing-dmar/filter', [MarketingDmarController::class, 'filter'])->name('marketing-dmar.filter');
         Route::delete('marketing-dmar/multi-delete', [MarketingDmarController::class, 'multiDelete'])->name('marketing-dmar.multi-delete');
         Route::get('marketing-target/{user_id}/edit/{month}', [MarketingTargetController::class, 'editMonth'])->name('marketing-target.edit-month');
 
         // All Tender Site routes under /admin/tender-sites
-        Route::prefix('tender-sites')->name('tender-sites.')->group(function () {
-            Route::get('/', [TenderSiteController::class, 'index'])->name('index');
-            Route::get('/create', [TenderSiteController::class, 'create'])->name('create');
-            Route::post('/', [TenderSiteController::class, 'store'])->name('store');
-            Route::get('/{id}/edit', [TenderSiteController::class, 'edit'])->name('edit');
-            Route::put('/{id}', [TenderSiteController::class, 'update'])->name('update');
-            Route::delete('/{id}', [TenderSiteController::class, 'destroy'])->name('destroy');
-        });
+
         // All Tender Access Pass routes under /admin/tender-access-pass
+        Route::prefix('client/contacts')->name('client-contact.')->group(function () {
+            Route::get('/', [ClientContactController::class, 'index'])->name('index');
+            Route::post('/', [ClientContactController::class, 'store'])->name('store');
+            Route::put('/{id}', [ClientContactController::class, 'update'])->name('update');
+            Route::delete('/{id}', [ClientContactController::class, 'destroy'])->name('destroy');
+        });
+        Route::get('client-contacts/search-companies', [ClientContactController::class, 'searchCompanies'])->name('client-contact.search');
         Route::prefix('tender-access-pass')->name('tender-access-pass.')->group(function () {
             Route::get('/', [TenderAccessPassController::class, 'index'])->name('index');
-            Route::get('/create', [TenderAccessPassController::class, 'create'])->name('create');
             Route::post('/', [TenderAccessPassController::class, 'store'])->name('store');
-            Route::get('/{id}/edit', [TenderAccessPassController::class, 'edit'])->name('edit');
             Route::put('/{id}', [TenderAccessPassController::class, 'update'])->name('update');
             Route::delete('/{id}', [TenderAccessPassController::class, 'destroy'])->name('destroy');
         });
         Route::prefix('tender/security')->name('tender-security.')->group(function () {
             Route::get('/', [TenderSecurityController::class, 'index'])->name('index');
-            Route::get('/create', [TenderSecurityController::class, 'create'])->name('create');
             Route::post('/', [TenderSecurityController::class, 'store'])->name('store');
-            Route::get('/{id}/edit', [TenderSecurityController::class, 'edit'])->name('edit');
             Route::put('/{id}', [TenderSecurityController::class, 'update'])->name('update');
             Route::delete('/{id}', [TenderSecurityController::class, 'destroy'])->name('destroy');
         });
@@ -255,13 +251,27 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     // Accounts Department
     Route::middleware(['department:accounts'])->group(function () {
+        Route::prefix('expense/categories')->name('expense-categories.')->group(function () {
+            Route::get('/', [ExpenseCategoryController::class, 'index'])->name('index');
+            Route::post('/', [ExpenseCategoryController::class, 'store'])->name('store');
+            Route::put('/{id}', [ExpenseCategoryController::class, 'update'])->name('update');
+            Route::delete('/{id}', [ExpenseCategoryController::class, 'destroy'])->name('destroy');
+        });
+        Route::prefix('expense/types')->name('expense-types.')->group(function () {
+            Route::get('/', [ExpenseTypeController::class, 'index'])->name('index');
+            Route::post('/', [ExpenseTypeController::class, 'store'])->name('store');
+            Route::put('/{id}', [ExpenseTypeController::class, 'update'])->name('update');
+            Route::delete('/{id}', [ExpenseTypeController::class, 'destroy'])->name('destroy');
+        });
         Route::resources(
             [
-                'expense-categories' => ExpenseCategoryController::class,
-                'expense-types'      => ExpenseTypeController::class,
-                'expenses'           => ExpenseController::class,
+                'expenses'         => ExpenseController::class,
+                'incomes'           => IncomeController::class,
             ]
         );
+        Route::get('accounts/overview', [AccountsReportController::class, 'overview'])->name('accounts.overview');
+    Route::get('accounts/ledger', [AccountsReportController::class, 'ledger'])->name('accounts.ledger');
+        Route::get('incomes/get-rfq-details/{id}', [IncomeController::class, 'getRfqDetails'])->name('incomes.get-rfq-details');
         // Route::resources(
         //     [
         //         'contact'          => ContactController::class,
@@ -328,6 +338,9 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
             'task'                      => TaskController::class,
         ]);
     });
+    Route::resources([
+        'industrial-sector'             => IndustrialSectorController::class,
+    ]);
     // Route::resources([
     //     'employee'                  => EmployeeController::class,
     //     'employee-category'         => EmployeeCategoryController::class, // fully done
@@ -646,9 +659,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::resources(
         [
-            'income'                     => IncomeController::class,
             'product-section'            => SectionController::class,
-            'expense'                    => ExpenseController::class,
             'bulkEmail'                  => BulkEmailController::class,
             'office-location'            => OfficeLocationController::class,
             'sales-forcast'              => SalesForcastController::class,

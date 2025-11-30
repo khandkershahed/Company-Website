@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Accounts;
 
-use App\Models\Admin\IndustrialSector;
+use App\Models\Admin\Rfq;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class TenderAccessPass extends Model
+class Income extends Model
 {
     use HasFactory;
     /**
@@ -15,8 +15,13 @@ class TenderAccessPass extends Model
      * @var array
      */
     protected $guarded = [];
-    public function sector()
+    protected $casts = [
+        'date' => 'date',
+    ];
+
+    // Relationship to RFQ
+    public function rfq()
     {
-        return $this->belongsTo(IndustrialSector::class, 'sector_id');
+        return $this->belongsTo(Rfq::class, 'rfq_id');
     }
 }

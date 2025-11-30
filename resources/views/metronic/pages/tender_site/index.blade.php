@@ -1,95 +1,43 @@
 <x-admin-app-layout :title="'Tender Sites'">
     <div class="p-4 container-fluid">
 
-        <!-- Top Stats Cards with Gradient -->
-        <div class="mb-4 row g-4">
-            <!-- Total Sites -->
-            <div class="col-12 col-md-6 col-xl-3">
-                <div class="p-10 shadow-sm card rounded-4 d-flex align-items-center" style="background: linear-gradient(90deg, #fff, #8b5cf6);">
-                    <div class="d-flex align-items-center justify-content-between w-100">
-                        <!-- Left: Description -->
-                        <div>
-                            <h2 class="text-black ">Total Sites</h2>
-                            <span class="text-black"><i class="bi bi-graph-up"></i> +12% from last month</span>
-                        </div>
-                        <!-- Right: Circle with big number -->
-                        <div class="text-purple-700 bg-white rounded-circle d-flex justify-content-center align-items-center" style="width:70px; height:70px; font-size:1.75rem; font-weight:bold;">
-                            120
-                        </div>
-                    </div>
-                </div>
+        {{-- Success Message --}}
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-
-            <!-- Active Tenders -->
-            <div class="col-12 col-md-6 col-xl-3">
-                <div class="p-10 shadow-sm card rounded-4 d-flex align-items-center" style="background: linear-gradient(90deg, #fff, #14b8a6);">
-                    <div class="d-flex align-items-center justify-content-between w-100">
-                        <div>
-                            <h2 class="text-black ">Active Tenders</h2>
-                            <span class="text-black"><i class="bi bi-arrow-down"></i> -4% this week</span>
-                        </div>
-                        <div class="text-green-600 bg-white rounded-circle d-flex justify-content-center align-items-center" style="width:70px; height:70px; font-size:1.75rem; font-weight:bold;">
-                            54
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pending Approvals -->
-            <div class="col-12 col-md-6 col-xl-3">
-                <div class="p-10 shadow-sm card rounded-4 d-flex align-items-center" style="background: linear-gradient(90deg, #fff, #f59e0b);">
-                    <div class="d-flex align-items-center justify-content-between w-100">
-                        <div>
-                            <h2 class="text-black ">Pending Approvals</h2>
-                            <span class="text-black"><i class="bi bi-clock-history"></i> Waiting review</span>
-                        </div>
-                        <div class="text-orange-600 bg-white rounded-circle d-flex justify-content-center align-items-center" style="width:70px; height:70px; font-size:1.75rem; font-weight:bold;">
-                            23
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Completed Projects -->
-            <div class="col-12 col-md-6 col-xl-3">
-                <div class="p-10 shadow-sm card rounded-4 d-flex align-items-center" style="background: linear-gradient(90deg, #fff, #3b82f6);">
-                    <div class="d-flex align-items-center justify-content-between w-100">
-                        <div>
-                            <h2 class="text-black ">Completed Projects</h2>
-                            <span class="text-black"><i class="bi bi-check-circle"></i> Completed successfully</span>
-                        </div>
-                        <div class="text-blue-600 bg-white rounded-circle d-flex justify-content-center align-items-center" style="width:70px; height:70px; font-size:1.75rem; font-weight:bold;">
-                            43
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        @endif
 
         <div class="card rounded-4">
-            <div class="p-5 text-white border card-header d-flex justify-content-between align-items-center" style="background: linear-gradient(90deg, #3b82f6, #3b82f6);">
+            <div class="p-5 text-white border card-header d-flex justify-content-between align-items-center"
+                style="background: linear-gradient(90deg, #3b82f6, #3b82f6);">
                 <div>
                     <h1 class="mb-0 text-white fw-semibold">Tender Site List</h1>
                     <span class="">List of all tender sites with detailed info</span>
                 </div>
                 <div class="d-flex align-items-center">
-                    <select class="py-3 w-150px form-select filterCountry form-select-sm form-select-solid" data-control="select2"
-                        data-placeholder="Select Site Type" data-allow-clear="true" id="filterCountry"
-                        name="country">
-                        <option></option>
-                        <option>Power & Energy</option>
-                        <option>Bank</option>
-                        <option>Academic</option>
-                        <option>Armed Forces</option>
-                        <option>Oil & Gas</option>
-                        <option>Gov.</option>
-                        <option>MNC</option>
-                        <option>Industries</option>
-                        <option>NGO</option>
-                        <option>International NGOs</option>
-                    </select>
-                    <a href="{{ route('admin.tender-sites.create') }}" class="py-4 btn btn-primary btn-sm w-100 ms-3">
+                    {{-- Filter Form --}}
+                    <form action="{{ route('admin.tender-sites.index') }}" method="GET" id="filterForm"
+                        class="d-flex align-items-center">
+                        <select class="py-3 w-150px form-select filterCountry form-select-sm form-select-solid"
+                            data-control="select2" data-placeholder="Select Sector" data-allow-clear="true"
+                            id="filterCountry" name="category" onchange="this.form.submit()">
+                            <option></option>
+                            @foreach ($sectors as $sector)
+                                <option value="{{ optional($sector)->id }}"
+                                    {{ request('category') == optional($sector)->id ? 'selected' : '' }}>
+                                    {{ optional($sector)->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @if (request('category'))
+                            <a href="{{ route('admin.tender-sites.index') }}" class="btn btn-light btn-sm ms-2"
+                                title="Reset Filter"><i class="bi bi-x-lg"></i></a>
+                        @endif
+                    </form>
+
+                    <a href="{{ route('admin.tender-sites.create') }}" class="py-4 btn btn-primary btn-sm ms-3">
                         <i class="bi bi-plus-lg"></i> Add Site
                     </a>
                 </div>
@@ -114,81 +62,128 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-b">
-                                <td class="ps-5">1</td>
-                                <td>Organization A</td>
-                                <td>
-                                    <a href="http://www.tendersiteA.com" target="_blank" class="text-decoration-underline">
-                                        www.tendersiteA.com
-                                    </a>
-                                </td>
-                                <td>John Doe</td>
-                                <td class="text-center"><span class="badge bg-success">Yes</span></td>
-                                <td class="text-center"><span class="badge bg-success">Yes</span></td>
-                                <td class="text-center"><span class="badge bg-warning text-dark">No</span></td>
-                                <td>123 Main Street, Dhaka</td>
-                                <td>
-                                    <a href="tel:+880 123 456 789" class="text-decoration-underline">
-                                        +880 123 456 789
-                                    </a>
-                                </td>
-                                <td>
-                                    <div class="progress" style="height:8px;">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 70%;"></div>
-                                    </div>
-                                    <small class="text-muted">70%</small>
-                                </td>
-                                <td><span class="badge bg-success">Active</span></td>
-                                <td class="text-end pe-4">
-                                    <button class="px-3 btn btn-sm btn-light text-primary"><i class="bi bi-eye"></i></button>
-                                    <button class="px-3 btn btn-sm btn-light text-success"><i class="bi bi-pencil"></i></button>
-                                    <button class="px-3 btn btn-sm btn-light text-danger"><i class="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="ps-5">2</td>
-                                <td>Organization B</td>
-                                <td>
-                                    <a href="http://www.tendersiteB.com" target="_blank" class="text-decoration-underline">
-                                        www.tendersiteB.com
-                                    </a>
-                                </td>
-                                <td>Jane Smith</td>
-                                <td class="text-center"><span class="badge bg-warning text-dark">No</span></td>
-                                <td class="text-center"><span class="badge bg-success">Yes</span></td>
-                                <td class="text-center"><span class="badge bg-success">Yes</span></td>
-                                <td>45/A, Chittagong</td>
-                                <td>
-                                    <a href="tel:+880 987 654 321" class="text-decoration-underline">
-                                        +880 987 654 321
-                                    </a>
-                                </td>
-                                <td>
-                                    <div class="progress" style="height:8px;">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 45%;"></div>
-                                    </div>
-                                    <small class="text-muted">45%</small>
-                                </td>
-                                <td><span class="badge bg-warning text-dark">Pending</span></td>
-                                <td class="text-end pe-4">
-                                    <button class="px-3 btn btn-sm btn-light text-primary"><i class="bi bi-eye"></i></button>
-                                    <button class="px-3 btn btn-sm btn-light text-success"><i class="bi bi-pencil"></i></button>
-                                    <button class="px-3 btn btn-sm btn-light text-danger"><i class="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
+                            @forelse($tenderSites as $index => $site)
+                                <tr class="border-b">
+                                    <td class="ps-5">{{ $tenderSites->firstItem() + $index }}</td>
+                                    <td>
+                                        {{ $site->organization }}
+                                        @if ($site->industrialSector)
+                                            <br><span
+                                                class="badge badge-light-primary fw-bold">{{ $site->industrialSector->name }}</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ $site->site_url }}" target="_blank"
+                                            class="text-decoration-underline">
+                                            {{ Str::limit($site->site_url, 20) }}
+                                        </a>
+                                    </td>
+                                    <td>{{ $site->site_contact }}</td>
 
+                                    {{-- Enlisted --}}
+                                    <td class="text-center">
+                                        @if ($site->enlisted)
+                                            <span class="badge bg-success">Yes</span>
+                                        @else
+                                            <span class="badge bg-warning text-dark">No</span>
+                                        @endif
+                                    </td>
+
+                                    {{-- eProcure --}}
+                                    <td class="text-center">
+                                        @if ($site->eprocure)
+                                            <span class="badge bg-success">Yes</span>
+                                        @else
+                                            <span class="badge bg-warning text-dark">No</span>
+                                        @endif
+                                    </td>
+
+                                    {{-- Participated --}}
+                                    <td class="text-center">
+                                        @if ($site->participated)
+                                            <span class="badge bg-success">Yes</span>
+                                        @else
+                                            <span class="badge bg-warning text-dark">No</span>
+                                        @endif
+                                    </td>
+
+                                    <td>{{ Str::limit($site->address, 30) }}</td>
+
+                                    <td>
+                                        <a href="tel:{{ $site->contact_no }}" class="text-decoration-underline">
+                                            {{ $site->contact_no }}
+                                        </a>
+                                    </td>
+
+                                    {{-- Progress --}}
+                                    <td>
+                                        @php
+                                            $progressColor = 'bg-primary';
+                                            if ($site->progress < 40) {
+                                                $progressColor = 'bg-danger';
+                                            } elseif ($site->progress < 80) {
+                                                $progressColor = 'bg-warning';
+                                            } else {
+                                                $progressColor = 'bg-success';
+                                            }
+                                        @endphp
+                                        <div class="progress" style="height:8px;">
+                                            <div class="progress-bar {{ $progressColor }}" role="progressbar"
+                                                style="width: {{ $site->progress }}%;"></div>
+                                        </div>
+                                        <small class="text-muted">{{ $site->progress }}%</small>
+                                    </td>
+
+                                    {{-- Status --}}
+                                    <td>
+                                        @if ($site->status == 'Active')
+                                            <span class="badge bg-success">Active</span>
+                                        @elseif($site->status == 'Pending')
+                                            <span class="badge bg-warning text-dark">Pending</span>
+                                        @else
+                                            <span class="badge bg-primary">Completed</span>
+                                        @endif
+                                    </td>
+
+                                    <td class="text-end pe-4">
+                                        <a href="{{ route('admin.tender-sites.edit', $site->id) }}"
+                                            class="px-3 btn btn-sm btn-light text-success" title="Edit">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <a class="delete px-3 btn btn-sm btn-light"
+                                            href="{{ route('admin.tender-sites.destroy', $site->id) }}">
+                                            <i class="fas fa-trash-alt text-danger"></i>
+                                        </a>
+                                        {{-- <form action="{{ route('admin.tender-sites.destroy', $site->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this site?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="px-3 btn btn-sm btn-light text-danger" title="Delete">
+                                            <i class="bi bi-trash text-danger"></i>
+                                        </button>
+                                    </form> --}}
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="12" class="text-center py-4">No tender sites found.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
                     </table>
+
+                    <div class="mt-4">
+                        {{ $tenderSites->withQueryString()->links() }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     @push('scripts')
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            console.log("Tender site dashboard ready.");
-        });
-    </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                //
+            });
+        </script>
     @endpush
 </x-admin-app-layout>

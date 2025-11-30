@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('marketing_sectors', function (Blueprint $table) {
+        Schema::create('industrial_sectors', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('parent_id')->nullable()->constrained('marketing_sectors')->onDelete('set null');
+            $table->foreignId('parent_id')->nullable()->constrained('industrial_sectors')->onDelete('set null');
             $table->string('name')->index();
             $table->string('slug')->unique();
             $table->text('description')->nullable();

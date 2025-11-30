@@ -9,12 +9,19 @@ class Expense extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function expenseCategory()
+    protected $casts = [
+        'date' => 'date',
+    ];
+
+    // Explicitly specify the foreign key 'expense_category'
+    public function expenseCategoryRelation()
     {
-        return $this->belongsTo(ExpenseCategory::class,'expense_category','id');
+        return $this->belongsTo(ExpenseCategory::class, 'expense_category');
     }
-    public function expenseType()
+
+    // Explicitly specify the foreign key 'expense_type'
+    public function expenseTypeRelation()
     {
-        return $this->belongsTo(ExpenseType::class,'expense_type','id');
+        return $this->belongsTo(ExpenseType::class, 'expense_type');
     }
 }

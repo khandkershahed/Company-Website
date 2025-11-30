@@ -1,99 +1,35 @@
-<x-admin-app-layout :title="'Tender Access Pass'">
+<x-admin-app-layout :title="'Tender Access Passes'">
     <div class="p-4 container-fluid">
 
-        <!-- Top Stats Cards -->
-        <div class="mb-4 row g-4">
-            <!-- Total Passes -->
-            <div class="col-12 col-md-6 col-xl-3">
-                <div class="p-10 shadow-none card rounded-4 d-flex align-items-center"
-                    style="background: linear-gradient(90deg, #fff, #6366f1);">
-                    <div class="d-flex align-items-center justify-content-between w-100">
-                        <div>
-                            <h2 class="text-black">Total Passes</h2>
-                            <span class="text-black"><i class="bi bi-graph-up"></i> +8% this month</span>
-                        </div>
-                        <div class="text-indigo-700 bg-white rounded-circle d-flex justify-content-center align-items-center"
-                            style="width:70px; height:70px; font-size:1.75rem; font-weight:bold;">
-                            240
-                        </div>
-                    </div>
-                </div>
+        {{-- Success Message --}}
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
+        @endif
 
-            <!-- Active Passes -->
-            <div class="col-12 col-md-6 col-xl-3">
-                <div class="p-10 shadow-none card rounded-4 d-flex align-items-center"
-                    style="background: linear-gradient(90deg, #fff, #10b981);">
-                    <div class="d-flex align-items-center justify-content-between w-100">
-                        <div>
-                            <h2 class="text-black">Active Passes</h2>
-                            <span class="text-black"><i class="bi bi-check-circle"></i> Currently valid</span>
-                        </div>
-                        <div class="bg-white text-emerald-600 rounded-circle d-flex justify-content-center align-items-center"
-                            style="width:70px; height:70px; font-size:1.75rem; font-weight:bold;">
-                            182
-                        </div>
-                    </div>
-                </div>
+        {{-- Validation Errors --}}
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
+        @endif
 
-            <!-- Expiring Soon -->
-            <div class="col-12 col-md-6 col-xl-3">
-                <div class="p-10 shadow-none card rounded-4 d-flex align-items-center"
-                    style="background: linear-gradient(90deg, #fff, #f59e0b);">
-                    <div class="d-flex align-items-center justify-content-between w-100">
-                        <div>
-                            <h2 class="text-black">Expiring Soon</h2>
-                            <span class="text-black"><i class="bi bi-exclamation-triangle"></i> Within 7 days</span>
-                        </div>
-                        <div class="bg-white text-amber-600 rounded-circle d-flex justify-content-center align-items-center"
-                            style="width:70px; height:70px; font-size:1.75rem; font-weight:bold;">
-                            27
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Revoked / Expired -->
-            <div class="col-12 col-md-6 col-xl-3">
-                <div class="p-10 shadow-none card rounded-4 d-flex align-items-center"
-                    style="background: linear-gradient(90deg, #fff, #ef4444);">
-                    <div class="d-flex align-items-center justify-content-between w-100">
-                        <div>
-                            <h2 class="text-black">Revoked / Expired</h2>
-                            <span class="text-black"><i class="bi bi-x-circle"></i> No longer valid</span>
-                        </div>
-                        <div class="text-red-600 bg-white rounded-circle d-flex justify-content-center align-items-center"
-                            style="width:70px; height:70px; font-size:1.75rem; font-weight:bold;">
-                            31
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tender Access Pass Table -->
         <div class="card rounded-4">
-            <div class="p-5 text-white border card-header d-flex justify-content-between align-items-center"
-                style="background: linear-gradient(90deg, #ef4444, #ef4444);">
+            <div class="p-5 text-black border card-header d-flex justify-content-between align-items-center"
+                style="background: #f5ecec;">
                 <div>
-                    <h1 class="mb-0 text-white fw-semibold">Tender Access Pass List</h1>
-                    <span class="">Manage user access and pass validity for tender platforms</span>
+                    <h1 class="mb-0 text-info fw-semibold">Tender Access Passes</h1>
                 </div>
-                <div class="d-flex align-items-center">
-                    <select class="py-3 w-150px form-select form-select-sm form-select-solid" data-control="select2"
-                        data-placeholder="Filter by Status" data-allow-clear="true" id="filterStatus" name="status">
-                        <option></option>
-                        <option>Active</option>
-                        <option>Pending</option>
-                        <option>Expired</option>
-                        <option>Revoked</option>
-                    </select>
-                    <button class="py-4 btn btn-light btn-sm text-dark fw-semibold w-100 ms-3"
-                        data-bs-toggle="modal" data-bs-target="#addAccessPassModal">
-                        <i class="bi bi-plus-lg"></i> Add New Pass
-                    </button>
-                </div>
+                <button type="button" class="py-3 btn btn-outline btn-outline-info btn-active-light-info"
+                    data-bs-toggle="modal" data-bs-target="#createModal">
+                    <i class="bi bi-plus-lg"></i> Add Pass
+                </button>
             </div>
 
             <div class="p-5 pt-0 card-body">
@@ -101,119 +37,224 @@
                     <table class="table mb-0 align-middle border dataTable table-hover rounded-4">
                         <thead class="table-light rounded-4">
                             <tr>
-                                <th width="3%" class="ps-5">Sl</th>
-                                <th width="13%">User Name</th>
-                                <th width="12%">Email</th>
-                                <th width="12%">Phone</th>
-                                <th width="10%">Access Level</th>
-                                <th width="10%">Pass Code</th>
-                                <th width="10%">Issued Date</th>
-                                <th width="10%">Expiry Date</th>
-                                <th width="10%">Status</th>
-                                <th width="10%" class="text-end pe-10">Actions</th>
+                                <th width="5%" class="ps-5">ID</th>
+                                <th width="15%">Organization</th>
+                                <th width="15%">Sector</th>
+                                <th width="15%">Login URL</th>
+                                <th width="15%">Username / Email</th>
+                                <th width="15%">Password</th>
+                                <th width="20%" class="text-end pe-5">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-b">
-                                <td class="ps-5">1</td>
-                                <td>John Doe</td>
-                                <td>john@example.com</td>
-                                <td>0168554644</td>
-                                <td><span class="badge bg-info text-dark">Full Access</span></td>
-                                <td>AP-1245</td>
-                                <td>2025-09-12</td>
-                                <td>2025-12-12</td>
-                                <td><span class="badge bg-success">Active</span></td>
-                                <td class="text-end pe-4">
-                                    <button class="px-3 btn btn-sm btn-light text-primary"><i class="bi bi-eye"></i></button>
-                                    <button class="px-3 btn btn-sm btn-light text-success"><i class="bi bi-pencil"></i></button>
-                                    <button class="px-3 btn btn-sm btn-light text-danger"><i class="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="ps-5">2</td>
-                                <td>Jane Smith</td>
-                                <td>jane@example.com</td>
-                                <td>0168554644</td>
-                                <td><span class="badge bg-warning text-dark">Limited</span></td>
-                                <td>AP-0987</td>
-                                <td>2025-08-20</td>
-                                <td>2025-10-30</td>
-                                <td><span class="badge bg-warning text-dark">Expiring Soon</span></td>
-                                <td class="text-end pe-4">
-                                    <button class="px-3 btn btn-sm btn-light text-primary"><i class="bi bi-eye"></i></button>
-                                    <button class="px-3 btn btn-sm btn-light text-success"><i class="bi bi-pencil"></i></button>
-                                    <button class="px-3 btn btn-sm btn-light text-danger"><i class="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
+                            @forelse($tenderAccessPasses as $pass)
+                                <tr>
+                                    <td class="ps-5">{{ $loop->iteration }}</td>
+                                    <td class="fw-bold">{{ $pass->organization }}</td>
+                                    <td>
+                                        @if ($pass->sector)
+                                            <span
+                                                class="badge badge-light-primary text-primary">{{ $pass->sector->name }}</span>
+                                        @else
+                                            <span class="text-muted">-</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($pass->login_url)
+                                            <a href="{{ $pass->login_url }}" target="_blank"
+                                                class="text-decoration-underline text-truncate d-inline-block"
+                                                style="max-width: 150px;">
+                                                Link <i class="bi bi-box-arrow-up-right small"></i>
+                                            </a>
+                                        @else
+                                            <span class="text-muted">-</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $pass->username ?? '-' }}</td>
+                                    <td>
+                                        <div class="input-group input-group-sm" style="width: 160px;">
+                                            {{-- Hidden Password Field --}}
+                                            <input type="password" class="form-control form-control-solid bg-transparent border-0 px-2"
+                                                value="{{ $pass->password ?? '' }}" readonly id="pass-{{ $pass->id }}">
+                                            
+                                            {{-- Toggle Show/Hide --}}
+                                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px" type="button"
+                                                onclick="togglePassword('pass-{{ $pass->id }}', this)">
+                                                <i class="bi bi-eye"></i>
+                                            </button>
+
+                                            {{-- Copy Button --}}
+                                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px" type="button"
+                                                onclick="copyPassword('pass-{{ $pass->id }}', this)" title="Copy">
+                                                <i class="bi bi-clipboard"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td class="text-end pe-5">
+                                        <button type="button" class="px-3 btn btn-sm btn-light text-success edit-btn me-4"
+                                            data-id="{{ $pass->id }}" data-org="{{ $pass->organization }}"
+                                            data-sector="{{ $pass->sector_id }}" data-url="{{ $pass->login_url }}"
+                                            data-username="{{ $pass->username }}"
+                                            data-password="{{ $pass->password }}"
+                                            data-verify="{{ $pass->verification_details }}"
+                                            data-email="{{ $pass->recovery_email }}" data-notes="{{ $pass->notes }}"
+                                            data-bs-toggle="modal" data-bs-target="#editModal">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <a class="delete" href="{{ route('admin.tender-access-pass.destroy', $pass->id) }}">
+                                            <i class="fas fa-trash-alt text-danger"></i>
+                                        </a>
+                                        {{-- <form action="{{ route('admin.tender-access-pass.destroy', $pass->id) }}"
+                                            method="POST" class="d-inline" onsubmit="return confirm('Are you sure?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="px-3 btn btn-sm btn-light text-danger">
+                                                
+                                            </button>
+                                        </form> --}}
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center py-4">No access passes found.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
+                    <div class="mt-4">
+                        {{ $tenderAccessPasses->links() }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Add Access Pass Modal -->
-    <div class="modal fade" id="addAccessPassModal" tabindex="-1" aria-labelledby="addAccessPassLabel" aria-hidden="true">
+    {{-- Create Modal --}}
+    <div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="border-0 shadow-lg modal-content rounded-4">
-                <div class="modal-header bg-light">
-                    <h5 class="text-black modal-title fw-semibold" id="addAccessPassLabel">
-                        <i class="bi bi-plus-circle me-2"></i>Add Tender Access Pass
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Add Access Pass</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form>
-                    <div class="p-5 modal-body">
+                <form action="{{ route('admin.tender-access-pass.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
                         <div class="row g-3">
-                            <div class="col-md-4">
-                                <label class="form-label fw-semibold">User Name</label>
-                                <input type="text" class="form-control" placeholder="Enter user name">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label fw-semibold">Email</label>
-                                <input type="email" class="form-control" placeholder="Enter email address">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="form-label fw-semibold">Phone</label>
-                                <input type="number" class="form-control" placeholder="Enter phone number">
+                            <div class="col-md-6">
+                                <label class="form-label">Organization Name <span class="text-danger">*</span></label>
+                                <input type="text" name="organization" class="form-control form-control-solid"
+                                    required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold">Access Level</label>
-                                <select class="form-select" data-control="select2">
-                                    <option value="">Select Access</option>
-                                    <option>Full Access</option>
-                                    <option>Limited</option>
-                                    <option>Viewer Only</option>
+                                <label class="form-label">Industrial Sector</label>
+                                <select name="sector_id" class="form-select form-select-solid" data-control="select2"
+                                    data-dropdown-parent="#createModal" data-placeholder="Select Sector">
+                                    <option value=""></option>
+                                    @foreach ($sectors as $sector)
+                                        <option value="{{ $sector->id }}">{{ $sector->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold">Pass Code</label>
-                                <input type="text" class="form-control" placeholder="Enter unique pass code">
+                                <label class="form-label">Login URL</label>
+                                <input type="url" name="login_url" class="form-control form-control-solid"
+                                    placeholder="https://...">
                             </div>
-                            <div class="col-md-4">
-                                <label class="form-label fw-semibold">Issued Date</label>
-                                <input type="date" class="form-control">
+                            <div class="col-md-6">
+                                <label class="form-label">Recovery Email</label>
+                                <input type="email" name="recovery_email" class="form-control form-control-solid">
                             </div>
-                            <div class="col-md-4">
-                                <label class="form-label fw-semibold">Expiry Date</label>
-                                <input type="date" class="form-control">
+                            <div class="col-md-6">
+                                <label class="form-label">Username / ID</label>
+                                <input type="text" name="username" class="form-control form-control-solid">
                             </div>
-                            <div class="col-md-4">
-                                <label class="form-label fw-semibold">Status</label>
-                                <select class="form-select">
-                                    <option>Active</option>
-                                    <option>Pending</option>
-                                    <option>Expired</option>
-                                    <option>Revoked</option>
-                                </select>
+                            <div class="col-md-6">
+                                <label class="form-label">Password</label>
+                                <input type="text" name="password" class="form-control form-control-solid">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Verification Details</label>
+                                <textarea name="verification_details" class="form-control form-control-solid" rows="2"
+                                    placeholder="Secret questions, codes, etc."></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Notes</label>
+                                <textarea name="notes" class="form-control form-control-solid" rows="2"></textarea>
                             </div>
                         </div>
                     </div>
-                    <div class="p-4 border-0 modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="px-4 btn btn-primary">Save Pass</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save Pass</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{-- Edit Modal --}}
+    <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Edit Access Pass</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="editForm" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Organization Name <span class="text-danger">*</span></label>
+                                <input type="text" name="organization" id="edit_organization"
+                                    class="form-control form-control-solid" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Industrial Sector</label>
+                                <select name="sector_id" id="edit_sector_id" class="form-select form-select-solid"
+                                    data-control="select2" data-dropdown-parent="#editModal">
+                                    <option value="">Select Sector</option>
+                                    @foreach ($sectors as $sector)
+                                        <option value="{{ $sector->id }}">{{ $sector->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Login URL</label>
+                                <input type="url" name="login_url" id="edit_login_url"
+                                    class="form-control form-control-solid">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Recovery Email</label>
+                                <input type="email" name="recovery_email" id="edit_recovery_email"
+                                    class="form-control form-control-solid">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Username / ID</label>
+                                <input type="text" name="username" id="edit_username"
+                                    class="form-control form-control-solid">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Password</label>
+                                <input type="text" name="password" id="edit_password"
+                                    class="form-control form-control-solid">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Verification Details</label>
+                                <textarea name="verification_details" id="edit_verification_details" class="form-control form-control-solid"
+                                    rows="2"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Notes</label>
+                                <textarea name="notes" id="edit_notes" class="form-control form-control-solid" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Update Pass</button>
                     </div>
                 </form>
             </div>
@@ -221,5 +262,82 @@
     </div>
 
     @push('scripts')
+        <script>
+            // Toggle Password Visibility
+            function togglePassword(inputId, btn) {
+                const input = document.getElementById(inputId);
+                const icon = btn.querySelector('i');
+
+                if (input.type === "password") {
+                    input.type = "text";
+                    icon.classList.remove("bi-eye");
+                    icon.classList.add("bi-eye-slash");
+                } else {
+                    input.type = "password";
+                    icon.classList.remove("bi-eye-slash");
+                    icon.classList.add("bi-eye");
+                }
+            }
+
+            // Copy Password to Clipboard
+            function copyPassword(inputId, btn) {
+                const input = document.getElementById(inputId);
+                
+                // Use Navigator API for clipboard
+                navigator.clipboard.writeText(input.value).then(() => {
+                    // Visual feedback
+                    const originalIcon = btn.innerHTML;
+                    btn.innerHTML = '<i class="bi bi-check-lg text-success"></i>'; // Change to checkmark
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalIcon; // Revert back after 1.5s
+                    }, 1500);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                const editButtons = document.querySelectorAll('.edit-btn');
+                const editForm = document.getElementById('editForm');
+
+                // Inputs
+                const eOrg = document.getElementById('edit_organization');
+                const eSector = document.getElementById('edit_sector_id');
+                const eUrl = document.getElementById('edit_login_url');
+                const eUser = document.getElementById('edit_username');
+                const ePass = document.getElementById('edit_password');
+                const eVerify = document.getElementById('edit_verification_details');
+                const eEmail = document.getElementById('edit_recovery_email');
+                const eNotes = document.getElementById('edit_notes');
+
+                editButtons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+
+                        // Update Action URL (Ensuring route name matches controller)
+                        let actionUrl = "{{ route('admin.tender-access-pass.update', ':id') }}";
+                        editForm.action = actionUrl.replace(':id', id);
+
+                        // Populate Fields
+                        eOrg.value = this.getAttribute('data-org');
+                        eUrl.value = this.getAttribute('data-url');
+                        eUser.value = this.getAttribute('data-username');
+                        ePass.value = this.getAttribute('data-password');
+                        eVerify.value = this.getAttribute('data-verify');
+                        eEmail.value = this.getAttribute('data-email');
+                        eNotes.value = this.getAttribute('data-notes');
+
+                        // Handle Select2
+                        const sectorId = this.getAttribute('data-sector');
+                        if ($(eSector).hasClass("select2-hidden-accessible")) {
+                            $(eSector).val(sectorId).trigger('change');
+                        } else {
+                            eSector.value = sectorId;
+                        }
+                    });
+                });
+            });
+        </script>
     @endpush
 </x-admin-app-layout>

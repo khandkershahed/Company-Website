@@ -99,8 +99,15 @@
                                 'admin.tender-security.create',
                                 'admin.tender-security.edit',
                                 'admin.tender.index',
+                                'admin.tender.create',
+                                'admin.tender.edit',
                                 'admin.tender-sites.index',
+                                'admin.tender-sites.create',
+                                'admin.tender-sites.edit',
                                 'admin.tender-access-pass.index',
+                                'admin.tender-access-pass.create',
+                                'admin.tender-access-pass.edit',
+                                'admin.client-contact.index',
                             ],
                             'subMenu' => [
                                 // [
@@ -191,8 +198,15 @@
                                         'admin.tender-security.create',
                                         'admin.tender-security.edit',
                                         'admin.tender.index',
+                                        'admin.tender.create',
+                                        'admin.tender.edit',
                                         'admin.tender-sites.index',
+                                        'admin.tender-sites.create',
+                                        'admin.tender-sites.edit',
                                         'admin.tender-access-pass.index',
+                                        'admin.tender-access-pass.create',
+                                        'admin.tender-access-pass.edit',
+                                        'admin.client-contact.index',
                                     ],
                                     'subMenu' => [
                                         [
@@ -245,20 +259,34 @@
                                                 'admin.tender-security.create',
                                                 'admin.tender-security.edit',
                                                 'admin.tender.index',
+                                                'admin.tender.create',
+                                                'admin.tender.edit',
                                                 'admin.tender-sites.index',
+                                                'admin.tender-sites.create',
+                                                'admin.tender-sites.edit',
                                                 'admin.tender-access-pass.index',
+                                                'admin.tender-access-pass.create',
+                                                'admin.tender-access-pass.edit',
                                             ],
                                             'subMenu' => [
                                                 [
                                                     'title' => 'Tender Records',
                                                     'allowed_departments' => ['marketing', 'super_admin'],
-                                                    'routes' => ['admin.tender.index'],
+                                                    'routes' => [
+                                                        'admin.tender.index',
+                                                        'admin.tender.create',
+                                                        'admin.tender.edit',
+                                                    ],
                                                     'route' => 'admin.tender.index',
                                                 ],
                                                 [
                                                     'title' => 'Tenderer Sites',
                                                     'allowed_departments' => ['marketing', 'super_admin'],
-                                                    'routes' => ['admin.tender-sites.index'],
+                                                    'routes' => [
+                                                        'admin.tender-sites.index',
+                                                        'admin.tender-sites.create',
+                                                        'admin.tender-sites.edit',
+                                                    ],
                                                     'route' => 'admin.tender-sites.index',
                                                 ],
                                                 [
@@ -277,29 +305,25 @@
                                                     ],
                                                     'route' => 'admin.tender-security.index',
                                                 ],
-                                                [
-                                                    'title' => 'Tender Compliances',
-                                                    'allowed_departments' => ['marketing', 'super_admin'],
-                                                    'routes' => ['admin.tender.index'],
-                                                    'route' => 'admin.tender.index',
-                                                ],
-                                                [
-                                                    'title' => 'Tender Submissions',
-                                                    'allowed_departments' => ['marketing', 'super_admin'],
-                                                    'routes' => ['admin.tender.index'],
-                                                    'route' => 'admin.tender.index',
-                                                ],
+                                                // [
+                                                //     'title' => 'Tender Compliances',
+                                                //     'allowed_departments' => ['marketing', 'super_admin'],
+                                                //     'routes' => ['admin.tender.index'],
+                                                //     'route' => 'admin.tender.index',
+                                                // ],
+                                                // [
+                                                //     'title' => 'Tender Submissions',
+                                                //     'allowed_departments' => ['marketing', 'super_admin'],
+                                                //     'routes' => ['admin.tender.index'],
+                                                //     'route' => 'admin.tender.index',
+                                                // ],
                                             ],
                                         ],
                                         [
                                             'title' => 'Contact Informations',
                                             'allowed_departments' => ['marketing', 'super_admin'],
-                                            'routes' => [
-                                                'admin.marketing-target.index',
-                                                'admin.marketing-target.create',
-                                                'admin.marketing-target.edit',
-                                            ],
-                                            'route' => 'admin.marketing-target.index',
+                                            'routes' => ['admin.client-contact.index'],
+                                            'route' => 'admin.client-contact.index',
                                         ],
                                     ],
                                 ],
@@ -537,53 +561,44 @@
                             'title' => 'Accounts',
                             'icon' => '	fas fa-chart-pie fs-3',
                             'allowed_departments' => ['super_admin', 'accounts'],
-                            'routes' => ['accounts-finance.index'],
+                            'routes' => [
+                                'accounts-finance.index',
+                                'admin.expense-types.index',
+                                'admin.expense-categories.index',
+                                'admin.expenses.index',
+                                'admin.incomes.index',
+                                'admin.accounts.overview',
+                                'admin.accounts.ledger',
+                            ],
                             'subMenu' => [
-                                // [
-                                //     'title' => 'Dashboard',
-                                //     'allowed_departments' => [
-                                //         'super_admin',
-                                //         'accounts',
-                                //     ],
-                                //     'routes' => ['admin.hrDashboard.index'],
-                                //     'route' => 'admin.hrDashboard.index',
-                                // ],
+                                [
+                                    'title' => 'Accounts Overview',
+                                    'allowed_departments' => ['super_admin', 'accounts'],
+                                    'routes' => ['admin.accounts.overview'],
+                                    'route' => 'admin.accounts.overview',
+                                ],
+                                [
+                                    'title' => 'Ledger',
+                                    'allowed_departments' => ['super_admin', 'accounts'],
+                                    'routes' => ['admin.accounts.ledger'],
+                                    'route' => 'admin.accounts.ledger',
+                                ],
                                 [
                                     'title' => 'Expenses',
                                     'allowed_departments' => ['super_admin', 'accounts'],
-                                    'routes' => ['admin.expenses.index','admin.expenses.index','admin.expenses.index'],
+                                    'routes' => [
+                                        'admin.expense-types.index',
+                                        'admin.expense-categories.index',
+                                        'admin.expenses.index',
+                                    ],
                                     'route' => 'admin.expenses.index',
                                 ],
-                                // [
-                                //     'title' => 'Attendance, Leave , Movement History',
-                                //     'allowed_departments' => [
-                                //         'super_admin',
-                                //         'sales',
-                                //         'marketing',
-                                //         'accounts',
-                                //         'site',
-                                //         'supplychain',
-                                //         'crm',
-                                //         'hr',
-                                //     ],
-                                //     'routes' => ['admin.attendance.history'],
-                                //     'route' => 'admin.attendance.history',
-                                // ],
-                                // [
-                                //     'title' => 'Employee List',
-                                //     'allowed_departments' => [
-                                //         'super_admin',
-                                //         'sales',
-                                //         'marketing',
-                                //         'accounts',
-                                //         'site',
-                                //         'supplychain',
-                                //         'crm',
-                                //         'hr',
-                                //     ],
-                                //     'routes' => ['admin.employee.index'],
-                                //     'route' => 'admin.employee.index',
-                                // ],
+                                [
+                                    'title' => 'Incomes',
+                                    'allowed_departments' => ['super_admin', 'accounts'],
+                                    'routes' => ['admin.incomes.index'],
+                                    'route' => 'admin.incomes.index',
+                                ],
                             ],
                         ],
                         [
@@ -712,25 +727,27 @@
                 @endphp
 
                 @php
-                    function filterMenuByDepartment($items)
-                    {
-                        $user = Auth::user();
-                        $filtered = [];
+                    if (!function_exists('filterMenuByDepartment')) {
+                        function filterMenuByDepartment($items)
+                        {
+                            $user = Auth::user();
+                            $filtered = [];
 
-                        foreach ($items as $item) {
-                            $allowed = $item['allowed_departments'] ?? ['super_admin'];
-                            $hasAccess = $user->myDepartments($allowed);
+                            foreach ($items as $item) {
+                                $allowed = $item['allowed_departments'] ?? ['super_admin'];
+                                $hasAccess = $user->myDepartments($allowed);
 
-                            if (!empty($item['subMenu'])) {
-                                $item['subMenu'] = filterMenuByDepartment($item['subMenu']);
+                                if (!empty($item['subMenu'])) {
+                                    $item['subMenu'] = filterMenuByDepartment($item['subMenu']);
+                                }
+
+                                if ($hasAccess || !empty($item['subMenu'])) {
+                                    $filtered[] = $item;
+                                }
                             }
 
-                            if ($hasAccess || !empty($item['subMenu'])) {
-                                $filtered[] = $item;
-                            }
+                            return $filtered;
                         }
-
-                        return $filtered;
                     }
 
                     $filteredMenu = filterMenuByDepartment($menuItems);
