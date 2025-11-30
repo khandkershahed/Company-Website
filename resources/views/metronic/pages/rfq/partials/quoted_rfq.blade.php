@@ -50,7 +50,7 @@
                                         </a>
                                     </div>
                                     <div class="menu-item">
-                                        <a class="menu-link py-3" href="{{ route('admin.rfq.destroy', $pending_rfq->id) }}">
+                                        <a class="menu-link py-3 delete" href="{{ route('admin.rfq.destroy', $pending_rfq->id) }}">
                                             <span class="menu-title">Delete
                                             </span>
                                         </a>

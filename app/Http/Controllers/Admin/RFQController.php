@@ -447,7 +447,7 @@ class RFQController extends Controller
             $product = Product::where('name', 'LIKE', "%{$productName}%")->first();
 
             $product_id = $product->id ?? null;
-            $brandName = $product ? Brand::where('id', $product->brand_id)->value('name') : null;
+            $brandName = $product ? Brand::where('id', $product->brand_id)->value('title') : null;
             if (!$productName || !$qty) {
                 continue;
             }
