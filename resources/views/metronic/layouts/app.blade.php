@@ -50,8 +50,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
     <link href="{{ asset('backend/assets/input-tags/css/tagsinput.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/metronic/assets/css/custom.css?v=' . time()) }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
-        type="text/css" />
+    
 
     <style>
         .aside-dark .menu .menu-item.here>.menu-link .menu-icon,
@@ -161,7 +160,6 @@
     <script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
-    <script src="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.js') }}"></script>
 
     @stack('scripts')
     <script>

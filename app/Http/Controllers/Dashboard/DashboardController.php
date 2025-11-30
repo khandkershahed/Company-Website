@@ -14,8 +14,10 @@ use App\Models\Admin\Feature;
 use App\Models\Admin\Product;
 use App\Models\Admin\Category;
 use App\Models\KPI\Attendance;
+use App\Models\Admin\RfqProduct;
 use App\Models\Admin\SubCategory;
 use App\Models\Admin\StaffMeeting;
+use Illuminate\Support\Facades\DB;
 use App\Models\Admin\EventCategory;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
@@ -291,32 +293,78 @@ class DashboardController extends Controller
     {
         return view('admin.pages.business.all');
     }
+
+
     public function salesDashboard()
     {
-        $baseQuery = Rfq::with('rfqQuotation')->where('rfq_type', 'rfq');
-        $rfqs = (clone $baseQuery)->latest()->get();
-        $pendings   = $rfqs->where('status', 'rfq_created');
-        $quoteds    = $rfqs->where('status', 'quoted');
-        $losts      = $rfqs->where('status', 'lost');
-        $closeds    = $rfqs->where('status', 'closed');
-        $deals      = $rfqs->where('status', 'deal');
+        // 1. Base Sales Query (Deals)
+        $salesQuery = Rfq::where('status', 'sales');
 
-        // Sum total_final_total_price from quotations for quoted RFQs
-        $quoted_amount = $quoteds->flatMap(function ($rfq) {
-            return $rfq->rfqQuotation->pluck('total_final_total_price');
-        })->map(function ($price) {
-            return floatval(preg_replace('/[^\d.]/', '', $price)); // Sanitize in case it's stored as string with currency symbols
-        })->sum();
+        // 2. Metrics
+        $todaySales = (clone $salesQuery)->whereDate('sale_date', Carbon::today())->sum('total_price');
+        $currentYearSales = (clone $salesQuery)->whereYear('sale_date', Carbon::now()->year)->sum('total_price');
+
+        // 3. Target & Achievement (Example Logic)
+        $target = 100000; // You can make this dynamic from a settings table
+        $achievementPercent = $target > 0 ? ($currentYearSales / $target) * 100 : 0;
+
+        // 4. Pipeline Counts
+        $allRfqs = Rfq::all();
+        $pendings = $allRfqs->where('status', 'rfq_created');
+        $quoteds = $allRfqs->where('status', 'quoted');
+
+        // 5. Forecast / Pipeline Value
+        $quotedValue = Rfq::where('status', 'quoted')->sum('quoted_price');
+
+        // 6. Recent Lists (Tables)
+        $currentMonthSalesList = (clone $salesQuery)
+            ->whereMonth('sale_date', Carbon::now()->month)
+            ->latest('sale_date')
+            ->take(5)
+            ->get();
+
+        $recentPendingRfqs = Rfq::where('status', 'rfq_created')
+            ->latest()
+            ->take(5)
+            ->get();
+
+        // 7. Charts Data
+        // Sales By Country
+        $salesByCountry = (clone $salesQuery)
+            ->select('country', DB::raw('sum(total_price) as total'))
+            ->groupBy('country')
+            ->orderByDesc('total')
+            ->take(5)
+            ->get();
+
+        // Sales By Product (Assuming Brand Name for simplicity in grouping)
+        $salesByProduct = RfqProduct::select('brand_name', DB::raw('sum(total_price) as total'))
+            ->whereHas('rfq', function ($q) {
+                $q->where('status', 'deal');
+            })
+            ->groupBy('brand_name')
+            ->orderByDesc('total')
+            ->take(5)
+            ->get();
+
         $data = [
-            'pendings'      => $pendings,
-            'quoteds'       => $quoteds,
-            'losts'         => $losts,
-            'closeds'       => $closeds,
-            'deals'         => $deals,
-            'quoted_amount' => $quoted_amount,
+            'todaySales' => $todaySales,
+            'currentYearSales' => $currentYearSales,
+            'target' => $target,
+            'achievementPercent' => $achievementPercent,
+            'pendings' => $pendings,
+            'quoteds' => $quoteds,
+            'quotedValue' => $quotedValue,
+            'currentMonthSalesList' => $currentMonthSalesList,
+            'recentPendingRfqs' => $recentPendingRfqs,
+            'salesByCountry' => $salesByCountry,
+            'salesByProduct' => $salesByProduct,
         ];
+
         return view('metronic.pages.sales.saleDashboard', $data);
     }
+
+
     public function marketingDashboard()
     {
         $data = [];

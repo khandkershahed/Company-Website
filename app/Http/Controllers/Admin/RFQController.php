@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Rules\Recaptcha;
 use App\Mail\RfqAssigned;
 use App\Models\Admin\Rfq;
+use App\Models\Admin\Brand;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Admin\DealSas;
@@ -443,7 +444,10 @@ class RFQController extends Controller
         foreach ($request->contacts as $contact) {
             $productName = $contact['product_name'] ?? null;
             $qty = $contact['qty'] ?? null;
+            $product = Product::where('name', 'LIKE', "%{$productName}%")->first();
 
+            $product_id = $product->id ?? null;
+            $brandName = $product ? Brand::where('id', $product->brand_id)->value('name') : null;
             if (!$productName || !$qty) {
                 continue;
             }
@@ -472,9 +476,10 @@ class RFQController extends Controller
 
             $data = [
                 'rfq_id'                  => $rfq_id,
+                'product_id'              => $product_id,
                 'sku_no'                  => $contact['sku_no'] ?? null,
                 'model_no'                => $contact['model_no'] ?? null,
-                'brand_name'              => $contact['brand_name'] ?? null,
+                'brand_name'              => !empty($contact['brand_name']) ? $contact['brand_name'] : $brandName,
                 'additional_qty'          => $contact['additional_qty'] ?? null,
                 'additional_product_name' => $contact['additional_product_name'] ?? null,
                 'product_des'             => $contact['product_des'] ?? null,
@@ -1272,5 +1277,21 @@ class RFQController extends Controller
         $rfq->delete();
         Session::flash('success', 'RFQ has been rejected successfully.');
         return redirect()->route('admin.rfq.index');
+    }
+
+    // updateStatus
+    public function updateStatus(Request $request, $id)
+    {
+        $rfq = Rfq::find($id);
+        if (!empty($rfq)) {
+            $rfq->update([
+                'status' => $request->status,
+                'rfq_type' => $request->rfq_type,
+            ]);
+            Toastr::success('RFQ status has been updated.');
+        } else {
+            Toastr::error('RFQ not found.', 'Error', ['timeOut' => 30000]);
+        }
+        return redirect()->back();
     }
 }

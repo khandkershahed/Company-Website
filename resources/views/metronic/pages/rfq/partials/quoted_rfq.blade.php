@@ -23,14 +23,148 @@
                     @endif
                 </div>
                 <div>
+                    <div class="menu" id="#kt_header_menu" data-kt-menu="true">
+                        <div class="btn btn-outline btn-outline-info btn-active-light-info" data-kt-menu-trigger="click"
+                            data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-lg-1">
+                            <span class="menu-link py-3 align-items-center">
+                                <span class="menu-title">
+                                    Actions
+                                    <i class="fas fa-arrow-down ms-2"></i>
+                                </span>
+                            </span>
+                            <div
+                                class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown menu-rounded-0 py-lg-4 w-lg-225px">
+                                @if (Auth::user()->myDepartments(['super_admin', 'sales']))
+                                    <div class="menu-item">
+                                        <a class="menu-link py-3" href="javascript:void(0);" data-bs-toggle="modal"
+                                            data-bs-target="#pending_rfq_status_update_{{ $pending_rfq->id }}">
+                                            <span class="menu-title">Status Update
+                                            </span>
+                                        </a>
+
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link py-3" href="javascript:void(0);">
+                                            <span class="menu-title">Track
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="menu-item">
+                                        <a class="menu-link py-3" href="{{ route('admin.rfq.destroy', $pending_rfq->id) }}">
+                                            <span class="menu-title">Delete
+                                            </span>
+                                        </a>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="modal fade" tabindex="-1" id="pending_rfq_status_update_{{ $pending_rfq->id }}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title">Status Update of
+                                            RFQ#{{ $pending_rfq->rfq_code }}</h3>
+                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2"
+                                            data-bs-dismiss="modal" aria-label="Close">
+                                            <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span
+                                                    class="path2"></span></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <form action="{{ route('admin.rfq.update_status', $pending_rfq->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="col-12 mb-10">
+                                                    <label class="form-label required" for="status">Update RFQ
+                                                        Status</label>
+                                                    <select name="status" id="status"
+                                                        class="form-select form-select-solid" data-control="select2"
+                                                        data-placeholder="Select an option" data-allow-clear="true">
+                                                        <option value="">Select an option</option>
+                                                        <option value="rfq_created"
+                                                            {{ $pending_rfq->status == 'rfq_created' ? 'selected' : '' }}>
+                                                            RFQ Stage</option>
+                                                        <option value="assigned"
+                                                            {{ $pending_rfq->status == 'assigned' ? 'selected' : '' }}>
+                                                            Salesman Assigned</option>
+                                                        <option value="quoted"
+                                                            {{ $pending_rfq->status == 'quoted' ? 'selected' : '' }}>
+                                                            Quoted</option>
+                                                        <option value="won"
+                                                            {{ $pending_rfq->status == 'won' ? 'selected' : '' }}>
+                                                            Won</option>
+                                                        <option value="potential"
+                                                            {{ $pending_rfq->status == 'potential' ? 'selected' : '' }}>
+                                                            Potential</option>
+                                                        <option value="negotiating"
+                                                            {{ $pending_rfq->status == 'negotiating' ? 'selected' : '' }}>
+                                                            Negotiating</option>
+                                                        <option value="closed"
+                                                            {{ $pending_rfq->status == 'closed' ? 'selected' : '' }}>
+                                                            Closed</option>
+                                                        <option value="cancelled"
+                                                            {{ $pending_rfq->status == 'cancelled' ? 'selected' : '' }}>
+                                                            Cancelled</option>
+                                                        <option value="lost"
+                                                            {{ $pending_rfq->status == 'lost' ? 'selected' : '' }}>
+                                                            Lost</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-12 mb-10">
+                                                    <label class="form-label required" for="rfq_type">Convert RFQ
+                                                        To</label>
+                                                    {{-- $table->enum('rfq_type', ['rfq', 'deal', 'sales', 'order', 'delivery', 'delivery_completed'])->default('rfq')->nullable(); --}}
+                                                    <select name="rfq_type" id="rfq_type"
+                                                        class="form-select form-select-solid" data-control="select2"
+                                                        data-allow-clear="true" data-placeholder="Select an option">
+                                                        <option value="">Select an option
+                                                        </option>
+                                                        <option value="rfq"
+                                                            {{ $pending_rfq->rfq_type == 'rfq' ? 'selected' : '' }}>
+                                                            RFQ</option>
+                                                        <option value="deal"
+                                                            {{ $pending_rfq->rfq_type == 'deal' ? 'selected' : '' }}>
+                                                            Deal</option>
+                                                        <option value="sales"
+                                                            {{ $pending_rfq->rfq_type == 'sales' ? 'selected' : '' }}>
+                                                            Sales</option>
+                                                        <option value="order"
+                                                            {{ $pending_rfq->rfq_type == 'order' ? 'selected' : '' }}>
+                                                            Order</option>
+                                                        <option value="delivery"
+                                                            {{ $pending_rfq->rfq_type == 'delivery' ? 'selected' : '' }}>
+                                                            Delivery Stage</option>
+                                                        <option value="delivery_completed"
+                                                            {{ $pending_rfq->rfq_type == 'delivery_completed' ? 'selected' : '' }}>
+                                                            Delivery Completed</option>
+                                                    </select>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary rounded-0">Save
+                                            changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Dropdown Selector -->
-                    <div>
+                    {{-- <div>
                         <select class="form-select form-select-sm pendingRFQ" id="tabSelector">
                             <option value="track_tab_{{ $quoted_rfq->id }}">Track</option>
-                            {{-- <option value="message_tab_{{ $quoted_rfq->id }}">Messages</option> --}}
+                            <option value="message_tab_{{ $quoted_rfq->id }}">Messages</option>
                             <option value="delete_{{ $quoted_rfq->id }}">Delete</option>
                         </select>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
@@ -250,39 +384,41 @@
 
                                                             @foreach (array_chunk($infoTables, 3) as $tablePair)
                                                                 <div class="table-responsive">
-                                                                    <table width="100%" cellpadding="0" cellspacing="0"
-                                                                    border="0" style="table-layout:fixed;">
-                                                                    <tr>
-                                                                        @foreach ($tablePair as $table)
-                                                                            <td class="u-col" valign="top"
-                                                                                width="50%"
-                                                                                style="padding: 0 10px; font-size: 12px;">
-                                                                                <table width="100%" cellpadding="0"
-                                                                                    cellspacing="0" border="0"
-                                                                                    style="box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px;">
-                                                                                    <tr>
-                                                                                        <th colspan="2"
-                                                                                            style="background-color:#d3d3d3; padding:10px; font-size:14px; text-align:center;">
-                                                                                            {{ $table['title'] }}
-                                                                                        </th>
-                                                                                    </tr>
-                                                                                    @foreach ($table['rows'] as [$label, $value])
+                                                                    <table width="100%" cellpadding="0"
+                                                                        cellspacing="0" border="0"
+                                                                        style="table-layout:fixed;">
+                                                                        <tr>
+                                                                            @foreach ($tablePair as $table)
+                                                                                <td class="u-col" valign="top"
+                                                                                    width="50%"
+                                                                                    style="padding: 0 10px; font-size: 12px;">
+                                                                                    <table width="100%"
+                                                                                        cellpadding="0"
+                                                                                        cellspacing="0" border="0"
+                                                                                        style="box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px;">
                                                                                         <tr>
-                                                                                            <th
-                                                                                                style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400; width:130px;">
-                                                                                                {{ $label }}
+                                                                                            <th colspan="2"
+                                                                                                style="background-color:#d3d3d3; padding:10px; font-size:14px; text-align:center;">
+                                                                                                {{ $table['title'] }}
                                                                                             </th>
-                                                                                            <td
-                                                                                                style="padding:10px; border-bottom:1px solid #eee;">
-                                                                                                {!! $value !!}
-                                                                                            </td>
                                                                                         </tr>
-                                                                                    @endforeach
-                                                                                </table>
-                                                                            </td>
-                                                                        @endforeach
-                                                                    </tr>
-                                                                </table>
+                                                                                        @foreach ($table['rows'] as [$label, $value])
+                                                                                            <tr>
+                                                                                                <th
+                                                                                                    style="background:#f1f1f1;padding:10px; text-align:left; font-weight:400; width:130px;">
+                                                                                                    {{ $label }}
+                                                                                                </th>
+                                                                                                <td
+                                                                                                    style="padding:10px; border-bottom:1px solid #eee;">
+                                                                                                    {!! $value !!}
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        @endforeach
+                                                                                    </table>
+                                                                                </td>
+                                                                            @endforeach
+                                                                        </tr>
+                                                                    </table>
                                                                 </div>
                                                             @endforeach
                                                         </div>
@@ -330,7 +466,8 @@
                                                 <table class="table mb-0 table-bordered">
                                                     <tbody>
                                                         <tr>
-                                                            <th class="py-1 text-muted" scope="row">Tentative Budget
+                                                            <th class="py-1 text-muted" scope="row">Tentative
+                                                                Budget
                                                             </th>
                                                             <td class="py-1">:</td>
                                                             <td class="py-1">{{ $quoted_rfq->budget }}</td>
@@ -344,10 +481,12 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <th class="py-1 text-muted" scope="row">Delivery Country
+                                                            <th class="py-1 text-muted" scope="row">Delivery
+                                                                Country
                                                             </th>
                                                             <td class="py-1">:</td>
-                                                            <td class="py-1">{{ $quoted_rfq->shipping_country }}</td>
+                                                            <td class="py-1">{{ $quoted_rfq->shipping_country }}
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <th class="py-1 text-muted" scope="row">Delivery Zip
@@ -455,7 +594,8 @@
 
                                                                                 <!-- Share Button -->
                                                                                 @if (!empty($product->image) && file_exists(public_path('storage/' . $product->image)))
-                                                                                    <a href="{{ asset('storage/' . $product->image) }}" download=""
+                                                                                    <a href="{{ asset('storage/' . $product->image) }}"
+                                                                                        download=""
                                                                                         class="text-white btn btn-sm btn-info"
                                                                                         title="Share">
                                                                                         <i class="bi bi-download"></i>

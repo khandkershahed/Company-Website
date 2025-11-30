@@ -134,8 +134,8 @@
                                 <select class="form-select form-select-solid" name="type">
                                     <option value="corporate">Corporate</option>
                                     <option value="online">Online</option>
-                                    <option value="government">Government</option>
-                                    <option value="other">Other</option>
+                                    {{-- <option value="government">Government</option>
+                                    <option value="other">Other</option> --}}
                                 </select>
                             </div>
                             <div class="col-md-6">

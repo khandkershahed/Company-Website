@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('date')->nullable();
             $table->string('month')->nullable();
             $table->string('po_reference')->nullable();
+            $table->string('sector')->nullable();
             $table->enum('type',['corporate','online'])->nullable();
             $table->string('client_name')->nullable();
             $table->double('amount')->nullable();

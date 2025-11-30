@@ -157,7 +157,8 @@ use App\Http\Controllers\Marketing\MarketingManagerRoleController;
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
 
-
+    // admin.rfq.update_status
+    Route::put('/rfq/update-status/{id}', [RFQController::class, 'updateStatus'])->name('rfq.update_status');
     Route::resources(
         [
             'staff-documents'  => StaffDocumentController::class,
