@@ -115,7 +115,7 @@
 
 
 
-    <script src="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.js') }}"></script>
+    {{-- <script src="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.js') }}"></script> --}}
     <script src="{{ asset('backend/metronic/assets/js/scripts.bundle.js') }}"></script>
 
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
