@@ -91,7 +91,7 @@ class SalesForecastController extends Controller
     public function salesForecast(Request $request)
     {
         // 1. Fetch Sales Managers for Dropdown
-        $salemans = User::orderBy('name')->get(); // Adjust logic if needed
+        $salemans = $this->sales_managers; // Adjust logic if needed
 
         // 2. Base Query
         $query = Rfq::with(['rfqQuotation', 'rfqProducts'])->latest();
