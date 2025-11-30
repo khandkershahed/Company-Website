@@ -248,7 +248,7 @@ class SalesForecastController extends Controller
     public function salesReport(Request $request)
     {
         // 1. Base Query
-        $query = Rfq::with(['salesManL1', 'client'])
+        $query = Rfq::with(['salesManL1'])
             ->where('rfq_type', 'sales'); // As per your requirement
 
         // 2. Filters
