@@ -318,8 +318,8 @@ class DashboardController extends Controller
 
         // 6. Recent Lists (Tables)
         $currentMonthSalesList = (clone $salesQuery)
-            ->whereMonth('sale_date', Carbon::now()->month)
-            ->latest('sale_date')
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->latest('created_at')
             ->take(5)
             ->get();
 
