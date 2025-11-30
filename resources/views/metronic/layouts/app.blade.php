@@ -50,6 +50,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
     <link href="{{ asset('backend/assets/input-tags/css/tagsinput.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/metronic/assets/css/custom.css?v=' . time()) }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
+        type="text/css" />
+
     <style>
         .aside-dark .menu .menu-item.here>.menu-link .menu-icon,
         .aside-dark .menu .menu-item.here>.menu-link .menu-icon .svg-icon,
@@ -72,7 +75,8 @@
             <div class="wrapper d-flex flex-column flex-row-fluid pt-lg-17" id="kt_wrapper">
 
                 @include('metronic.layouts.header')
-                <div class="content d-flex flex-column flex-column-fluid" id="kt_content" style="background-color: #F6F8FA;">
+                <div class="content d-flex flex-column flex-column-fluid" id="kt_content"
+                    style="background-color: #F6F8FA;">
                     <div class="post d-flex flex-column-fluid" id="kt_post">
                         <div id="kt_content_container" class="container-fluid">
                             {{-- @if (session('error'))
@@ -157,6 +161,8 @@
     <script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
+    <script src="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.js') }}"></script>
+
     @stack('scripts')
     <script>
         // document.querySelectorAll('.ckeditor').forEach(element => {
