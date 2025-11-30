@@ -143,7 +143,7 @@
                                                     </select>
                                                 </div>
 
-                                            </form>
+                                            
                                         </div>
                                     </div>
 
@@ -153,6 +153,7 @@
                                         <button type="submit" class="btn btn-primary rounded-0">Save
                                             changes</button>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
