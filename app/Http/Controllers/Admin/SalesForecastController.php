@@ -91,13 +91,14 @@ class SalesForecastController extends Controller
     public function salesForecast(Request $request)
     {
         // 1. Fetch Sales Managers for Dropdown
-        $salemans = $this->sales_managers; // Adjust logic if needed
+        $salemans = $this->sales_managers; 
 
         // 2. Base Query
-        $query = Rfq::with(['rfqQuotation', 'rfqProducts'])->latest();
+        // NOTE: We DO NOT add ->latest() here yet. We add it only when fetching the list.
+        $query = Rfq::with(['rfqQuotation', 'rfqProducts']);
 
         // --- Apply Filters to Query Builder ---
-
+        
         // Filter: Country
         if ($request->filled('country')) {
             $query->where('country', $request->country);
@@ -107,8 +108,8 @@ class SalesForecastController extends Controller
         if ($request->filled('salesperson')) {
             $query->where(function ($q) use ($request) {
                 $q->where('sales_man_id_L1', $request->salesperson)
-                    ->orWhere('sales_man_id_T1', $request->salesperson)
-                    ->orWhere('sales_man_id_T2', $request->salesperson);
+                  ->orWhere('sales_man_id_T1', $request->salesperson)
+                  ->orWhere('sales_man_id_T2', $request->salesperson);
             });
         }
 
@@ -116,7 +117,7 @@ class SalesForecastController extends Controller
         if ($request->filled('period')) {
             if ($request->period == 'month') {
                 $query->whereMonth('created_at', Carbon::now()->month)
-                    ->whereYear('created_at', Carbon::now()->year);
+                      ->whereYear('created_at', Carbon::now()->year);
             } elseif ($request->period == 'quarter') {
                 $query->whereBetween('created_at', [Carbon::now()->startOfQuarter(), Carbon::now()->endOfQuarter()]);
             } elseif ($request->period == 'year') {
@@ -127,49 +128,46 @@ class SalesForecastController extends Controller
             $query->whereYear('created_at', Carbon::now()->year);
         }
 
-        // --- Execute Query for Main Data ---
-        // Clone query for aggregations BEFORE getting the collection
-        $countryQuery = clone $query;
-
-        // Get Main Collection
-        $rfqs = $query->get();
-
-        // --- Calculations on Collection ---
-
-        $pendings = $rfqs->where('status', 'rfq_created');
-        $quoteds  = $rfqs->where('status', 'quoted');
-        $losts    = $rfqs->where('status', 'lost');
-        $deals    = $rfqs->whereIn('status', ['deal', 'won', 'order', 'delivery', 'delivery_completed']);
-
-        // Fix for Closeds (variable was undefined in view error)
-        $closeds  = $rfqs->where('status', 'closed');
-
-        // Metrics
-        $quoted_amount = $quoteds->sum('quoted_price');
-        if ($quoted_amount == 0) {
-            $quoted_amount = $quoteds->flatMap(fn($q) => $q->rfqQuotation->pluck('total_final_total_price'))->sum();
-        }
-
-        $closed_amount = $deals->sum('total_price');
-
-        $total_opps = $deals->count() + $losts->count();
-        $weighted_forecast_percent = $total_opps > 0 ? round(($deals->count() / $total_opps) * 100, 1) : 0;
-
-        // --- Country Wise Data (Using Builder, NOT Collection) ---
-        // Fixes "selectRaw does not exist" error
-        $countryWiseRfqs = $countryQuery
+        // --- Country Wise Data (Aggregation) ---
+        // We clone the query BEFORE fetching data.
+        // IMPORTANT: We use reorder() to ensure no ORDER BY clause conflicts with GROUP BY.
+        $countryWiseRfqs = (clone $query)
+            ->reorder() // FIX: Clears any 'order by' (like latest) if it was accidentally applied
             ->whereNotNull('country')
-            ->select('country', DB::raw('count(*) as total'))
+            ->select('country', DB::raw('count(*) as total'), DB::raw('sum(total_price) as value'))
             ->groupBy('country')
             ->orderByDesc('total')
             ->get();
 
-        // Helper for Tabs (Collection Grouping)
+        // --- Main List Data ---
+        // Now we apply latest() for the main list
+        $rfqs = $query->latest()->get();
+
+        // --- Metrics Calculations ---
+        
+        $pendings = $rfqs->where('status', 'rfq_created');
+        $quoteds  = $rfqs->where('status', 'quoted');
+        $losts    = $rfqs->where('status', 'lost');
+        $deals    = $rfqs->whereIn('status', ['deal', 'won', 'order', 'delivery', 'delivery_completed']);
+        $closeds  = $rfqs->where('status', 'closed'); 
+
+        // Quoted Amount
+        $quoted_amount = $quoteds->sum('quoted_price');
+        if ($quoted_amount == 0) {
+            $quoted_amount = $quoteds->flatMap(fn($q) => $q->rfqQuotation->pluck('total_final_total_price'))->sum();
+        }
+        
+        $closed_amount = $deals->sum('total_price');
+        
+        $total_opps = $deals->count() + $losts->count();
+        $weighted_forecast_percent = $total_opps > 0 ? round(($deals->count() / $total_opps) * 100, 1) : 0;
+
+        // Helper for Tabs
         $groupByCountry = function ($collection) {
             return $collection->groupBy('country')->map(function ($row) {
                 return [
                     'country' => $row->first()->country,
-                    'code' => 'bd', // Add logic for codes if needed
+                    'code' => 'bd', // You can implement actual code mapping here
                     'count' => $row->count(),
                     'value' => $row->sum('total_price')
                 ];
@@ -180,7 +178,7 @@ class SalesForecastController extends Controller
         $countryClosed = $groupByCountry($deals);
         $countryLost   = $groupByCountry($losts);
 
-        // Contribution
+        // Contribution (Top Products)
         $rfqIds = $rfqs->pluck('id');
         $contributionData = RfqProduct::select('brand_name', DB::raw('sum(total_price) as total'))
             ->whereIn('rfq_id', $rfqIds)
@@ -198,37 +196,20 @@ class SalesForecastController extends Controller
         foreach (range(1, 12) as $m) {
             $val = $deals->filter(fn($i) => Carbon::parse($i->created_at)->month == $m)->sum('total_price');
             $actualData[] = $val;
-            $targetData[] = 50000;
-            $forecastData[] = $val * 1.1;
+            $targetData[] = 50000; // Example Target
+            $forecastData[] = $val * 1.1; // Example Forecast
         }
 
         $allCountries = Rfq::select('country')->distinct()->orderBy('country')->pluck('country');
 
         return view('metronic.pages.sales.sales_forecast', compact(
-            'rfqs',
-            'salemans',
-            'allCountries',
-            'pendings',
-            'quoteds',
-            'losts',
-            'deals',
-            'closeds',
-            'quoted_amount',
-            'closed_amount',
-            'weighted_forecast_percent',
-            'countryQuoted',
-            'countryClosed',
-            'countryLost',
-            'countryWiseRfqs',
-            'contributionData',
-            'months',
-            'actualData',
-            'targetData',
-            'forecastData',
-            'request'
+            'rfqs', 'salemans', 'allCountries',
+            'pendings', 'quoteds', 'losts', 'deals', 'closeds',
+            'quoted_amount', 'closed_amount', 'weighted_forecast_percent',
+            'countryQuoted', 'countryClosed', 'countryLost', 'countryWiseRfqs',
+            'contributionData', 'months', 'actualData', 'targetData', 'forecastData', 'request'
         ));
     }
-
 
     public function filterForecast(Request $request)
     {
