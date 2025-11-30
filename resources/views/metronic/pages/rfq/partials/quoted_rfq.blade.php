@@ -37,7 +37,7 @@
                                 @if (Auth::user()->myDepartments(['super_admin', 'sales']))
                                     <div class="menu-item">
                                         <a class="menu-link py-3" href="javascript:void(0);" data-bs-toggle="modal"
-                                            data-bs-target="#pending_rfq_status_update_{{ $pending_rfq->id }}">
+                                            data-bs-target="#pending_rfq_status_update_{{ $quoted_rfq->id }}">
                                             <span class="menu-title">Status Update
                                             </span>
                                         </a>
@@ -50,7 +50,7 @@
                                         </a>
                                     </div>
                                     <div class="menu-item">
-                                        <a class="menu-link py-3 delete" href="{{ route('admin.rfq.destroy', $pending_rfq->id) }}">
+                                        <a class="menu-link py-3 delete" href="{{ route('admin.rfq.destroy', $quoted_rfq->id) }}">
                                             <span class="menu-title">Delete
                                             </span>
                                         </a>
@@ -58,12 +58,12 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="modal fade" tabindex="-1" id="pending_rfq_status_update_{{ $pending_rfq->id }}">
+                        <div class="modal fade" tabindex="-1" id="pending_rfq_status_update_{{ $quoted_rfq->id }}">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h3 class="modal-title">Status Update of
-                                            RFQ#{{ $pending_rfq->rfq_code }}</h3>
+                                            RFQ#{{ $quoted_rfq->rfq_code }}</h3>
                                         <div class="btn btn-icon btn-sm btn-active-light-primary ms-2"
                                             data-bs-dismiss="modal" aria-label="Close">
                                             <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span
@@ -73,7 +73,7 @@
 
                                     <div class="modal-body">
                                         <div class="row">
-                                            <form action="{{ route('admin.rfq.update_status', $pending_rfq->id) }}"
+                                            <form action="{{ route('admin.rfq.update_status', $quoted_rfq->id) }}"
                                                 method="POST">
                                                 @csrf
                                                 @method('PUT')
@@ -85,31 +85,31 @@
                                                         data-placeholder="Select an option" data-allow-clear="true">
                                                         <option value="">Select an option</option>
                                                         <option value="rfq_created"
-                                                            {{ $pending_rfq->status == 'rfq_created' ? 'selected' : '' }}>
+                                                            {{ $quoted_rfq->status == 'rfq_created' ? 'selected' : '' }}>
                                                             RFQ Stage</option>
                                                         <option value="assigned"
-                                                            {{ $pending_rfq->status == 'assigned' ? 'selected' : '' }}>
+                                                            {{ $quoted_rfq->status == 'assigned' ? 'selected' : '' }}>
                                                             Salesman Assigned</option>
                                                         <option value="quoted"
-                                                            {{ $pending_rfq->status == 'quoted' ? 'selected' : '' }}>
+                                                            {{ $quoted_rfq->status == 'quoted' ? 'selected' : '' }}>
                                                             Quoted</option>
                                                         <option value="won"
-                                                            {{ $pending_rfq->status == 'won' ? 'selected' : '' }}>
+                                                            {{ $quoted_rfq->status == 'won' ? 'selected' : '' }}>
                                                             Won</option>
                                                         <option value="potential"
-                                                            {{ $pending_rfq->status == 'potential' ? 'selected' : '' }}>
+                                                            {{ $quoted_rfq->status == 'potential' ? 'selected' : '' }}>
                                                             Potential</option>
                                                         <option value="negotiating"
-                                                            {{ $pending_rfq->status == 'negotiating' ? 'selected' : '' }}>
+                                                            {{ $quoted_rfq->status == 'negotiating' ? 'selected' : '' }}>
                                                             Negotiating</option>
                                                         <option value="closed"
-                                                            {{ $pending_rfq->status == 'closed' ? 'selected' : '' }}>
+                                                            {{ $quoted_rfq->status == 'closed' ? 'selected' : '' }}>
                                                             Closed</option>
                                                         <option value="cancelled"
-                                                            {{ $pending_rfq->status == 'cancelled' ? 'selected' : '' }}>
+                                                            {{ $quoted_rfq->status == 'cancelled' ? 'selected' : '' }}>
                                                             Cancelled</option>
                                                         <option value="lost"
-                                                            {{ $pending_rfq->status == 'lost' ? 'selected' : '' }}>
+                                                            {{ $quoted_rfq->status == 'lost' ? 'selected' : '' }}>
                                                             Lost</option>
                                                     </select>
                                                 </div>
@@ -123,22 +123,22 @@
                                                         <option value="">Select an option
                                                         </option>
                                                         <option value="rfq"
-                                                            {{ $pending_rfq->rfq_type == 'rfq' ? 'selected' : '' }}>
+                                                            {{ $quoted_rfq->rfq_type == 'rfq' ? 'selected' : '' }}>
                                                             RFQ</option>
                                                         <option value="deal"
-                                                            {{ $pending_rfq->rfq_type == 'deal' ? 'selected' : '' }}>
+                                                            {{ $quoted_rfq->rfq_type == 'deal' ? 'selected' : '' }}>
                                                             Deal</option>
                                                         <option value="sales"
-                                                            {{ $pending_rfq->rfq_type == 'sales' ? 'selected' : '' }}>
+                                                            {{ $quoted_rfq->rfq_type == 'sales' ? 'selected' : '' }}>
                                                             Sales</option>
                                                         <option value="order"
-                                                            {{ $pending_rfq->rfq_type == 'order' ? 'selected' : '' }}>
+                                                            {{ $quoted_rfq->rfq_type == 'order' ? 'selected' : '' }}>
                                                             Order</option>
                                                         <option value="delivery"
-                                                            {{ $pending_rfq->rfq_type == 'delivery' ? 'selected' : '' }}>
+                                                            {{ $quoted_rfq->rfq_type == 'delivery' ? 'selected' : '' }}>
                                                             Delivery Stage</option>
                                                         <option value="delivery_completed"
-                                                            {{ $pending_rfq->rfq_type == 'delivery_completed' ? 'selected' : '' }}>
+                                                            {{ $quoted_rfq->rfq_type == 'delivery_completed' ? 'selected' : '' }}>
                                                             Delivery Completed</option>
                                                     </select>
                                                 </div>
