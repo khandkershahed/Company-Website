@@ -165,16 +165,24 @@ class ClientContactController extends Controller
             'permitted_users.*' => 'exists:users,id',
         ]);
 
-        $validated['company_name'] = $this->standardizeCompanyName($request->company_name);
+        // Extract & remove permitted users
+        $permittedUsers = $validated['permitted_users'] ?? [];
+        unset($validated['permitted_users']);
 
+        // Standardize company name
+        $validated['company_name'] = $this->standardizeCompanyName($validated['company_name']);
+
+        // Update main client
         $contact->update($validated);
 
+        // Only super admin can update permissions
         if (Auth::user()->myDepartments(['super_admin'])) {
-            $contact->permittedUsers()->sync($request->input('permitted_users', []));
+            $contact->permittedUsers()->sync($permittedUsers);
         }
 
         return redirect()->back()->with('success', 'Client contact updated successfully.');
     }
+
 
     public function destroy($id)
     {

@@ -90,94 +90,145 @@ class SalesForecastController extends Controller
 
     public function salesForecast(Request $request)
     {
-        // FIX: Do NOT add ->latest() here. It causes the Group By error.
-        $baseQuery = Rfq::with('rfqQuotation');
+        // 1. Fetch Sales Managers for Dropdown
+        $salemans = User::orderBy('name')->get(); // Adjust logic if needed
 
-        // Filter by status if provided
-        if ($request->filled('status')) {
-            $baseQuery->where('status', $request->status);
+        // 2. Base Query
+        $query = Rfq::with(['rfqQuotation', 'rfqProducts'])->latest();
+
+        // --- Apply Filters to Query Builder ---
+
+        // Filter: Country
+        if ($request->filled('country')) {
+            $query->where('country', $request->country);
         }
 
-        // 1. Get Main List (Apply latest() ONLY here)
-        $rfqs = (clone $baseQuery)->latest()->get();
+        // Filter: Salesperson
+        if ($request->filled('salesperson')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('sales_man_id_L1', $request->salesperson)
+                    ->orWhere('sales_man_id_T1', $request->salesperson)
+                    ->orWhere('sales_man_id_T2', $request->salesperson);
+            });
+        }
 
-        // 2. Categorize RFQs (Using Collection methods to avoid DB queries)
+        // Filter: Time Period
+        if ($request->filled('period')) {
+            if ($request->period == 'month') {
+                $query->whereMonth('created_at', Carbon::now()->month)
+                    ->whereYear('created_at', Carbon::now()->year);
+            } elseif ($request->period == 'quarter') {
+                $query->whereBetween('created_at', [Carbon::now()->startOfQuarter(), Carbon::now()->endOfQuarter()]);
+            } elseif ($request->period == 'year') {
+                $query->whereYear('created_at', Carbon::now()->year);
+            }
+        } else {
+            // Default YTD
+            $query->whereYear('created_at', Carbon::now()->year);
+        }
+
+        // --- Execute Query for Main Data ---
+        // Clone query for aggregations BEFORE getting the collection
+        $countryQuery = clone $query;
+
+        // Get Main Collection
+        $rfqs = $query->get();
+
+        // --- Calculations on Collection ---
+
         $pendings = $rfqs->where('status', 'rfq_created');
         $quoteds  = $rfqs->where('status', 'quoted');
         $losts    = $rfqs->where('status', 'lost');
-        $closeds  = $rfqs->where('status', 'closed');
-        $deals    = $rfqs->whereIn('status', ['deal', 'won', 'order']);
+        $deals    = $rfqs->whereIn('status', ['deal', 'won', 'order', 'delivery', 'delivery_completed']);
 
-        // 3. Calculate Values
-        // Quoted Amount
+        // Fix for Closeds (variable was undefined in view error)
+        $closeds  = $rfqs->where('status', 'closed');
+
+        // Metrics
         $quoted_amount = $quoteds->sum('quoted_price');
         if ($quoted_amount == 0) {
-            $quoted_amount = $quoteds->flatMap(function ($rfq) {
-                return $rfq->rfqQuotation->pluck('total_final_total_price');
-            })->sum();
+            $quoted_amount = $quoteds->flatMap(fn($q) => $q->rfqQuotation->pluck('total_final_total_price'))->sum();
         }
 
-        // Closed Deal Amount
         $closed_amount = $deals->sum('total_price');
 
-        // Weighted Forecast Logic
-        $total_opportunities = $deals->count() + $losts->count();
-        $weighted_forecast_percent = $total_opportunities > 0 ? round(($deals->count() / $total_opportunities) * 100, 1) : 0;
+        $total_opps = $deals->count() + $losts->count();
+        $weighted_forecast_percent = $total_opps > 0 ? round(($deals->count() / $total_opps) * 100, 1) : 0;
 
-        // 4. Contribution (Top Products)
+        // --- Country Wise Data (Using Builder, NOT Collection) ---
+        // Fixes "selectRaw does not exist" error
+        $countryWiseRfqs = $countryQuery
+            ->whereNotNull('country')
+            ->select('country', DB::raw('count(*) as total'))
+            ->groupBy('country')
+            ->orderByDesc('total')
+            ->get();
+
+        // Helper for Tabs (Collection Grouping)
+        $groupByCountry = function ($collection) {
+            return $collection->groupBy('country')->map(function ($row) {
+                return [
+                    'country' => $row->first()->country,
+                    'code' => 'bd', // Add logic for codes if needed
+                    'count' => $row->count(),
+                    'value' => $row->sum('total_price')
+                ];
+            })->sortByDesc('count');
+        };
+
+        $countryQuoted = $groupByCountry($quoteds);
+        $countryClosed = $groupByCountry($deals);
+        $countryLost   = $groupByCountry($losts);
+
+        // Contribution
+        $rfqIds = $rfqs->pluck('id');
         $contributionData = RfqProduct::select('brand_name', DB::raw('sum(total_price) as total'))
-            ->whereHas('rfq', function ($q) {
-                $q->where('create_date', '>=', Carbon::now()->subDays(30));
-            })
+            ->whereIn('rfq_id', $rfqIds)
             ->groupBy('brand_name')
             ->orderByDesc('total')
             ->take(5)
             ->get();
 
-        // 5. Chart Data (Forecast vs Actual vs Target)
+        // Chart Data (Monthly)
         $months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        $forecastData = [];
         $actualData = [];
         $targetData = [];
+        $forecastData = [];
 
         foreach (range(1, 12) as $m) {
-            // Actual Sales per Month
-            $actual = $rfqs->whereIn('status', ['deal'])->filter(function ($item) use ($m) {
-                return $item->sale_date && Carbon::parse($item->sale_date)->month == $m;
-            })->sum('total_price');
-
-            $actualData[] = $actual;
-            $forecastData[] = $actual * 1.2; // Dummy forecast logic
-            $targetData[] = 10000; // Dummy target
+            $val = $deals->filter(fn($i) => Carbon::parse($i->created_at)->month == $m)->sum('total_price');
+            $actualData[] = $val;
+            $targetData[] = 50000;
+            $forecastData[] = $val * 1.1;
         }
 
-        // 6. Country Wise Data
-        // FIX: We clone $baseQuery (which has NO ordering) so Group By works
-        $countryWiseRfqs = (clone $baseQuery)
-            ->whereNotNull('country')
-            ->select('country', DB::raw('count(*) as total'), DB::raw('sum(total_price) as value'))
-            ->groupBy('country')
-            ->orderByDesc('total')
-            ->get();
+        $allCountries = Rfq::select('country')->distinct()->orderBy('country')->pluck('country');
 
         return view('metronic.pages.sales.sales_forecast', compact(
-            'quoteds',
-            'pendings',
-            'losts',
-            'closeds',
-            'deals',
             'rfqs',
+            'salemans',
+            'allCountries',
+            'pendings',
+            'quoteds',
+            'losts',
+            'deals',
+            'closeds',
             'quoted_amount',
             'closed_amount',
             'weighted_forecast_percent',
-            'contributionData',
+            'countryQuoted',
+            'countryClosed',
+            'countryLost',
             'countryWiseRfqs',
+            'contributionData',
             'months',
-            'forecastData',
             'actualData',
-            'targetData'
+            'targetData',
+            'forecastData',
+            'request'
         ));
     }
+
 
     public function filterForecast(Request $request)
     {
