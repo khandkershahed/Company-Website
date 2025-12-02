@@ -5,6 +5,14 @@
                 <div class="flex-wrap p-2 card-body d-flex justify-content-between align-items-center">
                     <h2 class="mb-0 h4 me-3">Summary KPIs - Sales</h2>
                     <div class="gap-5 d-flex align-items-center">
+                        <div>
+                            <button type="button" class="btn-sm btn btn-primary" style="width: 130px;" data-bs-toggle="modal" data-bs-target="#addTargetModal">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg me-2" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+                                </svg>
+                                Add Target
+                            </button>
+                        </div>
                         <select class="form-select form-select-solid form-select-sm" data-control="select2">
                             <option selected>Period</option>
                             <option value="Month">Month</option>
@@ -429,7 +437,7 @@
                                     <div class="">
                                         <h5 class="card-title">Industry Information</h5>
                                         <div class="chart-container">
-                                            <div id="kt_charts_widget_3" data-kt-chart-color="primary" class="h-300px"  style="min-height: 350px;">
+                                            <div id="kt_charts_widget_3" data-kt-chart-color="primary" class="h-300px" style="min-height: 350px;">
                                             </div>
                                         </div>
                                     </div>
@@ -635,6 +643,317 @@
             </div>
         </div>
     </div>
+
+    <!-- Bootstrap Modal Structure -->
+    <div class="modal fade" id="addTargetModal" tabindex="-1" aria-labelledby="addTargetModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="shadow-lg modal-content rounded-3">
+
+                <!-- Modal Header -->
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title" id="addTargetModalLabel">Set New Sales Target</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Modal Body: The Target Form -->
+                <div class="p-5 modal-body">
+                    <form id="targetForm" method="post" csrftoken="{{ csrf_token() }}">
+                        <!-- Row 1: Target Scope and Value (Country, Team, Individual, Industry) -->
+                        <div class="row g-3">
+                            <div class="mb-3 col-md-6">
+                                <label for="targetScope" class="form-label fw-bold">Target Scope <span class="text-danger">*</span></label>
+                                <select data-control="select2" id="targetScope" onchange="updateScopeValueOptions()" required
+                                    class="shadow-sm form-select">
+                                    <option value="">-- Select Target Type --</option>
+                                    <option value="Country">Country</option>
+                                    <option value="Team">Sales Team/Territory</option>
+                                    <option value="Individual">Salesperson (Individual)</option>
+                                    <option value="Industry">Industry Segment</option>
+                                </select>
+                                <div class="form-text">Defines the level for the target (e.g., Country, Salesperson, etc.).</div>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label for="scopeValue" class="form-label fw-bold">Scope Value <span class="text-danger">*</span></label>
+                                <select data-control="select2" id="scopeValue" required disabled
+                                    class="shadow-sm form-select bg-light">
+                                    <option value="">-- Select a Scope Value --</option>
+                                </select>
+                                <div class="form-text" id="scopeHelpText">Please select a Target Scope first.</div>
+                            </div>
+                        </div>
+                        <!-- Row 2: Target Metric and Amount -->
+                        <div class="row g-3">
+                            <div class="mb-3 col-md-6">
+                                <label for="targetMetric" class="form-label fw-bold">Target Metric <span class="text-danger">*</span></label>
+                                <select data-control="select2" id="targetMetric" required
+                                    class="shadow-sm form-select">
+                                    <option value="Revenue">Revenue ($)</option>
+                                    <option value="Volume">Units Sold (Volume)</option>
+                                    <option value="Margin">Profit Margin ($)</option>
+                                    <option value="CustomerAcquisition">New Customer Acquisition (Count)</option>
+                                </select>
+                                <div class="form-text">Choose the type of goal being set (e.g., Revenue for 'Target' column).</div>
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label for="targetAmount" class="form-label fw-bold">Target Amount <span class="text-danger">*</span></label>
+                                <input type="number" id="targetAmount" name="targetAmount" min="1" step="1" placeholder="e.g., 500000" required
+                                    class="shadow-sm form-control">
+                                <div class="form-text">Enter the target amount (in currency or units).</div>
+                            </div>
+                        </div>
+                        <!-- Row 3: Year, Period Type, Specific Period (Dynamic), and Status (Dynamic Layout: 3x col-4 or 4x col-3) -->
+                        <div class="row g-3">
+                            <!-- 5. Target Year (Default col-md-4) -->
+                            <div class="mb-3 col-md-4" id="targetYearCol">
+                                <label for="targetYear" class="form-label fw-bold">Target Year <span class="text-danger">*</span></label>
+                                <select data-control="select2" id="targetYear" required
+                                    class="shadow-sm form-select">
+                                    <option value="">-- Select Year --</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                    <option value="2030">2030</option>
+                                </select>
+                                <div class="form-text">The calendar year for this target.</div>
+                            </div>
+                            <!-- 6. Target Period Type (Default col-md-4) -->
+                            <div class="mb-3 col-md-4" id="targetPeriodCol">
+                                <label for="targetPeriod" class="form-label fw-bold"> Target Period Type <span class="text-danger">*</span></label>
+                                <select data-control="select2" id="targetPeriod" onchange="updateSpecificPeriod()" required
+                                    class="shadow-sm form-select">
+                                    <option value="">-- Select Period Type --</option>
+                                    <option value="Annual">Annual (Full Year)</option>
+                                    <option value="Quarterly">Quarterly (Q1, Q2, Q3, Q4)</option>
+                                    <option value="Monthly">Monthly (Jan, Feb, ...)</option>
+                                </select>
+                                <div class="form-text">Whether the target is annual, quarterly, or monthly.</div>
+                            </div>
+                            <!-- 7. Specific Period (Hidden by default, col-md-3) -->
+                            <div class="mb-3 col-md-3 d-none" id="specificPeriodCol">
+                                <label for="specificPeriod" class="form-label fw-bold">Specific Period</label>
+                                <select data-control="select2" id="specificPeriod" disabled
+                                    class="shadow-sm form-select bg-light">
+                                    <option value="">-- Select Specific Period --</option>
+                                </select>
+                                <div class="form-text">Select the exact Quarter or Month.</div>
+                            </div>
+                            <!-- 8. Target Status (Default col-md-4) -->
+                            <div class="mb-3 col-md-4" id="targetStatusCol">
+                                <label for="targetStatus" class="form-label fw-bold">Target Status <span class="text-danger">*</span></label>
+                                <select data-control="select2" id="targetStatus" required
+                                    class="shadow-sm form-select">
+                                    <option value="Draft">Draft (Not yet active)</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Hold">On Hold</option>
+                                </select>
+                                <div class="form-text">Set the initial state of the target.</div>
+                            </div>
+                        </div>
+                        <!-- Row 4: Notes -->
+                        <div class="row g-3">
+                            <div class="mb-3 col-12">
+                                <label for="targetNotes" class="form-label fw-bold">Notes / Justification</label>
+                                <textarea id="targetNotes" name="targetNotes" rows="3" placeholder="Explain the rationale behind this target (e.g., 'Aggressive Q4 due to new partnership with Telecom')."
+                                    class="shadow-sm form-control"></textarea>
+                                <div class="form-text">Provide context for why this target was set.</div>
+                            </div>
+                        </div>
+                        <!-- Success Message Box -->
+                        <div id="messageBox" class="mt-3 alert alert-success d-none" role="alert">
+                            Target added successfully!
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal Footer (Form Submission) -->
+                <div class="modal-footer">
+                    <button type="button" class="shadow-sm btn btn-secondary" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button type="submit" form="targetForm" class="shadow-sm btn btn-primary">
+                        Save Target
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Target Modal End -->
     @push('scripts')
+    <script>
+        // Placeholder data based on the tables in the uploaded images
+        const targetData = {
+            'Country': ['Bangladesh', 'Singapore', 'India', 'USA', 'Germany'],
+            'Industry': ['Telecom', 'Manufacturing', 'Education', 'Finance', 'Retail'],
+            'Individual': ['A. Rahman', 'S. Mehta', 'J. Smith', 'L. Chen', 'M. Johnson'],
+            'Team': ['Corporate Team', 'APAC Team', 'EMEA Team', 'North America Sales', 'LATAM Sales']
+        };
+
+        const targetScopeSelect = document.getElementById('targetScope');
+        const scopeValueSelect = document.getElementById('scopeValue');
+        const scopeHelpText = document.getElementById('scopeHelpText');
+        const targetPeriodTypeSelect = document.getElementById('targetPeriod');
+
+        // References to the column containers for layout manipulation
+        const targetYearCol = document.getElementById('targetYearCol');
+        const targetPeriodCol = document.getElementById('targetPeriodCol');
+        const targetStatusCol = document.getElementById('targetStatusCol');
+
+        const specificPeriodSelect = document.getElementById('specificPeriod');
+        const specificPeriodCol = document.getElementById('specificPeriodCol');
+
+        const form = document.getElementById('targetForm');
+        const messageBox = document.getElementById('messageBox');
+
+        const quarters = ['Q1', 'Q2', 'Q3', 'Q4'];
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+
+        // Function to dynamically update the Scope Value dropdown (2)
+        function updateScopeValueOptions() {
+            const selectedScope = targetScopeSelect.value;
+
+            // Clear existing options
+            scopeValueSelect.innerHTML = '<option value="">-- Select a Scope Value --</option>';
+
+            if (selectedScope && targetData[selectedScope]) {
+                // Enable the dropdown and update help text/styling
+                scopeValueSelect.disabled = false;
+                scopeValueSelect.classList.remove('bg-light');
+                scopeHelpText.textContent = `Select the specific ${selectedScope} for this target.`;
+
+                // Populate with new options
+                targetData[selectedScope].forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.replace(/\s/g, '_'); // Use slugified value
+                    option.textContent = item;
+                    scopeValueSelect.appendChild(option);
+                });
+            } else {
+                // Disable and reset if no scope is selected
+                scopeValueSelect.disabled = true;
+                scopeValueSelect.classList.add('bg-light');
+                scopeHelpText.textContent = 'Please select a Target Scope first.';
+            }
+        }
+
+        // Function to dynamically update the Specific Period dropdown (7) and adjust layout
+        function updateSpecificPeriod() {
+            const selectedType = targetPeriodTypeSelect.value;
+            specificPeriodSelect.innerHTML = '<option value="">-- Select Specific Period --</option>';
+
+            // Utility function to safely swap column classes
+            const swapClasses = (el, removeClass, addClass) => {
+                if (el) {
+                    el.classList.remove(removeClass);
+                    el.classList.add(addClass);
+                }
+            };
+
+            if (selectedType === 'Quarterly' || selectedType === 'Monthly') {
+                // A. 4-Column Layout (col-md-3)
+
+                // Fields 5, 6, 8 switch from col-md-4 to col-md-3
+                swapClasses(targetYearCol, 'col-md-4', 'col-md-3');
+                swapClasses(targetPeriodCol, 'col-md-4', 'col-md-3');
+                swapClasses(targetStatusCol, 'col-md-4', 'col-md-3');
+
+                // B. Show Specific Period (Field 7)
+                specificPeriodCol.classList.remove('d-none');
+                specificPeriodSelect.disabled = false;
+                specificPeriodSelect.classList.remove('bg-light');
+                specificPeriodSelect.required = true;
+
+                const data = selectedType === 'Quarterly' ? quarters : months;
+
+                data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item;
+                    option.textContent = item;
+                    specificPeriodSelect.appendChild(option);
+                });
+
+            } else {
+                // A. 3-Column Layout (col-md-4)
+
+                // Fields 5, 6, 8 switch from col-md-3 to col-md-4
+                swapClasses(targetYearCol, 'col-md-3', 'col-md-4');
+                swapClasses(targetPeriodCol, 'col-md-3', 'col-md-4');
+                swapClasses(targetStatusCol, 'col-md-3', 'col-md-4');
+
+                // B. Hide Specific Period (Field 7)
+                specificPeriodCol.classList.add('d-none');
+                specificPeriodSelect.disabled = true;
+                specificPeriodSelect.classList.add('bg-light');
+                specificPeriodSelect.required = false;
+            }
+        }
+
+        // Handle Form Submission
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Stop the default form submission
+
+            // Gather form data
+            const formData = {
+                scopeType: targetScopeSelect.value,
+                scopeValue: scopeValueSelect.value.replace(/_/g, ' '),
+                metric: document.getElementById('targetMetric').value,
+                amount: document.getElementById('targetAmount').value,
+                year: document.getElementById('targetYear').value,
+                periodType: targetPeriodTypeSelect.value,
+                specificPeriod: targetPeriodTypeSelect.value !== 'Annual' ? specificPeriodSelect.value : 'N/A',
+                status: document.getElementById('targetStatus').value,
+                notes: document.getElementById('targetNotes').value.trim() || 'N/A'
+            };
+
+            // Validate specific period if required
+            if ((formData.periodType === 'Quarterly' || formData.periodType === 'Monthly') && formData.specificPeriod === 'N/A') {
+                messageBox.textContent = 'Please select a Specific Period (Step 7).';
+                messageBox.classList.remove('d-none', 'alert-success');
+                messageBox.classList.add('alert-danger');
+                setTimeout(() => {
+                    messageBox.classList.add('d-none');
+                    messageBox.classList.remove('alert-danger');
+                }, 5000);
+                return;
+            }
+
+
+            // In a real application, you would send this data to a backend API
+            console.log('Target Data to be Saved:', formData);
+
+            // Simulate API Success
+            let periodText = formData.specificPeriod !== 'N/A' ?
+                `${formData.specificPeriod} (${formData.periodType})` :
+                formData.periodType;
+
+            messageBox.textContent = `New ${formData.status} ${formData.metric} Target for ${formData.scopeValue} set to ${formData.amount} for ${periodText} of ${formData.year}.`;
+            messageBox.classList.remove('d-none', 'alert-danger');
+            messageBox.classList.add('alert-success');
+
+            // Hide the message after a few seconds
+            setTimeout(() => {
+                messageBox.classList.add('d-none');
+            }, 7000);
+
+            // For a real submission, you would close the modal here:
+            // const modalElement = document.getElementById('addTargetModal');
+            // const modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+            // modal.hide();
+        });
+
+        // Initialize all dynamic fields on load
+        updateScopeValueOptions();
+        updateSpecificPeriod();
+    </script>
     @endpush
 </x-admin-app-layout>
