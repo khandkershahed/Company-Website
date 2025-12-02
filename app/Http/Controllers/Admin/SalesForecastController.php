@@ -145,11 +145,11 @@ class SalesForecastController extends Controller
 
         // --- Metrics Calculations ---
 
-        $pendings = $rfqs->where('status', 'rfq_created');
-        $quoteds  = $rfqs->where('status', 'quoted');
-        $losts    = $rfqs->where('status', 'lost');
-        $deals    = $rfqs->whereIn('status', ['deal']);
-        $closeds  = $rfqs->where('status', 'closed');
+        $pendings = $rfqs->where('rfq_type', 'rfq')->where('status', 'rfq_created');
+        $quoteds  = $rfqs->where('rfq_type', 'rfq')->where('status', 'quoted');
+        $losts    = $rfqs->where('rfq_type', 'rfq')->where('status', 'lost');
+        $deals    = $rfqs->where('rfq_type', 'rfq')->whereIn('status', ['deal']);
+        $closeds  = $rfqs->where('rfq_type', 'rfq')->where('status', 'closed');
 
         // Quoted Amount
         $quoted_amount = $quoteds->sum('quoted_price');
