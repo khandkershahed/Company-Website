@@ -156,9 +156,9 @@
                         <a class="btn btn-md btn-info me-4" href="{{ route('deal.create') }}">Deal</a>
                     @endif
                     @if (Route::currentRouteName() === 'admin.sales.forecast')
-                        <a class="btn btn-md btn-info me-3" href="{{ route('admin.business.index') }}">Business</a>
-                        <a class="btn btn-md btn-info me-3" href="{{ route('admin.sales-dashboard.index') }}">Sales</a>
-                        <a class="btn btn-md btn-info me-4" href="{{ route('admin.rfq.index') }}">Rfqs</a>
+                    <a class="btn btn-md btn-info me-3" href="{{ route('admin.sales-dashboard.index') }}">Sales Dashboard</a>
+                    <a class="btn btn-md btn-info me-4" href="{{ route('admin.rfq.index') }}">Rfqs</a>
+                        <a class="btn btn-md btn-info me-3" href="javascript:void(0);">Notificaton</a>
                     @endif
 
                     @if (Route::currentRouteName() === 'deal.create')
