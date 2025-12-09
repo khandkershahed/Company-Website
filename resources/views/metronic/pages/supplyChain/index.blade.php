@@ -21,8 +21,7 @@
                             <div class="card-title d-flex justify-content-between w-100">
                                 <span class="pt-1 text-black fw-semibold fs-2">
                                     <a class="d-flex align-items-center" href="javascript:void(0);"
-                                        data-bs-toggle="modal" data-bs-target="#agentModal">New
-                                        Agent <i class="ms-3 fas fa-plus-circle fs-2"></i></a>
+                                        data-bs-toggle="modal" data-bs-target="#agentModal">Agent <i class="ms-3 fas fa-plus-circle fs-2"></i></a>
                                 </span>
                                 <span class="text-gray-900 fs-2hx fw-bold me-2 lh-1 ls-n2">00</span>
                             </div>
@@ -126,12 +125,12 @@
                             </div>
                         </div>
 
-                        <div class="pt-15 card-body d-flex flex-column justify-content-end pe-0">
+                        {{-- <div class="pt-15 card-body d-flex flex-column justify-content-end pe-0">
                             <span class="mb-2 text-gray-800 fs-6 fw-bolder d-block">Top Agent</span>
 
                             <div class="symbol-group symbol-hover flex-nowrap">
 
-                                {{-- <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
+                                <div class="symbol symbol-35px symbol-circle" data-bs-toggle="tooltip"
                                     aria-label="Michael Eberon" data-bs-original-title="Michael Eberon"
                                     data-kt-initialized="1">
                                     <img alt="Pic"
@@ -140,9 +139,9 @@
                                 <a href="#" class="symbol symbol-35px symbol-circle" data-bs-toggle="modal"
                                     data-bs-target="#kt_modal_view_users">
                                     <span class="text-gray-400 symbol-label bg-light fs-8 fw-bold">+42</span>
-                                </a> --}}
+                                </a>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 

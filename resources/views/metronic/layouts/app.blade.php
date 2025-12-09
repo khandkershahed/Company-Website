@@ -46,11 +46,21 @@
     <link href="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
         type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <link href="{{ asset('backend/metronic/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/metronic/assets/css/style.bundle.css?v=' . time()) }}" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
     <link href="{{ asset('backend/assets/input-tags/css/tagsinput.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/metronic/assets/css/custom.css?v=' . time()) }}" rel="stylesheet" type="text/css" />
 
+    <script>
+        window.KTAppSettings = {
+            "debug": false,
+            "app": {
+                "loader": {
+                    "display": false // <-- Correct flag for Metronic 8
+                }
+            }
+        };
+    </script>
 
     <style>
         .aside-dark .menu .menu-item.here>.menu-link .menu-icon,
@@ -138,7 +148,6 @@
     <script src="{{ asset('backend/assets/input-tags/js/tagsinput.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     {{-- @include('toastr') --}}
-    <script src="{{ asset('backend/assets/js/custom.js') }}"></script>
     <script src="https://cdn.tiny.cloud/1/n4jpbhtanca801bcjejx1pc9j033yn0de5ral6e7r0wd6383/tinymce/7/tinymce.min.js"
         referrerpolicy="origin"></script>
 

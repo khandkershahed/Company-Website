@@ -1,394 +1,313 @@
-// $(document).ready(function () {
-//     $('.js-example-basic-multiple, .js-example-basic-single').select2();
-// });
+/* ------------------------------------------------------------------------------
+ *
+ *  # Custom JS code (Merged & Fixed)
+ *
+ * ----------------------------------------------------------------------------- */
 
-//Select All Checkbox
-$('.metronic_select_all').on('change', function () {
-    // Apply check state to all checkboxes
-    $('[type="checkbox"]').prop('checked', $(this).prop('checked'));
-});
+// ------------------------------ CLOCK -----------------------------------------
+const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-// Password Show and Hide
-$(document).ready(function () {
-    $('.toggle-password').click(function () {
-        const passwordInput = $(this).closest('.position-relative').find('input');
-        const isVisible = passwordInput.attr('type') === 'text';
-        passwordInput.attr('type', isVisible ? 'password' : 'text');
-        $(this).find('.bi-eye').toggleClass('d-none');
-        $(this).find('.bi-eye-slash').toggleClass('d-none');
+function clockTicker() {
+    var date = new Date();
+    var day = date.getDay();
+    var hrs = date.getHours();
+    var mins = date.getMinutes();
+    var secs = date.getSeconds();
+
+    if (document.querySelector("#clock")) {
+        if (hrs > 12) {
+            hrs = hrs - 12;
+            document.querySelector("#clock .period").innerHTML = "PM";
+        } else {
+            document.querySelector("#clock .period").innerHTML = "AM";
+        }
+
+        hrs = hrs < 10 ? "0" + hrs : hrs;
+        mins = mins < 10 ? "0" + mins : mins;
+        secs = secs < 10 ? "0" + secs : secs;
+
+        document.querySelector("#clock .day").innerHTML = weekDays[day];
+        document.querySelector("#clock .hours").innerHTML = hrs;
+        document.querySelector("#clock .minutes").innerHTML = mins;
+        document.querySelector("#clock .seconds").innerHTML = secs;
+    }
+
+    requestAnimationFrame(clockTicker);
+}
+clockTicker();
+// ------------------------------ END CLOCK -------------------------------------
+
+
+
+// -------------------------- SWEET ALERT DELETE -------------------------------
+$(document).on("click", ".delete", function (e) {
+    e.preventDefault();
+    var deleteLinkUrl = $(this).attr("href");
+
+    swalInit.fire({
+        title: "Are you sure?",
+        text: "You will not be able to recover this imaginary file!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        preConfirm: function () {
+            return $.ajax({
+                url: deleteLinkUrl,
+                type: "POST",
+                data: { _method: "DELETE" },
+                headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content") }
+            }).done(function () {
+                swalInit.fire({
+                    title: "Deleted!",
+                    text: "This data has been deleted!",
+                    icon: "success"
+                }).then(() => location.reload());
+            });
+        },
     });
 });
+// -------------------------- END SWEET ALERT DELETE ---------------------------
+
+
+// ---------------------------- REMOVE CART -------------------------------------
+$(document).on("click", ".removeCart", function (e) {
+    e.preventDefault();
+    var deleteLinkUrl = $(this).attr("href");
+
+    swalInit.fire({
+        title: "Are you sure?",
+        text: "You will not be able to recover this Product!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, remove it!",
+        preConfirm: function () {
+            return $.ajax({
+                url: deleteLinkUrl,
+                type: "POST",
+                data: { _method: "DELETE" },
+                headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content") }
+            }).done(function () {
+                swalInit.fire({
+                    title: "Deleted!",
+                    text: "This Product is removed from your cart!",
+                    icon: "success"
+                }).then(() => location.reload());
+            });
+        },
+    });
+});
+// --------------------------- END REMOVE CART ----------------------------------
+
+
+
+// ----------------------- SWEET ALERT DEFAULT SETUP ----------------------------
+var swalInit = swal.mixin({
+    buttonsStyling: false,
+    customClass: {
+        confirmButton: "btn btn-primary",
+        cancelButton: "btn btn-light",
+        denyButton: "btn btn-light",
+        input: "form-control",
+    },
+});
+// ------------------------------------------------------------------------------
+
+
+
+// ----------------------------- PASSWORD TOGGLE --------------------------------
+$(document).on("click", ".toggle-password", function () {
+    const input = $(this).closest('.position-relative').find('input');
+    const type = input.attr('type') === 'password' ? 'text' : 'password';
+    input.attr('type', type);
+
+    $(this).find('.bi-eye').toggleClass('d-none');
+    $(this).find('.bi-eye-slash').toggleClass('d-none');
+});
+// ------------------------------------------------------------------------------
+
+
+
+// --------------------------- PASSWORD METER (SAFE) -----------------------------
 function passwordMeter(inputElement, highlightElement, options) {
-    var checkSteps, score;
+    if (!inputElement || !highlightElement) return;
+
+    var checkSteps, score = 0;
 
     var check = function () {
-        var e = 0,
-            t = m();
-        !0 === l() && (e += t),
-            !0 === options.checkUppercase && !0 === s() && (e += t),
-            !0 === options.checkLowercase && !0 === u() && (e += t),
-            !0 === options.checkDigit && !0 === d() && (e += t),
-            !0 === options.checkChar && !0 === c() && (e += t),
-            (score = e),
-            f();
-    };
+        let strength = 0;
+        let part = m();
 
-    var l = function () {
-        return inputElement.value.length >= options.minLength;
-    };
+        if (inputElement.value.length >= options.minLength) strength += part;
+        if (options.checkUppercase && /[A-Z]/.test(inputElement.value)) strength += part;
+        if (options.checkLowercase && /[a-z]/.test(inputElement.value)) strength += part;
+        if (options.checkDigit && /[0-9]/.test(inputElement.value)) strength += part;
+        if (options.checkChar && /[~`!@#$%^&*()\-+={}[\]|:;"'<>,.?/]/.test(inputElement.value)) strength += part;
 
-    var s = function () {
-        return /[a-z]/.test(inputElement.value);
-    };
-
-    var u = function () {
-        return /[A-Z]/.test(inputElement.value);
-    };
-
-    var d = function () {
-        return /[0-9]/.test(inputElement.value);
-    };
-
-    var c = function () {
-        return /[~`!#@$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(inputElement.value);
+        score = strength;
+        f();
     };
 
     var m = function () {
-        var e = 1;
-        return (
-            !0 === options.checkUppercase && e++,
-            !0 === options.checkLowercase && e++,
-            !0 === options.checkDigit && e++,
-            !0 === options.checkChar && e++,
-            (checkSteps = e),
-            100 / checkSteps
-        );
+        let e = 1;
+        if (options.checkUppercase) e++;
+        if (options.checkLowercase) e++;
+        if (options.checkDigit) e++;
+        if (options.checkChar) e++;
+        checkSteps = e;
+        return 100 / checkSteps;
     };
 
     var f = function () {
-        var e = [].slice.call(highlightElement.querySelectorAll("div")),
-            t = e.length,
-            i = 0,
-            r = m(),
-            o = g();
-        e.map(function (e) {
-            i++,
-                r * i * (checkSteps / t) <= o
-                    ? e.classList.add("active")
-                    : e.classList.remove("active");
+        let bars = [].slice.call(highlightElement.querySelectorAll("div"));
+        let each = m();
+        let strength = score;
+
+        bars.forEach((bar, i) => {
+            if (each * (i + 1) <= strength * checkSteps) bar.classList.add("active");
+            else bar.classList.remove("active");
         });
     };
 
-    var g = function () {
-        return score;
-    };
-
-    // Check the password strength on initialization
     check();
-
-    // Expose public methods
-    return {
-        check: check,
-        getScore: g
-    };
+    return { check };
 }
 
 $(document).ready(function () {
-    var inputElement = document.querySelector('.password_input');
-    var highlightElement = document.querySelector('.d-flex[data-kt-password-meter-control="highlight"]');
+    let inputElement = document.querySelector('.password_input');
+    let highlightElement = document.querySelector('[data-kt-password-meter-control="highlight"]');
 
-    var options = {
-        minLength: 8, // Minimum password length
-        checkUppercase: true, // Check for uppercase letters
-        checkLowercase: true, // Check for lowercase letters
-        checkDigit: true, // Check for digits
-        checkChar: true // Check for special characters
-    };
+    if (inputElement && highlightElement) {
+        let options = {
+            minLength: 8,
+            checkUppercase: true,
+            checkLowercase: true,
+            checkDigit: true,
+            checkChar: true,
+        };
 
-    // Initialize password meter
-    var meter = passwordMeter(inputElement, highlightElement, options);
+        let meter = passwordMeter(inputElement, highlightElement, options);
 
-    // Toggle password visibility
-
-
-    // Example usage: Whenever the password input changes, update the password meter
-    inputElement.addEventListener('input', function () {
-        meter.check();
-    });
+        inputElement.addEventListener('input', function () {
+            meter.check();
+        });
+    }
 });
+// ------------------------------------------------------------------------------
 
 
 
-// Delete action with reload page
-$(document).on('click', '.delete', function (e) {
-    e.preventDefault();
-
-    var deleteUrl = $(this).attr('href');
-
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, cancel!',
-        buttonsStyling: false,
-        customClass: {
-            confirmButton: 'btn btn-danger',
-            cancelButton: 'btn btn-success'
-        }
-    }).then(function (result) {
-        if (result.isConfirmed) {
-            $.ajax({
-                url: deleteUrl,
-                type: 'DELETE',
-                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                success: function (data) {
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    ).then(function () {
-                        location.reload();
-                    });
-                },
-                error: function (xhr, status, error) {
-                    Swal.fire(
-                        'Error Occurred!',
-                        error,
-                        'error'
-                    );
-                }
-            });
-        }
-        else if (result.dismiss === swal.DismissReason.cancel) {
-            Swal.fire(
-                'Cancelled',
-                'Your imaginary file is safe :)',
-                'error'
-            );
-        }
-    });
-});
-
-
-// --------------------------------
-// Delete Account with reload page
+// ------------------------------ DELETE ACCOUNT --------------------------------
 $(document).on('click', '.delete-account', async function (e) {
     e.preventDefault();
 
     var deleteAccountUrl = $(this).attr('href');
     var checkPasswordUrl = $(this).data('check-password-url');
+
     const { value: password } = await Swal.fire({
         title: "Confirm Password",
         input: "password",
-        // inputLabel: "Password",
-        inputPlaceholder: "Enter your password",
-        inputAttributes: {
-            maxlength: "30",
-            autocapitalize: "off",
-            autocorrect: "off"
-        },
         showCancelButton: true,
         confirmButtonText: 'Yes, delete it!',
         cancelButtonText: 'No, cancel!',
-        buttonsStyling: false,
-        customClass: {
-            confirmButton: 'btn btn-danger',
-            cancelButton: 'btn btn-success'
-        }
     });
 
-    if (password) {
-        // Check if the entered password matches the user's password in the database
+    if (!password) return;
+
+    $.post({
+        url: checkPasswordUrl,
+        data: { password },
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+    }).done(response => {
+        if (!response.success) {
+            Swal.fire('Error', response.message, 'error');
+            return;
+        }
+
         $.ajax({
-            url: checkPasswordUrl,
-            type: 'POST',
+            url: deleteAccountUrl,
+            type: 'DELETE',
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            data: {
-                password: password,
-            },
-            success: function (response) {
-                if (response.success) {
-                    // Password matches, proceed with deletion
-                    $.ajax({
-                        url: deleteAccountUrl,
-                        type: 'DELETE',
-                        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                        success: function (data) {
-                            Swal.fire(
-                                'Deleted!',
-                                'Your Account has been deleted.',
-                                'success'
-                            ).then(function () {
-                                // location.reload();
-                                window.location.href = '/';
-                            });
-                        },
-                        error: function (xhr, status, error) {
-                            Swal.fire(
-                                'Error Occurred!',
-                                error,
-                                'error'
-                            );
-                        }
-                    });
-                } else {
-                    // Password does not match, show error message
-                    Swal.fire(
-                        'Error Occurred!',
-                        response.message,
-                        'error'
-                    );
-                }
-            },
-            error: function (xhr, status, error) {
-                Swal.fire(
-                    'Error Occurred!',
-                    'An error occurred while checking the password. Please try again.',
-                    'error'
-                );
+            success() {
+                Swal.fire('Deleted!', 'Your account has been deleted.', 'success')
+                    .then(() => window.location.href = '/');
             }
         });
-    } else {
-        Swal.fire(
-            'Cancelled',
-            'Your Account is safe :)',
-            'error'
-        );
-    }
+    });
 });
-// --------------------------------
+// ------------------------------------------------------------------------------
 
 
-// --------------------------------
-// Modal Close Code
 
+// -------------------------------- METRONIC MODAL -------------------------------
 "use strict";
 
-// Class definition
 var metronicModal = function () {
-    // Shared variables
     const element = document.querySelector(".metronic_modal");
-    // const form = element.querySelector('#kt_modal_add_permission_form');
+    if (!element) return;
+
     const modal = new bootstrap.Modal(element);
 
-    // Init add schedule modal
     var initModal = () => {
-
-
-        // Close button handler
         const closeButton = element.querySelector('[data-kt-modal-action="close"]');
-        closeButton.addEventListener('click', e => {
-            e.preventDefault();
-
-            Swal.fire({
-                text: "Are you sure you would like to close?",
-                icon: "warning",
-                showCancelButton: true,
-                buttonsStyling: false,
-                confirmButtonText: "Yes, close it!",
-                cancelButtonText: "No, return",
-                customClass: {
-                    confirmButton: "btn btn-primary",
-                    cancelButton: "btn btn-active-light"
-                }
-            }).then(function (result) {
-                if (result.value) {
-                    modal.hide(); // Hide modal
-                }
+        if (closeButton) {
+            closeButton.addEventListener('click', e => {
+                e.preventDefault();
+                Swal.fire({
+                    text: "Are you sure you would like to close?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, close it!",
+                }).then(result => {
+                    if (result.value) modal.hide();
+                });
             });
-        });
+        }
 
-        // Cancel button handler
         const cancelButton = element.querySelector('[data-kt-modal-action="cancel"]');
-        cancelButton.addEventListener('click', e => {
-            e.preventDefault();
-
-            Swal.fire({
-                text: "Are you sure you would like to cancel?",
-                icon: "warning",
-                showCancelButton: true,
-                buttonsStyling: false,
-                confirmButtonText: "Yes, cancel it!",
-                cancelButtonText: "No, return",
-                customClass: {
-                    confirmButton: "btn btn-primary",
-                    cancelButton: "btn btn-active-light"
-                }
-            }).then(function (result) {
-                if (result.value) {
-                    modal.hide(); // Hide modal
-                } else if (result.dismiss === 'cancel') {
-                    Swal.fire({
-                        text: "Your form has not been cancelled!.",
-                        icon: "error",
-                        buttonsStyling: false,
-                        confirmButtonText: "Ok, got it!",
-                        customClass: {
-                            confirmButton: "btn btn-primary",
-                        }
-                    });
-                }
+        if (cancelButton) {
+            cancelButton.addEventListener('click', e => {
+                e.preventDefault();
+                Swal.fire({
+                    text: "Are you sure you would like to cancel?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, cancel it!",
+                }).then(result => {
+                    if (result.value) modal.hide();
+                });
             });
-        });
-
-
-    }
+        }
+    };
 
     return {
-        // Public functions
         init: function () {
             initModal();
         }
     };
 }();
 
-// On document ready
 KTUtil.onDOMContentLoaded(function () {
     metronicModal.init();
 });
+// ------------------------------------------------------------------------------
 
 
-// Define toggleStatus function globally
+
+// ----------------------------- TOGGLE STATUS ----------------------------------
 function toggleStatus(route, id) {
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
-        showConfirmButton: false,
         timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-        }
+        showConfirmButton: false,
     });
 
-    const csrfToken = $('meta[name="csrf-token"]').attr('content');
-
-    $.ajax({
+    $.post({
         url: route,
-        type: "POST",
-        headers: {
-            'X-CSRF-TOKEN': csrfToken
-        },
-        success: function (response) {
-            $(`#status_toggle_${id}`).prop('checked', response.success);
-            Toast.fire({
-                icon: 'success',
-                title: 'Status toggled successfully'
-            });
-        },
-        error: function (xhr) {
-            console.error('Error - ' + xhr.status + ': ' + xhr.statusText);
-            Toast.fire({
-                icon: 'error',
-                title: 'An error occurred'
-            });
-        }
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+    }).done(response => {
+        $(`#status_toggle_${id}`).prop('checked', response.success);
+        Toast.fire({ icon: 'success', title: 'Status toggled successfully' });
     });
 }
-
-
-
-
+// ------------------------------------------------------------------------------
