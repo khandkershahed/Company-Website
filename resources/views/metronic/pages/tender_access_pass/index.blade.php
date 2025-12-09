@@ -28,7 +28,7 @@
                 </div>
                 <button type="button" class="py-3 btn btn-outline btn-outline-info btn-active-light-info"
                     data-bs-toggle="modal" data-bs-target="#createModal">
-                    <i class="bi bi-plus-lg"></i> Add Pass
+                    <i class="bi bi-plus-lg"></i> Add Access Pass
                 </button>
             </div>
 
@@ -74,24 +74,33 @@
                                     <td>
                                         <div class="input-group input-group-sm" style="width: 160px;">
                                             {{-- Hidden Password Field --}}
-                                            <input type="password" class="form-control form-control-solid bg-transparent border-0 px-2"
-                                                value="{{ $pass->password ?? '' }}" readonly id="pass-{{ $pass->id }}">
-                                            
+                                            <input type="password"
+                                                class="form-control form-control-solid bg-transparent border-0 px-2"
+                                                value="{{ $pass->password ?? '' }}" readonly
+                                                id="pass-{{ $pass->id }}">
+
                                             {{-- Toggle Show/Hide --}}
-                                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px" type="button"
+                                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px"
+                                                type="button"
                                                 onclick="togglePassword('pass-{{ $pass->id }}', this)">
                                                 <i class="bi bi-eye"></i>
                                             </button>
 
                                             {{-- Copy Button --}}
-                                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px" type="button"
-                                                onclick="copyPassword('pass-{{ $pass->id }}', this)" title="Copy">
+                                            <button class="btn btn-icon btn-active-light-primary w-30px h-30px"
+                                                type="button" onclick="copyPassword('pass-{{ $pass->id }}', this)"
+                                                title="Copy">
                                                 <i class="bi bi-clipboard"></i>
                                             </button>
                                         </div>
                                     </td>
                                     <td class="text-end pe-5">
-                                        <button type="button" class="px-3 btn btn-sm btn-light text-success edit-btn me-4"
+                                        <button type="button" class="btn btn-sm btn-light text-info me-5"
+                                            data-bs-toggle="modal" data-bs-target="#showModal-{{ $pass->id }}">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button type="button"
+                                            class="px-3 btn btn-sm btn-light text-success edit-btn me-4"
                                             data-id="{{ $pass->id }}" data-org="{{ $pass->organization }}"
                                             data-sector="{{ $pass->sector_id }}" data-url="{{ $pass->login_url }}"
                                             data-username="{{ $pass->username }}"
@@ -101,9 +110,12 @@
                                             data-bs-toggle="modal" data-bs-target="#editModal">
                                             <i class="bi bi-pencil"></i>
                                         </button>
-                                        <a class="delete" href="{{ route('admin.tender-access-pass.destroy', $pass->id) }}">
+                                        <a class="delete"
+                                            href="{{ route('admin.tender-access-pass.destroy', $pass->id) }}">
                                             <i class="fas fa-trash-alt text-danger"></i>
                                         </a>
+
+
                                         {{-- <form action="{{ route('admin.tender-access-pass.destroy', $pass->id) }}"
                                             method="POST" class="d-inline" onsubmit="return confirm('Are you sure?');">
                                             @csrf
@@ -114,6 +126,116 @@
                                         </form> --}}
                                     </td>
                                 </tr>
+                                <div class="modal fade" id="showModal-{{ $pass->id }}" tabindex="-1"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content rounded-4">
+
+                                            <div class="modal-header">
+                                                <h5 class="modal-title fw-bold">Access Pass Details</h5>
+                                                <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+
+                                                <div class="row g-3">
+
+                                                    <div class="col-md-6">
+                                                        <label class="fw-semibold d-block mb-1">Organization</label>
+                                                        <div class="p-3 border rounded bg-light">
+                                                            {{ $pass->organization }}</div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="fw-semibold d-block mb-1">Sector</label>
+                                                        <div class="p-3 border rounded bg-light">
+                                                            {{ $pass->sector->name ?? '-' }}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="fw-semibold d-block mb-1">Login URL</label>
+                                                        <div class="p-3 border rounded bg-light">
+                                                            @if ($pass->login_url)
+                                                                <a href="{{ $pass->login_url }}" target="_blank">
+                                                                    {{ $pass->login_url }}
+                                                                </a>
+                                                            @else
+                                                                -
+                                                            @endif
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="fw-semibold d-block mb-1">Recovery Email</label>
+                                                        <div class="p-3 border rounded bg-light">
+                                                            {{ $pass->recovery_email ?? '-' }}</div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="fw-semibold d-block mb-1">Username / ID</label>
+                                                        <div class="p-3 border rounded bg-light">
+                                                            {{ $pass->username ?? '-' }}</div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="fw-semibold d-block mb-1">Password</label>
+                                                        <div
+                                                            class="p-3 border rounded bg-light d-flex align-items-center gap-2">
+
+                                                            <input type="password"
+                                                                class="form-control form-control-solid bg-transparent border-0 px-2"
+                                                                value="{{ $pass->password ?? '' }}" readonly
+                                                                id="modal-pass-{{ $pass->id }}">
+
+                                                            {{-- Toggle Show/Hide --}}
+                                                            <button
+                                                                class="btn btn-icon btn-active-light-primary w-30px h-30px"
+                                                                type="button"
+                                                                onclick="togglePassword('modal-pass-{{ $pass->id }}', this)">
+                                                                <i class="bi bi-eye"></i>
+                                                            </button>
+
+                                                            {{-- Copy Button --}}
+                                                            <button
+                                                                class="btn btn-icon btn-active-light-primary w-30px h-30px"
+                                                                type="button"
+                                                                onclick="copyPassword('modal-pass-{{ $pass->id }}', this)"
+                                                                title="Copy">
+                                                                <i class="bi bi-clipboard"></i>
+                                                            </button>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-12">
+                                                        <label class="fw-semibold d-block mb-1">Verification
+                                                            Details</label>
+                                                        <div class="p-3 border rounded bg-light">
+                                                            {{ $pass->verification_details ?? '-' }}</div>
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <label class="fw-semibold d-block mb-1">Notes</label>
+                                                        <div class="p-3 border rounded bg-light">
+                                                            {{ $pass->notes ?? '-' }}</div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
                             @empty
                                 <tr>
                                     <td colspan="7" class="text-center py-4">No access passes found.</td>
@@ -282,13 +404,13 @@
             // Copy Password to Clipboard
             function copyPassword(inputId, btn) {
                 const input = document.getElementById(inputId);
-                
+
                 // Use Navigator API for clipboard
                 navigator.clipboard.writeText(input.value).then(() => {
                     // Visual feedback
                     const originalIcon = btn.innerHTML;
                     btn.innerHTML = '<i class="bi bi-check-lg text-success"></i>'; // Change to checkmark
-                    
+
                     setTimeout(() => {
                         btn.innerHTML = originalIcon; // Revert back after 1.5s
                     }, 1500);

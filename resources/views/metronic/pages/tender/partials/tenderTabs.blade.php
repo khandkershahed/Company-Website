@@ -53,7 +53,16 @@
                                         </a>
                                         <ul class="dropdown-menu text-center">
                                             <li class="pb-2" style="border-bottom: 1px dashed #E4E6EF;">
-                                                <a class="dropdown-item text-center fs-3 text-gray-900"
+                                                <a class="dropdown-item text-center fs-6 text-gray-900"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#tenderShowModal-{{ $tender->id }}"
+                                                    href="javascript:void(0);">
+                                                    Show
+                                                </a>
+
+                                            </li>
+                                            <li class="pb-2" style="border-bottom: 1px dashed #E4E6EF;">
+                                                <a class="dropdown-item text-center fs-6 text-gray-900"
                                                     href="{{ route('admin.tender.edit', $tender->id) }}">Edit</a>
                                             </li>
                                             <li class="pt-2">
@@ -62,7 +71,56 @@
                                                     <i class="fas fa-trash text-danger fs-3"></i>
                                                 </a>
                                             </li>
+                                            <li class="pb-2" style="border-bottom: 1px dashed #E4E6EF;">
+                                                <a class="dropdown-item text-center fs-6 text-gray-900"
+                                                    href="{{ route('tender.public.share', $tender->tender_code) }}"
+                                                    target="_blank">
+                                                    Share Link
+                                                </a>
+                                            </li>
+
+                                            <li class="pb-2" style="border-bottom: 1px dashed #E4E6EF;">
+                                                <a class="dropdown-item text-center fs-6 text-gray-900"
+                                                    href="mailto:?subject={{ urlencode($tender->title) }}&body={{ urlencode(route('tender.public.share', $tender->tender_code)) }}">
+                                                    Email
+                                                </a>
+                                            </li>
+
+                                            <li class="pb-2" style="border-bottom: 1px dashed #E4E6EF;">
+                                                <a class="dropdown-item text-center fs-6 text-gray-900"
+                                                    href="https://wa.me/?text={{ urlencode(route('tender.public.share', $tender->tender_code)) }}"
+                                                    target="_blank">
+                                                    WhatsApp
+                                                </a>
+                                            </li>
+
                                         </ul>
+                                    </div>
+
+                                    <div class="modal fade" id="tenderShowModal-{{ $tender->id }}" tabindex="-1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                                            <div class="modal-content">
+
+                                                <div class="modal-header bg-light">
+                                                    <h5 class="modal-title fw-bold">Tender Details</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"><i
+                                                            class="fas fa-x fs-3 text-danger"></i></button>
+                                                </div>
+
+                                                <div class="modal-body">
+                                                    <div id="tender-details-body">
+                                                        @include('metronic.pages.tender.partials.show')
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer bg-light">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
                                     </div>
                                 </td>
 

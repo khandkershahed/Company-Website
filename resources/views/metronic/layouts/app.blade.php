@@ -50,7 +50,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
     <link href="{{ asset('backend/assets/input-tags/css/tagsinput.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/metronic/assets/css/custom.css?v=' . time()) }}" rel="stylesheet" type="text/css" />
-    
+
 
     <style>
         .aside-dark .menu .menu-item.here>.menu-link .menu-icon,
@@ -116,7 +116,7 @@
 
 
     {{-- <script src="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.js') }}"></script> --}}
-<script src="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.js') }}"></script>
+    <script src="{{ asset('backend/metronic/assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('backend/metronic/assets/js/scripts.bundle.js') }}"></script>
 
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
@@ -149,7 +149,7 @@
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
         });
     </script>
-    
+
 
     {{-- <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
@@ -194,6 +194,19 @@
         });
     </script>
     <script>
+        $('.dataTable').DataTable({
+            dom: '<"row mb-3"' +
+                '<"col-md-6 d-flex align-items-center"f>' + // Search LEFT
+                '<"col-md-6 d-flex justify-content-end"l>' + // Show/Length RIGHT
+                '>' +
+                'rt' +
+                '<"row mt-3"' +
+                '<"col-md-6"i>' +
+                '<"col-md-6 d-flex justify-content-end"p>' +
+                '>',
+            pageLength: 10,
+        });
+
         //  DropZone Image
         $(document).ready(function() {
             var selectedFiles = [];
@@ -278,38 +291,38 @@
             updateDeleteButtonVisibility();
         });
         // Data table
-        class DataTableInitializer {
-            constructor(selector) {
-                this.selector = selector;
-                this.init();
-            }
+        // class DataTableInitializer {
+        //     constructor(selector) {
+        //         this.selector = selector;
+        //         this.init();
+        //     }
 
-            init() {
-                $(this.selector).DataTable({
-                    "fixedHeader": {
-                        "header": true,
-                        "headerOffset": 5
-                    },
-                    "language": {
-                        "lengthMenu": "Show _MENU_",
-                    },
-                    "dom": "<'row mb-2'" +
-                        "<'col-sm-6 d-flex align-items-center justify-content-start dt-toolbar'l>" +
-                        "<'col-sm-6 d-flex align-items-center justify-content-end dt-toolbar'f>" +
-                        ">" +
-                        "<'table-responsive'tr>" +
-                        "<'row'" +
-                        "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-                        "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-                        ">"
-                });
-            }
-        }
+        //     init() {
+        //         $(this.selector).DataTable({
+        //             "fixedHeader": {
+        //                 "header": true,
+        //                 "headerOffset": 5
+        //             },
+        //             "language": {
+        //                 "lengthMenu": "Show _MENU_",
+        //             },
+        //             "dom": "<'row mb-2'" +
+        //                 "<'col-sm-6 d-flex align-items-center justify-content-start dt-toolbar'l>" +
+        //                 "<'col-sm-6 d-flex align-items-center justify-content-end dt-toolbar'f>" +
+        //                 ">" +
+        //                 "<'table-responsive'tr>" +
+        //                 "<'row'" +
+        //                 "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+        //                 "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+        //                 ">"
+        //         });
+        //     }
+        // }
 
-        // Initialize DataTables for elements with class 'my-datatable'
-        $(document).ready(function() {
-            new DataTableInitializer('.my-datatable , .dataTable');
-        });
+        // // Initialize DataTables for elements with class 'my-datatable'
+        // $(document).ready(function() {
+        //     new DataTableInitializer('.my-datatable , .dataTable');
+        // });
         // Modal js
         // Make the DIV element draggable:
         // var element = document.querySelector('.modal');
