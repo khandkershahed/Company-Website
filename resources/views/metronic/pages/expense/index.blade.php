@@ -4,7 +4,7 @@
             <div class="card-header border-0 pt-5">
                 <h3 class="card-title align-items-start flex-column">
                     <span class="card-label fw-bold fs-3 mb-1">Expense List</span>
-                    <span class="text-muted mt-1 fw-semibold fs-7">Manage daily expenses</span>
+                    <span class="text-black mt-1 fw-semibold fs-7">Manage daily expenses</span>
                 </h3>
                 <div class="card-toolbar">
                     <button type="button" class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#createModal">
@@ -63,7 +63,7 @@
                                     <button class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1 edit-btn"
                                         data-id="{{ $expense->id }}"
                                         data-date="{{ $expense->date->format('Y-m-d') }}"
-                                        data-category="{{ $expense->expense_category }}" 
+                                        data-category="{{ $expense->expense_category }}"
                                         data-type="{{ $expense->expense_type }}"
                                         data-particulars="{{ $expense->particulars }}"
                                         data-amount="{{ $expense->amount }}"
@@ -73,7 +73,7 @@
                                             <span class="path1"></span><span class="path2"></span>
                                         </i>
                                     </button>
-                                    
+
                                     {{-- <form action="{{ route('admin.expenses.destroy', $expense->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?')">
                                         @csrf
                                         @method('DELETE')
@@ -114,7 +114,7 @@
                         <div class="mb-13 text-center">
                             <h1 class="mb-3">Add Expense</h1>
                         </div>
-                        
+
                         <div class="row g-9 mb-8">
                             <div class="col-md-6">
                                 <label class="required fs-6 fw-semibold mb-2">Date</label>
@@ -187,7 +187,7 @@
                         <div class="mb-13 text-center">
                             <h1 class="mb-3">Edit Expense</h1>
                         </div>
-                        
+
                         <div class="row g-9 mb-8">
                             <div class="col-md-6">
                                 <label class="required fs-6 fw-semibold mb-2">Date</label>
