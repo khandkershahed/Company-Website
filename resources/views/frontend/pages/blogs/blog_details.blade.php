@@ -11,7 +11,7 @@
                             <span>/</span>
                             <span><a href="javascript:void(0);" class="breadcrumbs-blogs">{{ $blog->title }}</a></span>
                         </div>
-                        <div>
+                        {{-- <div>
                             <button id="subscribeBtn" class="btn btn-subscibe rounded-pill">Subscribe</button>
                             <form id="subscriptionForm" action="{{ route('newsletter.store') }}" method="post"
                                 style="display: none;">
@@ -23,7 +23,7 @@
                                 </div>
                             </form>
 
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

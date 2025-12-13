@@ -1,5 +1,3 @@
-
-
 <div class="offcanvas-header rfq-head-bg">
     <h5 class="mb-0 text-center text-white">All RFQ Product Added In Query!</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" style="color: #ae0a46;">
@@ -50,9 +48,11 @@
                                                         onClick='deleteRFQRow(event, this, this.id)'>
                                                         <i class="fas fa-trash-can"></i>
                                                     </a> --}}
-                                                    <a href="#" class="remove-rfq rounded-0 text-danger"
-                                                        data-id="{{ $cart_item->rowId }}" title="Remove from cart"
-                                                        aria-label="Remove item">
+                                                    <a href="javascript:void(0);"
+                                                        class="remove-rfq rounded-0 text-danger"
+                                                        id="{{ $cart_item->rowId }}"
+                                                        onClick="deleteRFQRow(event, this, this.id)"
+                                                        title="Remove from cart" aria-label="Remove item">
                                                         <i class="fas fa-trash-can"></i>
                                                     </a>
                                                 </small>

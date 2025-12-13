@@ -59,8 +59,8 @@
         {{-- <span class="mr-md-auto">
             {{ is_countable($products) && count($products) > 0 ? $products->count() : 'No' }} Items found
         </span> --}}
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="">
+        <div class="d-flex justify-content-start align-items-center">
+            <div class="me-3">
                 <select class="show form-select rounded-0 product_btn_dropdown" name="show"
                     data-placeholder="Results Per Page" onchange="perpageFilter();" aria-label="Default select example">
                     <option value="">Default Show</option>
@@ -75,7 +75,7 @@
                 </select>
             </div>
             <div class="">
-                <select class="form-select rounded-0" name="sortBy" onchange="sortByFilter();"
+                <select class="form-select rounded-0" name="sortBy" style="width: 78%;" onchange="sortByFilter();"
                     data-placeholder="Results Per Page" aria-label="Default select example">
                     <option value="">Default Sorting</option>
                     <option value="titleASC" @selected(!empty($_GET['sortBy']) && $_GET['sortBy']=='titleASC' )>Ascending By Name
