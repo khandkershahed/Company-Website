@@ -216,12 +216,12 @@ background: linear-gradient(to top right, #ae0a46 0%, #4e0721 100%); /* Standard
 
                         <div>
                            <!-- Offcanvas trigger button -->
-                            <!-- <button class="py-1 btn btn-white ms-3" type="button" style="height: 40px;display: flex;justify-content: center;align-items: center;"
+                            <button class="py-1 btn-outline-danger btn-white ms-3" type="button" style="height: 40px;display: flex;justify-content: center;align-items: center;"
                                 data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasBottom"
                                 aria-controls="offcanvasBottom">
                                 View Cart
-                            </button> -->
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -257,7 +257,9 @@ background: linear-gradient(to top right, #ae0a46 0%, #4e0721 100%); /* Standard
                 <div class="py-2 modal-header" style="background: #ae0a46;">
                     <h5 class="text-white modal-title" id="staticBackdropLabel">Get Price Quotation
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="text-white fas fa-xmark"></i>
+                    </button>
                 </div>
                 <div class="p-0 modal-body p-lg-4">
                     <div class="container">

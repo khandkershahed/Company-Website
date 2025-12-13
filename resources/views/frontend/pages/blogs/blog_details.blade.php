@@ -1,9 +1,9 @@
 @extends('frontend.master')
 @section('content')
     @include('frontend.pages.blogs.style_partial')
-    <main style="background-color: #dcecfa" class="py-0 py-lg-5 pb-5">
-        <div class="container pb-5" style="background-color: #dcecfa" class="py-0 py-lg-5 pb-5">
-            <div class="row py-5">
+    <main style="background-color: #dcecfa" class="py-0 pb-5 py-lg-5">
+        <div class="container pb-5" style="background-color: #dcecfa" class="py-0 pb-5 py-lg-5">
+            <div class="py-5 row">
                 <div class="col-lg-12">
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
@@ -30,7 +30,7 @@
             <div class="row blog-details">
                 <div class="col-lg-12">
                     <div class="card contents">
-                        <h1>
+                        <h1 class="text-primary">
                             {{ $blog->title }}
                         </h1>
                         <div class="autors">
@@ -46,13 +46,13 @@
                                 <div class="blog-create">
                                     <span>{{ $blog->created_at->format('M d, Y') }}</span>
                                 </div>
-                                <div>
+                                <!-- <div>
                                     <div class="bySocial">
                                         <ul class="social-icon-links pull-right" style="font-size: 1.5rem;">
                                             {!! Share::page(url('/blogs/' . $blog->slug))->facebook()->twitter()->whatsapp() !!}
                                         </ul>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="blog-main-content">
@@ -74,14 +74,14 @@
 
                                 {!! $blog->long_des !!}
 
-                                <div class="my-5 p-4 text-center"
+                                <div class="p-4 my-5 text-center"
                                     style="border-top: 1px dotted #f00; border-bottom: 1px dotted #f00;">
                                     <p><strong>{!! $blog->footer !!} </strong></p>
                                 </div>
 
                             </div>
                         </div>
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-start">
                             <div class="bySocial">
                                 <ul class="social-icon-links pull-right" style="font-size: 1.5rem;">
                                     {!! Share::page(url('/blogs/' . $blog->slug))->facebook()->twitter()->whatsapp() !!}
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <!-- Pagination -->
-                        {{-- <div style="background-color: #408bea1a" class="w-75 mx-auto p-4 my-5 rounded-3 autor-boxes">
+                        {{-- <div style="background-color: #408bea1a" class="p-4 mx-auto my-5 w-75 rounded-3 autor-boxes">
                             <div class="d-flex align-items-center">
                                 <div>
                                     <img width="100" class="img-fluid rounded-3"
@@ -110,7 +110,7 @@
                                         <p>{{ Str::limit($previous->title, 40) }}</p>
                                         <p>
                                             <i class="fas fa-arrow-left"></i>
-                                            Previous Post
+                                            Previous Page
                                         </p>
                                     </a>
                                 @else
@@ -121,7 +121,7 @@
                                     <a class="text-end" href="{{ route('blog.details', $next->slug) }}">
                                         <p>{{ Str::limit($next->title, 40) }}</p>
                                         <p>
-                                            Next Post
+                                            Next Page
                                             <i class="fas fa-arrow-right"></i>
                                         </p>
                                     </a>
@@ -149,18 +149,18 @@
                             </div>
                         </div>
                         <div class="mt-5">
-                            <div class="row w-75 mx-auto subscribe-boxes align-items-center">
+                            <div class="mx-auto row w-75 subscribe-boxes align-items-center">
                                 <div class="col-lg-6">
                                     <h3>Stay up-to-date</h3>
                                     <p>Subscribe now for tips, tools and news.</p>
                                 </div>
-                                <div class="col-lg-6 p-4 rounded-3" style="background-color: #dcecfa">
+                                <div class="p-4 col-lg-6 rounded-3" style="background-color: #dcecfa">
                                     <div>
                                         <form action="{{ route('newsletter.store') }}" method="post">
                                             @csrf
                                             <div>
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="form-control rounded-2 py-2"
+                                                <div class="mb-3 input-group">
+                                                    <input type="text" class="py-2 form-control rounded-2"
                                                         placeholder="Email Address" aria-label="Email Address"
                                                         aria-describedby="button-addon2" name="email" />
                                                     <button class="btn btn-outline-secondary rounded-2 ms-2" type="submit"
@@ -194,9 +194,9 @@
                     <h2 class="fw-bold">Related Blogs</h2>
                 </div>
             </div>
-            <div class="row pt-4">
+            <div class="pt-4 row">
                 @foreach ($related_blogs as $related_blog)
-                    <div class="col-lg-3 mb-2">
+                    <div class="mb-2 col-lg-3">
                         <div class="card recent-blogs">
                             @if (!empty($related_blog->image) && file_exists(storage_path('app/public/' . $related_blog->image)))
                                 <img class="card-img-top" height="180px" width="100%"

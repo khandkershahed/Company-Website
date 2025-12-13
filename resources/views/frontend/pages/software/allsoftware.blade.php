@@ -850,8 +850,8 @@
                         <div class="col-lg-3 col-sm-6">
                             <div class="tech_solution_item">
                                 <p class="tech_solution_title">{{ $item->header }}</p>
-                                <p class="tech_solution_text">{{ $item->short_description }}</p>
-                                <p class="tech_solution_award">{{ $item->footer }}</p>
+                                <p class="text-black tech_solution_text fw-normal">{{ $item->short_description }}</p>
+                                <!-- <p class="tech_solution_award">{{ $item->footer }}</p> -->
                             </div>
                         </div>
                     @endforeach

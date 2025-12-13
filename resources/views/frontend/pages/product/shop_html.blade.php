@@ -14,7 +14,7 @@
                 <!--BUTTON START-->
                 <div class="d-flex justify-content-center align-items-center">
                     <div class="m-4">
-                        <a class="btn-white" href="{{ route('shop') }}">Online Shop</a>
+                        <a class="btn-white" href="{{ route('rfq') }}">Go To RFQ</a>
                     </div>
                 </div>
             </div>
@@ -411,7 +411,9 @@
                 <div class="d-flex justify-content-center">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
+                            <li>
                             {{ $brands->links() }}
+                            </li>
                         </ul>
                     </nav>
                 </div>

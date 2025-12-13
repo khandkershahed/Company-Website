@@ -4,7 +4,7 @@
     <h5 class="mb-0 text-center text-white">All RFQ Product Added In Query!</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" style="color: #ae0a46;">
         {{-- style="background: #ae0a46;padding-bottom: 18px;padding-left: 12px;padding-right: 15px;"> --}}
-        {{-- <i class="fa-solid fa-xmark"></i> --}}
+        <i class="text-white fas fa-xmark"></i>
     </button>
 </div>
 

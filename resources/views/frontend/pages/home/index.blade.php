@@ -319,18 +319,18 @@
                     @if (!empty($story))
                         <div class="col-lg-3">
                             <div class="client_story_box">
-                                <div class="pt-4 pb-3 details-titles ps-4">
-                                    <p class="pb-5">{{ $story->badge }}</p>
+                                <div class="pt-4 pb-3 details-titles ps-4" style="background-color: #ae0a46; border: 1px solid #ae0a46;">
+                                    <p class="pb-5 text-white">{{ $story->badge }}</p>
                                 </div>
                                 <div class="grid-river">
-                                    <figure class="effect-oscar" style="height: 250px;">
+                                    <figure class="effect-oscar" style="height: 250px; background-color: white;">
                                         {{-- <img src="{{ isset($story->image) && file_exists(public_path('storage/' . $story->image)) ? asset('storage/' . $story->image) : asset('frontend/images/banner-demo.png') }} "
                                             alt=""> --}}
                                         <figcaption>
-                                            <h6> {{ Str::words($story->title, 6) }}</h6>
+                                            <h6 class="text-black fw-bold"> {{ Str::words($story->title, 6) }}</h6>
                                             <p class="text-start">{{ Str::words($story->header, 10) }}</p>
-                                            <h5 class="download-hover-btn">
-                                                <a class="text-white"
+                                            <h5 class="text-black download-hover-btn">
+                                                <a class="text-black"
                                                     href="{{ route('story.details', $story->slug) }}">Read More
                                                     <i class="fa-solid fa-chevron-right" style="font-size: 12px;"></i>
                                                 </a>

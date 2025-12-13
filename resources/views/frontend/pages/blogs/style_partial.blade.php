@@ -318,8 +318,9 @@
         margin: 0;
         padding: 9px 0 8px;
         font-size: 1.02em;
-        font-weight: 500;
+        font-weight: 400;
         display: block;
+        color: #000;
     }
 
     .research-box-nav-btn {
