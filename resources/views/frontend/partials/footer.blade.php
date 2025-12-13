@@ -19,7 +19,7 @@
                             You can update your preferences or unsubscribe any time.
                         </p>
                         <!-- button -->
-                        <form class="p-0 pt-3 m-0" id="myform" action="{{ route('newsletter.store') }}"
+                        <form class="p-0 pt-3 m-0" action="{{ route('newsletter.store') }}"
                             method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="input-group w-75 footer_subscribe" style="height: 37px">
