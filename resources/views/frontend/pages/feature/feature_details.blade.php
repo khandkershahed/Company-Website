@@ -205,7 +205,7 @@
                 <h4 class="">{{ $feature->row_three_title }}</h4>
                 <p>{{ $feature->row_three_header }}</p>
                 <div class="d-flex justify-content-center">
-                    <a href="{{ route('contact') }}" class="text-center btn-color">Contact us to buy</a>
+                    <a href="{{ route('contact') }}" class="text-center btn-white btn-color">Contact us to buy</a>
                 </div>
             </div>
 

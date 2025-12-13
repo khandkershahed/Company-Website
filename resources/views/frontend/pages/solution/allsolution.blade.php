@@ -53,7 +53,7 @@
 <!----------End--------->
 <section class="mt-4">
     <div class="container my-3">
-        <ul class="breadcrumb text-left">
+        <ul class="text-left breadcrumb">
             <a href="{{ route('homepage') }}">
                 <li class="breadcrumb__item breadcrumb__item-firstChild">
                     <span class="breadcrumb__inner">
@@ -97,7 +97,7 @@
         <div class="row padding_top gx-3">
             @if (count($solutions) > 0)
                 @foreach ($solutions as $key => $item)
-                    <div class="col-md-3 col-sm-4 mb-3 solution-item"
+                    <div class="mb-3 col-md-3 col-sm-4 solution-item"
                         @if ($key >= 4) style="display: none;" @endif>
                         <div class="container-area-brand">
                             <div class="content-brand">
@@ -121,10 +121,10 @@
                                             <p class="brand-news-trends-title-solution">{!! Str::words($item->header, 27) !!}</p>
                                             {{-- <p class="brand-news-trends-title-solution">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p> --}}
                                         </div>
-                                        <div class="description-footer-brand inline-center text-white">
+                                        <div class="text-white description-footer-brand inline-center">
                                             <hr class="p-1 pt-1 m-0 text-white">
                                             <a href="{{ isset($item->slug) ? route('solution.details', ['slug' => $item->slug]) : '' }}"
-                                                class="link text-white"><i class="fa fa-plus-circle me-2"></i>More
+                                                class="text-white link"><i class="fa fa-plus-circle me-2"></i>More
                                                 information</a>
                                         </div>
 
@@ -135,7 +135,7 @@
                     </div>
                 @endforeach
             @else
-                <h4 class="main_color text-center">No Solution Found !</h4>
+                <h4 class="text-center main_color">No Solution Found !</h4>
             @endif
             <div class="col-lg-12">
                 <div class="d-flex justify-content-center mt-lg-5 mt-sm-3">
@@ -154,18 +154,18 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div
-                            class="card-header bg-white shadow-sm main-to-depp-gradient-1 p-5 card-header-area border-top-right-r">
+                            class="p-5 bg-white shadow-sm card-header main-to-depp-gradient-1 card-header-area border-top-right-r">
                             <div class="d-flex align-items-center">
-                                <h4 class="pe-2 text-white">Alluvio Solutions</h4>
-                                <h4 class="pe-2 text-white">|</h4>
+                                <h4 class="text-white pe-2">Alluvio Solutions</h4>
+                                <h4 class="text-white pe-2">|</h4>
                                 <h4 class="text-white">Alluvio Solutions</h4>
                             </div>
                         </div>
-                        <div class="card-header p-5 card-header-area border-bottom-left-r">
+                        <div class="p-5 card-header card-header-area border-bottom-left-r">
                             <div class="row card-row-area">
                                 <div class="col-lg-3">
                                     <a href="#" style="cursor: pointer;">
-                                        <div class="p-4 shadow-sm bg-white">
+                                        <div class="p-4 bg-white shadow-sm">
                                             <div class="icons_area"></div>
                                             <div class="text_area">
                                                 Digital Experience Management
@@ -178,7 +178,7 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <a href="#" style="cursor: pointer;">
-                                        <div class="p-4 shadow-sm bg-white">
+                                        <div class="p-4 bg-white shadow-sm">
                                             <div class="icons_area"></div>
                                             <div class="text_area">
                                                 Digital Experience Management
@@ -191,7 +191,7 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <a href="#" style="cursor: pointer;">
-                                        <div class="p-4 shadow-sm bg-white">
+                                        <div class="p-4 bg-white shadow-sm">
                                             <div class="icons_area"></div>
                                             <div class="text_area">
                                                 Digital Experience Management
@@ -204,7 +204,7 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <a href="#" style="cursor: pointer;">
-                                        <div class="p-4 shadow-sm bg-white">
+                                        <div class="p-4 bg-white shadow-sm">
                                             <div class="icons_area"></div>
                                             <div class="text_area">
                                                 Digital Experience Management
@@ -224,18 +224,18 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div
-                            class="card-header bg-white shadow-sm main-to-depp-gradient-2 p-5 card-header-area border-top-right-r">
+                            class="p-5 bg-white shadow-sm card-header main-to-depp-gradient-2 card-header-area border-top-right-r">
                             <div class="d-flex align-items-center">
-                                <h4 class="pe-2 text-white">Alluvio Solutions</h4>
-                                <h4 class="pe-2 text-white">|</h4>
+                                <h4 class="text-white pe-2">Alluvio Solutions</h4>
+                                <h4 class="text-white pe-2">|</h4>
                                 <h4 class="text-white">Alluvio Solutions</h4>
                             </div>
                         </div>
-                        <div class="card-header p-5 card-header-area border-bottom-left-r">
+                        <div class="p-5 card-header card-header-area border-bottom-left-r">
                             <div class="row card-row-area">
                                 <div class="col-lg-3">
                                     <a href="#" style="cursor: pointer;">
-                                        <div class="p-4 shadow-sm bg-white">
+                                        <div class="p-4 bg-white shadow-sm">
                                             <div class="icons_area"></div>
                                             <div class="text_area">
                                                 Digital Experience Management
@@ -248,7 +248,7 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <a href="#" style="cursor: pointer;">
-                                        <div class="p-4 shadow-sm bg-white">
+                                        <div class="p-4 bg-white shadow-sm">
                                             <div class="icons_area"></div>
                                             <div class="text_area">
                                                 Digital Experience Management
@@ -261,7 +261,7 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <a href="#" style="cursor: pointer;">
-                                        <div class="p-4 shadow-sm bg-white">
+                                        <div class="p-4 bg-white shadow-sm">
                                             <div class="icons_area"></div>
                                             <div class="text_area">
                                                 Digital Experience Management
@@ -274,7 +274,7 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <a href="#" style="cursor: pointer;">
-                                        <div class="p-4 shadow-sm bg-white">
+                                        <div class="p-4 bg-white shadow-sm">
                                             <div class="icons_area"></div>
                                             <div class="text_area">
                                                 Digital Experience Management
@@ -293,19 +293,14 @@
         </div>
     </section> --}}
 <!--======// our clint tab //======-->
-<section class="clint_tab_section py-lg-5 py-3">
+<section class="py-3 clint_tab_section py-lg-5">
     <div class="container">
-        <div class="clint_tab_content pb-3">
+        <div class="pb-3 clint_tab_content">
             <!-- home title -->
-            <div class="home_title mt-3">
+            <div class="mt-3 home_title">
                 <div class="software_feature_title">
-                    <h1 class="text-center "> NGen IT Growing </h1>
+                    <h1 class="mb-5 text-center"> NGen IT Growing </h1>
                 </div>
-                <p class="home_title_text solution_para py-3 pb-4 mb-1">See how NGen IT has helped organizations of all
-                    sizes across every industry maximize the value of their IT solutions, leverage emerging technologies
-                    and create fresh
-                    experiences.
-                </p>
             </div>
             <!-- Client Tab Start -->
             <div class="row">
@@ -329,13 +324,13 @@
                                 </div>
                             </nav>
                         </div>
-                        <div class="tab-content py-0 px-3 px-sm-0" id="nav-tabContent">
+                        <div class="px-3 py-0 tab-content px-sm-0" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                 aria-labelledby="nav-home-tab">
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 col-md-6 col-sm-12 tab_content_padding">
-                                        <h6 class="title-tag text-capitalize mb-2">{{ $story1->badge }}</h6>
-                                        <h4 class="home_title_heading text-capitalize text-start pb-2">
+                                        <h6 class="mb-2 title-tag text-capitalize">{{ $story1->badge }}</h6>
+                                        <h4 class="pb-2 home_title_heading text-capitalize text-start">
                                             {{ $story1->title }}</h4>
                                         <div style="text-align: justify">
                                             <p class="mb-1">{{ $story1->header }}</p>
@@ -358,8 +353,8 @@
                                 aria-labelledby="nav-profile-tab">
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 col-md-6 col-sm-12 ps-5">
-                                        <h6 class="title-tag text-capitalize mb-2">{{ $story2->badge }}</h6>
-                                        <h4 class="home_title_heading text-capitalize text-start pb-2">
+                                        <h6 class="mb-2 title-tag text-capitalize">{{ $story2->badge }}</h6>
+                                        <h4 class="pb-2 home_title_heading text-capitalize text-start">
                                             {{ $story2->title }}</h4>
                                         <div style="text-align: justify">
                                             <p class="mb-1">{{ $story2->header }}</p>
@@ -382,8 +377,8 @@
                                 aria-labelledby="nav-contact-tab">
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 col-md-6 col-sm-12 ps-5">
-                                        <h6 class="title-tag text-capitalize mb-2">{{ $story3->badge }}</h6>
-                                        <h4 class="home_title_heading text-capitalize text-start pb-2">
+                                        <h6 class="mb-2 title-tag text-capitalize">{{ $story3->badge }}</h6>
+                                        <h4 class="pb-2 home_title_heading text-capitalize text-start">
                                             {{ $story3->title }}</h4>
                                         <div style="text-align: justify">
                                             <p class="mb-1">{{ $story3->header }}</p>
@@ -406,8 +401,8 @@
                                 aria-labelledby="nav-about-tab">
                                 <div class="row align-items-center">
                                     <div class="col-lg-6 col-md-6 col-sm-12 ps-5">
-                                        <h6 class="title-tag text-capitalize mb-2">{{ $story4->badge }}</h6>
-                                        <h4 class="home_title_heading text-capitalize text-start pb-2">
+                                        <h6 class="mb-2 title-tag text-capitalize">{{ $story4->badge }}</h6>
+                                        <h4 class="pb-2 home_title_heading text-capitalize text-start">
                                             {{ $story4->title }}</h4>
                                         <div style="text-align: justify">
                                             <p class="mb-1">{{ $story4->header }}</p>
@@ -461,7 +456,7 @@
                     <span>{{ Str::substr($sentence, 0, 1) }}</span>{{ Str::substr($sentence, 1) }}
 
                 </h5>
-                <p class="home_title_text text-white" style="text-align: left;">{{ $learnmore->consult_short_des }}
+                <p class="text-white home_title_text" style="text-align: left;">{{ $learnmore->consult_short_des }}
                 </p>
                 <div class="global-action-btn" style="text-align: left;">
                     <a class="btn-white" href="#Contact">Explore business outcomes</a>
@@ -484,7 +479,7 @@
                     @endphp
                     <h5 class="home_title_heading" style="text-align: left;">
                         <div class="software_feature_title">
-                            <h1 class="text-center pb-3">
+                            <h1 class="pb-3 text-center">
                                 <span>{{ Str::substr($sentence2, 0, 1) }}</span>{{ Str::substr($sentence2, 1) }}
                             </h1>
                         </div>
@@ -518,17 +513,17 @@
         <h5 class="home_title_heading" style="text-align: left;">
             <h5 class="home_title_heading" style="text-align: left;">
                 <div class="software_feature_title">
-                    <h1 class="text-center pt-4 pb-4">
+                    <h1 class="pt-4 pb-4 text-center">
                         Industries We Serve
                     </h1>
                 </div>
             </h5>
-            <p class="home_title_text solution_para pb-5">
+            <p class="pb-5 home_title_text solution_para">
                 <span class="font-weight-bold">{{ $learnmore->industry_header }} </span>
             </p>
     </div>
     <!-- section content wrapper -->
-    <div class="row mb-4">
+    <div class="mb-4 row">
         <!-- content -->
         <div class="col-lg-9 col-sm-12">
             <!-- we_serveItem_wrapper -->
@@ -539,7 +534,7 @@
                     @foreach ($industrys as $industry)
                         <div class="col-lg-3 col-6">
                             <a href="{{ isset($industry->slug) ? route('industry.details', ['slug' => $industry->slug]) : '' }}"
-                                class="we_serve_item mb-4">
+                                class="mb-4 we_serve_item">
                                 <div class="we_serve_item_image">
                                     <img src="{{ asset('storage/' . $industry->logo) }}" alt="">
                                 </div>

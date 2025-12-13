@@ -15,8 +15,8 @@
                         <ul class="research-page__research-alerts-list" style="padding: 5px 1.5rem;">
                             @foreach ($featured_storys as $featured_story)
                             <li>
-                                <a href="{{ route('blog.details', $featured_story->slug) }}" class="text-muted">
-                                    {{ $featured_story->title }}
+                                <a href="{{ route('blog.details', $featured_story->slug) }}" class="text-black">
+                                    <span class="pe-2">-</span>{{ $featured_story->title }}
                                 </a>
                             </li>
                             @endforeach
@@ -32,7 +32,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="mt-5 text-center fw-bold">Check NGEN IT Blogs</h1>
+                <h1 class="mt-5 text-center fw-bold">Explore our Blogs</h1>
             </div>
             <div class="my-0 col-lg-12 my-lg-5">
                 <div class="row">
@@ -50,7 +50,7 @@
                                     data-bs-target="#tab-{{ $category->slug }}" type="button"
                                     role="tab" aria-controls="tab-{{ $category->slug }}"
                                     aria-selected="{{ $key === 0 ? 'true' : 'false' }}">
-                                    <span class="research-box-nav-btn-title">{{ $category->title }}</span>
+                                    <span class="text-black research-box-nav-btn-title">{{ $category->title }}</span>
                                 </button>
                             </li>
                             @endif
