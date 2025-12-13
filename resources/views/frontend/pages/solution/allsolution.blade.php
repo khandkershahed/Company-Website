@@ -464,7 +464,7 @@
                 <p class="home_title_text text-white" style="text-align: left;">{{ $learnmore->consult_short_des }}
                 </p>
                 <div class="global-action-btn" style="text-align: left;">
-                    <a class="btn-white" href="#Contact">Explore business outcomes</a>
+                    <a class="btn-white" href="{{ route('shop') }}">Explore Shop</a>
                 </div>
             </div>
         </div>

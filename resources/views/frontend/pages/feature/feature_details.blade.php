@@ -243,7 +243,7 @@
 
                                             <!-- content -->
                                             <div class="business_item_content">
-                                                <p class="business_item_title">{{ $item->badge }}</p>
+                                                <p class="business_item_title">{{ Str::words($item->badge, 3) }}</p>
                                                 <p class="text-center business_item_text">
                                                     {{ Str::limit($item->header, 55) }}
                                                 </p>

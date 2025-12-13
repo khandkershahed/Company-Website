@@ -26,41 +26,46 @@
             <div class="">
                 <div class="container ">
                     {{-- <h1 class="text-capitalize w-50 mx-auto">{{ $learnmore->title }}.</h1> --}}
-                    <div class="outcome_assetType mb-4">
-                        <a href="#">{{ $learnmore->badge }}</a>
-                    </div>
-                    @php
-                        $sentence = $learnmore->title;
+                    @if (!empty($learnmore->badge))
+                        <div class="outcome_assetType mb-4">
+                            <a href="#">{{ $learnmore->badge }}</a>
+                        </div>
+                    @endif
+                    @if (!empty($learnmore->title))
+                        @php
+                            $sentence = $learnmore->title;
 
-                        $words = str_word_count($sentence, 1);
+                            $words = str_word_count($sentence, 1);
 
-                        // Get the last word of the sentence using the end() function
-                        $last_word = end($words);
+                            // Get the last word of the sentence using the end() function
+                            $last_word = end($words);
 
-                        // Get the second last word of the sentence using the array_slice() and end() functions
-                        $last_two_words = array_slice($words, -2, 1);
-                        $second_last_word = end($last_two_words);
+                            // Get the second last word of the sentence using the array_slice() and end() functions
+                            $last_two_words = array_slice($words, -2, 1);
+                            $second_last_word = end($last_two_words);
 
-                        // Get the third last word of the sentence using the array_slice() and end() functions
-                        $last_three_words = array_slice($words, -3, 1);
-                        $third_last_word = end($last_three_words);
-                        //$fourth_last_word = end(array_slice($words, -4, 1));
+                            // Get the third last word of the sentence using the array_slice() and end() functions
+                            $last_three_words = array_slice($words, -3, 1);
+                            $third_last_word = end($last_three_words);
+                            //$fourth_last_word = end(array_slice($words, -4, 1));
 
-                        // Calculate the length of the last two words combined
-                        $last_three_words_length = strlen($third_last_word) + strlen($second_last_word) + strlen($last_word) + 3; // +2 to account for the spaces between words
+                            // Calculate the length of the last two words combined
+                            $last_three_words_length =
+                                strlen($third_last_word) + strlen($second_last_word) + strlen($last_word) + 3; // +2 to account for the spaces between words
 
-                        // Use the substr() function to remove the last two words from the sentence
-                        $manipulated_sentence = substr($sentence, 0, -$last_three_words_length);
-                        //dd($manipulated_sentence);
-                    @endphp
-                    <h1 class="text-capitalize w-50 mx-auto">{{ $manipulated_sentence }}</h1>
-                    <h2 class="text-white text-center" style=" font-size: 30px; margin-left: -220px;">
-                        <span class="normal_text text-capitalize">{{ $third_last_word }} {{ $second_last_word }}</span>
-                        <span class="word wisteria ml-2 normal_text fw-bold"> {{ $last_word }}</span>
-                        <span class="word wisteria ml-2 normal_text fw-bold"> {{ $last_word }}</span>
-                        <span class="word belize ml-2 normal_text fw-bold"> {{ $last_word }}</span>
-                        <span class="word pomegranate ml-2 normal_text fw-bold"> {{ $last_word }}</span>
-                    </h2>
+                            // Use the substr() function to remove the last two words from the sentence
+                            $manipulated_sentence = substr($sentence, 0, -$last_three_words_length);
+                            //dd($manipulated_sentence);
+                        @endphp
+                        <h1 class="text-capitalize w-50 mx-auto">{{ $manipulated_sentence }}</h1>
+                        <h2 class="text-white text-center" style=" font-size: 30px; margin-left: -220px;">
+                            <span class="normal_text text-capitalize">{{ $third_last_word }} {{ $second_last_word }}</span>
+                            <span class="word wisteria ml-2 normal_text fw-bold"> {{ $last_word }}</span>
+                            <span class="word wisteria ml-2 normal_text fw-bold"> {{ $last_word }}</span>
+                            <span class="word belize ml-2 normal_text fw-bold"> {{ $last_word }}</span>
+                            <span class="word pomegranate ml-2 normal_text fw-bold"> {{ $last_word }}</span>
+                        </h2>
+                    @endif
                     <div class="row ">
                         <!--BUTTON START-->
                         <div class="d-flex justify-content-center align-items-center">
@@ -143,8 +148,8 @@
                                     $tags_1 = explode(',', $story1->tags);
                                 @endphp
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
-                                        type="button" role="tab" aria-controls="home"
+                                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                                        data-bs-target="#home" type="button" role="tab" aria-controls="home"
                                         aria-selected="true">{{ $story1->badge }}</button>
                                 </li>
                             @endif
@@ -153,8 +158,8 @@
                                     $tags_2 = explode(',', $story2->tags);
                                 @endphp
                                 <li class="nav-item ms-2" role="presentation">
-                                    <button class="nav-link " id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                                        type="button" role="tab" aria-controls="profile"
+                                    <button class="nav-link " id="profile-tab" data-bs-toggle="tab"
+                                        data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
                                         aria-selected="false">{{ $story2->badge }}</button>
                                 </li>
                             @endif
@@ -163,8 +168,8 @@
                                     $tags_3 = explode(',', $story3->tags);
                                 @endphp
                                 <li class="nav-item ms-2" role="presentation">
-                                    <button class="nav-link " id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
-                                        type="button" role="tab" aria-controls="contact"
+                                    <button class="nav-link " id="contact-tab" data-bs-toggle="tab"
+                                        data-bs-target="#contact" type="button" role="tab" aria-controls="contact"
                                         aria-selected="false">{{ $story3->badge }}</button>
                                 </li>
                             @endif
@@ -291,11 +296,12 @@
                         @foreach ($industrys as $industry)
                             <div class="col-lg-3 col-sm-6 p-1">
                                 <div class="we_serve_item">
-                                    <a href="{{ isset($industry->slug) ? route('industry.details', ['slug' => $industry->slug]) : '' }}">
+                                    <a
+                                        href="{{ isset($industry->slug) ? route('industry.details', ['slug' => $industry->slug]) : '' }}">
                                         <div class="we_serve_item_image">
                                             <img class="img-fluid"
-                                            src="{{ !empty($industry->logo) && file_exists(public_path('storage/' . $industry->logo)) ? asset('storage/' . $industry->logo) : asset('frontend/images/no-industy-img.png') }}"
-                                            alt="NGEN IT">
+                                                src="{{ !empty($industry->logo) && file_exists(public_path('storage/' . $industry->logo)) ? asset('storage/' . $industry->logo) : asset('frontend/images/no-industy-img.png') }}"
+                                                alt="NGEN IT">
                                         </div>
                                         <div class="we_serve_item_text">{{ $industry->title }}</div>
                                     </a>
@@ -315,7 +321,8 @@
                     @if ($random_industries)
                         @foreach ($random_industries as $random_industry)
                             <div class="pt-2">
-                                <a href="{{ isset($random_industry->slug) ? route('industry.details', ['slug' => $random_industry->slug]) : '' }}">
+                                <a
+                                    href="{{ isset($random_industry->slug) ? route('industry.details', ['slug' => $random_industry->slug]) : '' }}">
                                     <div id="fed-bg">
                                         <div class="p-2">
                                             <h5 class="text-white brand_side_text">{{ $random_industry->title }} ›</h5>

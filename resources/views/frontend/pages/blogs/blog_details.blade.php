@@ -163,7 +163,7 @@
                                                     <input type="text" class="form-control rounded-2 py-2"
                                                         placeholder="Email Address" aria-label="Email Address"
                                                         aria-describedby="button-addon2" name="email" />
-                                                    <button class="btn btn-outline-secondary rounded-2 ms-2" type="button"
+                                                    <button class="btn btn-outline-secondary rounded-2 ms-2" type="submit"
                                                         id="button-addon2">
                                                         Subscribe
                                                     </button>
