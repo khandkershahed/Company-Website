@@ -1,333 +1,282 @@
 @extends('frontend.master')
 @section('content')
-    <style>
-        .common_product_header h1 {
-            text-align: center;
-            color: black;
-            font-size: 50px;
-            font-weight: 600;
-        }
+<style>
+/* --- General Styles --- */
+body {
+    font-family: 'Lato', sans-serif;
+    color: #333;
+}
 
-        .badges_list li {
-            display: inline-block;
-            padding-left: 14px;
-            padding-bottom: 18px;
-        }
+.common_product_header {
+    background-size: cover;
+    background-position: center;
+    padding: 80px 0 50px;
+    text-align: center;
+}
 
-        .badges_list li a {
-            width: 31px;
-            height: 31px;
-            color: #fff;
-            display: inline-block;
-            text-align: center;
-            line-height: 30px;
-            position: relative;
-            z-index: 1;
-        }
+.common_product_header h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: #fff;
+}
 
-        .badges_list li a:before {
-            content: "";
-            position: absolute;
-            height: 30px;
-            width: 30px;
-            display: block;
-            background: #ae0a46;
-            border-radius: 7px;
-            transform: rotate(45deg);
-            z-index: -1;
-        }
+.common_product_header p {
+    font-size: 18px;
+    color: #fff;
+    margin-top: 10px;
+}
 
-        .badges_list li a span {
-            position: absolute;
-            top: -14px;
-            left: 15px;
-            height: 20px;
-            width: 20px;
-            border-radius: 50%;
-            border: 3px solid #fff;
-            color: #fff;
-            font: 700 11px "Lato", sans-serif;
-            background: #ff6b6b;
-        }
+.btn-color {
+    background-color: #ae0a46;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
 
-        .blog_right {
-            border-radius: 8px !important;
-        }
+.btn-color:hover {
+    background-color: #930537;
+    color: #fff;
+    text-decoration: none;
+}
 
-        .blog_left {
-            border-radius: 8px !important;
-        }
+/* --- Sidebar --- */
+.blog_left {
+    border-radius: 12px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
 
-        .blog_middle {
-            border-radius: 8px !important;
-        }
+.blog_left h6 {
+    font-weight: 600;
+    color: #ae0a46;
+    margin-bottom: 10px;
+}
 
-        .blog_bg {
-            background: #eff3f5;
-        }
+.interests_list li {
+    list-style: none;
+    margin-bottom: 8px;
+}
 
-        .blog_writer {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-        }
+.interests_list li a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: color 0.3s;
+}
 
-        ul {
-            padding-left: 0rem;
-        }
+.interests_list li a:hover {
+    color: #ae0a46;
+}
 
-        ul.interests_list {
-            list-style-type: circle;
-            color: #ae0a46 !important;
-            padding-left: 2rem;
-        }
+/* --- Main Stories --- */
+.blog_middle .story-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
 
-        ul.interests_list a {
-            color: #ae0a46 !important;
-        }
+.blog_middle .story-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
 
-        .client_stories_img {
-            widows: 200px;
-            height: 200px;
-        }
+.story-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #eee;
+}
 
-        .pagination li a:hover {
-            background-color: #ae0a46;
-            color: #ffffff;
-            display: inline-block;
-            padding: 6px 11px;
-            text-decoration: none;
-            transition: all 1ms linear 1ms;
-            border-color: #ae0a46;
-        }
+.story-card h5 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ae0a46;
+    margin-bottom: 5px;
+}
 
-        .popular_post a p {
-            color: #000;
-        }
+.story-card p {
+    font-size: 14px;
+    color: #555;
+}
 
-        .popular_post a img {
-            width: 60px;
-            height: 60px;
-        }
+.story-card .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-top: 1px solid #eee;
+    font-size: 13px;
+    color: #777;
+}
 
-        .popular_post a p:hover {
-            color: #ae0a46;
-        }
-    </style>
-    <!--======// Header Title //======-->
-    <section class="common_product_header pb-5"
-        style="background-image: url('{{ asset('frontend/images/techglossy.jpg') }}');">
-        <div class="container mb-5">
-            <h1 class="text-white">Tech Glossys</h1>
-            <p class="text-center text-white">Through our deep partnerships with trusted brands, <br> Insight offers a
-                comprehensive catalog of software for business. </p>
-            <div class="row mb-5">
-                <!--BUTTON START-->
-                <div class="d-flex justify-content-center align-items-center">
-                    <div class="m-4">
-                        <a href="{{ route('all.story') }}" class="btn-color">All Client Storys</a>
-                    </div>
-                    <div class="m-4">
-                        <a href="{{ route('all.blog') }}" class="btn-color">All Blogs</a>
-                    </div>
-                </div>
-            </div>
+.story-card .share-icons p {
+    margin: 0 5px 0 0;
+}
+
+/* --- Sidebar Right --- */
+.blog_right {
+    border-radius: 12px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.popular_post {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.popular_post img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.popular_post p {
+    margin-left: 12px;
+    font-size: 14px;
+    color: #555;
+}
+
+.popular_post p:hover {
+    color: #ae0a46;
+}
+
+/* --- Pagination --- */
+.pagination li a {
+    color: #ae0a46;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.pagination li a:hover {
+    background-color: #ae0a46;
+    color: #fff;
+}
+
+/* --- Responsive --- */
+@media (max-width: 991px) {
+    .common_product_header h1 {
+        font-size: 36px;
+    }
+
+    .common_product_header p {
+        font-size: 16px;
+    }
+}
+</style>
+
+<!--====== Header Title ======-->
+<section class="common_product_header" style="background-image: url('{{ asset('frontend/images/techglossy.jpg') }}');">
+    <div class="container">
+        <h1>Tech Glossys</h1>
+        <p>Through our deep partnerships with trusted brands, <br> Insight offers a comprehensive catalog of software for business.</p>
+        <div class="mt-4 d-flex justify-content-center">
+            <a href="{{ route('all.story') }}" class="btn-color me-3">All Client Stories</a>
+            <a href="{{ route('all.blog') }}" class="btn-color">All Blogs</a>
         </div>
-    </section>
-    <!----------End--------->
-    <div class="container-fluid blog_bg p-0 m-0">
-        <div class="container px-lg-4 py-lg-5">
-            <div class="row gx-3 ">
-                <div class="col-lg-3 col-12 blog_left mt-3">
-                    <div class="p-3 shadow-lg rounded-lg">
-                        {{-- Search --}}
-                        <div>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search">
-                                <div class="input-group-append">
-                                    <button class="btn job_search_btn" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- YOUR INTERESTS --}}
-                        <div>
-                            <h6 class="pt-2">By Industries</h6>
-                            <ul class="interests_list ps-3">
-                                @foreach ($industries as $item)
-                                    <li>
-                                        <a href="#">
-                                             <i class="fa-solid fa-arrow-right-long pe-1"></i>{{ $item->title }}
-                                        </a>
-                                    </li>
-                                @endforeach
+    </div>
+</section>
 
-                            </ul>
-                        </div>
-                        <div>
-                            <h6 class="pt-2">By Categories</h6>
-                            <ul class="interests_list ps-3">
-                                @foreach ($categories as $item)
-                                    <li>
-                                        <a href="#">
-                                             <i class="fa-solid fa-arrow-right-long pe-1"></i>{{ $item->title }}
-                                        </a>
-                                    </li>
-                                @endforeach
-
-                            </ul>
-                        </div>
-                        <div>
-                            <h6 class="pt-2">By Brands</h6>
-                            <ul class="interests_list ps-3">
-                                @foreach ($brands as $item)
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa-solid fa-arrow-right-long pe-1"></i>{{ $item->title }}
-                                        </a>
-                                    </li>
-                                @endforeach
-
-                            </ul>
-                        </div>
-
-                        {{-- <div>
-                            <div class="badges">
-                                <h6 class="categories_tittle">Tags</h6>
-                                <div class="d-flex flex-column justify-content-center">
-                                    <div class="d-flex blogins_tags">
-                                        @foreach ($tag_items as $tag_item)
-                                            @php
-                                                $tags = explode(',', $tag_item);
-                                            @endphp
-                                            @if (!empty($_GET['tags']))
-                                                @php
-                                                $filterCat = explode(',',$_GET['tags']);
-                                                @endphp
-                                            @endif
-                                                @foreach ($tags as $item)
-
-                                                    <div class="form-check">
-                                                        <input name="tag" value="{{$item}}" class="form-check-input custom" name="tags[]" type="checkbox" id="flexCheckDefault" onchange="this.form.submit()">
-                                                        <a href="" class="mr-2 text-black">#{{$item}}</a>
-                                                    </div>
-                                                @endforeach
-                                            @endforeach
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div> --}}
-                        {{-- SOCIAL SHARING --}}
-
+<div class="py-5 container-fluid blog_bg">
+    <div class="container px-lg-4">
+        <div class="row gx-4">
+            <!-- Sidebar Left -->
+            <div class="mb-4 col-lg-3 col-12 blog_left">
+                <div class="mb-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                        <button class="border-0 bg-light btn btn-outline-secondary" type="button"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
-                <div class="col-lg-6 col-12 blog_middle rounded-lg main_blogs mt-3">
 
-                    {{-- First Blog --}}
-                    @if ($client_storys)
-                        @foreach ($client_storys as $item)
-                            <div class="p-3 border shadow-lg mt-2" style="background-color: #fff;border-radius: 5px;">
-                                <a class="text-black" href="{{ route('techglossy.details', $item->slug) }}">
-                                    <div class="p-3">
-                                        {{-- Blog Image --}}
-                                        <img src="{{ asset('storage/' . $item->image) }}" class="img-fluid" alt="">
-                                        <div class="row d-flex justify-content-between">
-                                            <div class="col mt-3">
-                                                {{-- Writer --}}
-                                                {{-- <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="d-flex justify-content-start">
-                                                        <img class="blog_writer"
-                                                            src="https://openlisthtml.themever.net/images/author-1.jpg"
-                                                            alt="">
-                                                        <div class="ml-3">
-                                                            <h6>Harry Ramos</h6>
-                                                            <p>5 Minute ago</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex justify-content-start">
-                                                        <div class="">
-                                                            <button class="btn btn-primary rounded-circle">
-                                                                <i class="fa fa-bars"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div> --}}
-                                                {{-- Writer End --}}
-                                                {{-- Blog Descrition --}}
-                                                <div>
-                                                    <h5 class="fw-semibold">{{ $item->title }}</h5>
-                                                    <p>{{ $item->header }}</p>
-                                                </div>
-                                                {{-- Blog Descrition End --}}
-                                            </div>
-                                        </div>
-                                        {{-- Blog Button --}}
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <p class="mb-0 pe-2 pt-2">{!! Share::page(url('/blog/' . $item->id . '/details'))->facebook() !!}</p>
-                                                <p class="mb-0 pe-2 pt-2">{!! Share::page(url('/blog/' . $item->id . '/details'))->twitter() !!}</p>
-                                                <p class="mb-0 pe-2 pt-2">{!! Share::page(url('/blog/' . $item->id . '/details'))->whatsapp() !!}</p>
-                                            </div>
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <p class="ml-2"><strong>Created at :
-                                                    </strong>{{ $item->created_at->format('Y-m-d') }}</p>
-                                            </div>
-                                        </div>
-                                        {{-- Blog Button End --}}
-                                    </div>
-                                </a>
-                            </div>
+                <div class="mb-4">
+                    <h6>By Industries</h6>
+                    <ul class="interests_list ps-2">
+                        @foreach ($industries as $item)
+                        <li style="font-size: 14px;"><a href="#"><i class="fa-solid fa-chevron-right pe-1"></i>{{ $item->title }}</a></li>
                         @endforeach
-                    @endif
+                    </ul>
                 </div>
-                <div class="col-lg-3 col-12 blog_right mt-3">
-                    <div class="px-3 py-3 shadow-lg rounded-lg">
 
-                        <img class="img-fluid" src="https://source.unsplash.com/random/580x320">
-                        <div class="pt-3">
-                            <h6>POPULAR POSTS</h6>
-                            {{-- Popular Product 1 --}}
-                            @if ($featured_storys)
-                                @foreach ($featured_storys as $item)
-                                    <div class="pt-3 pb-3 d-flex justify-content-between popular_post">
-                                        <a href="{{ route('techglossy.details', $item->slug) }}"
-                                            class="d-flex justify-content-between">
-                                            <img class="rounded-circle img-fluid"
-                                                src="{{ asset('storage/' . $item->image) }}" alt="" style="">
-                                            <p class="ms-2 mb-0">{{ Str::limit($item->title, 30) }}</p>
-                                        </a>
-                                    </div>
-                                @endforeach
-                            @endif
-
-                            <div>
-                                <div>
-                                    <img class=" img-fluid" src="https://source.unsplash.com/random/580x420">
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-
-                        </div>
-                    </div>
+                <div class="mb-4">
+                    <h6>By Categories</h6>
+                    <ul class="interests_list ps-2">
+                        @foreach ($categories as $item)
+                        <li style="font-size: 14px;"><a href="#"><i class="fa-solid fa-chevron-right pe-1"></i>{{ $item->title }}</a></li>
+                        @endforeach
+                    </ul>
                 </div>
-                <div class="row">
-                    <div class="d-flex justify-content-center">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                {{ $client_storys->links() }}
-                            </ul>
-                        </nav>
-                    </div>
+
+                <div>
+                    <h6>By Brands</h6>
+                    <ul class="interests_list ps-2">
+                        @foreach ($brands as $item)
+                        <li style="font-size: 14px;"><a href="#"><i class="fa-solid fa-chevron-right pe-1"></i>{{ $item->title }}</a></li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
 
-            <!-------End------->
+            <!-- Main Blog Stories -->
+            <div class="col-lg-6 col-12 blog_middle">
+                @if ($client_storys)
+                @foreach ($client_storys as $item)
+                <div class="story-card">
+                    <a class="text-decoration-none text-dark" href="{{ route('techglossy.details', $item->slug) }}">
+                        <img src="{{ asset('storage/' . $item->image) }}" 
+                             alt="{{ $item->title }}" 
+                             onerror="this.onerror=null;this.src='https://picsum.photos/580/420?random={{ $item->id }}';">
+                        <div class="p-3">
+                            <h5>{{ $item->title }}</h5>
+                            <p>{{ $item->header }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="share-icons d-flex">
+                                {!! Share::page(url('/blog/' . $item->id . '/details'))->facebook() !!}
+                                {!! Share::page(url('/blog/' . $item->id . '/details'))->twitter() !!}
+                                {!! Share::page(url('/blog/' . $item->id . '/details'))->whatsapp() !!}
+                            </div>
+                            <div><strong>Created at:</strong> {{ $item->created_at->format('Y-m-d') }}</div>
+                        </div>
+                    </a>
+                </div>
+                @endforeach
+                @endif
+            </div>
+
+            <!-- Sidebar Right -->
+            <div class="mb-4 col-lg-3 col-12 blog_right">
+                <h6>POPULAR POSTS</h6>
+                @if ($featured_storys)
+                @foreach ($featured_storys as $item)
+                <div class="popular_post">
+                    <a href="{{ route('techglossy.details', $item->slug) }}" class="d-flex align-items-center text-decoration-none">
+                        <img src="{{ asset('storage/' . $item->image) }}" 
+                             alt="{{ $item->title }}" 
+                             onerror="this.onerror=null;this.src='https://picsum.photos/60/60?random={{ $item->id }}';">
+                        <p class="mb-0 ms-2">{{ Str::limit($item->title, 30) }}</p>
+                    </a>
+                </div>
+                @endforeach
+                @endif
+                <div class="mt-4">
+                    <img src="https://picsum.photos/580/420?random" class="rounded img-fluid">
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-4 col-12 d-flex justify-content-center">
+                {{ $client_storys->links() }}
+            </div>
         </div>
-        <!--=======// Featured client stories //=======-->
-
-
-        <!--=======// Featured client stories //=======-->
-    @endsection
+    </div>
+</div>
+@endsection

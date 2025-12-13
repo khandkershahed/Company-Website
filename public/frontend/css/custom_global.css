@@ -8268,8 +8268,15 @@ a:hover {
     text-decoration: none;
     background-color: var(--white);
     border: 1px solid #dee2e6;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, 
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, 
+    box-shadow 0.15s ease-in-out;
+    height: 45px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .page-item.active .page-link {

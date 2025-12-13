@@ -94,7 +94,6 @@
 // //     });
 // // }
 
-
 // // function updatePagination(pagination) {
 // //     var paginationContainer = $('#pagination');
 // //     paginationContainer.empty();
@@ -146,8 +145,6 @@
 // //         paginationContainer.append('<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>');
 // //     }
 // // }
-
-
 
 // // // Attach event listeners to other filter inputs
 // // filterForm.find('input:not(.brand_search), select, #amount').on('keyup change', function() {
@@ -256,8 +253,6 @@
 //     });
 // }
 
-
-
 // function updatePagination(pagination) {
 //     var paginationContainer = $('#pagination');
 //     paginationContainer.empty();
@@ -309,7 +304,6 @@
 //         paginationContainer.append('<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>');
 //     }
 // }
-
 
 // $.ajaxSetup({
 //     headers: {
@@ -580,7 +574,6 @@
 //     });
 // }
 
-
 // function updatePagination(pagination) {
 //     var paginationContainer = $('#pagination');
 //     paginationContainer.empty();
@@ -633,27 +626,18 @@
 //     }
 // }
 
-
-
-
-
-
-
 $.ajaxSetup({
     headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
+        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+    },
 });
 
-
-if ($('#slider-range').length > 0) {
-    const max_price = parseInt($('#slider-range').data('max'));
-    const min_price = parseInt($('#slider-range').data('min'));
+if ($("#slider-range").length > 0) {
+    const max_price = parseInt($("#slider-range").data("max"));
+    const min_price = parseInt($("#slider-range").data("min"));
     let price_range = min_price + "-" + max_price;
 
-
-    let price = price_range.split('-');
-
+    let price = price_range.split("-");
 
     $("#slider-range").slider({
         range: true,
@@ -661,53 +645,56 @@ if ($('#slider-range').length > 0) {
         max: max_price,
         values: price,
         slide: function (event, ui) {
-            $("#amount").val('$' + ui.values[0] + "-" + '$' + ui.values[1]);
+            $("#amount").val("$" + ui.values[0] + "-" + "$" + ui.values[1]);
             $("#price_range").val(ui.values[0] + "-" + ui.values[1]);
         },
         change: function (event, ui) {
             applyFilters();
-        }
+        },
     });
 }
 
-
-var filterForm = $('.filterForm');
-var filterContainer = $('.filter_container');
-var selectedBrands = $('.selected_brands');
-var spinner = '<div class="d-flex spinners spinner-border text-primary text-center justify-content-center align-item-center" role="status"><span class="visually-hidden">Loading...</span></div>';
-
+var filterForm = $(".filterForm");
+var filterContainer = $(".filter_container");
+var selectedBrands = $(".selected_brands");
+var spinner = `
+<div class="spinner-wrapper">
+    <div class="modern-loader"></div>
+    <div class="loading-text">Loading<span>.</span><span>.</span><span>.</span></div>
+</div>
+`;
 
 function applyFilters(page = 1) {
-    var formData = filterForm.serialize() + '&page=' + page;
+    var formData = filterForm.serialize() + "&page=" + page;
 
     $.ajax({
-        url: filterForm.attr('action'),
-        type: 'GET',
+        url: filterForm.attr("action"),
+        type: "GET",
         data: formData,
-        dataType: 'json',
+        dataType: "json",
         success: function (data) {
             filterContainer.html(data.productListHtml);
             updatePagination(data.pagination);
         },
         error: function (xhr, status, error) {
             console.error(xhr.responseText);
-        }
+        },
     });
 }
 
 function brandFilter(page = 1) {
-    var formData = filterForm.serialize() + '&page=' + page;
+    var formData = filterForm.serialize() + "&page=" + page;
     filterContainer.html(spinner);
     selectedBrands.html(spinner);
     $.ajax({
-        url: filterForm.attr('action'),
-        type: 'GET',
+        url: filterForm.attr("action"),
+        type: "GET",
         data: formData,
-        dataType: 'json',
+        dataType: "json",
         success: function (data) {
             if (data.filteredBrandsHtml) {
                 selectedBrands.html(data.filteredBrandsHtml);
-                $('.filtered_brands').empty();
+                $(".filtered_brands").empty();
                 filterContainer.html(data.productListHtml);
             } else {
                 filterContainer.html(data.productListHtml);
@@ -716,7 +703,7 @@ function brandFilter(page = 1) {
         },
         error: function (xhr, status, error) {
             console.error(xhr.responseText);
-        }
+        },
     });
 }
 
@@ -726,29 +713,30 @@ function updateFilters(page = 1) {
 }
 
 function perpageFilter() {
-    var formData = filterForm.serialize() + '&per_page=' + $('.show').val();
+    var formData = filterForm.serialize() + "&per_page=" + $(".show").val();
     updateFilters(1);
-};
+}
 
 function sortByFilter() {
-    var formData = filterForm.serialize() + '&sort_by=' + $('[name="sortBy"]').val();
+    var formData =
+        filterForm.serialize() + "&sort_by=" + $('[name="sortBy"]').val();
     updateFilters(1);
-};
+}
 
-filterForm.find('input:not(.brand_search), select, #amount').on('keyup change', function () {
-    updateFilters();
-});
+filterForm
+    .find("input:not(.brand_search), select, #amount")
+    .on("keyup change", function () {
+        updateFilters();
+    });
 
-$(document).on('click', '#pagination .page-link', function (e) {
+$(document).on("click", "#pagination .page-link", function (e) {
     e.preventDefault();
-    var page = $(this).data('page');
+    var page = $(this).data("page");
     updateFilters(page);
 });
 
-
-
 function updatePagination(pagination) {
-    var paginationContainer = $('#pagination');
+    var paginationContainer = $("#pagination");
     paginationContainer.empty();
 
     var totalPages = pagination.last_page;
@@ -777,58 +765,79 @@ function updatePagination(pagination) {
 
     // Add the "Previous" link
     if (currentPage > 1) {
-        paginationContainer.append('<li class="page-item"><a class="page-link" href="#" data-page="' + (currentPage - 1) + '">Previous</a></li>');
+        paginationContainer.append(
+            '<li class="page-item"><a class="page-link" href="#" data-page="' +
+                (currentPage - 1) +
+                '">Previous</a></li>'
+        );
     } else {
-        paginationContainer.append('<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>');
+        paginationContainer.append(
+            '<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>'
+        );
     }
 
     // Add the page links
     for (var i = startPage; i <= endPage; i++) {
         if (i === currentPage) {
-            paginationContainer.append('<li class="page-item active"><a class="page-link" href="#" data-page="' + i + '">' + i + '</a></li>');
+            paginationContainer.append(
+                '<li class="page-item active"><a class="page-link" href="#" data-page="' +
+                    i +
+                    '">' +
+                    i +
+                    "</a></li>"
+            );
         } else {
-            paginationContainer.append('<li class="page-item"><a class="page-link" href="#" data-page="' + i + '">' + i + '</a></li>');
+            paginationContainer.append(
+                '<li class="page-item"><a class="page-link" href="#" data-page="' +
+                    i +
+                    '">' +
+                    i +
+                    "</a></li>"
+            );
         }
     }
 
     // Add the "Next" link
     if (currentPage < totalPages) {
-        paginationContainer.append('<li class="page-item"><a class="page-link" href="#" data-page="' + (currentPage + 1) + '">Next</a></li>');
+        paginationContainer.append(
+            '<li class="page-item"><a class="page-link" href="#" data-page="' +
+                (currentPage + 1) +
+                '">Next</a></li>'
+        );
     } else {
-        paginationContainer.append('<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>');
+        paginationContainer.append(
+            '<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>'
+        );
     }
 }
 
-
 //More Brand
 
+$("button").on("click", function (ev) {
+    var currentQty = $('input[name="quantity"]').val();
+    var qtyDirection = $(this).data("direction");
+    var newQty = 0;
 
+    if (qtyDirection == "1") {
+        newQty = parseInt(currentQty) + 1;
+    } else if (qtyDirection == "-1") {
+        newQty = parseInt(currentQty) - 1;
+    }
 
-    $("button").on("click", function(ev) {
-        var currentQty = $('input[name="quantity"]').val();
-        var qtyDirection = $(this).data("direction");
-        var newQty = 0;
+    // make decrement disabled at 1
+    if (newQty == 1) {
+        $(".decrement-quantity").attr("disabled", "disabled");
+    }
 
-        if (qtyDirection == "1") {
-            newQty = parseInt(currentQty) + 1;
-        } else if (qtyDirection == "-1") {
-            newQty = parseInt(currentQty) - 1;
-        }
+    // remove disabled attribute on subtract
+    if (newQty > 1) {
+        $(".decrement-quantity").removeAttr("disabled");
+    }
 
-        // make decrement disabled at 1
-        if (newQty == 1) {
-            $(".decrement-quantity").attr("disabled", "disabled");
-        }
-
-        // remove disabled attribute on subtract
-        if (newQty > 1) {
-            $(".decrement-quantity").removeAttr("disabled");
-        }
-
-        if (newQty > 0) {
-            newQty = newQty.toString();
-            $('input[name="quantity"]').val(newQty);
-        } else {
-            $('input[name="quantity"]').val("1");
-        }
-    });
+    if (newQty > 0) {
+        newQty = newQty.toString();
+        $('input[name="quantity"]').val(newQty);
+    } else {
+        $('input[name="quantity"]').val("1");
+    }
+});
