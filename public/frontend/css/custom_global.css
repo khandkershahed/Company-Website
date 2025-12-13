@@ -1439,29 +1439,18 @@ ul {
     margin-bottom: 10px;
 }
 
-/* Individual effects */
-figure.effect-oscar:hover {
-    /* background: -webkit-linear-gradient(
-        45deg,
-        #ae0a46 0%,
-        #ae0a46d1 40%,
-        #ae0a469c 100%
-    ); */
-    /* background: linear-gradient(
-        45deg,
-        #ae0a46 0%,
-        #ae0a46d1 40%,
-        #ae0a469c 100%
-    ); */
-    background-color: rgb(75 67 70 / 72%) !important;
-}
+
 
 figure.effect-oscar figcaption {
     padding: 30px;
     /* background-color: rgb(75 67 70 / 72%); */
-    background: -webkit-linear-gradient(90deg, #ae0a46 0%, #4e0721 100%);
+    background: #ffffff00;
+    color: black;
     -webkit-transition: background-color 0.35s;
     transition: background-color 0.35s;
+    border: 1px solid rgba(163, 17, 70, 0.72) !important;
+    background: transparent;
+    border-bottom-left-radius: 45px;
 }
 
 figure.effect-oscar figcaption::before {
@@ -1493,31 +1482,31 @@ figure.effect-oscar h5 {
     font-size: 16px;
 }
 
-figure.effect-oscar figcaption::before,
+/* figure.effect-oscar figcaption::before,
 figure.effect-oscar p {
     -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, transform 0.35s;
     -webkit-transform: scale(0);
     transform: scale(0);
-}
+} */
 
 figure.effect-oscar:hover h6 {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
 
-figure.effect-oscar:hover figcaption::before,
+/* figure.effect-oscar:hover figcaption::before,
 figure.effect-oscar:hover p {
     -webkit-transform: scale(1);
     transform: scale(1);
-}
+} */
 
-figure.effect-oscar:hover figcaption {
+/* figure.effect-oscar:hover figcaption {
     background-color: black;
     padding: 30px;
     -webkit-transition: background-color 0.35s;
     transition: background-color 0.35s;
-}
+} */
 
 .details-titles {
     position: relative;

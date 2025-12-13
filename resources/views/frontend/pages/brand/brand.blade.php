@@ -18,7 +18,7 @@
             </div>
             <div class="row">
                 @foreach ($top_brands as $top_brand)
-                    <div class="col-lg-2 col-sm-12 mb-lg-4 mb-3">
+                    <div class="mb-3 col-lg-2 col-sm-12 mb-lg-4">
                         <div class="card rounded-0 brand_img_container">
                             <div class="card-body image_box">
                                 <div class="brand-images">
@@ -27,19 +27,19 @@
                                             alt=""> </a>
                                 </div>
                             </div>
-                            <div class="card-footer border-0 p-0 m-0">
+                            <div class="p-0 m-0 border-0 card-footer">
                                 <div class="brand_btns"
                                     style="justify-content: center;
-                                      background: #ae0a46;
+                                      background: #4169E1;
                                       color: white;
                                       font-size: 13px;
                                       display: flex;">
-                                    <a class="text-white py-2"
+                                    <a class="py-2 text-white fw-bold"
                                         href="{{ route('brand.overview', $top_brand->slug) }}">Details
                                         <i class="fa-solid fa-chevron-right ms-1"></i>
                                     </a>
                                     <span class="ms-3 me-3" style="background: #ffff;">||</span>
-                                    <a class="text-white py-2" href="{{ route('custom.product', $top_brand->slug) }}">Shop
+                                    <a class="py-2 text-white" href="{{ route('custom.product', $top_brand->slug) }}">RFQ Shop
                                         <i class="fa-solid fa-chevron-right ms-1"></i>
                                     </a>
                                 </div>
@@ -57,7 +57,7 @@
             </div>
         </div>
         {{-- Features --}}
-        <div class="container brand-container pt-lg-0 pt-0 ">
+        <div class="container pt-0 brand-container pt-lg-0 ">
             <div class="row">
                 <div class="col-lg-12">
                     <h5 class="home_title_heading py-lg-4"><span class="main_color fw-bold">Featured</span> Brands</h5>
@@ -65,7 +65,7 @@
             </div>
             <div class="row">
                 @foreach ($featured_brands as $featured_brand)
-                    <div class="col-lg-2 col-sm-12 mb-lg-4 mb-3">
+                    <div class="mb-3 col-lg-2 col-sm-12 mb-lg-4">
                         <div class="card rounded-0 brand_img_container">
                             <div class="card-body image_box_features">
                                 <div class="brand-images">
@@ -89,18 +89,18 @@
         </div>
     </section>
     <!--======// Explore all the brands Ngen It has to offer. //====-->
-    <section class="my-lg-5  my-0">
+    <section class="my-0 my-lg-5">
         <div class="container">
             <div class="row">
-                <div class="text-center py-3">
+                <div class="py-3 text-center">
                     <h2>Discover <span class="main_color fw-bold">NGen IT's</span> Brand Showcase.</h2>
                 </div>
                 <div class="col-lg-12 ">
-                    <div class="row mb-1">
+                    <div class="mb-1 row">
                         <div class="col-lg-10 offset-lg-1">
                             <nav>
                                 <div class="row">
-                                    <div class="nav nav-tabs nav-fill p-lg-0 p-3" id="nav-tab" role="tablist">
+                                    <div class="p-3 nav nav-tabs nav-fill p-lg-0" id="nav-tab" role="tablist">
                                         {{-- <a class="nav-item nav-link " id="nav-healthcare" data-bs-toggle="tab"
                                             href="#all" role="tab" aria-controls="nav-home"
                                             aria-selected="true">All</a>
@@ -158,7 +158,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-10 offset-lg-1">
-                                        <div class="nav nav-tabs nav-fill p-0" id="nav-tab" role="tablist">
+                                        <div class="p-0 nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                             <a class="nav-item nav-link" id="nav-contact-tab" data-bs-toggle="tab"
                                                 href="#o" role="tab" aria-controls="nav-contact"
                                                 aria-selected="false">O</a>
@@ -201,7 +201,7 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="tab-content py-3 bg-light border mt-3 rounded px-2 ps-4" id="nav-tabContent">
+                    <div class="px-2 py-3 mt-3 border rounded tab-content bg-light ps-4" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="all" role="tabpanel"
                             aria-labelledby="nav-healthcare">
                             <div class="multi_tab_content ">
