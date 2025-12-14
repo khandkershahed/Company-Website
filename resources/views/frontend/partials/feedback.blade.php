@@ -184,62 +184,63 @@
 
 <section>
     @if (Cart::count() > 0)
-    <button class="feedback_upper_modal d-lg-block d-sm-none" type="button" data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
-        <span class="miniRFQQTY"
-            style="line-height: 1.3; font-size:1.2rem; font-family: system-ui;letter-spacing: 1px;">
-            {{ Cart::count() }} {{ Cart::count() > 1 ? 'Item(s)' : 'Item' }} Added
-        </span>
-    </button>
-    <section class="sticky-bottom-bar" id="stickyBottomBar" style="background: -webkit-linear-gradient(bottom left, #ae0a46 0%, #4e0721 100%); /* Safari, Chrome */
+        <button class="feedback_upper_modal d-lg-block d-sm-none" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">
+            <span class="miniRFQQTY"
+                style="line-height: 1.3; font-size:1.2rem; font-family: system-ui;letter-spacing: 1px;">
+                {{ Cart::count() }} {{ Cart::count() > 1 ? 'Item(s)' : 'Item' }} Added
+            </span>
+        </button>
+        <section class="sticky-bottom-bar" id="stickyBottomBar"
+            style="background: -webkit-linear-gradient(bottom left, #ae0a46 0%, #4e0721 100%); /* Safari, Chrome */
 background: linear-gradient(to top right, #ae0a46 0%, #4e0721 100%); /* Standard */">
-        <div class="text-center">
-            <div class="mx-auto row w-75 align-items-center">
-                <div class="col-lg-11">
-                    <div class="p-5 py-2 d-flex justify-content-between align-items-center" type="button"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasBottom"
-                        aria-controls="offcanvasBottom">
-                        <div class="text-start">
-                            <!-- <h5 class="mb-1 text-white">Your Cart Summary</h5>
+            <div class="text-center">
+                <div class="mx-auto row w-75 align-items-center">
+                    <div class="col-lg-11">
+                        <div class="p-5 py-2 d-flex justify-content-between align-items-center" type="button"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
+                            aria-controls="offcanvasBottom">
+                            <div class="text-start">
+                                <!-- <h5 class="mb-1 text-white">Your Cart Summary</h5>
                             <p class="mb-2 text-white" style="font-size: 0.9rem;">
                                 Review the items you’ve added to your cart.<br /> You can click the button below to view or edit your selections.
                             </p> -->
-                            <span class="text-white miniRFQQTY"
-                                style="line-height: 1.3; font-size:1.2rem; font-family: system-ui; letter-spacing: 1px;">
-                                {{ Cart::count() }} {{ Cart::count() > 1 ? "Product's" : 'Product' }} Added
-                            </span>
-                            <p class="mb-0 text-sm text-white">
-                                Click to view the product...
-                            </p>
-                        </div>
+                                <span class="text-white miniRFQQTY"
+                                    style="line-height: 1.3; font-size:1.2rem; font-family: system-ui; letter-spacing: 1px;">
+                                    {{ Cart::count() }} {{ Cart::count() > 1 ? "Product's" : 'Product' }} Added
+                                </span>
+                                <p class="mb-0 text-sm text-white">
+                                    Click to view the product...
+                                </p>
+                            </div>
 
-                        <div>
-                           <!-- Offcanvas trigger button -->
-                            <button class="py-1 btn-outline-danger btn-white ms-3" type="button" style="height: 40px;display: flex;justify-content: center;align-items: center;"
-                                data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasBottom"
-                                aria-controls="offcanvasBottom">
-                                View Cart
-                            </button>
+                            <div>
+                                <!-- Offcanvas trigger button -->
+                                <button class="py-1 btn-outline-danger btn-white ms-3" type="button"
+                                    style="height: 40px;display: flex;justify-content: center;align-items: center;"
+                                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
+                                    aria-controls="offcanvasBottom">
+                                    View Cart
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Close icon -->
-                <div class="col-lg-1">
-                    <i id="stickyCloseBtn" title="Close for one minit" class="text-white fas fa-times fs-5 ms-2 fa-shake" style="cursor: pointer; "></i>
+                    <!-- Close icon -->
+                    <div class="col-lg-1">
+                        <i id="stickyCloseBtn" title="Close for one minit"
+                            class="text-white fas fa-times fs-5 ms-2 fa-shake" style="cursor: pointer; "></i>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
+        </section>
     @else
-    <a href="{{ route('rfq') }}" class="feedback_upper_modal d-lg-block d-sm-none">
-        <span class="miniRFQQTY" style="line-height: 1.3; font-size:1.2rem; font-family: system-ui;position: relative;top: 20%;">
-            Ask Query
-        </span>
-    </a>
+        <a href="{{ route('rfq') }}" class="feedback_upper_modal d-lg-block d-sm-none">
+            <span class="miniRFQQTY"
+                style="line-height: 1.3; font-size:1.2rem; font-family: system-ui;position: relative;top: 20%;">
+                Ask Query
+            </span>
+        </a>
     @endif
 
     {{-- Offcanvas --}}
@@ -703,7 +704,8 @@ background: linear-gradient(to top right, #ae0a46 0%, #4e0721 100%); /* Standard
         </div>
     </div>
 </section>
-<script>
+{{-- <script>
+
     document.getElementById('offcanvasTrigger').addEventListener('click', function() {
         document.querySelector('.extra-btns').style.left = '50%'; // Move button to the center
     });
@@ -711,7 +713,29 @@ background: linear-gradient(to top right, #ae0a46 0%, #4e0721 100%); /* Standard
     document.getElementById('offcanvasExample').addEventListener('hidden.bs.offcanvas', function() {
         document.querySelector('.extra-btns').style.left = '0'; // Move button back to the left
     });
+</script> --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const trigger = document.getElementById('offcanvasTrigger');
+        const offcanvasExample = document.getElementById('offcanvasExample');
+        const extraBtns = document.querySelector('.extra-btns');
+
+        if (trigger && extraBtns) {
+            trigger.addEventListener('click', function() {
+                extraBtns.style.left = '50%';
+            });
+        }
+
+        if (offcanvasExample && extraBtns) {
+            offcanvasExample.addEventListener('hidden.bs.offcanvas', function() {
+                extraBtns.style.left = '0';
+            });
+        }
+
+    });
 </script>
+
 <script>
     function toggleSidebar() {
         $('.sidebar_rfq').toggleClass('sidebar_rfq-none');
@@ -721,7 +745,7 @@ background: linear-gradient(to top right, #ae0a46 0%, #4e0721 100%); /* Standard
 </script>
 
 <!-- JS logic -->
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         const stickyBar = document.getElementById('stickyBottomBar');
         const closeBtn = document.getElementById('stickyCloseBtn');
@@ -754,5 +778,48 @@ background: linear-gradient(to top right, #ae0a46 0%, #4e0721 100%); /* Standard
             });
         }
     });
+</script> --}}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const stickyBar = document.getElementById('stickyBottomBar');
+        const closeBtn = document.getElementById('stickyCloseBtn');
+        const offcanvasEl = document.getElementById('offcanvasBottom');
+        const itemCount = 0;
+
+        // If sticky bar doesn't exist on this page, stop
+        if (!stickyBar) {
+            return;
+        }
+
+        // Hide sticky section if no items
+        if (itemCount === 0) {
+            stickyBar.style.display = 'none';
+            return;
+        }
+
+        // Close button click: hide section for 10 seconds (your comment said 1 minute but code was 10s)
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                stickyBar.style.display = 'none';
+                setTimeout(function() {
+                    stickyBar.style.display = 'block';
+                }, 10000);
+            });
+        }
+
+        // Hide sticky bar when offcanvas opens
+        if (offcanvasEl) {
+            offcanvasEl.addEventListener('show.bs.offcanvas', function() {
+                stickyBar.style.display = 'none';
+            });
+
+            offcanvasEl.addEventListener('hidden.bs.offcanvas', function() {
+                if (itemCount > 0) stickyBar.style.display = 'block';
+            });
+        }
+    });
 </script>
+
 {{-- Feed Back Button --}}
