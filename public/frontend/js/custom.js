@@ -725,6 +725,7 @@ $(document).ready(function () {
 // ACTIVE BUTTON FIX (btns defined safely)
 var header = document.getElementById("myDIV");
 var btns = header ? header.getElementsByClassName("btn") : [];
+
 for (var i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", function () {
         var current = document.getElementsByClassName("active");
@@ -734,6 +735,7 @@ for (var i = 0; i < btns.length; i++) {
         this.className += " active";
     });
 }
+
 
 // Range slider
 $('input[type="range"]').on("input", function () {

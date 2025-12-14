@@ -6590,7 +6590,8 @@ ul {
     height: 2px;
     content: "";
     width: 45px;
-    background: url(http://demo.themenio.com/ico/assets/images/line.png) repeat 0 0;
+    /* background: url(http://demo.themenio.com/ico/assets/images/line.png) repeat 0 0; */
+    background: repeat 0 0;
     z-index: 0;
     animation: slide 1s linear infinite;
 }
@@ -8257,9 +8258,9 @@ a:hover {
     text-decoration: none;
     background-color: var(--white);
     border: 1px solid #dee2e6;
-    transition: color 0.15s ease-in-out, 
+    transition: color 0.15s ease-in-out,
     background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, 
+    border-color 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out;
     height: 45px;
     text-align: center;
