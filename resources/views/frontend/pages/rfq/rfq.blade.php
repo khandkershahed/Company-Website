@@ -31,8 +31,9 @@
                                             @if ($cart_products->count() > 0)
                                                 @foreach ($cart_products as $key => $cart_product)
                                                     @php
+                                                        use App\Models\Admin\Product;
                                                         $modalId = 'modal-' . $key;
-                                                        $product = App\Models\Admin\Product::where('name', $cart_product->name)->select('sku_code','brand_id')->first();
+                                                        $product = Product::where('name', $cart_product->name)->select('sku_code','brand_id')->first();
                                                     @endphp
                                                     <div data-repeater-item class="row g-1">
                                                         <div class="col-lg-1 col-12">
@@ -64,7 +65,7 @@
                                                                                         <label
                                                                                             class="form-label fw-normal">SKU
                                                                                             / Part No.</label>
-                                                                                        <input type="text" name="sku_no" {{ optional($product)->sku_code ?? '' }}
+                                                                                        <input type="text" name="sku_no" value="{{ optional($product)->sku_code ?? '' }}"
                                                                                             class="form-control"
                                                                                             placeholder="Enter SKU / Part No.">
                                                                                     </div>
@@ -86,7 +87,7 @@
                                                                                             class="form-label fw-normal">Brand
                                                                                             Name</label>
                                                                                         <input type="text"
-                                                                                            name="brand_name" value="{{ optional($product->brand)->name ?? '' }}"
+                                                                                            name="brand_name" value="{{ optional($product->brand)->title ?? '' }}"
                                                                                             class="form-control"
                                                                                             placeholder="Enter Brand Name">
                                                                                     </div>
