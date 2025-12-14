@@ -710,21 +710,21 @@
                                                                                 width="33.33%"
                                                                                 style="Margin:0;padding-left:5px;padding-right:5px;padding-top:15px;padding-bottom:5px;border:0"
                                                                                 id="esd-menu-id-0"><a target="_blank"
-                                                                                    href="http://165.22.48.109/ngenit/"
+                                                                                    href="{{ route('homepage') }}"
                                                                                     style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size:12px">Visit
                                                                                     Us </a></td>
                                                                             <td align="center" valign="top"
                                                                                 width="33.33%"
                                                                                 style="Margin:0;padding-left:5px;padding-right:5px;padding-top:15px;padding-bottom:5px;border:0"
                                                                                 id="esd-menu-id-1"><a target="_blank"
-                                                                                    href="http://165.22.48.109/ngenit/"
+                                                                                    href="{{ route('homepage') }}"
                                                                                     style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size:12px">Privacy
                                                                                     Policy</a></td>
                                                                             <td align="center" valign="top"
                                                                                 width="33.33%"
                                                                                 style="Margin:0;padding-left:5px;padding-right:5px;padding-top:15px;padding-bottom:5px;border:0"
                                                                                 id="esd-menu-id-2"><a target="_blank"
-                                                                                    href="http://165.22.48.109/ngenit/"
+                                                                                    href="{{ route('homepage') }}"
                                                                                     style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;display:block;font-family:arial, 'helvetica neue', helvetica, sans-serif;color:#ffffff;font-size:12px">Terms
                                                                                     of Use</a></td>
                                                                         </tr>

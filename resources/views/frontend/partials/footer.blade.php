@@ -19,11 +19,12 @@
                             You can update your preferences or unsubscribe any time.
                         </p>
                         <!-- button -->
-                        <form class="p-0 pt-3 m-0" action="{{ route('newsletter.store') }}"
-                            method="post" enctype="multipart/form-data">
+                        <form class="p-0 pt-3 m-0" action="{{ route('newsletter.store') }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="input-group w-75 footer_subscribe" style="height: 37px">
-                                <input type="email" class="form-control"  name="email" placeholder="Enter your email">
+                                <input type="email" class="form-control" name="email"
+                                    placeholder="Enter your email">
                                 <span class="input-group-btns ml-1" style="width:30%;">
                                     <button class="newsletter-btns" type="submit"
                                         style="height:50px;line-height: 1.2;border-top-right-radius: 0px;border-bottom-right-radius: 0px;">Subscribe</button>
@@ -40,7 +41,7 @@
                     <div class="footer_nav_list pt-lg-4 pt-2">
                         <ul class="footer_link_text">
                             <li>
-                                <a href="{{route('about')}}">Company</a> & <a
+                                <a href="{{ route('about') }}">Company</a> & <a
                                     href="{{ route('portfolio') }}">Portfolios</a>
                             </li>
                             <li>
@@ -48,7 +49,8 @@
                                     href="{{ route('portfolio') }}">Development</a>
                             </li>
                             <li>
-                                <a href="{{route('partner.login')}}">Partner</a> & <a href="{{route('client.login')}}">Clients</a>
+                                <a href="{{ route('partner.login') }}">Partner</a> & <a
+                                    href="{{ route('client.login') }}">Clients</a>
                             </li>
                             <li>
                                 <a href="{{ route('contact') }}">Contact</a> & <a
@@ -93,10 +95,11 @@
                             </li>
                             <li>
                                 <a href="{{ route('all.industry') }}">Industry</a> & <a
-                                    href="{{route('all.solution')}}">Solutions</a>
+                                    href="{{ route('all.solution') }}">Solutions</a>
                             </li>
                             <li>
-                                <a href="{{route('training')}}">Training</a> & <a href="{{route('books')}}">Books</a>
+                                <a href="{{ route('training') }}">Training</a> & <a
+                                    href="{{ route('books') }}">Books</a>
                             </li>
                             {{-- <li>
                                 <a href="{{ route('contact') }}">Support</a> & <a
@@ -112,7 +115,8 @@
     </div>
     {{-- </div> --}}
     <!-- footer social -->
-    <div class="container-fluid social_areas" style="background: #222222; border-top: 1px solid #6c6c6c; border-bottom: 1px solid #6c6c6c;">
+    <div class="container-fluid social_areas"
+        style="background: #222222; border-top: 1px solid #6c6c6c; border-bottom: 1px solid #6c6c6c;">
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-lg-12 col-md-12 col-sm-12 d-flex justify-content-center align-items-center">
                 <div class="trial-block" id="ContactUs">
@@ -122,16 +126,20 @@
                     <div class="social-overlap process-scetion">
                         <div class="container">
                             <div class="social-icons">
-                                <a href="{{ !empty($setting->facebook_url) ? $setting->facebook_url : '' }}" class="slider-nav-item">
+                                <a href="{{ !empty($setting->facebook_url) ? $setting->facebook_url : '' }}"
+                                    class="slider-nav-item">
                                     <i class="fab fa-facebook-f" style="line-height: 1.2;"></i>
                                 </a>
-                                <a href="{{ !empty($setting->twitter_url) ? $setting->twitter_url : '' }}" class="slider-nav-item">
+                                <a href="{{ !empty($setting->twitter_url) ? $setting->twitter_url : '' }}"
+                                    class="slider-nav-item">
                                     <i class="fab fa-twitter" style="line-height: 1.2;"></i>
                                 </a>
-                                <a href="{{ !empty($setting->linkedin_url) ? $setting->linkedin_url : '' }}" target="_blank" class="slider-nav-item">
+                                <a href="{{ !empty($setting->linkedin_url) ? $setting->linkedin_url : '' }}"
+                                    target="_blank" class="slider-nav-item">
                                     <i class="fab fa-linkedin-in" style="line-height: 1.2;"></i>
                                 </a>
-                                <a href="{{ !empty($setting->youtube_url) ? $setting->youtube_url : '' }}" target="_blank" class="slider-nav-item">
+                                <a href="{{ !empty($setting->youtube_url) ? $setting->youtube_url : '' }}"
+                                    target="_blank" class="slider-nav-item">
                                     <i class="fab fa-youtube" style="line-height: 1.2;"></i>
                                 </a>
                             </div>
@@ -156,7 +164,8 @@
                             <a class="text-white" href="{{ route('privacy.policy') }}">Privacy policy </a>
                         </li>
                         <li>
-                            <a class="text-white" href="{{ route('terms.policy') }}">&nbsp;|&nbsp; Terms & Conditions </a>
+                            <a class="text-white" href="{{ route('terms.policy') }}">&nbsp;|&nbsp; Terms & Conditions
+                            </a>
                         </li>
                         {{-- <li>
                             <a class="text-white" href="" data-bs-toggle="modal" data-bs-target="#cookies_modal">&nbsp;|&nbsp; Cookies</a>
@@ -175,8 +184,8 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header py-2">
-                <img src="http://165.22.48.109/ngenit/upload/logoimage/1766111041030883.png" width="70px"
-                    height="50px" alt="">
+                <img src="{{ !empty($setting->logo) && file_exists(public_path('storage/' . $setting->logo)) ? asset('storage/' . $setting->logo) : asset('frontend/images/brandPage-logo-no-img(217-55).jpg') }}"
+                    width="70px" height="50px" alt="">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -220,7 +229,8 @@
                                     <div class="col-sm-12">
                                         <div class="custom-control custom-switch custom-switch-sm">
                                             <input type="checkbox" class="custom-control-input" id="statisticalChk"">
-                                            <label class="custom-control-label" for="statisticalChk">Statistical</label>
+                                            <label class="custom-control-label"
+                                                for="statisticalChk">Statistical</label>
                                         </div>
                                     </div>
                                 </div>
@@ -240,25 +250,29 @@
                     {{--  --}}
                     <div class="card border-0">
                         <p class="px-3" id="marketing" style="display: none">
-                            Marketing allWe will not place cookies from this website unless you consent hereto (except for technical
+                            Marketing allWe will not place cookies from this website unless you consent hereto (except
+                            for technical
                             cookies
                         </p>
                     </div>
                     <div class="card border-0">
                         <p class="px-3" id="functional" style="display: none">
-                            functional allWe will not place cookies from this website unless you consent hereto (except for technical
+                            functional allWe will not place cookies from this website unless you consent hereto (except
+                            for technical
                             cookies
                         </p>
                     </div>
                     <div class="card border-0">
                         <p class="px-3" id="statistical" style="display: none">
-                            statistical allWe will not place cookies from this website unless you consent hereto (except for technical
+                            statistical allWe will not place cookies from this website unless you consent hereto (except
+                            for technical
                             cookies
                         </p>
                     </div>
                     <div class="card border-0">
                         <p class="px-3" id="normaal" style="display: none">
-                            normaal allWe will not place cookies from this website unless you consent hereto (except for technical
+                            normaal allWe will not place cookies from this website unless you consent hereto (except for
+                            technical
                             cookies
                         </p>
                     </div>

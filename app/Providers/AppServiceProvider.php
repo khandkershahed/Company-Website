@@ -43,10 +43,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // 🧭 Use Bootstrap for pagination
+        // Use Bootstrap for pagination
         Paginator::useBootstrap();
 
-        // 🛡️ Force HTTPS in production
+        // Force HTTPS in production
         if (app()->environment('production')) {
             URL::forceScheme('https');
         }
@@ -57,7 +57,7 @@ class AppServiceProvider extends ServiceProvider
             return "<?php echo implode(' ', array_slice(explode(' ', $string), 0, $limit)); ?>";
         });
 
-        // ⚙️ Shared default variables to avoid undefined notices
+        // Shared default variables to avoid undefined notices
         $sharedVars = [
             'all_employees',
             'limit_words',
@@ -227,6 +227,7 @@ class AppServiceProvider extends ServiceProvider
                     View::share($key, $value);
                 }
             }
+
         } catch (\Throwable $e) {
             \Log::error('AppServiceProvider boot error: ' . $e->getMessage());
         }

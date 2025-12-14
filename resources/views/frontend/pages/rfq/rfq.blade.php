@@ -167,7 +167,7 @@
                                                         </div>
                                                         <div class="col-lg-1 col-4">
                                                             <div class="d-flex">
-                                                                <input type="text" name="qty" value="1"
+                                                                <input type="text" name="qty" value="{{ $cart_product->qty }}"
                                                                     class="text-center form-control qty-input"
                                                                     style="width: 60px;margin-bottom: 6px;padding-inline-end: 5px;padding-inline-start: 5px;" />
                                                                 <div class="d-flex flex-column counting-btn">

@@ -42,7 +42,7 @@
         <div class="content ">
             <div class="row w-75 mx-auto card p-3">
                 <div class="col-lg-12 d-flex justify-content-center flex-column align-items-center">
-                    <img src="http://165.22.48.109/ngenit/upload/logoimage/1764773615798059.png" width="70"
+                    <img src="https://www.ngenitltd.com/upload/logoimage/1764773615798059.png" width="70"
                         height="50" alt="" class=" img-fluid"> <br>
                     <h4 class="text-end" style="color: #247297; border-bottom: 2px solid #247297;">Purchase Order</h4>
                 </div>

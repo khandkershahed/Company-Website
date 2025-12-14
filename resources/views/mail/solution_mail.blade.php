@@ -29,11 +29,11 @@
 
                                     <tr>
                                         <td align="center" valign="top">
-                                            <a href="https://click.e.zoom.us/?qs=5c0f0f9dce1a5c2fcdb0d1ad89850c9e59dfc96e28dafa2b3d95037f66201bdeb4adef1b4bbed86ffba37cd97062d291da1e04ee4f650e53"
+                                            <a href=""
                                                 style="text-decoration: none" target="_blank"
                                                 data-saferedirecturl="https://www.google.com/url?q=https://click.e.zoom.us/?qs%3D5c0f0f9dce1a5c2fcdb0d1ad89850c9e59dfc96e28dafa2b3d95037f66201bdeb4adef1b4bbed86ffba37cd97062d291da1e04ee4f650e53&amp;source=gmail&amp;ust=1683866939617000&amp;usg=AOvVaw2TsR_ovBX4dvOJute0rl6j">
                                                 <img alt="Zoom Logo Header"
-                                                    src="http://165.22.48.109/ngenit/upload/logoimage/1764773615798059.png"
+                                                    src="https://www.ngenitltd.com/upload/logoimage/1764773615798059.png"
                                                     style="display: block;width: 100%;max-width: 132px;border-radius: 20px;"
                                                     width="600" class="CToWUd" data-bit="iit"/>
                                             </a>
@@ -56,7 +56,7 @@
                                                             <br />
                                                             <h1 style="font-family: 'Montserrat', 'Helvetica Neue','Helvetica', sans-serif;font-size: 28px;
                                                                         line-height: 42px;color: #10134a;font-weight: 500;padding: 0px 0px 20px;margin: 0;">
-                                                                
+
                                                             </h1>
                                                             <br/>
                                                             <a href="https://click.e.zoom.us/?qs=5c0f0f9dce1a5c2fa022ba336a7a22a4f2ee2cf45c31149d79ced413340c61f841b1a8c263b277e516dc4583fe8943c84e835fdfbc9274d4"
