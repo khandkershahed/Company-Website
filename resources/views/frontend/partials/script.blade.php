@@ -190,7 +190,8 @@
                     success: function(response) {
                         toastr.success('Successfully Added to Your Cart');
                         cart_header.empty();
-                        cart_header.append('<span class="add_cart_count">' + response.cartHeader + '</span>');
+                        cart_header.append('<span class="add_cart_count">' + response
+                            .cartHeader + '</span>');
                         button.empty();
                         button.append();
                     },
@@ -239,9 +240,11 @@
                         cart_header.empty();
                         if (response.cartHeader > 0) {
                             if (response.cartHeader > 1) {
-                                cart_header.append('' + response.cartHeader + ' Item(s) Added');
+                                cart_header.append('' + response.cartHeader +
+                                    ' Item(s) Added');
                             } else {
-                                cart_header.append('' + response.cartHeader + ' Item Added');
+                                cart_header.append('' + response.cartHeader +
+                                    ' Item Added');
                             }
                         } else {
                             cart_header.append('Ask Query');
@@ -475,25 +478,29 @@
                                 var form = document.getElementById('captchaForm');
 
                                 if (!modal || !form) {
-                                    console.error('captchaModal or captchaForm not found.');
+                                    console.error(
+                                        'captchaModal or captchaForm not found.');
                                     return;
                                 }
 
                                 var modalBody = modal.querySelector('.modal-body');
                                 if (!modalBody) {
-                                    console.error('captchaModal .modal-body not found.');
+                                    console.error(
+                                    'captchaModal .modal-body not found.');
                                     return;
                                 }
 
                                 // remove old token inputs (prevent duplicates)
-                                var old = modalBody.querySelectorAll('input[name="g-recaptcha-response"]');
+                                var old = modalBody.querySelectorAll(
+                                    'input[name="g-recaptcha-response"]');
                                 old.forEach(function(el) {
                                     el.remove();
                                 });
 
                                 modalBody.insertAdjacentHTML(
                                     'beforeend',
-                                    '<input type="hidden" name="g-recaptcha-response" value="' + token + '">'
+                                    '<input type="hidden" name="g-recaptcha-response" value="' +
+                                    token + '">'
                                 );
 
                                 form.submit();
@@ -515,26 +522,112 @@
         // -----------------------------
         // Slider (Advance-Slider) - Slick
         // -----------------------------
+        // var $slider_ini = $(".Advance-Slider");
+        // var total_slide = 0;
+
+        // if ($slider_ini.length && $.fn.slick) {
+
+        //     $slider_ini.on("init", function(event, slick) {
+        //         total_slide = slick.slideCount;
+
+        //         // If you are hiding arrows, these thumbnails won't be visible,
+        //         // but keeping logic safe anyway.
+        //         $('button.slick-arrow').append('<div class="thumb"></div>');
+
+        //         var nextIndex = 1;
+        //         var prevIndex = total_slide - 1;
+
+        //         var next_img = $(slick.$slides[nextIndex]).find('img').attr('src') || '';
+        //         var prev_img = $(slick.$slides[prevIndex]).find('img').attr('src') || '';
+
+        //         $('button.slick-next .thumb').empty().append('<img src="' + next_img + '">');
+        //         $('button.slick-prev .thumb').empty().append('<img src="' + prev_img + '">');
+        //     });
+
+        //     $slider_ini.slick({
+        //         autoplay: true,
+        //         autoplaySpeed: 10000,
+        //         speed: 2000,
+        //         slidesToShow: 1,
+        //         slidesToScroll: 1,
+        //         dots: false,
+        //         pauseOnHover: false,
+        //         infinite: false,
+        //         prevArrow: false,
+        //         nextArrow: false,
+        //         customPaging: function(slider, i) {
+        //             var thumb = $(slider.$slides[i]).find('.dots-img').attr('src') || '';
+        //             return '<button><div class="mextrix"><a><img src="' + thumb + '"></a></div></button>';
+        //         }
+        //     });
+
+        //     $("button.slick-arrow , .Advance-Slider ul.slick-dots li button").hover(function() {
+        //         $(this).addClass("hover-in").removeClass("hover-out");
+        //     }, function() {
+        //         $(this).removeClass("hover-in").addClass("hover-out");
+        //     });
+
+        //     $slider_ini.on('afterChange', function(event, slick, currentSlide) {
+
+        //         total_slide = slick.slideCount;
+
+        //         var prevIndex = currentSlide - 1;
+        //         var nextIndex = currentSlide + 1;
+
+        //         if (prevIndex < 0) prevIndex = total_slide - 1;
+        //         if (nextIndex > total_slide - 1) nextIndex = 0;
+
+        //         var prev_img = $(slick.$slides[prevIndex]).find('img').attr('src') || '';
+        //         var next_img = $(slick.$slides[nextIndex]).find('img').attr('src') || '';
+
+        //         $('button.slick-arrow').find('img').remove();
+        //         $('button.slick-next .thumb').empty().append('<img src="' + next_img + '">');
+        //         $('button.slick-prev .thumb').empty().append('<img src="' + prev_img + '">');
+        //     });
+        // }
+
         var $slider_ini = $(".Advance-Slider");
-        var total_slide = 0;
 
         if ($slider_ini.length && $.fn.slick) {
 
-            $slider_ini.on("init", function(event, slick) {
-                total_slide = slick.slideCount;
+            function getSlideImgSrc(slick, index) {
+                if (!slick || !slick.$slides || slick.$slides.length === 0) return '';
+                if (index < 0 || index > slick.$slides.length - 1) return '';
+                var $slide = $(slick.$slides[index]);
+                if (!$slide.length) return '';
+                var src = $slide.find('img').first().attr('src');
+                return src ? src : '';
+            }
 
-                // If you are hiding arrows, these thumbnails won't be visible,
-                // but keeping logic safe anyway.
-                $('button.slick-arrow').append('<div class="thumb"></div>');
+            $slider_ini.on("init", function(event, slick) {
+
+                // If there are fewer than 2 slides, don't try to access [1] or prev/next thumbs
+                if (!slick || !slick.$slides || slick.slideCount < 2) {
+                    return;
+                }
+
+                // Only do thumb logic if arrows exist (you have arrows disabled in settings)
+                var $nextBtn = $('button.slick-next');
+                var $prevBtn = $('button.slick-prev');
+
+                if (!$nextBtn.length || !$prevBtn.length) {
+                    return;
+                }
+
+                // Ensure thumb containers exist only once
+                if (!$nextBtn.find('.thumb').length) $nextBtn.append('<div class="thumb"></div>');
+                if (!$prevBtn.find('.thumb').length) $prevBtn.append('<div class="thumb"></div>');
+
+                var total_slide = slick.slideCount;
 
                 var nextIndex = 1;
                 var prevIndex = total_slide - 1;
 
-                var next_img = $(slick.$slides[nextIndex]).find('img').attr('src') || '';
-                var prev_img = $(slick.$slides[prevIndex]).find('img').attr('src') || '';
+                var next_img = getSlideImgSrc(slick, nextIndex);
+                var prev_img = getSlideImgSrc(slick, prevIndex);
 
-                $('button.slick-next .thumb').empty().append('<img src="' + next_img + '">');
-                $('button.slick-prev .thumb').empty().append('<img src="' + prev_img + '">');
+                $nextBtn.find('.thumb').empty().append(next_img ? '<img src="' + next_img + '">' : '');
+                $prevBtn.find('.thumb').empty().append(prev_img ? '<img src="' + prev_img + '">' : '');
             });
 
             $slider_ini.slick({
@@ -546,11 +639,18 @@
                 dots: false,
                 pauseOnHover: false,
                 infinite: false,
+
+                // You disabled arrows, so thumb code above will auto-skip
                 prevArrow: false,
                 nextArrow: false,
+
                 customPaging: function(slider, i) {
-                    var thumb = $(slider.$slides[i]).find('.dots-img').attr('src') || '';
-                    return '<button><div class="mextrix"><a><img src="' + thumb + '"></a></div></button>';
+                    var thumb = '';
+                    if (slider && slider.$slides && slider.$slides[i]) {
+                        thumb = $(slider.$slides[i]).find('.dots-img').attr('src') || '';
+                    }
+                    return '<button><div class="mextrix"><a><img src="' + thumb +
+                        '"></a></div></button>';
                 }
             });
 
@@ -562,7 +662,18 @@
 
             $slider_ini.on('afterChange', function(event, slick, currentSlide) {
 
-                total_slide = slick.slideCount;
+                if (!slick || !slick.$slides || slick.slideCount < 2) {
+                    return;
+                }
+
+                var $nextBtn = $('button.slick-next');
+                var $prevBtn = $('button.slick-prev');
+
+                if (!$nextBtn.length || !$prevBtn.length) {
+                    return;
+                }
+
+                var total_slide = slick.slideCount;
 
                 var prevIndex = currentSlide - 1;
                 var nextIndex = currentSlide + 1;
@@ -570,14 +681,14 @@
                 if (prevIndex < 0) prevIndex = total_slide - 1;
                 if (nextIndex > total_slide - 1) nextIndex = 0;
 
-                var prev_img = $(slick.$slides[prevIndex]).find('img').attr('src') || '';
-                var next_img = $(slick.$slides[nextIndex]).find('img').attr('src') || '';
+                var prev_img = getSlideImgSrc(slick, prevIndex);
+                var next_img = getSlideImgSrc(slick, nextIndex);
 
-                $('button.slick-arrow').find('img').remove();
-                $('button.slick-next .thumb').empty().append('<img src="' + next_img + '">');
-                $('button.slick-prev .thumb').empty().append('<img src="' + prev_img + '">');
+                $nextBtn.find('.thumb').empty().append(next_img ? '<img src="' + next_img + '">' : '');
+                $prevBtn.find('.thumb').empty().append(prev_img ? '<img src="' + prev_img + '">' : '');
             });
         }
+
 
         // -----------------------------
         // RFQ Remove functions (global)
@@ -731,7 +842,8 @@
                     $('.product__slider-main').each(function() {
                         // IMPORTANT: define `me` to avoid reference error
                         var me = {};
-                        me.slider = new slider($(this), options, sliderOptions, previewSliderOptions);
+                        me.slider = new slider($(this), options, sliderOptions,
+                            previewSliderOptions);
                     });
                 });
             }
