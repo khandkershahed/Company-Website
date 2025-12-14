@@ -32,7 +32,7 @@
                                                 @foreach ($cart_products as $key => $cart_product)
                                                     @php
                                                         $modalId = 'modal-' . $key;
-                                                        $product = App\Models\Product::where('name', $cart_product->name)->select('sku_code','brand_id')->first();
+                                                        $product = App\Models\Admin\Product::where('name', $cart_product->name)->select('sku_code','brand_id')->first();
                                                     @endphp
                                                     <div data-repeater-item class="row g-1">
                                                         <div class="col-lg-1 col-12">
