@@ -330,22 +330,68 @@
             // -----------------------------
             // Brand Page Single Product slick
             // -----------------------------
-            if ($.fn.slick) {
-                $(".slick-slider").slick({
-                    slidesToShow: 4,
-                    infinite: false,
-                    slidesToScroll: 1,
-                    autoplay: true,
-                    autoplaySpeed: 6000,
-                    responsive: [{
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1
-                        }
-                    }]
-                });
+            // if ($.fn.slick) {
+            //     $(".slick-slider").slick({
+            //         slidesToShow: 4,
+            //         infinite: false,
+            //         slidesToScroll: 1,
+            //         autoplay: true,
+            //         autoplaySpeed: 6000,
+            //         responsive: [{
+            //             breakpoint: 768,
+            //             settings: {
+            //                 slidesToShow: 1,
+            //                 slidesToScroll: 1
+            //             }
+            //         }]
+            //     });
+            // }
+
+            if (!$.fn.slick) {
+                return;
             }
+
+            var $brandSlider = $(".slick-slider");
+
+            // If slider does not exist on this page, do nothing
+            if (!$brandSlider.length) {
+                return;
+            }
+
+            // Prevent double init (very common cause of Slick errors)
+            $brandSlider = $brandSlider.not(".slick-initialized");
+
+            if (!$brandSlider.length) {
+                return;
+            }
+
+            // Make sure it has slides (children) before initializing
+            // Use >= 1 if you want slick even with one item
+            if ($brandSlider.children().length < 1) {
+                return;
+            }
+
+            $brandSlider.slick({
+                slidesToShow: 4,
+                infinite: false,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 6000,
+
+                // IMPORTANT: prevents initADA() from running
+                accessibility: false,
+
+                // Helps avoid some markup edge cases
+                rows: 0,
+
+                responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }]
+            });
 
             // -----------------------------
             // Brand logo slick
@@ -486,7 +532,7 @@
                                 var modalBody = modal.querySelector('.modal-body');
                                 if (!modalBody) {
                                     console.error(
-                                    'captchaModal .modal-body not found.');
+                                        'captchaModal .modal-body not found.');
                                     return;
                                 }
 
