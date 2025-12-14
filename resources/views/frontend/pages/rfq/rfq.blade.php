@@ -64,7 +64,7 @@
                                                                                         <label
                                                                                             class="form-label fw-normal">SKU
                                                                                             / Part No.</label>
-                                                                                        <input type="text" name="sku_no" value="{{ optional($product)->sku_code ?? '' }}"
+                                                                                        <input type="text" name="sku_no" value="{{ optional($product)->sku_code }}"
                                                                                             class="form-control"
                                                                                             placeholder="Enter SKU / Part No.">
                                                                                     </div>

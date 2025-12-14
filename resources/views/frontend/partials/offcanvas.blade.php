@@ -13,13 +13,7 @@
                 <div class="pb-5 mt-4 row">
                     @if ($cart_items)
                         @foreach ($cart_items as $cart_item)
-                            @php
-                                $productRFQ = App\Models\Admin\Product::where('id', $cart_item->id)->first([
-                                    'id',
-                                    'thumbnail',
-                                    'name',
-                                ]);
-                            @endphp
+
                             <div class="col-lg-12">
                                 <div>
                                     <div class="text-center border-0 card rfq-cards">
@@ -34,7 +28,7 @@
 
                                                 {{-- Name --}}
                                                 <small class="fw-normal text-start me-3" style="flex: 1;">
-                                                    {{ $productRFQ->name }}
+                                                    {{ $cart_item->name }}
                                                 </small>
 
                                                 {{-- Quantity --}}
