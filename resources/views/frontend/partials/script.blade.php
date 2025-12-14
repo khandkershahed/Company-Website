@@ -501,7 +501,7 @@
 
         $.ajax({
             type: 'GET',
-            url: "rfq-remove/" + rowId,
+            url: "/rfq-remove/" + rowId,
             dataType: 'json',
             success: function(data) {
                 // Update the cart header
