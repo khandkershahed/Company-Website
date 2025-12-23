@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="modal fade" tabindex="-1" id="pending_rfq_status_update_{{ $rfq->id }}">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog ">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h3 class="modal-title">Status Update of
@@ -80,12 +80,12 @@
                                     </div>
                                 </div>
 
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <form action="{{ route('admin.rfq.update_status', $rfq->id) }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <div class="col-12 mb-10">
+                                <form action="{{ route('admin.rfq.update_status', $rfq->id) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-lg-6 mb-10">
                                                 <label class="form-label required" for="status">Update RFQ
                                                     Status</label>
                                                 <select name="status" id="status"
@@ -121,7 +121,7 @@
                                                         Lost</option>
                                                 </select>
                                             </div>
-                                            <div class="col-12 mb-10">
+                                            <div class="col-lg-6 mb-10">
                                                 <label class="form-label required" for="rfq_type">Convert RFQ
                                                     To</label>
                                                 {{-- $table->enum('rfq_type', ['rfq', 'deal', 'sales', 'order', 'delivery', 'delivery_completed'])->default('rfq')->nullable(); --}}
@@ -152,7 +152,8 @@
                                             </div>
                                             {{-- quoted_price --}}
                                             <div class="col-lg-6 mb-10">
-                                                <label class="form-label" for="rfq_code">RFQ Number(Our Database)</label>
+                                                <label class="form-label" for="rfq_code">RFQ Number(Our
+                                                    Database)</label>
                                                 <input type="text" name="rfq_code" id="rfq_code"
                                                     class="form-control form-control-solid"
                                                     value="{{ $rfq->rfq_code ?? old('rfq_code') }}" />
@@ -177,17 +178,15 @@
                                                 <input type="file" name="quotation_pdf" id="quotation_pdf"
                                                     class="form-control form-control-solid" />
                                             </div>
-
-
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-light"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary rounded-0">Save
-                                        changes</button>
-                                </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary rounded-0">Save
+                                            changes</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
