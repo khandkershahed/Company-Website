@@ -203,7 +203,7 @@
                     <div class="flex-wrap gap-2 d-flex justify-content-between align-items-center">
                         <!-- Year Select -->
                         <div class="flex-grow-1 min-w-100 min-w-md-auto">
-                            <select class="form-select" data-control="select2" data-placeholder="Year"
+                            <select class="form-select" data-allow-clear="false" data-control="select2" data-placeholder="Year"
                                 name="year" id="filterYear">
                                 <option value="{{ date('Y') }}">2025</option>
                                 <option value="2022">2022</option>
@@ -217,7 +217,7 @@
 
                         <!-- Month Select -->
                         <div class="flex-grow-1 min-w-100 min-w-md-auto">
-                            <select class="form-select" data-control="select2" data-placeholder="Month"
+                            <select class="form-select" data-allow-clear="false" data-control="select2" data-placeholder="Month"
                                 name="month" id="filterMonth">
                                 @foreach ($months as $month)
                                     <option value="{{ $month }}" @selected(\Carbon\Carbon::now()->format('F') === $month)>
