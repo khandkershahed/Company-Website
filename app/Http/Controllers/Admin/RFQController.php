@@ -549,7 +549,11 @@ class RFQController extends Controller
                     Mail::to($email)->queue(new RFQConfirmationMail($data, $rfq_code));
                 }
             } else {
-                $rfq->update(['confirmation' => 'approved']);
+                $rfq->update([
+                    'confirmation' => 'approved',
+                    'confirmed_by' => 'Already Registered '.$client_type,
+                ]);
+
                 Mail::to($request->email)->queue(new RFQNotificationClientMail($data));
 
                 foreach ($user_emails as $email) {

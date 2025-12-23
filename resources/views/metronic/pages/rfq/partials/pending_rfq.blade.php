@@ -207,7 +207,7 @@
                             $steps = [
                                 [
                                     'status' => 'rfq_created',
-                                    'label' => 'RFQ Created',
+                                    'label' => !empty($rfq->confirmed_by) ? 'RFQ confirmed by: ' . $rfq->confirmed_by : 'RFQ Created',
                                     'icon' => 'fa fa-user-check',
                                     'route' => '#assign-manager-' . $rfq->rfq_code,
                                     'condition' => $rfq->status == 'rfq_created',
