@@ -91,7 +91,7 @@
                                                 <select name="status" id="status"
                                                     class="form-select form-select-solid" data-control="select2"
                                                     data-placeholder="Select an option" data-allow-clear="true">
-                                                    <option value="">Select an option</option>
+                                                    <option></option>
                                                     <option value="rfq_created"
                                                         {{ $rfq->status == 'rfq_created' ? 'selected' : '' }}>
                                                         RFQ Stage</option>
@@ -128,8 +128,7 @@
                                                 <select name="rfq_type" id="rfq_type"
                                                     class="form-select form-select-solid" data-control="select2"
                                                     data-allow-clear="true" data-placeholder="Select an option">
-                                                    <option value="">Select an option
-                                                    </option>
+                                                    <option></option>
                                                     <option value="rfq"
                                                         {{ $rfq->rfq_type == 'rfq' ? 'selected' : '' }}>
                                                         RFQ</option>
