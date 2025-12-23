@@ -218,16 +218,18 @@
                                                                                 </li>
                                                                             @else
                                                                                 @foreach ($sub_category->subsubCategorys as $item)
-                                                                                    <li class="py-2"
-                                                                                        style="line-height: 1 !important;">
-                                                                                        <a class="p-0"
-                                                                                            href="{{ route('category.details', $item->slug) }}">
-                                                                                            <div>
-                                                                                                {{ $item->title }}&nbsp;<i
-                                                                                                    class="ph ph-caret-right menu_icons"></i>
-                                                                                            </div>
-                                                                                        </a>
-                                                                                    </li>
+                                                                                    @if (!empty($item->slug))
+                                                                                        <li class="py-2"
+                                                                                            style="line-height: 1 !important;">
+                                                                                            <a class="p-0"
+                                                                                                href="{{ route('category.details', $item->slug) }}">
+                                                                                                <div>
+                                                                                                    {{ $item->title }}&nbsp;<i
+                                                                                                        class="ph ph-caret-right menu_icons"></i>
+                                                                                                </div>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    @endif
                                                                                 @endforeach
                                                                             @endif
                                                                         </div>
@@ -348,7 +350,7 @@
                                                         <div class="row industries">
                                                             @if (!empty($header_industrys))
                                                                 @foreach ($header_industrys as $header_industry)
-                                                                    @if ($header_industry->industryPage)
+                                                                    @if ($header_industry->industryPage && !empty($header_industry->slug))
                                                                         <div class="mb-2 col-lg-4">
                                                                             <a class="pb-2 d-flex align-items-center"
                                                                                 href="{{ route('industry.details', $header_industry->slug) }}">
@@ -434,26 +436,28 @@
                                                     </p>
                                                     @if (!empty($header_features))
                                                         @foreach ($header_features as $header_feature)
-                                                            <div class="col-lg-4 col-sm-12">
-                                                                <div class="pt-4 d-flex align-items-center">
-                                                                    <img src="{{ isset($header_feature->image) && file_exists(public_path('storage/' . $header_feature->image)) ? asset('storage/' . $header_feature->image) : asset('frontend/images/banner-demo.png') }}"
-                                                                        alt=""
-                                                                        style="width:130px;height:70px;">
-                                                                    <div class="ms-3">
-                                                                        <a
-                                                                            href="{{ route('feature.details', $header_feature->slug) }}">
-                                                                            <strong
-                                                                                style="font-size:14px;">{{ Str::limit($header_feature->title, 100) }}</strong>
-                                                                        </a>
-                                                                        <br>
-                                                                        <span>{{ $header_feature->badge }} /
-                                                                            {{ $header_feature->created_at->format('d-m-Y') }}</span>
+                                                            @if (!empty($header_feature->slug))
+                                                                <div class="col-lg-4 col-sm-12">
+                                                                    <div class="pt-4 d-flex align-items-center">
+                                                                        <img src="{{ isset($header_feature->image) && file_exists(public_path('storage/' . $header_feature->image)) ? asset('storage/' . $header_feature->image) : asset('frontend/images/banner-demo.png') }}"
+                                                                            alt=""
+                                                                            style="width:130px;height:70px;">
+                                                                        <div class="ms-3">
+                                                                            <a
+                                                                                href="{{ route('feature.details', $header_feature->slug) }}">
+                                                                                <strong
+                                                                                    style="font-size:14px;">{{ Str::limit($header_feature->title, 100) }}</strong>
+                                                                            </a>
+                                                                            <br>
+                                                                            <span>{{ $header_feature->badge }} /
+                                                                                {{ $header_feature->created_at->format('d-m-Y') }}</span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            @endif
                                                         @endforeach
                                                     @endif
-                                                    @if (!empty($header_blog))
+                                                    @if (!empty($header_blog->slug))
                                                         <div class="pt-4 col-lg-4 col-sm-12">
                                                             <div class="d-flex align-items-center">
                                                                 <img src="{{ isset($header_blog->image) && file_exists(public_path('storage/' . $header_blog->image)) ? asset('storage/' . $header_blog->image) : asset('frontend/images/banner-demo.png') }}"
@@ -471,7 +475,7 @@
                                                             </div>
                                                         </div>
                                                     @endif
-                                                    @if (!empty($header_techglossy))
+                                                    @if (!empty($header_techglossy->slug))
                                                         <div class="pt-4 col-lg-4 col-sm-12">
                                                             <div class="d-flex align-items-center">
                                                                 <img src="{{ isset($header_techglossy->image) && file_exists(public_path('storage/' . $header_techglossy->image)) ? asset('storage/' . $header_techglossy->image) : asset('frontend/images/banner-demo.png') }}"
@@ -1056,7 +1060,7 @@
                                     <div class="row">
                                         @if (!empty($header_industrys))
                                             @foreach ($header_industrys as $header_industry)
-                                                @if ($header_industry->industryPage)
+                                                @if ($header_industry->industryPage && !empty($header_industry->slug))
                                                     <div class="mb-2 col-6">
                                                         <a class="pb-2 d-flex align-items-center"
                                                             href="{{ route('industry.details', $header_industry->slug) }}">

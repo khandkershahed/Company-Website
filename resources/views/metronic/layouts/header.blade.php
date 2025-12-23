@@ -15,7 +15,7 @@
                 </span>
             </div>
         </div>
-        {{-- Breadcrumb --}}
+        {{-- Breadcrumb --}} 
         <div class="d-flex align-items-center">
             <a href="{{ url()->previous() }}" class="px-3 btn btn-sm btn-secondary rounded-3 me-2">
                 <i class="fas fa-chevron-left"></i>
@@ -156,9 +156,9 @@
                         <a class="btn btn-md btn-info me-4" href="{{ route('deal.create') }}">Deal</a>
                     @endif
                     @if (Route::currentRouteName() === 'admin.sales.forecast')
-                        <a class="btn btn-md btn-info me-3" href="{{ route('admin.business.index') }}">Business</a>
-                        <a class="btn btn-md btn-info me-3" href="{{ route('admin.sales-dashboard.index') }}">Sales</a>
-                        <a class="btn btn-md btn-info me-4" href="{{ route('admin.rfq.index') }}">Rfqs</a>
+                    <a class="btn btn-md btn-info me-3" href="{{ route('admin.sales-dashboard.index') }}">Sales Dashboard</a>
+                    <a class="btn btn-md btn-info me-4" href="{{ route('admin.rfq.index') }}">Rfqs</a>
+                        <a class="btn btn-md btn-info me-3" href="javascript:void(0);">Notificaton</a>
                     @endif
 
                     @if (Route::currentRouteName() === 'deal.create')
