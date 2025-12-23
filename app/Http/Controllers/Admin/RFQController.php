@@ -1303,7 +1303,7 @@ class RFQController extends Controller
             } else {
                 $filename = null;
             }
-            $rfq->rfqQuotations()->update([
+            $rfq->rfqQuotation()->update([
                 'quotation_pdf' => $filename,
                 'pq_code'       => $request->pq_code,
             ]);
