@@ -88,9 +88,9 @@
                                             <div class="col-12 mb-10">
                                                 <label class="form-label required" for="status">Update RFQ
                                                     Status</label>
-                                                <select name="status" id="status" class="form-select form-select-solid"
-                                                    data-control="select2" data-placeholder="Select an option"
-                                                    data-allow-clear="true">
+                                                <select name="status" id="status"
+                                                    class="form-select form-select-solid" data-control="select2"
+                                                    data-placeholder="Select an option" data-allow-clear="true">
                                                     <option value="">Select an option</option>
                                                     <option value="rfq_created"
                                                         {{ $rfq->status == 'rfq_created' ? 'selected' : '' }}>
@@ -125,8 +125,9 @@
                                                 <label class="form-label required" for="rfq_type">Convert RFQ
                                                     To</label>
                                                 {{-- $table->enum('rfq_type', ['rfq', 'deal', 'sales', 'order', 'delivery', 'delivery_completed'])->default('rfq')->nullable(); --}}
-                                                <select name="rfq_type" id="rfq_type" class="form-select form-select-solid"
-                                                    data-control="select2" data-allow-clear="true" data-placeholder="Select an option">
+                                                <select name="rfq_type" id="rfq_type"
+                                                    class="form-select form-select-solid" data-control="select2"
+                                                    data-allow-clear="true" data-placeholder="Select an option">
                                                     <option value="">Select an option
                                                     </option>
                                                     <option value="rfq"
@@ -149,12 +150,41 @@
                                                         Delivery Completed</option>
                                                 </select>
                                             </div>
+                                            {{-- quoted_price --}}
+                                            <div class="col-lg-6 mb-10">
+                                                <label class="form-label" for="rfq_code">RFQ Number(Our Database)</label>
+                                                <input type="text" name="rfq_code" id="rfq_code"
+                                                    class="form-control form-control-solid"
+                                                    value="{{ $rfq->rfq_code ?? old('rfq_code') }}" />
+                                            </div>
+                                            <div class="col-lg-6 mb-10">
+                                                <label class="form-label" for="pq_code">PQ Number</label>
+                                                <input type="text" name="pq_code" id="pq_code"
+                                                    class="form-control form-control-solid"
+                                                    value="{{ $rfq->pq_code ?? old('pq_code') }}" />
+                                            </div>
+                                            <div class="col-lg-6 mb-10">
+                                                <label class="form-label" for="quoted_price">Quoted
+                                                    Price</label>
+                                                <input type="text" name="quoted_price" id="quoted_price"
+                                                    class="form-control form-control-solid"
+                                                    value="{{ $rfq->quoted_price ?? old('quoted_price') }}" />
+                                            </div>
+                                            {{-- quotation_pdf --}}
+                                            <div class="col-lg-6 mb-10">
+                                                <label class="form-label" for="quotation_pdf">Quotation
+                                                    PDF</label>
+                                                <input type="file" name="quotation_pdf" id="quotation_pdf"
+                                                    class="form-control form-control-solid" />
+                                            </div>
+
 
                                     </div>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-light"
+                                        data-bs-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary rounded-0">Save
                                         changes</button>
                                 </div>
@@ -193,6 +223,13 @@
                                     'route' => route('deal.convert', $rfq->id),
                                     'condition' => $rfq->status == 'assigned',
                                 ],
+                                // [
+                                //     'status' => 'closed',
+                                //     'label' => 'Status Closed',
+                                //     'icon' => 'fa-solid fa-stop',
+                                //     'route' => 'javascript:void(0);',
+                                //     'condition' => $rfq->status == 'closed',
+                                // ],
                                 [
                                     'status' => 'closed',
                                     'label' => 'Status Closed',

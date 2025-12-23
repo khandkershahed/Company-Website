@@ -21,7 +21,7 @@
                     <div class="row g-3">
                         <!-- Leader L1 -->
                         <div class="col-lg-6">
-                            {{-- <label for="sales_man_id_L1-{{ $rfq->id }}" class="form-label">Sales Manager Name (Leader - L1) <span class="text-danger">*</span></label> --}}
+                            <label for="sales_man_id_L1-{{ $rfq->id }}" class="form-label">Sales Manager Name (Leader - L1) <span class="text-danger">*</span></label>
                             <select name="sales_man_id_L1" id="sales_man_id_L1-{{ $rfq->id }}" class="form-select" data-control="select2" data-placeholder="Sales Manager Name (Leader - L1)" data-allow-clear="true" required>
                                 <option></option>
                                 @foreach ($users as $manager)
@@ -30,9 +30,9 @@
                             </select>
                         </div>
 
-                        <!-- Team T1 -->
+                        {{-- <!-- Team T1 -->
                         <div class="col-lg-6">
-                            {{-- <label for="sales_man_id_T1-{{ $rfq->id }}" class="form-label">Sales Manager Name (Team - T1)</label> --}}
+                            <label for="sales_man_id_T1-{{ $rfq->id }}" class="form-label">Sales Manager Name (Team - T1)</label>
                             <select name="sales_man_id_T1" id="sales_man_id_T1-{{ $rfq->id }}" class="form-select" data-control="select2" data-placeholder="Sales Manager Name (Team - T1)" data-allow-clear="true">
                                 <option></option>
                                 @foreach ($users as $manager)
@@ -43,14 +43,14 @@
 
                         <!-- Team T2 -->
                         <div class="col-lg-6">
-                            {{-- <label for="sales_man_id_T2-{{ $rfq->id }}" class="form-label">Sales Manager Name (Team - T2)</label> --}}
+                            <label for="sales_man_id_T2-{{ $rfq->id }}" class="form-label">Sales Manager Name (Team - T2)</label>
                             <select name="sales_man_id_T2" id="sales_man_id_T2-{{ $rfq->id }}" class="form-select" data-control="select2" data-placeholder="Sales Manager Name (Team - T2)" data-allow-clear="true">
                                 <option></option>
                                 @foreach ($users as $manager)
                                 <option value="{{ $manager->id }}">{{ $manager->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- Submit Button -->
                     <div class="mt-4 text-end">
@@ -91,7 +91,7 @@
                             </select>
                         </div>
 
-                        <!-- Team T1 -->
+                        {{-- <!-- Team T1 -->
                         <div class="col-lg-12">
                             <label for="sales_man_id_T1-{{ $quoted_rfq->id }}" class="form-label">Sales Manager Name (Team - T1)</label>
                             <select name="sales_man_id_T1" id="sales_man_id_T1-{{ $quoted_rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
@@ -111,7 +111,7 @@
                                 <option value="{{ $manager->id }}">{{ $manager->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- Submit Button -->
                     <div class="mt-4 text-end">
@@ -152,7 +152,7 @@
                             </select>
                         </div>
 
-                        <!-- Team T1 -->
+                        {{-- <!-- Team T1 -->
                         <div class="col-lg-12">
                             <label for="sales_man_id_T1-{{ $lost_rfq->id }}" class="form-label">Sales Manager Name (Team - T1)</label>
                             <select name="sales_man_id_T1" id="sales_man_id_T1-{{ $lost_rfq->id }}" class="form-select" data-control="select2" data-placeholder="Select Sales Manager" data-allow-clear="true">
@@ -172,7 +172,7 @@
                                 <option value="{{ $manager->id }}">{{ $manager->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- Submit Button -->
                     <div class="mt-4 text-end">

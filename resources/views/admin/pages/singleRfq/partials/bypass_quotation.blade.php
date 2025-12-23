@@ -290,7 +290,7 @@
                                             style="text-align: center;padding: 0.5rem;color: #3d3d3d;font-weight: 400;">
                                             <input type="text" name="vat_text"
                                                 class="form-control form-control-sm bg-transparent text-center"
-                                                value="{{ !empty($quotation->vat_text) ? (optional($quotation)->vat_text : 'GST not included. It may apply.' }}"
+                                                value="{{ !empty($quotation->vat_text) ? (optional($quotation)->vat_text) : 'GST not included. It may apply.' }}"
                                                 style="font-size: 13px;font-family: 'Poppins', sans-serif;color: #3d3d3d;padding: 0px !important;">
                                         </th>
                                     </tr>

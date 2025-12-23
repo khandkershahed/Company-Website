@@ -1,4 +1,3 @@
-
 <x-admin-app-layout :title="'RFQ Dashboard'">
     @include('metronic.pages.rfq.partials.rfq_css')
     <!-- Main Content Start -->
@@ -154,7 +153,7 @@
                                         name="country">
                                         <option></option>
                                         @foreach ($countryWiseRfqs as $country)
-                                        <option value="{{ $country->country }}">{{ $country->country }}</option>
+                                            <option value="{{ $country->country }}">{{ $country->country }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -165,7 +164,7 @@
                                         data-enable-filtering="true" id="filterSalesman" name="salesman">
                                         <option></option>
                                         @foreach ($users as $user)
-                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -176,7 +175,7 @@
                                         data-enable-filtering="true" id="filterCompany" name="company">
                                         <option></option>
                                         @foreach ($companies as $company)
-                                        <option value="{{ $company }}">{{ $company }}</option>
+                                            <option value="{{ $company }}">{{ $company }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -204,14 +203,15 @@
                     <div class="flex-wrap gap-2 d-flex justify-content-between align-items-center">
                         <!-- Year Select -->
                         <div class="flex-grow-1 min-w-100 min-w-md-auto">
-                            <select class="form-select" data-control="select2" data-allow-clear="true"
-                                data-placeholder="Year" name="year" id="filterYear">
+                            <select class="form-select" data-control="select2" data-placeholder="Year"
+                                name="year" id="filterYear">
                                 <option value="{{ date('Y') }}">2025</option>
                                 <option value="2022">2022</option>
                                 <option value="2023">2023</option>
                                 <option value="2024">2024</option>
                                 <option value="2025">2025</option>
                                 <option value="2026">2026</option>
+                                <option value="2027">2027</option>
                             </select>
                         </div>
 
@@ -220,8 +220,9 @@
                             <select class="form-select" data-control="select2" data-placeholder="Month"
                                 name="month" id="filterMonth">
                                 @foreach ($months as $month)
-                                        <option value="{{ $month }}" @selected(\Carbon\Carbon::now()->format('F') === $month)>{{ $month }}</option>
-                                    @endforeach
+                                    <option value="{{ $month }}" @selected(\Carbon\Carbon::now()->format('F') === $month)>
+                                        {{ $month }}</option>
+                                @endforeach
                             </select>
                         </div>
 

@@ -52,7 +52,7 @@ class RFQController extends Controller
         $users = $this->sales_managers;
 
         // Base RFQ query
-        $baseQuery = Rfq::where('rfq_type', 'rfq');
+        $baseQuery = Rfq::where('rfq_type', 'rfq')->where('confirmation', 'approved');
 
         $companies = (clone $baseQuery)->whereNotNull('company_name')->distinct('company_name')->pluck('company_name');
 
@@ -223,7 +223,7 @@ class RFQController extends Controller
     public function filterRFQ(Request $request)
     {
         try {
-            $query = Rfq::where('rfq_type', 'rfq');
+            $query = Rfq::where('rfq_type', 'rfq')->where('confirmation', 'approved');
 
             if ($request->filled('year')) {
                 $query->whereYear('create_date', $request->year);
@@ -549,6 +549,7 @@ class RFQController extends Controller
                     Mail::to($email)->queue(new RFQConfirmationMail($data, $rfq_code));
                 }
             } else {
+                $rfq->update(['confirmation' => 'approved']);
                 Mail::to($request->email)->queue(new RFQNotificationClientMail($data));
 
                 foreach ($user_emails as $email) {
@@ -1282,11 +1283,29 @@ class RFQController extends Controller
     // updateStatus
     public function updateStatus(Request $request, $id)
     {
+        // quotation_pdf upload
+
         $rfq = Rfq::find($id);
         if (!empty($rfq)) {
+
             $rfq->update([
-                'status' => $request->status,
-                'rfq_type' => $request->rfq_type,
+                'status'       => $request->status,
+                'rfq_type'     => $request->rfq_type,
+                'quoted_price' => $request->quoted_price,
+                'rfq_code'     => $request->rfq_code,
+                'pq_code'      => $request->pq_code,
+            ]);
+            if ($request->hasFile('quotation_pdf')) {
+                $file = $request->file('quotation_pdf');
+                $filename = $rfq->rfq_code . '_' . $file->getClientOriginalName();
+                $filePath = 'quotations/' . $filename;
+                Storage::disk('public')->put($filePath, file_get_contents($file));
+            } else {
+                $filename = null;
+            }
+            $rfq->rfqQuotations()->update([
+                'quotation_pdf' => $filename,
+                'pq_code'       => $request->pq_code,
             ]);
             Toastr::success('RFQ status has been updated.');
         } else {
