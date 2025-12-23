@@ -15,7 +15,7 @@
                 </span>
             </div>
         </div>
-        {{-- Breadcrumb --}}
+        {{-- Breadcrumb --}} 
         <div class="d-flex align-items-center">
             <a href="{{ url()->previous() }}" class="px-3 btn btn-sm btn-secondary rounded-3 me-2">
                 <i class="fas fa-chevron-left"></i>

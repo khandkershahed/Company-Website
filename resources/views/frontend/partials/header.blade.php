@@ -434,23 +434,25 @@
                                                     </p>
                                                     @if (!empty($header_features))
                                                         @foreach ($header_features as $header_feature)
-                                                            <div class="col-lg-4 col-sm-12">
-                                                                <div class="pt-4 d-flex align-items-center">
-                                                                    <img src="{{ isset($header_feature->image) && file_exists(public_path('storage/' . $header_feature->image)) ? asset('storage/' . $header_feature->image) : asset('frontend/images/banner-demo.png') }}"
-                                                                        alt=""
-                                                                        style="width:130px;height:70px;">
-                                                                    <div class="ms-3">
-                                                                        <a
-                                                                            href="{{ route('feature.details', $header_feature->slug) }}">
-                                                                            <strong
-                                                                                style="font-size:14px;">{{ Str::limit($header_feature->title, 100) }}</strong>
-                                                                        </a>
-                                                                        <br>
-                                                                        <span>{{ $header_feature->badge }} /
-                                                                            {{ $header_feature->created_at->format('d-m-Y') }}</span>
+                                                            @if (!empty($header_feature->slug))
+                                                                <div class="col-lg-4 col-sm-12">
+                                                                    <div class="pt-4 d-flex align-items-center">
+                                                                        <img src="{{ isset($header_feature->image) && file_exists(public_path('storage/' . $header_feature->image)) ? asset('storage/' . $header_feature->image) : asset('frontend/images/banner-demo.png') }}"
+                                                                            alt=""
+                                                                            style="width:130px;height:70px;">
+                                                                        <div class="ms-3">
+                                                                            <a
+                                                                                href="{{ route('feature.details', $header_feature->slug) }}">
+                                                                                <strong
+                                                                                    style="font-size:14px;">{{ Str::limit($header_feature->title, 100) }}</strong>
+                                                                            </a>
+                                                                            <br>
+                                                                            <span>{{ $header_feature->badge }} /
+                                                                                {{ $header_feature->created_at->format('d-m-Y') }}</span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            @endif
                                                         @endforeach
                                                     @endif
                                                     @if (!empty($header_blog))
