@@ -54,12 +54,14 @@
             z-index: 1000;
         }
 
-        /* Main content area */
+        /* Main content area - Add margin to avoid header overlap */
         .content-wrapper {
-            padding-top: 10px;
-            /* Small padding after header */
-            padding-bottom: 10px;
-            /* Small padding before footer */
+            margin-top: 71px;
+            /* Same as header height */
+            margin-bottom: 85px;
+            /* Same as footer height */
+            min-height: calc(100vh - 156px);
+            /* 100vh minus header+footer */
         }
 
         /* Content styling */
@@ -72,8 +74,8 @@
         /* Force page break when needed */
         .page-break {
             page-break-before: always;
-            padding-top: 71px;
-            /* Reset padding for new page */
+            margin-top: 71px;
+            /* Reset margin for new page */
         }
 
         /* Table styling */
@@ -83,6 +85,12 @@
             margin-top: 40px;
             border: 1px solid #eee;
             font-size: 12px;
+        }
+
+        /* Company info table - Ensure it's below header */
+        .company-info {
+            margin-top: 20px;
+            page-break-inside: avoid;
         }
     </style>
 </head>
@@ -109,9 +117,9 @@
     <!-- Main Content -->
     <div class="content-wrapper">
         <div class="content-area">
-            <!-- Company Info Table -->
-            <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
-                style="border-collapse: collapse;">
+            <!-- Company Info Table - Now with proper margin -->
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="5" class="company-info"
+                style="border-collapse: collapse; margin-top: 0;">
                 <tr>
                     <td style="font-weight: 600; width: 65%; border: none; padding: 0;">
                         {{ $quotation->company_name ?? 'N/A' }}
