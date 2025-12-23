@@ -23,17 +23,15 @@
             width: 210mm;
             box-sizing: border-box;
         }
-
+        
         /* Page margins for header and footer */
         @page {
-            margin-top: 71px;
-            /* Header height + padding */
-            margin-bottom: 85px;
-            /* Footer height + padding */
+            margin-top: 71px;    /* Header height + padding */
+            margin-bottom: 85px; /* Footer height + padding */
             margin-left: 0;
             margin-right: 0;
         }
-
+        
         /* Fixed header for every page */
         .header-fixed {
             position: fixed;
@@ -44,7 +42,7 @@
             background-color: #ae0a46;
             z-index: 1000;
         }
-
+        
         /* Fixed footer for every page */
         .footer-fixed {
             position: fixed;
@@ -53,29 +51,27 @@
             width: 100%;
             z-index: 1000;
         }
-
-        /* Main content area */
+        
+        /* Main content area - Add margin to avoid header overlap */
         .content-wrapper {
-            padding-top: 10px;
-            /* Small padding after header */
-            padding-bottom: 10px;
-            /* Small padding before footer */
+            margin-top: 71px; /* Same as header height */
+            margin-bottom: 85px; /* Same as footer height */
+            min-height: calc(100vh - 156px); /* 100vh minus header+footer */
         }
-
+        
         /* Content styling */
         .content-area {
             padding: 20px 30px;
             border-left: 1px solid #eee;
             border-right: 1px solid #eee;
         }
-
+        
         /* Force page break when needed */
         .page-break {
             page-break-before: always;
-            padding-top: 71px;
-            /* Reset padding for new page */
+            margin-top: 71px; /* Reset margin for new page */
         }
-
+        
         /* Table styling */
         .products-table {
             width: 100%;
@@ -83,6 +79,12 @@
             margin-top: 40px;
             border: 1px solid #eee;
             font-size: 12px;
+        }
+        
+        /* Company info table - Ensure it's below header */
+        .company-info {
+            margin-top: 20px;
+            page-break-inside: avoid;
         }
     </style>
 </head>
@@ -109,9 +111,9 @@
     <!-- Main Content -->
     <div class="content-wrapper">
         <div class="content-area">
-            <!-- Company Info Table -->
-            <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
-                style="border-collapse: collapse;">
+            <!-- Company Info Table - Now with proper margin -->
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="5" class="company-info"
+                style="border-collapse: collapse; margin-top: 0;">
                 <tr>
                     <td style="font-weight: 600; width: 65%; border: none; padding: 0;">
                         {{ $quotation->company_name ?? 'N/A' }}
@@ -121,16 +123,13 @@
                 </tr>
                 <tr>
                     <td style="font-weight: normal; padding-top: 5px; padding-left:0;border: none;">
-                        {{ $quotation->name ?? 'N/A' }} | {{ $quotation->designation ?? 'Sr. Manager' }}
-                    </td>
+                        {{ $quotation->name ?? 'N/A' }} | {{ $quotation->designation ?? 'Sr. Manager' }}</td>
                     <td style="font-weight: normal; padding-top: 5px; padding-left:0;border: none;">Date:
-                        {{ $quotation->quotation_date ?? 'N/A' }}
-                    </td>
+                        {{ $quotation->quotation_date ?? 'N/A' }}</td>
                 </tr>
                 <tr>
                     <td style="font-weight: normal; padding-top: 5px; padding-left:0;border: none;">
-                        {{ $quotation->email ?? 'N/A' }} | {{ $quotation->phone ?? 'N/A' }}
-                    </td>
+                        {{ $quotation->email ?? 'N/A' }} | {{ $quotation->phone ?? 'N/A' }}</td>
                     <td style="font-weight: normal; padding-top: 5px; padding-left:0;border: none;">PQR:
                         {{ $quotation->pqr_code ?? 'N/A' }}
                     </td>
@@ -161,80 +160,77 @@
                 </thead>
                 <tbody>
                     @if ($products->count() > 0)
-                    @foreach ($products as $quotationproduct)
-                    <!-- Add page break after every 20 products (adjust as needed) -->
-                    @if($loop->iteration > 1 && $loop->iteration % 20 == 1)
-                </tbody>
-            </table>
-            <div class="page-break"></div>
-            <table role="presentation" width="100%" cellspacing="0" cellpadding="10" class="products-table">
-                <thead>
-                    <tr style="background-color: #f0f0f0;">
-                        <th style="width:5%; font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">Sl</th>
-                        <th style="width:50%; font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">PRODUCT DESCRIPTION</th>
-                        <th style="width:10%; font-weight: 500; text-align: center; border-bottom: 1px solid #eee;">QTY</th>
-                        <th style="width:20%; font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">UNIT PRICE</th>
-                        <th style="width:15%; font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">TOTAL ({{ $currency }})</th>
-                    </tr>
-                </thead>
-                <tbody>
+                        @foreach ($products as $quotationproduct)
+                            <!-- Add page break after every 20 products (adjust as needed) -->
+                            @if($loop->iteration > 1 && $loop->iteration % 20 == 1)
+                                </tbody></table>
+                                <div class="page-break"></div>
+                                <table role="presentation" width="100%" cellspacing="0" cellpadding="10" class="products-table">
+                                    <thead>
+                                        <tr style="background-color: #f0f0f0;">
+                                            <th style="width:5%; font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">Sl</th>
+                                            <th style="width:50%; font-weight: 500; text-align: left; border-bottom: 1px solid #eee;">PRODUCT DESCRIPTION</th>
+                                            <th style="width:10%; font-weight: 500; text-align: center; border-bottom: 1px solid #eee;">QTY</th>
+                                            <th style="width:20%; font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">UNIT PRICE</th>
+                                            <th style="width:15%; font-weight: 500; text-align: right; border-bottom: 1px solid #eee;">TOTAL ({{ $currency }})</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                            @endif
+                            
+                            <tr>
+                                <td style="text-align: left; border-bottom: 1px solid #eee;">{{ $loop->iteration }}
+                                </td>
+                                <td style="text-align: left; border-bottom: 1px solid #eee;">
+                                    {{ $quotationproduct->product_name }}</td>
+                                <td style="text-align: center; border-bottom: 1px solid #eee;">
+                                    {{ $quotationproduct->qty }}</td>
+                                <td style="text-align: right; border-bottom: 1px solid #eee;">
+                                    {{ number_format(round((float) optional($quotationproduct)->unit_final_price), 2) }}
+                                </td>
+                                <td style="text-align: right; border-bottom: 1px solid #eee;">
+                                    {{ number_format(round((float) optional($quotationproduct)->unit_final_total_price), 2) }}
+                                </td>
+                            </tr>
+                        @endforeach
                     @endif
-
-                    <tr>
-                        <td style="text-align: left; border-bottom: 1px solid #eee;">{{ $loop->iteration }}
-                        </td>
-                        <td style="text-align: left; border-bottom: 1px solid #eee;">
-                            {{ $quotationproduct->product_name }}
-                        </td>
-                        <td style="text-align: center; border-bottom: 1px solid #eee;">
-                            {{ $quotationproduct->qty }}
-                        </td>
-                        <td style="text-align: right; border-bottom: 1px solid #eee;">
-                            {{ number_format(round((float) optional($quotationproduct)->unit_final_price), 2) }}
-                        </td>
-                        <td style="text-align: right; border-bottom: 1px solid #eee;">
-                            {{ number_format(round((float) optional($quotationproduct)->unit_final_total_price), 2) }}
-                        </td>
-                    </tr>
-                    @endforeach
-                    @endif
-
+                    
                     <!-- Summary rows - Only show on last page -->
                     @if($loop->last ?? true)
-                    <tr style="background-color: #eeeeee3d;">
-                        <td colspan="4"
-                            style="text-align: right; font-weight: 600; border-bottom: 1px solid #eee;">Sub-total
-                        </td>
-                        <td style="text-align: right; font-weight: 700; border-bottom: 1px solid #eee;">
-                            {{ number_format(round((float) optional($singleproduct)->sub_total_final_total_price), 2) }}
-                        </td>
-                    </tr>
-                    <tr style="display: {{ optional($quotation)->vat_display == '1' ? 'table-row' : 'none' }};">
-                        <td colspan="4"
-                            style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">
-                            VAT / GST -
-                            {{ optional($singleproduct)->vat_percentage }}%
-                        </td>
-                        <td
-                            style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">
-                            {{ number_format(round((float) optional($singleproduct)->vat_final_total_price ?? '0.00'), 2) }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4"
-                            style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">
-                            Special Discount - {{ optional($singleproduct)->special_discount_percentage }}%</td>
-                        <td
-                            style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">
-                            {{ number_format(round((float) optional($singleproduct)->special_discount_final_total_price ?? '0.00'), 2) }}
-                        </td>
-                    </tr>
-                    <tr style="background-color: #eee;">
-                        <td colspan="4" style="text-align: right; font-weight: 600;">Grand Total</td>
-                        <td style="text-align: right; font-weight: 600;">
-                            {{ number_format(round((float) optional($singleproduct)->total_final_total_price), 2) }}
-                        </td>
-                    </tr>
+                        <tr style="background-color: #eeeeee3d;">
+                            <td colspan="4"
+                                style="text-align: right; font-weight: 600; border-bottom: 1px solid #eee;">Sub-total
+                            </td>
+                            <td style="text-align: right; font-weight: 700; border-bottom: 1px solid #eee;">
+                                {{ number_format(round((float) optional($singleproduct)->sub_total_final_total_price), 2) }}
+                            </td>
+                        </tr>
+                        <tr style="display: {{ optional($quotation)->vat_display == '1' ? 'table-row' : 'none' }};">
+                            <td colspan="4"
+                                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">
+                                VAT / GST -
+                                {{ optional($singleproduct)->vat_percentage }}%
+                            </td>
+                            <td
+                                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">
+                                {{ number_format(round((float) optional($singleproduct)->vat_final_total_price ?? '0.00'), 2) }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"
+                                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">
+                                Special Discount - {{ optional($singleproduct)->special_discount_percentage }}%</td>
+                            <td
+                                style="text-align: right; font-weight: 400; font-size: 12px; border-bottom: 1px solid #eee;">
+                                {{ number_format(round((float) optional($singleproduct)->special_discount_final_total_price ?? '0.00'), 2) }}
+                            </td>
+                        </tr>
+                        <tr style="background-color: #eee;">
+                            <td colspan="4" style="text-align: right; font-weight: 600;">Grand Total</td>
+                            <td style="text-align: right; font-weight: 600;">
+                                {{ number_format(round((float) optional($singleproduct)->total_final_total_price), 2) }}
+                            </td>
+                        </tr>
                     @endif
                 </tbody>
             </table>
@@ -260,23 +256,21 @@
                 style="border-collapse: collapse; margin-top: 5px; font-size: 12px; margin-bottom: 30px;">
                 <tbody>
                     @foreach ($rfq_terms as $term)
-                    <!-- Add page break after every 10 terms (adjust as needed) -->
-                    @if($loop->iteration > 1 && $loop->iteration % 10 == 1)
-                </tbody>
-            </table>
-            <div class="page-break"></div>
-            <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
-                style="border-collapse: collapse; margin-top: 5px; font-size: 12px; margin-bottom: 30px;">
-                <tbody>
-                    @endif
-
-                    <tr>
-                        <td style="font-weight: 500; padding: 5px; border: none; width: 150px;">
-                            {{ $term->title ?? 'N/A' }}
-                        </td>
-                        <td style="font-weight: 500; padding: 5px; border: none; width: 10px;">:</td>
-                        <td style="padding: 5px; border: none;">{{ $term->description ?? 'N/A' }}</td>
-                    </tr>
+                        <!-- Add page break after every 10 terms (adjust as needed) -->
+                        @if($loop->iteration > 1 && $loop->iteration % 10 == 1)
+                            </tbody></table>
+                            <div class="page-break"></div>
+                            <table role="presentation" width="100%" cellspacing="0" cellpadding="5"
+                                style="border-collapse: collapse; margin-top: 5px; font-size: 12px; margin-bottom: 30px;">
+                                <tbody>
+                        @endif
+                        
+                        <tr>
+                            <td style="font-weight: 500; padding: 5px; border: none; width: 150px;">
+                                {{ $term->title ?? 'N/A' }}</td>
+                            <td style="font-weight: 500; padding: 5px; border: none; width: 10px;">:</td>
+                            <td style="padding: 5px; border: none;">{{ $term->description ?? 'N/A' }}</td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -294,8 +288,7 @@
                         style="border-collapse: collapse;">
                         <tr>
                             <td style="font-weight: 600; padding: 5px 30px;">
-                                {{ $quotation->sender_name ?? 'Adan Mahmud' }}
-                            </td>
+                                {{ $quotation->sender_name ?? 'Adan Mahmud' }}</td>
                             <td style="font-weight: normal; padding: 5px 0px;">
                                 {{ $quotation->ngen_email ?? 'sales@ngenitltd.com' }}
                             </td>
@@ -306,8 +299,7 @@
                             </td>
                             <td style="font-weight: normal; padding: 0;">
                                 {{ $quotation->ngen_whatsapp_number ?? '+8801714243446' }}
-                                (What's App)
-                            </td>
+                                (What's App)</td>
                         </tr>
                         <tr>
                             <td style="font-weight: normal; padding: 5px 30px;">Partner & Business Development</td>
@@ -327,8 +319,7 @@
                                         'NGEN PTE LTd.' }}
                                 </h3>
                                 <p style="margin: 0; padding: 0;">
-                                    {{ $quotation->ngen_company_registration_number ?? 'N/A' }}
-                                </p>
+                                    {{ $quotation->ngen_company_registration_number ?? 'N/A' }}</p>
                             </td>
                         </tr>
                     </table>
