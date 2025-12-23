@@ -714,35 +714,7 @@ background: linear-gradient(to top right, #ae0a46 0%, #4e0721 100%); /* Standard
         document.querySelector('.extra-btns').style.left = '0'; // Move button back to the left
     });
 </script> --}}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
 
-        const trigger = document.getElementById('offcanvasTrigger');
-        const offcanvasExample = document.getElementById('offcanvasExample');
-        const extraBtns = document.querySelector('.extra-btns');
-
-        if (trigger && extraBtns) {
-            trigger.addEventListener('click', function() {
-                extraBtns.style.left = '50%';
-            });
-        }
-
-        if (offcanvasExample && extraBtns) {
-            offcanvasExample.addEventListener('hidden.bs.offcanvas', function() {
-                extraBtns.style.left = '0';
-            });
-        }
-
-    });
-</script>
-
-<script>
-    function toggleSidebar() {
-        $('.sidebar_rfq').toggleClass('sidebar_rfq-none');
-        $('.fa-arrow-down-long').toggleClass('d-none');
-        $('.fa-arrow-up-long').toggleClass('d-none');
-    }
-</script>
 
 <!-- JS logic -->
 {{-- <script>
@@ -780,46 +752,78 @@ background: linear-gradient(to top right, #ae0a46 0%, #4e0721 100%); /* Standard
     });
 </script> --}}
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const stickyBar = document.getElementById('stickyBottomBar');
-        const closeBtn = document.getElementById('stickyCloseBtn');
-        const offcanvasEl = document.getElementById('offcanvasBottom');
-        const itemCount = 0;
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
 
-        // If sticky bar doesn't exist on this page, stop
-        if (!stickyBar) {
-            return;
+            const trigger = document.getElementById('offcanvasTrigger');
+            const offcanvasExample = document.getElementById('offcanvasExample');
+            const extraBtns = document.querySelector('.extra-btns');
+
+            if (trigger && extraBtns) {
+                trigger.addEventListener('click', function() {
+                    extraBtns.style.left = '50%';
+                });
+            }
+
+            if (offcanvasExample && extraBtns) {
+                offcanvasExample.addEventListener('hidden.bs.offcanvas', function() {
+                    extraBtns.style.left = '0';
+                });
+            }
+
+        });
+    </script>
+
+    <script>
+        function toggleSidebar() {
+            $('.sidebar_rfq').toggleClass('sidebar_rfq-none');
+            $('.fa-arrow-down-long').toggleClass('d-none');
+            $('.fa-arrow-up-long').toggleClass('d-none');
         }
+    </script>
 
-        // Hide sticky section if no items
-        if (itemCount === 0) {
-            stickyBar.style.display = 'none';
-            return;
-        }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stickyBar = document.getElementById('stickyBottomBar');
+            const closeBtn = document.getElementById('stickyCloseBtn');
+            const offcanvasEl = document.getElementById('offcanvasBottom');
+            const itemCount = 0;
 
-        // Close button click: hide section for 10 seconds (your comment said 1 minute but code was 10s)
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
+            // If sticky bar doesn't exist on this page, stop
+            if (!stickyBar) {
+                return;
+            }
+
+            // Hide sticky section if no items
+            if (itemCount === 0) {
                 stickyBar.style.display = 'none';
-                setTimeout(function() {
-                    stickyBar.style.display = 'block';
-                }, 10000);
-            });
-        }
+                return;
+            }
 
-        // Hide sticky bar when offcanvas opens
-        if (offcanvasEl) {
-            offcanvasEl.addEventListener('show.bs.offcanvas', function() {
-                stickyBar.style.display = 'none';
-            });
+            // Close button click: hide section for 10 seconds (your comment said 1 minute but code was 10s)
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    stickyBar.style.display = 'none';
+                    setTimeout(function() {
+                        stickyBar.style.display = 'block';
+                    }, 10000);
+                });
+            }
 
-            offcanvasEl.addEventListener('hidden.bs.offcanvas', function() {
-                if (itemCount > 0) stickyBar.style.display = 'block';
-            });
-        }
-    });
-</script>
+            // Hide sticky bar when offcanvas opens
+            if (offcanvasEl) {
+                offcanvasEl.addEventListener('show.bs.offcanvas', function() {
+                    stickyBar.style.display = 'none';
+                });
+
+                offcanvasEl.addEventListener('hidden.bs.offcanvas', function() {
+                    if (itemCount > 0) stickyBar.style.display = 'block';
+                });
+            }
+        });
+    </script>
+@endpush
 
 {{-- Feed Back Button --}}

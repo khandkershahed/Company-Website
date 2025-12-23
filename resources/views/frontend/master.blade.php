@@ -63,7 +63,7 @@
         });
     </script>
 
-
+    @stack('scripts')
     {{-- {{ \TawkTo::widgetCode() }} --}}
 
 
