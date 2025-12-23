@@ -232,8 +232,8 @@
     }
 
     .blog-footer {
-        border-top: 1px solid #ae0a46;
-        border-bottom: 1px solid #ae0a46;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -318,8 +318,9 @@
         margin: 0;
         padding: 9px 0 8px;
         font-size: 1.02em;
-        font-weight: 500;
+        font-weight: 400;
         display: block;
+        color: #000;
     }
 
     .research-box-nav-btn {

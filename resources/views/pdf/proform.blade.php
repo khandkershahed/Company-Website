@@ -112,7 +112,7 @@
                 <div class="col-lg-6 float-left headerto padding" style="float: left; margin-top:10px;">
 
                     <div class="col-lg-12 padding">
-                        <img src="http://165.22.48.109/ngenit/upload/logoimage/1755708668937189.png"
+                        <img src="https://www.ngenitltd.com/upload/logoimage/1755708668937189.png"
                         alt="" class="img-responsive" style="height:50px;width: 120px;">
                         <p style="padding:5px; padding-top:0px;font-size: 14px;text-align: left;font-weight: 600;
                             font-size: 14px;">

@@ -2575,7 +2575,8 @@ progress {
     font-size: 1.1rem;
     font-weight: 300;
     line-height: 1.5;
-    color: #5e6278;
+    color: black;
+    font-weight: 400;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #e4e6ef;

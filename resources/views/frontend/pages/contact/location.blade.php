@@ -88,13 +88,13 @@
                     <h3 class="d-lg-none d-sm-block m-0 ps-2">Office Locations</h3>  {{--for only small device--}}
                 </div>
                 <div class="col-lg-6 col-5 text-lg-end text-sm-center">
-                    <select class="country-select" aria-label="Country location list">
+                    {{-- <select class="country-select" aria-label="Country location list">
                         <option value="all" selected>All locations</option>
                         @foreach ($countries as $country)
                             <option value="{{ $country->id }}">{{ $country->country_name }}</option>
                         @endforeach
 
-                    </select>
+                    </select> --}}
                 </div>
             </div>
     </section>

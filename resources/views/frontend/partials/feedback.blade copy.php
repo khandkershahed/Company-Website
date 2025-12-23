@@ -23,7 +23,7 @@
         height: 0.6em;
         padding: 0.25em 0.25em;
         color: #ffff;
-        background: transparent url('{{ asset('images/close.png') }}') center / 0.7em auto no-repeat;
+        background: url('{{ asset('images/close.png') }}') center / 0.7em auto no-repeat;
         border: 0;
         border-radius: 0.375rem;
         opacity: 1;

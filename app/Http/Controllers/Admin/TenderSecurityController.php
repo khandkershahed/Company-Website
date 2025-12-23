@@ -20,8 +20,38 @@ class TenderSecurityController extends Controller
 
         // Stats Calculation
         $totalSecurities = TenderSecurity::count();
-        $pendingSecurities = TenderSecurity::where('status', 'Pending')->count();
-        $returnedSecurities = TenderSecurity::where('status', 'Returned')->count();
+        $totalValue = TenderSecurity::where('status', 'Pending')->sum('amount');
+        $returnedSecurities = TenderSecurity::where('status', 'Returned')->sum('amount');
+
+        // -------------------------------
+        // 🔥 NEW: THIS MONTH & NEXT MONTH
+        // -------------------------------
+
+        $startThisMonth = now()->startOfMonth();
+        $endThisMonth   = now()->endOfMonth();
+
+        $startNextMonth = now()->addMonth()->startOfMonth();
+        $endNextMonth   = now()->addMonth()->endOfMonth();
+
+        // THIS MONTH PENDING
+        $thisMonthPending = TenderSecurity::where('status', 'Pending')
+            ->whereBetween('issue_date', [$startThisMonth, $endThisMonth])
+            ->sum('amount');
+
+        // NEXT MONTH PENDING
+        $nextMonthPending = TenderSecurity::where('status', 'Pending')
+            ->whereBetween('issue_date', [$startNextMonth, $endNextMonth])
+            ->sum('amount');
+
+        // THIS MONTH RETURNED
+        $thisMonthReturned = TenderSecurity::where('status', 'Returned')
+            ->whereBetween('return_date', [$startThisMonth, $endThisMonth])
+            ->sum('amount');
+
+        // NEXT MONTH RETURNED
+        $nextMonthReturned = TenderSecurity::where('status', 'Returned')
+            ->whereBetween('return_date', [$startNextMonth, $endNextMonth])
+            ->sum('amount');
 
         // Get Data (Latest first)
         $tenderSecurities = $query->latest()->paginate(10);
@@ -29,10 +59,15 @@ class TenderSecurityController extends Controller
         return view('metronic.pages.tender_security.index', compact(
             'tenderSecurities',
             'totalSecurities',
-            'pendingSecurities',
-            'returnedSecurities'
+            'totalValue',
+            'returnedSecurities',
+            'thisMonthPending',
+            'nextMonthPending',
+            'thisMonthReturned',
+            'nextMonthReturned'
         ));
     }
+
 
     public function store(Request $request)
     {

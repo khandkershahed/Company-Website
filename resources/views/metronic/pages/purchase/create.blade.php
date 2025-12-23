@@ -522,8 +522,8 @@
                                         <td>
                                             <div class="form-group">
 
-                                                <input type="number" step="0.01" name="tax" id="tax" placeholder="00"
-                                                    class="form-control form-control-sm">
+                                                <input type="number" step="0.01" name="tax" id="tax"
+                                                    placeholder="00" class="form-control form-control-sm">
                                             </div>
                                         </td>
                                     </tr>
@@ -563,13 +563,65 @@
     </div>
     @push('scripts')
         <script>
+            // SAFE WRAPPER (prevents Metronic JS errors from stopping your calculation)
+            try {
+
+                // === Auto Calculation === //
+                function calculateTotals() {
+                    let subtotal = 0;
+
+                    // Loop through all repeater rows
+                    $('.repeater tr').each(function() {
+                        let qty = parseFloat($(this).find("input[name='qty[]']").val()) || 0;
+                        let price = parseFloat($(this).find("input[name='unit_price[]']").val()) || 0;
+                        subtotal += qty * price;
+                    });
+
+                    // Update subtotal field
+                    $("#subtotal").val(subtotal.toFixed(2));
+
+                    // Other editable fields
+                    let shipping = parseFloat($("#shipping").val()) || 0;
+                    let tax = parseFloat($("#tax").val()) || 0;
+                    let others = parseFloat($("#others").val()) || 0;
+
+                    // Total calculation
+                    let total = subtotal + shipping + tax + others;
+
+                    // Update total
+                    $("#total").val(total.toFixed(2));
+                }
+
+                // Trigger calculation on inputs
+                $(document).on("input",
+                    "input[name='qty[]'], input[name='unit_price[]'], #shipping, #tax, #others",
+                    function() {
+                        calculateTotals();
+                    }
+                );
+
+                // Recalculate When Row Added
+                $(document).on('click', '.addRow', function() {
+                    setTimeout(calculateTotals, 200);
+                });
+
+                // Recalculate When Row Removed
+                $(document).on('click', '.removeRow', function() {
+                    setTimeout(calculateTotals, 200);
+                });
+
+            } catch (e) {
+                console.warn("Metronic internal error ignored:", e);
+            }
+        </script>
+        <script>
             $(document).ready(function() {
                 $('.product thead').on('click', '.addRow', function() {
                     var tr = "<tr>" +
                         "<td> <input type='text' class='form-control' name='item_name[]' placeholder='Product Name' required></td>" +
                         "<td> <input type='text' class='form-control' name='qty[]' placeholder='Quantity' required></td>" +
                         "<td> <input type='text' class='form-control' name='unit_price[]' ></td>" +
-                        "<td> <a href='javascript:void(0)' class='btn btn-danger removeRow p-1'><i class='fas fa-trash-alt text-danger'></i></a></td>" +
+                        "<td> <a href='javascript:void(0)' class='removeRow p-1'><i class='fas fa-trash-alt text-danger'></i></a></td>" +
                         "</tr>"
                     $('.repeater').append(tr);
                 });

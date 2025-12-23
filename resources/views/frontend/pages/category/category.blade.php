@@ -18,12 +18,12 @@
                     {{-- <img class="my-3" src="{{ asset('storage/' . $category->image) }}" alt="" height="100px" width="100px"> --}}
                 </div>
                 <!-- heading -->
-                <h1 class="mb-4 text-center text-white single_banner_heading" style="margin-top: 4.5rem;">
+                {{-- <h1 class="mb-4 text-center text-white single_banner_heading" style="margin-top: 4.5rem;">
                     {{ $category->title }}</h1>
-                {{-- <p class="single_banner_text">{{ $data->h2 }}</p> --}}
+                <p class="single_banner_text">{{ $data->h2 }}</p>
                 <div class="mb-2 text-center single_buttton_wrapper">
                     <a href="{{ route('custom.product', $category->slug) }}" class="btn-color">Shop all
-                        {{ $category->title }}</a>
+                        {{ $category->title }}</a> --}}
 
                 </div>
             </div>

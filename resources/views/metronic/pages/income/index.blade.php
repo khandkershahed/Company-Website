@@ -15,8 +15,8 @@
             <div class="card-body py-3">
                 <div class="table-responsive">
                     <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
-                        <thead>
-                            <tr class="fw-bold text-muted">
+                        <thead style="background:aliceblue;">
+                            <tr class="fw-bold text-black">
                                 <th class="w-25px">#</th>
                                 <th class="min-w-100px">Date</th>
                                 <th class="min-w-150px">Client / RFQ</th>
@@ -56,18 +56,14 @@
                                         data-po="{{ $income->po_reference }}"
                                         data-amount="{{ $income->amount }}"
                                         data-bs-toggle="modal" data-bs-target="#editModal">
-                                        <i class="ki-duotone ki-pencil fs-2">
-                                            <span class="path1"></span><span class="path2"></span>
-                                        </i>
+                                        <i class="fas fa-pencil fs-2"></i>
                                     </button>
-                                    
+
                                     <form action="{{ route('admin.incomes.destroy', $income->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure?')">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-icon btn-bg-light btn-active-color-danger btn-sm">
-                                            <i class="ki-duotone ki-trash fs-2">
-                                                <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span>
-                                            </i>
+                                            <i class="fas fa-trash fs-2"></i>
                                         </button>
                                     </form>
                                 </td>
@@ -98,7 +94,7 @@
                         <div class="mb-13 text-center">
                             <h1 class="mb-3">Add Income</h1>
                         </div>
-                        
+
                         <div class="row g-9 mb-8">
                             <div class="col-md-6">
                                 <label class="required fs-6 fw-semibold mb-2">Date</label>
@@ -169,7 +165,7 @@
                         <div class="mb-13 text-center">
                             <h1 class="mb-3">Edit Income</h1>
                         </div>
-                        
+
                         <div class="row g-9 mb-8">
                             <div class="col-md-6">
                                 <label class="required fs-6 fw-semibold mb-2">Date</label>

@@ -185,10 +185,23 @@ class TenderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    // public function show(Request $request)
+    // {
+    //     $tender = Tender::with('responsiblePerson')->findOrFail($request->id);
+
+    //     $html = view('metronic.pages.tender.partials.show', compact('tender'))->render();
+
+    //     return response()->json(['html' => $html]);
+    // }
+    public function publicShare($id)
     {
-        //
+        $tender = Tender::with('responsiblePerson')->where('tender_code',$id)->first();
+
+        return view('metronic.pages.tender.partials.publicShare', compact('tender'));
     }
+
+
+
 
     /**
      * Show the form for editing the specified resource.

@@ -62,13 +62,13 @@
                         <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="col-lg-12">
                                 <div class="card">
-                                    <div class="py-5 card-header align-items-center w-100" style="background-color: #0b6476;">
+                                    <div class="py-5 card-header align-items-center w-100" style="background-color: beige;">
                                         <div class="d-flex justify-content-between align-items-center w-100">
-                                            <h6 class="mb-0 text-center text-white">All Industrial Sectors</h6>
+                                            <h6 class="mb-0 text-center text-black">All Industrial Sectors</h6>
                                             <div class="">
                                                 <a href="javascript:void(0);"
                                                    data-bs-toggle="modal" data-bs-target="#addSector"
-                                                   class="bg-white border btn navigation_btn btn-sm">
+                                                   class="btn navigation_btn btn-sm btn-outline btn-outline-info btn-active-info">
                                                     <div class="d-flex align-items-center">
                                                         <i class="fa-solid fa-plus me-1"></i>
                                                         <span>Add New Sector</span>
@@ -122,7 +122,7 @@
                                                                     <i class="fa-solid fa-trash-alt text-danger dash-icons"></i>
                                                                 </a>
 
-                                                                
+
                                                             </td>
                                                         </tr>
                                                     @empty

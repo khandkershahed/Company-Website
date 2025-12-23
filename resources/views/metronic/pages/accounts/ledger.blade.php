@@ -6,7 +6,7 @@
                     <span class="card-label fw-bold fs-3 mb-1">General Ledger</span>
                     <span class="text-muted mt-1 fw-semibold fs-7">Combined view of all financial transactions</span>
                 </h3>
-                
+
                 {{-- Date Filter Form --}}
                 <div class="card-toolbar">
                     <form action="{{ route('admin.accounts.ledger') }}" method="GET" class="d-flex align-items-center">
@@ -25,12 +25,12 @@
                     </form>
                 </div>
             </div>
-            
+
             <div class="card-body py-3">
                 <div class="table-responsive">
                     <table class="table table-row-bordered table-hover align-middle gs-0 gy-4">
                         <thead class="bg-light">
-                            <tr class="fw-bold text-muted">
+                            <tr class="fw-bold text-black">
                                 <th class="ps-4 min-w-100px">Date</th>
                                 <th class="min-w-100px">Type</th>
                                 <th class="min-w-150px">Party / Client</th>
@@ -41,11 +41,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php 
+                            @php
                                 $totalCredit = 0;
                                 $totalDebit = 0;
                             @endphp
-                            
+
                             @forelse($ledger as $row)
                                 @php
                                     $isIncome = $row->txn_type === 'Income';

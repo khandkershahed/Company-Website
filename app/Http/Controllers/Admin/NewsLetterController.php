@@ -50,7 +50,7 @@ class NewsLetterController extends Controller
             NewsLetter::create([
                 'email'    => $request->email,
             ]);
-            Toastr::success('Your Email has been saved in our company Successfully');
+            Toastr::success('Your Email has been saved Successfully');
         } else {
             $messages = $validator->messages();
             foreach ($messages->all() as $message) {
