@@ -1201,11 +1201,14 @@ class RFQController extends Controller
         }
 
         // Get users and emails
-        $users = User::whereJsonContains('department', ['business', 'logistics'])->get();
-        $user_emails = User::whereJsonContains('department', ['business', 'logistics'])
-            ->whereIn('role', ['manager', 'admin'])
-            ->pluck('email')
-            ->toArray();
+        // $users = User::whereJsonContains('department', ['business', 'logistics'])->get();
+
+        // $user_emails = User::whereJsonContains('department', ['business', 'logistics'])
+        //     ->whereIn('role', ['manager', 'admin'])
+        //     ->pluck('email')
+        //     ->toArray();
+        $users = $this->sales_managers;
+        $user_emails = $this->rfq_user_emails;
 
         // Send internal notification
         Notification::send($users, new RfqCreate($rfq->name, $rfq->rfq_code));
@@ -1246,7 +1249,10 @@ class RFQController extends Controller
             'link'                  => route('admin.single-rfq.show', $rfq->rfq_code),
         ];
         try {
-            $rfq->update(['confirmation' => 'approved']);
+            $rfq->update([
+                'confirmation' => 'approved',
+                'confirmed_by' => Auth::user()->name,
+            ]);
             // Email client
             Mail::to($rfq->email)->queue(new RFQNotificationClientMail($data));
             // Email admins (you should ideally queue this)
