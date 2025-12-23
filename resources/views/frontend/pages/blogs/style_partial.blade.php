@@ -232,8 +232,8 @@
     }
 
     .blog-footer {
-        border-top: 1px solid #ae0a46;
-        border-bottom: 1px solid #ae0a46;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
         display: flex;
         justify-content: space-between;
         align-items: center;
