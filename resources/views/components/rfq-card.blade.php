@@ -117,9 +117,9 @@
                         {{ $rfq->isAssigned() ? 'disabled' : '' }}>
                         {{ $rfq->isAssigned() ? 'Already Assigned' : 'Assign' }}
                     </button>
-                    <button class="btn btn-sm btn-primary" style="background-color: {{ $quoted_rfq->status == 'quoted' ? 'green' : '#296088' }};"
+                    <button class="btn btn-sm btn-primary" style="background-color: {{ $rfq->status == 'quoted' ? 'green' : '#296088' }};"
                         onclick="window.location.href='{{ route('admin.single-rfq.quoation_mail', $rfq->rfq_code) }}';">
-                        {{ $quoted_rfq->status == 'quoted' ? 'Quoted' : 'Quote' }}
+                        {{ $rfq->status == 'quoted' ? 'Quoted' : 'Quote' }}
                     </button>
                 </div>
             </div>
