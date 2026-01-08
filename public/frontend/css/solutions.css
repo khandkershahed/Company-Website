@@ -593,12 +593,14 @@
     background: transparent;
     overflow: hidden;
     position: relative;
-    padding-top: 40px;
+    padding-top: 60px;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     z-index: 1;
-    /* height: 100vh; */
+    height: 525px;
+    width: 100%;
+    
 }
 .st-two-hero-content .sub-title {
     font-size: 18px;
@@ -718,7 +720,7 @@
     display: inline-block;
     overflow: hidden;
     transform: perspective(0) translateZ(0);
-    background: linear-gradient(190deg, #ff5538 0%, #f5573bbf 90%);
+    background: linear-gradient(190deg, #ae0a46 0%, #f5573bbf 90%);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
     border-color: transparent;
     color: #ffffff;
@@ -801,6 +803,7 @@
     padding: 30px 40px 40px;
     margin-top: 30px;
     transition: all 0.3s linear;
+    height: 620px;
 }
 .st-two-f-card img {
     height: 80px;
@@ -1106,7 +1109,7 @@
     top: 0;
     background: #e1e1e1;
     width: 1px;
-    height: 350px;
+    height: 255px;
 }
 
 .st-two-about-section-02 .about-02-right p {
@@ -1528,8 +1531,8 @@
 /* Solution Template Three End */
 /* Solution Template Four */
 .st-four-hero-section-02 {
-    padding-top: 185px;
-    padding-bottom: 310px;
+    padding-top: 115px;
+    padding-bottom: 160px;
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -1604,7 +1607,7 @@
     position: absolute;
     left: 0;
     top: 50%;
-    background: #ff5538;
+    background: #ae0a46;
     height: 255px;
     width: 10px;
     transform: translateY(-50%);
@@ -1630,7 +1633,7 @@
     line-height: 80px;
     text-align: center;
     font-size: 14px;
-    color: #ff5538;
+    color: #ae0a46;
     background: #ffffff;
     border-radius: 50%;
 }
@@ -1678,7 +1681,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    color: #ff5538;
+    color: #ae0a46;
 }
 
 .st-four-about-section-03 .about-content-03 .about-quote .blockquote p {
@@ -1715,7 +1718,7 @@
     .about-list-item-02
     .title
     i {
-    color: #ff5538;
+    color: #ae0a46;
     margin-right: 7px;
 }
 
@@ -1738,7 +1741,7 @@
 .st-four-about-section-03 .about-img-warp-3 .shape-1 {
     width: 520px;
     height: 490px;
-    background: #ff5538;
+    background: #ae0a46;
     position: absolute;
     left: 85px;
     bottom: -30px;
@@ -1823,7 +1826,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    color: #ff5538;
+    color: #ae0a46;
 }
 .st-four-service-section-02 {
     background: #f8f8f8;
@@ -1833,13 +1836,14 @@
 }
 
 .st-four-service-section-02 .service-item-02 {
-    background: #ffffff;
+        background: #ffffff;
     box-shadow: 0px 43px 100px 0px rgba(0, 0, 0, 0.13);
     border-radius: 10px;
     padding: 40px 45px 45px;
-    margin-top: 30px;
+    margin-top: 30px !important;
     overflow: hidden;
     position: relative;
+    height: 100%;
 }
 
 .st-four-service-section-02 .service-item-02 .service-img {
@@ -1858,7 +1862,7 @@
     position: absolute;
     left: 0;
     top: -22%;
-    background: #ff5538;
+    background: #ae0a46;
     width: 5.1rem;
     height: 5.1rem;
     border-radius: 50%;
@@ -1896,7 +1900,7 @@
 }
 
 .st-four-service-section-02 .service-item-02:hover .service-content .title a {
-    color: #ff5538;
+    color: #ae0a46;
 }
 
 .st-four-service-section-02 .more-service-content {
@@ -1910,7 +1914,7 @@
 
 .st-four-service-section-02 .more-service-content p a {
     font-weight: 600;
-    color: #ff5538;
+    color: #ae0a46;
 }
 
 .st-four-service-section-02 .more-service-content p a i {
@@ -1965,7 +1969,7 @@
 }
 
 .st-four-section-title .sub-title.color-2 {
-    color: #ff5538;
+    color: #ae0a46;
 }
 
 .st-four-section-title .sub-title.color-3 {
@@ -2066,7 +2070,7 @@
 .st-four-skill-section .skill-right .experience .number {
     font-size: 180px;
     line-height: 30px;
-    color: #ff5538;
+    color: #ae0a46;
     margin-right: 10px;
     font-family: "Heebo", Arial, sans-serif !important;
     font-weight: bold;
@@ -2086,7 +2090,7 @@
     left: 0;
     height: 6px;
     border-radius: 0px;
-    background: #ff5538;
+    background: #ae0a46;
     transition: 3s;
     transition-delay: 1s;
     width: 0;
@@ -2124,7 +2128,7 @@
     position: absolute;
     left: 0;
     top: 50%;
-    background: #ff5538;
+    background: #ae0a46;
     height: 150px;
     width: 4px;
     transform: translateY(-50%);
@@ -2145,7 +2149,7 @@
 
   .st-four-contact-section .contact-wrap .contact-info ul li .contact-info-item .contact-info-icon i {
     font-size: 50px;
-    color: #ff5538;
+    color: #ae0a46;
   }
 
   @media only screen and (max-width: 575px) {
@@ -2217,7 +2221,7 @@
     font-family: "Heebo", Arial, sans-serif;
     font-weight: 700;
     text-transform: uppercase;
-    color: #ff5538;
+    color: #ae0a46;
   }
 
   .st-four-contact-section .contact-wrap .contact-form .contact-form-wrap .heading-wrap .title {
@@ -2433,7 +2437,7 @@
   }
 
   .st-four-subscribe-section .subscribe-wrap {
-    background: #ff5538;
+    background: #ae0a46;
     border-radius: 10px;
     padding: 40px 110px;
     padding-left: 40px;
@@ -2612,7 +2616,7 @@
     line-height: 45px;
     font-size: 14px;
     padding: 0 40px;
-    background: #ff5538;
+    background: #ae0a46;
     color: #ffffff;
 }
 .st-four-about-section-03 .about-content-03 .about-list-02 .about-list-item-02 .title {

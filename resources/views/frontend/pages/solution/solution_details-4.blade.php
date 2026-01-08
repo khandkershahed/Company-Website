@@ -52,7 +52,7 @@
                 !empty($solution->row_four_col_two_description) ||
                 !empty($solution->row_four_big_image) ||
                 !empty($solution->row_four_small_image))
-            <div class="st-four-about-section-03 section-padding-02 pt-5">
+            <div class="pt-5 st-four-about-section-03 section-padding-02">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-6">
@@ -60,13 +60,13 @@
                             <div class="about-content-03">
                                 <div class="st-four-section-title">
                                     <h3 class="sub-title color-2">{{ $solution->row_four_badge }}</h3>
-                                    <h2 class="title mt-2">{{ $solution->row_four_title }}</h2>
+                                    <h2 class="mt-2 title">{{ $solution->row_four_title }}</h2>
                                 </div>
                                 <p class="text">{{ $solution->row_four_header }}</p>
                                 <div class="about-quote">
-                                    <blockquote class="blockquote">
+                                    <!-- <blockquote class="blockquote"> -->
                                         <p>{{ $solution->row_four_quote }}</p>
-                                    </blockquote>
+                                    <!-- </blockquote> -->
                                 </div>
                                 <!-- About List Start -->
                                 <div class="about-list-02">
@@ -127,9 +127,9 @@
                 <div class="container">
                     <!-- Service Wrap Start -->
                     <div class="service-wrap">
-                        <div class="st-four-section-title text-center">
+                        <div class="text-center st-four-section-title">
                             <h3 class="sub-title color-2">{{ $solution->row_three_title }}</h3>
-                            <h2 class="title mt-2">{{ $solution->row_three_header }}</h2>
+                            <h2 class="mt-2 title">{{ $solution->row_three_header }}</h2>
                         </div>
                         <!-- Service Content Wrap Start -->
                         <div class="service-content-wrap">
@@ -163,7 +163,7 @@
                                 @if (!empty($solution->row_two_column_two_title) || !empty($solution->row_two_column_two_description))
                                     <div class="col-xl-3 col-sm-6">
                                         <!-- Service Item Start -->
-                                        <div class="service-item-02 service-2">
+                                        <div class="mt-2 service-item-02 service-2">
                                             @if (
                                                 !empty($solution->row_two_column_two_image) &&
                                                     file_exists(public_path('storage/' . $solution->row_two_column_two_image)))
@@ -241,7 +241,7 @@
                             </div>
                             {{-- <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="more-service-content text-center">
+                                    <div class="text-center more-service-content">
                                         <p>Learn more about <a href="service.html">More Services <i
                                                     class="fas fa-long-arrow-alt-right"></i></a></p>
                                     </div>
@@ -272,7 +272,7 @@
                                         <h2 class="title">{{ $solution->row_five_title }} </h2>
                                     </div>
                                     <p>{{ $solution->row_five_description }}</p>
-                                    @if (!empty($solution->row_five_header))
+                                    <!-- @if (!empty($solution->row_five_header))
                                         <div style="padding: 10px;border-radius: 5px 30px;">
                                             <h4>
                                                 <img style="margin-top: -2rem;"
@@ -282,7 +282,7 @@
                                                     alt="">
                                             </h4>
                                         </div>
-                                    @endif
+                                    @endif -->
                                     @if (!empty($solution->row_five_btn_name) && !empty($solution->row_five_link))
                                         <div class="skill-author">
                                             <div class="st-three-hero">
@@ -432,7 +432,7 @@
                 </div>
             </div>
         @endif
-        <div class="section st-four-contact-section section-padding pt-5">
+        <div class="pt-5 section st-four-contact-section section-padding">
             <div class="container">
                 <!-- Contact Wrap Start -->
                 <div class="contact-wrap" style="background-image: url({{ asset('images/contact-shape-4.png') }});">
@@ -451,7 +451,7 @@
                                                 <i class="fa-solid fa-phone"></i>
                                             </div>
                                             <div class="contact-info-text">
-                                                <h4 class="title my-1 mt-0">Contact Number</h4>
+                                                <h4 class="my-1 mt-0 title">Contact Number</h4>
                                                 @if (!empty($setting->phone_one))
                                                     <p class="mb-1">{{ $setting->phone_one }}</p>
                                                 @endif
@@ -469,7 +469,7 @@
                                                 <i class="fa-solid fa-envelope"></i>
                                             </div>
                                             <div class="contact-info-text">
-                                                <h4 class="title my-1">Our Mail</h4>
+                                                <h4 class="my-1 title">Our Mail</h4>
                                                 @if (!empty($setting->support_email))
                                                     <p>{{ $setting->support_email }}</p>
                                                 @endif
@@ -499,7 +499,7 @@
                         <div class="col-xxl-7 col-lg-6">
                             <div class="contact-form">
                                 <div class="contact-form-wrap">
-                                    <div class="heading-wrap text-center">
+                                    <div class="text-center heading-wrap">
                                         <span class="sub-title">Leave us massage</span>
                                         <h3 class="title">How May We Help You!</h3>
                                     </div>
@@ -531,7 +531,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-12">
-                                                <div class="text-center mt-2 g-recaptcha d-flex justify-content-center"
+                                                <div class="mt-2 text-center g-recaptcha d-flex justify-content-center"
                                                     data-sitekey="{{ config('app.recaptcha_site_key') }}"></div>
                                             </div>
                                             <div class="col-sm-12">

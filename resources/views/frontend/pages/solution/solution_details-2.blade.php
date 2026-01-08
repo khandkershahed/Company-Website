@@ -53,8 +53,8 @@
             <div class="container py-5">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="text-center py-5">
-                            <p class="text-primary">{{ $solution->row_three_title }}</p>
+                        <div class="py-5 text-center">
+                            <!-- <p class="text-primary">{{ $solution->row_three_title }}</p> -->
                             <h1>{{ $solution->row_three_header }}</h1>
                         </div>
                     </div>
@@ -139,14 +139,14 @@
     {{-- Call To Action Start --}}
     @if (!empty($solution->row_five_title))
         <section>
-            <div class="section st-two-cta-section section-padding">
+            <div class="section st-two-cta-section section-padding" style="background: #eeeeee;">
                 <div class="shape-1"></div>
                 <div class="container">
                     <div class="cta-wrap">
                         <div class="cta-icon">
                             <img src="{{ asset('images/cta-icon1.png') }}" alt="">
                         </div>
-                        <div class="cta-content text-center">
+                        <div class="text-center cta-content">
                             <p>{{ $solution->row_five_title }} <a href="{{ route('contact') }}">Let’s talk with us</a></p>
                         </div>
                     </div>
@@ -167,17 +167,17 @@
             style="background-image: url({{ asset('images/about-bg.png') }});">
             <div class="container-fluid">
                 <div class="container">
-                    <div class="row">
+                    <div class="row align-items-center">
                         <div class="col-lg-6">
                             <!-- About Image Wrap Start -->
                             <div class="about-img-wrap">
                                 <div class="about-img about-img-big">
                                     <img src="{{ !empty($solution->row_four_big_image) && file_exists(public_path('storage/' . $solution->row_four_big_image)) ? asset('storage/' . $solution->row_four_big_image) : asset('images/about-1.jpg') }}"
-                                        class="rounded-3" alt="">
+                                        class="rounded-3" style="width: 680px;" alt="">
                                 </div>
                                 <div class="about-img about-img-sm">
                                     <img src="{{ !empty($solution->row_four_small_image) && file_exists(public_path('storage/' . $solution->row_four_small_image)) ? asset('storage/' . $solution->row_four_small_image) : asset('images/about-2.jpg') }}"
-                                        class="rounded-3 shadow-sm" alt="">
+                                        class="shadow-sm rounded-3" style="width: 335px;" alt="">
                                     <div class="shape-01"></div>
                                 </div>
                             </div>
@@ -218,7 +218,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             <!-- About Left Start -->
-                            <div class="about-02-left text-center">
+                            <div class="text-start about-02-left">
                                 <div class="section-title">
                                     <h2 class="title">{{ $solution->row_four_col_one_title }}</h2>
                                 </div>
