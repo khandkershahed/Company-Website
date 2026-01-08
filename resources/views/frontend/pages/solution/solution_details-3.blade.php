@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/solutions.css') }}">
     <div class="st-template-3">
         {{-- Solution Tree Hero Section --}}
-        <section class="st-three-hero p-5 pb-0">
+        <section class="p-5 pb-0 st-three-hero">
             <div class="st-three-hero-wrap"
                 style="background-image: url({{ !empty($solution->banner_image) && file_exists(public_path('storage/' . $solution->banner_image)) ? asset('storage/' . $solution->banner_image) : asset('images/hero-bg3.jpg') }})">
                 <div class="container">
@@ -49,22 +49,22 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="about-wrap">
-                                <div class="section-three-title text-center">
+                                <div class="text-center section-three-title">
                                     <h3 class="sub-title">{{ $solution->row_four_badge }}</h3>
                                     <h2 class="title">{{ $solution->row_four_link }}</h2>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-5 pt-5">
+                    <div class="pt-5 mt-5 row">
                         <div class="col-lg-6">
                             <div class="st-three-about-img-wrap">
                                 <div class="st-three-about-img st-three-about-img-big">
-                                    <img src="{{ !empty($solution->row_four_big_image) && file_exists(public_path('storage/' . $solution->row_four_big_image)) ? asset('storage/' . $solution->row_four_big_image) : asset('images/about-big3.jpg') }}"
+                                    <img class="img-fluid" src="{{ !empty($solution->row_four_big_image) && file_exists(public_path('storage/' . $solution->row_four_big_image)) ? asset('storage/' . $solution->row_four_big_image) : asset('images/about-big3.jpg') }}"
                                         alt="">
                                 </div>
                                 <div class="st-three-about-img st-three-about-img-sm">
-                                    <img src="{{ !empty($solution->row_four_small_image) && file_exists(public_path('storage/' . $solution->row_four_small_image)) ? asset('storage/' . $solution->row_four_small_image) : asset('images/about-sm3.jpg') }}"
+                                    <img class="img-fluid" src="{{ !empty($solution->row_four_small_image) && file_exists(public_path('storage/' . $solution->row_four_small_image)) ? asset('storage/' . $solution->row_four_small_image) : asset('images/about-sm3.jpg') }}"
                                         alt="">
                                     <div class="shape-01"></div>
                                 </div>
@@ -75,7 +75,7 @@
                                 <p class="title">{{ $solution->row_four_title }}</p>
                                 <p class="text">{{ $solution->row_four_header }}</p>
                                 <div class="mt-5">
-                                    <div class="d-flex align-items-center mb-5">
+                                    <div class="mb-5 d-flex align-items-center">
                                         @if (!empty($solution->count_one_icon))
                                             <div>
                                                 {{-- <img src="{{ asset('images/about-icon-3-1.png') }}" alt=""> --}}
@@ -88,7 +88,7 @@
                                             <p class="mb-0">{{ $solution->row_four_col_one_description }}</p>
                                         </div>
                                     </div>
-                                    <div class="d-flex align-items-center mb-5">
+                                    <div class="mb-5 d-flex align-items-center">
                                         @if (!empty($solution->count_two_icon))
                                             <div>
                                                 <img src="{{ asset('storage/' . $solution->count_two_icon) }}"
@@ -108,7 +108,7 @@
             </section>
         @endif
         <section>
-            <div class="st-three-cta-section-03 pt-4">
+            <div class="pt-4 st-three-cta-section-03">
                 <div class="container">
                     <!-- Cta Wrap Start -->
                     <div class="cta-wrap" style="background-image: url({{ asset('images/cta-bg3-2.jpg') }});">
@@ -117,14 +117,14 @@
                                 <!-- Cta Content Start -->
                                 <div class="cta-content">
                                     <div class="section-title">
-                                        <h2 class="title text-white">{{ $solution->row_five_title }}</h2>
+                                        <h2 class="text-white title">{{ $solution->row_five_title }}</h2>
                                     </div>
                                 </div>
                                 <!-- Cta Content End -->
                             </div>
                             <div class="col-lg-5">
                                 <!-- Cta Button Start -->
-                                <div class="cta-info text-center">
+                                <div class="text-center cta-info">
                                     <div class="cta-icon">
                                         <img src="{{ asset('images/cta-icon3-2.png') }}" alt="">
                                     </div>
@@ -153,15 +153,15 @@
             !empty($solution->row_two_column_four_image) ||
             !empty($solution->row_two_column_four_title) ||
             !empty($solution->row_two_column_four_description))
-            <section class="section-padding pb-0"
+            <section class="pb-0 section-padding"
                 style="margin-top: 300px; background-image: url({{ asset('images/service-bg3.jpg') }})">
                 <div class="container st-three-services-section">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="card p-5 border-0 shadow-sm">
+                            <div class="p-5 border-0 shadow-sm card">
                                 <div class="card-body">
-                                    <div class="text-center py-5 pt-0">
-                                        <p class="text-primary uppercase">{{ $solution->row_three_title }}</p>
+                                    <div class="py-5 pt-0 text-center">
+                                        <p class="uppercase text-primary">{{ $solution->row_three_title }}</p>
                                         <h3 class="fw-bold">{{ $solution->row_three_header }}</h3>
                                     </div>
                                     <div>
@@ -244,7 +244,7 @@
                                 @if (!empty($solution->count_one_number) || !empty($solution->count_one_text))
                                     <div class="col-lg-3 col-sm-6">
                                         <!-- Single Counter Start -->
-                                        <div class="st-three-single-counter-02 text-center">
+                                        <div class="text-center st-three-single-counter-02">
                                             <span class="counter">{{ $solution->count_one_number }}</span>
                                             <p>{{ $solution->count_one_text }}</p>
                                         </div>
@@ -254,7 +254,7 @@
                                 @if (!empty($solution->count_two_number) || !empty($solution->count_two_text))
                                     <div class="col-lg-3 col-sm-6">
                                         <!-- Single Counter Start -->
-                                        <div class="st-three-single-counter-02 text-center">
+                                        <div class="text-center st-three-single-counter-02">
                                             <span class="counter">{{ $solution->count_two_number }}</span>
                                             <p>{{ $solution->count_two_text }}</p>
                                         </div>
@@ -264,7 +264,7 @@
                                 @if (!empty($solution->count_three_number) || !empty($solution->count_three_text))
                                     <div class="col-lg-3 col-sm-6">
                                         <!-- Single Counter Start -->
-                                        <div class="st-three-single-counter-02 text-center">
+                                        <div class="text-center st-three-single-counter-02">
                                             <span class="counter">{{ $solution->count_three_number }}</span>
                                             <p>{{ $solution->count_three_text }}</p>
                                         </div>
@@ -274,7 +274,7 @@
                                 @if (!empty($solution->count_four_number) || !empty($solution->count_four_text))
                                     <div class="col-lg-3 col-sm-6">
                                         <!-- Single Counter Start -->
-                                        <div class="st-three-single-counter-02 text-center">
+                                        <div class="text-center st-three-single-counter-02">
                                             <span class="counter">{{ $solution->count_four_number }}</span>
                                             <p>{{ $solution->count_four_text }}</p>
                                         </div>
