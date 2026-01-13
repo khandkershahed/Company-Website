@@ -3,7 +3,7 @@
     @include('frontend.pages.blogs.style_partial')
     <main style="background-color: #dcecfa" class="py-0 pb-5 py-lg-5">
         <div class="container pb-5" style="background-color: #dcecfa" class="py-0 pb-5 py-lg-5">
-            <div class="py-5 row">
+            {{-- <div class="py-5 row">
                 <div class="col-lg-12">
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
@@ -11,7 +11,7 @@
                             <span>/</span>
                             <span><a href="javascript:void(0);" class="breadcrumbs-blogs">{{ $blog->title }}</a></span>
                         </div>
-                        {{-- <div>
+                        <div>
                             <button id="subscribeBtn" class="btn btn-subscibe rounded-pill">Subscribe</button>
                             <form id="subscriptionForm" action="{{ route('newsletter.store') }}" method="post"
                                 style="display: none;">
@@ -23,10 +23,10 @@
                                 </div>
                             </form>
 
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="row blog-details">
                 <div class="col-lg-12">
                     <div class="card contents">
