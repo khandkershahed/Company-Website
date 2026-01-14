@@ -218,7 +218,7 @@
                         </div>
                         <div class="mb-7">
                             <x-metronic.label class="form-label">Column four Description</x-metronic.label>
-                            <textarea name="row_two_column_four_description" rows="5" class="mb-2 form-control" placeholder="Header">{{ old('row_two_column_four_description', $solution->row_two_column_four_description) }}
+                            <textarea name="row_two_column_four_description" rows="5" class="ckeditor mb-2 form-control" placeholder="Header">{{ old('row_two_column_four_description', $solution->row_two_column_four_description) }}
                             </textarea>
                         </div>
                         <div class="mb-7">

@@ -63,7 +63,7 @@
                 </div>
                 <div class="col-lg-12 mb-7">
                     <x-metronic.label class="form-label required">Header</x-metronic.label>
-                    <textarea name="row_two_header" class="mb-2 form-control" rows="8" placeholder="Header">{{ old('row_two_header', $solution->row_two_header) }}
+                    <textarea name="row_two_header" class="ckeditor mb-2 form-control" rows="8" placeholder="Header">{{ old('row_two_header', $solution->row_two_header) }}
                     </textarea>
                 </div>
             </div>
@@ -71,9 +71,11 @@
             <div class="tab-pane fade" id="template_one_section_two" role="tabpanel">
                 <div class="col-lg-12 mb-7">
                     <x-metronic.label class="form-label required">Section Header</x-metronic.label>
-                    <x-metronic.input type="text" name="header" class="mb-2 form-control"
+                    <textarea name="header" class="ckeditor mb-2 form-control" rows="8" placeholder="Section Header">{{ old('header', $solution->header) }}
+                    </textarea>
+                    {{-- <x-metronic.input type="text" name="header" class="mb-2 form-control"
                         placeholder="Section Header" :value="old('header', $solution->header)">
-                    </x-metronic.input>
+                    </x-metronic.input> --}}
                 </div>
                 <div class="row">
                     <div class="col-lg-6 mb-7 border">
@@ -114,7 +116,7 @@
                         </div>
                         <div class="mb-7">
                             <x-metronic.label class="form-label">Column two Description</x-metronic.label>
-                            <textarea name="row_two_column_two_description" rows="5" class="ckeditormb-2 form-control" placeholder="Header">{{ old('row_two_column_two_description', $solution->row_two_column_two_description) }}
+                            <textarea name="row_two_column_two_description" rows="5" class="ckeditor mb-2 form-control" placeholder="Header">{{ old('row_two_column_two_description', $solution->row_two_column_two_description) }}
                             </textarea>
                         </div>
                         <div class="mb-7">
@@ -185,7 +187,7 @@
                 </div>
                 <div class="col-lg-12 mb-7">
                     <x-metronic.label class="form-label required">Header</x-metronic.label>
-                    <textarea name="row_three_header" rows="8" class="ckeditormb-2 form-control" placeholder="Header">{{ old('row_three_header', $solution->row_three_header) }}
+                    <textarea name="row_three_header" rows="8" class="ckeditor mb-2 form-control" placeholder="Header">{{ old('row_three_header', $solution->row_three_header) }}
                     </textarea>
                 </div>
             </div>
@@ -255,7 +257,7 @@
                         </div>
                         <div class="mb-7">
                             <x-metronic.label class="form-label required">Description</x-metronic.label>
-                            <textarea name="row_six_description" rows="8" class="ckeditormb-2 form-control" placeholder="Description">{{ old('row_six_description', $solution->row_six_description) }}
+                            <textarea name="row_six_description" rows="8" class="ckeditor mb-2 form-control" placeholder="Description">{{ old('row_six_description', $solution->row_six_description) }}
                             </textarea>
                         </div>
                         <div class="mb-7">
