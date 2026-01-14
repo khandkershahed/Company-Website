@@ -78,7 +78,7 @@
                     </div>
                     <div class="col-lg-12 mb-7">
                         <x-metronic.label class="form-label required">Description</x-metronic.label>
-                        <textarea name="row_four_header" rows="3" class="mb-2 form-control" placeholder="Description">{{ old('row_four_header', $solution->row_four_header) }}
+                        <textarea name="row_four_header" rows="3" class="ckeditor mb-2 form-control" placeholder="Description">{{ old('row_four_header', $solution->row_four_header) }}
                         </textarea>
                     </div>
                     <div class="col-lg-3 mb-7">
@@ -141,7 +141,7 @@
                 </div>
                 <div class="col-lg-12 mb-7">
                     <x-metronic.label class="form-label required">Header</x-metronic.label>
-                    <textarea name="row_three_header" rows="3" class="mb-2 form-control" placeholder="Header">{{ old('row_three_header', $solution->row_three_header) }}
+                    <textarea name="row_three_header" rows="3" class="ckeditor mb-2 form-control" placeholder="Header">{{ old('row_three_header', $solution->row_three_header) }}
                     </textarea>
                 </div>
                 <div class="row">
@@ -159,7 +159,7 @@
                         </div>
                         <div class="mb-7">
                             <x-metronic.label class="form-label">Column One Description</x-metronic.label>
-                            <textarea name="row_two_column_one_description" rows="5" class="mb-2 form-control" placeholder="Header">{{ old('row_two_column_one_description', $solution->row_two_column_one_description) }}
+                            <textarea name="row_two_column_one_description" rows="5" class="ckeditor mb-2 form-control" placeholder="Header">{{ old('row_two_column_one_description', $solution->row_two_column_one_description) }}
                             </textarea>
                         </div>
                         <div class="mb-7">
@@ -183,7 +183,7 @@
                         </div>
                         <div class="mb-7">
                             <x-metronic.label class="form-label">Column two Description</x-metronic.label>
-                            <textarea name="row_two_column_two_description" rows="5" class="mb-2 form-control" placeholder="Header">{{ old('row_two_column_two_description', $solution->row_two_column_two_description) }}
+                            <textarea name="row_two_column_two_description" rows="5" class="ckeditor mb-2 form-control" placeholder="Header">{{ old('row_two_column_two_description', $solution->row_two_column_two_description) }}
                             </textarea>
                         </div>
                         <div class="mb-7">
@@ -207,7 +207,7 @@
                         </div>
                         <div class="mb-7">
                             <x-metronic.label class="form-label">Column three Description</x-metronic.label>
-                            <textarea name="row_two_column_three_description" rows="5" class="mb-2 form-control" placeholder="Header">{{ old('row_two_column_three_description', $solution->row_two_column_three_description) }}
+                            <textarea name="row_two_column_three_description" rows="5" class="ckeditor mb-2 form-control" placeholder="Header">{{ old('row_two_column_three_description', $solution->row_two_column_three_description) }}
                             </textarea>
                         </div>
                         <div class="mb-7">
@@ -231,7 +231,7 @@
                         </div>
                         <div class="mb-7">
                             <x-metronic.label class="form-label">Column four Description</x-metronic.label>
-                            <textarea name="row_two_column_four_description" rows="5" class="mb-2 form-control" placeholder="Header">{{ old('row_two_column_four_description', $solution->row_two_column_four_description) }}
+                            <textarea name="row_two_column_four_description" rows="5" class="ckeditor mb-2 form-control" placeholder="Header">{{ old('row_two_column_four_description', $solution->row_two_column_four_description) }}
                             </textarea>
                         </div>
                         <div class="mb-7">
