@@ -52,7 +52,7 @@
                 <div class="mb-3 text-center">
                     <h2 class="fw-bold">{{ $solution->row_two_title }}</h2>
                     <p class="pt-4 mx-auto" style="text-align: justify">
-                        {{ $solution->row_two_header }}
+                        {!! $solution->row_two_header !!}
                     </p>
                 </div>
             </div>
@@ -238,7 +238,7 @@
             @if (!empty($solution->header))
             <div class="mb-5 text-center col-12">
                 <h2 class="pt-3 fw-bold" style="color: #0b4970; width: 70%; margin: auto;">
-                    {{ $solution->header }}
+                    {!! $solution->header !!}
                 </h2>
             </div>
             @endif
@@ -273,7 +273,7 @@
                     <div class="p-3 bg-white rounded-3" style="height: 300px; margin-top: -30px;z-index: 10; position: relative;">
                         <a href="{{ $solution->row_two_column_one_link ?? 'javascript:void(0)' }}">
                             <h5 class="text-black " style="height: 70px">{{ $solution->row_two_column_one_title }}</h5>
-                            <p class="">{{ $solution->row_two_column_one_description }}</p>
+                            <p class="">{!! $solution->row_two_column_one_description !!}</p>
                         </a>
                     </div>
                 </div>
@@ -293,7 +293,7 @@
                     <div class="p-3 bg-white rounded-3" style="height: 300px; margin-top: -30px;z-index: 10; position: relative;">
                         <a href="{{ $solution->row_two_column_two_link ?? 'javascript:void(0)' }}">
                             <h5 class="text-black " style="height: 70px">{{ $solution->row_two_column_two_title }}</h5>
-                            <p class="">{{ $solution->row_two_column_two_description }}</p>
+                            <p class="">{!! $solution->row_two_column_two_description !!}</p>
                         </a>
                     </div>
                 </div>
@@ -313,7 +313,7 @@
                     <div class="p-3 bg-white rounded-3" style="height: 300px; margin-top: -30px;z-index: 10; position: relative;">
                         <a href="{{ $solution->row_two_column_three_link ?? 'javascript:void(0)' }}">
                             <h5 class="text-black " style="height: 70px">{{ $solution->row_two_column_three_title }}</h5>
-                            <p class="">{{ $solution->row_two_column_three_description }}</p>
+                            <p class="">{!! $solution->row_two_column_three_description !!}</p>
                         </a>
                     </div>
                 </div>
@@ -333,7 +333,7 @@
                     <div class="p-3 bg-white rounded-3" style="height: 300px; margin-top: -30px;z-index: 10; position: relative;">
                         <a href="{{ $solution->row_two_column_four_link ?? 'javascript:void(0)' }}">
                             <h5 class="text-black " style="height: 70px">{{ $solution->row_two_column_four_title }}</h5>
-                            <p class="">{{ $solution->row_two_column_four_description }}</p>
+                            <p class="">{!! $solution->row_two_column_four_description !!}</p>
                         </a>
                     </div>
                 </div>
@@ -355,7 +355,7 @@
                         {{ $solution->row_three_title }}
                     </h3>
                     <p class="px-0 mx-auto">
-                        {{ $solution->row_three_header }}
+                        {!! $solution->row_three_header !!}
                     </p>
                 </div>
             </div>
@@ -426,7 +426,7 @@
                                     {{ $solution->row_five_title }}
                                 </h5>
                                 <p class="text-white">
-                                    {{ $solution->row_five_description }}
+                                    {!! $solution->row_five_description !!}
                                 </p>
                                 @if (!empty($solution->row_five_link) && !empty($solution->row_five_btn_name))
                                 <div class="mt-4">
@@ -457,7 +457,7 @@
                                     {{ $solution->row_six_title }}
                                 </h5>
                                 <p class="text-white">
-                                    {{ $solution->row_six_description }}
+                                    {!! $solution->row_six_description !!}
                                 </p>
                                 @if (!empty($solution->row_six_link) && !empty($solution->row_six_btn_name))
                                 <div class="mt-4">
@@ -488,7 +488,7 @@
                                     {{ $solution->row_seven_title }}
                                 </h5>
                                 <p class="text-white">
-                                    {{ $solution->row_seven_description }}
+                                    {!! $solution->row_seven_description !!}
                                 </p>
                                 @if (!empty($solution->row_seven_link) && !empty($solution->row_seven_btn_name))
                                 <div class="mt-4">
@@ -565,7 +565,7 @@
                         <a href="{{ route('feature.details', $feature->slug) }}">
                             <h5 class="text-white fw-bold">{{ $feature->badge }}</h5>
                             <p class="text-white">
-                                {{ Str::words($feature->header, 10, $end = '') }}
+                                {!! Str::words($feature->header, 10, $end = '') !!}
                             </p>
                         </a>
                     </div>

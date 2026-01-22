@@ -85,7 +85,7 @@
                                         @endif
                                         <div class="st-three-about-list-items ps-4">
                                             <h1 class="title">{{ $solution->row_four_col_one_title }}</h1>
-                                            <p class="mb-0">{{ $solution->row_four_col_one_description }}</p>
+                                            <p class="mb-0">{!! $solution->row_four_col_one_description !!}</p>
                                         </div>
                                     </div>
                                     <div class="mb-5 d-flex align-items-center">
@@ -97,7 +97,7 @@
                                         @endif
                                         <div class="st-three-about-list-items ps-4">
                                             <h1 class="title">{{ $solution->row_four_col_two_title }}</h1>
-                                            <p class="mb-0">{{ $solution->row_four_col_two_description }}</p>
+                                            <p class="mb-0">{!! $solution->row_four_col_two_description !!}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@
                                 <div class="card-body">
                                     <div class="py-5 pt-0 text-center">
                                         <p class="uppercase text-primary">{{ $solution->row_three_title }}</p>
-                                        <h3 class="fw-bold">{{ $solution->row_three_header }}</h3>
+                                        <h3 class="fw-bold">{!! $solution->row_three_header !!}</h3>
                                     </div>
                                     <div>
                                         <div class="row">
@@ -175,7 +175,7 @@
                                                     @endif
                                                     <div>
                                                         <h5 class="fw-bold">{{$solution->row_two_column_one_title}}</h5>
-                                                        <p>{{$solution->row_two_column_one_description}}</p>
+                                                        <p>{!! $solution->row_two_column_one_description !!}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -188,7 +188,7 @@
                                                     @endif
                                                     <div>
                                                         <h5 class="fw-bold">{{ $solution->row_two_column_two_title }}</h5>
-                                                        <p>{{ $solution->row_two_column_two_description }}</p>
+                                                        <p>{!! $solution->row_two_column_two_description !!}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -201,7 +201,7 @@
                                                     @endif
                                                     <div>
                                                         <h5 class="fw-bold">{{ $solution->row_two_column_three_title }}</h5>
-                                                        <p>{{ $solution->row_two_column_three_description }}</p>
+                                                        <p>{!! $solution->row_two_column_three_description !!}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -214,7 +214,7 @@
                                                     @endif
                                                     <div>
                                                         <h5 class="fw-bold">{{ $solution->row_two_column_four_title }}</h5>
-                                                        <p>{{ $solution->row_two_column_four_description }}</p>
+                                                        <p>{!! $solution->row_two_column_four_description !!}</p>
                                                     </div>
                                                 </div>
                                             </div>

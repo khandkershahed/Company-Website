@@ -55,7 +55,7 @@
                     <div class="col-lg-12">
                         <div class="py-5 text-center">
                             <!-- <p class="text-primary">{{ $solution->row_three_title }}</p> -->
-                            <h1>{{ $solution->row_three_header }}</h1>
+                            <h1>{!! $solution->row_three_header !!}</h1>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                                         </div>
                                         <div>
                                             <h2 class="title">{{ $solution->row_two_column_one_title }}</h2>
-                                            <p class="para text-muted">{{ $solution->row_two_column_one_description }}</p>
+                                            <p class="para text-muted">{!! $solution->row_two_column_one_description !!}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                                     </div>
                                     <div>
                                         <h2 class="title">{{ $solution->row_two_column_two_title }}</h2>
-                                        <p class="para text-muted">{{ $solution->row_two_column_two_description }}</p>
+                                        <p class="para text-muted">{!! $solution->row_two_column_two_description !!}</p>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                         </div>
                                         <div>
                                             <h2 class="title">{{ $solution->row_two_column_three_title }}</h2>
-                                            <p class="para text-muted">{{ $solution->row_two_column_three_description }}
+                                            <p class="para text-muted">{!! $solution->row_two_column_three_description !!}
                                             </p>
                                         </div>
                                     </div>

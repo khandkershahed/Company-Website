@@ -62,10 +62,10 @@
                                     <h3 class="sub-title color-2">{{ $solution->row_four_badge }}</h3>
                                     <h2 class="mt-2 title">{{ $solution->row_four_title }}</h2>
                                 </div>
-                                <p class="text">{{ $solution->row_four_header }}</p>
+                                <p class="text">{!! $solution->row_four_header !!}</p>
                                 <div class="about-quote">
                                     <!-- <blockquote class="blockquote"> -->
-                                        <p>{{ $solution->row_four_quote }}</p>
+                                        <p>{!! $solution->row_four_quote !!}</p>
                                     <!-- </blockquote> -->
                                 </div>
                                 <!-- About List Start -->
@@ -75,7 +75,7 @@
                                             <div class="about-list-item-02">
                                                 <h3 class="title"><i class="fas fa-arrow-circle-right"></i>
                                                     {{ $solution->row_four_col_one_title }}</h3>
-                                                <p>{{ $solution->row_four_col_one_description }}</p>
+                                                <p>{!! $solution->row_four_col_one_description !!}</p>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -83,7 +83,7 @@
                                                 <h3 class="title"><i
                                                         class="fas fa-arrow-circle-right"></i>{{ $solution->row_four_col_two_title }}
                                                 </h3>
-                                                <p>{{ $solution->row_four_col_two_description }}</p>
+                                                <p>{!! $solution->row_four_col_two_description !!}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -154,7 +154,7 @@
                                                 <h3 class="title"><a
                                                         href="{{ $solution->row_two_column_one_link ?? 'javascript:void(0)' }}">{{ $solution->row_two_column_one_title }}</a>
                                                 </h3>
-                                                <p>{{ $solution->row_two_column_one_description }}</p>
+                                                <p>{!! $solution->row_two_column_one_description !!}</p>
                                             </div>
                                         </div>
                                         <!-- Service Item End -->
@@ -180,7 +180,7 @@
                                                 <h3 class="title"><a
                                                         href="{{ $solution->row_two_column_one_link ?? 'javascript:void(0)' }}">{{ $solution->row_two_column_two_title }}</a>
                                                 </h3>
-                                                <p>{{ $solution->row_two_column_two_description }}</p>
+                                                <p>{!! $solution->row_two_column_two_description !!}</p>
                                             </div>
                                         </div>
                                         <!-- Service Item End -->
@@ -206,7 +206,7 @@
                                                 <h3 class="title"><a
                                                         href="{{ $solution->row_two_column_one_link ?? 'javascript:void(0)' }}">{{ $solution->row_two_column_three_title }}</a>
                                                 </h3>
-                                                <p>{{ $solution->row_two_column_three_description }}</p>
+                                                <p>{!! $solution->row_two_column_three_description !!}</p>
                                             </div>
                                         </div>
                                         <!-- Service Item End -->
@@ -232,7 +232,7 @@
                                                 <h3 class="title"><a
                                                         href="{{ $solution->row_two_column_one_link ?? 'javascript:void(0)' }}">{{ $solution->row_two_column_four_title }}</a>
                                                 </h3>
-                                                <p>{{ $solution->row_two_column_four_description }}</p>
+                                                <p>{!! $solution->row_two_column_four_description !!}</p>
                                             </div>
                                         </div>
                                         <!-- Service Item End -->
